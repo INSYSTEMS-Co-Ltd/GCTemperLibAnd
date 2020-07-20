@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_weight="0.15"
+    android:layout_margin="@dimen/_20_dp"
+    android:background="@drawable/whithe_round2_backgroud"
+    tools:showIn="@layout/main_activity"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_5_dp"
+        android:layout_marginLeft="@dimen/_20_dp"
+        android:layout_marginBottom="@dimen/_5_dp">
+
+        <RelativeLayout
+            android:id="@+id/sub_main_category1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/list_add_change"
+            android:layout_alignParentLeft="true"
+            tools:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_above="@id/cata1_mid"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/main_cata1_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    tools:text="엄마 체중 기록"
+                    android:textColor="@color/color_353535"
+                    android:textSize="@dimen/_15_dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hi_maum_r" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/main_cata1_view"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="bottom"-->
+<!--                    android:paddingLeft="@dimen/_10_dp"-->
+<!--                    android:paddingRight="@dimen/_10_dp"-->
+<!--                    android:layout_marginLeft="@dimen/_10_dp"-->
+<!--                    android:drawablePadding="@dimen/_5_dp"-->
+<!--                    android:drawableRight="@drawable/icon_main_right_arrow"-->
+<!--                    tools:text="자세히 보기"-->
+<!--                    android:textColor="@color/color_6B97E6"-->
+<!--                    android:textSize="@dimen/_12_dp"-->
+<!--                    android:fontFamily="@font/hi_maum_r" />-->
+
+                <RelativeLayout
+                    android:id="@+id/main_cata1_rl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10_dp"
+                    android:minWidth="@dimen/_80_dp">
+
+                    <TextView
+                        android:id="@+id/main_cata1_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        tools:text="자세히 보기"
+                        android:textColor="@color/color_6B97E6"
+                        android:textSize="@dimen/_12_dp"
+                        android:fontFamily="@font/hi_maum_r" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/_5_dp"
+                        android:layout_toRightOf="@id/main_cata1_view"
+                        android:src="@drawable/icon_main_right_arrow"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/cata1_mid"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10_dp"
+                android:layout_centerInParent="true"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cata1_mid"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/main_cata1_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="top"
+                    tools:text="현제 체중 : "
+                    android:textAlignment="center"
+                    android:textColor="@color/color_8c8c8c"
+                    android:textSize="@dimen/_15_dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hi_gothic_l" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/main_cata1_content1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:text="55.00kg"-->
+<!--                    android:textColor="@color/color_797979"-->
+<!--                    android:textSize="@dimen/_12_dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:fontFamily="@font/hi_gothic_m" />-->
+
+                <View
+                    android:id="@+id/cata_line1"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/main_cata1_content"
+                    android:layout_alignBottom="@id/main_cata1_content"
+                    android:layout_toRightOf="@id/main_cata1_content"
+                    android:layout_marginLeft="@dimen/_10_dp"
+                    android:background="@color/colorLightLine"/>
+
+                <TextView
+                    android:id="@+id/main_cata1_content1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/cata_line1"
+                    android:layout_marginLeft="@dimen/_10_dp"
+                    tools:text="정상체중군"
+                    android:textColor="@color/color_797979"
+                    android:textSize="@dimen/_15_dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hi_gothic_m" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/sub_main_category2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/list_add_change"
+            android:layout_alignParentLeft="true"
+            tools:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_above="@id/cata2_mid"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/main_cata2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:minWidth="@dimen/_80_dp"
+                    tools:text="유의 질환"
+                    android:textColor="@color/color_353535"
+                    android:textSize="@dimen/_15_dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hi_maum_r" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:layout_toRightOf="@id/main_cata2_title"
+                    android:layout_marginLeft="@dimen/_20_dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/main_cata2_rank1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="@dimen/_110_dp"
+                        tools:text="1. 아데노 바이러스 감염"
+                        android:textColor="@color/color_8c8c8c"
+                        android:textSize="@dimen/_12_dp"
+                        android:fontFamily="@font/hi_gothic_m" />
+
+                    <TextView
+                        android:id="@+id/main_cata2_rank_ratio1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        tools:text="54.7%"
+                        android:textColor="@color/color_EE8C2A"
+                        android:textSize="@dimen/_12_dp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/hi_gothic_m" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/cata2_mid"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10_dp"
+                android:layout_centerInParent="true"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cata2_mid"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical">
+
+                <RelativeLayout
+                    android:id="@+id/cata2_rl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_80_dp">
+
+                    <TextView
+                        android:id="@+id/main_cata2_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="top"
+                        tools:text="자세히 보기"
+                        android:textColor="@color/color_6B97E6"
+                        android:textSize="@dimen/_12_dp"
+                        android:fontFamily="@font/hi_maum_r" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="@dimen/_5_dp"
+                        android:layout_toRightOf="@id/main_cata2_view"
+                        android:src="@drawable/icon_main_right_arrow"/>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/cata2_rl"
+                    android:layout_marginLeft="@dimen/_20_dp">
+
+                    <TextView
+                        android:id="@+id/main_cata2_rank2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="@dimen/_110_dp"
+                        tools:text="2. 구내염(단순포진)"
+                        android:textColor="@color/color_8c8c8c"
+                        android:textSize="@dimen/_12_dp"
+                        android:fontFamily="@font/hi_gothic_m" />
+
+                    <TextView
+                        android:id="@+id/main_cata2_rank_ratio2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        tools:text="16%"
+                        android:textColor="@color/color_EE8C2A"
+                        android:textSize="@dimen/_12_dp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/hi_gothic_m" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/sub_main_category3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_5_dp"
+            android:layout_marginBottom="@dimen/_5_dp"
+            android:layout_toLeftOf="@id/list_add_change"
+            android:layout_alignParentLeft="true"
+            tools:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/main_cata3_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    tools:text="아이학습"
+                    android:textColor="@color/color_353535"
+                    android:textSize="@dimen/_15_dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hi_maum_r" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/main_cata3_title"
+                    android:layout_marginLeft="@dimen/_20_dp"
+                    android:gravity="center">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guide1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.15"/>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guide2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.90"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:background="@drawable/main_round10_backgroud"
+                        android:gravity="center"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/guide1"
+                        app:layout_constraintBottom_toBottomOf="@id/guide2">
+
+                        <LinearLayout
+                            android:id="@+id/main_cata3_dance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/main_cata3_dance_txt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:letterSpacing="-0.1"
+                                    tools:text="크니 댄스"
+                                    android:textColor="@color/color_6B97E6"
+                                    android:textSize="@dimen/_12_dp"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/hi_gothic_m" />
+
+                                <View
+                                    android:id="@+id/cata3_line3"
+                                    android:layout_width="1dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_15_dp"
+                                    android:layout_marginRight="@dimen/_15_dp"
+                                    android:layout_alignTop="@id/main_cata3_dance_txt"
+                                    android:layout_alignBottom="@id/main_cata3_dance_txt"
+                                    android:layout_toRightOf="@id/main_cata3_dance_txt"
+                                    android:background="@color/color_6B97E6"/>
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/main_cata3_fairytail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_toRightOf="@id/main_cata3_dance"
+                            android:letterSpacing="-0.1"
+                            tools:text="매일 보는 동화"
+                            android:textColor="@color/color_6B97E6"
+                            android:textSize="@dimen/_12_dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/hi_gothic_m" />
+
+                    </LinearLayout>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@id/main_cata3_title"-->
+<!--                    android:layout_marginLeft="@dimen/_20_dp"-->
+<!--                    android:background="@drawable/main_round10_backgroud"-->
+<!--                    android:gravity="center">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/main_cata3_dance"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_alignParentLeft="true">-->
+
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:gravity="center">-->
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/main_cata3_dance_txt"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentLeft="true"-->
+<!--                                android:letterSpacing="-0.1"-->
+<!--                                tools:text="크니 댄스"-->
+<!--                                android:textColor="@color/color_6B97E6"-->
+<!--                                android:textSize="@dimen/_12_dp"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:fontFamily="@font/hi_gothic_m" />-->
+
+<!--                            <View-->
+<!--                                android:id="@+id/cata3_line3"-->
+<!--                                android:layout_width="1dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginLeft="@dimen/_15_dp"-->
+<!--                                android:layout_marginRight="@dimen/_15_dp"-->
+<!--                                android:layout_alignTop="@id/main_cata3_dance_txt"-->
+<!--                                android:layout_alignBottom="@id/main_cata3_dance_txt"-->
+<!--                                android:layout_toRightOf="@id/main_cata3_dance_txt"-->
+<!--                                android:background="@color/color_6B97E6"/>-->
+<!--                        </RelativeLayout>-->
+
+
+<!--                    </LinearLayout>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/main_cata3_fairytail"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:gravity="center"-->
+<!--                        android:layout_toRightOf="@id/main_cata3_dance"-->
+<!--                        android:letterSpacing="-0.1"-->
+<!--                        tools:text="매일 보는 동화"-->
+<!--                        android:textColor="@color/color_6B97E6"-->
+<!--                        android:textSize="@dimen/_12_dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:fontFamily="@font/hi_gothic_m" />-->
+
+
+<!--                </RelativeLayout>-->
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/list_add_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_15_dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="@dimen/_5_dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_marginRight="@dimen/_20_dp"
+                android:src="@drawable/icon_main_add" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="missingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_100ffffff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!-- 유행성 질환 정보 프로그램 신청하기​ -->
+    <RelativeLayout
+        android:id="@+id/common_bg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/bg_yellow_light">
+
+        <ImageButton
+            android:id="@+id/common_left_btn"
+            android:layout_width="@dimen/_48_dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:src="@drawable/btn_back_white" />
+
+        <TextView
+            android:id="@+id/common_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color_ffffff"
+            android:fontFamily="@font/hi_maum_r"
+            android:textSize="@dimen/px_50" />
+
+        <ImageButton
+            android:id="@+id/btn_alarm"
+            android:layout_width="@dimen/_50_dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_alarm"
+            android:scaleType="fitCenter"
+            android:padding="@dimen/_10_dp"
+            android:layout_marginRight="@dimen/_5_dp"
+            android:adjustViewBounds="true"
+            android:visibility="gone"
+            android:background="@null"/>
+
+        <Button
+            android:id="@+id/common_right_btn"
+            android:layout_width="@dimen/_50_dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:textColor="@color/color_ffffff_btn"
+            android:textSize="@dimen/_16_dp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/mother_health_main_"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/_15_dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.4"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.45"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5"/>
+
+            <TextView
+                android:id="@+id/disease_program_tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="-0.1"
+                android:layout_marginTop="@dimen/_30_dp"
+                tools:text="@string/diseae_text1"
+                android:fontFamily="@font/hi_maum_l"
+                android:textColor="@color/bg_yellow_light"
+                android:textSize="@dimen/px_60"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/disease_program_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="-0.1"
+                android:lineSpacingExtra="@dimen/_5_dp"
+                android:layout_marginTop="@dimen/_25_dp"
+                tools:text="@string/diseae_text2"
+                android:fontFamily="@font/hi_gothic_l"
+                android:textColor="#292929"
+                android:textSize="@dimen/px_45"
+                app:layout_constraintTop_toBottomOf="@id/disease_program_tv1"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/disease_program_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="-0.1"
+                android:lineSpacingExtra="@dimen/_5_dp"
+                android:layout_marginTop="@dimen/_20_dp"
+                tools:text="@string/diseae_text3"
+                android:fontFamily="@font/hi_gothic_m"
+                android:textColor="@color/color_898989"
+                android:textSize="@dimen/px_40"
+                app:layout_constraintTop_toBottomOf="@id/disease_program_tv2"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/disease_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_70_dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/disease_program4"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/disease_program_tv3"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:layout_marginLeft="@dimen/_15_dp"
+            android:layout_marginRight="@dimen/_15_dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_marginBottom="@dimen/_10_dp"
+                    android:background="@color/bg_yellow_light"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/phone_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.1"
+                            android:lineSpacingExtra="@dimen/_5_dp"
+                            android:fontFamily="@font/hi_gothic_l"
+                            android:textSize="@dimen/px_40"
+                            android:textColor="@color/color_898989"
+                            tools:text="@string/diet_text5"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10_dp"
+                            android:letterSpacing="-0.1"
+                            android:fontFamily="@font/hi_gothic_m"
+                            android:textSize="@dimen/px_35"
+                            android:textColor="@color/color_898989"
+                            android:text="@string/diet_text4"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/sms_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/disease_program5"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:background="@color/bg_yellow_light"/>
+
+            </LinearLayout>>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_64_dp"
+            android:layout_below="@+id/dialog_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/confirm_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/bg_yellow_light"
+                android:fontFamily="@font/hi_gothic_b"
+                android:text="@string/request"
+                android:textColor="@color/color_f8f5f0_btn"
+                android:textSize="@dimen/_18_dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

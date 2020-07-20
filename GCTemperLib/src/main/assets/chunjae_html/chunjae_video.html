@@ -1,0 +1,173 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+      body{
+        background-color:#000000;
+      }
+      iframe{
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        position: fixed;
+        min-width: 0px;
+        max-width: none;
+        min-height: 0px;
+        max-height: none;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+      }
+    </style>
+</head>
+
+<body>
+
+<div id="player"></div>
+
+<script>
+      var regx = "acxq";
+      var play_end = false;
+      var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
+      $(document).ready(function() {
+          if (varUA.match('android') != null) {
+          //안드로이드 일때 처리
+            window.Android.video(8);
+
+          } else if (varUA.indexOf("iphone")>-1||varUA.indexOf("ipad")>-1||varUA.indexOf("ipod")>-1) {
+          //IOS 일때 처리
+
+            window.location.href = 'interface://indicator?active=Y';
+          }
+      });
+
+      var temp = location.href.split("?");
+      var uri = temp[1];
+      var title = regx+temp[1];
+
+      var options = {
+        id: uri,
+        playsinline:true
+      };
+
+      var videoPlayer = new Vimeo.Player('player', options);
+
+      if (varUA.match('android') != null) {
+          //안드로이드 일때 처리
+          window.Android.indicator(true);
+
+      } else if (varUA.indexOf("iphone")>-1||varUA.indexOf("ipad")>-1||varUA.indexOf("ipod")>-1) {
+          //IOS 일때 처리
+          window.location.href = 'interface://indicator?active=Y';
+      }
+
+      videoPlayer.on('play', function() {
+        console.log('Played the video');
+        play_end = false;
+        deleteCookie(title);
+      });
+
+      videoPlayer.ready().then(function() {
+          // The player is ready
+          if (varUA.match('android') != null) {
+              //안드로이드 일때 처리
+              window.Android.indicator(false);
+
+          } else if (varUA.indexOf("iphone")>-1||varUA.indexOf("ipad")>-1||varUA.indexOf("ipod")>-1) {
+              //IOS 일때 처리
+              window.location.href = 'interface://indicator?active=N';
+          }
+          getResume();
+
+       });
+
+      videoPlayer.on('ended', function(data) {
+        // `data` is an object containing properties specific to that event
+        console.log('Played ended the video');
+        play_end = true;
+        deleteCookie(title);
+      });
+
+      function setTime(){
+        videoPlayer.getCurrentTime().then(function(seconds) {
+          // `seconds` indicates the current playback position of the video
+            if(!play_end && seconds > 0)
+              setCookie(title, seconds, 365);
+            else
+              deleteCookie(title);
+            console.log(seconds);
+          });
+      }
+
+      function getResume(){
+        var second = getCookie(title);
+
+        if(second != undefined || second != null){
+           createConfirm("동영상을 이어서 보시겠습니까?");
+        }
+      }
+
+      function setResume(){
+        videoPlayer.setCurrentTime(getCookie(title)).then(function(seconds) {
+          // `seconds` indicates the actual time that the player seeks to
+
+        }).catch(function(error) {
+          switch (error.name) {
+            case 'RangeError':
+                // The time is less than 0 or greater than the video's duration
+                deleteCookie(title);
+                break;
+
+            default:
+                // Some other error occurred
+                deleteCookie(title);
+                break;
+          }
+        });
+      }
+
+      function createConfirm(message) {
+        swal(message, {
+          buttons: ["아니오", "예"],
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            setResume();
+            videoPlayer.play();
+          } else {
+            videoPlayer.play();
+          }
+        });
+    }
+
+      function setCookie(name, value, expiredays)
+      {
+
+        localStorage.setItem(name, value);
+      }
+
+      // 쿠키 가져오기
+      function getCookie(name) {
+        var value = localStorage.getItem(name);
+        return value? value : null;
+      }
+
+      //쿠키 삭제
+      function deleteCookie(name){
+        localStorage.removeItem(name);
+      }
+
+    </script>
+</body>
+</html>

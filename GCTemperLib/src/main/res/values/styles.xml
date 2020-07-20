@@ -1,0 +1,422 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="GCLibTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name = "android:windowBackground">@color/color_100ffffff</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- toolbar 사용시 actionbar 비활성화 -->
+    <style name="GCLibTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Log" parent="GCLibTheme">
+        <item name="android:typeface">monospace</item>
+
+        <item name="android:padding">@dimen/margin_medium</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <!-- 팝업 다이얼로그 테마 -->
+    <style name="popup_custom_theme" parent="android:Theme">
+        <item name="android:windowBackground">@color/color_20000000</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- 반투명한 배경 -->
+    <style name="Theme.Opacity" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!-- 투명한 배경 -->
+    <style name="Theme.Transparent" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <!-- 투명한 배경 메인팝업 -->
+    <style name="Theme.Transparent_main" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!-- 하단에서 올라오는 버튼 -->
+<!--    <style name="ActionSheetStyleiOS9">-->
+<!--        <item name="actionSheetBackground">@color/color_00000000</item>-->
+<!--        <item name="cancelButtonBackground">@drawable/btn_5_6bb0d7</item>-->
+<!--        <item name="otherButtonTopBackground">@drawable/btn_5_ffffff</item>-->
+<!--        <item name="otherButtonMiddleBackground">@drawable/btn_5_ffffff</item>-->
+<!--        <item name="otherButtonBottomBackground">@drawable/btn_5_ffffff</item>-->
+<!--        <item name="otherButtonSingleBackground">@drawable/btn_5_ffffff</item>-->
+<!--        <item name="cancelButtonTextColor">@color/color_ffffff_btn</item>-->
+<!--        <item name="otherButtonTextColor">@color/color_6bb0d7_btn</item>-->
+<!--        <item name="actionSheetPadding">@dimen/_19_dp</item>-->
+<!--        <item name="otherButtonSpacing">@dimen/_4_dp</item>-->
+<!--        <item name="cancelButtonMarginTop">@dimen/_4_dp</item>-->
+<!--        <item name="actionSheetTextSize">@dimen/_16_dp</item>-->
+<!--    </style>-->
+
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">@dimen/_16_dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">@dimen/_5_dp</item>
+    </style>
+
+
+
+    <!-- GreenCare -->
+
+    <!-- 최상단 프레임  -->
+    <style name="common_fill_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
+    <!-- 최상단 프레임  -->
+    <style name="common_parent_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
+    <!-- 에디터박스 -->
+    <style name="common_edittext_style" parent="@android:style/Widget.EditText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_15_dp</item>
+        <item name="android:textColorHint">@color/colorGray</item>
+        <item name="android:layout_height">@dimen/_35_dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+        <item name="android:background">@drawable/edittext_box</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="common_edittext_style1" parent="@android:style/Widget.EditText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColorHint">@color/colorGray</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <!-- 체크박스 -->
+    <style name="common_checkbox_style" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:scaleX">1.5</item>
+        <item name="android:scaleY">1.5</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_height">@dimen/_35_dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/colorFields</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+        <item name="android:button">@drawable/checkbox_box</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+    </style>
+
+
+    <!--항목타이틀 기본 -->
+    <style name="common_textview_basic" parent="@android:style/Widget.TextView">
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+
+
+    <!--항목타이틀-->
+    <style name="member_textview_fields" parent="common_textview_basic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorLightBlack</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+    <!--항목타이틀-->
+    <style name="common_textview_fields" parent="common_textview_basic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_15_dp</item>
+        <item name="android:textColor">@color/colorLightBlack</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+
+    <!--항목타이틀(선택)-->
+    <style name="common_textview_selfields" parent="common_textview_basic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorMain</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+
+    <!--항목 값-->
+    <style name="common_textview_value" parent="common_textview_basic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorLightBlack</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+
+    <!--validate 값 노출 -->
+    <style name="common_textview_validate" parent="common_textview_basic">
+        <item name="android:textColor">@color/error_text_color</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+
+    </style>
+
+
+    <style name="common_textview_dark_small" parent="common_textview_basic">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/colorFields</item>
+        <item name="android:layout_marginLeft">1dp</item>
+        <item name="android:layout_marginRight">1dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:paddingRight">1dp</item>
+        <item name="android:paddingLeft">1dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+
+    <style name="common_textview_dark_nobottom" parent="common_textview_basic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorFields</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">1dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+    <style name="common_textview_dark" parent="common_textview_basic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorFields</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+
+    <style name="common_textview_dark_nomargin" parent="common_textview_basic">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/colorFields</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+    <style name="common_textview_ea" parent="common_textview_basic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_12_dp</item>
+        <item name="android:textColor">@color/colorLightBlack</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:fontFamily">@font/hi_maum_r</item>
+    </style>
+
+    <style name="common_actionbar_style" parent="Base.Widget.AppCompat.Light.ActionBar">
+    </style>
+
+    <style name="common_button_modal_close" parent="Base.TextAppearance.AppCompat.Button">
+        <!--<item name="android:textStyle">bold</item>-->
+        <!--<item name="android:textSize">12sp</item>-->
+        <!--<item name="android:textColor">@color/colorLightBlack</item>-->
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:gravity">center</item>
+        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
+    </style>
+
+    <!-- input button style -->
+    <style name="common_button_input" parent="android:Widget.Button">
+        <!--<item name="android:textStyle">bold</item>-->
+        <!--<item name="android:textSize">12sp</item>-->
+        <!--<item name="android:textColor">@color/colorLightBlack</item>-->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginLeft">45dp</item>
+        <item name="android:layout_marginRight">45dp</item>
+        <item name="android:gravity">center</item>
+        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
+    </style>
+
+    <!-- save button style -->
+    <style name="common_save_button_input" parent="android:Widget.Button">
+        <item name="android:layout_width">@dimen/_322_dp</item>
+        <item name="android:layout_height">@dimen/_46_dp</item>
+        <item name="android:background">@color/color_100ffffff</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:src">@drawable/button_on_off</item>
+        <item name="android:paddingBottom">@dimen/_10_dp</item>
+        <item name="android:paddingTop">@dimen/_10_dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
+    </style>
+
+    <!-- more button style -->
+    <style name="common_button_more" parent="android:Widget.Button">
+        <!--<item name="android:textStyle">bold</item>-->
+        <!--<item name="android:textSize">12sp</item>-->
+        <!--<item name="android:textColor">@color/colorLightBlack</item>-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorBackgound</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">15개 더보기</item>
+        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
+    </style>
+
+    <style name="tip_button" parent="android:Widget.Button">
+        <item name="android:background">@drawable/tip_btn</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_16_dp</item>
+        <item name="android:text">@string/psy_tip</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:layout_height">@dimen/_40_dp</item>
+    </style>
+
+    <!-- black/White 라디오 버튼 -->
+    <style name="common_radio_style" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/radio_btn_color</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="common_radio_style_left" parent="common_radio_style">
+        <item name="android:background">@drawable/radio_left</item>
+    </style>
+    <style name="common_radio_style_middle" parent="common_radio_style">
+        <item name="android:background">@drawable/radio_middle</item>
+    </style>
+    <style name="common_radio_style_right" parent="common_radio_style">
+        <item name="android:background">@drawable/radio_right</item>
+    </style>
+
+
+    <!-- pink/White 라디오 버튼 -->
+    <style name="pink_radio_style" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/radio_btn_pink_color</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="pink_radio_style_left" parent="pink_radio_style">
+        <item name="android:background">@drawable/radio_pink_left</item>
+    </style>
+    <style name="pink_radio_style_right" parent="pink_radio_style">
+        <item name="android:background">@drawable/radio_pink_right</item>
+    </style>
+
+    <!-- pink/White 그래프 라디오 버튼 -->
+    <style name="pink_graph_radio_style" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/radio_btn_graph_pink_color</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="pink_graph_radio_style_left" parent="pink_graph_radio_style">
+        <item name="android:background">@drawable/radio_graph_pink_left</item>
+    </style>
+    <style name="pink_graph_radio_style_middle" parent="pink_graph_radio_style">
+        <item name="android:background">@drawable/radio_graph_pink_middle</item>
+    </style>
+    <style name="pink_graph_radio_style_right" parent="pink_graph_radio_style">
+        <item name="android:background">@drawable/radio_graph_pink_right</item>
+    </style>
+
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="mhs_maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <style name="PauseDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/fragment_pop_up</item>
+        <item name="android:windowExitAnimation">@anim/fragment_pop_down</item>
+    </style>
+
+    <style name="Theme.MyDialog" parent="android:Theme.NoTitleBar">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+</resources>

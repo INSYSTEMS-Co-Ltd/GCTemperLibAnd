@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent" >
+
+    <include android:id="@+id/common_back_top" layout="@layout/common_back_top" />
+
+    <!-- 백그라운드 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/common_back_top"
+        android:background="@color/bg_gray">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="top|center_vertical"
+            android:layout_marginTop="@dimen/_25_dp"
+            android:gravity="center"
+            android:text="@string/version_now"
+            android:textColor="@color/txt_dark_bold"
+            android:textSize="@dimen/_18_dp"
+            android:fontFamily="@font/hi_maum_r"/>
+
+        <TextView
+            android:id="@+id/nowversion_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/_55_dp"
+            android:gravity="center"
+            android:text="1.1"
+            android:textColor="@color/txt_dark_bold"
+            android:textSize="@dimen/_50_dp"
+            android:fontFamily="@font/hi_maum_r"/>
+
+        <Button
+            android:id="@+id/version_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_46_dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/_32_dp"
+            android:layout_marginLeft="@dimen/_19_dp"
+            android:layout_marginRight="@dimen/_19_dp"
+            android:background="@drawable/background_5_bottom_6bb0d7"
+            android:text="@string/version_update"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/_15_dp"
+            android:fontFamily="@font/hi_gothic_b" />
+
+        <TextView
+            android:id="@+id/newversion_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="@dimen/_13_dp"
+            android:gravity="center"
+            android:text="@string/version_newest"
+            android:textColor="@color/txt_dark_bold"
+            android:textSize="@dimen/_13_dp"
+            android:fontFamily="@font/hi_gothic_b"/>
+    </FrameLayout>
+
+</RelativeLayout>

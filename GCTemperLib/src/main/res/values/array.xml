@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="symptom_list" >
+        <item>@string/symptom_0</item>
+        <item>@string/symptom_1</item>
+        <item>@string/symptom_2</item>
+        <item>@string/symptom_3</item>
+        <item>@string/symptom_4</item>
+        <item>@string/symptom_5</item>
+        <item>@string/symptom_6</item>
+        <item>@string/symptom_7</item>
+        <item>@string/symptom_8</item>
+        <item>@string/symptom_9</item>
+        <item>@string/symptom_10</item>
+        <item>@string/symptom_11</item>
+        <item>@string/symptom_12</item>
+        <item>@string/symptom_13</item>
+        <item>@string/symptom_14</item>
+        <item>@string/symptom_15</item>
+        <item>@string/symptom_16</item>
+        <item>@string/symptom_17</item>
+        <item>@string/symptom_18</item>
+        <item>@string/symptom_19</item>
+        <item>@string/symptom_20</item>
+        <item>@string/symptom_21</item>
+        <item>@string/symptom_22</item>
+        <item>@string/symptom_23</item>
+        <item>@string/symptom_24</item>
+        <item>@string/symptom_25</item>
+        <item>@string/symptom_26</item>
+        <item>@string/symptom_27</item>
+    </string-array>
+
+    <string-array name="memo_list">
+        <item>@string/memo_0</item>
+        <item>@string/memo_1</item>
+        <item>@string/memo_2</item>
+        <item>@string/memo_3</item>
+        <item>@string/memo_4</item>
+        <item>@string/memo_5</item>
+        <item>@string/memo_6</item>
+        <item>@string/memo_7</item>
+    </string-array>
+
+    <string-array name="diagnosis_list">
+        <item>@string/diagnosis_0</item>
+        <item>@string/diagnosis_1</item>
+        <item>@string/diagnosis_2</item>
+        <item>@string/diagnosis_3</item>
+        <item>@string/diagnosis_4</item>
+        <item>@string/diagnosis_5</item>
+        <item>@string/diagnosis_6</item>
+        <item>@string/diagnosis_7</item>
+        <item>@string/diagnosis_8</item>
+        <item>@string/diagnosis_9</item>
+        <item>@string/diagnosis_10</item>
+        <item>@string/diagnosis_11</item>
+        <item>@string/diagnosis_12</item>
+        <item>@string/diagnosis_13</item>
+        <item>@string/diagnosis_14</item>
+        <item>@string/diagnosis_15</item>
+        <item>@string/diagnosis_16</item>
+        <item>@string/diagnosis_17</item>
+        <item>@string/diagnosis_18</item>
+        <item>@string/diagnosis_19</item>
+        <item>@string/diagnosis_20</item>
+        <item>@string/diagnosis_21</item>
+        <item>@string/diagnosis_22</item>
+    </string-array>
+
+    <string-array name="filter_list">
+        <item>@string/filter_0</item>
+        <item>@string/filter_1</item>
+        <item>@string/filter_2</item>
+        <item>@string/filter_3</item>
+        <item>@string/filter_4</item>
+        <item>@string/filter_5</item>
+    </string-array>
+
+    <string-array name="appetite_list">
+        <item>@string/appetite_lv_1</item>
+        <item>@string/appetite_lv_2</item>
+        <item>@string/appetite_lv_3</item>
+        <item>@string/appetite_lv_4</item>
+        <item>@string/appetite_lv_5</item>
+    </string-array>
+
+    <string-array name="eat_style_list">
+        <item>@string/only_breast_feeding</item>
+        <item>@string/mixed_baby_food</item>
+        <item>@string/normal_food</item>
+    </string-array>
+
+    <string-array name="remedy_kind_list">
+        <item>@string/remedy_kind_0</item>
+        <item>@string/remedy_kind_1</item>
+        <item>@string/remedy_kind_2</item>
+    </string-array>
+
+    <string-array name="suppository_list">
+        <item>@string/suppository_1</item>
+        <item>@string/suppository_2</item>
+    </string-array>
+
+    <string-array name="fever_faq_title_list">
+        <item>@string/fever_faq_title_1</item>
+        <item>@string/fever_faq_title_2</item>
+        <item>@string/fever_faq_title_3</item>
+        <item>@string/fever_faq_title_4</item>
+        <item>@string/fever_faq_title_5</item>
+        <item>@string/fever_faq_title_6</item>
+        <item>@string/fever_faq_title_7</item>
+        <item>@string/fever_faq_title_8</item>
+        <item>@string/fever_faq_title_9</item>
+        <item>@string/fever_faq_title_10</item>
+        <item>@string/fever_faq_title_11</item>
+        <item>@string/fever_faq_title_12</item>
+        <item>@string/fever_faq_title_13</item>
+        <item>@string/fever_faq_title_14</item>
+        <item>@string/fever_faq_title_15</item>
+        <item>@string/fever_faq_title_16</item>
+        <item>@string/fever_faq_title_17</item>
+        <item>@string/fever_faq_title_18</item>
+        <item>@string/fever_faq_title_19</item>
+        <item>@string/fever_faq_title_20</item>
+    </string-array>
+
+    <string-array name="fever_faq_contents_list">
+        <item>@string/fever_faq_contents_1</item>
+        <item>@string/fever_faq_contents_2</item>
+        <item>@string/fever_faq_contents_3</item>
+        <item>@string/fever_faq_contents_4</item>
+        <item>@string/fever_faq_contents_5</item>
+        <item>@string/fever_faq_contents_6</item>
+        <item>@string/fever_faq_contents_7</item>
+        <item>@string/fever_faq_contents_8</item>
+        <item>@string/fever_faq_contents_9</item>
+        <item>@string/fever_faq_contents_10</item>
+        <item>@string/fever_faq_contents_11</item>
+        <item>@string/fever_faq_contents_12</item>
+        <item>@string/fever_faq_contents_13</item>
+        <item>@string/fever_faq_contents_14</item>
+        <item>@string/fever_faq_contents_15</item>
+        <item>@string/fever_faq_contents_16</item>
+        <item>@string/fever_faq_contents_17</item>
+        <item>@string/fever_faq_contents_18</item>
+        <item>@string/fever_faq_contents_19</item>
+        <item>@string/fever_faq_contents_20</item>
+    </string-array>
+
+    <string-array name="bbs_category">
+        <item>@string/bbs_category_0</item>
+        <item>@string/bbs_category_1</item>
+        <item>@string/bbs_category_2</item>
+        <item>@string/bbs_category_3</item>
+        <item>@string/bbs_category_4</item>
+    </string-array>
+
+    <string-array name="main_category">
+        <item>@string/main_category_0</item>
+        <item>@string/main_category_1</item>
+        <item>@string/main_category_2</item>
+        <item>@string/main_category_3</item>
+        <item>@string/main_category_4</item>
+    </string-array>
+
+
+    <string-array name="live_category">
+        <item>@string/location0</item>
+        <item>@string/location1</item>
+        <item>@string/location2</item>
+        <item>@string/location3</item>
+        <item>@string/location4</item>
+        <item>@string/location5</item>
+        <item>@string/location6</item>
+        <item>@string/location7</item>
+        <item>@string/location8</item>
+        <item>@string/location9</item>
+        <item>@string/location10</item>
+        <item>@string/location11</item>
+        <item>@string/location12</item>
+        <item>@string/location13</item>
+        <item>@string/location14</item>
+        <item>@string/location15</item>
+        <item>@string/location16</item>
+    </string-array>
+
+
+
+
+    <!-- GreenCare -->
+    <string-array name="life_food">
+        <item>쌀밥</item>
+        <item>갈비탕</item>
+        <item>설렁탕</item>
+        <item>삼계탕</item>
+        <item>물냉면</item>
+        <item>비빔냉면</item>
+        <item>비빔밥</item>
+        <item>떡국</item>
+        <item>우동</item>
+        <item>탕수육</item>
+        <item>군만두</item>
+        <item>자장면</item>
+        <item>볶음밥</item>
+        <item>짬뽕</item>
+        <item>브라보콘</item>
+        <item>새우깡</item>
+        <item>순대</item>
+        <item>홈런볼</item>
+        <item>초코파이</item>
+        <item>에이스</item>
+        <item>신라면</item>
+        <item>프라이드치킨</item>
+        <item>떡볶이</item>
+        <item>빅맥</item>
+        <item>돈가스</item>
+        <item>피자</item>
+        <item>월드콘</item>
+        <item>옛날 팥빙수</item>
+
+        <item>붕어빵</item>
+        <item>호떡</item>
+        <item>군고구마</item>
+        <item>참치김밥</item>
+        <item>쇠고기김밥</item>
+        <item>초코송이</item>
+        <item>롯데샌드</item>
+        <item>치크케이크</item>
+        <item>오징어땅콩</item>
+        <item>쌀로별</item>
+        <item>까르보나라</item>
+        <item>코카콜라</item>
+        <item>칠성사이다</item>
+        <item>비락식혜</item>
+        <item>웰치스포도</item>
+        <item>감자튀김</item>
+        <item>비비빅</item>
+        <item>메로나</item>
+        <item>토마토스파게티</item>
+        <item>콘푸로스트</item>
+        <item>호두과자</item>
+    </string-array>
+    <string-array name="life_food_unit">
+        <item>공기</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>개</item>
+        <item>봉지</item>
+        <item>인분</item>
+        <item>봉지</item>
+        <item>개</item>
+        <item>통</item>
+        <item>인분</item>
+        <item>조각</item>
+        <item>인분</item>
+        <item>개</item>
+        <item>인분</item>
+        <item>쪽</item>
+        <item>개</item>
+        <item>인분</item>
+
+        <item>개</item>
+        <item>개</item>
+        <item>개</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>팩</item>
+        <item>팩</item>
+        <item>조각</item>
+        <item>봉지</item>
+        <item>봉지</item>
+        <item>인분</item>
+        <item>캔</item>
+        <item>캔</item>
+        <item>캔</item>
+        <item>캔</item>
+        <item>인분</item>
+        <item>개</item>
+        <item>개</item>
+        <item>인분</item>
+        <item>인분</item>
+        <item>개</item>
+    </string-array>
+    <string-array name="life_food_calorie">
+        <item>300</item>
+        <item>630</item>
+        <item>500</item>
+        <item>630</item>
+        <item>520</item>
+        <item>578</item>
+        <item>500</item>
+        <item>568</item>
+        <item>610</item>
+        <item>616</item>
+        <item>630</item>
+        <item>670</item>
+        <item>617</item>
+        <item>437</item>
+        <item>220</item>
+        <item>440</item>
+        <item>400</item>
+        <item>250</item>
+        <item>160</item>
+        <item>810</item>
+        <item>505</item>
+        <item>210</item>
+        <item>482</item>
+        <item>530</item>
+        <item>553</item>
+        <item>250</item>
+        <item>263</item>
+        <item>534</item>
+
+        <item>106</item>
+        <item>200</item>
+        <item>168</item>
+        <item>570</item>
+        <item>446</item>
+        <item>220</item>
+        <item>520</item>
+        <item>215</item>
+        <item>432</item>
+        <item>380</item>
+        <item>685</item>
+        <item>110</item>
+        <item>110</item>
+        <item>85</item>
+        <item>184</item>
+        <item>245</item>
+        <item>140</item>
+        <item>130</item>
+        <item>620</item>
+        <item>151</item>
+        <item>52</item>
+    </string-array>
+</resources>

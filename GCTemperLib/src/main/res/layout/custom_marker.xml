@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix">
+
+    <TextView
+        android:id="@+id/marker"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_40_dp"
+        android:background="@drawable/bg_marker_lv_1"
+        android:gravity="center"
+        android:paddingLeft="@dimen/_5_dp"
+        android:paddingRight="@dimen/_5_dp"
+        android:textColor="@color/color_100ffffff"
+        android:textSize="@dimen/_12_dp"
+        android:fontFamily="@font/hi_gothic_m"/>
+</FrameLayout>

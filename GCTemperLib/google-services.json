@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "358159837876",
+    "firebase_url": "https://just-coda-108908.firebaseio.com",
+    "project_id": "just-coda-108908",
+    "storage_bucket": "just-coda-108908.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358159837876:android:6effd93ac54f2db3",
+        "android_client_info": {
+          "package_name": "com.appmd.hi.gngcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358159837876-4rdb7dk93944dvqu043347lbo496op5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw8d-VVyDIZ1fzGqbieWZO7kTXuVTuTQQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

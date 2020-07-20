@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_100ffffff"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/common_back_top"
+        layout="@layout/common_back_top_y" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_100ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/common_back_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/fever_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30_dp"
+                        android:layout_marginLeft="@dimen/_18_dp"
+                        android:layout_marginTop="@dimen/_18_dp"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/title_temp" />
+
+                    <TextView
+                        android:id="@+id/txt_fever_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30_dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/_19_dp"
+                        android:textColor="@color/txt_dark_bold"
+                        android:textSize="@dimen/_18_dp"
+                        android:fontFamily="@font/hi_gothic_b"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60_dp"
+                    android:layout_marginLeft="@dimen/_18_dp"
+                    android:layout_marginRight="@dimen/_18_dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/graph_temp_map" />
+
+                <TextView
+                    android:id="@+id/txt_fever_em_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/_10_dp"
+                    android:paddingLeft="@dimen/_30_dp"
+                    android:paddingRight="@dimen/_30_dp"
+                    android:paddingTop="@dimen/_10_dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/txt_dark_bold"
+                    android:textSize="@dimen/_16_dp"
+                    android:fontFamily="@font/hi_maum_r"/>
+
+                <TextView
+                    android:id="@+id/txt_fever_next_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/_10_dp"
+                    android:paddingLeft="@dimen/_30_dp"
+                    android:paddingRight="@dimen/_30_dp"
+                    android:paddingTop="@dimen/_10_dp"
+                    android:textColor="@color/txt_dark_bold"
+                    android:textSize="@dimen/_16_dp"
+                    android:fontFamily="@font/hi_gothic_m"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/remedy_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1_dp"
+                    android:layout_marginLeft="@dimen/_19_dp"
+                    android:layout_marginRight="@dimen/_19_dp"
+                    android:layout_marginTop="@dimen/_18_dp"
+                    android:background="@color/color_e8eaeb" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30_dp"
+                        android:layout_marginLeft="@dimen/_18_dp"
+                        android:layout_marginTop="@dimen/_18_dp"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/title_med" />
+
+                    <TextView
+                        android:id="@+id/btn_remedy_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30_dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical"
+                        android:paddingRight="@dimen/_19_dp"
+                        android:text="@string/input"
+                        android:textColor="@color/bg_yellow_dark"
+                        android:textSize="@dimen/_16_dp"
+                        android:fontFamily="@font/hi_gothic_b"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_remedy_eat_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/_10_dp"
+                    android:paddingLeft="@dimen/_30_dp"
+                    android:paddingRight="@dimen/_30_dp"
+                    android:paddingTop="@dimen/_10_dp"
+                    android:textColor="@color/txt_dark_bold"
+                    android:textSize="@dimen/_16_dp"
+                    android:fontFamily="@font/hi_gothic_b" />
+
+                <TextView
+                    android:id="@+id/txt_remedy_cross_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/_10_dp"
+                    android:paddingLeft="@dimen/_30_dp"
+                    android:paddingRight="@dimen/_30_dp"
+                    android:paddingTop="@dimen/_10_dp"
+                    android:text="@string/remedy_cross"
+                    android:textColor="@color/txt_dark_bold"
+                    android:textSize="@dimen/_16_dp"
+                    android:fontFamily="@font/hi_gothic_m" />
+
+                <LinearLayout
+                    android:id="@+id/remedy_ray_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_5_dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btn_remedy_type_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/_30_dp"
+                        android:paddingRight="@dimen/_30_dp"
+                        android:text="@string/remedy_type_and_volume_1_off"
+                        android:textColor="@color/bg_yellow_dark"
+                        android:textSize="@dimen/_16_dp"
+                        android:fontFamily="@font/hi_gothic_b"/>
+
+                    <LinearLayout
+                        android:id="@+id/remedy_volume_ray_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="@dimen/_10_dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3_dp"
+                            android:paddingLeft="@dimen/_30_dp"
+                            android:paddingRight="@dimen/_30_dp"
+                            android:text="@string/remedy_list_1"
+                            android:textColor="@color/txt_dark_bold"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_m"/>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_40_dp"
+                            android:layout_marginRight="@dimen/_40_dp"
+                            android:layout_marginTop="@dimen/_8_dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/medicine_ty" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3_dp"
+                            android:paddingLeft="@dimen/_30_dp"
+                            android:paddingRight="@dimen/_30_dp"
+                            android:text="@string/remedy_volume_1"
+                            android:textAlignment="center"
+                            android:textColor="@color/txt_dark_lithg"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_m"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/remedy_ray_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_5_dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btn_remedy_type_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/_30_dp"
+                        android:paddingRight="@dimen/_30_dp"
+                        android:text="@string/remedy_type_and_volume_2_off"
+                        android:textColor="@color/bg_yellow_dark"
+                        android:textSize="@dimen/_16_dp"
+                        android:fontFamily="@font/hi_gothic_b" />
+
+                    <LinearLayout
+                        android:id="@+id/remedy_volume_ray_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="@dimen/_10_dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3_dp"
+                            android:paddingLeft="@dimen/_30_dp"
+                            android:paddingRight="@dimen/_30_dp"
+                            android:text="@string/remedy_list_2"
+                            android:textColor="@color/txt_dark_bold"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_m"/>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_40_dp"
+                            android:layout_marginRight="@dimen/_40_dp"
+                            android:layout_marginTop="@dimen/_8_dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/medicine_bru" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3_dp"
+                            android:paddingLeft="@dimen/_30_dp"
+                            android:paddingRight="@dimen/_30_dp"
+                            android:text="@string/remedy_volume_2"
+                            android:textAlignment="center"
+                            android:textColor="@color/txt_dark_lithg"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_m"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/remedy_ray_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btn_remedy_type_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/_30_dp"
+                        android:paddingRight="@dimen/_30_dp"
+                        android:text="@string/remedy_type_and_volume_3_off"
+                        android:textColor="@color/bg_yellow_dark"
+                        android:textSize="@dimen/_16_dp"
+                        android:fontFamily="@font/hi_gothic_b" />
+
+                    <LinearLayout
+                        android:id="@+id/remedy_volume_ray_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="@dimen/_10_dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3_dp"
+                            android:paddingLeft="@dimen/_30_dp"
+                            android:paddingRight="@dimen/_30_dp"
+                            android:text="@string/remedy_list_3"
+                            android:textColor="@color/txt_dark_bold"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_m" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_40_dp"
+                            android:layout_marginRight="@dimen/_40_dp"
+                            android:layout_marginTop="@dimen/_8_dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/medicine_dex" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3_dp"
+                            android:paddingLeft="@dimen/_30_dp"
+                            android:paddingRight="@dimen/_30_dp"
+                            android:text="@string/remedy_volume_3"
+                            android:textAlignment="center"
+                            android:textColor="@color/txt_dark_lithg"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_m" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sub_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1_dp"
+                    android:layout_marginLeft="@dimen/_19_dp"
+                    android:layout_marginRight="@dimen/_19_dp"
+                    android:layout_marginTop="@dimen/_18_dp"
+                    android:background="@color/color_e8eaeb" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30_dp"
+                        android:layout_marginBottom="@dimen/_10_dp"
+                        android:layout_marginLeft="@dimen/_18_dp"
+                        android:layout_marginTop="@dimen/_18_dp"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/title_etc" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/sub_ray_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_5_dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btn_sub_type_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/_30_dp"
+                        android:paddingRight="@dimen/_30_dp"
+                        android:text="@string/sub_type_1_off"
+                        android:textColor="@color/bg_yellow_dark"
+                        android:textSize="@dimen/_16_dp"
+                        android:fontFamily="@font/hi_gothic_b" />
+
+                    <TextView
+                        android:id="@+id/tepid_water_ray"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_10_dp"
+                        android:layout_marginTop="@dimen/_3_dp"
+                        android:paddingLeft="@dimen/_30_dp"
+                        android:paddingRight="@dimen/_30_dp"
+                        android:text="@string/tepid_water_info"
+                        android:textColor="@color/txt_dark_bold"
+                        android:textSize="@dimen/_16_dp"
+                        android:fontFamily="@font/hi_gothic_m"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sub_ray_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/btn_sub_type_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/_30_dp"
+                        android:paddingRight="@dimen/_30_dp"
+                        android:text="@string/sub_type_2_off"
+                        android:textColor="@color/bg_yellow_dark"
+                        android:textSize="@dimen/_16_dp"
+                        android:fontFamily="@font/hi_gothic_b" />
+
+                    <LinearLayout
+                        android:id="@+id/sub_2_lay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5_dp"
+                            android:layout_marginTop="@dimen/_3_dp"
+                            android:paddingLeft="@dimen/_30_dp"
+                            android:paddingRight="@dimen/_30_dp"
+                            android:text="@string/water_care"
+                            android:textColor="@color/txt_dark_bold"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_m"/>
+
+                        <Button
+                            android:id="@+id/btn_water_care"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_30_dp"
+                            android:layout_marginRight="@dimen/_30_dp"
+                            android:background="@color/bg_yellow_dark"
+                            android:text="@string/btn_water_care"
+                            android:textColor="@color/color_100ffffff"
+                            android:textSize="@dimen/_16_dp"
+                            android:fontFamily="@font/hi_gothic_b" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1_dp"
+                android:layout_marginLeft="@dimen/_19_dp"
+                android:layout_marginRight="@dimen/_19_dp"
+                android:layout_marginTop="@dimen/_18_dp"
+                android:background="@color/color_e8eaeb" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10_dp"
+                android:gravity="center"
+                android:text="@string/fever_result_txt_end"
+                android:textColor="@color/txt_dark_bold"
+                android:textSize="@dimen/_16_dp"
+                android:fontFamily="@font/hi_maum_r"/>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1_dp"
+                android:layout_marginLeft="@dimen/_19_dp"
+                android:layout_marginRight="@dimen/_19_dp"
+                android:layout_marginTop="@dimen/_10_dp"
+                android:background="@color/color_e8eaeb" />
+
+            <ImageButton
+                android:id="@+id/ok_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46_dp"
+                android:layout_marginTop="@dimen/_6_dp"
+                android:background="@color/color_100ffffff"
+                android:paddingBottom="@dimen/_10_dp"
+                android:paddingTop="@dimen/_10_dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/btn_ok_2" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

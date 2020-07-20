@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    tools:ignore="missingPrefix">
+
+    <!-- 백그라운드 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/_15_dp"
+        android:layout_marginRight="@dimen/_15_dp"
+        android:background="@drawable/background_5_ffffff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_30_dp"
+            android:layout_marginRight="@dimen/_30_dp"
+            android:layout_marginTop="@dimen/_30_dp"
+            android:text="title"
+            android:textSize="@dimen/_18_dp"
+            android:visibility="gone"
+            android:fontFamily="@font/hi_maum_r" />
+
+        <TextView
+            android:id="@+id/dialog_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_30_dp"
+            android:layout_marginRight="@dimen/_30_dp"
+            android:layout_marginTop="@dimen/_6_dp"
+            android:textSize="@dimen/_13_dp"
+            android:visibility="gone"
+            android:fontFamily="@font/hi_gothic_b" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/dialog_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_30_dp"
+                android:layout_marginRight="@dimen/_30_dp"
+                android:layout_marginTop="@dimen/_30_dp"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/_4_dp"
+                android:text="content"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/_16_dp"
+                android:fontFamily="@font/hi_gothic_m" />
+
+            <ImageView
+                android:id="@+id/check_box"
+                android:layout_width="@dimen/_120_dp"
+                android:layout_height="@dimen/_25_dp"
+                android:layout_below="@+id/dialog_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_20_dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/btn_checkbox_black" />
+
+            <LinearLayout
+                android:id="@+id/dialog_b_type_button_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_64_dp"
+                android:layout_below="@+id/check_box"
+                android:layout_marginTop="@dimen/_20_dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cancel_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_left_xml"
+                    android:text="@string/popup_dialog_button_cancel"
+                    android:textColor="@color/color_333333_btn"
+                    android:textSize="@dimen/_18_dp"
+                    android:fontFamily="@font/hi_gothic_b" />
+
+                <Button
+                    android:id="@+id/confirm_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_right_xml"
+                    android:text="@string/popup_dialog_button_confirm"
+                    android:textColor="@color/color_f8f5f0_btn"
+                    android:textSize="@dimen/_18_dp"
+                    android:fontFamily="@font/hi_gothic_b" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

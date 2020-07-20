@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_100ffffff"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/common_back_top"
+        layout="@layout/common_back_top_y" />
+
+    <LinearLayout
+        android:id="@+id/input_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/common_back_top"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/middle_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10_dp"
+            android:layout_marginTop="@dimen/_20_dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:text="@string/nowfever"
+            android:textColor="@color/txt_dark_bold"
+            android:textSize="@dimen/_18_dp"
+            android:fontFamily="@font/hi_maum_r"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_30_dp"
+            android:paddingRight="@dimen/_30_dp">
+
+            <!-- 측정일 -->
+            <Button
+                android:id="@+id/btn_croise"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40_dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_20_dp"
+                android:background="@color/bg_yellow_dark"
+                android:text="@string/measu_croise"
+                android:textColor="@color/color_100ffffff"
+                android:textSize="@dimen/_15_dp"
+                android:fontFamily="@font/hi_gothic_b"/>
+
+            <EditText
+                android:id="@+id/check_fever_ed"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46_dp"
+                android:layout_marginTop="@dimen/_20_dp"
+                android:background="@drawable/bg_txtbox"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/fever_empty"
+                android:inputType="numberDecimal"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/txt_dark_gray"
+                android:textColorHint="@color/txt_dark_lithg1"
+                android:textSize="@dimen/_16_dp"
+                android:fontFamily="@font/hi_gothic_m"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20_dp"
+                android:layout_weight="1"
+                android:text="@string/txt_croise"
+                android:textAlignment="center"
+                android:textColor="@color/txt_dark_gray"
+                android:lineSpacingExtra="@dimen/_8_dp"
+                android:textSize="@dimen/_14_dp"
+                android:fontFamily="@font/hi_gothic_m"/>
+
+            <!-- 키 -->
+
+            <!-- 몸무게 -->
+
+            <!-- 머리둘레 -->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:background="@color/bg_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_30_dp"
+            android:paddingRight="@dimen/_30_dp">
+
+            <TextView
+                android:id="@+id/top_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20_dp"
+                android:gravity="center"
+                android:text="@string/fever_check_time"
+                android:textColor="@color/txt_dark_bold"
+                android:textSize="@dimen/_18_dp"
+                android:fontFamily="@font/hi_maum_r"/>
+
+            <TextView
+                android:id="@+id/check_date_edt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40_dp"
+                android:layout_marginBottom="@dimen/_10_dp"
+                android:background="@drawable/bg_txtbox_date_gray"
+                android:gravity="center"
+                android:hint="@string/growthhint2"
+                android:singleLine="true"
+                android:textColor="@color/txt_dark_gray"
+                android:textColorHint="@color/txt_dark_lithg1"
+                android:textSize="@dimen/_16_dp"
+                android:fontFamily="@font/hi_gothic_m"/>
+
+            <TextView
+                android:id="@+id/check_time_edt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40_dp"
+                android:background="@drawable/bg_txtbox_date_gray"
+                android:gravity="center"
+                android:hint="@string/growthhint2"
+                android:singleLine="true"
+                android:textColor="@color/txt_dark_gray"
+                android:textColorHint="@color/txt_dark_lithg1"
+                android:textSize="@dimen/_16_dp"
+                android:fontFamily="@font/hi_gothic_m"/>
+
+            <!-- 키 -->
+
+            <!-- 몸무게 -->
+
+            <!-- 머리둘레 -->
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/confirm_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_46_dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/color_100ffffff"
+            android:paddingBottom="@dimen/_10_dp"
+            android:paddingTop="@dimen/_10_dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_done_2" />
+    </LinearLayout>
+
+</RelativeLayout>

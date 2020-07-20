@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="missingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_100ffffff"
+    android:orientation="vertical">
+    <!-- 다이어트 프로그램  신청하기​ -->
+    <include
+        android:id="@+id/common_back_top"
+        layout="@layout/common_back_top_sub_m" />
+
+
+    <LinearLayout
+        android:id="@+id/mother_health_main_"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_15_dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.45"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.89"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.5"/>
+
+
+                <TextView
+                    android:id="@+id/diet_program_tv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.1"
+                    android:layout_marginTop="@dimen/_30_dp"
+                    tools:text="@string/diet_text1"
+                    android:fontFamily="@font/hi_maum_l"
+                    android:textColor="@color/color_95246D"
+                    android:textSize="@dimen/px_60"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/diet_program_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/_5_dp"
+                    android:letterSpacing="-0.1"
+                    android:layout_marginTop="@dimen/_25_dp"
+                    tools:text="@string/diet_text2"
+                    android:fontFamily="@font/hi_gothic_l"
+                    android:textColor="#292929"
+                    android:textSize="@dimen/px_45"
+                    app:layout_constraintTop_toBottomOf="@id/diet_program_tv1"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                    android:id="@+id/diet_program_tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.1"
+                    android:lineSpacingExtra="@dimen/_5_dp"
+                    android:layout_marginTop="@dimen/_20_dp"
+                    tools:text="@string/diet_text3"
+                    android:fontFamily="@font/hi_gothic_m"
+                    android:textColor="@color/color_898989"
+                    android:textSize="@dimen/px_40"
+                    app:layout_constraintTop_toBottomOf="@id/diet_program_tv2"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/diet_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/diet_program2"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/diet_program_tv3"
+                    app:layout_constraintBottom_toTopOf="@id/guide2"/>
+
+
+                <TextView
+                    android:id="@+id/diet_program_tv4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_15_dp"
+                    android:paddingBottom="@dimen/_15_dp"
+                    android:background="#1A595757"
+                    android:gravity="center"
+                    android:letterSpacing="-0.1"
+                    android:lineSpacingExtra="@dimen/_5_dp"
+                    android:layout_marginRight="@dimen/_15_dp"
+                    android:textAlignment="center"
+                    tools:text="@string/diet_text6"
+                    android:fontFamily="@font/hi_gothic_m"
+                    android:textColor="#595757"
+                    android:textSize="@dimen/px_40"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:layout_marginLeft="@dimen/_15_dp"
+            android:layout_marginRight="@dimen/_15_dp"
+            android:layout_marginTop="@dimen/_5_dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_marginBottom="@dimen/_10_dp"
+                    android:background="@color/color_FB8AD3"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/phone_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.1"
+                            android:lineSpacingExtra="@dimen/_5_dp"
+                            android:fontFamily="@font/hi_gothic_l"
+                            android:textSize="@dimen/px_40"
+                            android:textColor="@color/color_898989"
+                            tools:text="@string/diet_text5"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10_dp"
+                            android:letterSpacing="-0.1"
+                            android:fontFamily="@font/hi_gothic_m"
+                            android:textSize="@dimen/px_35"
+                            android:textColor="@color/color_898989"
+                            android:text="@string/diet_text4"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/sms_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/diet_program3"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:background="@color/color_FB8AD3"/>
+
+            </LinearLayout>>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_64_dp"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/confirm_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_95246D"
+                android:fontFamily="@font/hi_gothic_b"
+                android:text="@string/request"
+                android:textColor="@color/color_f8f5f0_btn"
+                android:textSize="@dimen/_18_dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

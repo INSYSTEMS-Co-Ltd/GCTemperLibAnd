@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_50_dp"
+    android:background="@color/color_F5CFD0"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/common_toolbar_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/px_30">
+        <ImageView
+            android:id="@+id/common_toolbar_back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/btn_back_white"
+            android:paddingLeft="@dimen/px_60"
+            android:paddingBottom="@dimen/px_45"
+            android:paddingTop="@dimen/px_45"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:duplicateParentState="true"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/common_toolbar_left_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="@dimen/px_60"
+        android:paddingRight="@dimen/px_30"
+        android:gravity="center"
+        tools:text="완료"
+        android:textColor="@color/x143_144_158"
+        android:fontFamily="@font/hi_gothic_m"
+        android:textSize="@dimen/px_50"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:id="@+id/common_toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        tools:text="타이틀"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/hi_maum_r"
+        android:textSize="@dimen/px_50" />
+
+    <TextView
+        android:id="@+id/common_toolbar_right_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="@dimen/px_30"
+        android:paddingRight="@dimen/px_60"
+        android:gravity="center"
+        tools:text="완료"
+        android:textColor="@color/x105_129_236"
+        android:fontFamily="@font/hi_gothic_m"
+        android:textSize="@dimen/px_46" />
+
+
+    <ImageView
+        android:id="@+id/common_toolbar_right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/px_50"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:src="@drawable/commu_btn_5"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:duplicateParentState="true"/>
+
+</RelativeLayout>

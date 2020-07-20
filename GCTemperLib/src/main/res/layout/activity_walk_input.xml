@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    style="@style/common_parent_style"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/common_textview_fields"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_dayusecalory"
+            android:textSize="@dimen/_15_dp"
+            android:fontFamily="@font/hi_maum_r" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkbox_caledit"
+                style="@style/common_checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"/>
+
+
+            <EditText
+                android:id="@+id/step_edittext"
+                style="@style/common_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="8"
+                android:paddingLeft="0dp"
+                android:layout_marginLeft="0dp"
+                android:paddingRight="15dp"
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/hi_maum_r" />
+
+            <TextView
+                style="@style/common_textview_ea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kcal"
+                android:textSize="@dimen/_12_dp"
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/hi_maum_r" />
+
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/common_textview_fields"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_daygoalstep"
+            android:textSize="@dimen/_15_dp"
+            android:fontFamily="@font/hi_maum_r"
+            android:layout_marginTop="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkbox_stepedit"
+                style="@style/common_checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp"/>
+
+            <EditText
+                android:id="@+id/step_target_edittext"
+                style="@style/common_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="8"
+                android:paddingRight="15dp"
+                android:paddingLeft="0dp"
+                android:layout_marginLeft="0dp"
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/hi_maum_r" />
+
+            <TextView
+                android:id="@+id/CFontTextView8"
+                style="@style/common_textview_ea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="step"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/_12_dp"
+                android:fontFamily="@font/hi_maum_r" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/common_textview_fields"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/text_datasourceset"
+                android:fontFamily="@font/hi_maum_r" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/common_textview_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/text_googlefit"
+                android:fontFamily="@font/hi_maum_r" />
+
+            <CheckBox
+                android:id="@+id/checkbox_google"
+                style="@style/common_checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp" />
+
+        </LinearLayout>
+
+        <!-- <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="10dp"
+             android:orientation="horizontal"
+             android:paddingLeft="10dp">
+
+             <TextView
+                 style="@style/common_textview_dark"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:fontFamily="@font/kelson_sans_regular"
+                 android:text="@string/text_croise" />
+
+             <CheckBox
+                 android:id="@+id/checkbox_urban"
+                 style="@style/common_checkbox_style"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="5dp"
+                 android:layout_marginRight="10dp" />
+         </LinearLayout>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/walk_input_save_btn"
+                style="@style/common_save_button_input"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:enabled="false" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/diet_program_adapter_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hi_gothic_m"
+        android:text="1일차 콘텐츠 제목"
+        android:paddingBottom="5dp"
+        android:textColor="@color/color_95246D"
+        android:textSize="23dp"/>
+
+
+</LinearLayout>

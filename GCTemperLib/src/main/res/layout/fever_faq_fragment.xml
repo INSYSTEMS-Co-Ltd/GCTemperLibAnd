@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix">
+
+    <!-- 검색 레이아웃 -->
+    <RelativeLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60_dp"
+        android:background="@color/bg_yellow_light"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <RelativeLayout
+            android:id="@+id/search_lay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50_dp"
+            android:layout_marginBottom="@dimen/_11_dp"
+            android:layout_marginLeft="@dimen/_19_dp"
+            android:layout_marginRight="@dimen/_19_dp"
+            android:layout_marginTop="@dimen/_11_dp"
+            android:background="@color/color_100ffffff">
+
+            <EditText
+                android:id="@+id/search_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@+id/search_del_btn"
+                android:background="@null"
+                android:hint="@string/faq_search_hint"
+                android:inputType="text"
+                android:paddingLeft="@dimen/_19_dp"
+                android:singleLine="true"
+                android:textColor="@color/color_333333"
+                android:textColorHint="@color/color_50333333"
+                android:textSize="@dimen/_16_dp"
+                android:fontFamily="@font/hi_gothic_m" />
+
+            <ImageButton
+                android:id="@+id/search_del_btn"
+                android:layout_width="@dimen/_50_dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_35_dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:src="@drawable/btn_delete_03"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/search_btn"
+                android:layout_width="@dimen/_31_dp"
+                android:layout_height="@dimen/_26_dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_10_dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/btn_search_y" />
+        </RelativeLayout>
+        <!-- 검색 버튼 -->
+    </RelativeLayout>
+
+    <!-- 백그라운드 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_layout"
+        android:background="@color/bg_gray">
+
+        <LinearLayout
+            android:id="@+id/visible_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:groupIndicator="@null"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="false" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

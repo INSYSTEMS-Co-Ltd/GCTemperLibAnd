@@ -1,0 +1,3 @@
+include ':GCTemperLib'
+//include ':app'
+rootProject.name = "GCLibGitHub"

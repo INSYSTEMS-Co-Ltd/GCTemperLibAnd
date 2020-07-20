@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/head_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_blue_dark"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_19_dp"
+        android:paddingLeft="@dimen/_19_dp"
+        android:paddingRight="@dimen/_19_dp"
+        android:paddingTop="@dimen/_19_dp">
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/empty_data"
+            android:textColor="@color/color_100ffffff"
+            android:textSize="@dimen/_15_dp"
+            android:fontFamily="@font/hi_gothic_b"
+            android:lineSpacingExtra="@dimen/_5_dp"/>
+
+        <TextView
+            android:id="@+id/empty_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20_dp"
+            android:text="@string/child_care_note_empty"
+            android:textSize="@dimen/_13_dp"
+            android:fontFamily="@font/hi_gothic_b"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

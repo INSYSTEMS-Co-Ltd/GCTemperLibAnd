@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Action bar Option Menu Button -->
+    <item name="action_bar_option_menu_button" type="id"/>
+    <item name="comm_main_image" type="id"/>
+    <item name="comm_main_text" type="id"/>
+    <item name="comm_main_profile" type="id"/>
+
+    <item name="comm_main_editor" type="id"/>
+
+    <item name="comm_main_share" type="id"/>
+    <item name="comm_main_heart" type="id"/>
+    <item name="comm_comment_delete" type="id"/>
+    <item name="comm_comment_profile" type="id"/>
+    <item name="comm_comment_nick" type="id"/>
+
+    <item name="comm_user" type="id"/>
+
+    <item name="comm_alram" type="id"/>
+    <item name="isdel" type="id"/>
+
+
+    <item name="mypage_alram_gubun" type="id"/>
+    <item name="mypage_alram_isactive" type="id"/>
+
+    <!--<item name="smContentView" type="id"/>-->
+    <!--<item name="smMenuViewLeft" type="id"/>-->
+    <!--<item name="smMenuViewRight" type="id"/>-->
+    <!--<item name="smMenuViewTop" type="id"/>-->
+    <!--<item name="smMenuViewBottom" type="id"/>-->
+</resources>

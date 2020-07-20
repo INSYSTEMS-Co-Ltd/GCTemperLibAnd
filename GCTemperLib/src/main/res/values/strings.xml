@@ -1,0 +1,2412 @@
+<resources>
+
+    <string name="fever_health_call_alert_message">헬스콜센터 운영시간은\n평일 09시 ~ 19시,\n토요일 09시 ~ 13시  이며\n일요일, 공휴일 휴무입니다.\n\n헬스콜센터로 연결하시겠습니까?</string>
+    <string name="fever_health_no_alert_message">불편을 드려 죄송합니다.\n\n고객님의 정보가 아직 업데이트 되지 않았습니다. 나중에 다시 시도해 주세요.</string>
+    <string name="health_call_center">15885814</string>
+
+
+
+
+
+
+    <string name="app_name_kr">굿앤굿 어린이케어</string>
+    <string name="app_name_hh_kr">현대해상 굿앤굿 어린이케어</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- 팝업 -->
+    <string name="popup_dialog_button_confirm">확&#160;&#160;&#160;&#160;&#160;&#160;인</string>
+    <string name="popup_dialog_button_cancel">취&#160;&#160;&#160;&#160;&#160;&#160;소</string>
+    <string name="popup_dialog_button_save">저&#160;&#160;&#160;&#160;&#160;&#160;장</string>
+    <string name="popup_dialog_button_quit">종&#160;&#160;&#160;&#160;&#160;&#160;료</string>
+    <string name="popup_dialog_button_move">이&#160;&#160;&#160;&#160;&#160;&#160;동</string>
+    <string name="popup_dialog_button_change">변&#160;&#160;&#160;&#160;&#160;&#160;경</string>
+    <string name="popup_dialog_button_complete">완&#160;&#160;&#160;&#160;&#160;&#160;료</string>
+    <string name="popup_dialog_button_moveto">바로가기</string>
+    <string name="popup_dialog_button_result">결과 보기</string>
+    <string name="popup_dialog_data_error_title">데이터 오류</string>
+    <string name="popup_dialog_data_error_content">일시적인 오류입니다.\n다시 한번 시도해 주세요.</string>
+    <string name="popup_dialog_server_error_content">서버 데이터에 문제가 있습니다.\n다시 한번 시도해주시고\n문제가 지속될 경우\n회사로 문의해 주세요.</string>
+    <string name="popup_dialog_netword_error_title">통신 오류</string>
+    <string name="popup_dialog_netword_error_content">이동 통신망 또는 무선 네트워크\n접속이 연결되지 않았거나\n원활하지 않습니다.\n확인 후 다시 접속해 주세요.</string>
+    <string name="popup_dialog_update_title">업데이트 안내</string>
+    <string name="popup_dialog_update_content">더욱 향상된 서비스를 위한 쉬운방법!\n지금 바로 업데이트해 주세요.</string>
+    <string name="popup_dialog_email_loing_error">존재하지 않는 이메일 계정입니다.</string>
+    <string name="popup_dialog_a_type_title">안내</string>
+    <string name="popup_dialog_growth_delete_content">에 측정된 정보를 삭제하시겠습니까?</string>
+    <string name="popup_dialog_vaccination_delete_content">에 입력된 접종정보를 삭제하시겠습니까?</string>
+    <string name="popup_dialog_vaccination_not_delete_content">삭제 할 정보가 없습니다.</string>
+    <string name="popup_dialog_permission_content">권한을 허용하지 않으면 이용하실 수 없습니다.</string>
+    <string name="popup_dialog_no_child_register">본 서비스는 자녀가 태어난 후 자녀의 이름과 생년월일 정보가 보험사에 등록되면 이용하실 수 있습니다.</string>
+    <string name="popup_dialog_system_error_content">시스템 오류로 인하여 중단합니다.</string>
+    <string name="popup_dialog_input_error_content">입력 데이터가 부족하여 중단합니다.</string>
+    <string name="popup_dialog_drop_member_content">탈퇴한 회원입니다.</string>
+    <string name="popup_dialog_write_info_content">정보기록에 실패하였습니다.</string>
+    <string name="popup_dialog_session_content">로그인에 실패하였습니다.\n다시 시도해주시기 바랍니다.</string>
+    <string name="popup_dialog_token_content">로그인에 실패하였습니다.\n다시 시도해주시기 바랍니다.</string>
+    <string name="popup_dialog_chl_content">아이 등록에 실패하였습니다.\n다시 시도해주시기 바랍니다.</string>
+    <string name="popup_dialog_invalid_id_content">sns 아이디가 다릅니다.</string>
+    <string name="popup_dialog_auth_content">인증을 해제하시면 앱이 종료 되며\n정상적인 사용을 위해\n재인증을 진행하셔야 합니다.\n정말로 해제 하시겠습니까?</string>
+    <string name="popup_dialog_auth_complete">인증이 해제 되었습니다.</string>
+    <string name="popup_dialog_service_out_complete">정상적으로 탈퇴 되었습니다.</string>
+    <string name="popup_dialog_name_error">이름을 입력해 주세요.</string>
+    <string name="popup_dialog_name_error_1">이름은 한글, 영문만 입력 가능합니다.</string>
+    <string name="popup_dialog_birthday_error">생년월일을 8자리로 입력해 주세요.</string>
+    <string name="popup_dialog_certifi_num_error">인증번호를 입력하지 않았습니다.\n인증요청 후 전송된 번호 6자리를 입력해 주세요.</string>
+    <string name="popup_dialog_certifi_num_match_error">인증번호가 일치하지 않습니다. 확인 후 다시 입력해주세요.</string>
+    <string name="popup_dialog_certifi_confirm">인증되었습니다.</string>
+    <string name="popup_dialog_certifi_not_remain">오늘 사용가능한 인증 횟수를 모두 사용하였습니다.</string>
+    <string name="popup_dialog_phone_number_error">휴대폰 번호를 입력해 주세요.</string>
+    <string name="popup_dialog_phone_number_error_1">휴대폰번호를 10~11자리를 입력해주세요.</string>
+    <string name="popup_dialog_birth_year_error">출산예정일을 입력해 주세요.</string>
+    <string name="popup_dialog_terms_error">약관에 동의해 주세요.</string>
+    <string name="popup_dialog_certifi_confrim_error">SMS인증번호 인증이 완료되지 않았습니다. 확인 후 다시 시도해주세요.</string>
+    <string name="popup_dialog_certifi_error">서비스 대상자가 아닙니다.\n현대해상 어린이콜센터로 연락 바랍니다. 1577-3416</string>
+    <string name="popup_dialog_insured_person_guide">계약자의 스마트폰에 먼저 앱을 설치 하신 후 인증 번호를 확인하셔야인증가능합니다.</string>
+    <string name="popup_dialog_uniq_num_guide">계약자의 앱  메인 화면 우측 상단\n자녀관리 메뉴  자녀리스트에서확인하실 수 있습니다.\n(설정 버튼 아래에 있는 화살표)</string>
+    <string name="popup_dialog_contactor_complete">정회원 인증이 완료되었습니다.</string>
+    <string name="popup_dialog_contactor_complete_1">아이디 생성 후 앱의 모든 기능을 사용하실 수 있습니다.</string>
+    <string name="popup_dialog_contactor_complete_2">*마케팅 정보 앱 PUSH 수신 안내\n[현대해상 굿앤굿어린이케어] %1$s 마케팅\n정보 수신 동의 처리되었습니다.\n(PUSH 철회는 설정 화면에서 가능합니다.)</string>
+
+    <string name="popup_dialog_contactor_complete_marcketing">굿앤굿 어린이케어 앱에</string>
+    <string name="popup_dialog_contactor_complete_marcketing_1">가입해주셔서 감사합니다.</string>
+    <string name="popup_dialog_contactor_complete_marcketing_2">*마케팅 정보 앱 PUSH 수신 안내\n[현대해상 굿앤굿어린이케어] %1$s 마케팅\n정보 수신 거부 처리되었습니다.\n(PUSH 동의는 설정 화면에서 가능합니다.)</string>
+
+    <string name="popup_dialog_contactor_complete1"><![CDATA[<small><big><big>준회원 정보 입력이 완료되었습니다.</big></big></small><br/><small><big>아이디 생성 후 앱의 모든 기능을</big></small><br/><small><big>사용하실 수 있습니다.</small></big><br/><br/><br/><big><small><font color="#0097C9">준회원 이용 중</font></big></small><br/><big><small><font color="#0097C9">현대해상 굿앤굿어린이종합보험에 가입한다면?</font></big></small><br/><br/></big></small><font color="#727274">“홈 화면 → 메뉴 → 설정” 에서 “정회원 전환하기” 를 해주세요.</font></big></small>
+<small><big><font color="#727274">건강 상담 등의 서비스를 받아 보실 수 있습니다.</font></big></small>]]></string>
+
+
+    <string name="popup_dialog_contactor_complete1_1">가입이 완료되었습니다!</string>
+    <string name="popup_dialog_contactor_complete1_1_1">준회원 정보 입력이 완료되었습니다!</string>
+    <string name="popup_dialog_contactor_complete1_2">준회원 이용 중</string>
+    <string name="popup_dialog_contactor_complete1_2_1">현대해상 굿앤굿어린이종합보험에 가입한다면?</string>
+    <string name="popup_dialog_contactor_complete1_3">“홈 화면 → 메뉴 → 설정” 에서 “정회원 전환하기” 를 해주세요.\n건강 상담 등의 서비스를 받아 보실 수 있습니다.</string>
+    <string name="popup_dialog_contactor_complete1_4">*마케팅 정보 앱 PUSH 수신 안내\n[현대해상 굿앤굿어린이케어] %1$s 마케팅\n정보 수신 %2$s 처리되었습니다.\n(PUSH 철회는 설정 화면에서 가능합니다.)</string>
+
+    <string name="popup_dialog_contactor_complete1_5">[현대해상 굿앤굿어린이케어]%1$s 마케팅 PUSH 수신 %2$s되었습니다.</string>
+
+
+    <string name="popup_dialog_contactor_banner1"><u>현대해상 굿앤굿어린이종합보험</u></string>
+    <string name="popup_dialog_contactor_banner2">에 가입한다면?</string>
+    <string name="popup_dialog_contactor_banner3">준회원에서 정회원 전환이 필요해요!</string>
+    <string name="popup_dialog_contactor_banner4">전환 방법 : 홈 > 메뉴 > 환경설정 > 정회원 전환하기</string>
+    <string name="popup_dialog_contactor_banner5"><u>정회원이 되면 어떤 혜택이 있나요?</u></string>
+    <string name="popup_dialog_contactor_banner6">1. 보험에 가입된 아이(피보험자)에 따라 추가 등록 및 관리가 가능해요.</string>
+    <string name="popup_dialog_contactor_banner7">2. 맞춤형 서비스 혜택을 받을 수 있습니다.</string>
+    <string name="popup_dialog_contactor_banner8">임신 중: 임신기간 중 체중예측</string>
+    <string name="popup_dialog_contactor_banner9">출산 후: 다이어트 프로그램 / 유행질병 정보 프로그램</string>
+    <string name="popup_dialog_contactor_banner10">3. 궁금한 점이 생긴다면 언제든 무료 상담이 가능합니다.</string>
+    <string name="popup_dialog_contactor_banner11">평일 09:00~19:00 / 토요일 09:00~13:00 / 일·공휴일</string>
+
+
+
+
+    <string name="popup_dialog_contactor_complete2">준회원 이용 중\n현대해상 굿앤굿어린이종합보험에 가입한다면?\n\n홈 화면 → 메뉴 → 설정” 에서 “정회원 전환하기” 를 해주세요.\n건강 상담 등의 서비스를 받아 보실 수 있습니다.</string>
+    <string name="popup_dialog_contactor_complete3"><![CDATA[감사합니다<br/><br/><font color="#0097C9">계약자 정보가 확인되었습니다.</font>]]></string>
+    <string name="popup_dialog_contactor_complete4"><![CDATA[감사합니다<br/><br/><font color="#0097C9">정회원 전환이 완료 되었습니다.</font>]]></string>
+    <string name="popup_dialog_already_join_content">고객님은 이미 가입된 아이디가 존재합니다. 로그인 페이지로 이동합니다.</string>
+    <string name="popup_dialog_insured_person_complete">고객님은 피보험자(자녀) 서비스 대상이십니다.\n앱의 제한된 기능만을 사용하실 수 있습니다.</string>
+    <string name="popup_dialog_id_complete">사용 가능한 아이디입니다.</string>가
+    <string name="popup_dialog_already_id">이미 사용중인 아이디입니다.</string>
+    <string name="popup_dialog_mail_format_error">메일 형식에 맞지 않습니다.</string>
+    <string name="popup_dialog_not_match_pwd">기존 비밀 번호가 동일하지 않습니다.\n다시 확인해주시기 바랍니다.</string>
+    <string name="popup_dialog_invalid_pwd">비밀번호는 영문, 숫자, 특수문자가 모두 포함되도록 8자리 이상으로 설정하셔야 합니다.</string>
+    <string name="popup_dialog_duplicate_id">아이디 중복 확인을 하셔야 합니다.</string>
+    <string name="popup_dialog_login_id_desc">회원님의 아이디입니다.</string>
+    <string name="popup_dialog_login_id_error">가입되어 있지 않거나\n잘못된 아이디 입니다.</string>
+    <string name="popup_dialog_login_pwd_error">두 패스워드가 일치하지 않습니다.</string>
+    <string name="popup_dialog_login_input_id">아이디를 입력해 주세요.</string>
+    <string name="popup_dialog_login_input_pwd">비밀번호를 입력해 주세요.</string>
+    <string name="popup_dialog_login_input_all">모든정보를 입력해 주세요.</string>
+    <string name="popup_dialog_find_pwd_complete">임시 비밀번호가 발송 되었습니다.\n설정 -> 로그인 정보에서 비밀번호를 수정하실 수 있습니다.</string>
+    <string name="popup_dialog_find_pwd_error">등록된 아이디가 없습니다.\n이메일을 확인해 주세요.</string>
+    <string name="popup_dialog_empty_id">입력하신 번호로 가입된 아이디가 없습니다.</string>
+    <string name="popup_dialog_login_error">아이디 또는 비밀번호가 잘못 되었습니다. 다시 입력해 주세요.</string>
+    <string name="popup_dialog_switch_member_error">정회원 전환이 완료 되었습니다.\n로그인 화면으로 이동합니다.</string>
+    <string name="popup_dialog_auth_pwd_change_error">비밀 번호가 동일하지 않습니다.\n다시 확인해주시기 바랍니다.</string>
+    <string name="popup_dialog_change_complete">비밀번호 변경에 성공하였습니다.</string>
+    <string name="popup_dialog_change_fail">비밀번호 변경에 실패하였습니다.\n반복적으로 실패할 경우 고객센터로 연락바랍니다.</string>
+    <string name="popup_dialog_join_complete">아이디 생성이 완료되었습니다.\n메인화면으로 이동합니다.</string>
+    <string name="popup_dialog_sign_error">가입하실수 없습니다. 다시 확인해 주세요.</string>
+    <string name="popup_dialog_sign_error1">이미 가입된 부모 정보입니다.</string>
+    <string name="popup_dialog_change_nick_complete">변경 내용이 저장되었습니다.</string>
+    <string name="popup_dialog_change_error">변경에 실패하였습니다.\n다시 시도해주시기 바랍니다.</string>
+    <string name="popup_dialog_pass_change_error">이메일 또는 전화번호를 확인해주세요.</string>
+    <string name="popup_dialog_update_complete">업로드 완료</string>
+    <string name="popup_dialog_note_update_error">업로드에 실패하였습니다.\n다시 시도해주시기 바랍니다.</string>
+    <string name="popup_dialog_note_del_error">삭제에 실패하였습니다.\n다시 시도해주시기 바랍니다.</string>
+    <string name="popup_dialog_note_del_content">%1$s의 %2$s을 삭제 하시겠습니까?</string>
+    <string name="popup_dialog_diagnosis_empty">체크명을 작성해 주세요.</string>
+    <string name="popup_dialog_hospital_empty">병원명을 작성해 주세요.</string>
+    <string name="popup_dialog_photo_empty">사진을 올려주세요.</string>
+    <string name="popup_dialog_medical_photo_upload_content">고객님의 주민번호, 전화번호 등 개인정보를 수집하고 활용하는 것에 대해 동의하십니까?</string>
+    <string name="popup_dialog_remedy">해열제 먹인 양의 기준은 아이의 몸무게에 의해 안내드리고 있습니다.\※ 해열제 먹인 양은 자정을 기준으로 초기화 됩니다.</string>
+    <string name="popup_dialog_not_found">일치하는 정보가 없습니다.</string>
+    <string name="popup_dialog_not_found_chl">아이 정보가 없습니다.</string>
+    <string name="popup_dialog_already_member">이미 가입된 사용자 정보가 있습니다.</string>
+    <!-- Toast -->
+    <string name="toast_app_exit">"뒤로"버튼을 한 번 더 누르시면 종료됩니다.</string>
+    <string name="toast_date_error">미래의 날짜로 설정할 수 없습니다.</string>
+    <string name="toast_auto_remember_id_error">자동 로그인시 아이디 저장을 해제할 수 없습니다.</string>
+    <string name="toast_photo_update_limit">사진은 최대 5장까지만 가능합니다.</string>
+    <string name="toast_permission_storage">저장소 권한을 요청하세요.</string>
+    <string name="toast_widget_error">자녀로 로그인해야 사용할 수 있습니다.</string>
+    <string name="toast_location_noti">자녀의 위치에 오차가 있을 수 있습니다.</string>
+    <string name="toast_permission_location">위치 정보 사용 권한을 승인하셔야 해당 기능을 이용하실 수 있습니다.</string>
+
+
+    <!-- 메인버튼 -->
+    <string name="main_brn_txt_01">아이성장</string>
+    <string name="main_brn_txt_02">아이체온</string>
+    <string name="main_brn_txt_03">아이심리</string>
+    <string name="main_brn_txt_04">주요 서비스</string>
+    <string name="main_brn_txt_05">교육 영상</string>
+    <string name="main_brn_txt_06">건강뉴스</string>
+    <string name="main_brn_txt_07">체중</string>
+    <string name="main_brn_txt_08">운동</string>
+    <string name="main_brn_txt_09">식사</string>
+    <string name="main_brn_txt_07_1">체중 관리</string>
+    <string name="main_brn_txt_08_1">활동량</string>
+    <string name="main_brn_txt_09_1">식사일기</string>
+    <string name="main_brn_txt_10">혈압</string>
+    <string name="main_brn_txt_11">혈당</string>
+    <string name="main_brn_txt_12">엄마건강</string>
+    <string name="main_brn_txt_13">전화하기</string>
+    <string name="main_brn_txt_14">아이학습</string>
+    <string name="main_brn_txt_15">커뮤니티</string>
+
+    <!-- 슬라이드 메뉴 -->
+    <string name="consulting">상담</string>
+    <string name="news">공지</string>
+    <string name="noti">알림</string>
+    <string name="noti1">알 림</string>
+    <string name="parenting_diary">육아 다이어리</string>
+    <string name="growth_record">성장 노트</string>
+    <string name="final_key_prediction_1">최 종 예 측 키</string>
+    <string name="final_key_prediction_2">최 종 예 측 키</string>
+    <string name="settings_faq">성장 FAQ</string>
+    <string name="vaccination">예방 접종</string>
+    <string name="childcare_notes">육아 노트</string>
+    <string name="medical_notes">병력 노트</string>
+    <string name="child_protector">자녀 안전 지킴이</string>
+    <string name="child_location">자녀 위치</string>
+    <string name="notification_history">알림 이력</string>
+    <string name="child_phone_management">자녀 스마트폰 관리</string>
+    <string name="use_management">사용 시간 관리</string>
+    <string name="self_diagnosis">중독 자가 체크</string>
+    <string name="total_healthcare">토탈 헬스케어</string>
+    <string name="study_coaching">자녀 학습 코칭</string>
+    <string name="child_psy_counseling">자녀 심리 상담</string>
+    <string name="mom_only_counseling">엄마 서비스</string>
+    <string name="family_healthcare">가족 헬스케어</string>
+
+    <!-- 오른쪽 메뉴 -->
+    <string name="child_upload">자녀등록</string>
+
+    <string name="consulting_title">상담 안내</string>
+    <string name="consulting_desc">육아와 가족 건강에 대한 모든 상담은 24시간 열려 있습니다.\n(전문가 상담, 병원 예약 등 제외, 자세한 상담항목은 토탈 헬스케어 메뉴를 확인하세요)\n\n상담센터: 1577-3416</string>
+    <string name="consulting_call">전화 걸기</string>
+
+    <!-- 알림 이력 보기 -->
+    <string name="noti_history">알림 이력 보기</string>
+    <string name="battery">배터리</string>
+
+    <!-- 뉴스 리스트 -->
+    <string name="news_list">공지사항</string>
+    <string name="news_content">News 내용</string>
+
+    <string name="child_default_text">앱이 피보험자(자녀)모드로 동작 중입니다.\n\n긴급 연락 위젯과 설정 메뉴를 사용하실 수 있습니다.\n\n긴급 연락 위젯 사용 방법\n\n위급 상황시 긴급 연락 위젯을 사용하면 부모님께 자동으로 고객님의 현 위치를  전송하고 전화를 걸 수 있습니다.\n\nAndroid:\n위젯을 설정하려면 휴대폰 홈 화면의 빈 영역을 길게 누르십시오. 메뉴가 표시되면 위젯을 선택합니다. 스크롤하여 ‘맘e든든케어서비스’를 찾은 후 길게 눌러 홈 화면에 삽입합니다.\n\niOS:\n홈버튼을 클릭하여 기기의 기본화면으로 이동합니다. 기본화면의 상단에서 알림 영역이 표시되도록 밀어 내립니다. 두 개의 탭(오늘 및 알림)이 표시됩니다. 오늘 탭을 선택하고 편집 탭이 표시될 때까지 아래로 스크롤합니다. 편집탭을 터치합니다. 옵션에서 ‘맘e든든케어서비스’ 좌측에 더하기 버튼이 표시됩니다. 더하기 버튼을 터치하고 나면 위젯의 비상연락 버튼을 사용할 수 있습니다.</string>
+
+    <!-- 프롤로그 -->
+    <string name="service_start">서비스 시작하기</string>
+
+    <string name="parenting_diary_service">육아 다이어리 서비스</string>
+    <string name="child_album">육아 앨범</string>
+    <string name="vaccination_diary">예방 접종 다이어리</string>
+    <string name="diary_management_history">병력관리 다이어리</string>
+    <string name="child_growth_key_management">자녀 키 성장 관리</string>
+
+    <string name="keeping_child_sfae_service">자녀 안전 지킴 서비스</string>
+    <string name="discount_child_location">자녀 위치 실시간 확인</string>
+    <string name="setting_local_departure_noti">설정지역 이탈시 알림</string>
+    <string name="hot_key_emergency_response">긴급상황 대응 hot key</string>
+
+    <string name="smartphone_usage_management_service">스마트폰 사용 관리 서비스</string>
+    <string name="smartphone_usage_time_monitoring">스마트폰 사용 시간 모니터링</string>
+    <string name="smartphone_addiction_self_help">스마트폰 중독 자가 체크</string>
+    <string name="smartphone_addiction_expert_consultation">스마트폰 중독 전문가 상담</string>
+    <string name="smartphone_addiction_treatment_specialist">스마트폰 중독 전문가 치료</string>
+
+    <string name="total_health_care_service">토탈 헬스케어 서비스</string>
+    <string name="academic_counseling_coach">학습 상담 및 코칭</string>
+    <string name="psy_counseling">심리 상담</string>
+    <string name="specialize_service_for_women_mom">엄마를 위한 여성 특화 서비스</string>
+    <string name="fern_care_service">진료편의 서비스</string>
+
+    <!-- 로그인 -->
+    <string name="login">로그인</string>
+    <string name="id_hint">아이디(이메일)를 입력해 주세요</string>
+    <string name="id_hint_non_email">아이디를 입력해 주세요</string>
+    <string name="pwd">비밀번호(영문, 숫자, 특수문자 포함 8자리 이상)</string>
+    <string name="pwd_re">비밀번호 확인</string>
+    <string name="auto_login">자동 로그인</string>
+    <string name="remember_id">아이디 저장</string>
+    <string name="find_id">아이디 찾기</string>
+    <string name="find_pwd">비밀번호 찾기</string>
+    <string name="join">가입하기</string>
+    <string name="make">아이디 만들기</string>
+
+
+    <!-- 회원인증 -->
+    <string name="member_certifi">정회원 인증</string>
+    <string name="junmember_certifi">준회원 가입</string>
+    <string name="junmember_alert">준회원 정보 변경</string>
+    <string name="member_switch">정회원 전환하기</string>
+    <string name="member_switch1">정회원 전환하기(1/2)</string>
+    <string name="member_switch2">정회원 전환하기(2/2)</string>
+    <string name="member_certifi_desc">본 서비스는 [굿앤굿 어린이케어] 대상자에게만 제공됩니다.\n서비스 대상자 확인을 위해 회원 정보를 입력해 주세요.</string>
+    <string name="member_certifi_desc2">서비스 대상자 확인을 위해 회원 정보를 입력해 주세요.</string>
+    <string name="member_certifi_desc3">보험 가입 시 제공한 계약자 정보를 입력해 주세요.\n<font color="#727272">(피보험자의 정보 입력은 검색되지 않습니다)</font> </string>
+    <string name="member_certifi_desc4">어떤 아이의 데이터입니까? </string>
+    <string name="junmember_certifi_desc2">현대해상 굿앤굿어린이종합보험\n미 계약자는 한 명의 아이만 등록 및 관리가 가능합니다.</string>
+    <string name="junmember_certifi_desc2_1">현대해상 굿앤굿어린이종합보험 미 계약자는\n한 명의 아이만 등록 및 관리가 가능합니다.</string>
+    <string name="junmember_certifi_desc3">※ 정회원 전환 시 엄마 데이터(체중/활동/식사/혈압/혈당)는 유지됩니다.</string>
+    <string name="member_switch_certifi_desc1">준회원으로 관리하던아이 데이터\n<b><font color="#272b36">(성장/체온/심리검사 등)</font></b>유지를 원하십니까?</string>
+    <string name="name">이름</string>
+    <string name="contractor_name">계약자 이름</string>
+    <string name="birthday">생년월일</string>
+    <string name="mobile_phone_number">휴대폰번호</string>
+    <string name="birthyear">출산예정일</string>
+    <string name="unique_number">고유번호</string>
+    <string name="local">내국인</string>
+    <string name="foreigner">외국인</string>
+    <string name="job">직업있음</string>
+    <string name="nojob">직업없음</string>
+    <string name="male">남</string>
+    <string name="female">여</string>
+    <string name="terms_desc">이용 약관, 개인정보 취급 방침 동의</string>
+    <string name="personal_terms_1">개인정보 제공 동의</string>
+    <string name="personal_terms_2">개인민감정보 제공 동의</string>
+    <string name="personal_terms_3">개인정보 3자 제공 동의</string>
+    <string name="location_terms">위치정보 이용 동의</string>
+    <string name="mobile_terms">마케팅 활용 동의</string>
+
+    <string name="setting_personal_terms">개인정보처리방침</string>
+    <string name="setting_martketing_terms">개인정보 마케팅 및 광고 활용 동의</string>
+    <string name="setting_location_terms">위치정보 수집 및 이용 동의</string>
+
+    <string name="personal_terms_new_1"><u>개인정보 수집 및 이용 동의 (필수)</u></string>
+    <string name="personal_terms_new_5"><u>개인정보 3자 제공 동의 (필수)</u></string>
+    <string name="personal_terms_new_2"><u>민감정보 수집 및 이용 동의 (필수)</u></string>
+    <string name="personal_terms_new_3"><u>개인정보 제3자 제공 동의 (선택)</u></string>
+    <string name="personal_terms_new_4"><u>개인정보 마케팅 및 광고 활용 동의(선택)</u></string>
+
+    <string name="personal_terms_new_1_1">만14세 이상 확인 (필수)</string>
+    <string name="personal_terms_new_2_1"><u>개인정보 수집 및 이용 동의 (필수)</u></string>
+    <string name="personal_terms_new_3_1"><u>민감정보 수집 및 이용 동의 (필수)</u></string>
+    <string name="personal_terms_new_4_1"><u>개인정보 마케팅 및 광고 활용 동의(선택)</u></string>
+
+    <string name="personal_terms_1_1"><u>개인정보 제공 동의 (필수)</u></string>
+    <string name="personal_terms_2_1"><u>개인민감정보 제공 동의 (필수)</u></string>
+    <string name="personal_terms_3_1"><u>개인정보 제 3자 제공 동의 (필수)</u></string>
+    <string name="location_terms_1"><u>위치정보 이용 동의 (필수)</u></string>
+    <string name="mobile_terms_1"><u>마케팅 활용 동의 (선택)</u></string>
+
+
+    <string name="certifi">인&#160;&#160;&#160;&#160;&#160;&#160;증</string>
+    <string name="certifi_next">다&#160;&#160;&#160;&#160;&#160;&#160;음</string>
+    <string name="certifi_confirm">계약자 확인</string>
+    <string name="name_hint">실명을 입력해 주세요.</string>
+    <string name="name_hint1">이름을 입력해 주세요.</string>
+    <string name="phone_number_hint">- 없이 입력해 주세요</string>
+    <string name="uniq_hint">계약자 앱에서 확인 가능합니다.</string>
+
+    <string name="member_txt">현대해상 고객이십니까?</string>
+    <string name="junmember_txt">현대해상 고객이 아니십니까?</string>
+
+    <!-- 아이디 만들기 -->
+    <string name="make_id_desc_1">서비스 이용을 위해 아이디를 생성해주세요.</string>
+    <string name="make_id_desc_2">비밀번호 분실 시 메일로 임시 번호가\n발송되니 정확하게 입력해 주세요.</string>
+
+    <!-- 아이디 찾기 -->
+    <string name="find_id_desc_1">가입 시 입력하신 휴대폰 번호를 입력해 주세요.</string>
+    <string name="find_id_desc_2">검색이 되지 않을 경우\n고객지원센터로 문의해 주시기 바랍니다.\n1577-3416 (09:00 ~ 18:00)</string>
+
+    <!-- 비밀번호 찾기 -->
+    <string name="find_pwd_desc">등록하신 아이디를 입력해 주세요(이메일)\n등록된 이메일로 임시 비밀번호를 발송해 드립니다.</string>
+    <string name="find_pwd_desc_2">가입 시 입력하신 휴대폰 번호를 입력해 주세요.</string>
+
+    <!-- 설정 -->
+    <string name="setting">설정</string>
+    <string name="setting_alarm">알 림 설 정</string>
+    <string name="turn_on">켜&#160;&#160;&#160;&#160;&#160;&#160;짐</string>
+    <string name="turn_off">꺼&#160;&#160;&#160;&#160;&#160;&#160;짐</string>
+    <string name="privacy">개인정보</string>
+    <string name="auth_management">인증관리</string>
+    <string name="customer_support">고객지원</string>
+    <string name="about_service">서 비 스 소 개</string>
+    <string name="help">도움말</string>
+    <string name="version_info">버 전 정 보</string>
+    <string name="version_now">현 재 버 전</string>
+    <string name="version_update">업 데 이 트</string>
+    <string name="version_newest">최신 버전입니다.</string>
+    <string name="version_guide">최신 버전</string>
+    <string name="frequently_ask">자주 묻는 질문</string>
+    <string name="normal">일반</string>
+    <string name="member_info">회원정보</string>
+    <string name="main_view">메인 화면</string>
+    <string name="smartphone_manage">스마트폰 사용관리</string>
+    <string name="login_info">로 그 인 정 보</string>
+    <string name="setting_monjin">사전 체크 문항</string>
+    <string name="setting_junmember">준회원 정보 변경</string>
+    <string name="setting_meberswitch">정회원 전환하기</string>
+    <string name="privacy_member">회원</string>
+    <string name="privacy_junmember">준회원</string>
+
+    <string name="service_secession">서비스 탈퇴</string>
+    <string name="service_secession_confirm">서비스 탈퇴 시 로그인 정보와 앱에서 입력하셨던 모든 정보가 삭제됩니다.\n\n정말로 탈퇴하시겠습니까?</string>
+    <string name="service_secession_complete">정상적으로 탈퇴 되었습니다.\n서비스 이용을 원하시면\n다시 가입해주시기 바랍니다.</string>
+    <string name="service_secession_fail">서비스 탈퇴에 실패하셨습니다.\n반복적으로 실패할 경우 고객센터로 연락주시기 바랍니다.</string>
+
+    <!-- 알림설정 -->
+    <string name="push_alarm_setting_1">체온 측정 알림</string>
+    <string name="push_alarm_setting_2">이벤트 및 건강뉴스 알림</string>
+    <string name="push_alarm_setting_3">열지도 알림</string>
+    <string name="push_alarm_setting_4">일반 공지</string>
+    <string name="push_alarm_setting_5">다이어트 프로그램 독려 알림</string>
+    <string name="push_alarm_setting_6">알림 게시판</string>
+    <string name="push_alarm_setting_7">유행질병 정보 프로그램 독려 알림</string>
+    <string name="push_alarm_setting_8">게시글 좋아요 / 댓글</string>
+    <string name="bell">벨</string>
+    <string name="vibrate">진 동</string>
+
+    <!--열지도 알림 설정-->
+    <string name="title_setting_address">열 지 도 알 림</string>
+    <string name="setting_address_msg">고객님이 계신 지역의 체온이 38℃ 이상일 경우 알람을 드립니다. (시/군/구 단위)</string>
+    <string name="register_address">등록된 지역 : </string>
+    <string name="search_address">주소 검색</string>
+    <string name="none">없음</string>
+    <string name="popup_setting_address">열지도 알람을 켜기 위해 지역설정이 필요합니다.</string>
+    <string name="non_address">등록된 지역이 없습니다. 주소 검색으로 지역을 등록 후 저장해주세요.</string>
+
+    <!-- 인증관리 -->
+    <string name="id_info">로그인 정보</string>
+    <string name="id">아이디</string>
+    <string name="change_pwd">비밀번호 변경</string>
+    <string name="setting_auto_login">자동 로그인 설정</string>
+    <string name="login_type">가입구분</string>
+    <string name="sex">성별</string>
+    <string name="phone_number">전화번호</string>
+    <string name="de_auth">인증 해제</string>
+    <string name="contractor">계약자</string>
+    <string name="insured_person">피보험자</string>
+    <string name="parents">"(부모)"</string>
+    <string name="child">"(자녀)"</string>
+    <string name="old_pwd">기존 비밀번호</string>
+    <string name="new_pwd">새로운 비밀번호를 입력하세요.</string>
+    <string name="new_confirm_pwd">새로운 비밀번호를 확인하세요.</string>
+
+    <!-- 서비스 탈퇴 -->
+    <string name="service_out">서비스 탈퇴</string>
+    <string name="service_out_guide">서비스 탈퇴 안내</string>
+    <string name="service_out_desc_1">서비스를 탈퇴 하시면 회원님의 인증 정보 및 앱과 서버에 저장되어 있는 모든 데이터가 삭제 됩니다.</string>
+    <string name="service_out_desc_2">위 내용을 확인 했습니다.</string>
+    <string name="service_out_btn">서비스 탈퇴하기</string>
+
+    <!-- 육아 노트 -->
+    <string name="child_care_note_search_desc">"[%1$s] 검색 결과"</string>
+    <string name="child_care_note_empty">저장된 기록이 없습니다.</string>
+    <string name="popup_dialog_serucity_content">보안에 취약할 수 있습니다.그래도 계속 하시겠습니까?</string>
+
+    <!-- 문구 -->
+    <string name="empty_child">자녀가 없습니다.</string>
+    <string name="unknow">알수없음</string>
+    <string name="score">점</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    <string name="list_empty">데이터가 없습니다.</string>
+    <string name="image_title">이미지</string>
+    <string name="photo_detail_position">%1$s/%2$s</string>
+    <string name="am">am</string>
+    <string name="pm">pm</string>
+    <string name="morning">오전</string>
+    <string name="afternoon">오후</string>
+    <string name="second">초</string>
+    <string name="minute">분</string>
+    <string name="hour">시간</string>
+    <string name="day">일</string>
+    <string name="week">주</string>
+    <string name="month">월</string>
+    <string name="dogmonth">개월</string>
+    <string name="year">년</string>
+    <string name="before">전</string>
+    <string name="age">세</string>
+    <string name="years_old">생</string>
+    <string name="after_birth">생후</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="cm">cm</string>
+    <string name="kg">kg</string>
+    <string name="hour_2">시</string>
+    <string name="step">걸음</string>
+    <string name="input_message">입력해 주세요</string>
+    <string name="dont_input_message">입력할 수 없습니다</string>
+    <string name="delete">삭제</string>
+    <string name="near">근처</string>
+    <string name="dont_know">알 수 없음</string>
+    <string name="empty_data">empty</string>
+    <string name="man">만</string>
+    <string name="mon">월요일</string>
+    <string name="tue">화요일</string>
+    <string name="wen">수요일</string>
+    <string name="thu">목요일</string>
+    <string name="fri">금요일</string>
+    <string name="sat">토요일</string>
+    <string name="sun">일요일</string>
+    <string name="mon_one">월</string>
+    <string name="tue_one">화</string>
+    <string name="wen_one">수</string>
+    <string name="thu_one">목</string>
+    <string name="fri_one">금</string>
+    <string name="sat_one">토</string>
+    <string name="sun_one">일</string>
+    <string name="firstday">01</string>
+    <string name="search">검색어 입력</string>
+    <string name="bracket_number_1">1)</string>
+    <string name="bracket_number_2">2)</string>
+    <string name="bracket_number_3">3)</string>
+    <string name="bracket_number_4">4)</string>
+    <string name="bracket_number_5">5)</string>
+    <string name="number_dot_1">1.</string>
+    <string name="number_dot_2">2.</string>
+    <string name="number_dot_3">3.</string>
+    <string name="number_dot_4">4.</string>
+    <string name="number_dot_5">5.</string>
+    <string name="number_dot_6">6.</string>
+    <string name="number_dot_7">7.</string>
+    <string name="number_dot_8">8.</string>
+    <string name="number_dot_9">9.</string>
+    <string name="number_dot_10">10.</string>
+    <string name="number_dot_11">11.</string>
+    <string name="number_dot_12">12.</string>
+    <string name="number_dot_13">13.</string>
+    <string name="number_dot_14">14.</string>
+    <string name="number_dot_15">15.</string>
+    <string name="number_dot_16">16.</string>
+    <string name="number_dot_17">17.</string>
+    <string name="number_dot_18">18.</string>
+
+    <string name="탄수화물">탄수화물</string>
+    <string name="지방">지방</string>
+    <string name="단백질">단백질</string>
+
+    <string name="상담연결하기">상담 연결하기</string>
+    <string name="다이어트프로그램신청">다이어트 프로그램 신청하기</string>
+    <string name="다이어트프로그램신청_title">다이어트 프로그램 신청하기</string>
+
+    <string name="popup_diet_popup_content_1" formatted="false">매일 발송되는 체중관리 콘텐츠와​\n%1s회의 전문가 전화 상담을 통해​\n맞춤형 체중관리를 제공해드리는​\n서비스 입니다.​\n%2s일 동안 진행 됩니다.​</string>
+    <string name="popup_mother_big_popup_content_1"> <u>체중 예측하러 가기</u>​</string>
+
+
+
+    <string name="popup_diet_popup_content_2">%1s명의 고객이 이용하고 있습니다.​​</string>
+    <string name="popup_diet_popup_content_2_2">(이용 고객 만족도 ​</string>
+    <string name="popup_diet_popup_content_3">다이어트 프로그램을 신청하시겠습니까?​</string>
+
+    <string name="popup_diet_popup_content_4">%1s일차 전문가 전화 상담​</string>
+    <string name="popup_diet_popup_content_5">카카오 알림톡으로 발송되며.​\n카카오톡 미 이용자는 문자로 발송됩니다.</string>
+
+    <string name="request">신&#160;&#160;&#160;&#160;&#160;&#160;청</string>
+    <string name="view_schedule">스케줄 보기</string>
+    <string name="do_call">전화하기</string>
+
+    <string name="임신기간체중안내">권장 체중 범위는 임신 전 체질량지수(BMI)를\n기준으로 임신 기간에 따라 매주 달라집니다.</string>
+    <string name="임신기간체중안내팝업타이틀1">임신 전 %1s군의</string>
+    <string name="임신기간체중안내팝업타이틀2">임신 기간 별 권장 체중 증가량</string>
+
+    <string name="임신기간체중안내그리드1">임신 기간</string>
+    <string name="임신기간체중안내그리드2">체중 증가 권고량(kg)</string>
+
+    <string name="임신기간체중안내그리드기간1">임신 초기(~14주)</string>
+    <string name="임신기간체중안내그리드기간2">임신 중기(15~26주)</string>
+    <string name="임신기간체중안내그리드기간3">임신 후기(27~40주)</string>
+    <string name="임신기간체중안내그리드기간4">전체</string>
+    <string name="임신기간체중안내출처1">출처 : Institute of Medicine, Nutrition during pregnancy, 2009, USDA</string>
+    <string name="임신기간체중안내출처2">대한산부인과학회</string>
+
+    <string name="popup_yet_diet_program">이미 다이어트 프로그램을 이용중입니다.​\n\n프로그램 중단을 원하실 경우 ​\n헬스콜센터(1588-5814)로 연락 주시기 바랍니다.​</string>
+    <string name="popup_complete_diet_program">프로그램 중단을 원하실 경우 \n헬스콜센터(1588-5814)로 연락 주시기 바랍니다.​</string>
+
+
+    <string name="다이어트프로그램준회원안내">굿앤굿어린이종합보험 미 계약자는​\n다이어트 프로그램을 이용할 수 없습니다.​\n\n가입 및 문의는​\n1588-5656에서 가능합니다.​</string>
+
+    <string name="non_over_dot_2">소수 첫째자리까지만 입력 가능합니다.</string>
+    <string name="non_growthdata_new">키, 몸무게, 머리둘레 중 하나 이상의 수치를 입력해야 결과를 확인 할 수 있습니다.</string>
+    <string name="non_growthdata">모든 수치를 입력해야 결과를 확인 할 수 있습니다.</string>
+    <string name="check_data">숫자 입력이 올바르지 않습니다.</string>
+    <string name="first_baby">첫번째 아이입니다.</string>
+    <string name="last_baby">마지막 아이입니다.</string>
+    <string name="input_lifeyear">8자리로 입력해주세요.</string>
+
+
+    <!--열지도 / 미세먼지-->
+    <string name="fever_map">체 온 관 리</string>
+    <string name="location_fever">지 역 체 온</string>
+    <string name="epidemic">유 의 질 환</string>
+    <string name="rank">순위</string>
+    <string name="disease_name">질환명</string>
+    <string name="disease_cnt">빈도</string>
+
+    <string name="epidemic_txt_1">최근 유의질환 발생 빈도입니다.</string>
+    <string name="epidemic_txt_2">굿앤굿의 발빠른 유행질환 알림, \'열나요\'와 함께합니다.</string>
+    <string name="epidemic_txt_3">체온 측정 바로가기</string>
+
+    <string name="epidemic_main">유의질환 : </string>
+    <string name="empty_epidemic_main">정보없음</string>
+    <string name="empty_epidemic">업데이트 정보가 없습니다.\n네트워크 연결을 확인해주세요.</string>
+
+    <string name="fine_dust_status"> 미세먼지 상태 : </string>
+    <string name="fine_dust_status_lv_1">좋음</string>
+    <string name="fine_dust_status_lv_2">보통</string>
+    <string name="fine_dust_status_lv_3">나쁨</string>
+    <string name="fine_dust_status_lv_4">매우 나쁨</string>
+    <string name="error_dust">미세먼지 정보를 확인 할 수 없습니다.</string>
+
+    <string name="gps_check_title">위치정보 사용 설정 확인</string>
+    <string name="gps_check">위치정보 사용 설정이 되어있지 않습니다.\n설정 화면으로 이동하시겠습니까?</string>
+
+    <!-- 아이관리 -->
+    <string name="baby_info">아&#160;이&#160;관&#160;리</string>
+    <string name="baby_nick">애&#160;&#160;&#160;&#160;&#160;&#160;&#160;칭</string>
+    <string name="baby_name">이&#160;&#160;&#160;&#160;&#160;&#160;&#160;름</string>
+    <string name="baby_birth">생년월일</string>
+    <string name="baby_birth_after">출산예정</string>
+    <string name="baby_sex">성&#160;&#160;&#160;&#160;&#160;&#160;&#160;별</string>
+    <string name="new_capture">사진 촬영</string>
+    <string name="photo_album">앨범에서 사진 선택</string>
+    <string name="nick_desc">애칭을 입력해 주세요.</string>
+    <string name="fetus_txt">출생 후 정보 변경\n1588-5656</string>
+
+    <!-- 육아 다이어리 -->
+
+
+    <!-- 맞춤형 식단 -->
+    <string name="growth_eat_title">맞 춤 형 식 단</string>
+    <string name="growth_eat_title_01">성장 촉진 식단</string>
+    <string name="growth_eat_content_01">성장판 촉진, 뼈 강화 및 운동능력 향상에\n도움을 줄 수 있는 영양소들로 구성</string>
+    <string name="growth_eat_title_02">세로토닌 식단</string>
+    <string name="growth_eat_content_02">학습 집중력, 주의력 향상, 행복지수 상승에\n도움이 되는 영양소들로 구성</string>
+    <string name="growth_eat_title_03">밸런스 식단</string>
+    <string name="growth_eat_content_03">비만이나 저체중을 방지하는 체성분 균형과 대사촉진에\n도움이 되는 영양소들로 구성</string>
+    <string name="growth_eat_etc">자녀의 최근 성장정보(키, 몸무게)를 반영하여\n각 식단 별 권장섭취 칼로리에 맞춰 제공해 드립니다.</string>
+    <string name="growth_eat_dialog"> 맞춤형 식단을 이용하기 위해서\n아이 성장 > 아이 성장 입력에서\n키와 몸무게를 입력해주세요.</string>
+    <string name="growth_eat_dialog1">맞춤형 식단은 만 3~18세의 고객님께 제공합니다.</string>
+
+
+    <!-- 육아 다이어리 공통 -->
+    <string name="height">키(cm)</string>
+    <string name="weight">몸무게(kg)</string>
+    <string name="weight1">몸 무 게(kg)</string>
+    <string name="head">머리둘레(cm)</string>
+    <string name="defaultheight">키</string>
+    <string name="defaultweight">몸무게</string>
+    <string name="defaulthead">머리둘레</string>
+    <string name="defaultdate">측정일자</string>
+    <string name="defaultmonthold">생후</string>
+    <string name="defaultresult">결과</string>
+    <string name="growthhint">입력해 주세요</string>
+    <string name="growthhint2">입력해 주세요 (필수)</string>
+    <string name="growthhint3">입력해 주세요</string>
+
+    <string name="recent_growth">최 근 성 장 현 황</string>
+    <string name="height_main">키</string>
+    <string name="weight_main">몸무게</string>
+    <string name="head_main">머리</string>
+    <string name="height_main1">키 (cm)</string>
+    <string name="weight_main1">몸무게 (kg)</string>
+    <string name="higt_rank">상위</string>
+    <string name="growth_hx">성 장 히 스 토 리</string>
+    <string name="title_growth_record">아 이 성 장 입 력</string>
+    <string name="title_growth_hx">성 장 기 록 보 기</string>
+    <string name="title_growth_predict">성 장 키 예 측</string>
+    <string name="title_growth_faq">성 장 F A Q</string>
+    <string name="title_growth">아 이 성 장</string>
+
+    <!-- 아이 심리-->
+    <string name="title_psy">아 이 심 리</string>
+    <string name="psy_check_result">대인관계 체크 결과</string>
+    <string name="psy_btn_text_check">심리 체크</string>
+    <string name="psy_btn_text_check_history">심리 체크 이력</string>
+    <string name="psy_btn_text_media">심리 음원</string>
+    <string name="psy_btn_text_video">학 교 생 활 교 육 영 상</string>
+    <string name="psy_search_btn">조회</string>
+    <string name="psy_con">설명 : </string>
+    <string name="psy_result_title">최근 심리 체크 결과</string>
+
+    <string name="psy_check_child">심리 체크 대상자 : %1s</string>
+    <string name="psy_check_date">체크 진행일 : %1s</string>
+
+    <string name="psy_result_ans_sel">선택답변:</string>
+    <string name="psy_result_no_tail">번</string>
+
+    <string name="psy_main_img_result_title">최근 심리체크 결과</string>
+    <string name="psy_main_img_result_desc">자세한 검사 결과는 심리 체크 이력에서 볼 수 있습니다.</string>
+
+    <string name="psy_no_info_01">심리 체크 결과가 없습니다.</string>
+    <string name="psy_no_info_02">아래 심리 체크를 진행해주세요</string>
+
+    <string name="psy_img_result_title">상황심리</string>
+    <string name="psy_img_result_title1">상황심리 검사</string>
+
+    <string name="psy_no_result_01">심리 체크 결과가 없습니다.</string>
+    <string name="psy_no_result_02">아래 심리 체크를 진행해주세요</string>
+    <string name="psy_result_row_empty">심리 체크 기록이 없습니다.</string>
+
+    <string name="psy_media_tab_01_title">스트레스 완화</string>
+    <string name="psy_media_tab_02_title">주의 집중력 강화</string>
+
+    <string name="psy_result_tab_01_title">자녀</string>
+    <string name="psy_result_tab_02_title">학습</string>
+    <string name="psy_result_tab_03_title">부모</string>
+
+    <string name="psy_check_title1">아동 청소년기 심리​</string>
+    <string name="psy_check_title2">학습 및 뇌 건강​</string>
+    <string name="psy_check_title3_1">부모 심리​</string>
+    <string name="psy_check_title3_2">[부모 심리는 아이의 모든 것에 영향을 미친다]</string>
+
+    <string name="psy_btn_text_tab_01_title">자녀</string>
+    <string name="psy_btn_text_tab_01_01_label">대인관계</string>
+    <string name="psy_btn_text_tab_01_01">대인관계 검사</string>
+    <string name="psy_btn_text_tab_01_01_sub">또래 아이들과의 관계는 어떨까요?​</string>
+    <string name="psy_btn_text_tab_01_02_label">상황심리</string>
+    <string name="psy_btn_text_tab_01_02">상황심리 검사</string>
+    <string name="psy_btn_text_tab_01_02_sub">우리 아이의 다양성, 긍정성, 사회성은 어떨까요?​</string>
+    <string name="psy_btn_text_tab_01_03_label">자아정체감</string>
+    <string name="psy_btn_text_tab_01_03">자아정체감 검사</string>
+    <string name="psy_btn_text_tab_01_03_sub">아이의 자존감, 자아패배감이 어느정도일까요?​​</string>
+    <string name="psy_btn_text_tab_01_04_label">소아우울증</string>
+    <string name="psy_btn_text_tab_01_04">소아우울증 검사</string>
+    <string name="psy_btn_text_tab_01_04_sub">혹시 우리 아이가 우울증?​</string>
+    <string name="psy_btn_test_start">심리체크 시작하기</string>
+
+    <string name="psy_btn_text_tab_02_title">학습</string>
+    <string name="psy_btn_text_tab_02_01_label">집중도</string>
+    <string name="psy_btn_text_tab_02_01">집중도 검사</string>
+    <string name="psy_btn_text_tab_02_01_sub">우리 아이의 집중도는 얼마나 좋을까요?​</string>
+    <string name="psy_btn_text_tab_02_02_label">학습욕구</string>
+    <string name="psy_btn_text_tab_02_02">학습욕구 검사</string>
+    <string name="psy_btn_text_tab_02_02_sub">우리 아이의 학습 욕구는 얼마나 될까요?​</string>
+    <string name="psy_btn_text_tab_02_03_label">두뇌건강</string>
+    <string name="psy_btn_text_tab_02_03">두뇌건강 검사</string>
+    <string name="psy_btn_text_tab_02_03_sub">아이의 두뇌 발달 과정은 어떨까요?</string>
+    <string name="psy_btn_text_tab_02_04_label">스마트폰 중독</string>
+    <string name="psy_btn_text_tab_02_04">스마트폰중독 검사</string>
+    <string name="psy_btn_text_tab_02_04_sub">혹시 우리 아이가 스마트폰 중독일까요?​</string>
+
+    <string name="psy_btn_text_tab_03_title">부모</string>
+    <string name="psy_btn_text_tab_03_01_label">교육 강박</string>
+    <string name="psy_btn_text_tab_03_01">교육 강박 검사​</string>
+    <string name="psy_btn_text_tab_03_01_sub">부모가 자녀에게 갖고 있는 학습 애착도와 교육 강박에 대해 알아볼까요?​</string>
+    <string name="psy_btn_text_tab_03_02_label">엄마 우울증</string>
+    <string name="psy_btn_text_tab_03_02">엄마 우울증 검사​</string>
+    <string name="psy_btn_text_tab_03_02_sub">​엄마의 심리적 상황과 우울증 정도를 알아볼까요?​</string>
+    <string name="psy_btn_text_tab_03_03_label">상황 판단</string>
+    <string name="psy_btn_text_tab_03_03">상황 판단 검사​</string>
+    <string name="psy_btn_text_tab_03_03_sub">엄마의 상황 판단 능력에 대해 알아볼까요?​</string>
+    <string name="psy_btn_text_tab_03_04_label">자아 교감</string>
+
+
+    <string name="psy_desc_01">본 심리체크는 아이가 직접 실시하는 것입니다.</string>
+    <string name="psy_desc_02">스스로 문항을 이해하고 체크할 수 없는\n어린아이는 부모가 아이를 관찰한 결과를\n토대로 체크해주세요. 또는 아이와 상의하여\n체크해도 됩니다.</string>
+    <string name="psy_desc_03">심리체크는 의사의 진료를 대신할 수 없습니다.\n참고용으로만 활용하시기 바랍니다.</string>
+    <!--<string name="psy_desc_04">* 출처 : 김동철 심리케어</string>-->
+
+    <string name="psy_parent_check_info_1">"아이를 잘 키우고 싶은데 어떻게 해야 할까요?\n자녀의 학습과 성적에 너무 몰입하면, 오히려 아이의 학습 스트레스가 높아지면서\n부모에 대한 존중도가 낮아져 결국 학습에 역효과를 가져올 수 있으므로 유의해야 합니다.\n당신은 자녀의 교육에 대해 얼마나 강박감이 있는지 확인해보세요."</string>    private String LK03001_ 교육강박검사
+    <string name="psy_parent_check_info_2">기분이 처지고 자주 짜증이 나요. 우울증일까요?\n국내 여성 4명 중 1명은 치료를 받아야 할 수준의 우울증을 겪고 있다고 합니다.\n우울증은 자신도 모르게 조그마한 일에도 예민하게 반응하게 만들어서, 아이들에게 안 좋은 영향을 줄 수 있습니다.\n엄마 자신의 심리적 상황을 파악하고 우울증 정도를 가늠해보세요.\n검사는 2주에 한 번씩 총 3번 하고 평균 점수로 파악하는 것이 바람직합니다. 검사하는 날의 기분에 따라 결과가 다를 수 있으므로 여러 번 해보는 것을 추천합니다.</string>
+    <string name="psy_parent_check_info_3">독박육아를 하는 엄마들에게 꼭 필요한 것은 무엇일까요?\n육아에만 올인하면 심리적으로 스트레스가 쌓여 우울증으로 진행되기 쉽습니다.\n또한 육아는 한시도 아이한테서 눈을 뗄 수 없는 중노동이기에 자칫 심리적·신체적으로 면역력을 떨어뜨립니다.\n엄마들도 자신을 위한 시간, \'미타임(Me-Time)\'으로 자아를 회복하고 자신을 존중해야 합니다.</string>
+
+    <string name="psy_sel_01">매우\n그렇다</string>
+    <string name="psy_sel_02">그렇다</string>
+    <string name="psy_sel_03">보통\n이다</string>
+    <string name="psy_sel_04">아니다</string>
+    <string name="psy_sel_05">전혀\n아니다</string>
+
+    <string name="psy_req_result">결과보기</string>
+    <string name="psy_req_result1">결 과 보 기</string>
+    <string name="psy_counseling_call">상담받기</string>
+    <string name="psy_tip">관리 TIP!</string>
+    <string name="psy_call_btn_text">심리상담 연결</string>
+    <string name="psy_call_dialog_text">어린이 콜센터(1577-3416)로 전화연결을 하시겠습니까?</string>
+
+    <string name="psy_dialog_desc_text">진행 중이던 심리 체크가 있습니다.\n계속 진행하시겠습니까?\n(취소 선택 시 진행 중이던 정보가 삭제됩니다)</string>
+
+    <string name="위험">위험</string>
+    <string name="부족">부족</string>
+    <string name="양호">양호</string>
+    <string name="우수">우수</string>
+
+    <string name="Bad">Bad</string>
+    <string name="Nomal">Nomal</string>
+    <string name="Good">Good</string>
+
+    <string name="낮음">낮음</string>
+    <string name="보통">보통</string>
+    <string name="높음">높음</string>
+    <string name="아주높음">아주높음</string>
+
+    <string name="주요소아우울증">주요\n소아우울증</string>
+    <string name="중도">중도</string>
+    <string name="경도">경도</string>
+    <string name="정상">정상</string>
+
+    <string name="중독군">중독군</string>
+    <string name="과몰입군">과몰입군</string>
+    <string name="위험군">위험군</string>
+    <string name="의존도낮음">의존도\n낮음</string>
+
+    <string name="심함">심함</string>
+    <string name="시작">시작</string>
+    <string name="평균">평균</string>
+    <string name="없음">없음</string>
+
+    <string name="만성급성우울증">만성/급성\n우울증</string>
+    <string name="우울증">우울증</string>
+    <string name="경도우울">경도우울</string>
+    <string name="건강함">건강함</string>
+
+    <string name="경고">경고</string>
+    <string name="불안">불안</string>
+
+    <!-- 엄마건강(사전체크) -->
+    <string name="mother_health_reg_title_text">사전 체크 문항</string>
+    <string name="mother_health_reg_step01_desc01">현재 상태를 체크해주세요</string>
+    <string name="mother_health_reg_step01_desc02">임신 기간 동안 건강한 생활습관을 위해\n체중, 활동량, 영양 섭취, 혈압, 혈당 관리가 중요합니다.\n개인 맞춤 관리를 위해 다음 질문에 답해 주세요.</string>
+    <string name="mother_health_reg_before_text">임신 중</string>
+    <string name="mother_health_reg_after_text">출산 후</string>
+
+    <string name="mother_health_reg_step02_desc01">평소 활동량을 체크해주세요.</string>
+
+    <string name="mother_health_reg_step02_btn01_desc01">가벼운\n활동</string>
+    <string name="mother_health_reg_step02_btn01_desc02">운동을 하지 않거나\ 주 2일 이하의 운동</string>
+    <string name="mother_health_reg_step02_btn01_desc03">(일상 생활, 사무직, 서비스업 등)</string>
+
+    <string name="mother_health_reg_step02_btn02_desc01">보통\n활동</string>
+    <string name="mother_health_reg_step02_btn02_desc02">주 3~4일 운동</string>
+    <string name="mother_health_reg_step02_btn02_desc03">(가벼운 걷기 운동, 자전거 타기, 학생, 가사 노동 등)</string>
+
+    <string name="mother_health_reg_step02_btn03_desc01">힘든\n활동</string>
+    <string name="mother_health_reg_step02_btn03_desc02">주 5일 이상 운동</string>
+    <string name="mother_health_reg_step02_btn03_desc03">(무거운 짐 운반, 심한 운동,농부, 어부, 광부, 운동 선수 등)</string>
+
+    <string name="mother_health_reg_ht">키 (cm)</string>
+    <string name="mother_health_reg_wt_bf">임신 전 몸무게(kg)</string>
+    <string name="mother_health_reg_wt_af">현재 몸무게(kg)</string>
+    <string name="mother_health_reg_wt_fl">만삭 시 몸무게(kg)</string>
+    <string name="mother_health_reg_exp_date">출산일</string>
+    <string name="mother_health_reg_week_cnt">출산 예정일</string>
+    <string name="mother_health_reg_week_cnt2">예정일</string>
+    <string name="mother_health_reg_kind">임신종류</string>
+    <string name="mother_health_reg_milk">현재 모유 수유 중 입니까?</string>
+    <string name="mother_health_reg_edit_hint">입력해주세요</string>
+    <string name="mother_health_how_pregnant_weight">만삭 시 나의 체중은 얼마나 될까?</string>
+    <string name="mother_health_how_pregnant_weight2">마지막으로 입력된 임신 주수와 체중입니다.\n원할 경우 변경 가능합니다.\n(단, 임신 14주 이후부터 입력할 수 있습니다.)</string>
+    <string name="mother_health_recent_weight">최근에 측정한 체중입니다.</string>
+
+    <string name="mother_health_reg_dialog_title">엄마 건강 정보 저장</string>
+    <string name="mother_health_reg_dialog_contents">정상적으로 저장 되었습니다.</string>
+    <string name="mother_health_edit_empty_txt">모든 내용을 기재해주세요</string>
+    <string name="mother_health_wt_mesure_date">측정일</string>
+    <string name="mother_health_wt_tip">관리 TIP!</string>
+    <string name="mother_health_wt_mesure">체중입력</string>
+    <string name="mother_health_wt_mesure1">엄마 체중 입력</string>
+    <string name="mother_health_wt_prediction">체중예측</string>
+    <string name="mother_health_wt_prediction1">체중 예측하기></string>
+    <string name="mother_health_wt_prediction_result">체중예측 결과​</string>
+
+    <string name="mother_health_curr_wt_dialog_title">목표 체중 수정</string>
+    <string name="mother_health_curr_wt_dialog_title1">목표체중 설정></string>
+    <string name="mother_health_curr_wt_dialog_content">목표 체중을 입력해주세요.</string>
+
+    <string name="title_logout">로그아웃</string>
+    <string name="title_logout_text">로그아웃 하시겠습니까?</string>
+    <string name="txt_logout">로 그 아 웃</string>
+
+
+
+    <!-- 성장 기록 -->
+    <string name="growthtop">우리 아이가 정상적으로 잘 성장하고 있는지 궁금하세요?</string>
+    <string name="growthmiddle">육아 다이어리에서는 대한소아과학회에서 발표한 \u00272007 소아·청소년 표준 성장도표\u0027 를 바탕으로 자녀의 키, 몸무게, 머리둘레의 성장 정보를 누적 기록하고, 또래들의 평균 성장 정보와 비교해 볼 수 있습니다.\n주기적으로 자녀의 성장을 체크하는 것은 매우 중요합니다. 지금 확인해 보세요</string>
+    <string name="growthbottom">주기적으로 자녀의 성장을 체크하는 것은 매우 중요합니다. 지금 확인해 보세요</string>
+    <string name="growthrecord">성장 정보 입력 하기</string>
+    <string name="titleinput">아이 성장 입력</string>
+    <string name="titleresult">성장 평가 결과</string>
+    <string name="birthimpormation">출 생 시 성 장 정 보</string>
+    <string name="nowimpormation">현 재 성 장 정 보</string>
+    <string name="checkdate">측정일</string>
+    <string name="resultheight">■ 키</string>
+    <string name="resultweight">■ 몸무게</string>
+    <string name="resulthead">■ 머리둘레</string>
+    <string name="growthgraph">성 장 그 래 프</string>
+    <string name="growthdiagram">타 임 라 인</string>
+    <string name="heightsmall">작음</string>
+    <string name="heighttall">큼</string>
+    <string name="weightsmall">가벼움</string>
+    <string name="weighttall">무거움</string>
+    <string name="max_per">97%</string>
+    <string name="middle_per">50%</string>
+    <string name="min_per">3%</string>
+    <string name="my_i">우리아이</string>
+    <string name="etc_tv">최근 데이터 입력일 기준으로 과거 24개월 동안의 성장 기록입니다. 이전 기록은 도표에서 확인하실 수 있습니다.</string>
+    <string name="etc_tv2">80개월이 지난 자녀는 그래프가 활성화 되지 않습니다.\n80개월 이전 기록은 도표에서 확인하실 수 있습니다.</string>
+    <string name="result_title_desc">지난 기준입니다.</string>
+    <string name="head_over">80개월이 초과된 아이의 머리둘레를 등록할 수 없습니다</string>
+    <string name="empty_graph">최근 24개월 이내에 측정 기록이 없습니다.</string>
+
+    <!-- 최종 키 예측 -->
+    <string name="lastheight_title">예측 결과</string>
+    <string name="lastheight_mytitle">1. 자녀의 현재 키와 몸무게를 입력해 주세요.</string>
+    <string name="lastheight_mothertitle">2. 어머님의 현재 키와 몸무게를 입력해 주세요.</string>
+    <string name="lastheight_mothertitle2">1. 어머님의 현재 키를 입력해 주세요.</string>
+    <string name="lastheight_fathertitle">3. 아버님의 현재 키와 몸무게를 입력해 주세요.</string>
+    <string name="lastheight_fathertitle2">2. 아버님의 현재 키를 입력해 주세요.</string>
+    <string name="lastheight_myresult">우리 아이의 최종 예측 키(범위)</string>
+    <string name="lastheight_guide">아이의 생활습관에 따라 \n최종키는 달라질 수 있습니다.</string>
+    <string name="lastheight_result">최종 키 예측은 부모의 키에 따라 단순 계산되는 유전 키 공식과는 달리 소아청소년의 현재 키와 비만도를 반영한 객관적 연구에서 도출된 공식에 근거하여 한국 소아청소년의 표준성장속도에 남녀별로 차등 적용하여 산출합니다.</string>
+    <string name="lastheight_result2">소아청소년의 키 성장속도, 또래집단에서의 키 서열변동, 비만도의 변화에 따라 달라질 수 있습니다.</string>
+
+    <string name="lastheight_result3">만 24개월 미만 아이의 최종 키 예측은 부모의 키에 따라 단순 계산되는 유전 키 공식을 이용합니다.\n\n만 24개월 이상 아이의 최종 키 예측은 현재 키와 비만도를 반영한 객관적 연구에서 도출된 공식에 근거하여 한국 소아청소년의 표준성장속도에 남녀별로 차등 적용하여 산출합니다.</string>
+
+
+
+
+
+    <!-- 교육 영상 -->
+    <string name="edu_video_title">교 육 영 상</string>
+    <string name="edu_video_title_02">학 교 생 활</string>
+    <string name="edu_video_title_03">성장 교육영상</string>
+    <string name="edu_video_title_04">체온 교육영상</string>
+    <string name="edu_video_title_05">학교생활 교육영상</string>
+    <string name="edu_video_title_06">아 이 학 습</string>
+
+    <string name="edu_btn_title_01">성 장</string>
+    <string name="edu_btn_title_02">학교생활</string>
+    <string name="edu_btn_title_03">체 온</string>
+
+    <string name="edu_btn_content_01">건강식습관｜비만식습관1\n비만식습관2｜미각중독｜긍정적 몸쓰기</string>
+    <string name="edu_btn_content_02">자기통제력｜공부순응력1\n공부순응력2 ｜ 관계력 ｜ 꿈과 동기력</string>
+    <string name="edu_btn_content_03">체온과 열 ｜평소체온\n부위별 평소체온｜ 고열 ｜ 저체온</string>
+
+    <!-- FAQ -->
+    <string name="faq_search_hint">궁금하신 사항을 입력하세요</string>
+    <string name="faq_desc">아이의 성장과 관련하여\n자주 궁금해하시는 질문들에 대한 답변입니다.</string>
+    <string name="faq_empty">자주 묻는 질문이 없습니다.</string>
+    <string name="faq_search_empty">검색 결과가 없습니다.</string>
+    <string name="faq_desc_fever">아이의 열과 관련하여\n자주 궁금해하시는 질문들에 대한 답변입니다.</string>
+
+    <!-- 체온 기록 -->
+    <string name="recent_fever">최 근 체 온 상 황</string>
+    <string name="eat_remedy">해 열 제 먹 인 양</string>
+    <string name="remedy_kind_a">타이레놀 계열</string>
+    <string name="remedy_kind_i">부루펜 계열</string>
+    <string name="fever_hx">증 상 히 스 토 리</string>
+    <string name="title_fever">아 이 체 온</string>
+    <string name="nowfever">현 재 체 온</string>
+    <string name="fever_empty">체온을 입력해 주세요</string>
+    <string name="measu_croise">전용 체온계로 측정</string>
+    <string name="txt_croise">전용 체온계와 호환됩니다.\n(체온계 A/S 문의 및 제품상담 : 031-201-7707)</string>
+    <string name="fever_check_time">체 온 측 정 시 간</string>
+    <string name="input_fever_title">아 이 체 온 입 력</string>
+    <string name="fever_result_title">체 온 입 력 결 과</string>
+    <string name="empty_fever">체온 데이터가 없거나 올바르지 않습니다. 체온을 입력해주세요.</string>
+    <string name="play_store_croise">사용하시는 스마트폰에 전용 체온계 앱이 설치되어있지 않습니다.\n전용 체온계 앱을 설치하기 위해 구글 플레이 스토어로 이동합니다.</string>
+    <string name="empty_1_hour">최근 1시간 이내에 체온 기록이 없으므로 체온 레포트는 생성되지 않습니다.</string>
+
+    <!-- 체온 입력 결과 -->
+    <string name="over_time">현재 시간보다 높게 설정 할 수 없습니다.</string>
+
+    <string name="input">입력하기</string>
+    <string name="fever_result_txt_end">본 정보는 진료를 대신할 수 없습니다.</string>
+    <string name="remedy_type_and_volume_1_off">타이레놀 계열 용량보기 \u003E</string>
+    <string name="remedy_type_and_volume_2_off">부루펜 계열 용량보기 \u003E</string>
+    <string name="remedy_type_and_volume_3_off">맥시부펜 계열 용량보기 \u003E</string>
+    <string name="remedy_type_and_volume_1_on">타이레놀 계열 용량보기 \u2228</string>
+    <string name="remedy_type_and_volume_2_on">부루펜 계열 용량보기 \u2228</string>
+    <string name="remedy_type_and_volume_3_on">맥시부펜 계열 용량보기 \u2228</string>
+    <string name="sub_type_1_off">미온수 마사지 \u003E</string>
+    <string name="sub_type_2_off">수분 섭취에 주의 \u003E</string>
+    <string name="sub_type_1_on">미온수 마사지 \u2228</string>
+    <string name="sub_type_2_on">수분 섭취에 주의 \u2228</string>
+
+    <string name="alret_reducer_2h">[name]에게 해열제를 먹이고 2시간이 지났습니다.\n[name]의 체온을 측정해주세요.</string>
+    <string name="alret_fever_2h">[name]의 체온을 측정해주세요.</string>
+    <string name="alret_over_m">아직 체온을 측정하지 않으셨네요.\n[name]의 체온을 측정해주세요.</string>
+
+    <string name="popup_remedy_info">해열제 정보</string>
+    <string name="remedy_list_1">타이레놀 계열의 해열제\n타이레놀, 세토펜, 챔프, 타노펜 등</string>
+    <string name="remedy_volume_1">※ 해당 표는 어린이 타이레놀(현탁액)의 권장용량입니다.\n타 제품 복용 시 해당 제품의 권장용량을 참고하세요.</string>
+    <string name="remedy_list_2">부루펜 계열의 해열제\n부루펜, 캐롤, 맥펜, 대웅이부펜 등</string>
+    <string name="remedy_volume_2">※ 해당 표는 어린이 부루펜(시럽)의 권장용량입니다.\n타 제품 복용 시 해당 제품의 권장용량을 참고하세요.</string>
+    <string name="remedy_list_3">맥시부펜 계열의 해열제\n맥시부펜, 코프란스 시럽, 덱시부르펜, 키즈부펜 등</string>
+    <string name="remedy_volume_3">※ 해당 표는 맥시부펜(시럽)의 권장용량입니다.\n타 제품 복용 시 해당 제품의 권장용량을 참고하세요.</string>
+
+    <string name="tepid_water_info">아이가 힘들어하면 32~35도 정도의 미지근한 물수건으로 얼굴과 목, 가슴, 겨드랑이를 닦아주시기 바랍니다. (해열제 먹고 30분 후, 손발을 피해서)</string>
+    <string name="appetite_lv_1">정상 수준 식욕</string>
+    <string name="appetite_lv_2">90\u0025 수준 식욕</string>
+    <string name="appetite_lv_3">90\u0025 ~ 70\u0025 수준 식욕</string>
+    <string name="appetite_lv_4" formatted="false">70\u0025 ~ 50\u0025 수준 식욕</string>
+    <string name="appetite_lv_5">50\u0025 미만 수준 식욕</string>
+    <string name="close">닫&#160;&#160;&#160;&#160;기</string>
+    <string name="how_appetite">평상시대비 식욕은 어떤가요?</string>
+    <string name="only_breast_feeding">수유만 먹임</string>
+    <string name="mixed_baby_food">수유 + 이유식 혼합</string>
+    <string name="normal_food">일반 식사</string>
+    <string name="how_meal">식사는 어떻게 먹이시나요?</string>
+    <string name="need_water">이 체온이 지속 될 경우 하루에 추가로 섭취해야 할 수분의 양은 약 [n]ml 입니다.</string>
+    <string name="more_water">\n\n섭취해야 할 수분의 양이 많습니다. 물만 먹일 경우 나트륨이 부족할 수 있으니 이온 음료 또는 전해질 용액과 함께 혼용해주세요.</string>
+    <string name="check_baby_weight">수분 섭취 권장량을 계산하기 위해서는 먼저 아이의 체중 정보를 입력하셔야 합니다.</string>
+    <string name="water_care">탈수가 되지 않도록 수분 섭취를 충분히 해주세요.</string>
+    <string name="btn_water_care">필요 수분 섭취량을 계산하기</string>
+
+    <string name="measure_fever_1">체온을 측정한 뒤 1시간 뒤에 다시 측정해주세요.</string>
+    <string name="measure_fever_2">체온을 측정한 뒤 1시간 뒤에 다시 측정해주세요.\n만일, 해열제를 먹이실 경우에는 먹인 후 2시간 뒤에 체온을 측정해주세요.</string>
+
+    <string name="em_msr_1">체온이 40도 이상입니다. 진료가 필요할 수 있으니 병원 방문을 고려해주세요.</string>
+    <string name="em_msr_2">체온이 35.5도 미만입니다. 진료가 필요할 수 있으니 병원 방문을 고려해주세요.</string>
+    <string name="em_msr_3">지난 이틀간 평균 체온이 39.5도 이상입니다. 진료가 필요할 수 있으니, 병원 방문을 고려해주세요.</string>
+    <string name="em_msr_4">100일 이하의 신생아는 38도 이상의 열이 날 경우 심각한 질환의 가능성이 있으므로 병원이나 응급실을 방문하는 것이 좋습니다.</string>
+
+    <string name="remedy_eat_1">해열제 이럴 때 먹어요.\n열이 지속되는 경우 먹일 수 있으며, 180일 미만은 타이레놀 계열(아세트아미노펜)만 먹일 수 있으며, 용량은 아래 표를 참고해주세요.</string>
+    <string name="remedy_eat_2">해열제 이럴 때 먹어요.\n열이 지속되는 경우 먹일 수 있으며, 타이레놀 계열(아세트아미노펜)과 부루펜 계열(이부프로펜)의 용량은 아래 표를 참고해주세요.</string>
+    <string name="remedy_no_eat_120">120일 미만인 경우 먹이지 않는 것이 좋습니다. 의사와 상담하시기 바랍니다.</string>
+
+    <string name="remedy_cross">해열제 종류 이럴 때 바꿔 먹여요.\n해열제를 먹인 지 4시간 이내라면 이전 먹인 것과 다른 종류의 해열제를 먹이는 것이 좋습니다.\n(예: 타이레놀을 먹인 경우 부루펜/맥시부펜으로 교체)</string>
+
+    <!--해열제 입력-->
+    <string name="remedy_input">해 열 제 입 력</string>
+    <string name="remedy_info_title">해 열 제 정 보</string>
+    <string name="remedy_info">해 열 제 정 보 보 기</string>
+    <string name="remedy_type">해열제 성분</string>
+    <string name="select_one">선택해 주세요</string>
+    <string name="remedy_eat_volume">먹인양</string>
+    <string name="remedy_eat_time">해 열 제 먹 인 시 간</string>
+
+    <string name="remedy_kind_0">타이레놀 계열</string>
+    <string name="remedy_kind_1">부루펜 계열</string>
+    <string name="remedy_kind_2">맥시부펜 계열</string>
+
+    <string name="suppository_1">세토펜</string>
+    <string name="suppository_2">부루펜</string>
+
+    <string name="ml">ml</string>
+    <string name="mg">mg</string>
+
+    <string name="empty_type">해열제의 제형을 먼저 선택해주십시오.</string>
+    <string name="empty_remedy">해열제의 제형과 성분, 용량을 모두 입력해 주십시오.</string>
+    <string name="empty_height">해열제 하루 허용치 정보를\n표기하기 위해서는 먼저\n아이 성장 \u003E 아이 성장 입력에서\n아이의 체중 정보를 입력하셔야 합니다.</string>
+
+    <string name="volume_lack">입력하신 용량이 너무 작습니다. 알약, 가루약, 좌약은 mg 단위로 기록되므로 제품의 함량을 확인해주십시오.</string>
+
+    <string name="volume_over_1">타이레놀 계열 해열제의 하루 복용 허용치를 초과하였습니다. 의사의 처방이 있는 경우에만 먹이는 것을 추천합니다.\n\n정말로 먹이시겠습니까?</string>
+    <string name="volume_over_2">부루펜/맥시부펜 계열 해열제의 하루 복용 허용치를 초과하였습니다. 의사의 처방이 있는 경우에만 먹이는 것을 추천합니다.\n\n정말로 먹이시겠습니까?</string>
+    <string name="under_120_reducer">120일 미만의 영유아는 의사의 처방이 있는 경우 외에는 해열제를 먹이지 않는 것이 좋습니다.\n\n정말로 먹이시겠습니까?</string>
+
+
+    <!--증상 히스토리-->
+    <string name="fever_hx_title">증 상 기 록 보 기</string>
+    <string name="fever_graph">열 그 래 프</string>
+    <string name="really_delete">정말 삭제하시겠습니까?</string>
+    <string name="fever_report">체온 레포트</string>
+    <string name="memo_title">증상/질환/메모</string>
+    <string name="memo_tab1">증상</string>
+    <string name="memo_tab2">질환</string>
+    <string name="memo_tab3">메모</string>
+
+
+    <string name="filter_all">전 체 표 기</string>
+    <string name="filter_0">체온</string>
+    <string name="filter_1">해열제</string>
+    <string name="filter_2">체온 레포트</string>
+    <string name="filter_3">증상</string>
+    <string name="filter_4">진단</string>
+    <string name="filter_5">메모</string>
+    <string name="no_filter">필터를 설정해주세요</string>
+    <string name="baby_temp">우리 아이 체온</string>
+    <string name="baby_temp_status">우리 아이 체온 상황</string>
+    <string name="baby_growth_status">우리 아이 성장 현황</string>
+    <string name="baby_fever_status">유의질환 발생 빈도</string>
+
+    <string name="filter_report">레포트</string>
+
+    <string name="over_date">열 그래프의 시작 시간이 종료 시간보다 높습니다. 다시 입력해주세요.</string>
+
+
+    <!--메모 입력-->
+    <string name="input_time">입 력 시 간</string>
+
+    <string name="empty_symptom">열과 함께 온 증상을 선택하세요</string>
+    <string name="empty_diagnosis">병원에서 받은 진단명을 선택하세요</string>
+    <string name="empty_memo">기록하고 싶은 일을 선택하세요</string>
+
+    <string name="empty_symptom_hint">증상에 관한 자세한 내용을 입력하세요.\n잘못 입력 시 타임라인에서 수정/삭제 할 수 있습니다.</string>
+    <string name="empty_diagnosis_hint">병원에서 받은 진단과 검사 결과 등을 입력하세요.\n잘못 입력 시 타임라인에서 수정/삭제 할 수 있습니다.</string>
+    <string name="empty_memo_hint">오늘 있었던 일을 메모 하세요.\n잘못 입력 시 타임라인에서 수정/삭제 할 수 있습니다.</string>
+
+    <string name="dont_change">수정 중에는 메모 종류를 변경할 수 없습니다.</string>
+
+    <string name="symptom_0">기침</string>
+    <string name="symptom_1">콧물</string>
+    <string name="symptom_2">가래</string>
+    <string name="symptom_3">재채기</string>
+    <string name="symptom_4">빠른 호흡/숨 차함</string>
+    <string name="symptom_5">컹컹대는 기침</string>
+    <string name="symptom_6">쌕쌕거림</string>
+    <string name="symptom_7">목 부음</string>
+    <string name="symptom_8">심하게 처짐/늘어짐</string>
+    <string name="symptom_9">심하게 보챔</string>
+    <string name="symptom_10">먹는 양 20% 감소</string>
+    <string name="symptom_11">먹는 양 40% 감소</string>
+    <string name="symptom_12">먹는 양 60% 이상 감소</string>
+    <string name="symptom_13">소변 양 감소</string>
+    <string name="symptom_14">구토</string>
+    <string name="symptom_15">설사</string>
+    <string name="symptom_16">변비</string>
+    <string name="symptom_17">복통</string>
+    <string name="symptom_18">몸통발진</string>
+    <string name="symptom_19">손발수포</string>
+    <string name="symptom_20">구강수포</string>
+    <string name="symptom_21">두통</string>
+    <string name="symptom_22">황달</string>
+    <string name="symptom_23">BCG 발적(붉어짐)</string>
+    <string name="symptom_24">눈/결막 충혈</string>
+    <string name="symptom_25">딸기 혀</string>
+    <string name="symptom_26">경련</string>
+    <string name="symptom_27">기타</string>
+
+    <string name="memo_0">약 먹임(해열제 외)</string>
+    <string name="memo_1">모유수유</string>
+    <string name="memo_2">분유수유</string>
+    <string name="memo_3">잠</string>
+    <string name="memo_4">수분섭취</string>
+    <string name="memo_5">소변양</string>
+    <string name="memo_6">미온수 마사지</string>
+    <string name="memo_7">기타</string>
+
+    <string name="diagnosis_0">기관지염</string>
+    <string name="diagnosis_1">(모)세기관지염</string>
+    <string name="diagnosis_2">폐렴</string>
+    <string name="diagnosis_3">아데노 바이러스 감염</string>
+    <string name="diagnosis_4">후두염/크룹</string>
+    <string name="diagnosis_5">인두염/편도염</string>
+    <string name="diagnosis_6">열감기</string>
+    <string name="diagnosis_7">독감</string>
+    <string name="diagnosis_8">구내염(단순포진)</string>
+    <string name="diagnosis_9">구내염(헤르페안지나)</string>
+    <string name="diagnosis_10">구협염</string>
+    <string name="diagnosis_11">수족구</string>
+    <string name="diagnosis_12">장염/식중독</string>
+    <string name="diagnosis_13">뇌수막염</string>
+    <string name="diagnosis_14">중이염</string>
+    <string name="diagnosis_15">요로감염</string>
+    <string name="diagnosis_16">볼거리</string>
+    <string name="diagnosis_17">성홍열</string>
+    <string name="diagnosis_18">수두</string>
+    <string name="diagnosis_19">홍역</string>
+    <string name="diagnosis_20">돌발진</string>
+    <string name="diagnosis_21">진단명 미확정</string>
+    <string name="diagnosis_22">기타</string>
+
+
+    <!--콜센터 전화번호-->
+    <string name="call_center_number">15773416</string>
+    <string name="call_center_number2">15885656</string>
+    <string name="do_call_center">어린이 콜센터(1577-3416)로\n전화연결을 하시겠습니까?</string>
+    <string name="do_call_hiplanner">담당 하이플래너([tel])에게\n전화연결을 하시겠습니까?</string>
+    <string name="empty_hiplaaner">담당 하이플래너 전화번호 정보가 없습니다. 현대해상 콜센터로 문의 바랍니다.</string>
+    <string name="call_center">자녀 출산 후 이용할 수 있는 기능입니다.\n출산하셨다면\n현대해상 고객콜센터(1588-5656)를 통해\n정보를 변경해주세요.</string>
+    <string name="call_center_number_2">15885656</string>
+    <string name="call_center2">굿앤굿어린이종합보험 미 계약자는\n상담하기를 이용할 수 없습니다.\n\n가입 및 문의는\n1588-5656에서 가능합니다.
+</string>
+
+    <string name="main_view_content_1">메인화면내용1</string>
+    <string name="main_view_content_2">메인화면내용2</string>
+    <string name="main_view_content_3">메인화면내용3</string>
+    <string name="main_view_content_4">메인화면내용4</string>
+    <string name="main_view_content_5">메인화면내용5</string>
+
+    <string name="fever_faq_title_1">해열제, 언제 먹여야 할까요?</string>
+    <string name="fever_faq_title_2">해열제 종류가 궁금합니다.</string>
+    <string name="fever_faq_title_3">해열제 종류별로 특징이 있나요?</string>
+    <string name="fever_faq_title_4">해열제, 얼마 간격으로 먹여야 할까요</string>
+    <string name="fever_faq_title_5">열이 날 때 왜 물을 먹이라는 거죠?</string>
+    <string name="fever_faq_title_6">왜 열이 잘 안 떨어질까요?</string>
+    <string name="fever_faq_title_7">해열제를 토했습니다. 어떻게 하죠?</string>
+    <string name="fever_faq_title_8">열성경련이 나면 어떻게 하죠?</string>
+    <string name="fever_faq_title_9">열성경련 예방약은 어떻게 먹이죠?</string>
+    <string name="fever_faq_title_10">열성경련, 해열제를 쓰면 예방이 되나요?</string>
+    <string name="fever_faq_title_11">체온은 언제 측정하나요?</string>
+    <string name="fever_faq_title_12">어느 부위를 측정해야 하나요?</string>
+    <string name="fever_faq_title_13">겨드랑이 체온계는 어떻게 사용하나요?</string>
+    <string name="fever_faq_title_14">항문 체온계는 어떻게 사용하나요?</string>
+    <string name="fever_faq_title_15">체온계로 입 안을 잘 측정하는 방법은 무엇인가요?</string>
+    <string name="fever_faq_title_16">열이 있을 때 목욕을 시켜도 될까요?</string>
+    <string name="fever_faq_title_17">아이들 목욕시킬 때 물 온도는 몇 도가 좋은가요?</string>
+    <string name="fever_faq_title_18">언제가 목욕시키기 좋은가요?</string>
+    <string name="fever_faq_title_19">병원에 진료를 보러 갈 때 어떻게 준비해야 할까요?</string>
+    <string name="fever_faq_title_20">어떤 때, 지체하지 않고 병원을 찾아야 할까요?</string>
+
+    <string name="fever_faq_contents_1">아이들이 열날 때 해열제를 먹이면 무조건 안 좋다고 생각하시는 분이 의외로 많습니다.\n아이들의 열은 여러 가지 이유가 있지만 대개 바이러스나 세균 등에 의한 감염이 원인인 경우가 많습니다. 몸 안에 들어온 적과 싸우는 과정에서 염증 반응으로 열이 발생하게 되는데 해열제를 먹으면 오히려 면역력이 떨어져 싸울 수가 없다고 생각합니다. 하지만 면역력이 작동하는 것은 열에 의해 영향을 받지 않습니다.\n\n해열제를 먹이는 기준은 체온과 아이의 상태를 고려하여 정하는 것이 좋습니다.\n39℃ 이상의 열이 나면 당장은 아이의 상태가 괜찮더라도 시간이 지나면서 나빠질 수 있어서 해열제를 먹이는 것이 좋습니다. 38℃ 정도일 때는 아이가 심하게 보채거나 늘어지는 경우 해열제를 먹입니다. 미열이 있으면서 아이의 상태가 괜찮을 경우에는 1시간 간격으로 체온을 측정하면서 아이의 상태변화를 관찰할 수 있지만, 체온이 오르는 추세를 보이거나 아이의 상태가 나빠지면 즉시 해열제를 먹이는 것이 좋습니다.</string>
+    <string name="fever_faq_contents_2">아이들에게 흔히 사용되는 해열제는 크게 아세트아미노펜 계열(타이레놀시럽, 어린이용 타이레놀, 챔프시럽, 세토펜시럽) 과 이부프로펜 계열(부루펜시럽)이 있습니다. 두 가지가 전통적인 해열진통제이고 최근에는 덱시부프로펜(맥시부펜 등)처럼 이부프로펜 계열의 신약도 많이 쓰이고 있습니다.\n성인에서는 아스피린도 많이 사용되지만, 소아 특히 7세 이하의 소아에서 열이 날 때 해열 목적으로는 아스피린을 사용하지 않습니다. ‘라이 증후군’이라는 심각한 합병증을 일으킬 수 있기 때문인데 라이 증후군은 뇌압 상승과 간 기능 저하 등 심각한 증상을 보이다가 사망에 이르는 무서운 질환입니다. 집안에 협심증이나 심근경색 같은 심장병 환자가 있는 경우 피를 묽게 하려고 어린이용 아스피린을 매일 복용하게 되는데 이걸 아이가 열났을 때 급하다고 먹이면 안 됩니다.</string>
+    <string name="fever_faq_contents_3">아세트아미노펜은 백일 이후 아이에게 사용할 수 있습니다. 해열진통 효과는 있지만, 염증을 가라앉히는 소염 작용은 없습니다. 하루 최대 허용량도 통상적인 1회 복용량의 6배 이상 되기 때문에 과량 복용의 위험도 그만큼 적어서 열을 내리는 목적으로 가장 많이 쓰이는 해열제입니다.\n하지만 하루 허용량 이상 복용 시 치명적인 간독성이 나타날 수 있어서 주의해야 합니다.\n\n이부프로펜은 대표적인 소염진통제입니다. 아세트아미노펜과의 차이점은 소염(항염) 작용이 있다는 것이고, 류머티스 관절염 등 염증성 질환에 자주 사용되는 약물입니다.\n소염진통제의 특성상 위장관 부작용이 있을 수 있고, 과량 복용 시 급성 신장 질환을 일으킬 수 있습니다. 따라서 장염에 걸려서 설사하거나 구토를 하는 아이에게는 이부프로펜보다는 아세트아미노펜이 먼저 추천됩니다.</string>
+    <string name="fever_faq_contents_4">아세트아미노펜은 작용 시간이 짧아서 4-6시간마다, 이부프로펜은 6-8시간마다 복용하는 것이 원칙입니다. 열이 떨어지는 속도는 비슷하므로 열의 정도나 해열제의 용량에 따라 차이를 보일 수 있습니다.\n지속해서 열이 나는 경우 대개는 아세트아미노펜을 4-6시간 간격으로 주기적으로 복용하고 그래도 열이 떨어지지 않는 경우 이부프로펜으로 중간중간 가끔 복용하는 교차요법을 많이 사용하기도 합니다.</string>
+    <string name="fever_faq_contents_5">열나는 아이들에게 물을 먹이는 것은 아이들을 도와주는 것입니다. 열을 발생시키는 염증반응에 우리 몸의 수분이 평소보다 30% 정도 더 소요되기 때문에, 탈수에 빠지기 쉽습니다.\n특히 2세 미만의 영유아의 경우 서너 시간만 열을 방치해도 아이가 탈수되는 경우가 많습니다. 탈수가 되면 아이가 처지고 소변량이 줄어들고 심한 경우 장 운동성이 떨어지면서 구토를 할 수도 있으므로 탈수방지가 매우 중요합니다.</string>
+    <string name="fever_faq_contents_6">많은 엄마가 해열제를 먹여도 열이 떨어지지 않으면 굉장히 불안해합니다. 독감이나 가와사키병 등 해열제에 잘 반응하지 않는 질환도 있지만 흔한 이유 중 하나는 충분한 용량을 먹이지 않아서입니다. 아이들은 주로 시럽 제제를 먹게 되는데 약을 먹을 때 흘리기도 하고 끝까지 먹지 않는 경우도 많습니다. 가장 좋은 것은 시럽을 먹이고 물을 조금 더 따라서 완전하게 먹이는 방법인데 어려우면 1회 용량을 조금 넉넉히 주는 방법이 있습니다.</string>
+    <string name="fever_faq_contents_7">가끔 아이가 토를 해서 약을 뱉어낸 경우가 있는데 먹고 나서 5분 이내로 토해낸 경우는 똑같은 용량을 다시 한번 먹이고 10-20분 정도 지나서 토한 경우는 30분에서 한 시간 뒤에 열을 체크하여 그대로이거나 올라가는 경우 다시 먹이도록 합니다. 30분 이상 지나서 토한 경우는 대개 다시 먹일 필요가 없습니다.</string>
+    <string name="fever_faq_contents_8">- 먼저 당황하지 말아야 합니다!\n열성경련은 수 분 안에 멈춥니다. 보기와는 달리 위험한 상태가 아니니 걱정하지 마세요.\n\n- 아무것도 하지 말고, 느긋하게 동영상을 찍읍시다.\n아이가 혀를 깨물거나 하지 않으니 아이 입속에 손가락이나 숟가락을 넣지 마세요. 아이한테 소리치거나 경련을 멈추려고 잡거나 하지 마세요. 주무르지도 마세요. 멈추길 기다리면서 동영상으로 경련하는 모습을 찍어두면 진료 시 큰 도움이 될 수 있습니다.\n\n- 아이를 안전하게!\n옷을 느슨하게 하고, 주변에 위험한 물건을 치워야 합니다. \n\n- 아이가 토할 경우\n아이가 토하려 하면 아이 몸을 옆으로 눕게 해 토사물이 자연스럽게 흘러나오도록 하면 됩니다.\n\n- 아이를 잘 관찰합시다.\n경련하는 시간이 중요합니다. 대개 5분이면 멈추는데 혹시 넘어가면 응급실 갈 준비를 합니다(119 전화 등).</string>
+    <string name="fever_faq_contents_9">주치의와 상의해서 항경련제를 예방약으로 사용할 수 있습니다.\n38℃를 넘으면 예방약을 사용합니다. 8시간 후에도 열이 지속하면 1회 더 사용합니다. 이후에는 열이 지속하여도 더는 사용하지 않아도 됩니다.\n마지막 열성경련으로부터 2년, 또는 4~6세까지 열이 날 때 사용합니다.</string>
+    <string name="fever_faq_contents_10">해열제를 쓴다고 열성경련을 예방할 수 없습니다. 또한, 열이 나는 것은 우리 몸에 유익한 반응일 수 있으므로 열=해열제가 아닙니다. 고열이 날 때 탈수나 너무 힘들어하는 등 문제가 있어 어쩔 수 없이 사용하는 것입니다. 혹시 예방이 될까 하는 생각으로 쓰지는 마세요.</string>
+    <string name="fever_faq_contents_11">정상 체온은 아이와 집안 환경의 영향을 받아 다를 수 있으며, 체온계에 따라서도 달라집니다. 그래서 평소 체온계로 우리 아이 체온을 재두면 열이 날 때 큰 도움이 됩니다. 아이의 체온은 하루에도 몇 차례씩 달라집니다. 아침에 낮고, 저녁이 되면 높아집니다. 또한, 운동이나 식사 후에도 체온이 높아집니다. 따라서 식사 전 안정된 상태에서 재야 합니다. 초반에는 아침, 점심, 저녁, 밤 4회 측정해서 기록하는 연습을 합시다. 그리고 아이 상태가 평소와 다를 때, 아이를 만져보아 평소보다 뜨겁다면 바로 측정해서 그동안 모아둔 정보와 비교합니다.</string>
+    <string name="fever_faq_contents_12">가장 간편해서 많이 쓰이는 귀 체온계는 부정확한 경우가 많습니다. 고막 온도를 재는 것인데 각도가 맞지 않아 엉뚱한 곳을 측정할 수 있습니다. 아이의 귓속은 일자가 아니라서 귓불을 뒤쪽 아래 방향으로 가볍게 당기면서 측정해야 합니다. 또한, 귀지가 많을 경우 부정확할 수 있습니다. 귀 체온계를 많이 써본 분들은 아시겠지만, 기본적으로 체온이 높게 나와 37℃는 정상으로 봐야 합니다.</string>
+    <string name="fever_faq_contents_13">겨드랑이 땀을 닦아준 후 체온계를 겨드랑이 중앙에 위치시키고, 팔을 몸에 붙입니다. 5분 후 체온계를 꺼내서 체온을 측정합니다. 정상 체온은 1세 미만의 영아(36.3~37.4℃), 1세~6세 유아(36.5~37.4℃), 7세 이상(36.5~37.3℃) 입니다.</string>
+    <string name="fever_faq_contents_14">신생아에서 유용하게 사용할 수 있습니다. 처음에는 항문에 체온계를 넣기가 두려울 수 있으나, 표시만큼만 넣으면 항문에 상처가 나지 않으므로 걱정하지 않아도 됩니다. 체온계에 바셀린을 조금 발라 항문을 손으로 살짝 벌린 후 1cm 정도 밀어 넣습니다. 항문 체온계는 겨드랑이 보다 0.5~1.0℃ 높게 나올 수 있어 38℃를 넘어야 미열이 있다고 할 수 있습니다.</string>
+    <string name="fever_faq_contents_15">아이가 깨물거나 뱉으려 해서 상처가 날 수 있으므로 협조가 잘 되는 학동기 아이에서 사용할 수 있습니다. 혀 밑에 체온계 끝을 넣고 입을 다물게 합니다. 그리고 2분 동안 말이나 움직이지 못하게 한 후 체온계를 꺼내 확인합니다. 37.8℃를 넘어야 미열이라 할 수 있습니다.\n평소 우리 아이의 그 시간대 체온을 알고 있다면, 지금 열이 있는지를 판단할 수 있습니다. 평소보다 1℃ 이상 올라갔다면 확실히 열이 있는 것이므로 경각심을 가지고 아이를 봐야 합니다.</string>
+    <string name="fever_faq_contents_16">열이 높고, 아이가 힘들어할 때는 목욕을 시키는 것보다 미지근한 물수건으로 닦아 주는 것이 좋습니다. 하지만 아이가 다른 증상 없고, 잘 먹고 잘 논다면 간단히 목욕시키는 것은 문제없습니다.</string>
+    <string name="fever_faq_contents_17">목욕 시 물 온도는 38~39℃ 정도가 적당합니다. 참고로 목욕탕의 온탕이 40℃, 열탕이 42℃ 정도로 1℃ 차이로 크게 달라집니다. 아이들은 연약하므로 어른은 괜찮은 온도에서도 화상을 입을 수 있으니 40℃ 미만으로 유지합니다. 그리고 실내 온도는 25℃ 정도가 적당합니다. </string>
+    <string name="fever_faq_contents_18">매일 일정한 시간에 10~15분 정도로 시키는 것이 좋습니다. 수유나 식사 후 1시간 동안은 아이가 토할 수도 있으므로 목욕을 삼가합니다.\n아이는 땀, 때, 대변, 소변으로 쉽게 지저분한 환경에 놓이게 됩니다. 목욕하면 깨끗해지는 건 물론 전신의 신진대사가 활발해지고, 잠도 잘 자는 등 유익한 면이 많습니다.</string>
+    <string name="fever_faq_contents_19">무엇보다 아직 병원이 진료를 보고 있는 시간을 활용해서 상태가 더 악화하기 전에 진료를 받는 것이 좋습니다.\n\n병원에 가실 때는, 오늘 병원에 오게 된 가장 주된 이유, 증상이 언제부터 발생했는지, 다른 동반 증상이 있는지, 가족 중에 비슷한 증상이 있는지, 현재 복용 중인 양 등의 정보를 적어가시는 것이 진료에 큰 도움이 됩니다.\n저희 앱의 메모 기능을 활용하시면 더 효과적으로 진료를 보실 수 있겠죠?</string>
+    <string name="fever_faq_contents_20">아이의 상태는 급변합니다. 별것 아닌 것 같다가도 갑자기 안 좋아질 수 있으므로 만약 아이가 상태가 심각해 보이면(의식을 잃는다든지, 쌕쌕거리며 숨쉬기 힘들어한다든지) 바로 응급실이나 병원을 찾으셔야 합니다.\n\n또한, 40℃ 이상 고열이 지속하거나, 아이가 축 처지거나 보채는 정도가 매우 심해지고, 구토 등이 멈추지 않는다면 이 또한 응급상황이기 때문에 지체하지 말아야 합니다.</string>
+
+
+    <!--오류 사항 처리-->
+    <string name="alert_web_id">죄송합니다.\n현대해상 어린이메디케어서비스\n웹 사이트 아이디는 사용하실 수 없습니다.\n앱 회원이 아니신 경우 새 아이디로 가입해주세요.</string>
+
+    <!--어린이 메디케어-->
+    <string name="title_medicare">어린이 메디케어 주요 서비스</string>
+    <string name="title_medicare1">주요 서비스</string>
+    <string name="url_medicare">http://www.higngkids.co.kr</string>
+    <string name="url_higngkids">http://www.higngkids.co.kr/introduce/Hospital_List.asp</string>
+    <string name="url_weight">https://gc_walkie.blog.me/221291424626</string>
+    <string name="url_homepage">http://www.higngkids.co.kr</string>
+
+    <!--게시판-->
+    <string name="bbs_title">어린이 건강뉴스</string>
+    <string name="bbs_category_0">전체보기</string>
+    <string name="bbs_category_1">질병예방</string>
+    <string name="bbs_category_2">영양</string>
+    <string name="bbs_category_3">운동</string>
+    <string name="bbs_category_4">심리</string>
+
+
+
+    <string name="main_menu_title_01">주요 메뉴</string>
+    <string name="main_menu_title_02">서비스 및 고객지원</string>
+    <string name="main_menu_row_01">아이 관리</string>
+    <string name="main_menu_row_10">임신기간 체중 예측</string>
+    <string name="main_menu_row_02">열지도 / 유의질환</string>
+    <string name="main_menu_row_03">건 강 뉴 스</string>
+    <string name="main_menu_row_04">환 경 설 정</string>
+    <string name="main_menu_homepage">홈페이지</string>
+
+    <string name="main_category_0">지역 체온</string>
+    <string name="main_category_1">유의 질환</string>
+    <string name="main_category_2">엄마 체중 기록</string>
+    <string name="main_category_3">아이 체중 기록</string>
+    <string name="main_category_4">아이학습</string>
+    <string name="main_bottom_sub_title">자세히 보기</string>
+    <string name="main_bottom_sub_title1">지역체온보기</string>
+    <string name="main_bottom_sub_title2">지역체온설정</string>
+
+    <string name="push_notice">[공지]</string>
+    <string name="push_news">[어린이 건강뉴스]</string>
+    <string name="push_fever">[주의]</string>
+
+    <string name="youtube_title">체온 영상 보기</string>
+    <string name="youtube_msg">체온과 관련된 영상을 확인하실 수 있습니다.</string>
+
+
+    <string name="no_view_again">다시 안보기</string>
+    <string name="no_view_again2">오늘 하루 그만보기</string>
+    <string name="popup_msg_aft_lifyea">아이의 정보를 알려주세요.\n\n고객님의 출산예정일이 지났습니다. 출산하셨다면 자녀분의 정보 등록이 필요합니다.\n\n현대해상 고객센터(1588-5656)로 연결하시겠습니까?</string>
+
+    <string name="popup_msg_aft_lifyea_jun">출산예정일이 지났습니다.\n정확한 아이의 정보를 입력해 주세요.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <!-- 다이얼 창 선택버튼-->
+    <string name="text_select">선 택</string>
+
+    <!--주차별 태아 말풍선내용-->
+    <string name="fetus1_1">이제 막 수정이 이루어졌어요.</string>
+    <string name="fetus1_2">앞으로 엄마, 아빠와 함께할 시간이 기다려져요.</string>
+    <string name="fetus1_3">정말 신비로워요~</string>
+    <string name="fetus1_4">저를 만나기 위해 엄마, 아빠의 노력이 결실을 이루었네요.</string>
+    <string name="fetus1_5">아직 엄마는 몸의 변화를 거의 느끼지 못해요.</string>
+    <string name="fetus1_6">아빠와 함께 임신안내서 책을 꼼꼼히 읽어주세요.</string>
+    <string name="fetus1_7">이때부터 건강한 식습관을 가지면 많은 도움이 돼요.</string>
+    <string name="fetus1_8">새로운 생명의 씨앗을 품기 시작했어요.</string>
+    <string name="fetus1_9">술, 담배를 멀리하세요~</string>
+    <string name="fetus1_10">건강한 모습으로 만나요~</string>
+
+    <string name="fetus2_1">아직 아기는 도착하지 않았지만, 엄마의 몸은 조금 바빠지기 시작해요.</string>
+    <string name="fetus2_2">자궁벽이 푹신해지거나 두꺼워져요.</string>
+    <string name="fetus2_3">임신 호르몬이 많이 분비돼요.</string>
+    <string name="fetus2_4">가까운 병원에서 기본적인 검사를 미리 받아주세요.</string>
+    <string name="fetus2_5">임신 전 풍진, 수두, 감염 등의 면역을 확인해주세요.</string>
+    <string name="fetus2_6">아빠~! 엄마의 산부인과 진료에 항상 동행해주세요.</string>
+    <string name="fetus2_7">너무 초기라서 약국에서 파는 임신 테스트기에서 음성으로 나올 가능성이 커요.</string>
+    <string name="fetus2_8">아빠와의 사랑은 평소와 다름없이 나누어도 돼요.</string>
+    <string name="fetus2_9">애완동물과의 지나친 접촉은 피해 주세요.</string>
+    <string name="fetus2_10">임신이 되었어도 아직은 제가 있는지 모를 수 있어요.</string>
+
+    <string name="fetus3_1">드디어 엄마의 자궁에 착상했어요.</string>
+    <string name="fetus3_2">엄마의 자궁 크기는 평소대로 아직 달걀만 해요.</string>
+    <string name="fetus3_3">3주 말쯤이 되면 네 개의 아가미에 고리가 달린 올챙이 모양을 하고 있어요.</string>
+    <string name="fetus3_4">이제 엄마의 몸에서 무럭무럭 자라날 준비를 하고 있어요.</string>
+    <string name="fetus3_5">엄마가 아파서 약을 먹을 때 의사 선생님과 꼭 상의해주세요.</string>
+    <string name="fetus3_6">아빠~! 엄마의 건강을 세심하게 챙겨주세요.</string>
+    <string name="fetus3_7">엄마의 체온이 살짝 올라 몸이 나른해지고 미열을 느낄 수 있어요.</string>
+    <string name="fetus3_8">이 시기의 키는 약 0.2cm, 체중은 약 1g 미만이에요.</string>
+    <string name="fetus3_9">저를 보호해주는 양수가 만들어져요.</string>
+    <string name="fetus3_10">약국에서 파는 임신 테스트기에서 양성으로 나와요.</string>
+
+    <string name="fetus4_1">머리와 몸이 구분되기 시작해요.</string>
+    <string name="fetus4_2">탯줄이 발달해 엄마에게서 산소와 영양분을 받을 수 있어요.</string>
+    <string name="fetus4_3">임신을 의심케 하는 증상이 나타나요.</string>
+    <string name="fetus4_4">엄마의 유방이 부은 듯 무거워지고 속이 울렁거리는 입덧이 나타나요.</string>
+    <string name="fetus4_5">호르몬 영향으로 계속 미열이 날 수 있어요.</string>
+    <string name="fetus4_6">아직 초음파 검사로 저를 볼 수 없어요.</string>
+    <string name="fetus4_7">사과씨 크기만큼 성장했어요.</string>
+    <string name="fetus4_8">코와 귀가 생기기 시작했지만 뚜렷하게 구분할 수는 없어요.</string>
+    <string name="fetus4_9">엄마가 아파서 약을 먹을 때 의사 선생님과 꼭 상의해주세요.</string>
+    <string name="fetus4_10">엄마의 월경이 중단돼요.</string>
+
+    <string name="fetus5_1">심장, 간, 위 등 장기가 형성되기 시작했어요.</string>
+    <string name="fetus5_2">드디어 초음파 검사로 저의 모습을 확인할 수 있어요.</string>
+    <string name="fetus5_3">이른 아침이나 빈속일 때 엄마의 입덧 증상이 더 심해져요.</string>
+    <string name="fetus5_4">엄마의 화장실 가는 횟수가 잦아져요.</string>
+    <string name="fetus5_5">온몸이 나른하고 쉽게 피로해지고, 유두가 민감해져요.</string>
+    <string name="fetus5_6">주변 사람들에게 임신이라고 말할 수 있어요.</string>
+    <string name="fetus5_7">엄마가 아파서 약을 먹을 때 의사 선생님과 꼭 상의해주세요.</string>
+    <string name="fetus5_8">엄마의 자궁 달걀 정도에서 거위 알 크기로 변해요.</string>
+    <string name="fetus5_9">엄마가 안심하고 다닐 수 있는 병원이 필요해요.</string>
+    <string name="fetus5_10">애칭을 지어주세요.</string>
+
+    <string name="fetus6_1">심장이 두근두근 뛰기 시작했어요.</string>
+    <string name="fetus6_2">뇌와 척수의 신경세포 80%가 이때 만들어져요.</string>
+    <string name="fetus6_3">몸의 주요 기관이 자라기 시작해요.</string>
+    <string name="fetus6_4">꼬물꼬물 올챙이처럼 보여요.</string>
+    <string name="fetus6_5">호르몬 영향으로 엄마의 질 분비물이 늘어나요.</string>
+    <string name="fetus6_6">엄마와 저의 건강을 위해 정기검진 스케쥴을 만들어주세요.</string>
+    <string name="fetus6_7">임신 7개월까지는 한 달에 한 번 산부인과 병원에 같이 가요.</string>
+    <string name="fetus6_8">엄마의 몸무게가 11~15kg 정도 늘어나요.</string>
+    <string name="fetus6_9">물갈퀴 같던 손이 엄마 손과 비슷해지려고 조금씩 변하기 시작했어요.</string>
+    <string name="fetus6_10">엄마, 아빠와 만날 수 있는 출산 예정일을 결정할 수 있어요.</string>
+
+    <string name="fetus7_1">올챙이 모양이 아닌 2등신이 되었어요.</string>
+    <string name="fetus7_2">눈과 콧구멍이 검은 점처럼 보여요.</string>
+    <string name="fetus7_3">귀가 작은 구멍처럼 보여요.</string>
+    <string name="fetus7_4">손가락과 발가락이 생겨 지느러미처럼 보일 수 있어요.</string>
+    <string name="fetus7_5">이 시기의 키는 약 2cm, 체중은 약 4g 정도에요.</string>
+    <string name="fetus7_6">엄마와의 이별이 잘되므로 너무 무리한 활동은 피해 주세요.</string>
+    <string name="fetus7_7">엄마의 유방에 핏줄이 확실하게 보여요.</string>
+    <string name="fetus7_8">엄마의 장 움직임이 둔해져 변비에 걸리기 쉬워요.</string>
+    <string name="fetus7_9">출혈이나 아랫배가 아프면 곧바로 병원으로 가주세요.</string>
+    <string name="fetus7_10">귀가 자랄 부분은 작은 구멍처럼, 눈과 콧구멍은 검은 점처럼 보여요.</string>
+
+    <string name="fetus8_1">심장과 뇌가 더욱 발달해요.</string>
+    <string name="fetus8_2">눈과 귀의 시신경, 청각신경이 발달해요.</string>
+    <string name="fetus8_3">눈꺼풀이 만들어지고 코가 오똑해지기 시작해요.</string>
+    <string name="fetus8_4">근육이 발달하고 뼈의 중심이 만들어져요.</string>
+    <string name="fetus8_5">아주 조금씩 꼬물꼬물 움직이기 시작했어요.</string>
+    <string name="fetus8_6">엄마의 유방이 더욱 커지고 무거워져요.</string>
+    <string name="fetus8_7">머리를 좀 더 세우게 되고 목이 더 길게 발달해요.</string>
+    <string name="fetus8_8">포도알 크기만큼 성장했어요.</string>
+    <string name="fetus8_9">초음파 각도에 따라 머리, 몸통, 손, 발등이 구별돼요.</string>
+    <string name="fetus8_10">자궁이 커지면서 엄마의 예쁜 다리에 정맥류가 생기기 쉬워졌어요.</string>
+
+    <string name="fetus9_1">팔다리가 자라 제법 몸의 윤곽이 확실해져요.</string>
+    <string name="fetus9_2">팔은 손목관절을 굽힌 채 가슴 위에 놓여 있어요.</string>
+    <string name="fetus9_3">귀가 발달하기 시작해요.</string>
+    <string name="fetus9_4">치아 돌기가 형성돼요.</string>
+    <string name="fetus9_5">엄지손가락 크기로 몸이 자랐어요.</string>
+    <string name="fetus9_6">초음파 검사를 통해 처음으로 태동을 감지할 수 있어요.</string>
+    <string name="fetus9_7">입덧이 최고로 심해져요.</string>
+    <string name="fetus9_8">엄마의 자궁이 커져 아랫배가 당기거나 요통이 올 수 있어요.</string>
+    <string name="fetus9_9">감염과 싸울 수 있는 B세포가 형성돼요.</string>
+    <string name="fetus9_10">이 시기의 키는 약 3~4cm, 체중은 약 3~12g이에요.</string>
+
+    <string name="fetus10_1">몸이 곧게 펴지고 길어져요.</string>
+    <string name="fetus10_2">손가락, 발가락 5개가 또렷하게 보여요.</string>
+    <string name="fetus10_3">눈두덩, 입술, 아래 턱, 뺨이 발달해요.</string>
+    <string name="fetus10_4">치골 위에 손을 대보면 자궁이 커진 것을 느낄 수 있어요.</string>
+    <string name="fetus10_5">엄마의 감정 기복이 심해져 불안감과 짜증 등이 나타날 수 있어요.</string>
+    <string name="fetus10_6">항상 긍정적인 마음을 가져주세요.</string>
+    <string name="fetus10_7">저를 감염으로부터 막아주기 위해 엄마의 질 분비물이 많아져요.</string>
+    <string name="fetus10_8">얼굴을 찡그리고 입을 움직여요.</string>
+    <string name="fetus10_9">손가락과 발가락이 조금씩 움직여요.</string>
+    <string name="fetus10_10">아빠는 엄마를 많이 이해해주고 위로해 주셔야 해요.</string>
+
+    <string name="fetus11_1">손바닥 크기만큼 성장했어요.</string>
+    <string name="fetus11_2">이 시기의 키는 6~8cm, 체중은 15~20g 정도에요.</string>
+    <string name="fetus11_3">체모가 자라 솜털이 생겼어요.</string>
+    <string name="fetus11_4">심장, 뇌, 폐, 위, 대장, 간, 신장 등의 내장이 발달해요.</string>
+    <string name="fetus11_5">팔다리가 확실히 구분돼요.</string>
+    <string name="fetus11_6">허벅지, 종아리, 발이 구분되어 보이기 시작해요.</string>
+    <string name="fetus11_7">양수 속에서 본 소변을 마시지만, 무균상태인 소변이니 걱정 안 해도 돼요.</string>
+    <string name="fetus11_8">조금씩 움직이기 시작했지만, 아직 엄마가 느끼지는 못해요.</string>
+    <string name="fetus11_9">엄마의 땀 배출이 평소보다 많아지니 물을 충분히 마시는 게 좋아요.</string>
+    <string name="fetus11_10">입덧이 줄어들어 엄마의 식욕이 왕성해지기 시작해요.</string>
+
+    <string name="fetus12_1">뇌가 급속도로 발달해요.</string>
+    <string name="fetus12_2">머리가 커져 몸 전체의 1/3 정도를 차지해요.</string>
+    <string name="fetus12_3">턱에 32개의 영구치가 될 뿌리가 있어요.</string>
+    <string name="fetus12_4">성별을 알 수 있는 성기가 형성되지만, 아직 확실하게 성별을 알 수는 없어요.</string>
+    <string name="fetus12_5">얼굴과 몸에 배내털이라는 솜털이 덮이기 시작해요.</string>
+    <string name="fetus12_6">입덧이 사라지면서 식욕이 왕성해져요.</string>
+    <string name="fetus12_7">유산의 위험이 어느 정도 사라져요.</string>
+    <string name="fetus12_8">손톱이 나타나고, 지문이 생기기 시작했어요.</string>
+    <string name="fetus12_9">양수가 많이 생기면서 양수 속에서 춤을 추듯 움직여요.</string>
+    <string name="fetus12_10">엄마의 고운 피부에 기미가 생기지만 제가 태어나면 사라지게 되니 너무 걱정하지 마세요.</string>
+
+    <string name="fetus13_1">엄마의 배, 가슴, 엉덩이 등에 튼살이 생길 수 있어요.</string>
+    <string name="fetus13_2">드디어 얼굴 형태가 제대로 자리 잡혔어요.</string>
+    <string name="fetus13_3">엄마, 아빠와 비슷한 신체 기관이 형태를 갖추게 되었어요.</string>
+    <string name="fetus13_4">무언가를 움켜주려고 하고, 손가락을 빨아요.</string>
+    <string name="fetus13_5">초음파 검사로 엄마, 아빠에게 제 얼굴을 보여드릴게요.</string>
+    <string name="fetus13_6">튼살 예방을 위해 이 시기부터 보습에 신경을 써주세요.</string>
+    <string name="fetus13_7">얼굴 양옆에 붙어 있던 눈이 가운데로 옮겨졌어요.</string>
+    <string name="fetus13_8">주먹을 쥐었다 폈다 할 수 있어요.</string>
+    <string name="fetus13_9">엄마, 아빠를 반반씩 닮은 얼굴이었으면 좋겠어요.</string>
+    <string name="fetus13_10">13주 이후 입덧이 끝나고 매주 약 500g씩 엄마의 몸무게가 늘어날 거에요.</string>
+
+    <string name="fetus14_1">감염과 싸울 수 있는 T세포 면역 체계가 왕성하게 활동해요.</string>
+    <string name="fetus14_2">피부와 머리카락, 손톱이 발달해요.</string>
+    <string name="fetus14_3">꿀꺽꿀꺽~무언가 삼키고 싶어요.</string>
+    <string name="fetus14_4">오렌지 크기만큼 성장했어요.</string>
+    <string name="fetus14_5">남자, 여자를 구분하는 생식기가 뚜렷하게 보여요.</string>
+    <string name="fetus14_6">가족사진을 펼쳐놓고 이야기하듯이 가족 한사람, 한사람을 소개해주세요.</string>
+    <string name="fetus14_7">뼈를 하나하나 초음파로 확인할 수 있을 정도로 탄탄하게 성장했어요.</string>
+    <string name="fetus14_8">움직임이 활발해져서 태동을 강하게 느끼실 수 있어요.</string>
+    <string name="fetus14_9">태반이 완성되면서 엄마의 몸과 저의 몸이 탯줄로 연결되었어요.</string>
+    <string name="fetus14_10">저도 스트레스를 느낄 수 있어요.</string>
+
+    <string name="fetus15_1">얇고 투명한 피부를 통해 혈관이 보여요.</string>
+    <string name="fetus15_2">팔, 다리가 길어져요.</string>
+    <string name="fetus15_3">눈썹, 머리카락이 자라기 시작해요.</string>
+    <string name="fetus15_4">양수가 늘어나 양수 속에서 자유롭게 몸을 움직일 수 있어요.</string>
+    <string name="fetus15_5">이 시기의 키는 10~15cm, 체중은 40~100g 정도에요.</string>
+    <string name="fetus15_6">몸이 머리보다 더 빠른 속도로 성장해요.</string>
+    <string name="fetus15_7">눈살을 찌푸릴 수 있어요.</string>
+    <string name="fetus15_8">아빠~! 엄마가 편할 수 있는 집안 환경을 만들어주세요.</string>
+    <string name="fetus15_9">충분한 양의 단백질을 섭취해주세요.</string>
+    <string name="fetus15_10">탯줄을 통해 엄마가 먹은 맛을 느낄 수 있어요.</string>
+
+    <string name="fetus16_1">자몽 크기만큼 성장했어요.</string>
+    <string name="fetus16_2">피부에 피하지방이 생기기 시작했어요.</string>
+    <string name="fetus16_3">손발을 구부렸다 폈다 할 수 있어요.</string>
+    <string name="fetus16_4">드디어 몸의 위치를 바꿀 수 있어요.</string>
+    <string name="fetus16_5">딸~꾹! 딸꾹질을 시작했으니 너무 놀라지 마세요.</string>
+    <string name="fetus16_6">엄지손가락을 빨며 잡을 수 있어요.</string>
+    <string name="fetus16_7">힘이 세지고 운동이 활발해졌어요.</string>
+    <string name="fetus16_8">아빠~! 엄마와 함께 음악 태교를 하는 시간을 가져주세요.</string>
+    <string name="fetus16_9">엄마, 아빠에게서 많은 이야기를 듣고 싶어요.</string>
+    <string name="fetus16_10">엄마의 허리가 아플 수 있으니 임산부 체조나 요통 체조를 시작해보세요.</string>
+
+    <string name="fetus17_1">엄마, 아빠의 목소리 차이를 알 수 있어요.</string>
+    <string name="fetus17_2">양수를 마셨다 뱉었다 하면서 출생 후 호흡을 위한 폐를 단련시켜요.</string>
+    <string name="fetus17_3">매일매일 영양가 있는 식사를 해주세요.</string>
+    <string name="fetus17_4">나도 이제 기억 능력이 생기기 시작했어요.</string>
+    <string name="fetus17_5">태어났을 때를 위한 훈련을 엄마 뱃속에서 열심히 하고 있어요.</string>
+    <string name="fetus17_6">이제 체온을 스스로 조절할 수 있지만, 엄마의 도움이 많이 필요해요.</string>
+    <string name="fetus17_7">엄마의 심장이 빨리 뛰지만, 저의 성장 때문에 그런 것이니 너무 걱정하지 않으셔도 돼요.</string>
+    <string name="fetus17_8">임부복을 사러 아빠와 함께 쇼핑 가요.</string>
+    <string name="fetus17_9">단맛과 쓴맛을 구분할 수 있어요.</string>
+    <string name="fetus17_10">표정이 다양해졌어요.</string>
+
+    <string name="fetus18_1">물렁물렁 뼈가 점점 단단해져요.</string>
+    <string name="fetus18_2">청진기로 심장 뛰는 소리를 들을 수 있어요.</string>
+    <string name="fetus18_3">제가 움직이는 걸 엄마가 느낄 수 있어요.</string>
+    <string name="fetus18_4">성장하면서 엄마의 직장을 압박해 치질이 생길 수 있어요.</string>
+    <string name="fetus18_5">아빠와 함께 가까운 교외로 여행가요.</string>
+    <string name="fetus18_6">태변 연습을 시작했어요.</string>
+    <string name="fetus18_7">피부가 조금씩 두꺼워지고 있어요.</string>
+    <string name="fetus18_8">엄마의 체중이 확 늘어날 수 있으니 주의하세요.</string>
+    <string name="fetus18_9">나른할 때는 무리하게 움직이지 말고 쉬는 게 가장 좋아요.</string>
+    <string name="fetus18_10">배가 커지면서 균형 잡기가 힘들어 넘어지기 쉬우므로 항상 조심하셔야 해요.</string>
+
+    <string name="fetus19_1">유방이 커지면서 임신전에 사용한 브래지어 착용이 힘들어져요.</string>
+    <string name="fetus19_2">철분섭취 잘하고 계시죠?</string>
+    <string name="fetus19_3">발길질하는 모습을 초음파로 볼 수 있어요.</string>
+    <string name="fetus19_4">손가락 빠는 모습을 초음파로 볼 수 있어요.</string>
+    <string name="fetus19_5">점점 D라인이 되어가요.</string>
+    <string name="fetus19_6">가끔 탯줄이 휘감기도 하지만 답답하지 않아요.</string>
+    <string name="fetus19_7">엄마의 뱃속에서 탯줄도 만지고, 발길질도 해서 심심하지 않아요.</string>
+    <string name="fetus19_8">재미나게 동화책을 읽어주세요.</string>
+    <string name="fetus19_9">고칼로리 식사는 피해 주세요.</string>
+    <string name="fetus19_10">바깥에서 빛을 비추면 눈이 부셔 미간이 찌푸려져요.</string>
+
+    <string name="fetus20_1">쓴맛, 단맛을 구분할 수 있어요.</string>
+    <string name="fetus20_2">피부가 붉고 쭈글쭈글해요.</string>
+    <string name="fetus20_3">엄마의 손과 발이 붓기 시작해요.</string>
+    <string name="fetus20_4">엄마 배에 임신선이 선명해져요.</string>
+    <string name="fetus20_5">자궁이 점점 커지면서 엄마의 배꼽이 볼록 튀어나와요.</string>
+    <string name="fetus20_6">하얀 태지가 몸을 뒤덮고 있어요.</string>
+    <string name="fetus20_7">몸의 순환을 돕고 변비 예방을 위해 하루에 미지근한 물 6~7잔을 마셔주세요.</string>
+    <string name="fetus20_8">제가 엄마의 배 속에 자리 잡은 지 벌써 20주가 지났어요!</string>
+    <string name="fetus20_9">톡톡 찰 때마다 배 외부가 조금씩 움직이는 게 보일 거예요.</string>
+    <string name="fetus20_10">가끔 배가 딱딱해지는 뭉침 현상을 하루 4~6번 정도 느낄 수 있어요.</string>
+
+    <string name="fetus21_1">임신 21주째~두근두근~ 심장 소리가 커지고 있어요~</string>
+    <string name="fetus21_2">룰루랄라~동요가 듣고 싶어요~</string>
+    <string name="fetus21_3">소화 기관도 발달하고 있어요~</string>
+    <string name="fetus21_4">꿀꺽꿀꺽 물도 먹어요~</string>
+    <string name="fetus21_5">호르몬 때문에 엄마 피부가 트고 가려운 증상이 나타날 수도 있대요~</string>
+    <string name="fetus21_6">뒹굴뒹굴~같이 놀고 싶어요~</string>
+    <string name="fetus21_7">엄마~물 마실 시간이에요~</string>
+    <string name="fetus21_8">배를 쓰다듬어 주세요~</string>
+    <string name="fetus21_9">콩콩콩~태동을 체크해주세요~</string>
+    <string name="fetus21_10">엄마~사랑해요~</string>
+
+    <string name="fetus22_1">임신 22주째! 배가 단단하게 당길지도 몰라요~</string>
+    <string name="fetus22_2">칼슘이 부족해지기 쉬워요. 잊지 말고 섭취하세요</string>
+    <string name="fetus22_3">체중이 점점 늘고 있어요~</string>
+    <string name="fetus22_4">저~쑥쑥 자라고 있어요~</string>
+    <string name="fetus22_5">엄마의 심장 소리는 자장가에요~</string>
+    <string name="fetus22_6">뿌웅~방귀가 나왔어요</string>
+    <string name="fetus22_7">흔들흔들~엄마 뱃속이 편안해요~</string>
+    <string name="fetus22_8">엄마, 아빠 목소리가 듣고 싶어요~</string>
+    <string name="fetus22_9">두근두근~보고 싶어요~</string>
+    <string name="fetus22_10">하~암..졸려요..Zzz</string>
+
+    <string name="fetus23_1">임신 23주째~제 얼굴 모양이 뚜렷해지고 있어요~</string>
+    <string name="fetus23_2">저 눈썹이 생겼어요~</string>
+    <string name="fetus23_3">야호~기분이 좋아요.</string>
+    <string name="fetus23_4">엄마~체중이 너무 많이 늘지는 않았나요? 매일 체크해보세요</string>
+    <string name="fetus23_5">두근두근~사랑해요~</string>
+    <string name="fetus23_6">엄마~변비 조심하세요~</string>
+    <string name="fetus23_7">배꼽이 튀어나와도 걱정말아요~다시 회복된대요~</string>
+    <string name="fetus23_8">엄마~다리에 쥐가 자주 날 수 있대요ㅠㅠ 마사지를 해주세요~</string>
+    <string name="fetus23_9">둥실둥실~</string>
+    <string name="fetus23_10">저 예쁘죠??</string>
+
+    <string name="fetus24_1">임신 24주째~건강하게 자라고 있어요~</string>
+    <string name="fetus24_2">저 스스로 숨쉬기 연습도 해요~</string>
+    <string name="fetus24_3">뿌잉뿌잉~~</string>
+    <string name="fetus24_4">엄마~아프지 마세요~</string>
+    <string name="fetus24_5">임신 중에 약은 의사 선생님과 꼭 상담하세요.</string>
+    <string name="fetus24_6">둥실둥실~</string>
+    <string name="fetus24_7">배에 대고 목소리를 들려주세요~</string>
+    <string name="fetus24_8">룰루랄라~기분이 좋아요.</string>
+    <string name="fetus24_9">엄마~힘내세요~제가 있잖아요~</string>
+    <string name="fetus24_10">건강한 모습으로 만나요~</string>
+
+    <string name="fetus25_1">임신 25주째~피부가 불그스름해졌어요~</string>
+    <string name="fetus25_2">몸이 많이 무거워졌지요?</string>
+    <string name="fetus25_3">무리하면 안돼요~</string>
+    <string name="fetus25_4">토닥토닥~</string>
+    <string name="fetus25_5">임신선이 나타나요~젤이나 크림을 꾸준히 발라주세요~</string>
+    <string name="fetus25_6">엄마 품이 좋아요~</string>
+    <string name="fetus25_7">빙글빙글~~</string>
+    <string name="fetus25_8">가벼운 산책이 좋아요~</string>
+    <string name="fetus25_9">배를 쓰다듬어 주세요~</string>
+    <string name="fetus25_10">쓰담쓰담~</string>
+
+    <string name="fetus26_1">임신 26주째~폐포가 발달하고 있어요~</string>
+    <string name="fetus26_2">신기해요~</string>
+    <string name="fetus26_3">시신경이 발달하고 있어요~빛을 비추면 제가 반응할 거에요~</string>
+    <string name="fetus26_4">반짝반짝~</string>
+    <string name="fetus26_5">기분이 좋아요~랄랄라~</string>
+    <string name="fetus26_6">엄마~빈혈 조심하세요~</string>
+    <string name="fetus26_7">뿡뿡~변비에 걸리지 않게 식이섬유를 충분히 섭취하세요~</string>
+    <string name="fetus26_8">엄마~고생이 많아요~</string>
+    <string name="fetus26_9">뽀뽀~쪽~~</string>
+    <string name="fetus26_10">푹~많이 주무세요~</string>
+
+    <string name="fetus27_1">임신 27주째~청각이 거의 발달했어요~</string>
+    <string name="fetus27_2">목소리를 알아들을 수 있어요~</string>
+    <string name="fetus27_3">기특하지요~?</string>
+    <string name="fetus27_4">엄마 배가 꽤 커졌어요~</string>
+    <string name="fetus27_5">많이 힘들지요?</string>
+    <string name="fetus27_6">제가 있잖아요~힘내세요~</string>
+    <string name="fetus27_7">옆으로 누워 자면 조금 편하대요~</string>
+    <string name="fetus27_8">항상 고마워요~</string>
+    <string name="fetus27_9">산부인과 정기검진 잊지 마세요~</string>
+    <string name="fetus27_10">뿌잉뿌잉~~</string>
+
+    <string name="fetus28_1">임신 28주째~뇌 조직이 발달하는 시기에요~</string>
+    <string name="fetus28_2">두뇌 활동을 시작하고, 머리카락도 점점 길어져요~</string>
+    <string name="fetus28_3">몸에 살도 오르고 있어요~</string>
+    <string name="fetus28_4">너무너무 신기해요~</string>
+    <string name="fetus28_5">엄마~사랑해요~</string>
+    <string name="fetus28_6">하트뿅뿅~~</string>
+    <string name="fetus28_7">건강한 모습으로 만나요~</string>
+    <string name="fetus28_8">두근두근~</string>
+    <string name="fetus28_9">태동이 활발해졌지요?</string>
+    <string name="fetus28_10">저~씩씩하게 잘 자라고 있어요~</string>
+
+    <string name="fetus29_1">임신 29주째~차고 구르는 것이 더 활발해졌어요~</string>
+    <string name="fetus29_2">놀라지 마세요~저에요~</string>
+    <string name="fetus29_3">진짜 세계로 나갈 준비를 하고 있어요~</string>
+    <string name="fetus29_4">기대돼요~</string>
+    <string name="fetus29_5">엄마~불안해하지 마세요~</string>
+    <string name="fetus29_6">우리 잘할 수 있어요~</string>
+    <string name="fetus29_7">으쌰으쌰</string>
+    <string name="fetus29_8">무리하지 마세요~힘들다 싶으면 곧바로 휴식을 취하세요~</string>
+    <string name="fetus29_9">배에 힘이 가해지는 행동은 피하세요~</string>
+    <string name="fetus29_10">우리 엄마 파이팅~</string>
+
+    <string name="fetus30_1">임신 30주째~생식기 구분이 뚜렷해졌어요~</string>
+    <string name="fetus30_2">뇌의 크기가 빠르게 성장하면서 머리 크기도 커졌어요~</string>
+    <string name="fetus30_3">망간과 크롬은 골격과 근육발달에 도움이 돼요~~</string>
+    <string name="fetus30_4">녹색 채소, 호밀빵, 현미, 소간, 대합, 모시조개, 닭고기 등에 많이 있대요~</string>
+    <string name="fetus30_5">자궁이 커지면서 위와 심장을 압박해 가슴이 갑갑하고 속이 쓰린 느낌이 들 수 있대요~</string>
+    <string name="fetus30_6">엄마~힘내세요~</string>
+    <string name="fetus30_7">엄마가 힘들면 제가 너무 슬퍼요~</string>
+    <string name="fetus30_8">즐거운 음악을 들려주세요~</string>
+    <string name="fetus30_9">룰루랄라~</string>
+    <string name="fetus30_10">몸과 마음이 힘들 때는 무조건 휴식을 취하세요~</string>
+
+    <string name="fetus31_1">임신 31주째~폐와 소화기관이 거의 완성되었어요~</string>
+    <string name="fetus31_2">양수 속에서 폐를 부풀리며 호흡을 위한 연습을 하고 있어요~</string>
+    <string name="fetus31_3">눈을 뜨고 감을 수 있어요~</string>
+    <string name="fetus31_4">제가 밑으로 내려가기 전까지 숨이 많이 가빠질 수 있대요~</string>
+    <string name="fetus31_5">허리도 아프고~다리도 아프고~</string>
+    <string name="fetus31_6">제가 나가면 효도할게요~</string>
+    <string name="fetus31_7">토닥토닥~</string>
+    <string name="fetus31_8">데굴데굴~뽀글뽀글</string>
+    <string name="fetus31_9">건강한 모습으로 만나요~</string>
+    <string name="fetus31_10">하트뿅뿅~~</string>
+
+    <string name="fetus32_1">임신 32주째~제 움직임이 둔해지는 시기에요~</string>
+    <string name="fetus32_2">제가 많이 커서 그래요~</string>
+    <string name="fetus32_3">만날 날이 다가오고 있어요~</string>
+    <string name="fetus32_4">출산에 대비해 필요한 물품을 챙겨주세요~</string>
+    <string name="fetus32_5">엄마 체중이 일주일에 0.5kg 정도 늘어날 수 있대요~</string>
+    <string name="fetus32_6">소화가 안되고, 속이 울렁거리기도 한대요~</string>
+    <string name="fetus32_7">배가 뭉칠 때는 충분한 휴식을 취해주세요~</string>
+    <string name="fetus32_8">Zzz..꿀잠을 자고 있어요~</string>
+    <string name="fetus32_9">콩닥콩닥~~</string>
+    <string name="fetus32_10">균형 잡힌 식단으로 영양을 골고루 섭취해주세요~</string>
+
+    <string name="fetus33_1">임신 33주째~양수를 마시면서 호흡하고 있어요~</string>
+    <string name="fetus33_2">폐를 단련시키기 위해서예요~</string>
+    <string name="fetus33_3">쉬~~저 매일 0.5L 정도 소변을 배출해요~</string>
+    <string name="fetus33_4">엄마도 커진 자궁이 방광을 눌러 배뇨 횟수가 늘어난대요~</string>
+    <string name="fetus33_5">엄마~많이 피곤하지요?</string>
+    <string name="fetus33_6">힘내세요~제가 있잖아요~</string>
+    <string name="fetus33_7">사랑해요~</string>
+    <string name="fetus33_8">장시간 외출은 피하고, 격렬한 운동은 절대 피하세요~</string>
+    <string name="fetus33_9">충분한 휴식이 필요해요~</string>
+    <string name="fetus33_10">다리 마사지를 꾸준히 해주세요~</string>
+
+    <string name="fetus34_1">임신 34주째~자궁 아래로 머리를 향하기 시작해요~</string>
+    <string name="fetus34_2">팔과 다리를 가슴에 모은 채 머리를 돌리고 있어요~</string>
+    <string name="fetus34_3">엄마~기대도 되고, 불안하기도 하지요?</string>
+    <string name="fetus34_4">저는 엄마를 만날 생각에 너무 설레요~</string>
+    <string name="fetus34_5">두근두근~</string>
+    <string name="fetus34_6">잠잘 때 옆으로 누워 다리 사이에 베개를 끼워 주면 좀 더 편안하대요~</string>
+    <string name="fetus34_7">엄마가 즐거워야 저도 즐거워요~</string>
+    <string name="fetus34_8">집에서 간단한 스트레칭이나 가벼운 산책을 해주세요~</string>
+    <string name="fetus34_9">나무도 보여주고, 하늘도 보여주세요~</string>
+    <string name="fetus34_10">야호~기분이 좋아요.</string>
+
+    <string name="fetus35_1">임신 35주째~피부가 살색을 띠고 지방이 쌓이기 시작했어요~</string>
+    <string name="fetus35_2">지방층은 체온 조절을 도와준대요~</string>
+    <string name="fetus35_3">엄마~위, 폐, 심장을 누르는 압박이 강해져 숨이 차고 속이 쓰린 증상이 갈수록 심해진대요ㅠㅠ</string>
+    <string name="fetus35_4">엄마 우리 같이 힘내요~</string>
+    <string name="fetus35_5">짧은 외출이라도 건강보험증과 산모수첩을 휴대하세요~</string>
+    <string name="fetus35_6">체중이 급격히 늘지 않도록 조심해주세요~</string>
+    <string name="fetus35_7">꾸준히 가벼운 운동을 해주세요~</string>
+    <string name="fetus35_8">으쌰으쌰~우리 엄마 파이팅!</string>
+    <string name="fetus35_9">사랑해요~뿅뿅</string>
+    <string name="fetus35_10">뽀뽀~쪽쪽쪽~~</string>
+
+    <string name="fetus36_1">임신 36주째~신체기관이 다 자랐어요~</string>
+    <string name="fetus36_2">머리를 좀 더 골반 안쪽으로 넣을 거에요~</string>
+    <string name="fetus36_3">숨쉬기도 나아지고 속도 조금은 편해질 거래요~</string>
+    <string name="fetus36_4">스~~읍~~후~~우</string>
+    <string name="fetus36_5">출산 호흡법을 익혀두세요~</string>
+    <string name="fetus36_6">이제 거의 태어날 준비가 다 되어가요~</string>
+    <string name="fetus36_7">두근두근~콩닥콩닥~</string>
+    <string name="fetus36_8">피부도 부드러워졌어요~</string>
+    <string name="fetus36_9">보들보들~~</string>
+    <string name="fetus36_10">엄마~고마워요~</string>
+
+    <string name="fetus37_1">임신 37주째~면역력이 생겨났어요~</string>
+    <string name="fetus37_2">건강한 모습으로 만나요~</string>
+    <string name="fetus37_3">양수에서 호흡연습도 계속하고 있어요~신기하지요?</string>
+    <string name="fetus37_4">쓰담 쓰담~배를 쓰다듬어 주세요~</string>
+    <string name="fetus37_5">기분이 좋아요~룰루랄라~</string>
+    <string name="fetus37_6">예정일이 다가올수록 아랫배가 불규칙하게 뭉치고 아픈 느낌이 든대요~</string>
+    <string name="fetus37_7">제가 쉽게 나올 수 있도록 분비물 양도 늘고, 질 입구도 부드러워진대요~</string>
+    <string name="fetus37_8">미지근한 물로 자주 샤워하고, 위생을 잘 관리하는 게 좋대요~</string>
+    <string name="fetus37_9">두려워하지 마세요~</string>
+    <string name="fetus37_10">설레는 마음으로 기다려주세요~</string>
+
+    <string name="fetus38_1">임신 38주째~자궁에 빈 공간이 없을 정도로 자랐어요~</string>
+    <string name="fetus38_2">엄마의 골반뼈가 저를 보호해주고 있어요~</string>
+    <string name="fetus38_3">엄마 품은 정말 포근해요~</string>
+    <string name="fetus38_4">소화가 잘되는 음식을 드세요~</string>
+    <string name="fetus38_5">체중이 급격히 늘면 출산할 때 힘들 수 있대요~</string>
+    <string name="fetus38_6">제 머리둘레랑 허리둘레가 거의 같아요~</string>
+    <string name="fetus38_7">태어나도 놀라지 마세요~</string>
+    <string name="fetus38_8">출산이 가까워졌음을 알리는 신호인 강한 수축의 가진통을 느끼게 된대요~</string>
+    <string name="fetus38_9">가진통은 불규칙적이고 몸을 움직이면 사라진대요~</string>
+    <string name="fetus38_10">엄마~힘내세요~습~~후~~우</string>
+
+    <string name="fetus39_1">임신 39주째~첫 호흡을 돕는 호르몬이 분비되었어요~</string>
+    <string name="fetus39_2">출산 전 일주일 동안 코티솔이라는 호르몬이 분비된대요~</string>
+    <string name="fetus39_3">두근두근~만날 날이 얼마 남지 않았어요~</string>
+    <string name="fetus39_4">조금만 걸어도 제가 나올 것 같은 느낌이에요??</string>
+    <string name="fetus39_5">진통 횟수도 더욱 잦아진대요~</string>
+    <string name="fetus39_6">진통 간격이 짧아지면 병원에 가세요~</string>
+    <string name="fetus39_7">두려워하지 마세요~제가 있잖아요~</string>
+    <string name="fetus39_8">건강한 모습으로 만나요~</string>
+    <string name="fetus39_9">방긋방긋~</string>
+    <string name="fetus39_10">뽀오~~~~</string>
+
+    <string name="fetus40_1">임신 40주째~이제 나갈 준비가 다 되었어요~</string>
+    <string name="fetus40_2">정말 많이 보고 싶었어요~</string>
+    <string name="fetus40_3">응애응애~~</string>
+    <string name="fetus40_4">영차영차~저도 밖으로 나가기 위해서 많이 노력할게요~</string>
+    <string name="fetus40_5">이슬이 비치거나 양수가 나오면 제가 나가려고 하는 신호에요~</string>
+    <string name="fetus40_6">오래 기다리셨죠~?</string>
+    <string name="fetus40_7">정말 고생 많았어요~~</string>
+    <string name="fetus40_8">두근두근~~</string>
+    <string name="fetus40_9">예정일보다 2주가 지났는데 출산징후가 없으면 의사 선생님과 상의해주세요~</string>
+    <string name="fetus40_10">걱정마세요~</string>
+
+
+    <!-- GreenCare -->
+
+    <string name="presure_systolic_presure_input_error">수축기 혈압을 입력해 주세요.</string>
+    <string name="presure_diastolic_presure_input_error">이완기 혈압을 입력해 주세요.</string>
+    <string name="presure_regist">혈압을 등록하시겠습니까?</string>
+    <string name="presure_modify">혈압 수정</string>
+    <string name="presure_low">낮은 혈압에 속하더라도 별다른 증상을 보이지 않을 수 있습니다. 그러나 정도가 심한 경우에는 실신을 일으킬 수 있으므로 규칙적인 생활과 충분한 휴식을 실천하는 것이 좋습니다.</string>
+    <string name="presure_normal">심혈관질환의 발병위험이 가장 낮은 최적의 혈압입니다.</string>
+    <string name="presure_after_one_and_two_step">혈압은 변동이 많고 여러 원인에 의해 상승할 수 있으므로 1~2분 정도 안정을 취하신 후 다시 한번 측정해 보세요.</string>
+    <string name="presure_onestep_and_twostep">혈압은 변동이 많고 여러 원인에 의해 상승할 수 있으므로 3~5분 정도 안정을 취하신 후 다시 한번 측정해 보세요.</string>
+
+    <string name="sugar_input_error">혈당을 입력해 주세요</string>
+    <string name="sugar_regist">혈당을 등록하시겠습니까?</string>
+    <string name="sugar_modify">혈당 수정</string>
+
+    <string name="water_input_error">물 섭취량을 입력해 주세요</string>
+    <string name="water_regist">물 섭취량을 등록하시겠습니까?</string>
+    <string name="water_mpdify">물 수정</string>
+
+    <string name="weight_input_error">체중을 입력해 주세요.</string>
+    <string name="weight_range">체중 입력 범위는 20~300kg 입니다.</string>
+    <string name="weight_fat_range">체지방률 입력 범위는 50% 이하 입니다.</string>
+    <string name="weight_regist">체중을 등록하시겠습니까?</string>
+    <string name="weight_modify">체중 수정</string>
+
+    <string name="food_meal_time_input">식사시간을 입력해 주세요.</string>
+    <string name="food_add">음식을 추가하여 주세요.</string>
+
+    <string name="step_consumed_calories">활동 소모 칼로리</string>
+    <string name="step_goal_completion_rate">목표 달성률</string>
+    <string name="step_total_activity_time">총 활동 시간</string>
+    <string name="step_activity_calorie_comparison">활동 소모 칼로리 비교</string>
+    <string name="step_maximum_continuous_activity_time">심박수</string>
+    <string name="step_total_steps">총 걸음 수</string>
+    <string name="step_total_travel_distance">총 이동 거리</string>
+    <string name="step_average_stride">평균 보폭</string>
+    <string name="step_daily_consumed_calories_input">하루 소모 칼로리를 입력해 주세요.</string>
+    <string name="step_daily_completion_steps_input">하루 목표 걸음수를 입력해 주세요.</string>
+    <string name="step_daily_consumed_calories_regist">하루 소모 칼로리를 등록하시겠습니까?</string>
+    <string name="step_input_over">하루 소모 칼로리는 최소150kcal 이고 최대1,000kcal 입니다.</string>
+
+    <string name="recent_measurements">최근 측정 (- -)</string>
+    <string name="today_measurements">오늘측정</string>
+
+    <string name="년간">년간</string>
+    <string name="임신기간40주">40주간</string>
+
+
+    <string name="text_bodyfatrate">체지방률</string>
+    <string name="text_bodyfatvolume">내장지방</string>
+    <string name="text_stomachrate">수분량</string>
+    <string name="text_musclevolume">근육량</string>
+    <string name="text_fooddiary">건강관리</string>
+    <string name="text_breakfast">아침</string>
+    <string name="text_breakfast_code">a</string>
+    <string name="text_lunch">점심</string>
+    <string name="text_lunch_code">b</string>
+    <string name="text_dinner">저녁</string>
+    <string name="text_dinner_code">c</string>
+    <string name="text_wriging">기록하기</string>
+    <string name="text_graph">그래프</string>
+    <string name="text_history1">히스토리</string>
+    <string name="text_history">타임라인</string>
+    <string name="text_breakfast_snack">아침간식</string>
+    <string name="text_breakfast_snack_code">d</string>
+    <string name="text_lunch_snack">점심간식</string>
+    <string name="text_lunch_snack_code">e</string>
+    <string name="text_dinner_snack">저녁간식</string>
+    <string name="text_dinner_snack_code">f</string>
+    <string name="text_eattime">식사 시간</string>
+    <string name="text_foodtime">식사 소요 시간</string>
+    <string name="text_minute">분</string>
+    <string name="text_foodnull">기록한 음식이 없습니다.</string>
+    <string name="text_foodtit">음식명</string>
+    <string name="text_health_message">건강 메시지</string>
+    <string name="text_sugar_message">혈당 메시지</string>
+    <string name="text_week_avg_balance">주간 영양 섭취 칼로리</string>
+    <string name="text_week_avg_time">주간 평균 식사 소요시간</string>
+    <string name="text_week_nutri_balance">주간 영양 섭취 균형도</string>
+    <string name="text_member_info_modify">가입정보수정</string>
+    <string name="text_medical_examination_modify">문진정보수정</string>
+    <string name="text_active_modify">활동량 / 질환 정보 수정</string>
+    <string name="text_modify_success">수정 하였습니다.</string>
+    <string name="text_regist_fail">저장에 실패 하였습니다.</string>
+    <string name="text_regist_success">저장되었습니다. </string>
+    <string name="text_actionbar_one_line_message">상태바 한줄 메시지</string>
+
+    <string name="text_alert_mesage_delete">삭제하시겠습니까?</string>
+    <string name="text_goal_height">목표 체중</string>
+    <string name="text_metrytime">측정일시</string>
+    <string name="text_next">다음</string>
+    <string name="text_yes">네</string>
+    <string name="text_no">아니요</string>
+    <string name="text_dont_have">없음</string>
+    <string name="text_device">장치</string>
+    <string name="text_direct_enter">직접입력</string>
+    <string name="text_morning">오전</string>
+    <string name="text_afternoon">오후</string>
+    <string name="text_alert">알림</string>
+
+    <string name="text_good">좋음</string>
+    <string name="text_normal">보통</string>
+    <string name="text_bad">나쁨</string>
+    <string name="text_vbad">매우나쁨</string>
+    <string name="regist_success">저장되었습니다.</string>
+    <string name="delete_success">삭제 되었습니다.</string>
+    <string name="text_alert_mesage_disable_edit">장치에서 측정된 데이터는 수정 할 수 없습니다.</string>
+
+    <string name="text_more_info">상세정보</string>
+    <string name="inform_modify_success">정보가 수정 되었습니다.</string>
+    <string name="inform_modify_fail">정보 변경에 실패 하였습니다.</string>
+    <string name="date_input_error">날짜를 입력해 주세요.</string>
+    <string name="time_input_error">시간을 입력해 주세요.</string>
+    <string name="medi_modify">투약 수정</string>
+    <string name="medi_info_regist">투약 정보를 등록하시겠습니까?</string>
+    <string name="modify_success">수정이 완료 되었습니다.</string>
+    <string name="daily_statistics">일간 통계</string>
+    <string name="weekly_statistics">주간 통계</string>
+    <string name="monthly_statistics">월간 통계</string>
+    <string name="message_nowtime_over">측정시간이 미래일 수 없습니다.</string>
+    <string name="text_weight_input">체중 입력</string>
+
+    <string name="text_dayusecalory">하루 소모 칼로리</string>
+    <string name="text_targetamount">목표량</string>
+    <string name="text_target_modify">목표 수정</string>
+    <string name="text_drinkvolume">마신량</string>
+    <string name="text_drinktime">마신시간</string>
+    <string name="text_datasourceset">데이터 소스 설정</string>
+    <string name="text_googlefit">구글 피트니스</string>
+
+    <string name="text_daygoalstep">하루 목표 걸음 수</string>
+    <string name="text_confirm">확인</string>
+    <string name="text_cancel">취소</string>
+    <string name="text_save">저    장</string>
+    <string name="text_modify">수정</string>
+    <string name="text_regist">등록</string>
+    <string name="text_gallery">앨범</string>
+    <string name="text_camera">카메라</string>
+    <string name="text_save1">저장</string>
+
+    <string name="text_network_data_rec_fail">데이터 수신에 실패하였습니다.</string>
+    <string name="text_network_data_send_fail">"데이터 전송에 실패 하였습니다.</string>
+    <string name="text_network_data_fail">데이터 수신에 실패</string>
+    <string name="text_network_error">네트워크 연결 상태를 확인해주세요.</string>
+    <string name="text_network_non_data">데이터가 없습니다.</string>
+    <string name="text_network_init_data_conf">초기 데이터를 구성하고 있습니다.</string>
+
+    <!-- 음식 사진 업로드 경로 http://m.shealthcare.co.kr/HL/WebService/HLfood_upload.ashx -->
+    <string name="food_upload_url">http://m.shealthcare.co.kr/HL/WebService/HLfood_upload.ashx</string>
+    <!-- 병원 사진 업로드 경로 -->
+    <string name="hospital_upload_url">/HWG/WebService/hwg_hospital_upload.ashx</string>
+    <string name="text_work">운동</string>
+    <string name="text_water">물</string>
+    <string name="text_food">영양</string>
+    <string name="text_pressure">혈압</string>
+    <string name="text_sugar">혈당</string>
+    <string name="text_weight">체중</string>
+    <string name="text_fat">체지방</string>
+    <string name="text_add">추가</string>
+    <string name="text_walk">걷기</string>
+    <string name="text_meal">식사</string>
+    <string name="text_health_check">건강체크</string>
+    <string name="text_contracttool">수축기</string>
+    <string name="text_relaxtool">이완기</string>
+    <string name="text_meditime">투약 시간</string>
+    <string name="text_medi_info_input">투약 정보 입력</string>
+    <string name="text_bloodsugar">혈당</string>
+    <string name="text_weight_manage">체중 관리</string>
+    <string name="text_pressure_manage">혈압 관리</string>
+    <string name="text_pressure_input">혈압/투약 정보 입력</string>
+    <string name="text_bloodsugar_manage">혈당 관리</string>
+    <string name="text_bloodsugar_input">혈당/투약 정보 입력</string>
+    <string name="text_mediname">약이름</string>
+    <string name="text_medititle">투약</string>
+    <string name="text_pressuretitle">혈압</string>
+    <string name="text_sugartitle">혈당</string>
+
+    <string name="text_foodafter">식후</string>
+    <string name="text_foodbefore">식전</string>
+
+    <!--<string name="text_measure_result">%d시%d분 %s은 %d/%d mg/dL로\n정상범위보다 낮은 편입니다.</string>-->
+
+    <string name="text_sugar_after">식후 정상:</string>
+    <string name="text_sugar_before">식전 정상:</string>
+    <string name="text_presure_after">정상 이완기:</string>
+    <string name="text_presure_before">정상 수축기:</string>
+
+    <string name="connected">연결</string>
+    <string name="disconnected">연결 안됨</string>
+    <string name="use_weight_device">체중계 이용</string>
+
+    <string-array name="mother_reg_kind_items">
+        <item>단태 임신</item>
+        <item>다태 임신(쌍둥이)</item>
+    </string-array>
+    <string-array name="mother_reg_milk_items">
+        <item>예</item>
+        <item>아니오</item>
+    </string-array>
+
+    <string name="howtouseweight">체중계 이용 방법\n\n1. 스마트폰의 블루투스 기능을 켭니다.\n\n2. 체중계 아이콘 터치 후 체중계에 올라가시면 체중이 측정됩니다.\n\n(별도의 페어링 절차는 없습니다.)</string>
+    <string name="main_service1">어린이\n건강관리</string>
+    <string name="main_service2">건강 &amp;\n육아상담</string>
+    <string name="main_service3">병원 안내 및\n예약 대행</string>
+    <string name="main_service4">검진안내 및\n예약 대행</string>
+    <string name="main_service5">유소년 특화\n메디케어</string>
+    <string name="main_service6">산전&#xb7;후\n관리 서비스</string>
+
+    <string name="main_serviceT1">어린이 건강관리</string>
+    <string name="main_serviceT2">건강 &amp; 육아상담</string>
+    <string name="main_serviceT3">병원 안내 및 예약 대행</string>
+    <string name="main_serviceT4">검진안내 및 예약 대행</string>
+    <string name="main_serviceT5">유소년 특화 메디케어</string>
+    <string name="main_serviceT6">산전&#xb7;후 관리 서비스</string>
+    <string name="main_serviceT7">어린이&#xb7;유소년 콜센터</string>
+
+    <string name="i_am_child">임신 중 / 출산 후\n엄마가 이용할 수 있는 기능입니다.</string>
+
+    <string name="splash_permission_dlg_title">앱 접근권한 안내</string>
+    <string name="splash_permission_dlg_text1">앱에서 사용하는 접근권한에 대하여 아래와 같이 안내해 드립니다. 접근권한은 필수적 접근권한과 선택적 접근권한으로 나누어지며, 선택적 접근권한의 경우 허용에 동의하지 않으셔도 앱 사용이 가능합니다.</string>
+
+    <string name="splash_permission_content1">▣ 필수적 접근권한</string>
+    <string name="splash_permission_content2">위치 (지역별 체온 표시)</string>
+    <string name="splash_permission_content3">▣ 선택적 접근권한</string>
+    <string name="splash_permission_content4">구글 피트니스 걸음 수 (걸음 수 카운트)\n사진첩 및 카메라 (아이사진,식사 사진 등록)\n전화(콜센터 연결)\n블루투스 (체중계 연동)\n마이크 (체온계 연동)</string>
+
+
+    <string name="plus_friend_content1">플러스친구 페이지로\n이동됩니다.</string>
+    <string name="plus_friend_content2">친구추가 시 현대해상\n어린이메디케어서비스\n소식을 카카오톡으로 받아볼 수 있습니다.
+</string>
+
+    <!-- bluetooth 체중계 -->
+    <string name="device_search">Searching for nearby Bluetooth.</string>
+    <string name="location_access_cancel_message">Bluetooth is not available.</string>
+    <string name="location_access_cancel_title">Failed to obtain location service permission</string>
+    <string name="location_access_message">Your app is trying to enable Bluetooth.</string>
+    <string name="location_access_title">Request location service permissions</string>
+    <string name="no_ble">BLE function is not supported.</string>
+    <string name="bluetooth_disable">bluetooth disable</string>
+
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">State:</string>
+    <string name="no_data">No data</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+
+    <string name="ble_discovered">Bluetooth discovered.</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+
+    <!--공유&바로가기-->
+    <string name="kakaotalk">카카오톡</string>
+    <string name="smsapp">문자</string>
+    <string name="file_provider">com.appmd.hi.gngcare.provider</string>
+
+    <!--pdf 다운관련 -->
+    <string name="pdf_down_text1">다운로드 하시겠습니까?</string>
+
+    <string name="gc_balance_care_center">출처 : 김동철 심리케어​​</string>
+    <string name="gc_balance_care_center_title">GC밸런스심리케어센터​</string>
+
+    <string name="text_agree">전체 약관에 동의합니다 (선택포함)</string>
+    <string name="text_agree1">전체 약관에 동의합니다</string>
+
+    <string name="chl_list">아이(피보험자)정보%1$d</string>
+    <string name="member_switch_complete"><![CDATA[선택이 완료 되었습니다<br/><br/><font color="#0097C9">※ 정회원 전환하기 후 데이터 유지할 아이를 다시 선택 할 수 없으니 유의 바랍니다.</font>]]></string>
+
+    <string name="select_food">음식 선택</string>
+    <string name="recent_keyowrd">최근 입력</string>
+
+
+
+    <!-- 20190925 신규 -->
+
+    <!--커뮤니티 -->
+    <string name="comm_title">커뮤니티</string>
+    <string name="comm_profile">프로필</string>
+    <string name="comm_whole">전체</string>
+    <string name="comm_notice">서비스 이용후기</string>
+    <string name="comm_detail">자세히 보기</string>
+    <string name="comm_kakaotitle">아이 성장 관리부터 엄마 건강까지</string>
+    <string name="comm_like">좋아요</string>
+    <string name="comm_comment">게시글</string>
+    <string name="comm_user">사용자</string>
+    <string name="comm_write">글쓰기</string>
+    <string name="comm_seeall">모두 보기</string>
+    <string name="comm_tag">태그</string>
+    <string name="comm_contents">내용</string>
+    <string name="comm_hint">내용을 입력해주세요.</string>
+    <string name="comm_dialog_write_cancel">작성 중인 글이 사라집니다. 취소하시겠습니까 ?</string>
+    <string name="comm_dialog_write_confirm">작성한 글을 게시하시겠습니까?</string>
+    <string name="comm_dialog_write_warning">내용을 입력해주세요.</string>
+    <string name="comm_writecomment">댓글 게시</string>
+    <string name="comm_community">커뮤니티</string>
+    <string name="comm_empty">작성 글 없음</string>
+    <string name="comm_cancel">취소</string>
+    <string name="comm_confirm">완료</string>
+    <string name="comm_register">게시</string>
+    <string name="comm_check_comment">게시글 보기</string>
+    <string name="comm_delete">삭제</string>
+    <string name="comm_no">아니오</string>
+    <string name="comm_yes">네</string>
+
+    <string name="comm_search">검색</string>
+    <string name="comm_search_tag">태그 검색</string>
+    <string name="comm_search_recently">최근 검색어</string>
+    <string name="comm_keyword">키워드 검색</string>
+    <string name="comm_delete_all">전체삭제</string>
+
+    <string name="comm_search_hint">검색어를 입력해주세요.(게시글 또는 사용자)</string>
+
+    <string name="comm_point">누적포인트</string>
+    <string name="comm_count">게시물</string>
+    <string name="comm_none">작성 글 없음</string>
+    <string name="comm_unit">개</string>
+
+    <string name="comm_comment_01">게시글 좋아요</string>
+    <string name="comm_comment_02">게시글 댓글</string>
+    <string name="comm_comment_delete">댓글을 삭제하시겠습니까?</string>
+
+
+    <string name="comm_reg_nick">커뮤니티에서 사용하실\n닉네임을 입력해주세요.</string>
+    <string name="comm_reg_rule">특수문자 제외 최대 10자</string>
+    <string name="comm_reg_disease">질환정보 공개 여부를 설정해 주세요.</string>
+    <string name="comm_reg_my_disease">나의 질환 : </string>
+    <string name="comm_reg_disease_yes">공개</string>
+    <string name="comm_reg_disease_no">비공개</string>
+    <string name="comm_reg_disease_none">질환 없음</string>
+    <string name="comm_reg_message_1">이미 사용중인 닉네임입니다.</string>
+    <string name="comm_reg_message_2">다른 닉네임을 입력해주세요.</string>
+    <string name="comm_reg_message_3">님 환영합니다.</string>
+    <string name="comm_reg_message_4">커뮤니티 활동 시 포인트를 지급해드립니다.</string>
+    <string name="comm_reg_message_5">◦ 게시글 작성:4P(일 1회)</string>
+    <string name="comm_reg_message_6">◦ 댓글 작성:1P(일 2회)</string>
+    <string name="comm_reg_message_7">메디케어서비스 회원님들과\n즐거운 소통을 시작해보세요.</string>
+
+    <string name="comm_dialog_message_1">작성 중인 글이 사라집니다.\n취소하시겠습니까?</string>
+    <string name="comm_dialog_message_2">작성된 글을 게시하시겠습니까?</string>
+    <string name="comm_dialog_message_3">댓글을 삭제하시겠습니까?</string>
+    <string name="comm_dialog_message_4">게시글을 삭제하시겠습니까?</string>
+    <string name="comm_dialog_message_5">커뮤니티에 공유되었습니다.</string>
+    <string name="comm_dialog_message_6">열심히 소통하는 당신!\n칭찬합니다!\n\n</string>
+    <string name="comm_dialog_message_7">커뮤니티 게시글 작성 포인트(%sP)가\n지급되었습니다.</string>
+
+    <string name="comm_pre">이전</string>
+    <string name="comm_alram">내 소식</string>
+    <string name="comm_share">공유하기</string>
+    <string name="comm_sns">문자</string>
+    <string name="comm_kakao">카카오톡</string>
+
+    <string name="comm_editor_modify">게시글 수정</string>
+    <string name="comm_editor_delete">게시글 삭제</string>
+
+
+    <string name="comm_error_db002_4444">수정글이 존재하지 않습니다.\n새로고침 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db002_5555">이미 동일한 게시글이 존재합니다.\n새로고침 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db002_6666">글 내용이 존재하지 않습니다.\n확인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db002_8888">회원정보가 존재하지 않습니다.\n로그아웃 및 로그인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db002_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db002">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+    <string name="comm_error_db004_4444">이미 동일한 댓글이 존재합니다.\n새로고침 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db004_6666">회원정보가 존재하지 않습니다.\n로그아웃 및 로그인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db004_7777">사용이 중지된 회원입니다.\n관리자에게 문의해 주세요.</string>
+    <string name="comm_error_db004_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db004">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+
+    <string name="comm_error_db005_4444">댓글이 삭제되지 않았습니다.\n확인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db005_6666">회원정보가 존재하지 않습니다.\n로그아웃 및 로그인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db005_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db005">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+    <string name="comm_error_db006_6666">회원정보가 존재하지 않습니다.\n로그아웃 및 로그인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db006_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db006">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+
+    <string name="comm_error_db007_4444">해당 글이 존재하지 않습니다.\n새로고침 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db007_6666">회원정보가 존재하지 않습니다.\n로그아웃 및 로그인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db007_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db007">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+    <string name="comm_error_db008_4444">이미 등록된 닉네임 입니다.</string>
+    <string name="comm_error_db008_5555">닉네임이 수정되지 않았습니다.\n확인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db008_7777">사용이 중지된 회원입니다.\n관리자에게 문의해 주세요.</string>
+    <string name="comm_error_db008_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db008">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+
+    <string name="comm_error_db011_4444">해당 글이 존재하지 않습니다.\n새로고침 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db011_6666">회원정보가 존재하지 않습니다.\n로그아웃 및 로그인 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db011_7777">사용이 중지된 회원입니다.\n관리자에게 문의해 주세요.</string>
+    <string name="comm_error_db011_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_db011">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+    <string name="comm_error_common_9999">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="comm_error_common">네트워크 신호가 불안정합니다.\n잠시 후 다시 시도해 주세요.</string>
+
+    <string name="comment_hint">댓글을 입력해주세요.</string>
+    <string name="confirm">확인</string>
+    <string name="man2">남</string>
+    <string name="women2">여</string>
+    <!-- 회원이미지 변경 경로 -->
+    <string name="profile_upload_url">/HL_MOM_COMMUNITY/PROFILE_upload.ashx</string>
+    <!-- 커뮤니티 글쓰기 이미지 경로 -->
+    <string name="community_upload_url">/HL_MOM_COMMUNITY/HL_upload.ashx</string>
+
+    <string name="mypage_health_memo_food">식사</string>
+    <string name="mypage_health_memo_bloodsugar">혈당</string>
+    <string name="mypage_health_memo_weight">체중</string>
+    <string name="mypage_health_memo_bp">혈압</string>
+
+    <!-- 닉네임 생성 -->
+    <string name="nick_name">닉네임</string>
+    <string name="nick_name_input">닉네임 입력</string>
+    <string name="nick_title">닉네임을 설정하세요</string>
+    <string name="nick_hint">5글자이내</string>
+    <string name="nick_double_check">중복확인</string>
+    <string name="nick_input">닉네임을 입력해주세요.</string>
+    <string name="nick_double">중복된 닉네임입니다. 다른 닉네임을 설정해 주세요.</string>
+    <string name="nick_ok">사용할 수 있는 닉네임입니다. 사용하시려면 저장을 눌러주세요.</string>
+    <string name="nick_save_fail">닉네임 저장에 실패하였습니다. 다시 시도해 주세요.</string>
+    <string name="nick_overlap">현재 닉네임과 동일합니다.</string>
+    <string name="nick_modify">닉네임 변경</string>
+    <string name="info_change_sex_man">남성</string>
+    <string name="info_change_sex_woman">여성</string>
+
+
+
+    <!-- 가입 -->
+    <string name="join_path">앱 가입경로</string>
+    <string name="join_path1">(선택)</string>
+    <string name="join_path2">복수 체크 가능</string>
+    <string name="sns_certifi_text">인증번호 요청</string>
+    <string name="sns_certifi_re_text">인증번호 재요청</string>
+    <string name="join_job">직업 유무 (선택)</string>
+    <string name="join_sms">SMS</string>
+    <string name="join_sms1">인증번호</string>
+    <string name="join_sms_sub">3분 이내로 인증번호(6자리)를 입력해 주세요</string>
+    <string name="join_sms_time">%1$d분 %2$d초</string>
+    <string name="live_title_text">거주지역</string>
+    <string name="etc_info">기타정보</string>
+
+    <string name="location0">거주지역</string>
+    <string name="location1">서울</string>
+    <string name="location2">부산</string>
+    <string name="location3">인천</string>
+    <string name="location4">대구</string>
+    <string name="location5">광주</string>
+    <string name="location6">대전</string>
+    <string name="location7">울산</string>
+    <string name="location8">강원</string>
+    <string name="location9">경기</string>
+    <string name="location10">경남</string>
+    <string name="location11">경북</string>
+    <string name="location12">전남</string>
+    <string name="location13">전북</string>
+    <string name="location14">충남</string>
+    <string name="location15">충북</string>
+    <string name="location16">제주</string>
+
+    <string name="grow_dance">크니댄스</string>
+    <string name="daily_fairytail">매일보는동화</string>
+
+    <string name="fairytail_t1">과학</string>
+    <string name="fairytail_t2">수학</string>
+    <string name="fairytail_t3">역사</string>
+    <string name="fairytail_t4">영어</string>
+    <string name="fairytail_t5">예술</string>
+    <string name="fairytail_t6">인성</string>
+    <string name="fairytail_t7">전래</string>
+
+
+    <!-- 이벤트 및 건강뉴스 알림 안내 -->
+    <string name="event_news_info">“개인정보 마케팅 및 광고 활용 동의”에 동의할 경우 “이벤트 및 건강뉴스 알림”을 받아볼 수 있습니다.</string>
+
+    <string name="diease_req">유행질병 정보 프로그램 신청하기</string>
+
+    <string name="diet_text1">다이어트 프로그램이란?</string>
+    <string name="diet_text2">앱에서 입력한 체중, 식사량,\n활동량 수치를 전문상담사가 모니터링 후,\n1:1 전문가 맞춤 컨설팅으로\n체중감량에 도움을 드립니다.</string>
+    <string name="diet_text3">카카오톡(LMS)로 다이어트 콘텐츠를 제공\n10주 동안 주 5일(총 40개)</string>
+    <string name="diet_text4">계약자와 신청자 휴대폰번호가 다르다면?</string>
+    <string name="diet_text5">프로그램을 신청하는 고객님의\n휴대폰번호는 %1s 입니다.</string>
+    <string name="diet_text6">굿앤굿 어린이케어 앱 고객이 이용한\n5,821,028건의 건강 기록 빅데이터 분석을 기반으로 제공됩니다.</string>
+
+    <string name="diseae_title">유행질병 정보 프로그램 신청하기</string>
+    <string name="diseae_text1">유행질병 정보 프로그램이란?</string>
+    <string name="diseae_text2">어른보다 면역력이 약하고,\n계절 변화에 민감한 아이의 건강고민!\n“유행질병 정보 프로그램”으로 해결하세요</string>
+    <string name="diseae_text3">계절별 유행 질병과 다양한 건강상식을\n카카오톡(LMS)으로 10주 동안 제공해드립니다.</string>
+
+    <string name="diseae_text4">지금 바로 앱에서 간편하게 신청하세요.</string>
+
+    <string name="diet_diseae_no">프로그램 중단을 원하실 경우\n어린이 &#xb7; 유소년 콜센터(1577-3416)로\n연락 주시기 바랍니다.</string>
+
+    <!--
+    * 클릭로그 코드
+    * _! : 클릭카운트만
+    -->
+    <!-- 홈 -->
+    <string name="ImgBabyPhoto">HL01_001_001_!</string>
+
+    <string name="btn_gVideo_main">HL01_009_001_!</string>
+    <string name="btn_tVideo_main">HL01_009_002_!</string>
+    <string name="btn_scVideo_main">HL01_009_003_!</string>
+    <string name="main_cata3_fairytail">HL01_009_004_!</string>
+    <string name="main_cata3_dance">HL01_009_005_!</string>
+
+
+    <string name="BtnGrowthMain">HL01_010_001_!</string>
+    <string name="BtnFeverMain">HL01_010_002_!</string>
+    <string name="BtnPsyMain">HL01_010_003_!</string>
+    <string name="mBtnMomHealthMain">HL01_010_004_!</string>
+    <string name="btn_study_main">HL01_010_005_!</string>
+    <string name="btn_child_comunity_main">HL01_010_006_!</string>
+
+
+    <string name="BtnMedycare">HL01_011_001_!</string>
+    <string name="btn_HNews">HL01_012_001_!</string>
+    <string name="BtnCallMain">HL01_013_!</string>
+    <string name="Call1">HL01_013_001_!</string>
+    <string name="Call2">HL01_013_002_!</string>
+
+
+    <string name="Imgfetusphoto">HL02_001_001_!</string>
+    <string name="FInFoBtn">HL02_003_001_!</string>
+    <string name="btn_weight_main">HL02_004_001_!</string>
+    <string name="btn_play_main">HL02_004_002_!</string>
+    <string name="mBtnMealMain">HL02_004_003_!</string>
+    <string name="mBtnPressureMain">HL02_004_004_!</string>
+    <string name="mBtnSugarMain">HL02_004_005_!</string>
+    <string name="btn_fetus_comunity_main">HL02_004_006_!</string>
+
+
+
+    <!-- 햄버거 메뉴 -->
+    <string name="MenuBtn">HL03_001_001_!</string>
+    <string name="BtnSide_01">HL03_001_002_!</string>
+    <string name="BtnSide_02">HL03_001_003_!</string>
+    <string name="BtnSide_99">HL03_001_004_!</string>
+    <string name="BtnSide_98">HL03_001_005_!</string>
+    <string name="BtnSide_03">HL03_001_006_!</string>
+    <string name="BtnSide_04">HL03_001_007_!</string>
+    <string name="BtnSide_06">HL03_001_008_!</string>
+    <string name="BtnSide_05">HL03_001_009_!</string>
+    <string name="HompageBtn">HL03_001_010_!</string>
+    <string name="BtnSide_08">HL03_001_011_!</string>
+    <string name="btn_side_100">HL03_001_012_!</string>
+    <string name="btn_side_101">HL03_001_013_!</string>
+
+    <!-- 아이성장 -->
+    <string name="ShareBtn4">HL04_001_001_!</string>
+    <string name="RightImg4">HL04_002_001_!</string>
+    <string name="BtnGrowthPut">HL04_003_001_!</string>
+    <string name="BtnGrowthHx">HL04_004_!</string>
+    <string name="graph_btn">HL04_004_001_!</string>
+    <string name="diagram_btn">HL04_004_002_!</string>
+    <string name="height_btn">HL04_004_003_!</string>
+    <string name="weight_btn">HL04_004_004_!</string>
+    <string name="head_btn">HL04_004_005_!</string>
+    <string name="BtnGrowthPredict">HL04_005_001_!</string>
+    <string name="BtnGrowthEat">HL04_006_!</string>
+    <string name="eatBtn01">HL04_006_001_!</string>
+    <string name="eatBtn02">HL04_006_002_!</string>
+    <string name="eatBtn03">HL04_006_003_!</string>
+    <string name="BtnGrowthVideo">HL04_007_!</string>
+    <string name="BtnGrowthFaq">HL04_008_001_!</string>
+
+
+    <!-- 아이체온 -->
+    <string name="ShareBtn5">HL05_001_001_!</string>
+    <string name="BtnFeverPut">HL05_002_001_!</string>
+    <string name="BtnRemedyPut">HL05_003_001_!</string>
+    <string name="BtnFeverHx">HL05_004_!</string>
+    <string name="FeverGraphBtn">HL05_004_001_!</string>
+    <string name="FeverTimelineBtn">HL05_004_002_!</string>
+    <string name="BtnMemoPut">HL05_005_!</string>
+    <string name="BtnTabs0">HL05_005_001_!</string>
+    <string name="BtnTabs1">HL05_005_002_!</string>
+    <string name="BtnTabs2">HL05_005_003_!</string>
+    <string name="BtnVideo">HL05_006_!</string>
+    <string name="BtnFeverFaq">HL05_007_001_!</string>
+
+
+    <!-- 아이심리 -->
+    <string name="tabSchBtn">HL06_001_!</string>
+    <string name="shcBtn01">HL06_001_001_!</string>
+    <string name="shcBtn02">HL06_001_002_!</string>
+    <string name="shcBtn03">HL06_001_003_!</string>
+    <string name="shcBtn04">HL06_001_004_!</string>
+    <string name="tabEduBtn">HL06_002_!</string>
+    <string name="eduBtn01">HL06_002_001_!</string>
+    <string name="eduBtn02">HL06_002_002_!</string>
+    <string name="eduBtn03">HL06_002_003_!</string>
+    <string name="eduBtn04">HL06_002_004_!</string>
+    <string name="tabEdultBtn">HL06_003_!</string>
+    <string name="edultBtn01">HL06_003_001_!</string>
+    <string name="edultBtn02">HL06_003_002_!</string>
+    <string name="edultBtn03">HL06_003_003_!</string>
+    <string name="reqResultBtn">HL06_004_!</string>
+    <string name="psyDtlBtn">HL06_004_001_!</string>
+    <string name="gc_center">HL06_005_001_!</string>
+    <string name="share_btn6">HL06_006_001_!</string>
+    <string name="PsyCheckHistoryBtn">HL06_007_001_!</string>
+    <string name="PsyMediaBtn">HL06_008_!</string>
+    <string name="tabStrBtn">HL06_008_001_!</string>
+    <string name="tabConBtn">HL06_008_002_!</string>
+    <string name="PsyVideoBtn">HL06_009_!</string>
+
+
+
+    <!-- 엄마건강 -->
+    <string name="btn_curr_weight">HL07_001_!</string>
+    <string name="mom_weight_measurement_btn">HL07_001_001_!</string>
+    <string name="target_value_btn">HL07_001_002_!</string>
+    <string name="pregnant_weight_noti_btn">HL07_001_003_!</string>
+    <string name="mom_weight_prediction_btn">HL07_001_004_!</string>
+    <string name="HCallBtn7">HL07_001_005_!</string>
+    <string name="req_diet_btn">HL07_001_006_!</string>
+    <string name="btn_weight_graph">HL07_002_!</string>
+    <string name="radioBtnPregencyDay">HL07_002_001_!</string>
+    <string name="radioBtnPregencyWeek">HL07_002_002_!</string>
+    <string name="radioBtnPregencyYear">HL07_002_003_!</string>
+    <string name="radioBtnWeightDay">HL07_002_004_!</string>
+    <string name="radioBtnWeightWeek">HL07_002_005_!</string>
+    <string name="radioBtnWeightMonth">HL07_002_006_!</string>
+    <string name="radioBtnWeightYear">HL07_002_007_!</string>
+    <string name="btn_weight_history">HL07_003_001_!</string>
+
+    <string name="radio_btn_calory">HL07_004_!</string>
+    <string name="radioBtncaloryDay">HL07_004_001_!</string>
+    <string name="radioBtncaloryWeek">HL07_004_002_!</string>
+    <string name="radioBtncaloryMonth">HL07_004_003_!</string>
+    <string name="radio_btn_step">HL07_005_!</string>
+    <string name="radioBtnstepDay">HL07_005_001_!</string>
+    <string name="radioBtnstepWeek">HL07_005_002_!</string>
+    <string name="radioBtnstepMonth">HL07_005_003_!</string>
+    <string name="HCallBtn6">HL07_006_001_!</string>
+
+    <string name="tvFoodWriting">HL07_007_!</string>
+    <string name="BreafastInputLayout">HL07_007_001_!</string>
+    <string name="LunchInputLayout">HL07_007_002_!</string>
+    <string name="DinnerInputLayout">HL07_007_003_!</string>
+    <string name="BreakfastSnackInputLayout">HL07_007_004_!</string>
+    <string name="LunchSnackInputLayout">HL07_007_005_!</string>
+    <string name="DinnerSnackInputLayout">HL07_007_006_!</string>
+    <string name="tvFoodHistory">HL07_008_!</string>
+    <string name="radioBtnfoodDay">HL07_008_001_!</string>
+    <string name="radioBtnfoodWeek">HL07_008_002_!</string>
+    <string name="radioBtnfoodMonth">HL07_008_003_!</string>
+    <string name="HCallBtn9">HL07_009_001_!</string>
+
+    <string name="btn_pressure_graph">HL07_010_!</string>
+    <string name="radioBtnpressureDay">HL07_010_001_!</string>
+    <string name="radioBtnpressureWeek">HL07_010_002_!</string>
+    <string name="radioBtnpressureMonth">HL07_010_003_!</string>
+    <string name="btn_pressure_history">HL07_011_001_!</string>
+    <string name="HCallBtn12">HL07_012_001_!</string>
+
+    <string name="btn_sugar_graph">HL07_013_!</string>
+    <string name="radioBtnsugarDay">HL07_013_001_!</string>
+    <string name="radioBtnsugarWeek">HL07_013_002_!</string>
+    <string name="radioBtnsugarMonth">HL07_013_003_!</string>
+    <string name="btn_sugar_history">HL07_014_001_!</string>
+    <string name="HCallBtn15">HL07_015_001_!</string>
+
+    <string name="ActionbarTipBtn">HL07_016_!</string>
+    <string name="Category1">HL07_016_001_!</string>
+    <string name="Category2">HL07_016_002_!</string>
+    <string name="Category3">HL07_016_003_!</string>
+    <string name="Category4">HL07_016_004_!</string>
+    <string name="Category5">HL07_016_005_!</string>
+
+
+
+
+    <!-- 열지도 -->
+    <string name="MapBtn">HL08_001_001_!</string>
+    <string name="EpidemicBtn">HL08_001_002_!</string>
+    <string name="BtnAlarm">HL08_001_003_!</string>
+    <string name="BtnShare">HL08_001_004_!</string>
+    <string name="req_diease_btn">HL08_001_005_!</string>
+
+
+    <!-- 주요 서비스 -->
+    <string name="ShareBtn9">HL09_007_001_!</string>
+    <string name="PlusFriendAdd">HL09_008_001_!</string>
+
+    <!-- 알림 -->
+    <string name="AlramBtn">HL10_001_001_!</string>
+    <string name="NewMessage">HL10_001_001_!</string>
+
+    <!-- 설정 -->
+    <string name="MonJin">HL11_001_001_!</string>
+    <string name="JunMember">HL11_001_002_!</string>
+    <string name="JungSwitch">HL11_001_003_!</string>
+    <string name="Alarm">HL11_001_004_!</string>
+    <string name="Auth">HL11_001_005_!</string>
+    <string name="AboutService">HL11_001_006_!</string>
+
+
+    <!-- 아이학습 -->
+    <string name="grow_dance_btn">HL13_001_001_!</string>
+    <string name="daily_fairytail_btn">HL13_002_!</string>
+    <string name="mCategory1">HL13_002_001_!</string>
+    <string name="mCategory2">HL13_002_002_!</string>
+    <string name="mCategory3">HL13_002_003_!</string>
+    <string name="mCategory4">HL13_002_004_!</string>
+    <string name="mCategory5">HL13_002_005_!</string>
+    <string name="mCategory6">HL13_002_006_!</string>
+    <string name="mCategory7">HL13_002_007_!</string>
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:paddingTop="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/noti_title_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_empty_ch"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_basic_ch"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp">
+
+
+            <TextView
+                android:id="@+id/noti_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="0dp"
+                android:layout_margin = "3dp"
+                android:paddingRight = "3dp"
+                android:paddingLeft = "3dp"
+                android:fontFamily="@font/hi_gothic_m"
+                android:textColor="@color/colorBlack"
+                android:textSize = "@dimen/_18_dp"
+                android:text="타이틀"
+                android:singleLine="true"/>
+
+            <TextView
+                android:id="@+id/noti_content"
+                style="@style/common_textview_fields"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/color_B8B8B8"
+                android:text="본"
+                android:textSize="15dp"
+                android:fontFamily="@font/hi_gothic_l"
+                android:singleLine="true"/>
+
+            <TextView
+                android:id="@+id/noti_date"
+                style="@style/common_textview_fields"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="0dp"
+                android:textColor="#0067C2"
+                android:text="Date"
+                android:textSize="15dp"
+                android:fontFamily="@font/hi_gothic_l"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/lucky_result_dline"
+        />
+
+</LinearLayout>

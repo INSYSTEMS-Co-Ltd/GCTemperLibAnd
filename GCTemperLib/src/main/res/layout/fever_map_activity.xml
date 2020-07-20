@@ -1,0 +1,889 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_100ffffff"
+    android:orientation="vertical"
+    tools:ignore="missingPrefix">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:id="@+id/common_bg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/bg_yellow_light">
+
+        <ImageButton
+            android:id="@+id/common_left_btn"
+            android:layout_width="@dimen/_48_dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:src="@drawable/btn_back_white" />
+
+        <TextView
+            android:id="@+id/common_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/hi_maum_r"
+            android:text="@string/fever_map"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/px_50" />
+
+        <ImageButton
+            android:id="@+id/btn_alarm"
+            android:layout_width="@dimen/_50_dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_5_dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:padding="@dimen/_10_dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_alarm" />
+
+        <Button
+            android:id="@+id/common_right_btn"
+            android:layout_width="@dimen/_50_dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:textColor="@color/color_ffffff_btn"
+            android:textSize="@dimen/_16_dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!-- 키 몸무게 머리둘레 버튼 레이아웃-->
+    <LinearLayout
+        android:id="@+id/choice_lay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_65_dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/bg_yellow_light"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/map_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_40_dp"
+            android:layout_marginRight="@dimen/_40_dp"
+            android:layout_weight="1"
+            android:background="@drawable/underline_fever"
+            android:fontFamily="@font/hi_maum_r"
+            android:text="@string/location_fever"
+            android:textAllCaps="false"
+            android:textColor="@color/h_orange"
+            android:textSize="@dimen/_17_dp" />
+
+        <Button
+            android:id="@+id/epidemic_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_40_dp"
+            android:layout_marginRight="@dimen/_40_dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/hi_maum_r"
+            android:text="@string/epidemic"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_17_dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear_tab_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_10_dp"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="올바른 감염예방 " />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1Q 오늘의 체온관리"
+                    android:textColor="@android:color/holo_blue_dark" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edittext_box_square">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_65_dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/graph_temp_map" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentBottom="true">
+                    <!-- 슬라이드 메뉴 -->
+                    <RelativeLayout
+                        android:id="@+id/slide_top_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_fever_map_bottom"
+                        android:padding="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Slide를 내리면 열지도를 크게 볼 수 있어요."/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/arrow_right"
+                            android:layout_alignParentRight="true"
+                            android:rotation="90"/>
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:id="@+id/slide_menu_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/colorWhite"
+                        android:clickable="true"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:orientation="vertical">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_2"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorGray"/>
+
+                        <LinearLayout
+                            android:id="@+id/fever_map_menu_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="체온관리"
+                                android:drawableLeft="@drawable/commu_btn_6ov"
+                                android:textColor="@color/colorBlack"
+                                android:drawablePadding="20dp"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/arrow_right" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_2"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorGray"/>
+
+                        <LinearLayout
+                            android:id="@+id/fever_map_menu_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="검강검진 예약"
+                                android:drawableLeft="@drawable/commu_btn_6ov"
+                                android:textColor="@color/colorBlack"
+                                android:drawablePadding="20dp"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/arrow_right" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_2"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorGray"/>
+
+                        <LinearLayout
+                            android:id="@+id/fever_map_menu_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="건강상담"
+                                android:drawableLeft="@drawable/commu_btn_6ov"
+                                android:textColor="@color/colorBlack"
+                                android:drawablePadding="20dp"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/arrow_right" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_2"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorGray"/>
+
+                        <LinearLayout
+                            android:id="@+id/fever_map_menu_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="헬스케어서비스란?"
+                                android:drawableLeft="@drawable/commu_btn_6ov"
+                                android:textColor="@color/colorBlack"
+                                android:drawablePadding="20dp"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/arrow_right" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_2"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorGray"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_2"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/colorGray"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="본 서비스는 녹십자 헬스케어에서 제공 합니다."
+                            android:paddingLeft="30dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/req_diease_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50_dp"
+                android:layout_marginLeft="@dimen/_20_dp"
+                android:layout_marginTop="@dimen/_20_dp"
+                android:layout_marginRight="@dimen/_20_dp"
+                android:layout_marginBottom="@dimen/_10_dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/diseae_banner1"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/linear_tab_epidemic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_null_epidemic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@string/empty_epidemic"
+                        android:textColor="@color/txt_dark_bold"
+                        android:textSize="@dimen/_13_dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/epidemic_rank_lay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10_dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30_dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_b"
+                                android:gravity="center"
+                                android:text="@string/rank"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_14_dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_b"
+                                android:gravity="center"
+                                android:text="@string/disease_name"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_14_dp" />
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_b"
+                                android:gravity="center"
+                                android:text="@string/disease_cnt"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_14_dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1_dp"
+                            android:layout_marginBottom="@dimen/_5_dp"
+                            android:background="@color/bg_gray" />
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_1"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="2"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_2"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="3"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_3"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="4"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_4"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="5"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_5"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="6"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_6"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="7"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_7"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="8"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_8"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_9"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="9"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_9"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ep_rank_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="10"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_nm_10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+
+                            <TextView
+                                android:id="@+id/txt_dise_cnt_10"
+                                android:layout_width="@dimen/_60_dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_gothic_m"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:textColor="@color/txt_dark_bold"
+                                android:textSize="@dimen/_16_dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/share_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:layout_marginBottom="@dimen/_15_dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    android:src="@drawable/share_btn" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_FFF5E4"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hi_maum_r"
+                        android:gravity="center"
+                        android:text="@string/epidemic_txt_1"
+                        android:textColor="@color/txt_dark_bold"
+                        android:textSize="@dimen/_16_dp" />
+
+                    <!--                <TextView-->
+                    <!--                    android:id="@+id/textView6"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_marginTop="@dimen/_2_dp"-->
+                    <!--                    android:gravity="center"-->
+                    <!--                    android:text="@string/epidemic_txt_2"-->
+                    <!--                    android:textColor="@color/txt_dark_bold"-->
+                    <!--                    android:textSize="@dimen/_13_dp"-->
+                    <!--                    android:fontFamily="@font/hi_gothic_m"/>-->
+
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/textView9"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/epidemic_txt_3"-->
+                    <!--android:textColor="@color/txt_dark_bold"-->
+                    <!--android:textSize="@dimen/_20_dp"-->
+                    <!--android:fontFamily="@font/hi_maum_r"/>-->
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

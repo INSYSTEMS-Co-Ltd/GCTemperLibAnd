@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_47_dp"
+        android:background="@color/color_FB8AD3"
+        android:orientation="horizontal">
+
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_info"
+                style="@style/pink_radio_style_left"
+                android:layout_width="@dimen/_140_dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/_40_dp"
+                android:layout_marginLeft="@dimen/_40_dp"
+                android:textColor="@color/mother_btn_color"
+                android:checked="true"
+                android:textStyle="bold"
+                android:textSize="@dimen/px_46"
+                android:fontFamily="@font/hi_maum_r" />
+
+            <RadioButton
+                android:id="@+id/btn_medical"
+                style="@style/pink_radio_style_right"
+                android:layout_width="@dimen/_140_dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/_40_dp"
+                android:layout_marginLeft="@dimen/_40_dp"
+                android:textColor="@color/mother_btn_color"
+                android:textStyle="bold"
+                android:textSize="@dimen/px_46"
+                android:fontFamily="@font/hi_maum_r" />
+
+            <!---->
+        </RadioGroup>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+        
+
+    
+</LinearLayout>

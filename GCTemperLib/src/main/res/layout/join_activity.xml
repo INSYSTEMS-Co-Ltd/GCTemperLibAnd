@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix">
+    <include android:id="@+id/common_main_top" layout="@layout/common_main_top" />
+    <!-- 백그라운드 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/common_main_top"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/color_100ffffff">
+        <!-- 포그라운드 -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_26_dp"
+                    android:gravity="center"
+                    android:text="@string/make_id_desc_1"
+                    android:textColor="@color/txt_dark_bold"
+                    android:textSize="@dimen/_15_dp"
+                    android:fontFamily="@font/hi_gothic_b"/>
+
+                <!-- 아이디 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45_dp"
+                    android:layout_marginLeft="@dimen/_19_dp"
+                    android:layout_marginRight="@dimen/_19_dp"
+                    android:layout_marginTop="@dimen/_17_dp"
+                    android:background="@drawable/bg_txtbox"
+                    android:paddingLeft="@dimen/_19_dp">
+
+                    <EditText
+                        android:id="@+id/id_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="@string/id_hint"
+                        android:singleLine="true"
+                        android:textColor="@color/txt_dark_bold"
+                        android:textColorHint="@color/txt_dark_lithg1"
+                        android:textSize="@dimen/_14_dp"
+                        android:inputType="textEmailAddress"
+                        android:fontFamily="@font/hi_gothic_m"/>
+
+                    <ImageButton
+                        android:id="@+id/id_del_btn"
+                        android:layout_width="@dimen/_50_dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:adjustViewBounds="true"
+                        android:background="@null"
+                        android:src="@drawable/btn_delete_01"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_19_dp"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:gravity="center"
+                    android:text="@string/make_id_desc_2"
+                    android:textColor="@color/txt_dark_bold"
+                    android:lineSpacingExtra="@dimen/_5_dp"
+                    android:textSize="@dimen/_15_dp"
+                    android:fontFamily="@font/hi_gothic_b"/>
+
+                <!-- 비밀번호 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45_dp"
+                    android:layout_marginBottom="@dimen/_8_dp"
+                    android:layout_marginLeft="@dimen/_19_dp"
+                    android:layout_marginRight="@dimen/_19_dp"
+                    android:layout_marginTop="@dimen/_30_dp"
+                    android:background="@drawable/bg_txtbox"
+                    android:paddingLeft="@dimen/_19_dp">
+
+                    <EditText
+                        android:id="@+id/pwd_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="@string/pwd"
+                        android:inputType="textPassword"
+                        android:maxLength="15"
+                        android:singleLine="true"
+                        android:textColor="@color/txt_dark_bold"
+                        android:textColorHint="@color/txt_dark_lithg1"
+                        android:textSize="@dimen/_14_dp"
+                        android:fontFamily="@font/hi_gothic_m"/>
+
+                    <ImageButton
+                        android:id="@+id/pwd_del_btn"
+                        android:layout_width="@dimen/_50_dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:adjustViewBounds="true"
+                        android:background="@null"
+                        android:src="@drawable/btn_delete_01"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <!-- 비밀번호 확인 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45_dp"
+                    android:layout_marginLeft="@dimen/_19_dp"
+                    android:layout_marginRight="@dimen/_19_dp"
+                    android:background="@drawable/bg_txtbox"
+                    android:paddingLeft="@dimen/_19_dp">
+
+                    <EditText
+                        android:id="@+id/pwd_re_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="@string/pwd_re"
+                        android:inputType="textPassword"
+                        android:maxLength="15"
+                        android:singleLine="true"
+                        android:textColor="@color/txt_dark_bold"
+                        android:textColorHint="@color/txt_dark_lithg1"
+                        android:textSize="@dimen/_14_dp"
+                        android:fontFamily="@font/hi_gothic_m"/>
+
+                    <ImageButton
+                        android:id="@+id/pwd_re_del_btn"
+                        android:layout_width="@dimen/_50_dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:adjustViewBounds="true"
+                        android:background="@null"
+                        android:src="@drawable/btn_delete_01"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/join_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_46_dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/_19_dp"
+                    android:layout_marginRight="@dimen/_19_dp"
+                    android:layout_marginTop="@dimen/_36_dp"
+                    android:background="@color/bg_blue_dark"
+                    android:text="@string/make"
+                    android:textColor="@color/color_100ffffff"
+                    android:textSize="@dimen/_15_dp"
+                    android:fontFamily="@font/hi_gothic_b" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_19_dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

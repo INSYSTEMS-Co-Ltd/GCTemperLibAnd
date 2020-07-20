@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_food_write"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF3FB"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:paddingLeft="8dp"
+                android:background="@color/colorWhite">
+
+                <TextView
+                    android:id="@+id/txtCurrDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/hi_maum_r"
+                    android:gravity="center"
+                    android:text="2016.12.12"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_14_dp"/>
+
+
+                <ImageButton
+                    android:id="@+id/btn_calLeft"
+                    android:layout_width="30dp"
+                    android:layout_height="27dp"
+                    android:layout_alignTop="@+id/txtCurrDate"
+                    android:layout_toStartOf="@+id/txtCurrDate"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:src="@drawable/cal_arrow_left"/>
+
+                <ImageButton
+                    android:id="@+id/btn_calRight"
+                    android:layout_width="30dp"
+                    android:layout_height="27dp"
+                    android:layout_alignTop="@+id/txtCurrDate"
+                    android:layout_toEndOf="@+id/txtCurrDate"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:src="@drawable/cal_arrow_right"/>
+            </RelativeLayout>
+
+            <com.greencross.gctemperlib.greencare.food.FoodHistoryProgress
+                android:id="@+id/food_history_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_20_dp"
+                android:background="@color/colorWhite"
+                android:paddingTop="@dimen/_20_dp">
+            </com.greencross.gctemperlib.greencare.food.FoodHistoryProgress>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/_30_dp"
+                android:gravity="right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/food_low_circle"
+                    android:drawablePadding="5dp"
+                    android:layout_marginRight="@dimen/_20_dp"
+                    android:fontFamily="@font/hi_gothic_m"
+                    android:textColor="@color/color_FFBD39"
+                    android:textSize="12dp"
+                    android:text="부족"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/food_standard_circle"
+                    android:drawablePadding="5dp"
+                    android:layout_marginRight="@dimen/_20_dp"
+                    android:fontFamily="@font/hi_gothic_m"
+                    android:textColor="@color/color_00B15A"
+                    android:textSize="12dp"
+                    android:text="적정"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/food_over_circle"
+                    android:drawablePadding="5dp"
+                    android:layout_marginRight="@dimen/_45_dp"
+                    android:fontFamily="@font/hi_gothic_m"
+                    android:textColor="@color/color_E7000C"
+                    android:textSize="12dp"
+                    android:text="과잉"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20_dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:id="@+id/coordinatorLayout_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_89_dp"
+                            android:layout_marginLeft="@dimen/_20_dp"
+                            android:layout_marginRight="@dimen/_20_dp">
+                            <!--아침 사진이미지-->
+
+                            <ImageView
+                                android:id="@+id/food_breakfest_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/food_block"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/food_empty"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:id="@+id/ivImage01"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorWhite"
+                                android:src="@drawable/icon_food_after"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <RelativeLayout
+                                android:id="@+id/food_breakfest_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cropToPadding="false"
+                                android:tag="@string/text_breakfast_code">
+
+                                <TextView
+                                    android:id="@+id/tvKcal1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="13dp"
+                                    android:fontFamily="@font/hi_maum_r"
+                                    android:textSize="@dimen/_14_dp"
+                                    android:text="0 kcal"
+                                    android:textColor="@color/color_FB8AD3"/>
+                            </RelativeLayout>
+                        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="아침"
+                                android:textAlignment="textEnd"
+                                android:textSize="@dimen/_14_dp"
+                                android:textColor="@color/color_95246D"/>
+
+                            <TextView
+                                android:id="@+id/tvTime01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="-분"
+                                android:textSize="@dimen/_14_dp"
+                                android:textColor="@color/color_95246D"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:id="@+id/coordinatorLayout_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_89_dp"
+                            android:layout_marginLeft="@dimen/_20_dp"
+                            android:layout_marginRight="@dimen/_20_dp">
+                            <!--점심 사진이미지-->
+
+                            <ImageView
+                                android:id="@+id/food_lunch_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/food_block"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/food_empty"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:id="@+id/ivImage03"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorWhite"
+                                android:src="@drawable/icon_food_after"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <RelativeLayout
+                                android:id="@+id/food_lunch_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cropToPadding="false"
+                                android:tag="@string/text_lunch_code">
+
+
+                                <TextView
+                                    android:id="@+id/tvKcal3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="13dp"
+                                    android:fontFamily="@font/hi_maum_r"
+                                    android:textSize="@dimen/_14_dp"
+                                    android:text="0 kcal"
+                                    android:textColor="@color/color_FB8AD3"/>
+                            </RelativeLayout>
+                        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="점심"
+                                android:textAlignment="textEnd"
+                                android:textSize="@dimen/_14_dp"
+                                android:textColor="@color/color_95246D"/>
+
+                            <TextView
+                                android:id="@+id/tvTime02"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:layout_marginLeft="5dp"
+                                android:text="-분"
+                                android:textSize="@dimen/_14_dp"
+                                android:textColor="@color/color_95246D"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:id="@+id/coordinatorLayout_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_89_dp"
+                            android:layout_marginLeft="@dimen/_20_dp"
+                            android:layout_marginRight="@dimen/_20_dp">
+                            <!--저녁 사진이미지-->
+
+                            <ImageView
+                                android:id="@+id/food_dinner_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/food_block"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/food_empty"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:id="@+id/ivImage05"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorWhite"
+                                android:src="@drawable/icon_food_after"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <RelativeLayout
+                                android:id="@+id/food_dinner_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cropToPadding="false"
+                                android:tag="@string/text_dinner_code">
+
+                                <TextView
+                                    android:id="@+id/tvKcal5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="13dp"
+                                    android:fontFamily="@font/hi_maum_r"
+                                    android:textSize="@dimen/_14_dp"
+                                    android:text="0 kcal"
+                                    android:textColor="@color/color_FB8AD3"/>
+                            </RelativeLayout>
+                        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="저녁"
+                                android:textSize="@dimen/_14_dp"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/color_95246D"/>
+
+                            <TextView
+                                android:id="@+id/tvTime03"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="5"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="-분"
+                                android:textSize="@dimen/_14_dp"
+                                android:textColor="@color/color_95246D"/>
+
+                            <ImageView
+                                android:id="@+id/icon_time_dinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:src="@drawable/icon_time"
+                                android:visibility="gone"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20_dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:id="@+id/coordinatorLayout_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_89_dp"
+                            android:layout_marginLeft="@dimen/_20_dp"
+                            android:layout_marginRight="@dimen/_20_dp">
+                            <!--아침 간식이미지-->
+
+                            <ImageView
+                                android:id="@+id/food_breakfest_snack_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/food_block"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/food_empty"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:id="@+id/ivImage02"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorWhite"
+                                android:src="@drawable/icon_food2_after"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+
+                            <RelativeLayout
+                                android:id="@+id/food_breakfast_snack_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cropToPadding="false"
+                                android:tag="@string/text_breakfast_snack_code">
+
+                                <TextView
+                                    android:id="@+id/tvKcal2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="13dp"
+                                    android:fontFamily="@font/hi_maum_r"
+                                    android:textSize="@dimen/_14_dp"
+                                    android:text="0 kcal"
+                                    android:textColor="@color/color_FB8AD3"/>
+                            </RelativeLayout>
+                        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout2"
+                            android:layout_width="125dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="아침 간식"
+                                android:textSize="@dimen/_14_dp"
+                                android:textAlignment="center"
+                                android:textColor="@color/color_95246D"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:id="@+id/coordinatorLayout_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_89_dp"
+                            android:layout_marginLeft="@dimen/_20_dp"
+                            android:layout_marginRight="@dimen/_20_dp">
+                            <!--점심간식이미지-->
+
+                            <ImageView
+                                android:id="@+id/food_lunch_snack_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/food_block"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/food_empty"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:id="@+id/ivImage04"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorWhite"
+                                android:src="@drawable/icon_food2_after"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <RelativeLayout
+                                android:id="@+id/food_lunch_snack_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cropToPadding="false"
+                                android:tag="@string/text_lunch_snack_code">
+
+                                <TextView
+                                    android:id="@+id/tvKcal4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="13dp"
+                                    android:fontFamily="@font/hi_maum_r"
+                                    android:textSize="@dimen/_14_dp"
+                                    android:text="0 kcal"
+                                    android:textColor="@color/color_FB8AD3"/>
+                            </RelativeLayout>
+                        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout4"
+                            android:layout_width="125dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="점심 간식"
+                                android:textSize="@dimen/_14_dp"
+                                android:textAlignment="center"
+                                android:textColor="@color/color_95246D"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:id="@+id/coordinatorLayout_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_89_dp"
+                            android:layout_marginLeft="@dimen/_20_dp"
+                            android:layout_marginRight="@dimen/_20_dp">
+                            <!--저녁간식이미지-->
+
+                            <ImageView
+                                android:id="@+id/food_dinner_snack_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/food_block"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/food_empty"
+                                android:visibility="visible">
+                            </ImageView>
+
+                            <ImageView
+                                android:id="@+id/ivImage06"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorWhite"
+                                android:src="@drawable/icon_food2_after"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <RelativeLayout
+                                android:id="@+id/food_dinner_snack_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cropToPadding="false"
+                                android:tag="@string/text_dinner_snack_code">
+
+                                <TextView
+                                    android:id="@+id/tvKcal6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="13dp"
+                                    android:fontFamily="@font/hi_maum_r"
+                                    android:textSize="@dimen/_14_dp"
+                                    android:text="0 kcal"
+                                    android:textColor="@color/color_FB8AD3"/>
+                            </RelativeLayout>
+                        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+                        <LinearLayout
+                            android:layout_width="125dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="저녁 간식"
+                                android:textSize="@dimen/_14_dp"
+                                android:textAlignment="center"
+                                android:textColor="@color/color_95246D"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

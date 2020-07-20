@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    tools:ignore="missingPrefix">
+
+    <!-- 백그라운드 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/_15_dp"
+        android:layout_marginRight="@dimen/_15_dp"
+        android:background="@drawable/background_5_ffffff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/dialog_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_30_dp"
+            android:layout_marginRight="@dimen/_30_dp"
+            android:layout_marginTop="@dimen/_6_dp"
+            android:textSize="@dimen/_13_dp"
+            android:visibility="gone"
+            android:fontFamily="@font/hi_gothic_b" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/dialog_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_30_dp"
+                android:layout_marginRight="@dimen/_30_dp"
+                android:layout_marginTop="@dimen/_30_dp"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/_4_dp"
+                tools:text="마케팅 정보 앱 PUSH 수신 안내"
+                android:textColor="#4796CA"
+                android:textSize="@dimen/_19_dp"
+                android:fontFamily="@font/hi_gothic_l" />
+
+
+
+            <TextView
+                android:id="@+id/dialog_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_30_dp"
+                android:layout_marginRight="@dimen/_30_dp"
+                android:layout_marginTop="@dimen/_30_dp"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/_4_dp"
+                tools:text="마케팅 정보에 앱 PUSH가 추가되었습니다.\n다양한 정보와 이벤트 소식을 받아보세요. "
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/_15_dp"
+                android:fontFamily="@font/hi_gothic_l" />
+
+
+
+
+            <LinearLayout
+                android:id="@+id/mother_check_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="@dimen/_20_dp"
+                android:layout_marginBottom="@dimen/_30_dp"
+                android:layout_below="@+id/dialog_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/check_box1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/check_mother_big"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/_16_dp"
+                    android:text="마케팅 정보 앱 PUSH 수신 (선택)"
+                    android:fontFamily="@font/hi_gothic_l"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/dialog_b_type_button_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_64_dp"
+                android:layout_below="@+id/mother_check_box"
+                android:layout_marginTop="@dimen/_10_dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cancel_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_left_xml"
+                    android:text="@string/popup_dialog_button_cancel"
+                    android:textColor="@color/color_333333_btn"
+                    android:textSize="@dimen/_18_dp"
+                    android:fontFamily="@font/hi_gothic_b" />
+
+                <Button
+                    android:id="@+id/confirm_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_5_sq_bottom_6bb0d7"
+                    android:text="@string/popup_dialog_button_confirm"
+                    android:textColor="@color/fever_btn_color"
+                    android:textSize="@dimen/_18_dp"
+                    android:fontFamily="@font/hi_gothic_b" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

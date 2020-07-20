@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@drawable/chart_top_marker"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:padding="5dp">
+
+    <TextView
+        android:id="@+id/marker_date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="false"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/hi_gothic_m"
+        android:textSize="12dp"
+        android:visibility="gone"/>
+    <!--android:fontFamily="@font/kelson_sans_regular"-->
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@color/colorWhite"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/marker_value_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/hi_gothic_b"
+        android:textSize="16dp"/>
+
+</LinearLayout>

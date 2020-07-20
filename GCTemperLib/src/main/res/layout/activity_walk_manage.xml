@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/visible_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_47_dp"
+        android:background="@color/color_FB8AD3"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/type_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_btn_calory"
+                style="@style/pink_radio_style_left"
+                android:layout_width="@dimen/_140_dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_40_dp"
+                android:layout_marginRight="@dimen/_40_dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:textColor="@color/mother_btn_color"
+                android:fontFamily="@font/hi_maum_r"
+                android:text="칼로리"
+                android:textSize="@dimen/px_46"
+                android:textStyle="bold"/>
+
+
+            <RadioButton
+                android:id="@+id/radio_btn_step"
+                style="@style/pink_radio_style_left"
+                android:layout_width="@dimen/_140_dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_40_dp"
+                android:layout_marginRight="@dimen/_40_dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/hi_maum_r"
+                android:textColor="@color/mother_btn_color"
+                android:text="걸음"
+                android:textSize="@dimen/px_46"
+                android:textStyle="bold"/>
+            <!---->
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/period_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_47_dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/period_radio_btn_day"
+            style="@style/pink_graph_radio_style_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:textColor="@color/mother_btn_tab2_color"
+            android:checked="true"
+            android:fontFamily="@font/hi_maum_l"
+            android:text="일간"
+            android:textSize="@dimen/px_46"
+            android:textStyle="bold"/>
+
+        <RadioButton
+            android:id="@+id/period_radio_btn_week"
+            style="@style/pink_graph_radio_style_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:textColor="@color/mother_btn_tab2_color"
+            android:fontFamily="@font/hi_maum_l"
+            android:text="주간"
+            android:textSize="@dimen/px_46"
+            android:textStyle="bold"/>
+
+        <RadioButton
+            android:id="@+id/period_radio_btn_month"
+            style="@style/pink_graph_radio_style_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:textColor="@color/mother_btn_tab2_color"
+            android:fontFamily="@font/hi_maum_l"
+            android:text="월간"
+            android:textSize="@dimen/px_46"
+            android:textStyle="bold"/>
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#D7D7D9" />
+
+
+
+    <ScrollView
+        android:id="@+id/view_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:minHeight="530dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/date_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingTop="10dp"
+                android:background="@color/colorWhite">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/pre_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="15dp"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:src="@drawable/cal_arrow_left"/>
+
+                    <TextView
+                        android:id="@+id/period_date_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/hi_maum_r"
+                        android:textSize="@dimen/_14_dp"
+                        android:text="2017.03.01"
+                        android:textColor="@color/colorBlack"/>
+
+                    <ImageButton
+                        android:id="@+id/next_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="15dp"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:src="@drawable/cal_arrow_right"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/chart_close_btn"
+                    android:layout_width="@dimen/_40_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/zoom_close"/>
+
+                <ImageView
+                    android:id="@+id/landscape_btn"
+                    android:layout_width="@dimen/_40_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_15_dp"
+                    android:layout_alignParentRight="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/zoom" />
+            </RelativeLayout>
+
+
+            <!--TODO ssshin 잠시 안보이게 함-->
+            <RelativeLayout
+                android:id="@+id/chart_frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_7_dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_20_dp"
+                        android:gravity="left">
+
+                        <TextView
+                            android:id="@+id/chart_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/hi_maum_r"
+                            android:gravity="center_vertical"
+                            android:text="Kcal"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_12_dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.greencross.gctemperlib.greencare.charting.charts.BarChart
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"/>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <!-- 테스트 용 -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@+id/seekBar1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="kcal"
+                            android:textSize="@dimen/_8_dp"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/visible_layout_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15_dp"
+                android:layout_marginRight="@dimen/_15_dp"
+                android:layout_marginBottom="@dimen/_15_dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10_dp"
+                    android:layout_marginTop="@dimen/_15_dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvActiveValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text=""
+                                android:textColor="@color/color_E1147F"
+                                android:textSize="@dimen/_16_dp"/>
+
+                            <TextView
+                                android:id="@+id/tvActiveValueaTag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/_5_dp"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="Kcal"
+                                android:textColor="@color/color_E1147F"
+                                android:textSize="@dimen/_16_dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text=" / "
+                                android:textColor="@color/color_676767"
+                                android:textSize="@dimen/_16_dp"/>
+
+                            <TextView
+                                android:id="@+id/tvTargetValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text=""
+                                android:textColor="@color/color_676767"
+                                android:textSize="@dimen/_16_dp"/>
+
+                            <TextView
+                                android:id="@+id/tvTargetValueTag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/_5_dp"
+                                android:fontFamily="@font/hi_maum_r"
+                                android:text="Kcal"
+                                android:textColor="@color/color_676767"
+                                android:textSize="@dimen/_16_dp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/goal_desc_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/hi_maum_r"
+                            android:text="( 소모 칼로리 / 목표 칼로리 )"
+                            android:textColor="@color/color_676767"
+                            android:textSize="@dimen/_16_dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:gravity="right">
+
+
+                        <ImageView
+                            android:id="@+id/target_value_btn"
+                            android:layout_width="@dimen/_35_dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/icon_targget"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/visible_layout_4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_157_dp"
+                android:background="@color/colorWhite">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/tvActiveTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_16_dp"
+                        android:layout_marginTop="@dimen/_8_dp"
+                        android:fontFamily="@font/hi_gothic_m"
+                        android:gravity="center_vertical"
+                        android:text="활동 소모 칼로리"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/_15_dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/textline"
+                                android:padding="7dp">
+
+                                <ImageView
+                                    android:id="@+id/IvStepBoxImage01"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="4dp"
+                                    android:src="@drawable/icon_st1"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:gravity="right"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxTitle01"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/hi_maum_r"
+                                        android:text="목표달성률"
+                                        android:textColor="@color/color_676767"
+                                        android:textSize="@dimen/_12_dp"/>
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxValue01"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:fontFamily="@font/hi_gothic_m"
+                                        android:text="0%"
+                                        android:textColor="@color/color_E1147F"
+                                        android:textSize="@dimen/_16_dp"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/textline"
+                                android:padding="7dp">
+
+                                <ImageView
+                                    android:id="@+id/IvStepBoxImage03"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="4dp"
+                                    android:src="@drawable/icon_st2"/>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:gravity="right"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxTitle03"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/hi_maum_r"
+                                        android:text="총활동 시간"
+                                        android:textColor="@color/color_676767"
+                                        android:textSize="@dimen/_12_dp"/>
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxValue03"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:fontFamily="@font/hi_gothic_m"
+                                        android:text="1분"
+                                        android:textColor="@color/color_E1147F"
+                                        android:textSize="@dimen/_16_dp"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/textline"
+                                android:padding="7dp">
+
+                                <ImageView
+                                    android:id="@+id/IvStepBoxImage02"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="4dp"
+                                    android:src="@drawable/icon_st3"/>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:gravity="right"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxTitle02"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/hi_maum_r"
+                                        android:text="활동 소모 칼로리 비교"
+                                        android:textColor="@color/color_676767"
+                                        android:textSize="@dimen/_12_dp"/>
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxValue02"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:fontFamily="@font/hi_gothic_m"
+                                        android:text="1인분"
+                                        android:textColor="@color/color_E1147F"
+                                        android:textSize="@dimen/_16_dp"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ll_continue_layer"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/textline"
+                                android:padding="7dp"
+                                android:visibility="gone">
+
+                                <ImageView
+                                    android:id="@+id/IvStepBoxImage04"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:paddingTop="4dp"
+                                    android:paddingBottom="4dp"
+                                    android:src="@drawable/icon_st4"/>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:gravity="right"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxTitle04"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/hi_maum_r"
+                                        android:text="최장 연속 활동 시간"
+                                        android:textColor="@color/color_676767"
+                                        android:textSize="@dimen/_12_dp"/>
+
+                                    <TextView
+                                        android:id="@+id/tvStepBoxValue04"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:fontFamily="@font/hi_gothic_m"
+                                        android:text="1분"
+                                        android:textColor="@color/color_E1147F"
+                                        android:textSize="@dimen/_16_dp"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/result_tip_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray"
+                android:layout_marginTop="@dimen/_15_dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/_150_dp"
+                    android:layout_marginBottom="@dimen/_10_dp"
+                    android:layout_marginLeft="@dimen/_10_dp"
+                    android:layout_marginRight="@dimen/_10_dp"
+                    android:layout_marginTop="@dimen/_15_dp"
+                    android:background="@drawable/mom_round10_backgroud"
+                    android:paddingLeft="@dimen/_20_dp"
+                    android:paddingRight="@dimen/_20_dp"
+                    android:paddingTop="@dimen/_10_dp"
+                    android:paddingBottom="@dimen/_10_dp">
+
+                    <TextView
+                        android:id="@+id/result_tip_textview"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_20_dp"
+                        android:paddingRight="@dimen/_20_dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hi_gothic_l"
+                        android:textColor="@color/color_979797"
+                        android:textSize="@dimen/_14_dp"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/_20_dp"
+                        android:background="@color/color_979797" />
+
+                    <LinearLayout
+                        android:id="@+id/tip_lv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_50_dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/btn_tip_1"/>
+
+                        <ImageView
+                            android:layout_width="@dimen/_60_dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10_dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/btn_tip"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/Hcall_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/mother_btn">
+
+                    <TextView
+                        android:id="@+id/Hcall_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/diet_icon1"
+                        android:drawablePadding="@dimen/_5_dp"
+                        android:textAlignment="center"
+                        android:text="@string/상담연결하기"
+                        android:fontFamily="@font/hi_gothic_m"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/_15_dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

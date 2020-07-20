@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/root_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_100ffffff"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/common_back_top"
+        layout="@layout/common_back_top_y" />
+
+    <LinearLayout
+        android:id="@+id/btn_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/common_back_top"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_47_dp"
+            android:background="@color/color_100ffffff"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/symptom_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/img_tab_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:text="@string/memo_tab1"
+                    android:textColor="@color/chl_fever_btn_color"
+                    android:textSize="@dimen/px_46"
+                    android:fontFamily="@font/hi_maum_r" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/diagnosis_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/img_tab_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:text="@string/memo_tab2"
+                    android:textColor="@color/chl_fever_btn_color"
+                    android:textSize="@dimen/px_46"
+                    android:fontFamily="@font/hi_maum_r" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/memo_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/img_tab_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:text="@string/memo_tab3"
+                    android:textColor="@color/chl_fever_btn_color"
+                    android:textSize="@dimen/px_46"
+                    android:fontFamily="@font/hi_maum_r" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/input_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_lay"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D7D7D9" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top|center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_30_dp"
+            android:paddingTop="@dimen/_30_dp"
+            android:paddingRight="@dimen/_30_dp">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40_dp"
+                android:layout_marginBottom="@dimen/_20_dp">
+
+                <TextView
+                    android:id="@+id/btn_sel_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40_dp"
+                    android:background="@drawable/line_fever"
+                    android:fontFamily="@font/hi_gothic_b"
+                    android:gravity="center"
+                    android:textColor="@color/h_blue"
+                    android:textSize="@dimen/_14_dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_12_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/_15_dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/triangle_o" />
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/memo_edt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/line_fever"
+                android:ems="10"
+                android:fontFamily="@font/hi_gothic_b"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="@dimen/_5_dp"
+                android:padding="@dimen/_10_dp"
+                android:textColor="@color/h_blue"
+                android:textColorHint="@color/txt_dark_lithg1"
+                android:textSize="@dimen/_14_dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_30_dp"
+            android:paddingRight="@dimen/_30_dp">
+
+            <TextView
+                android:id="@+id/top_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20_dp"
+                android:fontFamily="@font/hi_maum_r"
+                android:gravity="center"
+                android:text="@string/input_time"
+                android:textColor="@color/h_orange"
+                android:textSize="@dimen/_18_dp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40_dp"
+                android:layout_marginBottom="@dimen/_20_dp">
+
+                <TextView
+                    android:id="@+id/check_date_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40_dp"
+                    android:layout_marginBottom="@dimen/_10_dp"
+                    android:background="@drawable/line_fever"
+                    android:fontFamily="@font/hi_gothic_m"
+                    android:gravity="center"
+                    android:hint="@string/growthhint2"
+                    android:textColor="@color/color_dcdcdc"
+                    android:textColorHint="@color/color_dcdcdc"
+                    android:textSize="@dimen/_15_dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_12_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/_15_dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/triangle_o" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40_dp"
+                android:layout_marginBottom="@dimen/_20_dp">
+
+                <TextView
+                    android:id="@+id/check_time_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40_dp"
+                    android:background="@drawable/line_fever"
+                    android:fontFamily="@font/hi_gothic_m"
+                    android:gravity="center"
+                    android:hint="@string/growthhint2"
+                    android:textColor="@color/color_dcdcdc"
+                    android:textColorHint="@color/color_dcdcdc"
+                    android:textSize="@dimen/_16_dp" />
+
+
+                <ImageView
+                    android:layout_width="@dimen/_12_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/_15_dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/triangle_o" />
+            </FrameLayout>
+
+
+            <!-- 키 -->
+
+            <!-- 몸무게 -->
+
+            <!-- 머리둘레 -->
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_above="@+id/confirm_btn"
+            android:background="#D7D7D9" />
+
+        <ImageButton
+            android:id="@+id/confirm_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_46_dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/color_100ffffff"
+            android:paddingTop="@dimen/_10_dp"
+            android:paddingBottom="@dimen/_10_dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_save_2" />
+    </LinearLayout>
+
+</RelativeLayout>

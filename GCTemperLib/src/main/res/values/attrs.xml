@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FontTextView">
+    <attr name="fontType" format="enum">
+        <enum name="hi_maum_r" value="0"/>
+        <enum name="hi_maum_l" value="1"/>
+        <enum name="hi_gothic_b" value="2"/>
+        <enum name="hi_gothic_l" value="3"/>
+        <enum name="hi_gothic_M" value="4"/>
+    </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LabelsView">
+        <attr name="max_labels" format="integer" />
+        <attr name="show_cross" format="boolean" />
+        <attr name="icon_cross" format="reference" />
+        <attr name="text_color" format="color"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="label_background_res" format="reference"/>
+        <attr name="label_clickable" format="boolean" />
+        <attr name="label_padding" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="common_toolbar">
+        <attr name="title" format="string"></attr>
+        <attr name="right_text" format="string"></attr>
+        <attr name="left_icon" format="reference"></attr>
+    </declare-styleable>
+</resources>

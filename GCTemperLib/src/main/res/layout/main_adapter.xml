@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/framebackgroud"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/main_fetus07">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/_40_dp"
+            android:layout_marginRight="@dimen/_10_dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_baby_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/middle_view"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/main15"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/img_baby_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/middle_view"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/main1"
+                android:scaleType="centerCrop" />
+
+
+            <ImageView
+                android:id="@+id/btn_picture"
+                android:layout_width="@dimen/px_100"
+                android:layout_height="@dimen/px_100"
+                android:layout_marginBottom="@dimen/px_10"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_alignRight="@+id/img_baby_photo"
+                android:layout_alignBottom="@+id/img_baby_photo"
+                android:background="@drawable/main20"/>
+
+            <ImageView
+                android:id="@+id/img_fetus_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/middle_view"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/main_fetus01"
+                tools:visibility="gone"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:id="@+id/middle_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/_10_dp"
+                android:layout_centerInParent="true"/>
+
+            <LinearLayout
+                android:id="@+id/baby_info_lv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@id/img_fetus_photo"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/middle_view"
+                android:gravity="center|left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_baby_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/color_8c8c8c"
+                    android:textSize="@dimen/_13_dp"
+                    tools:text="임신 150일 (28주)"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hi_gothic_m" />
+
+                <LinearLayout
+                    android:id="@+id/name_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:layout_marginBottom="@dimen/_5_dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/txt_baby_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/color_353535"
+                        android:textSize="@dimen/_18_dp"
+                        tools:text="감자돌이"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/hi_maum_r" />
+
+                    <TextView
+                        android:id="@+id/txt_baby_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10_dp"
+                        android:gravity="center"
+                        android:textColor="@color/color_8c8c8c"
+                        android:textSize="@dimen/_13_dp"
+                        tools:text="만 0세"
+                        android:fontFamily="@font/hi_gothic_l"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_baby_born_to_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/color_6B97E6"
+                    android:textSize="@dimen/_13_dp"
+                    android:text="생후 7개월"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/hi_gothic_m" />
+
+                <TextView
+                    android:id="@+id/btn_main_fetus_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_8_dp"
+                    android:paddingBottom="@dimen/_8_dp"
+                    android:paddingRight="@dimen/_22_dp"
+                    android:paddingLeft="@dimen/_22_dp"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:textSize="@dimen/_14_dp"
+                    android:text="시기별 정보"
+                    android:fontFamily="@font/hi_maum_r"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/background_203464"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/speech_bubble"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/_150_dp"
+                android:layout_marginTop="@dimen/_5_dp"
+                android:background="@drawable/bubble_new"
+                android:lineSpacingExtra="@dimen/_5_dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/img_fetus_photo"
+                android:layout_marginLeft="-80dp"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:textSize="@dimen/_20_dp"
+                android:gravity="center|left"
+                tools:text="dfadfds"
+                android:fontFamily="@font/hi_maum_r"/>
+
+        </RelativeLayout>
+
+
+
+    </FrameLayout>
+</LinearLayout>

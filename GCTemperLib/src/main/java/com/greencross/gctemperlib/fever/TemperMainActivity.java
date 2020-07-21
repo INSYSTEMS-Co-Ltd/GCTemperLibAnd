@@ -25,7 +25,6 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
 import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.intro.IntroActivity;
 
 
 import org.json.JSONObject;
@@ -289,10 +288,10 @@ public class TemperMainActivity extends AppCompatActivity {
         GLog.i("onNewIntent", "dd");
 
         if ( CommonData.getInstance(this).getMemberId() == 0 ) {
-            GLog.i("CommonData.getInstance(this).getMemberId() == 0", "dd");
-            Intent introIntent = new Intent(getApplicationContext(), IntroActivity.class);
-            startActivity(introIntent);
-            finish();
+//            GLog.i("CommonData.getInstance(this).getMemberId() == 0", "dd");
+//            Intent introIntent = new Intent(getApplicationContext(), IntroActivity.class);
+//            startActivity(introIntent);
+//            finish();
         }
 
     }

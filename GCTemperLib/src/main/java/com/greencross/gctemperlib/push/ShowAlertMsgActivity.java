@@ -15,9 +15,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.greencross.gctemperlib.R;
+import com.greencross.gctemperlib.TemperActivity;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.intro.IntroActivity;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.WakeLocker;
 
@@ -61,7 +61,7 @@ public class ShowAlertMsgActivity extends Activity {
                     finish();
                 });
 				mDialog.setPositiveButton(getString(R.string.popup_dialog_button_confirm), (dialog, button) -> {
-                    Intent intent = new Intent(ShowAlertMsgActivity.this, IntroActivity.class);
+                    Intent intent = new Intent(ShowAlertMsgActivity.this, TemperActivity.class);
                     intent.setAction(Intent.ACTION_MAIN);
                     intent.addCategory(Intent.CATEGORY_LAUNCHER);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
@@ -94,7 +94,7 @@ public class ShowAlertMsgActivity extends Activity {
 
 		NotificationManager mNM	= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-		Intent newIntent = new Intent(this, IntroActivity.class);
+		Intent newIntent = new Intent(this, TemperActivity.class);
 
 		//newIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        newIntent.putExtra(CommonData.JSON_PUSH_NOTICE_ID, Integer.parseInt(pid));

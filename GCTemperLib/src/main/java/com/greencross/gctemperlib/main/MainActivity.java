@@ -74,7 +74,6 @@ import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.greencare.weight.WeightBigDataInputFragment;
-import com.greencross.gctemperlib.intro.IntroActivity;
 import com.greencross.gctemperlib.network.RequestApi;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.setting.SettingActivity;
@@ -2600,7 +2599,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(CommonData.getInstance(MainActivity.this).getAfterMainPopupShowCheck().equals(sNowTime)){
 
         }else{
-            Intent intent = new Intent(MainActivity.this, MainPopActivity.class);
+            Intent intent = new Intent(MainActivity.this, TemperActivity.class);
             intent.putExtra("title",sMainPopTitle);
             intent.putExtra("txt",sMainPopTxt);
             startActivity(intent);
@@ -2782,14 +2781,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     BleUtil.BackAnimationStart(MainActivity.this);*/
                     break;
                 //hsh start
-                case FirebaseMessagingService.FEVER_MOVIE:
-                    GLog.i("FirebaseMessagingService.FEVER_MOVIE", "dd");
-                    String info = getIntent().getStringExtra(CommonData.EXTRA_INFO_SN);
-                    intent = new Intent(MainActivity.this, YoutubeActivity.class);
-                    intent.putExtra(CommonData.EXTRA_PUSH_TYPE, push_type);
-                    intent.putExtra(CommonData.EXTRA_INFO_SN, info);
-                    inTentGo = intent;
-                    break;
+//                case FirebaseMessagingService.FEVER_MOVIE:
+//                    GLog.i("FirebaseMessagingService.FEVER_MOVIE", "dd");
+//                    String info = getIntent().getStringExtra(CommonData.EXTRA_INFO_SN);
+//                    intent = new Intent(MainActivity.this, YoutubeActivity.class);
+//                    intent.putExtra(CommonData.EXTRA_PUSH_TYPE, push_type);
+//                    intent.putExtra(CommonData.EXTRA_INFO_SN, info);
+//                    inTentGo = intent;
+//                    break;
                 case FirebaseMessagingService.DIESEASE:
                     GLog.i("FirebaseMessagingService.DIESEASE", "dd");
                     intent = new Intent(MainActivity.this, TemperActivity.class);
@@ -2957,7 +2956,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if ( CommonData.getInstance(MainActivity.this).getMemberId() == 0 ) {
             GLog.i("CommonData.getInstance(MainActivity.this).getMemberId() == 0", "dd");
-            Intent introIntent = new Intent(getApplicationContext(), IntroActivity.class);
+            Intent introIntent = new Intent(getApplicationContext(), TemperActivity.class);
             startActivity(introIntent);
             finish();
         }

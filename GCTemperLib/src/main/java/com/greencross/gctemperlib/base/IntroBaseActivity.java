@@ -30,7 +30,6 @@ import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
-import com.greencross.gctemperlib.intro.AgreeConfirmActivity;
 import com.greencross.gctemperlib.main.MainActivity;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.util.GLog;
@@ -655,7 +654,7 @@ public class IntroBaseActivity extends BaseActivity {
 
         if(commonData.getMberGrad().equals("10")){
             if(commonData.getMberAgreementYn().equals("N")){
-                intent = new Intent(IntroBaseActivity.this, AgreeConfirmActivity.class);
+//                intent = new Intent(IntroBaseActivity.this, AgreeConfirmActivity.class);
             } else {
                 intent = new Intent(IntroBaseActivity.this, MainActivity.class);
             }

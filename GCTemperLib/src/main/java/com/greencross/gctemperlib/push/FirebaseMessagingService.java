@@ -14,8 +14,8 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 import com.greencross.gctemperlib.R;
+import com.greencross.gctemperlib.TemperActivity;
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.intro.IntroActivity;
 import com.greencross.gctemperlib.util.GLog;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -119,7 +119,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         NotificationManager mNM	= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent newIntent = new Intent(this, IntroActivity.class);
+        Intent newIntent = new Intent(this, TemperActivity.class);
 
         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gchelathcare.heat">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/GCLibTheme">
+
+
+        <activity android:name=".Main1QActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/GCLibTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity android:name="com.greencross.gctemperlib.gngcare.fever.TemperActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/GCLibTheme"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
+        <activity android:name="com.greencross.gctemperlib.greencare.base.DummyActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/GCLibTheme"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
+
+
+        <activity android:name="com.greencross.gctemperlib.gngcare.fever.TemperMainActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/GCLibTheme"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
+
+        <activity android:name="com.greencross.gctemperlib.gngcare.fever.TemperControlActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/GCLibTheme"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+    </application>
+
+</manifest>

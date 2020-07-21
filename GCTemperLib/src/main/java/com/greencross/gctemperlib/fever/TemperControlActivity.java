@@ -13,7 +13,7 @@ import com.greencross.gctemperlib.GCFeverLib;
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.base.DummyActivity;
+import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.greencare.weight.WeightManageFragment;
 
 public class TemperControlActivity extends BackBaseActivity {

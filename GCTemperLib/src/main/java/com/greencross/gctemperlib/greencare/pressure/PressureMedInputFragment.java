@@ -25,7 +25,7 @@ import com.greencross.gctemperlib.greencare.bluetooth.model.PressureModel;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;

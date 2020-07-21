@@ -39,7 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 
 import java.util.List;

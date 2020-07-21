@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
-import com.greencross.gctemperlib.greencare.base.DummyActivity;
+import com.greencross.gctemperlib.BaseFragment;
+import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.StringUtil;

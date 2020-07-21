@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.greencare.base;
+package com.greencross.gctemperlib;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,8 +16,6 @@ import android.util.Log;
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.webview.TipWebViewActivity;
-import com.greencross.gctemperlib.BuildConfig;
-import com.greencross.gctemperlib.R;
 
 import java.lang.reflect.Constructor;
 import java.util.Set;

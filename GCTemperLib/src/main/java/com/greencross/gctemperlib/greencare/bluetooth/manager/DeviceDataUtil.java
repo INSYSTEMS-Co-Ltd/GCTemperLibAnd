@@ -14,7 +14,7 @@ import com.greencross.gctemperlib.greencare.network.tr.data.Tr_bdwgh_info_input_
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_brssr_info_input_data;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.bluetooth.model.BandModel;
 import com.greencross.gctemperlib.greencare.bluetooth.model.BloodModel;
 import com.greencross.gctemperlib.greencare.bluetooth.model.MessageModel;

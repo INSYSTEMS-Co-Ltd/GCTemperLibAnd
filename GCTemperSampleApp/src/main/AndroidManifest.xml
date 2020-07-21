@@ -23,33 +23,16 @@
         </activity>
 
 
-
-        <activity android:name="com.greencross.gctemperlib.gngcare.fever.TemperActivity"
+        <activity android:name="com.greencross.gctemperlib.TemperActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/GCLibTheme"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
 
-        <activity android:name="com.greencross.gctemperlib.greencare.base.DummyActivity"
+        <activity android:name="com.greencross.gctemperlib.DummyActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/GCLibTheme"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"/>
-
-
-
-        <activity android:name="com.greencross.gctemperlib.gngcare.fever.TemperMainActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/GCLibTheme"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"/>
-
-
-        <activity android:name="com.greencross.gctemperlib.gngcare.fever.TemperControlActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/GCLibTheme"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"/>
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

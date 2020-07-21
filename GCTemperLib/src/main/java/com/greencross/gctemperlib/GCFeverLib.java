@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -14,22 +15,17 @@ import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
 import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
-import com.greencross.gctemperlib.BuildConfig;
-import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.fever.TemperActivity;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 
 import java.lang.reflect.Constructor;
 
+
 public class GCFeverLib {
     private final String TAG = getClass().getSimpleName();
 
     private Context mContext;
-
-    public static String GC_ALRAM_TYPE_독려알림 = "GC_ALRAM_TYPE_독려알림";
-    public static String GC_ALRAM_TYPE_지역체온알림 = "GC_ALRAM_TYPE_지역체온알림";
 
     private final String PREF_APP_TOKEN = "pref_app_token";     // 라이브러리 인증키
 
@@ -46,7 +42,8 @@ public class GCFeverLib {
 
     /**
      * 녹십자 체온관리를 사용하기 위한  인증토큰을 등록
-     * @param gcToken  GC 체온관리 라이브러리를 사용하기 위한 토큰
+     *
+     * @param gcToken GC 체온관리 라이브러리를 사용하기 위한 토큰
      */
     public boolean registGCToken(@Nullable String gcToken) {
         // 최초 인증
@@ -66,6 +63,7 @@ public class GCFeverLib {
 
     /**
      * 등록여부 체크
+     *
      * @param IGCResult 결과값 전달 Interface
      * @return
      */
@@ -81,23 +79,30 @@ public class GCFeverLib {
     }
 
     /**
-     * 최초 인증토큰과, Push 토큰을 저장
-     * @param pushToken    푸시 토큰
-     * @param customerNo   고객번호
-     * @param gender       성별(사용 미정)
-     * @param IGCResult    결과값 전달 Interface
+     * 고객번호 저장
+     *
+     * @param customerNo 고객번호
+     * @param iGCResult  결과값 전달 Interface
      */
-    public void registPushToken(@Nullable String pushToken, @Nullable String customerNo, String gender, IGCResult IGCResult) {
-        if (checkGCToken(IGCResult) == false) {
+    public void registCustomerNo(@Nullable String customerNo, IGCResult iGCResult) {
+        if (checkGCToken(iGCResult) == false) {
 
             return;
         } else {
-            SharedPref.getInstance(mContext).savePreferences(PREF_PUSH_TOKEN, pushToken);   // 푸시키
             SharedPref.getInstance(mContext).savePreferences(PREF_CUST_NO, customerNo);     // 사용자 번호
-            SharedPref.getInstance(mContext).savePreferences(PREF_GENDER, gender);      // 사용자 성별
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
+                    if (TextUtils.isEmpty(customerNo)) {
+                        iGCResult.onResult(false, "고객 번호를 입력해주세요.", null);
+                    } else {
+                        iGCResult.onResult(true, "고객 번호 등록 완료", null);
+                    }
+                }
+            }, 500);
             // TODO 알람등록 전문 처리 해야 함
-            IGCResult.onResult(true, "푸시 토큰 등록 완료", null);
+
 
             // 최초 인증
             // 인증토큰, 푸시토큰, 고객번호, 성별을 저장
@@ -128,19 +133,129 @@ public class GCFeverLib {
         }
     }
 
+
+    /**
+     * Push 토큰을 저장
+     *
+     * @param pushToken 푸시 토큰
+     * @param iGCResult 결과값 전달 Interface
+     */
+    public void registPushToken(@Nullable String pushToken, final IGCResult iGCResult) {
+        if (checkGCToken(iGCResult) == false) {
+
+            return;
+        } else {
+            SharedPref.getInstance(mContext).savePreferences(PREF_PUSH_TOKEN, pushToken);   // 푸시키
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (TextUtils.isEmpty(pushToken)) {
+                        iGCResult.onResult(false, "푸시 토큰을 입력해주세요.", null);
+                    } else {
+                        iGCResult.onResult(true, "푸시 토큰 등록 완료", null);
+                    }
+                }
+            }, 500);
+            // TODO 알람등록 전문 처리 해야 함
+
+
+            // 최초 인증
+            // 인증토큰, 푸시토큰, 고객번호, 성별을 저장
+//        getData(mContext, Tr_asstb_kbtg_alimi.class, requestData, true, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_asstb_kbtg_alimi) {
+//                    Tr_asstb_kbtg_alimi data = (Tr_asstb_kbtg_alimi) obj;
+//                    if(data.data_yn.equals("Y")) {
+//                        Logger.i(TAG, "MSG : " + data.DATA_LENGTH);
+//
+//                        if(!EVENT_POP.equals("")){
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("IDX",EVENT_POP);
+//                            activity.replaceFragment(new AlramContentFragment(),true, true, bundle);
+//                        } else {
+//                            mMaxPage = data.dataList.size();
+//                            Adapter.setData(data.dataList);
+//                            Adapter.notifyDataSetChanged();
+//                        }
+//                    }else{
+//                        Logger.i(TAG,"KA001 : 기타오류");
+//                    }
+//
+//                }
+//            }
+//        }, null);
+        }
+    }
+
+
+    /**
+     * 체온저
+     *
+     * @param temper    체온
+     * @param iGCResult 결과값 전달 Interface
+     */
+    public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
+        if (checkGCToken(iGCResult) == false) {
+
+            return;
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (TextUtils.isEmpty(temper)) {
+                        iGCResult.onResult(false, "체온을 입력해 주세요.", null);
+                    } else {
+                        iGCResult.onResult(true, "체온 등록 완료", null);
+                    }
+                }
+            }, 500);
+
+            // 최초 인증
+            // 인증토큰, 푸시토큰, 고객번호, 성별을 저장
+//        getData(mContext, Tr_asstb_kbtg_alimi.class, requestData, true, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_asstb_kbtg_alimi) {
+//                    Tr_asstb_kbtg_alimi data = (Tr_asstb_kbtg_alimi) obj;
+//                    if(data.data_yn.equals("Y")) {
+//                        Logger.i(TAG, "MSG : " + data.DATA_LENGTH);
+//
+//                        if(!EVENT_POP.equals("")){
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("IDX",EVENT_POP);
+//                            activity.replaceFragment(new AlramContentFragment(),true, true, bundle);
+//                        } else {
+//                            mMaxPage = data.dataList.size();
+//                            Adapter.setData(data.dataList);
+//                            Adapter.notifyDataSetChanged();
+//                        }
+//                    }else{
+//                        Logger.i(TAG,"KA001 : 기타오류");
+//                    }
+//
+//                }
+//            }
+//        }, null);
+        }
+    }
+
+
     /**
      * 알림 수신여부
-     * @param alramType  알람 타입
-     * @param isEnable   알람 수신 여부
+     *
+     * @param alramType 알람 타입
+     * @param isEnable  알람 수신 여부
      */
     public void settingAlramService(GCAlramType alramType, boolean isEnable, IGCResult IGCResult) {
         String pushToken = SharedPref.getInstance(mContext).getPreferences(PREF_PUSH_TOKEN);    // 푸시키
         String custNo = SharedPref.getInstance(mContext).getPreferences(PREF_CUST_NO);          // 사용자 번호
         String gender = SharedPref.getInstance(mContext).getPreferences(PREF_GENDER);           // 사용자 성별
 
-        Log.i(TAG, "setAlram::"+alramType.name()+" "+isEnable);
-        Log.i(TAG, "setAlram.pushToken="+pushToken);
-        Log.i(TAG, "setAlram.custNo="+custNo);
+        Log.i(TAG, "setAlram::" + alramType.name() + " " + isEnable);
+        Log.i(TAG, "setAlram.pushToken=" + pushToken);
+        Log.i(TAG, "setAlram.custNo=" + custNo);
 
         if (checkGCToken(IGCResult) == false) {
             return;
@@ -164,17 +279,18 @@ public class GCFeverLib {
             SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
             if (alramType == GCAlramType.GC_ALRAM_TYPE_독려) {
                 // TODO
-            } else if (alramType == GCAlramType.GC_ALRAM_TYPE_지역 ) {
+            } else if (alramType == GCAlramType.GC_ALRAM_TYPE_지역) {
 
             }
 
             // TODO 알람등록 전문 처리 해야 함
-            IGCResult.onResult(true, String.format(alramType.getDesc()+" 알람 %1$s 완료", isEnable ? "등록" : "해지"), null);
+            IGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), null);
         }
     }
 
     /**
      * 설정된 알람 확인
+     *
      * @param alramType
      * @return
      */
@@ -205,8 +321,6 @@ public class GCFeverLib {
     public void resetGCData() {
         SharedPref.getInstance(mContext).removeAllPreferences();
     }
-
-
 
 
     private void getData(final Class<? extends BaseData> cls, final Object obj, boolean isShowProgress, final IGCResult IGCResult) {
@@ -277,12 +391,13 @@ public class GCFeverLib {
 
     /**
      * 인증체크
+     *
      * @return
      */
     private boolean validCheck() {
         String pushToken = SharedPref.getInstance(mContext).getPreferences(PREF_PUSH_TOKEN);    // 푸시키
         String custNo = SharedPref.getInstance(mContext).getPreferences(PREF_CUST_NO);          // 사용자 번호
-        String gender = SharedPref.getInstance(mContext).getPreferences(PREF_GENDER);           // 사용자 성별
+//        String gender = SharedPref.getInstance(mContext).getPreferences(PREF_GENDER);           // 사용자 성별
 
         if (TextUtils.isEmpty(pushToken)) {
             CDialog.showDlg(mContext, "PUSH 토큰 등록 후 이용 가능합니다.");

@@ -47,7 +47,15 @@ public class Main1QActivity extends Activity {
             }
         });
 
-        // 녹십자 라이브러리 Push 서비스 등록
+        // 고객번호 등록
+        findViewById(R.id.cust_no_regist_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                regsitCustNo();
+            }
+        });
+
+        // Push키 등록
         findViewById(R.id.push_token_regist_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,10 +63,19 @@ public class Main1QActivity extends Activity {
             }
         });
 
+        // 체온 등록
+        findViewById(R.id.temper_regist_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                regsitTemper();
+            }
+        });
+
         // 녹십자 체온관리 실행
         findViewById(R.id.gc_excute_gc_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 위치 권한 설정 후 이용해 주세요.
                 PermissionUtil.checkPermissions(Main1QActivity.this);
                 int permissionState = ActivityCompat.checkSelfPermission(Main1QActivity.this, Manifest.permission.ACCESS_FINE_LOCATION);
                 if (permissionState == PackageManager.PERMISSION_GRANTED) {
@@ -68,6 +85,8 @@ public class Main1QActivity extends Activity {
                 }
             }
         });
+
+
 
         Switch switch1 = findViewById(R.id.alram_type_1);
         Switch switch2 = findViewById(R.id.alram_type_2);
@@ -116,19 +135,61 @@ public class Main1QActivity extends Activity {
     }
 
     /**
+     * 녹십자 라이브러리 고객번호 등록
+     */
+    public void regsitCustNo() {
+        final GCFeverLib gcLib = new GCFeverLib(this);
+        TextView custNoTv = findViewById(R.id.cust_no_edittext);
+        String customerNo = custNoTv.getText().toString();
+        String gender = null;
+        showProgress();
+        gcLib.registCustomerNo(customerNo, new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                hideProgress();
+                if (isSuccess) {
+                    CDialog.showDlg(Main1QActivity.this, message);
+                } else {
+                    CDialog.showDlg(Main1QActivity.this, message);
+                }
+            }
+        });
+    }
+
+    /**
      * 녹십자 라이브러리 Push 서비스 등록
      */
     public void regsitPushToken() {
         final GCFeverLib gcLib = new GCFeverLib(this);
         TextView tokenTv = findViewById(R.id.push_token_edittext);
-        TextView custNoTv = findViewById(R.id.cust_no_edittext);
         String pushToken = tokenTv.getText().toString();
-        String customerNo = custNoTv.getText().toString();
-        String gender = null;
-
-        gcLib.registPushToken(pushToken, customerNo, gender, new IGCResult() {
+        showProgress();
+        gcLib.registPushToken(pushToken, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
+                hideProgress();
+                if (isSuccess) {
+                    CDialog.showDlg(Main1QActivity.this, message);
+                } else {
+                    CDialog.showDlg(Main1QActivity.this, message);
+                }
+            }
+        });
+    }
+
+    /**
+     * 녹십자 라이브러리 Push 서비스 등록
+     */
+    public void regsitTemper() {
+        final GCFeverLib gcLib = new GCFeverLib(this);
+        TextView temperEditText = findViewById(R.id.temper_edittext);
+        String temper = temperEditText.getText().toString();
+
+        showProgress();
+        gcLib.registGCTemper(temper, new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                hideProgress();
                 if (isSuccess) {
                     CDialog.showDlg(Main1QActivity.this, message);
                 } else {

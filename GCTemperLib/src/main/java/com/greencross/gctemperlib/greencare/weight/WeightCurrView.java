@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.greencross.gctemperlib.collection.ProgressItem;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.greencare.base.DummyActivity;
+import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.util.CustomSeekBar;
 import com.greencross.gctemperlib.R;
 

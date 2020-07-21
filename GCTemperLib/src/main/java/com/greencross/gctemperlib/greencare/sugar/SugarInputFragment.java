@@ -21,9 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
-import com.greencross.gctemperlib.greencare.base.DummyActivity;
+import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.greencare.bluetooth.manager.BluetoothManager;
 import com.greencross.gctemperlib.greencare.bluetooth.manager.DeviceDataUtil;
 import com.greencross.gctemperlib.greencare.bluetooth.model.BloodModel;

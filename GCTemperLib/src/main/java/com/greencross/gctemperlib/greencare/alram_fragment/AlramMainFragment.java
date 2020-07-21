@@ -18,7 +18,7 @@ import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_kbtg_alimi;
 import com.greencross.gctemperlib.Alram.AlramMainActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
 import com.greencross.gctemperlib.greencare.base.IBaseFragment;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;

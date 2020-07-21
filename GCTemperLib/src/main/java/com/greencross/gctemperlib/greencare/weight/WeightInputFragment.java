@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
 import com.greencross.gctemperlib.greencare.bluetooth.manager.BluetoothManager;
 import com.greencross.gctemperlib.greencare.bluetooth.manager.DeviceDataUtil;

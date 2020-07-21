@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.fever;
+package com.greencross.gctemperlib;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,8 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.GCFeverLib;
 import com.greencross.gctemperlib.base.BackBaseActivity;
+import com.greencross.gctemperlib.fever.RequestDiseaseProgramActivity;
+import com.greencross.gctemperlib.fever.TemperControlActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
@@ -30,7 +31,6 @@ import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.util.Util;
-import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.collection.EpidemicItem;
 import com.greencross.gctemperlib.collection.LocationItem;
 import com.greencross.gctemperlib.common.ApplinkDialog;

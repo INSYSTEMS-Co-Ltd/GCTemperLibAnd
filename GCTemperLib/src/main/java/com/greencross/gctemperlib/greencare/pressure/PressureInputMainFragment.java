@@ -13,7 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 
 public class PressureInputMainFragment extends BaseFragment {
     private int mInputNum = -1;    // 인풋 타입

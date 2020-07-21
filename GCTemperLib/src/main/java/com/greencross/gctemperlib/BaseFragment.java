@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.greencare.base;
+package com.greencross.gctemperlib;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,9 @@ import androidx.fragment.app.Fragment;
 
 import com.greencross.gctemperlib.base.BaseActivity;
 import com.greencross.gctemperlib.common.CommonData;
+import com.greencross.gctemperlib.greencare.base.CommonActionBar;
+import com.greencross.gctemperlib.greencare.base.IBackPress;
+import com.greencross.gctemperlib.greencare.base.IBaseFragment;
 import com.greencross.gctemperlib.greencare.base.value.Define;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;

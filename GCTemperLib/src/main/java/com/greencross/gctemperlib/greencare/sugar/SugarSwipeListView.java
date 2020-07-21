@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenu;
 import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenuCreator;

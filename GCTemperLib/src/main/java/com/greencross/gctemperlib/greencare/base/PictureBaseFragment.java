@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.cameraUtil.OnPermssionCallBackListener;
 import com.greencross.gctemperlib.greencare.util.cameraUtil.ProviderUtil;

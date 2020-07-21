@@ -1,4 +1,4 @@
 include ':GCTemperLib'
-include ':app'
+//include ':app'
 include ':GCTemperSampleApp'
 rootProject.name = "GCLibGitHub"

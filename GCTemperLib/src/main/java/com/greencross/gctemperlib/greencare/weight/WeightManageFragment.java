@@ -38,7 +38,7 @@ import com.greencross.gctemperlib.common.CustomAsyncListener;
 import com.greencross.gctemperlib.common.CustomEditConfirmDialog;
 import com.greencross.gctemperlib.common.MakeProgress;
 import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.value.TypeDataSet;
 import com.greencross.gctemperlib.greencare.charting.components.YAxis;
 import com.greencross.gctemperlib.greencare.charting.data.BarEntry;

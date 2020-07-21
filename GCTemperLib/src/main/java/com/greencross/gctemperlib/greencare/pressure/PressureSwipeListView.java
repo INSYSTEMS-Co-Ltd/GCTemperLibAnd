@@ -29,7 +29,7 @@ import com.greencross.gctemperlib.greencare.network.tr.data.Tr_brssr_info_del_da
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_brssr_info_edit_data;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.greencare.base.BaseFragment;
+import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.database.DBHelper;
 import com.greencross.gctemperlib.greencare.database.DBHelperPresure;
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_hedctdata;

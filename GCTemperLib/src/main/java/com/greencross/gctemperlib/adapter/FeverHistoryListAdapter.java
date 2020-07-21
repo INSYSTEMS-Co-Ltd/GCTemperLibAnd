@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,8 +28,6 @@ import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.collection.AllDataItem;
 import com.greencross.gctemperlib.network.RequestApi;
-import com.daimajia.swipe.SwipeLayout;
-import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
 import org.json.JSONObject;
 
@@ -41,7 +40,7 @@ import cz.msebera.android.httpclient.message.BasicNameValuePair;
  * Created by MobileDoctor on 2017-02-27.
  */
 
-public class FeverHistoryListAdapter extends RecyclerSwipeAdapter<FeverHistoryListAdapter.FeverAllDataListItemViewHolder> {
+public class FeverHistoryListAdapter extends RecyclerView.Adapter<FeverHistoryListAdapter.FeverAllDataListItemViewHolder> {
 
     private int itemLayout;
     private Context mContext;
@@ -67,7 +66,7 @@ public class FeverHistoryListAdapter extends RecyclerSwipeAdapter<FeverHistoryLi
         final AllDataItem curItem = allDataList.get(position);
 
         if(!curItem.getmIsDate()){
-            holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+//            holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         }
 
         holder.buttonDelete.setOnClickListener(view -> {
@@ -88,10 +87,10 @@ public class FeverHistoryListAdapter extends RecyclerSwipeAdapter<FeverHistoryLi
 
         if(curItem.getmIsDate()){
             holder.txt_day_date.setText(curItem.getmInputDe());
-            holder.swipeLayout.setVisibility(View.GONE);
+//            holder.swipeLayout.setVisibility(View.GONE);
             holder.date_lay.setVisibility(View.VISIBLE);
         }else{
-            holder.swipeLayout.setVisibility(View.VISIBLE);
+//            holder.swipeLayout.setVisibility(View.VISIBLE);
             holder.date_lay.setVisibility(View.GONE);
             holder.txt_date_item.setText(curItem.getmInputDe().substring(11,16));
 
@@ -152,59 +151,59 @@ public class FeverHistoryListAdapter extends RecyclerSwipeAdapter<FeverHistoryLi
                     break;
             }
 
-            holder.linear_history_item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent;
-                    switch (holder.filter){
-                        case "0":       // 체온
-                            intent = new Intent(mContext, FeverInputActivity.class);
-                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
-                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
-                            intent.putExtra(CommonData.EXTRA_FEVER, curItem.getmFever());
-                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
-                            mContext.startActivity(intent);
-                            Util.BackAnimationStart(((Activity) mContext));
-                            break;
-                        case "1":       //  해열제
-                            intent = new Intent(mContext, RemedyInputActivity.class);
-                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
-                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
-                            intent.putExtra(CommonData.EXTRA_KIND, curItem.getmInputKind());
-                            intent.putExtra(CommonData.EXTRA_TYPE, curItem.getmInputType());
-                            intent.putExtra(CommonData.EXTRA_VOLUME, curItem.getmInputVolume());
-                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
-                            mContext.startActivity(intent);
-                            Util.BackAnimationStart(((Activity) mContext));
-                            break;
-                        case "2":       //  체온 결과
-                            intent = new Intent(mContext, FeverResultActivity.class);
-                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
-                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
-                            intent.putExtra(CommonData.EXTRA_CODE, curItem.getmInputCode());
-                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
-                            mContext.startActivity(intent);
-                            Util.BackAnimationStart(((Activity) mContext));
-                            break;
-                        default:        //  메모
-                            intent = new Intent(mContext, MemoInputActivity.class);
-                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
-                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
-                            intent.putExtra(CommonData.EXTRA_NUM, curItem.getmInputNum());
-                            intent.putExtra(CommonData.EXTRA_MEMO, curItem.getmInputMemo());
-                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
-                            if(holder.filter.equals("3"))   //  증상
-                                intent.putExtra(CommonData.EXTRA_MEMO_TYPE, 0);
-                            else if(holder.filter.equals("4"))   //  진단
-                                intent.putExtra(CommonData.EXTRA_MEMO_TYPE, 1);
-                            else                                // 메모
-                                intent.putExtra(CommonData.EXTRA_MEMO_TYPE, 2);
-                            mContext.startActivity(intent);
-                            Util.BackAnimationStart(((Activity) mContext));
-                            break;
-                    }
-                }
-            });
+//            holder.linear_history_item.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent;
+//                    switch (holder.filter){
+//                        case "0":       // 체온
+//                            intent = new Intent(mContext, FeverInputActivity.class);
+//                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
+//                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
+//                            intent.putExtra(CommonData.EXTRA_FEVER, curItem.getmFever());
+//                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
+//                            mContext.startActivity(intent);
+//                            Util.BackAnimationStart(((Activity) mContext));
+//                            break;
+//                        case "1":       //  해열제
+//                            intent = new Intent(mContext, RemedyInputActivity.class);
+//                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
+//                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
+//                            intent.putExtra(CommonData.EXTRA_KIND, curItem.getmInputKind());
+//                            intent.putExtra(CommonData.EXTRA_TYPE, curItem.getmInputType());
+//                            intent.putExtra(CommonData.EXTRA_VOLUME, curItem.getmInputVolume());
+//                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
+//                            mContext.startActivity(intent);
+//                            Util.BackAnimationStart(((Activity) mContext));
+//                            break;
+//                        case "2":       //  체온 결과
+//                            intent = new Intent(mContext, FeverResultActivity.class);
+//                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
+//                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
+//                            intent.putExtra(CommonData.EXTRA_CODE, curItem.getmInputCode());
+//                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
+//                            mContext.startActivity(intent);
+//                            Util.BackAnimationStart(((Activity) mContext));
+//                            break;
+//                        default:        //  메모
+//                            intent = new Intent(mContext, MemoInputActivity.class);
+//                            intent.putExtra(CommonData.EXTRA_SN, curItem.getmDataSn());
+//                            intent.putExtra(CommonData.EXTRA_DATE, curItem.getmInputDe());
+//                            intent.putExtra(CommonData.EXTRA_NUM, curItem.getmInputNum());
+//                            intent.putExtra(CommonData.EXTRA_MEMO, curItem.getmInputMemo());
+//                            intent.putExtra(CommonData.EXTRA_IS_EDIT, CommonData.YES);
+//                            if(holder.filter.equals("3"))   //  증상
+//                                intent.putExtra(CommonData.EXTRA_MEMO_TYPE, 0);
+//                            else if(holder.filter.equals("4"))   //  진단
+//                                intent.putExtra(CommonData.EXTRA_MEMO_TYPE, 1);
+//                            else                                // 메모
+//                                intent.putExtra(CommonData.EXTRA_MEMO_TYPE, 2);
+//                            mContext.startActivity(intent);
+//                            Util.BackAnimationStart(((Activity) mContext));
+//                            break;
+//                    }
+//                }
+//            });
 
         }
     }
@@ -214,10 +213,10 @@ public class FeverHistoryListAdapter extends RecyclerSwipeAdapter<FeverHistoryLi
         return allDataList.size();
     }
 
-    @Override
-    public int getSwipeLayoutResourceId(int position) {
-        return R.id.swipe;
-    }
+//    @Override
+//    public int getSwipeLayoutResourceId(int position) {
+//        return R.id.swipe;
+//    }
 
     public class FeverAllDataListItemViewHolder extends RecyclerView.ViewHolder{
 
@@ -227,21 +226,21 @@ public class FeverHistoryListAdapter extends RecyclerSwipeAdapter<FeverHistoryLi
         public String filter;
         public String date;
 
-        public SwipeLayout swipeLayout;
+//        public SwipeLayout swipeLayout;
         public ImageButton buttonDelete;
 
         public FeverAllDataListItemViewHolder(View itemView) {
             super(itemView);
-            linear_history_item = (LinearLayout) itemView.findViewById(R.id.linear_history_item);
-            img_history_mark = (ImageView)itemView.findViewById(R.id.img_history_mark);
-            txt_type_item = (TextView)itemView.findViewById(R.id.txt_type_item);
-            txt_date_item = (TextView)itemView.findViewById(R.id.txt_date_item);
-            txt_content_item = (TextView)itemView.findViewById(R.id.txt_content_item);
-            txt_day_date = (TextView)itemView.findViewById(R.id.txt_day_date);
-            date_lay = (LinearLayout)itemView.findViewById(R.id.date_lay);
+//            linear_history_item = (LinearLayout) itemView.findViewById(R.id.linear_history_item);
+//            img_history_mark = (ImageView)itemView.findViewById(R.id.img_history_mark);
+//            txt_type_item = (TextView)itemView.findViewById(R.id.txt_type_item);
+//            txt_date_item = (TextView)itemView.findViewById(R.id.txt_date_item);
+//            txt_content_item = (TextView)itemView.findViewById(R.id.txt_content_item);
+//            txt_day_date = (TextView)itemView.findViewById(R.id.txt_day_date);
+//            date_lay = (LinearLayout)itemView.findViewById(R.id.date_lay);
 
-            swipeLayout = (SwipeLayout)itemView.findViewById(R.id.swipe);
-            buttonDelete = (ImageButton)itemView.findViewById(R.id.trash);
+//            swipeLayout = (SwipeLayout)itemView.findViewById(R.id.swipe);
+//            buttonDelete = (ImageButton)itemView.findViewById(R.id.trash);
         }
     }
 

@@ -84,9 +84,6 @@ import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.webview.BackWebViewInfoActivity;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
@@ -2467,11 +2464,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                             tv1.setText(noticeData.getString("title"));
 
-                                            Glide.with(MainActivity.this).load(noticeData.getString("notice_title_img_url"))
-                                                    .apply(new RequestOptions()
-                                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                                            .placeholder(R.drawable.event_img)
-                                                            .skipMemoryCache(true)).into(iv1);
+//                                            Glide.with(MainActivity.this).load(noticeData.getString("notice_title_img_url"))
+//                                                    .apply(new RequestOptions()
+//                                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                                                            .placeholder(R.drawable.event_img)
+//                                                            .skipMemoryCache(true)).into(iv1);
 
                                             b1.setOnClickListener(new View.OnClickListener() {
                                                 @Override

@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="missingPrefix"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="missingPrefix">
 
     <LinearLayout
         android:id="@+id/date_lay"
@@ -24,13 +24,13 @@
             android:id="@+id/txt_day_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/hi_gothic_b"
             android:gravity="center"
             android:padding="@dimen/_3_dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/color_gray7"
             android:textSize="@dimen/_15_dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/hi_gothic_b"/>
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
@@ -38,7 +38,8 @@
             android:background="@color/bg_gray" />
     </LinearLayout>
 
-    <com.daimajia.swipe.SwipeLayout xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    <!--<com.daimajia.swipe.SwipeLayout
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
         android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -91,9 +92,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8_dp"
                     android:layout_marginRight="@dimen/_16_dp"
+                    android:fontFamily="@font/hi_gothic_m"
                     android:textColor="@color/color_gray7"
-                    android:textSize="@dimen/_15_dp"
-                    android:fontFamily="@font/hi_gothic_m" />
+                    android:textSize="@dimen/_15_dp" />
 
                 <TextView
                     android:id="@+id/txt_date_item"
@@ -101,9 +102,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8_dp"
                     android:layout_marginRight="@dimen/_16_dp"
+                    android:fontFamily="@font/hi_gothic_m"
                     android:textColor="@color/color_gray7"
-                    android:textSize="@dimen/_15_dp"
-                    android:fontFamily="@font/hi_gothic_m" />
+                    android:textSize="@dimen/_15_dp" />
 
                 <TextView
                     android:id="@+id/txt_content_item"
@@ -111,16 +112,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_8_dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/hi_gothic_m"
                     android:gravity="right"
                     android:padding="@dimen/_3_dp"
                     android:textColor="@color/color_gray7"
-                    android:textSize="@dimen/_15_dp"
-                    android:fontFamily="@font/hi_gothic_m" />
+                    android:textSize="@dimen/_15_dp" />
 
             </LinearLayout>
 
 
         </LinearLayout>
-    </com.daimajia.swipe.SwipeLayout>
+    </com.daimajia.swipe.SwipeLayout>-->
 
 </LinearLayout>

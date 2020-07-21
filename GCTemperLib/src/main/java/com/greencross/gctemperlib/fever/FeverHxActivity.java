@@ -31,7 +31,6 @@ import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
 import com.greencross.gctemperlib.common.NetworkConst;
 import com.greencross.gctemperlib.network.RequestApi;
-import com.daimajia.swipe.util.Attributes;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.Description;
@@ -207,7 +206,7 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
         mRecyTimeline.setLayoutManager(layoutManager);
         mRecyTimeline.setItemAnimator(new DefaultItemAnimator());
         mRecyTimeline.setHasFixedSize(true);
-        ((FeverHistoryListAdapter) mAdapter).setMode(Attributes.Mode.Single);
+//        ((FeverHistoryListAdapter) mAdapter).setMode(Attributes.Mode.Single);
         mRecyTimeline.setAdapter(mAdapter);
     }
 

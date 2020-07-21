@@ -25,9 +25,6 @@ import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.util.Util;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -209,10 +206,10 @@ public class AlramMainFragment extends BaseFragment implements IBaseFragment {
             Logger.i(TAG,"titleImgUrl: "+ Uri.parse(titleImgUrl));
 
             if(!titleImgUrl.isEmpty())
-                Glide.with(getContext()).load(titleImgUrl)
-                        .apply(new RequestOptions()
-                                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                .skipMemoryCache(true)).into(myViewHolder.notiTitleImage);
+//                Glide.with(getContext()).load(titleImgUrl)
+//                        .apply(new RequestOptions()
+//                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                                .skipMemoryCache(true)).into(myViewHolder.notiTitleImage);
 
             myViewHolder.notiTitle.setText(title);
             myViewHolder.notiContent.setText(subtitle);

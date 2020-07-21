@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static int DB_VERSION               = 23;
     public boolean isNewFood                    = false;        //새로운 음식디비 있음.
     public static String DB_NAME                = "greencare_db";
-    public static final String DB_PATH = "/data/data/" + BuildConfig.LIBRARY_PACKAGE_NAME + "/databases/";
+    public static final String DB_PATH = "/data/data/" + BuildConfig.APPLICATION_ID + "/databases/";
 
     public String MAIN_ITEM_TABLE               = "_item_table";
     public String MAIN_ITEM_COLUMN_IDX          = "_idx";

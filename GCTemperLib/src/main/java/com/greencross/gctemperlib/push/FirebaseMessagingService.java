@@ -310,7 +310,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         for (Iterator iterator = info.iterator(); iterator.hasNext();) {
             ActivityManager.RunningTaskInfo runningTaskInfo = (ActivityManager.RunningTaskInfo) iterator.next();
             GLog.i("getServiceTaskName() = "+runningTaskInfo.topActivity.getClassName(), "dd");
-            if (runningTaskInfo.topActivity.getClassName().contains(context.getPackageName())) {
+            if (context.getPackageName().contains(runningTaskInfo.topActivity.getClassName())) {
                 GLog.i("getServiceTaskName() = true", "dd");
                 return true;
             }

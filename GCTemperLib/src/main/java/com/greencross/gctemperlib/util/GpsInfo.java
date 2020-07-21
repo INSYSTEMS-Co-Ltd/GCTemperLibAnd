@@ -53,6 +53,7 @@ public class GpsInfo extends Service implements LocationListener {
         getLocation();
     }
 
+    @SuppressLint("MissingPermission")
     public Location getLocation() {
 
 
@@ -75,8 +76,6 @@ public class GpsInfo extends Service implements LocationListener {
                 this.isGetLocation = true;
                 // 네트워크 정보로 부터 위치값 가져오기
                 if (isNetworkEnabled) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                            && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         locationManager.requestLocationUpdates(
                                 LocationManager.NETWORK_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
@@ -92,9 +91,6 @@ public class GpsInfo extends Service implements LocationListener {
                             }
                         }
 
-
-                        return location;
-                    }
                     if (isGPSEnabled) {
                         if (location == null) {
                             locationManager.requestLocationUpdates(

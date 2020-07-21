@@ -43,7 +43,18 @@ dependencies {
 
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-    implementation project(':GCTemperLib')
-//    implementation 'com.github.INSYSTEMS-Co-Ltd:GCTemperLibAnd:v0.0.9'
+//    implementation project(':GCTemperLib')
+    implementation 'com.github.INSYSTEMS-Co-Ltd:GCTemperLibAnd:v0.0.9'
+
+    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation 'com.google.code.gson:gson:2.2.4'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.3'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.loopj.android:android-async-http:1.4.11'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 }

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlack"
         android:fontFamily="@font/hi_gothic_m"
-        android:textAlignment="center"
+
         android:textSize="@dimen/_16_dp"
         android:text="@string/plus_friend_content1"/>
 
@@ -24,7 +24,7 @@
         android:layout_marginTop="@dimen/_30_dp"
         android:textColor="@color/color_B3B2B3"
         android:fontFamily="@font/hi_gothic_m"
-        android:textAlignment="center"
+
         android:textSize="@dimen/_13_dp"
         android:text="@string/plus_friend_content2"
         android:visibility="gone"/>

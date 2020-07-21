@@ -26,4 +26,4 @@
     android:minHeight="@dimen/_50_dp"
     android:ellipsize="marquee"
     android:gravity="center"
-    android:textAlignment="center"/>
+    />

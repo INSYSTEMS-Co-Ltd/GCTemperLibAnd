@@ -118,7 +118,7 @@
                         android:paddingRight="15dp"
                         android:singleLine="true"
                         android:text=""
-                        android:textAlignment="textEnd"
+
                         android:fontFamily="@font/hi_maum_r"/>
 
                     <TextView
@@ -128,7 +128,7 @@
                         android:text="mmHg"
                         android:fontFamily="@font/hi_maum_r"
                         android:textSize="@dimen/_12_dp"
-                        android:textAlignment="textEnd" />
+                         />
 
                 </LinearLayout>
 
@@ -151,7 +151,7 @@
                         android:paddingRight="15dp"
                         android:singleLine="true"
                         android:text=""
-                        android:textAlignment="textEnd"
+
                         android:fontFamily="@font/hi_maum_r"/>
 
                     <TextView
@@ -161,7 +161,7 @@
                         android:text="mmHg"
                         android:fontFamily="@font/hi_maum_r"
                         android:textSize="@dimen/_12_dp"
-                        android:textAlignment="textEnd" />
+                         />
                 </LinearLayout>
 
             </LinearLayout>

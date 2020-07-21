@@ -34,7 +34,7 @@
                     android:text="@string/mother_health_reg_before_text"
                     android:gravity="center_vertical"
                     android:textColor="@color/mother_btn_color"
-                    android:textAlignment="center"
+
                     android:textSize="@dimen/px_46"
                     android:textStyle="bold"
                     android:fontFamily="@font/hi_gothic_m" />
@@ -58,7 +58,7 @@
                     android:layout_marginRight="@dimen/_40_dp"
                     android:textColor="@color/mother_btn_color"
                     android:text="@string/mother_health_reg_after_text"
-                    android:textAlignment="center"
+
                     android:gravity="center_vertical"
                     android:textStyle="bold"
                     android:textSize="@dimen/px_46"
@@ -88,7 +88,7 @@
                     android:layout_height="@dimen/_40_dp"
                     android:button="@null"
                     android:fontFamily="@font/hi_maum_r"
-                    android:textAlignment="center"
+
                     android:textColor="@color/radio_tipbtn_color"
                     android:text="@string/main_brn_txt_07"/>
                 <RadioButton
@@ -98,7 +98,7 @@
                     android:button="@null"
                     android:fontFamily="@font/hi_maum_r"
                     android:textColor="@color/radio_tipbtn_color"
-                    android:textAlignment="center"
+
                     android:text="@string/main_brn_txt_08"/>
                 <RadioButton
                     android:id="@+id/category3"
@@ -107,7 +107,7 @@
                     android:button="@null"
                     android:fontFamily="@font/hi_maum_r"
                     android:textColor="@color/radio_tipbtn_color"
-                    android:textAlignment="center"
+
                     android:text="@string/main_brn_txt_09"/>
                 <RadioButton
                     android:id="@+id/category4"
@@ -116,7 +116,7 @@
                     android:button="@null"
                     android:fontFamily="@font/hi_maum_r"
                     android:textColor="@color/radio_tipbtn_color"
-                    android:textAlignment="center"
+
                     android:text="@string/main_brn_txt_10"/>
                 <RadioButton
                     android:id="@+id/category5"
@@ -125,7 +125,7 @@
                     android:button="@null"
                     android:fontFamily="@font/hi_maum_r"
                     android:textColor="@color/radio_tipbtn_color"
-                    android:textAlignment="center"
+
                     android:text="@string/main_brn_txt_11"/>
 
             </RadioGroup>

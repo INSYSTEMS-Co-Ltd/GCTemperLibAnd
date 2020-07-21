@@ -31,7 +31,6 @@
                     android:text="그래프"
                     android:textColor="@color/mother_btn_color"
                     android:gravity="center_vertical"
-                    android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="@dimen/px_46"
                     android:fontFamily="@font/hi_maum_r" />
@@ -55,7 +54,7 @@
                     android:textColor="@color/mother_btn_color"
                     android:text="@string/text_history"
                     android:gravity="center_vertical"
-                    android:textAlignment="center"
+
                     android:textStyle="bold"
                     android:textSize="@dimen/px_46"
                     android:fontFamily="@font/hi_maum_r" />
@@ -467,7 +466,7 @@
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
                                                 android:text="900"
-                                                android:textAlignment="center"
+
                                                 android:textColor="@color/color_E1147F"
                                                 android:textSize="@dimen/_20_dp"
                                                 android:textStyle="bold"
@@ -485,7 +484,6 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="match_parent"
                                                 android:gravity="bottom"
-                                                android:textAlignment="center"
                                                 android:text="mmHg"
                                                 android:textColor="@color/color_E1147F"
                                                 android:textSize="@dimen/_14_dp"
@@ -529,7 +527,7 @@
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
                                                 android:text="1000"
-                                                android:textAlignment="center"
+
                                                 android:textColor="@color/color_E1147F"
                                                 android:textSize="@dimen/_20_dp"
                                                 android:textStyle="bold"
@@ -548,7 +546,6 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="match_parent"
                                                 android:gravity="bottom"
-                                                android:textAlignment="center"
                                                 android:text="mmHg"
                                                 android:textColor="@color/color_E1147F"
                                                 android:textSize="@dimen/_14_dp"
@@ -798,7 +795,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/diet_icon1"
                         android:drawablePadding="@dimen/_5_dp"
-                        android:textAlignment="center"
+
                         android:text="@string/상담연결하기"
                         android:fontFamily="@font/hi_gothic_m"
                         android:textColor="@color/colorWhite"

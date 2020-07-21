@@ -25,7 +25,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="@font/hi_gothic_m"
         android:textSize="@dimen/_14_dp"
-        android:textAlignment="center"
+
         android:text="@string/mother_health_how_pregnant_weight2"/>
 
 

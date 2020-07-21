@@ -101,7 +101,7 @@
                     android:paddingRight="15dp"
                     android:tag=""
                     android:fontFamily="@font/hi_maum_r"
-                    android:textAlignment="textEnd"/>
+                    />
 
                 <TextView
                     style="@style/common_textview_ea"
@@ -110,7 +110,7 @@
                     android:text="mg/dL"
                     android:fontFamily="@font/hi_maum_r"
                     android:textSize="@dimen/_12_dp"
-                    android:textAlignment="textEnd"/>
+                    />
             </LinearLayout>
 
 

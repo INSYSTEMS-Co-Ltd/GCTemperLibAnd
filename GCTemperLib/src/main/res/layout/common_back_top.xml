@@ -33,7 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textAlignment="center"
+
             android:singleLine="true"
             android:textColor="@color/color_ffffff"
             android:fontFamily="@font/hi_maum_r"

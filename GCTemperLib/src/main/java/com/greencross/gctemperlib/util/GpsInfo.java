@@ -1,8 +1,11 @@
 package com.greencross.gctemperlib.util;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -10,6 +13,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.widget.Button;
+
+import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
@@ -49,6 +54,8 @@ public class GpsInfo extends Service implements LocationListener {
     }
 
     public Location getLocation() {
+
+
         try {
             locationManager = (LocationManager) mContext
                     .getSystemService(LOCATION_SERVICE);
@@ -68,37 +75,43 @@ public class GpsInfo extends Service implements LocationListener {
                 this.isGetLocation = true;
                 // 네트워크 정보로 부터 위치값 가져오기
                 if (isNetworkEnabled) {
-                    locationManager.requestLocationUpdates(
-                            LocationManager.NETWORK_PROVIDER,
-                            MIN_TIME_BW_UPDATES,
-                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-
-                    if (locationManager != null) {
-                        location = locationManager
-                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        if (location != null) {
-                            // 위도 경도 저장
-                            lat = location.getLatitude();
-                            lon = location.getLongitude();
-                        }
-                    }
-                }
-
-                if (isGPSEnabled) {
-                    if (location == null) {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                            && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         locationManager.requestLocationUpdates(
-                                LocationManager.GPS_PROVIDER,
+                                LocationManager.NETWORK_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
                         if (locationManager != null) {
                             location = locationManager
-                                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                                    .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                             if (location != null) {
-                                lat = location.getLatitude();
-                                lon = location.getLongitude();
+                                // 위도 경도 저장
+                               lat = location.getLatitude();
+                               lon = location.getLongitude();
+                            }
+                        }
+
+
+                        return location;
+                    }
+                    if (isGPSEnabled) {
+                        if (location == null) {
+                            locationManager.requestLocationUpdates(
+                                    LocationManager.GPS_PROVIDER,
+                                    MIN_TIME_BW_UPDATES,
+                                    MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                            if (locationManager != null) {
+                                location = locationManager
+                                        .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                                if (location != null) {
+                                    lat = location.getLatitude();
+                                    lon = location.getLongitude();
+                                }
                             }
                         }
                     }
+
                 }
             }
 

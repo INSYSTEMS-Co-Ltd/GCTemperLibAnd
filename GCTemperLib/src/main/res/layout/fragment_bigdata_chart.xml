@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/diet_icon1"
                     android:drawablePadding="@dimen/_5_dp"
-                    android:textAlignment="center"
+
                     android:text="@string/상담연결하기"
                     android:fontFamily="@font/hi_gothic_m"
                     android:textColor="@color/colorWhite"

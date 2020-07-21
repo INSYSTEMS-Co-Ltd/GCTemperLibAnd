@@ -198,70 +198,33 @@ public class DeviceUtil {
         return result;
     }
 
+//
+//    /**
+//     * 폰 OS가 기준버전 이상이면 true
+//     *
+//     * @param release1 Build.VERSION.RELEASE 에 해당하는 정보
+//     * @return 기준버전 이상이면 true
+//     */
+//    public static boolean afterOsVersion(String release1) {
+//        String[] split1 = release1.split("\\.");
+//
+//        String release2 = Build.VERSION.RELEASE;
+//        String[] split2 = release2.split("\\.");
+//
+//        int len = 0;
+//        if (split1.length > split2.length) len = split2.length;
+//        else len = split1.length;
+//
+//        for (int i = 0; i < len; i++) {
+//            if (Integer.valueOf(split1[i]) > Integer.valueOf(split2[i])) return false;
+//            else if (Integer.valueOf(split1[i]) < Integer.valueOf(split2[i])) return true;
+//        }
+//
+//        if (split1.length > split2.length) return false;
+//
+//        return true;
+//    }
 
-    /**
-     * PhoneID얻기
-     *
-     * @return String
-     */
-    public static String getPhoneID(Context ctx) {
-        final TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
-
-        final String tmDevice, tmSerial, androidId;
-        tmDevice = "" + tm.getDeviceId();
-        tmSerial = "" + tm.getSimSerialNumber();
-        androidId = "" + Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.ANDROID_ID);
-
-        UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
-        return deviceUuid.toString();
-    }
-
-    /**
-     * 폰 OS가 기준버전 이상이면 true
-     *
-     * @param release1 Build.VERSION.RELEASE 에 해당하는 정보
-     * @return 기준버전 이상이면 true
-     */
-    public static boolean afterOsVersion(String release1) {
-        String[] split1 = release1.split("\\.");
-
-        String release2 = Build.VERSION.RELEASE;
-        String[] split2 = release2.split("\\.");
-
-        int len = 0;
-        if (split1.length > split2.length) len = split2.length;
-        else len = split1.length;
-
-        for (int i = 0; i < len; i++) {
-            if (Integer.valueOf(split1[i]) > Integer.valueOf(split2[i])) return false;
-            else if (Integer.valueOf(split1[i]) < Integer.valueOf(split2[i])) return true;
-        }
-
-        if (split1.length > split2.length) return false;
-
-        return true;
-    }
-
-    /**
-     * ssoKey발급을 위해 필요한 PhoneID 구함.
-     *
-     * @return String sso device id
-     */
-    public static String getSsoPhoneID(Context ctx) {
-        final TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
-        String result = tm.getDeviceId();
-        if (result != null && !result.equals("")) {
-            return result;
-        } else {
-            final String tmDevice, tmSerial, androidId;
-            tmDevice = "" + tm.getDeviceId();
-            tmSerial = "" + tm.getSimSerialNumber();
-            androidId = "" + Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.ANDROID_ID);
-
-            UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
-            return deviceUuid.toString().substring(0, 15);
-        }
-    }
 
     /**
      * 지역 설정을 변경
@@ -277,33 +240,33 @@ public class DeviceUtil {
         activity.getResources().updateConfiguration(config, activity.getResources().getDisplayMetrics());
     }
 
-    /**
-     * 뷰 그룹을 다시 그림
-     *
-     * @param context 현제 context
-     * @param root    업데이트될 뷰 그룹
-     * @throws Exception
-     */
-    public static void setRefreshViewGroup(Context context, ViewGroup root) throws Exception {
-        for (int i = 0; i < root.getChildCount(); i++) {
-            View child = root.getChildAt(i);
-
-            if (child instanceof TextView) {
-                if (child.getTag() != null) {
-
-                    if (((TextView) child).getText() != null && ((TextView) child).getText().toString().length() > 0) {
-                        int stringId = getResourceId(context, child.getTag());
-                        ((TextView) child).setText(stringId);
-                    }
-
-                    if (((TextView) child).getHint() != null && ((TextView) child).getHint().toString().length() > 0) {
-                        int hintId = getResourceId(context, child.getTag());
-                        ((TextView) child).setHint(hintId);
-                    }
-                }
-            } else if (child instanceof ViewGroup) setRefreshViewGroup(context, (ViewGroup) child);
-        }
-    }
+//    /**
+//     * 뷰 그룹을 다시 그림
+//     *
+//     * @param context 현제 context
+//     * @param root    업데이트될 뷰 그룹
+//     * @throws Exception
+//     */
+//    public static void setRefreshViewGroup(Context context, ViewGroup root) throws Exception {
+//        for (int i = 0; i < root.getChildCount(); i++) {
+//            View child = root.getChildAt(i);
+//
+//            if (child instanceof TextView) {
+//                if (child.getTag() != null) {
+//
+//                    if (((TextView) child).getText() != null && ((TextView) child).getText().toString().length() > 0) {
+//                        int stringId = getResourceId(context, child.getTag());
+//                        ((TextView) child).setText(stringId);
+//                    }
+//
+//                    if (((TextView) child).getHint() != null && ((TextView) child).getHint().toString().length() > 0) {
+//                        int hintId = getResourceId(context, child.getTag());
+//                        ((TextView) child).setHint(hintId);
+//                    }
+//                }
+//            } else if (child instanceof ViewGroup) setRefreshViewGroup(context, (ViewGroup) child);
+//        }
+//    }
 
     public static int getResourceId(Context context, Object tag) {
         return context.getResources().getIdentifier((String) tag, "string", context.getPackageName());
@@ -327,32 +290,32 @@ public class DeviceUtil {
         return Build.PRODUCT;
     }
 
-    /**
-     * 디바이스 정보를 가져온다.
-     *
-     * @param ctx    Context
-     * @param pageId 태블릿에서 메인/컨텐츠 웹뷰 가로사이즈 처리하기 위해 추가됨.
-     * @return String
-     */
-    public static String getDeviceInfo(Context ctx, String pageId) {
-        JSONObject result = new JSONObject();
-        try {
-            result.put("uuid", getUDID(ctx));
-            result.put("version", getPhoneOsVersion());
-            result.put("platform", "Android");
-            result.put("devicetype", isTabletDevice(ctx) ? "tablet" : "phone");
-            result.put("frdNm", DeviceUtil.getProductName());
-
-            float tabletWebviewWidth = 0;
-
-            Logger.d(TAG, "tabletWebviewWidth[" + tabletWebviewWidth + "]");
-            result.put("tabletWebviewWidth", tabletWebviewWidth);
-
-        } catch (JSONException e) {
-        }
-
-        return result.toString();
-    }
+//    /**
+//     * 디바이스 정보를 가져온다.
+//     *
+//     * @param ctx    Context
+//     * @param pageId 태블릿에서 메인/컨텐츠 웹뷰 가로사이즈 처리하기 위해 추가됨.
+//     * @return String
+//     */
+//    public static String getDeviceInfo(Context ctx, String pageId) {
+//        JSONObject result = new JSONObject();
+//        try {
+//            result.put("uuid", getUDID(ctx));
+//            result.put("version", getPhoneOsVersion());
+//            result.put("platform", "Android");
+//            result.put("devicetype", isTabletDevice(ctx) ? "tablet" : "phone");
+//            result.put("frdNm", DeviceUtil.getProductName());
+//
+//            float tabletWebviewWidth = 0;
+//
+//            Logger.d(TAG, "tabletWebviewWidth[" + tabletWebviewWidth + "]");
+//            result.put("tabletWebviewWidth", tabletWebviewWidth);
+//
+//        } catch (JSONException e) {
+//        }
+//
+//        return result.toString();
+//    }
 
     /**
      * 특정단말에서 OS Icon push count 표시 변경.
@@ -377,62 +340,4 @@ public class DeviceUtil {
         return systemService.getNetworkOperatorName();
     }
 
-    /**
-     * 폰번호 얻기
-     *
-     * @param ctx Context
-     * @return String
-     */
-    public static String getPhoneNumber(Context ctx) {
-        TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
-        String phoneNumber = tm.getLine1Number();
-
-        if ((phoneNumber != null) && (!phoneNumber.equals(""))) {
-
-            boolean codeCheck = phoneNumber.startsWith("+82");
-            if (codeCheck) {
-                String cut = phoneNumber.substring(0, 3);
-                phoneNumber = phoneNumber.replace(cut, "0");
-            }
-
-        }
-        return phoneNumber;
-    }
-
-    /**
-     * USIM 일련번호 가져오기
-     *
-     * @param cont Context
-     * @return String
-     */
-    public static String getSimSerialNumber(Context cont) {
-        TelephonyManager operator = (TelephonyManager) cont.getSystemService(Context.TELEPHONY_SERVICE);
-        return operator.getSimSerialNumber();
-    }
-
-    /**
-     * UICC-ID (USIM 일련번호 앞뒤 2자리씩 삭제 가져오기)
-     *
-     * @param cont Context
-     * @return String
-     */
-    public static String getUiccId(Context cont) {
-        TelephonyManager operator = (TelephonyManager) cont.getSystemService(Context.TELEPHONY_SERVICE);
-        String uiccId = operator.getSimSerialNumber();
-        if (uiccId != null && uiccId.length() >= 18) {
-            uiccId = uiccId.substring(2, 18);
-        }
-        return uiccId;
-    }
-
-    /**
-     * IMEI 값을 가져오기
-     *
-     * @param context 컨텍스트 정보
-     * @return IMEI 값
-     */
-    public static String getDeviceId(Context context) {
-        TelephonyManager telManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return telManager.getDeviceId();
-    }
 }

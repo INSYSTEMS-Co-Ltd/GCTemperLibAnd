@@ -34,7 +34,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="기초대사량"
-                android:textAlignment="center"
+
                 android:textColor="@color/colorBlack"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->
             <View
@@ -51,7 +51,7 @@
                 android:paddingEnd="8dp"
                 android:paddingLeft="10dp"
                 android:text="기초대사량"
-                android:textAlignment="textEnd"
+
                 android:textColor="@color/colorDark"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->
             <View
@@ -82,7 +82,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textAlignment="center"
+
                 android:textColor="@color/colorBlack"
                 android:text="BMI"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->
@@ -99,7 +99,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorDark"
-                android:textAlignment="textEnd"
+
                 android:paddingEnd="8dp"
                 android:text="기초대사량"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->
@@ -129,7 +129,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textAlignment="center"
+
                 android:gravity="center_vertical"
                 android:textColor="@color/colorBlack"
                 android:text="체지방률"/>
@@ -147,7 +147,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorDark"
-                android:textAlignment="textEnd"
+
                 android:paddingEnd="8dp"
                 android:text="기초대사량"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->
@@ -181,7 +181,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/colorBlack"
                 android:text="내장지방률"
-                android:textAlignment="center"/>
+                />
             <!--android:fontFamily="@font/kelson_sans_regular"-->
             <View
                 android:layout_width="1dp"
@@ -196,7 +196,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorDark"
-                android:textAlignment="textEnd"
+
                 android:paddingEnd="8dp"
                 android:text="기초대사량"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->
@@ -230,7 +230,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/colorBlack"
                 android:text="체수분율"
-                android:textAlignment="center"/>
+                />
             <!--android:fontFamily="@font/kelson_sans_regular"-->
             <View
                 android:layout_width="1dp"
@@ -245,7 +245,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorDark"
-                android:textAlignment="textEnd"
+
                 android:paddingEnd="8dp"
                 android:text="기초대사량"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->
@@ -276,7 +276,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textAlignment="center"
+
                 android:gravity="center_vertical"
                 android:textColor="@color/colorBlack"
                 android:text="근육율"/>
@@ -294,7 +294,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorDark"
-                android:textAlignment="textEnd"
+
                 android:paddingEnd="8dp"
                 android:text="기초대사량"/>
             <!--android:fontFamily="@font/kelson_sans_regular"-->

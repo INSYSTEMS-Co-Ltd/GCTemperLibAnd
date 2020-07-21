@@ -109,7 +109,7 @@
                     android:layout_alignParentLeft="true"
                     android:gravity="top"
                     tools:text="현제 체중 : "
-                    android:textAlignment="center"
+
                     android:textColor="@color/color_8c8c8c"
                     android:textSize="@dimen/_15_dp"
                     android:textStyle="bold"

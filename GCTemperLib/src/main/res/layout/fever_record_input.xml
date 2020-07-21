@@ -82,7 +82,7 @@
                 android:layout_marginTop="@dimen/_20_dp"
                 android:layout_weight="1"
                 android:text="@string/txt_croise"
-                android:textAlignment="center"
+
                 android:textColor="@color/txt_dark_gray"
                 android:lineSpacingExtra="@dimen/_8_dp"
                 android:textSize="@dimen/_14_dp"

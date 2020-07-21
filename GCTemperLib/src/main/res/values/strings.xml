@@ -954,9 +954,9 @@
 
     <string name="tepid_water_info">아이가 힘들어하면 32~35도 정도의 미지근한 물수건으로 얼굴과 목, 가슴, 겨드랑이를 닦아주시기 바랍니다. (해열제 먹고 30분 후, 손발을 피해서)</string>
     <string name="appetite_lv_1">정상 수준 식욕</string>
-    <string name="appetite_lv_2">90\u0025 수준 식욕</string>
-    <string name="appetite_lv_3">90\u0025 ~ 70\u0025 수준 식욕</string>
-    <string name="appetite_lv_4" formatted="false">70\u0025 ~ 50\u0025 수준 식욕</string>
+    <string formatted="false" name="appetite_lv_2">90% 수준 식욕</string>
+    <string formatted="false" name="appetite_lv_3">90% ~ 70% 수준 식욕</string>
+    <string formatted="false" name="appetite_lv_4">70% ~ 50% 수준 식욕</string>
     <string name="appetite_lv_5">50\u0025 미만 수준 식욕</string>
     <string name="close">닫&#160;&#160;&#160;&#160;기</string>
     <string name="how_appetite">평상시대비 식욕은 어떤가요?</string>
@@ -2240,7 +2240,6 @@
     <string name="ShareBtn4">HL04_001_001_!</string>
     <string name="RightImg4">HL04_002_001_!</string>
     <string name="BtnGrowthPut">HL04_003_001_!</string>
-    <string name="BtnGrowthHx">HL04_004_!</string>
     <string name="graph_btn">HL04_004_001_!</string>
     <string name="diagram_btn">HL04_004_002_!</string>
     <string name="height_btn">HL04_004_003_!</string>

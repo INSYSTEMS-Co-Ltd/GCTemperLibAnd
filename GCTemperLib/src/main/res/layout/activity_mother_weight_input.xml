@@ -69,7 +69,7 @@
             style="@style/common_edittext_style"
             android:layout_width="match_parent"
             android:tag=""
-            android:textAlignment="center"
+
             android:fontFamily="@font/hi_maum_r" />-->
 
         <LinearLayout

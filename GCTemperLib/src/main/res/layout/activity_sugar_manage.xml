@@ -570,7 +570,7 @@
                                         android:fontFamily="@font/hi_maum_r"
                                         android:gravity="bottom"
                                         android:text="900"
-                                        android:textAlignment="center"
+
                                         android:textColor="@color/color_E1147F"
                                         android:textSize="@dimen/_20_dp"
                                         android:textStyle="bold"/>
@@ -608,7 +608,7 @@
                                         android:fontFamily="@font/hi_maum_r"
                                         android:gravity="bottom"
                                         android:text="1000"
-                                        android:textAlignment="center"
+
                                         android:textColor="@color/color_E1147F"
                                         android:textSize="@dimen/_20_dp"
                                         android:textStyle="bold"/>
@@ -627,7 +627,7 @@
                                         android:fontFamily="@font/hi_maum_r"
                                         android:gravity="bottom"
                                         android:text="mg/dL"
-                                        android:textAlignment="center"
+
                                         android:textColor="@color/color_E1147F"
                                         android:textSize="@dimen/_14_dp"/>
                                 </LinearLayout>
@@ -938,7 +938,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/diet_icon1"
                         android:drawablePadding="@dimen/_5_dp"
-                        android:textAlignment="center"
+
                         android:text="@string/상담연결하기"
                         android:fontFamily="@font/hi_gothic_m"
                         android:textColor="@color/colorWhite"

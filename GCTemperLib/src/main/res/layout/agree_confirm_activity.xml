@@ -34,7 +34,7 @@
             android:text="개인정보정책이 고객님들께 더 나은 서비스를\n제공하기 위해 변경되었습니다.\n새로운 개인정보정책에 동의해 주세요."
             android:letterSpacing="-0.1"
             android:lineSpacingMultiplier="1.1"
-            android:textAlignment="center"
+
             android:textColor="@color/colorBlack"/>
 
 
@@ -46,7 +46,7 @@
             android:fontFamily="@font/hi_gothic_m"
             android:text="※수집 및 이용에 거부할 권리가 있으며,\n동의하지 않으실 경우 서비스 이용이 불가합니다."
             android:letterSpacing="-0.1"
-            android:textAlignment="center"
+
             android:textColor="#959595"
             android:visibility="invisible"/>
 

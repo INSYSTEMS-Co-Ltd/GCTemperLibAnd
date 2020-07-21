@@ -74,7 +74,7 @@
                     android:paddingLeft="@dimen/_30_dp"
                     android:paddingRight="@dimen/_30_dp"
                     android:paddingTop="@dimen/_10_dp"
-                    android:textAlignment="center"
+
                     android:textColor="@color/txt_dark_bold"
                     android:textSize="@dimen/_16_dp"
                     android:fontFamily="@font/hi_maum_r"/>
@@ -214,7 +214,7 @@
                             android:paddingLeft="@dimen/_30_dp"
                             android:paddingRight="@dimen/_30_dp"
                             android:text="@string/remedy_volume_1"
-                            android:textAlignment="center"
+
                             android:textColor="@color/txt_dark_lithg"
                             android:textSize="@dimen/_16_dp"
                             android:fontFamily="@font/hi_gothic_m"/>
@@ -277,7 +277,7 @@
                             android:paddingLeft="@dimen/_30_dp"
                             android:paddingRight="@dimen/_30_dp"
                             android:text="@string/remedy_volume_2"
-                            android:textAlignment="center"
+
                             android:textColor="@color/txt_dark_lithg"
                             android:textSize="@dimen/_16_dp"
                             android:fontFamily="@font/hi_gothic_m"/>
@@ -338,7 +338,7 @@
                             android:paddingLeft="@dimen/_30_dp"
                             android:paddingRight="@dimen/_30_dp"
                             android:text="@string/remedy_volume_3"
-                            android:textAlignment="center"
+
                             android:textColor="@color/txt_dark_lithg"
                             android:textSize="@dimen/_16_dp"
                             android:fontFamily="@font/hi_gothic_m" />

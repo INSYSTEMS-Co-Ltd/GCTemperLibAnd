@@ -1,11 +1,13 @@
 package com.greencross.gctemperlib.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.PowerManager;
 
 public abstract class WakeLocker {
 	private static PowerManager.WakeLock wakeLock;
 	
+	@SuppressLint("InvalidWakeLockTag")
 	@SuppressWarnings("deprecation")
 	public static void acquire( Context context) 
 	{

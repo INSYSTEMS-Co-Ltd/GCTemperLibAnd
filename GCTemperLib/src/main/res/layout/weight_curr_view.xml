@@ -150,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/mother_btn_8b2666"
-                        android:textAlignment="center"
+
                         android:text="@string/mother_health_wt_mesure"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/_12_dp"
@@ -177,7 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.greencross.gctemperlib.gngcare.util.CustomSeekBar
+                    <com.greencross.gctemperlib.util.CustomSeekBar
                         android:id="@+id/seekBar"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_90_dp"
@@ -282,7 +282,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/mom_round10_bottom_backgroud"
-                        android:textAlignment="center"
+
                         android:text="@string/mother_health_wt_prediction1"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/_14_dp"
@@ -295,7 +295,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/mom_round10_bottom_backgroud"
-                        android:textAlignment="center"
+
                         android:text="@string/mother_health_curr_wt_dialog_title1"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/_14_dp"
@@ -460,7 +460,7 @@
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/diet_icon1"
                             android:drawablePadding="@dimen/_5_dp"
-                            android:textAlignment="center"
+
                             android:text="@string/상담연결하기"
                             android:fontFamily="@font/hi_gothic_m"
                             android:textColor="@color/colorWhite"

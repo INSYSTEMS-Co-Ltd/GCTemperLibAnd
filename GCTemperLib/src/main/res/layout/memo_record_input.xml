@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textAlignment="center"
+
                     android:text="@string/memo_tab1"
                     android:textColor="@color/chl_fever_btn_color"
                     android:textSize="@dimen/px_46"
@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textAlignment="center"
+
                     android:text="@string/memo_tab2"
                     android:textColor="@color/chl_fever_btn_color"
                     android:textSize="@dimen/px_46"
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textAlignment="center"
+
                     android:text="@string/memo_tab3"
                     android:textColor="@color/chl_fever_btn_color"
                     android:textSize="@dimen/px_46"

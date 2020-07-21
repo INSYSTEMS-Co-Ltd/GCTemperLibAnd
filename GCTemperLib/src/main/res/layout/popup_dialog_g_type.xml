@@ -60,7 +60,7 @@
                     android:layout_marginRight="@dimen/_30_dp"
                     android:layout_marginTop="@dimen/_30_dp"
                     android:lineSpacingExtra="@dimen/_4_dp"
-                    android:textAlignment="center"
+
                     android:text="여러 개의 사용자 계정이\n검색되었습니다."
                     android:textColor="#0097C9"
                     android:textSize="@dimen/_20_dp"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/dialog_content"
                     android:layout_marginTop="@dimen/_30_dp"
-                    android:textAlignment="center"
+
                     android:lineSpacingExtra="@dimen/_4_dp"
                     android:text="선택한 계정으로 통합되어 이용 가능합니다."
                     android:textColor="@color/colorBlack"
@@ -90,7 +90,7 @@
                         android:layout_width="@dimen/_80_dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textAlignment="center"
+
                         android:lineSpacingExtra="@dimen/_4_dp"
                         android:text="홈페이지\n계정"
                         android:textColor="@color/colorBlack"
@@ -124,7 +124,7 @@
                         android:layout_width="@dimen/_80_dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textAlignment="center"
+
                         android:lineSpacingExtra="@dimen/_4_dp"
                         android:text="APP 계정"
                         android:textColor="@color/colorBlack"

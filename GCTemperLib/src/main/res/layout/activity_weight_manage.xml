@@ -30,7 +30,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="현재체중"
-                android:textAlignment="center"
+
                 android:textColor="@color/mother_btn_color"
                 android:textSize="@dimen/px_46"
                 android:textStyle="bold"
@@ -56,7 +56,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/text_graph"
-                android:textAlignment="center"
+
                 android:textColor="@color/mother_btn_color"
                 android:textSize="@dimen/px_46"
                 android:textStyle="bold"
@@ -83,7 +83,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/text_history"
-                android:textAlignment="center"
+
                 android:textColor="@color/mother_btn_color"
                 android:textSize="@dimen/px_46"
                 android:textStyle="bold"

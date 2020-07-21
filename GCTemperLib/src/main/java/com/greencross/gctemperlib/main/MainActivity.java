@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private View view;
 
     //swiper
-    private CustomViewPager viewPager; //뷰페이지
+//    private ViewPagerAdapter viewPager; //뷰페이지
     private ViewPagerAdapter ViewPagerAdapter; //뷰페이지 어댑터
 
     //Spinner
@@ -383,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mlist_add_change = (LinearLayout) findViewById(R.id.list_add_change);
 
         //swiper
-        viewPager = (CustomViewPager) findViewById(R.id.main_viewpager);
+//        viewPager = (ViewPagerAdapter) findViewById(R.id.main_viewpager);
 
         mBtnLeftBaby = (ImageButton)findViewById(R.id.btn_left_baby);
         mBtnRightBaby = (ImageButton)findViewById(R.id.btn_right_baby);
@@ -1382,8 +1382,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         @Override
         public void notifyDataSetChanged() {
-            TextView temp1 = viewPager.findViewWithTag("mTxtSpeech_Bubble"+mChildChoiceIndex);
-            temp1.setText(resStringId);
+//            TextView temp1 = viewPager.findViewWithTag("mTxtSpeech_Bubble"+mChildChoiceIndex);
+//            temp1.setText(resStringId);
         }
     }
 
@@ -1521,7 +1521,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mChildChoiceIndex > 0) {
 
                     mChildChoiceIndex--;
-                    viewPager.setCurrentItem(mChildChoiceIndex);
+//                    viewPager.setCurrentItem(mChildChoiceIndex);
                     setBabyData();
                     CommonData.getInstance(MainActivity.this).setSelectChildSn(mChildMenuItem.get(mChildChoiceIndex).getmChlSn());
                 } else {
@@ -1532,7 +1532,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mChildChoiceIndex < mChildMenuItem.size() - 1) {
 
                     mChildChoiceIndex++;
-                    viewPager.setCurrentItem(mChildChoiceIndex);
+//                    viewPager.setCurrentItem(mChildChoiceIndex);
                     setBabyData();
                     CommonData.getInstance(MainActivity.this).setSelectChildSn(mChildMenuItem.get(mChildChoiceIndex).getmChlSn());
                 } else {
@@ -2754,10 +2754,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setDefaultCategory();
 
         ViewPagerAdapter = new ViewPagerAdapter();
-        viewPager.setAdapter(ViewPagerAdapter);
-        viewPager.setOffscreenPageLimit(mChildMenuItem.size());
-        viewPager.setCurrentItem(mChildChoiceIndex);
-        viewPager.addOnPageChangeListener(mOnPageChangeListener);
+//        viewPager.setAdapter(ViewPagerAdapter);
+//        viewPager.setOffscreenPageLimit(mChildMenuItem.size());
+//        viewPager.setCurrentItem(mChildChoiceIndex);
+//        viewPager.addOnPageChangeListener(mOnPageChangeListener);
         setBabyData();
         requestBBSListApi();
 

@@ -16,7 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.GCAlramType;
-import com.greencross.gctemperlib.GCFeverLib;
+import com.greencross.gctemperlib.GCTemperLib;
+import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDialog;
@@ -33,7 +34,7 @@ public class Main1QActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_1q_main);
 
-        final GCFeverLib gcLib = new GCFeverLib(this);
+        final GCTemperLib gcLib = new GCTemperLib(this);
 
         mProgress = findViewById(R.id.progress_layout);
 
@@ -128,7 +129,7 @@ public class Main1QActivity extends Activity {
      * 최초 녹십자 라이브러리 사용을 위한 토큰 등록
      */
     private void regsitGCToken() {
-        final GCFeverLib gcLib = new GCFeverLib(this);
+        final GCTemperLib gcLib = new GCTemperLib(this);
         boolean isAvailable = gcLib.registGCToken(BuildConfig.GC_TOKEN);
         String message = String.format("인증 %1$s 하였습니다.", isAvailable ? "성공" : "실패");
         CDialog.showDlg(this, message);
@@ -138,7 +139,7 @@ public class Main1QActivity extends Activity {
      * 녹십자 라이브러리 고객번호 등록
      */
     public void regsitCustNo() {
-        final GCFeverLib gcLib = new GCFeverLib(this);
+        final GCTemperLib gcLib = new GCTemperLib(this);
         TextView custNoTv = findViewById(R.id.cust_no_edittext);
         String customerNo = custNoTv.getText().toString();
         String gender = null;
@@ -160,7 +161,7 @@ public class Main1QActivity extends Activity {
      * 녹십자 라이브러리 Push 서비스 등록
      */
     public void regsitPushToken() {
-        final GCFeverLib gcLib = new GCFeverLib(this);
+        final GCTemperLib gcLib = new GCTemperLib(this);
         TextView tokenTv = findViewById(R.id.push_token_edittext);
         String pushToken = tokenTv.getText().toString();
         showProgress();
@@ -181,7 +182,7 @@ public class Main1QActivity extends Activity {
      * 녹십자 라이브러리 Push 서비스 등록
      */
     public void regsitTemper() {
-        final GCFeverLib gcLib = new GCFeverLib(this);
+        final GCTemperLib gcLib = new GCTemperLib(this);
         TextView temperEditText = findViewById(R.id.temper_edittext);
         String temper = temperEditText.getText().toString();
 
@@ -206,7 +207,7 @@ public class Main1QActivity extends Activity {
      * @param isEnable
      */
     private void settingAlramService(GCAlramType type, boolean isEnable) {
-        final GCFeverLib gcLib = new GCFeverLib(this);
+        final GCTemperLib gcLib = new GCTemperLib(this);
 
         showProgress();
         gcLib.settingAlramService(type, isEnable, new IGCResult() {
@@ -234,7 +235,7 @@ public class Main1QActivity extends Activity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CommonData.PERMISSION_REQUEST_GPS) {
             if (RuntimeUtil.verifyPermissions(Main1QActivity.this, grantResults)) {
-                final GCFeverLib gcLib = new GCFeverLib(this);
+                final GCTemperLib gcLib = new GCTemperLib(this);
                 if (gcLib.isAvailableGCToken()) {
                     gcLib.startGCMainActivity();
                 } else {

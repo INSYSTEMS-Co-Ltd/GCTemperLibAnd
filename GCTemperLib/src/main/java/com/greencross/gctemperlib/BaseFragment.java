@@ -1,5 +1,6 @@
 package com.greencross.gctemperlib;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -62,12 +63,12 @@ public class BaseFragment extends Fragment implements IBaseFragment {
     boolean mIsLogin = false;
 
 
-    private static BaseActivity mBaseActivity;
+//    private static BaseActivity mBaseActivity;
 //    private CommonActionBar mActionBar;
 
-    public static Fragment newInstance(BaseActivity activity) {
+    public static Fragment newInstance(Context activity) {
         BaseFragment fragment = new BaseFragment();
-        mBaseActivity = activity;
+//        mBaseActivity = activity;
         return fragment;
     }
 
@@ -131,7 +132,8 @@ public class BaseFragment extends Fragment implements IBaseFragment {
                 getActivity().onBackPressed();
             }
         } else {
-            mBaseActivity.onBackPressed();
+//            mBaseActivity.onBackPressed();
+            getActivity().onBackPressed();
         }
     }
 
@@ -183,9 +185,9 @@ public class BaseFragment extends Fragment implements IBaseFragment {
 //            });
 //        }
 //    }
-    protected void onCreateOptionsMenu(Menu menu) {
-        mBaseActivity.onCreateOptionsMenu(menu);
-    }
+//    protected void onCreateOptionsMenu(Menu menu) {
+//        mBaseActivity.onCreateOptionsMenu(menu);
+//    }
 
 //    private ActionBar getActionBar() {
 //        return mBaseActivity.getSupportActionBar();

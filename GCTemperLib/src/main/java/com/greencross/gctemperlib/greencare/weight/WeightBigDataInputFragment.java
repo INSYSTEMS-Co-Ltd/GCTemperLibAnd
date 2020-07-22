@@ -50,14 +50,14 @@ public class WeightBigDataInputFragment extends BaseFragment {
         if (getActivity() instanceof DummyActivity) {
             DummyActivity activity = (DummyActivity) getActivity();
 
-            ImageView tipbtn = (ImageView) activity.findViewById(R.id.actionbar_tip_btn);
-            tipbtn.setVisibility(View.GONE);
-            tipbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    activity.actionTipBtnClick(getContext(), StringUtil.getIntVal(mInputWeek.getText().toString()));
-                }
-            });
+//            ImageView tipbtn = (ImageView) activity.findViewById(R.id.actionbar_tip_btn);
+//            tipbtn.setVisibility(View.GONE);
+//            tipbtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    activity.actionTipBtnClick(getContext(), StringUtil.getIntVal(mInputWeek.getText().toString()));
+//                }
+//            });
 
             TextView titleTv = (TextView) activity.findViewById(R.id.common_title_tv);
             titleTv.setText(getString(R.string.mother_health_wt_prediction));

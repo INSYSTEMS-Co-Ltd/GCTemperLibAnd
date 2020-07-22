@@ -80,10 +80,11 @@ public class SettingAddressActivity extends BackBaseActivity implements View.OnC
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btn_search_address) {
-            Intent intent = new Intent(SettingAddressActivity.this, SearchAddressActivity.class);
-            startActivityForResult(intent, CommonData.REQUEST_ADDRESS_SEARCH);
-        } else if (id == R.id.btn_save_address) {
+//        if (id == R.id.btn_search_address) {
+//            Intent intent = new Intent(SettingAddressActivity.this, SearchAddressActivity.class);
+//            startActivityForResult(intent, CommonData.REQUEST_ADDRESS_SEARCH);
+//        } else
+            if (id == R.id.btn_save_address) {
             if (mAddressDo.length() > 0 && mAddressGu.length() > 0) {
                 requestAddressData();
             } else {

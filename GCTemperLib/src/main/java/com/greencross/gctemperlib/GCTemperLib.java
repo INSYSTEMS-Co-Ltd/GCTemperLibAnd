@@ -1,6 +1,7 @@
 package com.greencross.gctemperlib;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import com.greencross.gctemperlib.fever.TemperControlActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
@@ -22,7 +24,7 @@ import com.greencross.gctemperlib.greencare.util.SharedPref;
 import java.lang.reflect.Constructor;
 
 
-public class GCFeverLib {
+public class GCTemperLib {
     private final String TAG = getClass().getSimpleName();
 
     private Context mContext;
@@ -36,7 +38,7 @@ public class GCFeverLib {
 
     private final String APP_TOKEN = "APA91bGkmKwWBjCso94R3sM3CUEk79";  // 앱 토큰
 
-    public GCFeverLib(Context context) {
+    public GCTemperLib(Context context) {
         mContext = context;
     }
 
@@ -307,6 +309,8 @@ public class GCFeverLib {
         if (permissionState == PackageManager.PERMISSION_GRANTED) {
             if (validCheck()) {
                 mContext.startActivity(new Intent(mContext, TemperActivity.class));
+//                DummyActivity.startActivity(((Activity)mContext), TemperFragment.newInstance(mContext), null);
+//                DummyActivity.startActivity(((Activity)mContext), SearchAddressFragment.newInstance(mContext), null);
             }
         } else {
             CDialog.showDlg(mContext, mContext.getString(R.string.toast_permission_location));

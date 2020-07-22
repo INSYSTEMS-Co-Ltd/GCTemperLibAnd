@@ -32,6 +32,7 @@ import cz.msebera.android.httpclient.message.BasicNameValuePair;
 /**
  * Created by jihoon on 2016-03-28.
  * 알림설정 클래스
+ *
  * @since 0, 1
  */
 public class AlarmSettingActivity extends BackBaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -40,15 +41,14 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
     private Switch mPushCb_1, mPushCb_2, mPushCb_3, mPushCb_4, mPushCb_5, mPushCb_6, mPushCb_7, mBellCb, mVibCb;
 
     // 1 : 체온 측정, 2: 열지도 , 3: 다이어트, 4 : 유행설 질환 5 : 알림게시판 , 6 : 이벤트 및 건강뉴스, 7: 게시글 좋아요 / 댓글
-    private boolean mCurrentPush_1, mCurrentPush_2, mCurrentPush_3, mCurrentPush_4, mCurrentPush_5, mCurrentPush_6,mCurrentPush_7, mCurrentBell, mCurrentVib;
-
+    private boolean mCurrentPush_1, mCurrentPush_2, mCurrentPush_3, mCurrentPush_4, mCurrentPush_5, mCurrentPush_6, mCurrentPush_7, mCurrentBell, mCurrentVib;
 
     private boolean event_news_push = false;
     private boolean event_news_push1 = false;
     private boolean event_news_push2 = false;
     private boolean heat_map_push = false;
 
-    private boolean mPastPush_2,mPastPush_3,mPastPush_4,mPastPush_6;
+    private boolean mPastPush_2, mPastPush_3, mPastPush_4, mPastPush_6;
 
 
     @Override
@@ -71,11 +71,11 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
         mCurrentPush_7 = commonData.getReplay_alert_yn(); //게시글, 댓글 알림 여부
 
         mPastPush_2 = commonData.getMapPushAlarm(); // 열지도
-        mPastPush_6  = commonData.getEvent_alert_yn(); //이벤트 및 건강뉴스
+        mPastPush_6 = commonData.getEvent_alert_yn(); //이벤트 및 건강뉴스
         mPastPush_3 = commonData.getDietPushAlarm(); // 다이어트
-        mPastPush_4  = commonData.getDisease_alert_yn(); //유행성질
+        mPastPush_4 = commonData.getDisease_alert_yn(); //유행성질
 
-        if(commonData.getMberGrad().equals("20")){
+        if (commonData.getMberGrad().equals("20")) {
             mCurrentPush_3 = false;
             mCurrentPush_4 = false;
 
@@ -93,7 +93,7 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
         mCurrentBell = commonData.getAlarmMode() == CommonData.PUSH_MODE_BELL || commonData.getAlarmMode() == CommonData.PUSH_MODE_BELL_VIBRATE ? true : false;
         mCurrentVib = commonData.getAlarmMode() == CommonData.PUSH_MODE_VIBRATE || commonData.getAlarmMode() == CommonData.PUSH_MODE_BELL_VIBRATE ? true : false;
 
-        if( !mCurrentPush_1 && !mCurrentPush_2 && !mCurrentPush_3 && !mCurrentPush_4 && !mCurrentPush_5 && !mCurrentPush_6 && !mCurrentPush_7){
+        if (!mCurrentPush_1 && !mCurrentPush_2 && !mCurrentPush_3 && !mCurrentPush_4 && !mCurrentPush_5 && !mCurrentPush_6 && !mCurrentPush_7) {
             mPushCb_1.setChecked(false);
             mPushCb_2.setChecked(false);
             mPushCb_3.setChecked(false);
@@ -105,14 +105,14 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
 
             mBellCb.setEnabled(false);
             mVibCb.setEnabled(false);
-        }else{
-            if(mCurrentPush_1)  // 체온 측정 알람
+        } else {
+            if (mCurrentPush_1)  // 체온 측정 알람
                 mPushCb_1.setChecked(true);
 
-            if(mCurrentPush_2)  // 열지도 알람
+            if (mCurrentPush_2)  // 열지도 알람
                 mPushCb_2.setChecked(true);
 
-            if(commonData.getMberGrad().equals("20")) { // 다이어트 알람
+            if (commonData.getMberGrad().equals("20")) { // 다이어트 알람
                 mPushCb_3.setChecked(false);
                 mPushCb_3.setEnabled(false);
             } else {
@@ -122,7 +122,7 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
                 mPushCb_3.setEnabled(true);
             }
 
-            if(commonData.getMberGrad().equals("20")) { // 유행설 질환 알람
+            if (commonData.getMberGrad().equals("20")) { // 유행설 질환 알람
                 mPushCb_4.setChecked(false);
                 mPushCb_4.setEnabled(false);
             } else {
@@ -132,19 +132,19 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
                 mPushCb_4.setEnabled(true);
             }
 
-            if(mCurrentPush_5)  // 알림게시판 알람
+            if (mCurrentPush_5)  // 알림게시판 알람
                 mPushCb_5.setChecked(true);
 
-            if(mCurrentPush_6)  // 이벤트 및 건강뉴스 알람
+            if (mCurrentPush_6)  // 이벤트 및 건강뉴스 알람
                 mPushCb_6.setChecked(true);
 
-            if(mCurrentPush_7)  // 게시글 좋아요 / 댓글 알람
+            if (mCurrentPush_7)  // 게시글 좋아요 / 댓글 알람
                 mPushCb_7.setChecked(true);
 
-            if(mCurrentBell)  // 벨소리를 설정했다면
+            if (mCurrentBell)  // 벨소리를 설정했다면
                 mBellCb.setChecked(true);
 
-            if(mCurrentVib) // 진동을 설정했다면
+            if (mCurrentVib) // 진동을 설정했다면
                 mVibCb.setChecked(true);
 
         }
@@ -154,26 +154,26 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
     /**
      * 초기화
      */
-    public void init(){
+    public void init() {
 
-        mBackImg    =   getBackImg();
+        mBackImg = getBackImg();
 
-        mPushCb_1 =   (Switch)  findViewById(R.id.push_alarm_cb_1);
-        mPushCb_2 =   (Switch)  findViewById(R.id.push_alarm_cb_2);
-        mPushCb_3 =   (Switch)  findViewById(R.id.push_alarm_cb_3);
-        mPushCb_4 =   (Switch)  findViewById(R.id.push_alarm_cb_4);
-        mPushCb_5 =   (Switch)  findViewById(R.id.push_alarm_cb_5);
-        mPushCb_6 =   (Switch)  findViewById(R.id.push_alarm_cb_6);
-        mPushCb_7 =   (Switch)  findViewById(R.id.push_alarm_cb_7);
-        mBellCb     =   (Switch)  findViewById(R.id.bell_cb);
-        mVibCb      =   (Switch)  findViewById(R.id.vibrate_cb);
+        mPushCb_1 = (Switch) findViewById(R.id.push_alarm_cb_1);
+        mPushCb_2 = (Switch) findViewById(R.id.push_alarm_cb_2);
+        mPushCb_3 = (Switch) findViewById(R.id.push_alarm_cb_3);
+        mPushCb_4 = (Switch) findViewById(R.id.push_alarm_cb_4);
+        mPushCb_5 = (Switch) findViewById(R.id.push_alarm_cb_5);
+        mPushCb_6 = (Switch) findViewById(R.id.push_alarm_cb_6);
+        mPushCb_7 = (Switch) findViewById(R.id.push_alarm_cb_7);
+        mBellCb = (Switch) findViewById(R.id.bell_cb);
+        mVibCb = (Switch) findViewById(R.id.vibrate_cb);
 
     }
 
     /**
      * 이벤트 연결
      */
-    public void setEvent(){
+    public void setEvent() {
         mBackImg.setOnClickListener(this);
         mPushCb_1.setOnCheckedChangeListener(this);
         mPushCb_2.setOnCheckedChangeListener(this);
@@ -188,56 +188,56 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
 
     /**
      * 알림 설정 변경값이 있는지 체크
+     *
      * @return boolean ( true - 변경, false - 변경하지 않음 )
      */
-    public boolean isChange(){
+    public boolean isChange() {
         boolean change = false;
 
-        if(mCurrentPush_1 != mPushCb_1.isChecked()){    // 푸시설정값을 변경했다면
+        if (mCurrentPush_1 != mPushCb_1.isChecked()) {    // 푸시설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentPush_2 != mPushCb_2.isChecked()){    // 푸시설정값을 변경했다면
+        if (mCurrentPush_2 != mPushCb_2.isChecked()) {    // 푸시설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentPush_3 != mPushCb_3.isChecked()){    // 푸시설정값을 변경했다면
+        if (mCurrentPush_3 != mPushCb_3.isChecked()) {    // 푸시설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentPush_4 != mPushCb_4.isChecked()){    // 푸시설정값을 변경했다면
+        if (mCurrentPush_4 != mPushCb_4.isChecked()) {    // 푸시설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentPush_5 != mPushCb_5.isChecked()){    // 푸시설정값을 변경했다면
+        if (mCurrentPush_5 != mPushCb_5.isChecked()) {    // 푸시설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentPush_6 != mPushCb_6.isChecked()){    // 푸시설정값을 변경했다면
+        if (mCurrentPush_6 != mPushCb_6.isChecked()) {    // 푸시설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentPush_7 != mPushCb_7.isChecked()){    // 푸시설정값을 변경했다면
+        if (mCurrentPush_7 != mPushCb_7.isChecked()) {    // 푸시설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentBell != mBellCb.isChecked()){    // 벨소리 설정값을 변경했다면
+        if (mCurrentBell != mBellCb.isChecked()) {    // 벨소리 설정값을 변경했다면
             change = true;
             return change;
         }
 
-        if(mCurrentVib != mVibCb.isChecked()){  // 진동 설정값을 변경했다면
+        if (mCurrentVib != mVibCb.isChecked()) {  // 진동 설정값을 변경했다면
             change = true;
             return change;
         }
-
 
 
         return change;
@@ -247,7 +247,7 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
     /**
      * 알림 설정
      */
-    public void requestAlarmSetting(String push_1, String fx_mth, String push_2, String push_3, String push_4,String push_5,String push_6,String push_7){
+    public void requestAlarmSetting(String push_1, String fx_mth, String push_2, String push_3, String push_4, String push_5, String push_6, String push_7) {
         GLog.i("requestAlarmSetting", "dd");
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 
@@ -272,17 +272,16 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
             params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
 
             RequestApi.requestApi(AlarmSettingActivity.this, NetworkConst.NET_CALL_REG_FX_ADD, NetworkConst.getInstance().getDefDomain(), networkListener, params, getProgressLayout());
-        }catch(Exception e){
+        } catch (Exception e) {
             GLog.i(e.toString(), "dd");
         }
     }
 
 
-
     /**
      * 마케팅 정보 및 위치정보 동의
      */
-    public void requestAgreeAlarmSetting(){
+    public void requestAgreeAlarmSetting() {
         GLog.i("requestAgreeAlarmSetting", "dd");
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 
@@ -292,12 +291,12 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
             object.put(CommonData.JSON_INSURES_CODE, CommonData.INSURE_CODE);
             object.put(CommonData.JSON_MBER_SN, commonData.getMberSn());
 
-            if(event_news_push || event_news_push1 || event_news_push2)
+            if (event_news_push || event_news_push1 || event_news_push2)
                 object.put(CommonData.JSON_MARKETING_YN, "Y");
             else
                 object.put(CommonData.JSON_MARKETING_YN, "");
 
-            if(heat_map_push)
+            if (heat_map_push)
                 object.put(CommonData.JSON_LOCATION_YN, "Y");
             else
                 object.put(CommonData.JSON_LOCATION_YN, "");
@@ -305,7 +304,7 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
             params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
 
             RequestApi.requestApi(AlarmSettingActivity.this, NetworkConst.NET_MBER_CHECK_AGREE_YN, NetworkConst.getInstance().getDefDomain(), networkListener, params, getProgressLayout());
-        }catch(Exception e){
+        } catch (Exception e) {
             GLog.i(e.toString(), "dd");
         }
     }
@@ -313,12 +312,12 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
     @Override
     public void onBackPressed() {
 
-        if(event_news_push || event_news_push1 || event_news_push2 || heat_map_push){
+        if (event_news_push || event_news_push1 || event_news_push2 || heat_map_push) {
             GLog.i("개인정보 마케팅 또는 위치정보 수집 동의 변경", "dd");
             requestAgreeAlarmSetting();
 
         } else {
-            if(isChange()){
+            if (isChange()) {
 
                 // 알림설정 api 호출하자
                 String push_1;
@@ -331,65 +330,65 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
                 String bell_or_vib;
 
 
-                if(mPushCb_1.isChecked()){    // 체온 푸시알림 설정 유무
+                if (mPushCb_1.isChecked()) {    // 체온 푸시알림 설정 유무
                     push_1 = CommonData.YES;
-                }else{
+                } else {
                     push_1 = CommonData.NO;
                 }
 
-                if(mPushCb_2.isChecked()){    // 열지 푸시알림 설정 유무
+                if (mPushCb_2.isChecked()) {    // 열지 푸시알림 설정 유무
                     push_2 = CommonData.YES;
-                }else{
+                } else {
                     push_2 = CommonData.NO;
                 }
 
-                if(mPushCb_3.isChecked()){    // 다이어트 푸시알림 설정 유무
+                if (mPushCb_3.isChecked()) {    // 다이어트 푸시알림 설정 유무
                     push_3 = CommonData.YES;
-                }else{
+                } else {
                     push_3 = CommonData.NO;
                 }
 
-                if(mPushCb_4.isChecked()){    // 유행성 질환 푸시알림 설정 유무
+                if (mPushCb_4.isChecked()) {    // 유행성 질환 푸시알림 설정 유무
                     push_4 = CommonData.YES;
-                }else{
+                } else {
                     push_4 = CommonData.NO;
                 }
 
-                if(mPushCb_5.isChecked()){    // 알림게시판 설정 유무
+                if (mPushCb_5.isChecked()) {    // 알림게시판 설정 유무
                     push_5 = CommonData.YES;
-                }else{
+                } else {
                     push_5 = CommonData.NO;
                 }
 
-                if(mPushCb_6.isChecked()){    // 이벤트 및 건강뉴스 설정 유무
+                if (mPushCb_6.isChecked()) {    // 이벤트 및 건강뉴스 설정 유무
                     push_6 = CommonData.YES;
-                }else{
+                } else {
                     push_6 = CommonData.NO;
                 }
 
-                if(mPushCb_7.isChecked()){    // 게시글 좋아요 / 댓글 설정 유무
+                if (mPushCb_7.isChecked()) {    // 게시글 좋아요 / 댓글 설정 유무
                     push_7 = CommonData.YES;
-                }else{
+                } else {
                     push_7 = CommonData.NO;
                 }
 
-                if(mBellCb.isChecked() && !mVibCb.isChecked()){
+                if (mBellCb.isChecked() && !mVibCb.isChecked()) {
                     GLog.i("벨소리 설정 완료", "dd");
                     bell_or_vib = "1";
-                }else if(mVibCb.isChecked() && !mBellCb.isChecked()){
+                } else if (mVibCb.isChecked() && !mBellCb.isChecked()) {
                     GLog.i("진동 설정 완료", "dd");
                     bell_or_vib = "2";
-                }else if(mVibCb.isChecked() && mBellCb.isChecked()) {
+                } else if (mVibCb.isChecked() && mBellCb.isChecked()) {
                     GLog.i("벨 진동 모두 설정", "dd");
                     bell_or_vib = "3";
-                }else{
+                } else {
                     GLog.i("무음", "dd");
                     bell_or_vib = "0";
                 }
 
                 requestAlarmSetting(push_1, bell_or_vib, push_2, push_3, push_4, push_5, push_6, push_7);
 
-            }else{
+            } else {
                 finish();
             }
         }
@@ -570,14 +569,14 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
 
     }
 
-    public void setAlarmOnOff(){
-        if(!mPushCb_1.isChecked() && !mPushCb_2.isChecked() && !mPushCb_3.isChecked() && !mPushCb_4.isChecked() && !mPushCb_5.isChecked() && !mPushCb_6.isChecked() && !mPushCb_7.isChecked()){
+    public void setAlarmOnOff() {
+        if (!mPushCb_1.isChecked() && !mPushCb_2.isChecked() && !mPushCb_3.isChecked() && !mPushCb_4.isChecked() && !mPushCb_5.isChecked() && !mPushCb_6.isChecked() && !mPushCb_7.isChecked()) {
             mBellCb.setChecked(false);
             mVibCb.setChecked(false);
 
             mBellCb.setEnabled(false);
             mVibCb.setEnabled(false);
-        }else{
+        } else {
             mBellCb.setEnabled(true);
             mVibCb.setEnabled(true);
         }
@@ -593,10 +592,10 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
         public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
             // TODO Auto-generated method stub
 
-            switch ( type ) {
-                case NetworkConst.NET_CALL_REG_FX_ADD:									// 알림 설정
+            switch (type) {
+                case NetworkConst.NET_CALL_REG_FX_ADD:                                    // 알림 설정
 
-                    switch ( resultCode ) {
+                    switch (resultCode) {
                         case CommonData.API_SUCCESS:
                             GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
 
@@ -608,29 +607,27 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
                             commonData.setEvent_alert_yn(mPushCb_6.isChecked());
                             commonData.setReplay_alert_yn(mPushCb_7.isChecked());
 
-                            if(mBellCb.isChecked() && mVibCb.isChecked()){  // 벨+진동
+                            if (mBellCb.isChecked() && mVibCb.isChecked()) {  // 벨+진동
                                 commonData.setAlarmMode(CommonData.PUSH_MODE_BELL_VIBRATE);
-                            }else if(mBellCb.isChecked()){  // 벨
+                            } else if (mBellCb.isChecked()) {  // 벨
                                 commonData.setAlarmMode(CommonData.PUSH_MODE_BELL);
-                            }else if(mVibCb.isChecked()){   // 진동
+                            } else if (mVibCb.isChecked()) {   // 진동
                                 commonData.setAlarmMode(CommonData.PUSH_MODE_VIBRATE);
-                            }else {
+                            } else {
                                 commonData.setAlarmMode(0);
                             }
-
 
 
                             setResult(RESULT_OK);
                             finish();
 
 
-
                             break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:	// 시스템 오류
+                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
                             GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
 
                             break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:	// 입력 데이터 오류
+                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
                             GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
                             break;
 
@@ -640,15 +637,15 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
                     }
                     break;
 
-                case NetworkConst.NET_MBER_CHECK_AGREE_YN :
+                case NetworkConst.NET_MBER_CHECK_AGREE_YN:
 
-                    switch ( resultCode ) {
+                    switch (resultCode) {
                         case CommonData.API_SUCCESS:
                             GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
 
                             try {
                                 String data_yn = resultData.getString(CommonData.JSON_REG_YN);
-                                if(data_yn.equals(CommonData.YES)){
+                                if (data_yn.equals(CommonData.YES)) {
                                     commonData.setMarketing_yn(resultData.getString(CommonData.JSON_MARKETING_YN));
                                     commonData.setLocation_yn(resultData.getString(CommonData.JSON_LOCATION_YN));
                                     CommonData.getInstance(AlarmSettingActivity.this).setEvent_alert_yn(resultData.getString(CommonData.JSON_EVENT_ALERT_YN).equals(CommonData.YES) ? true : false);
@@ -656,7 +653,7 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
                                     CommonData.getInstance(AlarmSettingActivity.this).setDietPushAlarm(resultData.getString(CommonData.JSON_DIET_YN).equals(CommonData.YES) ? true : false);
                                     CommonData.getInstance(AlarmSettingActivity.this).setDisease_alert_yn(resultData.getString(CommonData.JSON_DISEASE_ALERT_YN).equals(CommonData.YES) ? true : false);
 
-                                    if(isChange()){
+                                    if (isChange()) {
 
                                         // 알림설정 api 호출하자
                                         String push_1;
@@ -669,65 +666,65 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
                                         String bell_or_vib;
 
 
-                                        if(mPushCb_1.isChecked()){    // 체온 푸시알림 설정 유무
+                                        if (mPushCb_1.isChecked()) {    // 체온 푸시알림 설정 유무
                                             push_1 = CommonData.YES;
-                                        }else{
+                                        } else {
                                             push_1 = CommonData.NO;
                                         }
 
-                                        if(mPushCb_2.isChecked()){    // 열지 푸시알림 설정 유무
+                                        if (mPushCb_2.isChecked()) {    // 열지 푸시알림 설정 유무
                                             push_2 = CommonData.YES;
-                                        }else{
+                                        } else {
                                             push_2 = CommonData.NO;
                                         }
 
-                                        if(mPushCb_3.isChecked()){    // 다이어트 푸시알림 설정 유무
+                                        if (mPushCb_3.isChecked()) {    // 다이어트 푸시알림 설정 유무
                                             push_3 = CommonData.YES;
-                                        }else{
+                                        } else {
                                             push_3 = CommonData.NO;
                                         }
 
-                                        if(mPushCb_4.isChecked()){    // 유행성 질환 푸시알림 설정 유무
+                                        if (mPushCb_4.isChecked()) {    // 유행성 질환 푸시알림 설정 유무
                                             push_4 = CommonData.YES;
-                                        }else{
+                                        } else {
                                             push_4 = CommonData.NO;
                                         }
 
-                                        if(mPushCb_5.isChecked()){    // 알림게시판 설정 유무
+                                        if (mPushCb_5.isChecked()) {    // 알림게시판 설정 유무
                                             push_5 = CommonData.YES;
-                                        }else{
+                                        } else {
                                             push_5 = CommonData.NO;
                                         }
 
-                                        if(mPushCb_6.isChecked()){    // 이벤트 및 건강뉴스 설정 유무
+                                        if (mPushCb_6.isChecked()) {    // 이벤트 및 건강뉴스 설정 유무
                                             push_6 = CommonData.YES;
-                                        }else{
+                                        } else {
                                             push_6 = CommonData.NO;
                                         }
 
-                                        if(mPushCb_7.isChecked()){    // 게시글 좋아요 / 댓글 설정 유무
+                                        if (mPushCb_7.isChecked()) {    // 게시글 좋아요 / 댓글 설정 유무
                                             push_7 = CommonData.YES;
-                                        }else{
+                                        } else {
                                             push_7 = CommonData.NO;
                                         }
 
-                                        if(mBellCb.isChecked() && !mVibCb.isChecked()){
+                                        if (mBellCb.isChecked() && !mVibCb.isChecked()) {
                                             GLog.i("벨소리 설정 완료", "dd");
                                             bell_or_vib = "1";
-                                        }else if(mVibCb.isChecked() && !mBellCb.isChecked()){
+                                        } else if (mVibCb.isChecked() && !mBellCb.isChecked()) {
                                             GLog.i("진동 설정 완료", "dd");
                                             bell_or_vib = "2";
-                                        }else if(mVibCb.isChecked() && mBellCb.isChecked()) {
+                                        } else if (mVibCb.isChecked() && mBellCb.isChecked()) {
                                             GLog.i("벨 진동 모두 설정", "dd");
                                             bell_or_vib = "3";
-                                        }else{
+                                        } else {
                                             GLog.i("무음", "dd");
                                             bell_or_vib = "0";
                                         }
 
                                         requestAlarmSetting(push_1, bell_or_vib, push_2, push_3, push_4, push_5, push_6, push_7);
 
-                                    }else{
+                                    } else {
                                         setResult(RESULT_OK);
                                         finish();
                                     }
@@ -739,11 +736,11 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
 
 
                             break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:	// 시스템 오류
+                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
                             GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
 
                             break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:	// 입력 데이터 오류
+                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
                             GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
                             break;
 
@@ -773,12 +770,12 @@ public class AlarmSettingActivity extends BackBaseActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         GLog.i("requestCode = " + requestCode, "dd");
-        GLog.i("resultCode = " +resultCode, "dd");
-        GLog.i("data = " +data, "dd");
+        GLog.i("resultCode = " + resultCode, "dd");
+        GLog.i("data = " + data, "dd");
 
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode != Activity.RESULT_OK){
+        if (resultCode != Activity.RESULT_OK) {
             mPushCb_2.setChecked(false);
             return;
         } else {

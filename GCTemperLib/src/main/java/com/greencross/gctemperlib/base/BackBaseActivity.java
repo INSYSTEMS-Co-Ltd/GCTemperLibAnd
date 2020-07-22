@@ -126,30 +126,28 @@ public class BackBaseActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        // TODO Auto-generated method stub
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-    }
+//    @Override
+//    protected void onPause() {
+//        // TODO Auto-generated method stub
+//        super.onPause();
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        // TODO Auto-generated method stub
+//        super.onStop();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//    }
 
 
     @Override
     public void finish() {
-        // TODO Auto-generated method stub
+        Util.BackAnimationEnd(this);	// Activity 종료시 뒤로가기 animation
         super.finish();
-        Util.BackAnimationEnd(BackBaseActivity.this);	// Activity 종료시 뒤로가기 animation
     }
 
 }

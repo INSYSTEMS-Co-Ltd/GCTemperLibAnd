@@ -859,45 +859,8 @@
     <string name="middle_per">50%</string>
     <string name="min_per">3%</string>
     <string name="my_i">우리아이</string>
-    <string name="etc_tv">최근 데이터 입력일 기준으로 과거 24개월 동안의 성장 기록입니다. 이전 기록은 도표에서 확인하실 수 있습니다.</string>
-    <string name="etc_tv2">80개월이 지난 자녀는 그래프가 활성화 되지 않습니다.\n80개월 이전 기록은 도표에서 확인하실 수 있습니다.</string>
-    <string name="result_title_desc">지난 기준입니다.</string>
-    <string name="head_over">80개월이 초과된 아이의 머리둘레를 등록할 수 없습니다</string>
-    <string name="empty_graph">최근 24개월 이내에 측정 기록이 없습니다.</string>
 
     <!-- 최종 키 예측 -->
-    <string name="lastheight_title">예측 결과</string>
-    <string name="lastheight_mytitle">1. 자녀의 현재 키와 몸무게를 입력해 주세요.</string>
-    <string name="lastheight_mothertitle">2. 어머님의 현재 키와 몸무게를 입력해 주세요.</string>
-    <string name="lastheight_mothertitle2">1. 어머님의 현재 키를 입력해 주세요.</string>
-    <string name="lastheight_fathertitle">3. 아버님의 현재 키와 몸무게를 입력해 주세요.</string>
-    <string name="lastheight_fathertitle2">2. 아버님의 현재 키를 입력해 주세요.</string>
-    <string name="lastheight_myresult">우리 아이의 최종 예측 키(범위)</string>
-    <string name="lastheight_guide">아이의 생활습관에 따라 \n최종키는 달라질 수 있습니다.</string>
-    <string name="lastheight_result">최종 키 예측은 부모의 키에 따라 단순 계산되는 유전 키 공식과는 달리 소아청소년의 현재 키와 비만도를 반영한 객관적 연구에서 도출된 공식에 근거하여 한국 소아청소년의 표준성장속도에 남녀별로 차등 적용하여 산출합니다.</string>
-    <string name="lastheight_result2">소아청소년의 키 성장속도, 또래집단에서의 키 서열변동, 비만도의 변화에 따라 달라질 수 있습니다.</string>
-
-    <string name="lastheight_result3">만 24개월 미만 아이의 최종 키 예측은 부모의 키에 따라 단순 계산되는 유전 키 공식을 이용합니다.\n\n만 24개월 이상 아이의 최종 키 예측은 현재 키와 비만도를 반영한 객관적 연구에서 도출된 공식에 근거하여 한국 소아청소년의 표준성장속도에 남녀별로 차등 적용하여 산출합니다.</string>
-
-
-
-
-
-    <!-- 교육 영상 -->
-    <string name="edu_video_title">교 육 영 상</string>
-    <string name="edu_video_title_02">학 교 생 활</string>
-    <string name="edu_video_title_03">성장 교육영상</string>
-    <string name="edu_video_title_04">체온 교육영상</string>
-    <string name="edu_video_title_05">학교생활 교육영상</string>
-    <string name="edu_video_title_06">아 이 학 습</string>
-
-    <string name="edu_btn_title_01">성 장</string>
-    <string name="edu_btn_title_02">학교생활</string>
-    <string name="edu_btn_title_03">체 온</string>
-
-    <string name="edu_btn_content_01">건강식습관｜비만식습관1\n비만식습관2｜미각중독｜긍정적 몸쓰기</string>
-    <string name="edu_btn_content_02">자기통제력｜공부순응력1\n공부순응력2 ｜ 관계력 ｜ 꿈과 동기력</string>
-    <string name="edu_btn_content_03">체온과 열 ｜평소체온\n부위별 평소체온｜ 고열 ｜ 저체온</string>
 
     <!-- FAQ -->
     <string name="faq_search_hint">궁금하신 사항을 입력하세요</string>

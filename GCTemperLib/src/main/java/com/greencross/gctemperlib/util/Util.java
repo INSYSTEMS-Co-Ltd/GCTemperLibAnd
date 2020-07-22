@@ -29,7 +29,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.RCApplication;
 import com.greencross.gctemperlib.main.MainActivity;
 import com.greencross.gctemperlib.push.ShowAlertMsgActivity;
 import com.greencross.gctemperlib.R;
@@ -370,14 +369,14 @@ public abstract class Util {
      * @param dp  dip
      * @return int pixel
      */
-    public static int pixelFromDP( Context context, float dp)
-    {
-        int pixel;
-        pixel = (int) (dp * RCApplication.mScale + 0.5f);
-//        GLog.i("mScale = " + CooingStarApplication.mScale);
-//        GLog.i("pixel = " + pixel);
-        return pixel;
-    }
+//    public static int pixelFromDP( Context context, float dp)
+//    {
+//        int pixel;
+//        pixel = (int) (dp * RCApplication.mScale + 0.5f);
+////        GLog.i("mScale = " + CooingStarApplication.mScale);
+////        GLog.i("pixel = " + pixel);
+//        return pixel;
+//    }
 
     /**
      * Pixel -> Dip 변환
@@ -385,22 +384,22 @@ public abstract class Util {
      * @param pixelValue    pixel
      * @return
      */
-    public static int toDipFromPixel(Context context ,float pixelValue)
-    {
-        int dip= (int) (pixelValue/ RCApplication.mScale);
-        GLog.i("mScale = " + RCApplication.mScale, "dd");
-        GLog.i("dip = " + dip, "dd");
-        return dip;
-    }
+//    public static int toDipFromPixel(Context context ,float pixelValue)
+//    {
+//        int dip= (int) (pixelValue/ RCApplication.mScale);
+//        GLog.i("mScale = " + RCApplication.mScale, "dd");
+//        GLog.i("dip = " + dip, "dd");
+//        return dip;
+//    }
 
     /**
      * 밀도 구하기
      * @param context   context
      * @return
      */
-    public static float getDensity(Context context){
-        return RCApplication.mScale;
-    }
+//    public static float getDensity(Context context){
+//        return RCApplication.mScale;
+//    }
 
     /**
      * 키보드 내리기
@@ -682,30 +681,30 @@ public abstract class Util {
      * @param size 폰트 사이즈
      * @param styleType font style ( 0 - 기본, 1 - bold , 2 - italic )
      */
-    public static void setTextViewCustom(Context context, TextView view, String fulltext, String subtext, int color, int size, int styleType, boolean isUnderLine) {
-        view.setText(fulltext, TextView.BufferType.SPANNABLE);
-        Spannable str = (Spannable) view.getText();
-        int i = fulltext.indexOf(subtext);
-//        int j = fulltext.indexOf(subtext2);
-
-        GLog.i("color = " +color, "dd");
-        GLog.i("subtext = " +subtext, "dd");
-
-        if(color > 0) {
-            str.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, color)), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);   // 색상
-        }
-        if(size != 0) {  // 사이즈
-            str.setSpan(new AbsoluteSizeSpan(Util.pixelFromDP(context, size)), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            if(!subtext2.equals("")){   // 두번째 문자가 있다면 적용
-//                str.setSpan(new AbsoluteSizeSpan(BleUtil.pixelFromDP(context, size)), j, j + subtext2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            }
-        }
-        str.setSpan(new StyleSpan(styleType), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);         // font Style
-        if(isUnderLine){
-            str.setSpan(new UnderlineSpan(), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);         // underLine
-        }
-
-    }
+//    public static void setTextViewCustom(Context context, TextView view, String fulltext, String subtext, int color, int size, int styleType, boolean isUnderLine) {
+//        view.setText(fulltext, TextView.BufferType.SPANNABLE);
+//        Spannable str = (Spannable) view.getText();
+//        int i = fulltext.indexOf(subtext);
+////        int j = fulltext.indexOf(subtext2);
+//
+//        GLog.i("color = " +color, "dd");
+//        GLog.i("subtext = " +subtext, "dd");
+//
+//        if(color > 0) {
+//            str.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, color)), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);   // 색상
+//        }
+//        if(size != 0) {  // 사이즈
+//            str.setSpan(new AbsoluteSizeSpan(Util.pixelFromDP(context, size)), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+////            if(!subtext2.equals("")){   // 두번째 문자가 있다면 적용
+////                str.setSpan(new AbsoluteSizeSpan(BleUtil.pixelFromDP(context, size)), j, j + subtext2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+////            }
+//        }
+//        str.setSpan(new StyleSpan(styleType), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);         // font Style
+//        if(isUnderLine){
+//            str.setSpan(new UnderlineSpan(), i, i + subtext.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);         // underLine
+//        }
+//
+//    }
 
     /**
      * 텍스트하나에 특정문자 Color 변경

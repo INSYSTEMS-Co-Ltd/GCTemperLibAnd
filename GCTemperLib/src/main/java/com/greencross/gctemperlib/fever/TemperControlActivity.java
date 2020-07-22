@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.GCFeverLib;
+import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.R;
@@ -37,7 +37,7 @@ public class TemperControlActivity extends BackBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        GCFeverLib gcHeatLib = new GCFeverLib(this);
+        GCTemperLib gcHeatLib = new GCTemperLib(this);
         if (gcHeatLib.isAvailableGCToken() == false) {
             CDialog.showDlg(this, "인증 후 이용 가능합니다.")
             .setOnDismissListener(new DialogInterface.OnDismissListener() {

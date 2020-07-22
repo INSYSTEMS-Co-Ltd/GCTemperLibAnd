@@ -1,6 +1,5 @@
 package com.greencross.gctemperlib.push;
 
-import com.greencross.gctemperlib.RCApplication;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -12,6 +11,6 @@ public class MyFirebaseService extends FirebaseInstanceIdService {
 
     @Override
     public void onTokenRefresh(){
-        RCApplication.deviceToken = FirebaseInstanceId.getInstance().getToken();
+//        RCApplication.deviceToken = FirebaseInstanceId.getInstance().getToken();
     }
 }

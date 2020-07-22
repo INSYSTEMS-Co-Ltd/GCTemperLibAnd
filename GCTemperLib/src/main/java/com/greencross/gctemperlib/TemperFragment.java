@@ -21,27 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.base.BackBaseActivity;
-import com.greencross.gctemperlib.fever.RequestDiseaseProgramActivity;
-import com.greencross.gctemperlib.fever.TemperControlActivity;
-import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.component.OnClickListener;
-import com.greencross.gctemperlib.push.FirebaseMessagingService;
-import com.greencross.gctemperlib.util.GLog;
-import com.greencross.gctemperlib.util.GpsInfo;
-import com.greencross.gctemperlib.util.KakaoLinkUtil;
-import com.greencross.gctemperlib.util.Util;
-import com.greencross.gctemperlib.collection.EpidemicItem;
-import com.greencross.gctemperlib.collection.LocationItem;
-import com.greencross.gctemperlib.common.ApplinkDialog;
-import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.common.CustomAsyncListener;
-import com.greencross.gctemperlib.common.MakeProgress;
-import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.greencare.util.CDateUtil;
-import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
-import com.greencross.gctemperlib.network.RequestApi;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -50,6 +32,26 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.greencross.gctemperlib.collection.EpidemicItem;
+import com.greencross.gctemperlib.collection.LocationItem;
+import com.greencross.gctemperlib.common.ApplinkDialog;
+import com.greencross.gctemperlib.common.CommonData;
+import com.greencross.gctemperlib.common.CustomAlertDialog;
+import com.greencross.gctemperlib.common.CustomAsyncListener;
+import com.greencross.gctemperlib.common.MakeProgress;
+import com.greencross.gctemperlib.common.NetworkConst;
+import com.greencross.gctemperlib.fever.RequestDiseaseProgramActivity;
+import com.greencross.gctemperlib.fever.TemperControlActivity;
+import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.component.OnClickListener;
+import com.greencross.gctemperlib.greencare.util.CDateUtil;
+import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
+import com.greencross.gctemperlib.network.RequestApi;
+import com.greencross.gctemperlib.push.FirebaseMessagingService;
+import com.greencross.gctemperlib.util.GLog;
+import com.greencross.gctemperlib.util.GpsInfo;
+import com.greencross.gctemperlib.util.KakaoLinkUtil;
+import com.greencross.gctemperlib.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,7 +67,7 @@ import java.util.GregorianCalendar;
 import cz.msebera.android.httpclient.NameValuePair;
 import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
-public class TemperActivity extends BackBaseActivity implements View.OnClickListener, OnMapReadyCallback {
+public class TemperFragment extends BaseFragment implements View.OnClickListener, OnMapReadyCallback {
 
     private final int REQUEST_SEARCH_ADDR = 787;
 
@@ -78,7 +80,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     private LinearLayout[] mEpRankList;
     private TextView[] mTxtDiseNmList, mTxtDiseCntList;
 
-    private  ImageButton mBtnAlarm, mBtnShare;
+    private ImageButton mBtnAlarm, mBtnShare;
 
     private SupportMapFragment mapFragment;
     private GoogleMap mMap;
@@ -96,27 +98,34 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     private ViewGroup hiddenPanel;
     private boolean isAnimEnd = false;
 
+    public static Fragment newInstance() {
+        TemperFragment fragment = new TemperFragment();
+        return fragment;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fever_map_activity, container, false);
         super.onCreate(savedInstanceState);
 
-        GCTemperLib gcHeatLib = new GCTemperLib(this);
+        GCTemperLib gcHeatLib = new GCTemperLib(getActivity());
         if (gcHeatLib.isAvailableGCToken() == false) {
-            CDialog.showDlg(this, "인증 후 이용 가능합니다.")
-            .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    finish();
-                }
-            });
-            return;
+            CDialog.showDlg(getActivity(), "인증 후 이용 가능합니다.")
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            getActivity().finish();
+                        }
+                    });
+            return null;
         }
 
-        setContentView(R.layout.fever_map_activity);
+        if (getActivity() instanceof DummyActivity) {
+            ((DummyActivity) getActivity()).setTitle(getString(R.string.fever_map));
+        }
 
-        setTitle(getString(R.string.fever_map));
-
-        init();
+        init(view);
         setEvent();
         initRank();
 
@@ -125,7 +134,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         mCalendar.add(Calendar.DAY_OF_MONTH, -365);
         requestMapData(mCalendar.getTime(), new Date());
 
-        mIntent = getIntent();
+        mIntent = getActivity().getIntent();
 
         if (mIntent != null) {
             mFragmentNum = mIntent.getIntExtra("tabNum", 0);
@@ -134,14 +143,14 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         setTab(mFragmentNum);
 
         // 체온관리
-        findViewById(R.id.fever_map_menu_1).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fever_map_menu_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TemperActivity.this, TemperControlActivity.class));
+                startActivity(new Intent(getActivity(), TemperControlActivity.class));
             }
         });
         // 건강강검진예약
-        findViewById(R.id.fever_map_menu_2).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fever_map_menu_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -149,10 +158,10 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         });
 
         // 건강상담
-        findViewById(R.id.fever_map_menu_3).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fever_map_menu_3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CDialog dlg = CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_call_alert_message));
+                CDialog dlg = CDialog.showDlg(getActivity(), getString(R.string.fever_health_call_alert_message));
                 dlg.setOkButton(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -168,7 +177,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         });
 
         // 헬스케어란
-        findViewById(R.id.fever_map_menu_4).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fever_map_menu_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -176,8 +185,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         });
 
 
-        slideTopLayout = findViewById(R.id.slide_top_layout);
-        hiddenPanel = (ViewGroup)findViewById(R.id.slide_menu_layout);
+        slideTopLayout = view.findViewById(R.id.slide_top_layout);
+        hiddenPanel = (ViewGroup) view.findViewById(R.id.slide_menu_layout);
         slideTopLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,7 +218,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             }
         });
 
-
+        return view;
     }
 
 //    Handler mHandler = new Handler() {
@@ -222,70 +231,69 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 //    };
 
 
-
     /**
      * 초기화
      */
-    public void init() {
+    public void init(View view) {
 
-        mMapBtn = (Button) findViewById(R.id.map_btn);
-        mEpidemicBtn = (Button) findViewById(R.id.epidemic_btn);
+        mMapBtn = (Button) view.findViewById(R.id.map_btn);
+        mEpidemicBtn = (Button) view.findViewById(R.id.epidemic_btn);
 
-        mBtnAlarm = (ImageButton) findViewById(R.id.btn_alarm);
-        mBtnShare = (ImageButton) findViewById(R.id.share_btn);
+        mBtnAlarm = (ImageButton) view.findViewById(R.id.btn_alarm);
+        mBtnShare = (ImageButton) view.findViewById(R.id.share_btn);
 
-        mLinearTabMap = (LinearLayout) findViewById(R.id.linear_tab_map);
-        mLinearTabEpidemic = (LinearLayout) findViewById(R.id.linear_tab_epidemic);
+        mLinearTabMap = (LinearLayout) view.findViewById(R.id.linear_tab_map);
+        mLinearTabEpidemic = (LinearLayout) view.findViewById(R.id.linear_tab_epidemic);
 
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mEpidemicRankLay = (LinearLayout) findViewById(R.id.epidemic_rank_lay);
-        mTxtNullEpidemic = (TextView) findViewById(R.id.txt_null_epidemic);
-        req_diease_btn = (ImageView) findViewById(R.id.req_diease_btn);
+        mEpidemicRankLay = (LinearLayout) view.findViewById(R.id.epidemic_rank_lay);
+        mTxtNullEpidemic = (TextView) view.findViewById(R.id.txt_null_epidemic);
+        req_diease_btn = (ImageView) view.findViewById(R.id.req_diease_btn);
 
         mEpRankList = new LinearLayout[10];
-        mEpRankList[0] = (LinearLayout) findViewById(R.id.ep_rank_1);
-        mEpRankList[1] = (LinearLayout) findViewById(R.id.ep_rank_2);
-        mEpRankList[2] = (LinearLayout) findViewById(R.id.ep_rank_3);
-        mEpRankList[3] = (LinearLayout) findViewById(R.id.ep_rank_4);
-        mEpRankList[4] = (LinearLayout) findViewById(R.id.ep_rank_5);
-        mEpRankList[5] = (LinearLayout) findViewById(R.id.ep_rank_6);
-        mEpRankList[6] = (LinearLayout) findViewById(R.id.ep_rank_7);
-        mEpRankList[7] = (LinearLayout) findViewById(R.id.ep_rank_8);
-        mEpRankList[8] = (LinearLayout) findViewById(R.id.ep_rank_9);
-        mEpRankList[9] = (LinearLayout) findViewById(R.id.ep_rank_10);
+        mEpRankList[0] = (LinearLayout) view.findViewById(R.id.ep_rank_1);
+        mEpRankList[1] = (LinearLayout) view.findViewById(R.id.ep_rank_2);
+        mEpRankList[2] = (LinearLayout) view.findViewById(R.id.ep_rank_3);
+        mEpRankList[3] = (LinearLayout) view.findViewById(R.id.ep_rank_4);
+        mEpRankList[4] = (LinearLayout) view.findViewById(R.id.ep_rank_5);
+        mEpRankList[5] = (LinearLayout) view.findViewById(R.id.ep_rank_6);
+        mEpRankList[6] = (LinearLayout) view.findViewById(R.id.ep_rank_7);
+        mEpRankList[7] = (LinearLayout) view.findViewById(R.id.ep_rank_8);
+        mEpRankList[8] = (LinearLayout) view.findViewById(R.id.ep_rank_9);
+        mEpRankList[9] = (LinearLayout) view.findViewById(R.id.ep_rank_10);
 
         mTxtDiseNmList = new TextView[10];
-        mTxtDiseNmList[0] = (TextView) findViewById(R.id.txt_dise_nm_1);
-        mTxtDiseNmList[1] = (TextView) findViewById(R.id.txt_dise_nm_2);
-        mTxtDiseNmList[2] = (TextView) findViewById(R.id.txt_dise_nm_3);
-        mTxtDiseNmList[3] = (TextView) findViewById(R.id.txt_dise_nm_4);
-        mTxtDiseNmList[4] = (TextView) findViewById(R.id.txt_dise_nm_5);
-        mTxtDiseNmList[5] = (TextView) findViewById(R.id.txt_dise_nm_6);
-        mTxtDiseNmList[6] = (TextView) findViewById(R.id.txt_dise_nm_7);
-        mTxtDiseNmList[7] = (TextView) findViewById(R.id.txt_dise_nm_8);
-        mTxtDiseNmList[8] = (TextView) findViewById(R.id.txt_dise_nm_9);
-        mTxtDiseNmList[9] = (TextView) findViewById(R.id.txt_dise_nm_10);
+        mTxtDiseNmList[0] = (TextView) view.findViewById(R.id.txt_dise_nm_1);
+        mTxtDiseNmList[1] = (TextView) view.findViewById(R.id.txt_dise_nm_2);
+        mTxtDiseNmList[2] = (TextView) view.findViewById(R.id.txt_dise_nm_3);
+        mTxtDiseNmList[3] = (TextView) view.findViewById(R.id.txt_dise_nm_4);
+        mTxtDiseNmList[4] = (TextView) view.findViewById(R.id.txt_dise_nm_5);
+        mTxtDiseNmList[5] = (TextView) view.findViewById(R.id.txt_dise_nm_6);
+        mTxtDiseNmList[6] = (TextView) view.findViewById(R.id.txt_dise_nm_7);
+        mTxtDiseNmList[7] = (TextView) view.findViewById(R.id.txt_dise_nm_8);
+        mTxtDiseNmList[8] = (TextView) view.findViewById(R.id.txt_dise_nm_9);
+        mTxtDiseNmList[9] = (TextView) view.findViewById(R.id.txt_dise_nm_10);
 
         mTxtDiseCntList = new TextView[10];
-        mTxtDiseCntList[0] = (TextView) findViewById(R.id.txt_dise_cnt_1);
-        mTxtDiseCntList[1] = (TextView) findViewById(R.id.txt_dise_cnt_2);
-        mTxtDiseCntList[2] = (TextView) findViewById(R.id.txt_dise_cnt_3);
-        mTxtDiseCntList[3] = (TextView) findViewById(R.id.txt_dise_cnt_4);
-        mTxtDiseCntList[4] = (TextView) findViewById(R.id.txt_dise_cnt_5);
-        mTxtDiseCntList[5] = (TextView) findViewById(R.id.txt_dise_cnt_6);
-        mTxtDiseCntList[6] = (TextView) findViewById(R.id.txt_dise_cnt_7);
-        mTxtDiseCntList[7] = (TextView) findViewById(R.id.txt_dise_cnt_8);
-        mTxtDiseCntList[8] = (TextView) findViewById(R.id.txt_dise_cnt_9);
-        mTxtDiseCntList[9] = (TextView) findViewById(R.id.txt_dise_cnt_10);
+        mTxtDiseCntList[0] = (TextView) view.findViewById(R.id.txt_dise_cnt_1);
+        mTxtDiseCntList[1] = (TextView) view.findViewById(R.id.txt_dise_cnt_2);
+        mTxtDiseCntList[2] = (TextView) view.findViewById(R.id.txt_dise_cnt_3);
+        mTxtDiseCntList[3] = (TextView) view.findViewById(R.id.txt_dise_cnt_4);
+        mTxtDiseCntList[4] = (TextView) view.findViewById(R.id.txt_dise_cnt_5);
+        mTxtDiseCntList[5] = (TextView) view.findViewById(R.id.txt_dise_cnt_6);
+        mTxtDiseCntList[6] = (TextView) view.findViewById(R.id.txt_dise_cnt_7);
+        mTxtDiseCntList[7] = (TextView) view.findViewById(R.id.txt_dise_cnt_8);
+        mTxtDiseCntList[8] = (TextView) view.findViewById(R.id.txt_dise_cnt_9);
+        mTxtDiseCntList[9] = (TextView) view.findViewById(R.id.txt_dise_cnt_10);
 
-        view = findViewById(R.id.root_view);
-
-        if (commonData.getMberGrad().equals("20"))
-            req_diease_btn.setVisibility(View.GONE);
-        else
-            req_diease_btn.setVisibility(View.VISIBLE);
+        view = view.findViewById(R.id.root_view);
+        req_diease_btn.setVisibility(View.GONE);
+//        if (CommonData.getMberGrad().equals("20"))
+//            req_diease_btn.setVisibility(View.GONE);
+//        else
+//            req_diease_btn.setVisibility(View.VISIBLE);
 
 
         //hsh start
@@ -311,7 +319,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
 
         //click 저장
-        OnClickListener mClickListener = new OnClickListener(this, view, TemperActivity.this);
+        OnClickListener mClickListener = new OnClickListener(this, view, getActivity());
 
         //열지도
         mMapBtn.setOnTouchListener(mClickListener);
@@ -374,7 +382,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         } else if (id == R.id.btn_alarm) {
 //            intent = new Intent(TemperActivity.this, SettingAddressActivity.class);
 //            startActivity(intent);
-            DummyActivity.startActivityForResult(TemperActivity.this, REQUEST_SEARCH_ADDR, SearchAddressFragment.class, null);
+            DummyActivity.startActivityForResult(getActivity(), REQUEST_SEARCH_ADDR, SearchAddressFragment.class, null);
 //            //hsh start
 //            case R.id.textView9:
 //                GLog.i("click", "dd");
@@ -386,7 +394,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         } else if (id == R.id.share_btn) {
             requestSharedisease();
         } else if (id == R.id.req_diease_btn) {
-            intent = new Intent(TemperActivity.this, RequestDiseaseProgramActivity.class);
+            intent = new Intent(getActivity(), RequestDiseaseProgramActivity.class);
             startActivity(intent);
         }
     }
@@ -413,7 +421,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.title("" + fever);
         markerOptions.position(position);
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, mMarkerRootView)));
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(getActivity(), mMarkerRootView)));
 
         return mMap.addMarker(markerOptions);
     }
@@ -448,7 +456,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
             params.add(new BasicNameValuePair(CommonData.JSON_STRJSON, object.toString()));
 
-            RequestApi.requestApi(this, NetworkConst.NET_GET_MAP_DATA, NetworkConst.getInstance().getFeverDomain(), networkListener, params, new MakeProgress(this));
+            RequestApi.requestApi(getActivity(), NetworkConst.NET_GET_MAP_DATA, NetworkConst.getInstance().getFeverDomain(), networkListener, params,
+                    new MakeProgress(getActivity()));
         } catch (Exception e) {
             GLog.i(e.toString(), "dd");
         }
@@ -467,7 +476,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             object.put(CommonData.JSON_API_CODE, "asstb_mber_cntr_diss");
             object.put(CommonData.JSON_INSURES_CODE, CommonData.INSURE_CODE);          //  insures 코드
             object.put(CommonData.JSON_CNTR_TYP, "15");
-            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(TemperActivity.this).getMberSn());             //  회원고유값
+            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(getContext()).getMberSn());             //  회원고유값
             object.put("diss_view_de", CDateUtil.getToday_yyyy_MM_dd());
 
 
@@ -508,7 +517,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
             params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
 
-            RequestApi.requestApi(this, NetworkConst.NET_ASSTB_MBER_CNTR_DISS, NetworkConst.getInstance().getDefDomain(), networkListener, params, new MakeProgress(this));
+            RequestApi.requestApi(getActivity(), NetworkConst.NET_ASSTB_MBER_CNTR_DISS, NetworkConst.getInstance().getDefDomain(),
+                    networkListener, params, new MakeProgress(getActivity()));
         } catch (Exception e) {
             GLog.i(e.toString(), "dd");
         }
@@ -570,7 +580,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                                             || typePush == FirebaseMessagingService.FEVER_MOVIE
                                             || typePush == FirebaseMessagingService.DIESEASE)) {
                                         startActivity(inTentGo);
-                                        Util.BackAnimationStart(TemperActivity.this);
+                                        Util.BackAnimationStart(getActivity());
                                         inTentGo = null;
                                     }
                                     //hsh end
@@ -651,9 +661,9 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                                     if (cntr_url.contains("https://wkd.walkie.co.kr")) ;
                                     String param = cntr_url.replace("https://wkd.walkie.co.kr", "");
 
-                                    View view = LayoutInflater.from(TemperActivity.this).inflate(R.layout.applink_dialog_layout, null);
-                                    ApplinkDialog dlg = ApplinkDialog.showDlg(TemperActivity.this, view);
-                                    dlg.setSharing(imgUrl, "img", "", "", "[현대해상 " + KakaoLinkUtil.getAppname(TemperActivity.this.getPackageName(), TemperActivity.this) + "]", "유의질환 발생 빈도", "자세히보기", "", false, "disease.png", param, cntr_url);
+                                    View view = LayoutInflater.from(getActivity()).inflate(R.layout.applink_dialog_layout, null);
+                                    ApplinkDialog dlg = ApplinkDialog.showDlg(getActivity(), view);
+                                    dlg.setSharing(imgUrl, "img", "", "", "[현대해상 " + KakaoLinkUtil.getAppname(getActivity().getPackageName(), getActivity()) + "]", "유의질환 발생 빈도", "자세히보기", "", false, "disease.png", param, cntr_url);
 
                                 } else {
                                 }
@@ -685,12 +695,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                             try {
                                 String data_yn = resultData.getString(CommonData.JSON_REG_YN);
                                 if (data_yn.equals(CommonData.YES)) {
-                                    CommonData.getInstance(TemperActivity.this).setMarketing_yn(resultData.getString(CommonData.JSON_MARKETING_YN));
-                                    CommonData.getInstance(TemperActivity.this).setLocation_yn(resultData.getString(CommonData.JSON_LOCATION_YN));
-                                    CommonData.getInstance(TemperActivity.this).setEvent_alert_yn(resultData.getString(CommonData.JSON_EVENT_ALERT_YN).equals(CommonData.YES) ? true : false);
-                                    CommonData.getInstance(TemperActivity.this).setMapPushAlarm(resultData.getString(CommonData.JSON_HEAT_YN).equals(CommonData.YES) ? true : false);
-                                    CommonData.getInstance(TemperActivity.this).setDietPushAlarm(resultData.getString(CommonData.JSON_DIET_YN).equals(CommonData.YES) ? true : false);
-                                    CommonData.getInstance(TemperActivity.this).setDisease_alert_yn(resultData.getString(CommonData.JSON_DISEASE_ALERT_YN).equals(CommonData.YES) ? true : false);
+                                    CommonData.getInstance(getActivity()).setMarketing_yn(resultData.getString(CommonData.JSON_MARKETING_YN));
+                                    CommonData.getInstance(getActivity()).setLocation_yn(resultData.getString(CommonData.JSON_LOCATION_YN));
+                                    CommonData.getInstance(getActivity()).setEvent_alert_yn(resultData.getString(CommonData.JSON_EVENT_ALERT_YN).equals(CommonData.YES) ? true : false);
+                                    CommonData.getInstance(getActivity()).setMapPushAlarm(resultData.getString(CommonData.JSON_HEAT_YN).equals(CommonData.YES) ? true : false);
+                                    CommonData.getInstance(getActivity()).setDietPushAlarm(resultData.getString(CommonData.JSON_DIET_YN).equals(CommonData.YES) ? true : false);
+                                    CommonData.getInstance(getActivity()).setDisease_alert_yn(resultData.getString(CommonData.JSON_DISEASE_ALERT_YN).equals(CommonData.YES) ? true : false);
                                 }
 
                             } catch (JSONException e) {
@@ -752,7 +762,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     //hsh start
     private void setTabShow() {
-        Intent i = getIntent();
+        Intent i = getActivity().getIntent();
         int push_type = i.getIntExtra(CommonData.EXTRA_PUSH_TYPE, 0);
         int type = i.getIntExtra(CommonData.EXTRA_MAIN_TYPE, 0);
         if ((push_type != 0 && push_type == FirebaseMessagingService.DIESEASE) || type != 0) {
@@ -760,8 +770,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         } else {
             setTab(0);
         }
-        getIntent().removeExtra(CommonData.EXTRA_PUSH_TYPE);
-        getIntent().removeExtra(CommonData.EXTRA_INFO_SN);
+        getActivity().getIntent().removeExtra(CommonData.EXTRA_PUSH_TYPE);
+        getActivity().getIntent().removeExtra(CommonData.EXTRA_INFO_SN);
     }
     //hsh end
 
@@ -771,7 +781,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
 
-        GpsInfo gps = new GpsInfo(this);
+        GpsInfo gps = new GpsInfo(getActivity());
         if (gps.isGetLocation()) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gps.getLatitude(), gps.getLongitude()), 11));
         }
@@ -780,7 +790,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     }
 
     private void setCustomMarkerView() {
-        mMarkerRootView = LayoutInflater.from(this).inflate(R.layout.custom_marker, null);
+        mMarkerRootView = LayoutInflater.from(getActivity()).inflate(R.layout.custom_marker, null);
         marker = (TextView) mMarkerRootView.findViewById(R.id.marker);
     }
 
@@ -796,26 +806,26 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             JSONObject object = new JSONObject();
             object.put(CommonData.JSON_API_CODE, CommonData.METHOD_MBER_CHECK_AGREE_YN);
             object.put(CommonData.JSON_INSURES_CODE, CommonData.INSURE_CODE);
-            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(TemperActivity.this).getMberSn());
+            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(getActivity()).getMberSn());
 
             object.put(CommonData.JSON_MARKETING_YN, "");
             object.put(CommonData.JSON_LOCATION_YN, YN);
 
             params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
 
-            RequestApi.requestApi(TemperActivity.this, NetworkConst.NET_MBER_CHECK_AGREE_YN, NetworkConst.getInstance().getDefDomain(), networkListener, params, new MakeProgress(this));
+            RequestApi.requestApi(getActivity(), NetworkConst.NET_MBER_CHECK_AGREE_YN, NetworkConst.getInstance().getDefDomain(), networkListener, params, new MakeProgress(getActivity()));
         } catch (Exception e) {
             GLog.i(e.toString(), "dd");
         }
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if (mapFragment != null)
             mapFragment.onResume();
 
-        if (CommonData.getInstance(TemperActivity.this).getLocation_yn().equals("N") || CommonData.getInstance(TemperActivity.this).getLocation_yn().equals("")) {
+        if (CommonData.getInstance(getActivity()).getLocation_yn().equals("N") || CommonData.getInstance(getActivity()).getLocation_yn().equals("")) {
 //            CustomAlertDialog mDialog2 = new CustomAlertDialog(FeverMapActivity.this, CustomAlertDialog.TYPE_F);
 //            View view = LayoutInflater.from(FeverMapActivity.this).inflate(R.layout.popup_dialog_certiview, null);
 //            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -873,14 +883,14 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         if (mapFragment != null)
             mapFragment.onStop();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         try {
             if (mMap != null)

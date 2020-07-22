@@ -12,7 +12,7 @@
         android:layout_height="55dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@color/color_FB8AD3">
+        android:background="@color/color_main_btn_01_col">
 
         <ImageButton
             android:id="@+id/common_left_btn"

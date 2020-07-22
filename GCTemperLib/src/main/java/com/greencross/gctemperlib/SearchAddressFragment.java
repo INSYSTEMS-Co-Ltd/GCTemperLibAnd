@@ -1,51 +1,57 @@
-package com.greencross.gctemperlib.setting;
+package com.greencross.gctemperlib;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.util.Util;
-import com.greencross.gctemperlib.BuildConfig;
-import com.greencross.gctemperlib.R;
 
 
-public class SearchAddressActivity extends AppCompatActivity {
+public class SearchAddressFragment extends BaseFragment {
 
     TextView mTitleTextView;
     ImageView mBackImg;
     private WebView mWebView;
     private Handler mHandler;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_address);
+    public static Fragment newInstance() {
+        SearchAddressFragment fragment = new SearchAddressFragment();
+        return fragment;
+    }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_search_address, container, false);
         // WebView 초기화
-        init_webView();
+        init_webView(view);
 
         // 핸들러를 통한 JavaScript 이벤트 반응
         mHandler = new Handler();
+        if (getActivity() instanceof DummyActivity) {
+            ((DummyActivity)getActivity()).setTitle(getString(R.string.search_address));
+        }
+        return view;
     }
 
-    public void init_webView() {
-        mTitleTextView =	(TextView)	findViewById(R.id.common_title_tv);
-        mBackImg =	(ImageView)	findViewById(R.id.common_left_btn);
-        mBackImg.setOnClickListener(v -> finish());
-        mTitleTextView.setText(getString(R.string.search_address));
+
+    public void init_webView(View view) {
         // WebView 설정
-        mWebView = (WebView) findViewById(R.id.web_view);
+        mWebView = (WebView) view.findViewById(R.id.web_view);
         // JavaScript 허용
         mWebView.getSettings().setJavaScriptEnabled(true);
         // JavaScript의 window.open 허용
@@ -59,7 +65,7 @@ public class SearchAddressActivity extends AppCompatActivity {
         // 웹뷰 디버깅 설정
         if(BuildConfig.DEBUG) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                mWebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG);
+                WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG);
             }
         }
 
@@ -72,25 +78,33 @@ public class SearchAddressActivity extends AppCompatActivity {
         public void setAddress(final String arg1, final String arg2) {
             mHandler.post(() -> {
                 //Toast.makeText(SearchAddressActivity.this, String.format("(%s) %s %s %s", arg1, arg2, arg3, arg4), Toast.LENGTH_LONG).show();
-                Intent intent = getIntent();
+                Intent intent = getActivity().getIntent();
 
                 intent.putExtra(CommonData.EXTRA_ADDRESS, arg1+CommonData.STRING_SPACE+arg2);
-                setResult(RESULT_OK, intent);
+                getActivity().setResult(Activity.RESULT_OK, intent);
 
-                finish();
+               getActivity().finish();
             });
         }
     }
 
+//    @Override
+//    public void finish() {
+//        // TODO Auto-generated method stub
+//        super.finish();
+//        Util.BackAnimationEnd(SearchAddressFragment.this);	// Activity 종료시 뒤로가기 animation
+//    }
+
+
     @Override
-    public void finish() {
-        // TODO Auto-generated method stub
-        super.finish();
-        Util.BackAnimationEnd(SearchAddressActivity.this);	// Activity 종료시 뒤로가기 animation
+    public void onDestroy() {
+        super.onDestroy();
+        Util.BackAnimationEnd(getActivity());	// Activity 종료시 뒤로가기 animation
     }
 
-    @Override protected void attachBaseContext(Context newBase) {
-        // // super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
-        super.attachBaseContext(newBase);
-    }
+//    @Override
+//    protected void attachBaseContext(Context newBase) {
+//        // // super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+//        super.attachBaseContext(newBase);
+//    }
 }

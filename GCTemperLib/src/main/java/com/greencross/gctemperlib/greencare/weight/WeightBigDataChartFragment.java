@@ -96,14 +96,14 @@ public class WeightBigDataChartFragment extends BaseFragment implements IBackPre
         if (getActivity() instanceof DummyActivity) {
             DummyActivity activity = (DummyActivity) getActivity();
 
-            ImageView tipbtn = (ImageView) activity.findViewById(R.id.actionbar_tip_btn);
-            tipbtn.setVisibility(View.GONE);
-            tipbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    activity.actionTipBtnClick(getContext(), StringUtil.getIntVal(SharedPref.getInstance(getContext()).getPreferences("PREF_KEY_WEEK_INPUT")));
-                }
-            });
+//            ImageView tipbtn = (ImageView) activity.findViewById(R.id.actionbar_tip_btn);
+//            tipbtn.setVisibility(View.GONE);
+//            tipbtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    activity.actionTipBtnClick(getContext(), StringUtil.getIntVal(SharedPref.getInstance(getContext()).getPreferences("PREF_KEY_WEEK_INPUT")));
+//                }
+//            });
 
             TextView titleTv = (TextView) activity.findViewById(R.id.common_title_tv);
             titleTv.setText(getString(R.string.mother_health_wt_prediction_result));

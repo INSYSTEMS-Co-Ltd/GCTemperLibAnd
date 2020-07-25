@@ -14,12 +14,14 @@ import org.json.JSONObject;
 /**
  *
  *
- No Environment
- @Request cust_id - 고객사 키
+회원체크
+
+ @Request
+ cust_id - 고객사 키
  phone_gubun - 폰 구분("A : 안드로이드, I : 아이폰")
  appver - 어플버젼정보(사용자)
- devicetoken -  gsm 토큰
- id os_ver - 폰 os버젼정보(사용자)
+ devicetoken - gsm 토큰 id
+ os_ver - 폰 os버젼정보(사용자)
  p_model - 폰 모델 정보(사용자)
  pushk - 푸쉬종류 (아이폰에만 존재)("AT: 앱스토어 테스트, AR: 앱스토어 배포")
 
@@ -31,10 +33,8 @@ import org.json.JSONObject;
  ncrgd_de - 측정독려알림수신 업데이트 일자
  area_thmt_yn - 지역체온알림수신
  area_thmt_de - 지역체온알림수신 업데이트 일자
- heat_si - 관심지역2
- loc_nm_2와 일치
- heat_do - 관심지역1
- loc_nm_1와 일치
+ heat_si - 관심지역2 loc_nm_2와 일치
+ heat_do - 관심지역1 loc_nm_1와 일치
  new_appver - 최신 앱 버전(각 폰 OS에 맞는 앱 버전)
  new_link - 최신 앱 어플링크(각 폰 OS에 맞는 스토어 링크)
  status - HTTP응답코드
@@ -48,7 +48,7 @@ import org.json.JSONObject;
  */
 
 public class Tr_login extends BaseData {
-	private final String TAG = Tr_login.class.getSimpleName();
+	private final String TAG = getClass().getSimpleName();
 
 
 	public static class RequestData {

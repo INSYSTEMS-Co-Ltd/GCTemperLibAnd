@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.greencross.gctemperlib.fever.TemperControlActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
+import com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
@@ -66,8 +68,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     private final int REQUEST_SEARCH_ADDR = 787;
 
-    private Button mMapBtn, mEpidemicBtn;
-
     private LinearLayout mLinearTabMap;
 
     private ImageButton mBtnAlarm;
@@ -82,9 +82,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     private View view;
 
-    private RelativeLayout slideTopLayout;
-    private ViewGroup hiddenPanel;
-    private boolean isAnimEnd = false;
+    private SlidingUpPanelLayout mLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,8 +118,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         if (mIntent != null) {
             mFragmentNum = mIntent.getIntExtra("tabNum", 0);
         }
-        setTab(0);
-//        setTab(mFragmentNum);
 
         // 체온관리
         findViewById(R.id.fever_map_menu_1).setOnClickListener(new View.OnClickListener() {
@@ -166,60 +162,32 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         });
 
 
-        slideTopLayout = findViewById(R.id.slide_top_layout);
-        hiddenPanel = (ViewGroup) findViewById(R.id.slide_menu_layout);
-        slideTopLayout.setOnClickListener(new View.OnClickListener() {
+        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
-            public void onClick(View view) {
-                hiddenPanel.setVisibility(hiddenPanel.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+            public void onPanelSlide(View panel, float slideOffset) {
+                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+            }
 
-//                Animation animDown = AnimationUtils.loadAnimation(FeverMapActivity.this, R.anim.bottom_down);
-//                hiddenPanel.startAnimation(animDown);
-//                hiddenPanel.setVisibility(View.VISIBLE);
-//                isAnimEnd = false;
-//                animDown.setAnimationListener(new Animation.AnimationListener() {
-//                    @Override
-//                    public void onAnimationStart(Animation animation) {
-//                        Log.i(TAG, "onAnimationStart");
-////                        mHandler.sendEmptyMessage(0);
-//                    }
-//
-//                    @Override
-//                    public void onAnimationEnd(Animation animation) {
-//                        Log.i(TAG, "onAnimationEnd");
-//                        isAnimEnd = true;
-//                        hiddenPanel.setVisibility(View.GONE);
-//                    }
-//
-//                    @Override
-//                    public void onAnimationRepeat(Animation animation) {
-//                        Log.i(TAG, "onAnimationRepeat");
-//                    }
-//                });
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                Log.i(TAG, "onPanelStateChanged " + newState);
             }
         });
 
-
+        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
     }
-
-//    Handler mHandler = new Handler() {
-//        public void handleMessage(Message msg) {
-//            // 메세지를 처리하고 또다시 핸들러에 메세지 전달 (1000ms 지연)
-//            slideTopLayout.setY(hiddenPanel.getY());
-//            if (isAnimEnd == false)
-//                mHandler.sendEmptyMessageDelayed(0,5);
-//        }
-//    };
 
 
     /**
      * 초기화
      */
     public void init() {
-
-        mMapBtn = (Button) findViewById(R.id.map_btn);
-        mEpidemicBtn = (Button) findViewById(R.id.epidemic_btn);
-
         mBtnAlarm = (ImageButton) findViewById(R.id.btn_alarm);
         mLinearTabMap = (LinearLayout) findViewById(R.id.linear_tab_map);
 
@@ -233,9 +201,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 이벤트 연결
      */
     public void setEvent() {
-        mMapBtn.setOnClickListener(this);
         mBtnAlarm.setOnClickListener(this);
-        mEpidemicBtn.setOnClickListener(this);
 
         //hsh start
 //        textView9.setOnClickListener(this);
@@ -246,25 +212,13 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         OnClickListener mClickListener = new OnClickListener(this, view, TemperActivity.this);
 
         //열지도
-        mMapBtn.setOnTouchListener(mClickListener);
-        mEpidemicBtn.setOnTouchListener(mClickListener);
         mBtnAlarm.setOnTouchListener(mClickListener);
 
-        //코드 부여(열지도)
-        mMapBtn.setContentDescription(getString(R.string.MapBtn));
-        mEpidemicBtn.setContentDescription(getString(R.string.EpidemicBtn));
         mBtnAlarm.setContentDescription(getString(R.string.BtnAlarm));
 
     }
 
     public static ArrayList<EpidemicItem> mEpidemicList = new ArrayList<EpidemicItem>();        // 유행질병 카운트
-
-    public void setTab(int _tabNum) {
-        mMapBtn.setTextColor(getResources().getColor(R.color.h_orange));
-        mMapBtn.setBackgroundResource(R.drawable.underline_fever);
-        mEpidemicBtn.setTextColor(Color.WHITE);
-        mEpidemicBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
-    }
 
     @Override
     public void onClick(View v) {
@@ -670,6 +624,16 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 //
 //            mDialog2.setCancelable(false);
 //            mDialog2.show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mLayout != null &&
+                (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
+            mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        } else {
+            super.onBackPressed();
         }
     }
 

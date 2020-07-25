@@ -64,277 +64,256 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-    <!-- 키 몸무게 머리둘레 버튼 레이아웃-->
-    <LinearLayout
-        android:id="@+id/choice_lay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_65_dp"
-        android:layout_alignParentTop="true"
-        android:background="@color/bg_yellow_light"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/map_btn"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_40_dp"
-            android:layout_marginRight="@dimen/_40_dp"
-            android:layout_weight="1"
-            android:background="@drawable/underline_fever"
-            android:fontFamily="@font/hi_maum_r"
-            android:text="@string/location_fever"
-            android:textAllCaps="false"
-            android:textColor="@color/h_orange"
-            android:textSize="@dimen/_17_dp" />
-
-        <Button
-            android:id="@+id/epidemic_btn"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_40_dp"
-            android:layout_marginRight="@dimen/_40_dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/hi_maum_r"
-            android:text="@string/epidemic"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_17_dp" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/linear_tab_map"
+        <com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout
+            android:id="@+id/sliding_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_10_dp"
-            android:visibility="visible">
+            android:gravity="bottom"
+            app:umanoDragView="@+id/dragView"
+            app:umanoOverlay="false"
+            app:umanoPanelHeight="50dp"
+            app:umanoScrollableView="@+id/list_view"
+            app:umanoShadowHeight="4dp">
+            <!--        app:umanoParallaxOffset="100dp"-->
+            <!-- gravity 를 bottom으로 하면 아래에서 위로 드래그, top으로 하면 위에서 아래로 드래그 할 수 있다.
+                     umanoDragView 드래그 해서 보여줄 view를 선택
+                     umanoScrollableView  슬라이딩 패널에 내용물이 패널에 표시되는것보다 많을 때 스크롤 해서 보여줄 view 부분
+                     umanoParallaxOffset 에 값을 주면 해당 높이만큼 뒤에 화면을 올려준다.
+                     umanoShadowHeight 는 슬라이딩 패널 윗부분에 그림자 효과
+                     umanoOverlay 를 false로 해주면 슬라이딩 패널이 위로 보이고 뒷 부분은 반투명하게 보인다. -->
 
+            <!-- 지도 레이아웃 -->
             <LinearLayout
+                android:id="@+id/linear_tab_map"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_10_dp"
+                android:visibility="visible">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="올바른 감염예방 " />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1Q 오늘의 체온관리"
-                    android:textColor="@android:color/holo_blue_dark" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_box_square">
-
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_65_dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/graph_temp_map" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="올바른 감염예방 " />
 
-                <fragment
-                    android:id="@+id/map"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1Q 오늘의 체온관리"
+                        android:textColor="@android:color/holo_blue_dark" />
+                </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/edittext_box_square">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_65_dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/graph_temp_map" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <fragment
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <!-- 슬라이드 메뉴 -->
+            <!-- SLIDING LAYOUT -->
+            <LinearLayout
+                android:id="@+id/dragView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:clickable="true"
+                android:focusable="false"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/background_fever_map_bottom"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Slide를 내리면 열지도를 크게 볼 수 있어요." />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:rotation="90"
+                        android:src="@drawable/arrow_right" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <!-- 슬라이드 메뉴 -->
-                    <RelativeLayout
-                        android:id="@+id/slide_top_layout"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorGray" />
+
+                    <LinearLayout
+                        android:id="@+id/fever_map_menu_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background_fever_map_bottom"
                         android:padding="10dp">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Slide를 내리면 열지도를 크게 볼 수 있어요." />
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/commu_btn_6ov"
+                            android:drawablePadding="20dp"
+                            android:text="체온관리"
+                            android:textColor="@color/colorBlack" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:rotation="90"
                             android:src="@drawable/arrow_right" />
+                    </LinearLayout>
 
-                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorGray" />
 
                     <LinearLayout
-                        android:id="@+id/slide_menu_layout"
+                        android:id="@+id/fever_map_menu_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/colorWhite"
-                        android:clickable="true"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        tools:visibility="visible">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_2"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/colorGray" />
-
-                        <LinearLayout
-                            android:id="@+id/fever_map_menu_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:drawableLeft="@drawable/commu_btn_6ov"
-                                android:drawablePadding="20dp"
-                                android:text="체온관리"
-                                android:textColor="@color/colorBlack" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/arrow_right" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_2"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/colorGray" />
-
-                        <LinearLayout
-                            android:id="@+id/fever_map_menu_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:drawableLeft="@drawable/commu_btn_6ov"
-                                android:drawablePadding="20dp"
-                                android:text="검강검진 예약"
-                                android:textColor="@color/colorBlack" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/arrow_right" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_2"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/colorGray" />
-
-                        <LinearLayout
-                            android:id="@+id/fever_map_menu_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:drawableLeft="@drawable/commu_btn_6ov"
-                                android:drawablePadding="20dp"
-                                android:text="건강상담"
-                                android:textColor="@color/colorBlack" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/arrow_right" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_2"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/colorGray" />
-
-                        <LinearLayout
-                            android:id="@+id/fever_map_menu_4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:drawableLeft="@drawable/commu_btn_6ov"
-                                android:drawablePadding="20dp"
-                                android:text="헬스케어서비스란?"
-                                android:textColor="@color/colorBlack" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/arrow_right" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_2"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/colorGray" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_2"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/colorGray" />
+                        android:padding="10dp">
 
                         <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/commu_btn_6ov"
+                            android:drawablePadding="20dp"
+                            android:text="검강검진 예약"
+                            android:textColor="@color/colorBlack" />
+
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_weight="1"
-                            android:paddingLeft="30dp"
-                            android:text="본 서비스는 녹십자 헬스케어에서 제공 합니다." />
+                            android:src="@drawable/arrow_right" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorGray" />
+
+                    <LinearLayout
+                        android:id="@+id/fever_map_menu_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/commu_btn_6ov"
+                            android:drawablePadding="20dp"
+                            android:text="건강상담"
+                            android:textColor="@color/colorBlack" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/arrow_right" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorGray" />
+
+                    <LinearLayout
+                        android:id="@+id/fever_map_menu_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/commu_btn_6ov"
+                            android:drawablePadding="20dp"
+                            android:text="헬스케어서비스란?"
+                            android:textColor="@color/colorBlack" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/arrow_right" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorGray" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_2"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorGray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="30dp"
+                        android:text="본 서비스는 녹십자 헬스케어에서 제공 합니다." />
                 </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
+            </LinearLayout>
+        </com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout>
+
     </LinearLayout>
+
 
 </LinearLayout>

@@ -26,11 +26,8 @@ import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenu;
 import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenuCreator;
 import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenuItem;
 import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenuListView;
-import com.greencross.gctemperlib.greencare.database.DBHelper;
-import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
+//import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_bdwgh_info_del_data;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_bdwgh_info_edit_data;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
@@ -128,10 +125,10 @@ public class WeightSwipeListView {
     public void getHistoryData() {
         mSwipeMenuDatas.clear();
 
-        DBHelper helper = new DBHelper(mBaseFragment.getContext());
-        DBHelperWeight weightrDb = helper.getWeightDb();
-        mSwipeMenuDatas.addAll(weightrDb.getResult());
-        mAdapter.notifyDataSetChanged();
+//        DBHelper helper = new DBHelper(mBaseFragment.getContext());
+//        DBHelperWeight weightrDb = helper.getWeightDb();
+//        mSwipeMenuDatas.addAll(weightrDb.getResult());
+//        mAdapter.notifyDataSetChanged();
     }
 
     class AppAdapter extends BaseAdapter {
@@ -409,55 +406,55 @@ public class WeightSwipeListView {
      */
     private void doDeleteData(final int position, final Tr_get_hedctdata.DataList dataList) {
 
-        Tr_bdwgh_info_del_data inputData = new Tr_bdwgh_info_del_data();
-        Tr_bdwgh_info_del_data.RequestData requestData = new Tr_bdwgh_info_del_data.RequestData();
-        CommonData login = CommonData.getInstance(mBaseFragment.getContext());
-
-        requestData.mber_sn = login.getMberSn();
-        requestData.ast_mass = inputData.getArray(dataList);
-
-        mBaseFragment.getData(mBaseFragment.getContext(), inputData.getClass(), requestData, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_bdwgh_info_del_data) {
-                    Tr_bdwgh_info_del_data data = (Tr_bdwgh_info_del_data)obj;
-                    if ("Y".equals(data.reg_yn)) {
-
-                        DBHelper helper = new DBHelper(mBaseFragment.getContext());
-                        DBHelperWeight weightDb = helper.getWeightDb();
-                        weightDb.DeleteDb(dataList.idx);
-
-                        mSwipeMenuDatas.remove(position);
-
-                        CommonData login = CommonData.getInstance(mBaseFragment.getContext());
-                        DBHelperWeight.WeightStaticData bottomData = weightDb.getResultStatic(helper);
-                        if(!bottomData.getWeight().isEmpty()){
-//                            login.mber_bdwgh_app = bottomData.getWeight();
-
-                            if (mSwipeMenuDatas.size() > 0) {
-                                Tr_get_hedctdata.DataList lastList = mSwipeMenuDatas.get(0);
-                                login.setMotherWeight(lastList.weight);
-                            }
-//                            int sex             = StringUtil.getIntVal(login.getGender());
-//                            float weight        = StringUtil.getFloatVal(login.getMotherWeight());
-//                            float height        = StringUtil.getFloat(login.getBefCm());
-//                            int calory          = 0;//StringUtil.getIntVal(login.c);
-//                            int step = StringUtil.getIntVal(mBaseFragment.getStepTargetCalulator(calory));
-//                            mBaseFragment.setStepTarget(0, step);
-
-                        }else{
-//                            login.mber_bdwgh_app = login.mber_bdwgh;
-//                            // TODO XXX 데이터 넣어야 함
-//                            Define.getInstance().setLoginInfo(login);
-                        }
-
-                        mAdapter.notifyDataSetChanged();
-
-                        CDialog.showDlg(mBaseFragment.getContext(), mBaseFragment.getContext().getString(R.string.delete_success));
-                    }
-                }
-            }
-        });
+//        Tr_bdwgh_info_del_data inputData = new Tr_bdwgh_info_del_data();
+//        Tr_bdwgh_info_del_data.RequestData requestData = new Tr_bdwgh_info_del_data.RequestData();
+//        CommonData login = CommonData.getInstance(mBaseFragment.getContext());
+//
+//        requestData.mber_sn = login.getMberSn();
+//        requestData.ast_mass = inputData.getArray(dataList);
+//
+//        mBaseFragment.getData(mBaseFragment.getContext(), inputData.getClass(), requestData, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_bdwgh_info_del_data) {
+//                    Tr_bdwgh_info_del_data data = (Tr_bdwgh_info_del_data)obj;
+//                    if ("Y".equals(data.reg_yn)) {
+//
+//                        DBHelper helper = new DBHelper(mBaseFragment.getContext());
+//                        DBHelperWeight weightDb = helper.getWeightDb();
+//                        weightDb.DeleteDb(dataList.idx);
+//
+//                        mSwipeMenuDatas.remove(position);
+//
+//                        CommonData login = CommonData.getInstance(mBaseFragment.getContext());
+//                        DBHelperWeight.WeightStaticData bottomData = weightDb.getResultStatic(helper);
+//                        if(!bottomData.getWeight().isEmpty()){
+////                            login.mber_bdwgh_app = bottomData.getWeight();
+//
+//                            if (mSwipeMenuDatas.size() > 0) {
+//                                Tr_get_hedctdata.DataList lastList = mSwipeMenuDatas.get(0);
+//                                login.setMotherWeight(lastList.weight);
+//                            }
+////                            int sex             = StringUtil.getIntVal(login.getGender());
+////                            float weight        = StringUtil.getFloatVal(login.getMotherWeight());
+////                            float height        = StringUtil.getFloat(login.getBefCm());
+////                            int calory          = 0;//StringUtil.getIntVal(login.c);
+////                            int step = StringUtil.getIntVal(mBaseFragment.getStepTargetCalulator(calory));
+////                            mBaseFragment.setStepTarget(0, step);
+//
+//                        }else{
+////                            login.mber_bdwgh_app = login.mber_bdwgh;
+////                            // TODO XXX 데이터 넣어야 함
+////                            Define.getInstance().setLoginInfo(login);
+//                        }
+//
+//                        mAdapter.notifyDataSetChanged();
+//
+//                        CDialog.showDlg(mBaseFragment.getContext(), mBaseFragment.getContext().getString(R.string.delete_success));
+//                    }
+//                }
+//            }
+//        });
     }
 
 
@@ -466,41 +463,41 @@ public class WeightSwipeListView {
      * @param dataList
      */
     private void doModifyData(final Tr_get_hedctdata.DataList dataList) {
-        Tr_bdwgh_info_edit_data inputData = new Tr_bdwgh_info_edit_data();
-        Tr_bdwgh_info_edit_data.RequestData requestData = new Tr_bdwgh_info_edit_data.RequestData();
-        final CommonData login = CommonData.getInstance(mBaseFragment.getContext());
-
-        requestData.mber_sn = login.getMberSn();
-        requestData.ast_mass = inputData.getArray(dataList);
-
-        mBaseFragment.getData(mBaseFragment.getContext(), inputData.getClass(), requestData, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_bdwgh_info_edit_data) {
-                    Tr_bdwgh_info_edit_data data = (Tr_bdwgh_info_edit_data)obj;
-                    if ("Y".equals(data.reg_yn)) {
-
-                        DBHelper helper = new DBHelper(mBaseFragment.getContext());
-                        DBHelperWeight weightDb = helper.getWeightDb();
-
-                        weightDb.UpdateDb(dataList.idx, dataList.weight, dataList.fat, dataList.obesity, dataList.bodywater, dataList.muscle, dataList.reg_de);
-
-                        DBHelperWeight.WeightStaticData bottomData = weightDb.getResultStatic(helper);
-                        if(!bottomData.getWeight().isEmpty()){
-                            int sex             = StringUtil.getIntVal(login.getGender());
-                            float weight = StringUtil.getFloatVal(login.getMotherWeight());
-                            float height        = StringUtil.getFloat(login.getBefCm());
-                            int calory          = StringUtil.getIntVal(login.getMotherGoalCal());
-                            int step = StringUtil.getIntVal(mBaseFragment.getStepTargetCalulator(calory));
-                            mBaseFragment.setStepTarget(0, step);
-                        }
-
-                        getHistoryData();
-
-                        CDialog.showDlg(mBaseFragment.getContext(), mBaseFragment.getContext().getString(R.string.modify_success));
-                    }
-                }
-            }
-        });
+//        Tr_bdwgh_info_edit_data inputData = new Tr_bdwgh_info_edit_data();
+//        Tr_bdwgh_info_edit_data.RequestData requestData = new Tr_bdwgh_info_edit_data.RequestData();
+//        final CommonData login = CommonData.getInstance(mBaseFragment.getContext());
+//
+//        requestData.mber_sn = login.getMberSn();
+//        requestData.ast_mass = inputData.getArray(dataList);
+//
+//        mBaseFragment.getData(mBaseFragment.getContext(), inputData.getClass(), requestData, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_bdwgh_info_edit_data) {
+//                    Tr_bdwgh_info_edit_data data = (Tr_bdwgh_info_edit_data)obj;
+//                    if ("Y".equals(data.reg_yn)) {
+//
+////                        DBHelper helper = new DBHelper(mBaseFragment.getContext());
+////                        DBHelperWeight weightDb = helper.getWeightDb();
+////
+////                        weightDb.UpdateDb(dataList.idx, dataList.weight, dataList.fat, dataList.obesity, dataList.bodywater, dataList.muscle, dataList.reg_de);
+////
+////                        DBHelperWeight.WeightStaticData bottomData = weightDb.getResultStatic(helper);
+////                        if(!bottomData.getWeight().isEmpty()){
+//                            int sex             = StringUtil.getIntVal(login.getGender());
+//                            float weight = StringUtil.getFloatVal(login.getMotherWeight());
+//                            float height        = StringUtil.getFloat(login.getBefCm());
+//                            int calory          = StringUtil.getIntVal(login.getMotherGoalCal());
+//                            int step = StringUtil.getIntVal(mBaseFragment.getStepTargetCalulator(calory));
+//                            mBaseFragment.setStepTarget(0, step);
+////                        }
+////
+////                        getHistoryData();
+////
+////                        CDialog.showDlg(mBaseFragment.getContext(), mBaseFragment.getContext().getString(R.string.modify_success));
+//                    }
+//                }
+//            }
+//        });
     }
 }

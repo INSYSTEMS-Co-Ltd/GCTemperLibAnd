@@ -24,7 +24,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -50,8 +49,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.greencross.gctemperlib.greencare.component.CPeriodDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
-import com.greencross.gctemperlib.greencare.database.DBHelper;
-import com.greencross.gctemperlib.greencare.database.DBHelperLog;
+//import com.greencross.gctemperlib.greencare.database.DBHelper;
+//import com.greencross.gctemperlib.greencare.database.DBHelperLog;
 import com.greencross.gctemperlib.Alram.AlramMainActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.collection.ChildItem;
@@ -80,7 +79,6 @@ import com.greencross.gctemperlib.setting.SettingActivity;
 import com.greencross.gctemperlib.setting.SettingAddressActivity;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.GpsInfo;
-import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.webview.BackWebViewInfoActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -997,49 +995,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    /**
-     * 컨텐츠 변경
-     */
-    public void main_category() {
-        main_spinner.performClick();
-        main_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Logger.i(TAG,"main_spinner :" + view);
-                // _!: 카운트만 되는 버튼 끝에 붙임
-                int j = position +1;
-                view.setContentDescription("HL01_004_00"+j+"_!");
-                if (view.getContentDescription().toString().contains("_!")) {
-                    String temp = view.getContentDescription().toString().replace("_!", "");
-                    String cod[] = temp.split("_");
-
-                    DBHelper helper = new DBHelper(MainActivity.this);
-                    DBHelperLog logdb = helper.getLogDb();
-
-                    if (cod.length == 1) {
-                        logdb.insert(cod[0], "", "", 0, 1);
-                        Log.i(TAG, "view.contentDescription : " + cod[0] + "count : 1");
-                    } else if (cod.length == 2) {
-                        logdb.insert(cod[0], cod[1], "", 0, 1);
-                        Log.i(TAG, "view.contentDescription : " + cod[0] + cod[1] + "count : 1");
-                    } else {
-                        logdb.insert(cod[0], cod[1], cod[2], 0, 1);
-                        Log.i(TAG, "view.contentDescription : " + cod[0] + cod[1] + cod[2] + "count : 1");
-                    }
-
-                }
-                Log.i(TAG,"ACTION_UP");
-
-                CommonData.getInstance(MainActivity.this).setMain_Category(Integer.toString(position));
-                setCategory(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
 
     public void setDefaultCategory(){
         android.util.Log.i("Main_category", "setDefaultCategory: "+CommonData.getInstance(MainActivity.this).getMain_Category());
@@ -1801,13 +1756,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else if (id == R.id.btn_side_08) {
                 hideProgress();
                 mDrawerLayout.closeDrawers();
-                KakaoLinkUtil.kakaoAddFriends(MainActivity.this);
+//                KakaoLinkUtil.kakaoAddFriends(MainActivity.this);
             } else if (id == R.id.hompage_btn) {
                 mDrawerLayout.closeDrawers();
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_homepage))));
-            } else if (id == R.id.list_add_change) {
-                hideProgress();
-                main_category();
+//            } else if (id == R.id.list_add_change) {
+//                hideProgress();
+//                main_category();
             }
 
             if (!str.equals("")) {

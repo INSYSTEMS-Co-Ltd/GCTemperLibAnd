@@ -7,9 +7,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_bdsg_dose_medicine_input;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_bdsg_info_input_data;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_bdwgh_goal_input;
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_bdwgh_info_input_data;
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_brssr_info_input_data;
 import com.greencross.gctemperlib.R;
@@ -19,18 +16,16 @@ import com.greencross.gctemperlib.greencare.bluetooth.model.BandModel;
 import com.greencross.gctemperlib.greencare.bluetooth.model.BloodModel;
 import com.greencross.gctemperlib.greencare.bluetooth.model.MessageModel;
 import com.greencross.gctemperlib.greencare.bluetooth.model.PressureModel;
-import com.greencross.gctemperlib.greencare.bluetooth.model.WaterModel;
 import com.greencross.gctemperlib.greencare.bluetooth.model.WeightModel;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.database.DBHelper;
-import com.greencross.gctemperlib.greencare.database.DBHelperMessage;
-import com.greencross.gctemperlib.greencare.database.DBHelperPPG;
-import com.greencross.gctemperlib.greencare.database.DBHelperPresure;
-import com.greencross.gctemperlib.greencare.database.DBHelperStep;
-import com.greencross.gctemperlib.greencare.database.DBHelperStepRealtime;
-import com.greencross.gctemperlib.greencare.database.DBHelperSugar;
-import com.greencross.gctemperlib.greencare.database.DBHelperWater;
-import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
+//import com.greencross.gctemperlib.greencare.database.DBHelperMessage;
+//import com.greencross.gctemperlib.greencare.database.DBHelperPPG;
+//import com.greencross.gctemperlib.greencare.database.DBHelperPresure;
+//import com.greencross.gctemperlib.greencare.database.DBHelperStep;
+//import com.greencross.gctemperlib.greencare.database.DBHelperStepRealtime;
+//import com.greencross.gctemperlib.greencare.database.DBHelperSugar;
+//import com.greencross.gctemperlib.greencare.database.DBHelperWater;
+//import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
@@ -39,8 +34,6 @@ import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_hedctdata;
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_infra_message_write;
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_mvm_info_input_data;
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_ppg_info_input_data;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_water_goalqy;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_water_info_input_data;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
@@ -273,10 +266,9 @@ public class DeviceDataUtil {
      * @param isServerRegist
      */
     private void registStepDB(Context baseFragment, BandModel model, boolean isServerRegist) {
-
-        DBHelper helper = new DBHelper(baseFragment);
-        DBHelperStepRealtime db = helper.getmStepRtimeDb();
-        db.insert(model, isServerRegist);
+//        DBHelper helper = new DBHelper(baseFragment);
+//        DBHelperStepRealtime db = helper.getmStepRtimeDb();
+//        db.insert(model, isServerRegist);
     }
 
     /**
@@ -287,9 +279,9 @@ public class DeviceDataUtil {
      * @param isServerRegist
      */
     private void registStepDB(Context baseFragment, List<BandModel> dataModel, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment);
-        DBHelperStep db = helper.getStepDb();
-        db.insert(dataModel, isServerRegist);
+//        DBHelper helper = new DBHelper(baseFragment);
+//        DBHelperStep db = helper.getStepDb();
+//        db.insert(dataModel, isServerRegist);
     }
 
     /**
@@ -300,9 +292,9 @@ public class DeviceDataUtil {
      * @param isServerRegist
      */
     private void registStepByDB(Context baseFragment, List<BandModel> dataModel, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment);
-        DBHelperStep db = helper.getStepDb();
-        db.insert2(dataModel, isServerRegist);
+//        DBHelper helper = new DBHelper(baseFragment);
+//        DBHelperStep db = helper.getStepDb();
+//        db.insert2(dataModel, isServerRegist);
     }
 
     /**
@@ -313,9 +305,9 @@ public class DeviceDataUtil {
      * @param isServerRegist
      */
     private void registPPGDB(BaseFragment baseFragment, List<BandModel> dataModel, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment.getContext());
-        DBHelperPPG db = helper.getPPGDb();
-        db.insert(dataModel, isServerRegist);
+//        DBHelper helper = new DBHelper(baseFragment.getContext());
+//        DBHelperPPG db = helper.getPPGDb();
+//        db.insert(dataModel, isServerRegist);
     }
 
     /**
@@ -358,9 +350,9 @@ public class DeviceDataUtil {
     }
 
     private void registPresureDB(BaseFragment baseFragment, PressureModel pressureModel, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment.getContext());
-        DBHelperPresure db = helper.getPresureDb();
-        db.insert(helper, pressureModel, isServerRegist);
+//        DBHelper helper = new DBHelper(baseFragment.getContext());
+//        DBHelperPresure db = helper.getPresureDb();
+//        db.insert(helper, pressureModel, isServerRegist);
     }
 
     /**
@@ -369,92 +361,92 @@ public class DeviceDataUtil {
      * @param baseFragment
      * @param iBluetoothResult
      */
-    public void uploadPresureDrug(final BaseFragment baseFragment, final Tr_bdsg_dose_medicine_input.RequestData requestData, final BluetoothManager.IBluetoothResult iBluetoothResult) {
-        Tr_bdsg_dose_medicine_input inputData = new Tr_bdsg_dose_medicine_input();
-        CommonData login = CommonData.getInstance(baseFragment.getContext());
+//    public void uploadPresureDrug(final BaseFragment baseFragment, final Tr_bdsg_dose_medicine_input.RequestData requestData, final BluetoothManager.IBluetoothResult iBluetoothResult) {
+//        Tr_bdsg_dose_medicine_input inputData = new Tr_bdsg_dose_medicine_input();
+//        CommonData login = CommonData.getInstance(baseFragment.getContext());
+//
+//        baseFragment.getData(baseFragment.getContext(), inputData.getClass(), requestData, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_bdsg_dose_medicine_input) {
+//                    Tr_bdsg_dose_medicine_input data = (Tr_bdsg_dose_medicine_input) obj;
+//                    if ("Y".equals(data.reg_yn)) {
+//
+//                        iBluetoothResult.onResult(true);
+//                    } else {
+//                        CDialog.showDlg(baseFragment.getContext(), baseFragment.getContext().getString(R.string.text_regist_fail));
+//                    }
+//                } else {
+//                    registPresureDB(baseFragment, requestData, false);
+//                    iBluetoothResult.onResult(false);
+//                }
+//            }
+//        });
+//    }
 
-        baseFragment.getData(baseFragment.getContext(), inputData.getClass(), requestData, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_bdsg_dose_medicine_input) {
-                    Tr_bdsg_dose_medicine_input data = (Tr_bdsg_dose_medicine_input) obj;
-                    if ("Y".equals(data.reg_yn)) {
+//    private void registPresureDB(BaseFragment baseFragment, Tr_bdsg_dose_medicine_input.RequestData requestData, boolean isServerRegist) {
+//        DBHelper helper = new DBHelper(baseFragment.getContext());
+//        DBHelperPresure db = helper.getPresureDb();
+//        db.insert(helper, requestData, true);
+//    }
 
-                        iBluetoothResult.onResult(true);
-                    } else {
-                        CDialog.showDlg(baseFragment.getContext(), baseFragment.getContext().getString(R.string.text_regist_fail));
-                    }
-                } else {
-                    registPresureDB(baseFragment, requestData, false);
-                    iBluetoothResult.onResult(false);
-                }
-            }
-        });
-    }
-
-    private void registPresureDB(BaseFragment baseFragment, Tr_bdsg_dose_medicine_input.RequestData requestData, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment.getContext());
-        DBHelperPresure db = helper.getPresureDb();
-        db.insert(helper, requestData, true);
-    }
-
-    /**
-     * 혈당 데이터 서버 및 sqlite에 저장
-     *
-     * @param dataModel
-     */
-    public void uploadSugarData(final BaseFragment baseFragment, final SparseArray<BloodModel> dataModel, boolean isMedicen, final BluetoothManager.IBluetoothResult iBluetoothResult) {
-
-        Tr_bdsg_info_input_data inputData = new Tr_bdsg_info_input_data();
-        CommonData login = CommonData.getInstance(baseFragment.getContext());
-
-        Tr_bdsg_info_input_data.RequestData requestData = new Tr_bdsg_info_input_data.RequestData();
-        requestData.mber_sn = login.getMberSn();
-        requestData.ast_mass = inputData.getArray(dataModel);
-
-        // 투약이 아닌경우 만 메시지 입력
-        if (isMedicen == false)
-            insertSugarMessage(baseFragment, dataModel);
-
-        baseFragment.getData(baseFragment.getContext(), inputData.getClass(), requestData, true, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_bdsg_info_input_data) {
-                    Tr_bdsg_info_input_data data = (Tr_bdsg_info_input_data) obj;
-                    boolean isServerReg = "Y".equals(data.reg_yn);
-                    if (isServerReg) {
-                        registSugarDB(baseFragment, dataModel, true);
-
-                        if (dataModel.size() > 0) {
-                            BloodModel model = dataModel.get(dataModel.keyAt(dataModel.size() - 1));
-                            if (model.getSugar() > 0.0f) {
-                                insertSugarMessage(baseFragment, dataModel);
-                            }
-                        }
-
-                        if (iBluetoothResult != null)
-                            iBluetoothResult.onResult(true);
-                    } else {
-                        CDialog.showDlg(baseFragment.getContext(), baseFragment.getContext().getString(R.string.text_regist_fail));
-                    }
-                }
-            }
-        }, new ApiData.IFailStep() {
-            @Override
-            public void fail() {
-                registSugarDB(baseFragment, dataModel, false);
-
-                if (dataModel.size() > 0) {
-                    BloodModel model = dataModel.get(dataModel.keyAt(dataModel.size() - 1));
-                    if (model.getSugar() > 0.0f) {
-                        insertSugarMessage(baseFragment, dataModel);
-                    }
-                }
-                if (iBluetoothResult != null)
-                    iBluetoothResult.onResult(false);
-            }
-        });
-    }
+//    /**
+//     * 혈당 데이터 서버 및 sqlite에 저장
+//     *
+//     * @param dataModel
+//     */
+//    public void uploadSugarData(final BaseFragment baseFragment, final SparseArray<BloodModel> dataModel, boolean isMedicen, final BluetoothManager.IBluetoothResult iBluetoothResult) {
+//
+//        Tr_bdsg_info_input_data inputData = new Tr_bdsg_info_input_data();
+//        CommonData login = CommonData.getInstance(baseFragment.getContext());
+//
+//        Tr_bdsg_info_input_data.RequestData requestData = new Tr_bdsg_info_input_data.RequestData();
+//        requestData.mber_sn = login.getMberSn();
+//        requestData.ast_mass = inputData.getArray(dataModel);
+//
+//        // 투약이 아닌경우 만 메시지 입력
+//        if (isMedicen == false)
+//            insertSugarMessage(baseFragment, dataModel);
+//
+//        baseFragment.getData(baseFragment.getContext(), inputData.getClass(), requestData, true, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_bdsg_info_input_data) {
+//                    Tr_bdsg_info_input_data data = (Tr_bdsg_info_input_data) obj;
+//                    boolean isServerReg = "Y".equals(data.reg_yn);
+//                    if (isServerReg) {
+//                        registSugarDB(baseFragment, dataModel, true);
+//
+//                        if (dataModel.size() > 0) {
+//                            BloodModel model = dataModel.get(dataModel.keyAt(dataModel.size() - 1));
+//                            if (model.getSugar() > 0.0f) {
+//                                insertSugarMessage(baseFragment, dataModel);
+//                            }
+//                        }
+//
+//                        if (iBluetoothResult != null)
+//                            iBluetoothResult.onResult(true);
+//                    } else {
+//                        CDialog.showDlg(baseFragment.getContext(), baseFragment.getContext().getString(R.string.text_regist_fail));
+//                    }
+//                }
+//            }
+//        }, new ApiData.IFailStep() {
+//            @Override
+//            public void fail() {
+////                registSugarDB(baseFragment, dataModel, false);
+////
+////                if (dataModel.size() > 0) {
+////                    BloodModel model = dataModel.get(dataModel.keyAt(dataModel.size() - 1));
+////                    if (model.getSugar() > 0.0f) {
+////                        insertSugarMessage(baseFragment, dataModel);
+////                    }
+////                }
+////                if (iBluetoothResult != null)
+////                    iBluetoothResult.onResult(false);
+//            }
+//        });
+//    }
 //
 //    /**
 //     * 혈당계로 받은 메시지 LocalBroadCast로 전달
@@ -509,7 +501,7 @@ public class DeviceDataUtil {
                 messageModel.setMessage(message);
                 messageModel.setInfraType(Tr_infra_message_write.INFRA_TY_SUGAR);
 
-                insertMesageDb(baseFragment, messageModel);
+//                insertMesageDb(baseFragment, messageModel);
             }
         }
     }
@@ -541,7 +533,7 @@ public class DeviceDataUtil {
             messageModel.setRegdate(model.getRegdate());
             messageModel.setMessage(message);
             messageModel.setInfraType(Tr_infra_message_write.INFRA_TY_HEALTH);
-            insertMesageDb(baseFragment, messageModel);
+//            insertMesageDb(baseFragment, messageModel);
         }
     }
 
@@ -572,7 +564,7 @@ public class DeviceDataUtil {
             messageModel.setMessage(message);
             messageModel.setInfraType(Tr_infra_message_write.INFRA_TY_HEALTH);
 
-            insertMesageDb(baseFragment, messageModel);
+//            insertMesageDb(baseFragment, messageModel);
         }
     }
 
@@ -582,29 +574,29 @@ public class DeviceDataUtil {
      * @param baseFragment
      * @param model
      */
-    private void insertMesageDb(final BaseFragment baseFragment, final MessageModel model) {
-        Tr_infra_message_write.RequestData reqData = new Tr_infra_message_write.RequestData();
-        CommonData login = CommonData.getInstance(baseFragment.getContext());
-        reqData.idx = model.getIdx();
-        reqData.mber_sn = login.getMberSn();
-        reqData.infra_message = model.getMessage();
-        reqData.infra_ty = model.getInfraType();
-
-        baseFragment.getData(baseFragment.getContext(), Tr_infra_message_write.class, reqData, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-
-                DBHelper helper = new DBHelper(baseFragment.getContext());
-                DBHelperMessage db = helper.getMessageDb();
-                if (obj instanceof Tr_infra_message_write) {
-                    Tr_infra_message_write data = (Tr_infra_message_write) obj;
-                    db.insert(model, "Y".equals(data.reg_yn));
-                } else {
-                    db.insert(model, false);
-                }
-            }
-        });
-    }
+//    private void insertMesageDb(final BaseFragment baseFragment, final MessageModel model) {
+//        Tr_infra_message_write.RequestData reqData = new Tr_infra_message_write.RequestData();
+//        CommonData login = CommonData.getInstance(baseFragment.getContext());
+//        reqData.idx = model.getIdx();
+//        reqData.mber_sn = login.getMberSn();
+//        reqData.infra_message = model.getMessage();
+//        reqData.infra_ty = model.getInfraType();
+//
+//        baseFragment.getData(baseFragment.getContext(), Tr_infra_message_write.class, reqData, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//
+//                DBHelper helper = new DBHelper(baseFragment.getContext());
+//                DBHelperMessage db = helper.getMessageDb();
+//                if (obj instanceof Tr_infra_message_write) {
+//                    Tr_infra_message_write data = (Tr_infra_message_write) obj;
+//                    db.insert(model, "Y".equals(data.reg_yn));
+//                } else {
+//                    db.insert(model, false);
+//                }
+//            }
+//        });
+//    }
 
     /**
      * 혈당 sqlite 저장하기
@@ -613,11 +605,11 @@ public class DeviceDataUtil {
      * @param dataModel
      * @param isServerRegist
      */
-    public void registSugarDB(BaseFragment baseFragment, SparseArray<BloodModel> dataModel, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment.getContext());
-        DBHelperSugar db = helper.getSugarDb();
-        db.insert(dataModel, isServerRegist);
-    }
+//    public void registSugarDB(BaseFragment baseFragment, SparseArray<BloodModel> dataModel, boolean isServerRegist) {
+//        DBHelper helper = new DBHelper(baseFragment.getContext());
+//        DBHelperSugar db = helper.getSugarDb();
+//        db.insert(dataModel, isServerRegist);
+//    }
 
 
     /**
@@ -627,77 +619,77 @@ public class DeviceDataUtil {
      * @param dataModel
      * @param iBluetoothResult
      */
-    public void uploadWaterData(final BaseFragment baseFragment, final SparseArray<WaterModel> dataModel, final String TargetAmount, final BluetoothManager.IBluetoothResult iBluetoothResult) {
+//    public void uploadWaterData(final BaseFragment baseFragment, final SparseArray<WaterModel> dataModel, final String TargetAmount, final BluetoothManager.IBluetoothResult iBluetoothResult) {
+//
+//        Tr_water_info_input_data inputData = new Tr_water_info_input_data();
+//        CommonData login = CommonData.getInstance(baseFragment.getContext());
+//
+//        Tr_water_info_input_data.RequestData requestData = new Tr_water_info_input_data.RequestData();
+//        requestData.mber_sn = login.getMberSn();
+//        requestData.ast_mass = inputData.getArray(dataModel);
+//
+//        //섭취량 등록
+//        baseFragment.getData(baseFragment.getContext(), inputData.getClass(), requestData, true, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_water_info_input_data) {
+//                    Tr_water_info_input_data data = (Tr_water_info_input_data) obj;
+//                    if ("Y".equals(data.reg_yn)) {
+//
+//                        // 등록이 성공후에 목표 등록
+//                        if (!TargetAmount.toString().isEmpty()) {
+//                            CommonData login = CommonData.getInstance(baseFragment.getContext());
+//                            Tr_water_goalqy goalinputData = new Tr_water_goalqy();
+//                            Tr_water_goalqy.RequestData goalRequestData = new Tr_water_goalqy.RequestData();
+//                            goalRequestData.mber_sn = login.getMberSn();
+//                            goalRequestData.goal_water_ntkqy = TargetAmount;
+//                            goalRequestData.goal_water_goalqy = "";
+//
+//                            baseFragment.getData(baseFragment.getContext(), goalinputData.getClass(), goalRequestData, true, new ApiData.IStep() {
+//                                @Override
+//                                public void next(Object obj) {
+//                                    if (obj instanceof Tr_water_goalqy) {
+//                                        Tr_water_goalqy data = (Tr_water_goalqy) obj;
+//                                        if ("Y".equals(data.reg_yn)) {
+//                                            registWaterDB(baseFragment, dataModel, true);
+//
+//                                            if (iBluetoothResult != null)
+//                                                iBluetoothResult.onResult(true);
+//                                        } else {
+//                                        }
+//                                    }
+//                                }
+//                            }, new ApiData.IFailStep() {
+//                                @Override
+//                                public void fail() {
+//                                }
+//                            });
+//                        } else {
+//                            registWaterDB(baseFragment, dataModel, true);
+//
+//                            if (iBluetoothResult != null)
+//                                iBluetoothResult.onResult(true);
+//                        }
+//                    } else {
+//                        CDialog.showDlg(baseFragment.getContext(), baseFragment.getContext().getString(R.string.text_regist_fail));
+//                    }
+//                }
+//            }
+//        }, new ApiData.IFailStep() {
+//            @Override
+//            public void fail() {
+//                registWaterDB(baseFragment, dataModel, false);
+//                if (iBluetoothResult != null)
+//                    iBluetoothResult.onResult(false);
+//            }
+//        });
+//    }
 
-        Tr_water_info_input_data inputData = new Tr_water_info_input_data();
-        CommonData login = CommonData.getInstance(baseFragment.getContext());
-
-        Tr_water_info_input_data.RequestData requestData = new Tr_water_info_input_data.RequestData();
-        requestData.mber_sn = login.getMberSn();
-        requestData.ast_mass = inputData.getArray(dataModel);
-
-        //섭취량 등록
-        baseFragment.getData(baseFragment.getContext(), inputData.getClass(), requestData, true, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_water_info_input_data) {
-                    Tr_water_info_input_data data = (Tr_water_info_input_data) obj;
-                    if ("Y".equals(data.reg_yn)) {
-
-                        // 등록이 성공후에 목표 등록
-                        if (!TargetAmount.toString().isEmpty()) {
-                            CommonData login = CommonData.getInstance(baseFragment.getContext());
-                            Tr_water_goalqy goalinputData = new Tr_water_goalqy();
-                            Tr_water_goalqy.RequestData goalRequestData = new Tr_water_goalqy.RequestData();
-                            goalRequestData.mber_sn = login.getMberSn();
-                            goalRequestData.goal_water_ntkqy = TargetAmount;
-                            goalRequestData.goal_water_goalqy = "";
-
-                            baseFragment.getData(baseFragment.getContext(), goalinputData.getClass(), goalRequestData, true, new ApiData.IStep() {
-                                @Override
-                                public void next(Object obj) {
-                                    if (obj instanceof Tr_water_goalqy) {
-                                        Tr_water_goalqy data = (Tr_water_goalqy) obj;
-                                        if ("Y".equals(data.reg_yn)) {
-                                            registWaterDB(baseFragment, dataModel, true);
-
-                                            if (iBluetoothResult != null)
-                                                iBluetoothResult.onResult(true);
-                                        } else {
-                                        }
-                                    }
-                                }
-                            }, new ApiData.IFailStep() {
-                                @Override
-                                public void fail() {
-                                }
-                            });
-                        } else {
-                            registWaterDB(baseFragment, dataModel, true);
-
-                            if (iBluetoothResult != null)
-                                iBluetoothResult.onResult(true);
-                        }
-                    } else {
-                        CDialog.showDlg(baseFragment.getContext(), baseFragment.getContext().getString(R.string.text_regist_fail));
-                    }
-                }
-            }
-        }, new ApiData.IFailStep() {
-            @Override
-            public void fail() {
-                registWaterDB(baseFragment, dataModel, false);
-                if (iBluetoothResult != null)
-                    iBluetoothResult.onResult(false);
-            }
-        });
-    }
-
-    private void registWaterDB(BaseFragment baseFragment, SparseArray<WaterModel> dataModel, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment.getContext());
-        DBHelperWater db = helper.getWaterDb();
-        db.insert(dataModel, isServerRegist);
-    }
+//    private void registWaterDB(BaseFragment baseFragment, SparseArray<WaterModel> dataModel, boolean isServerRegist) {
+//        DBHelper helper = new DBHelper(baseFragment.getContext());
+//        DBHelperWater db = helper.getWaterDb();
+//        db.insert(dataModel, isServerRegist);
+//    }
 
     /**
      * 체중 데이터 입력
@@ -726,47 +718,6 @@ public class DeviceDataUtil {
         List<Tr_get_hedctdata.DataList> datas = new ArrayList<>();
         datas.add(data);
         new DeviceDataUtil().uploadWeight(baseFragment, datas, iBluetoothResult);
-    }
-
-    /**
-     * 목표체중 데이터 입력
-     *
-     * @param baseFragment
-     * @param weightModel
-     * @param iBluetoothResult
-     */
-    public void uploadTargetWeight(final BaseFragment baseFragment, final WeightModel weightModel, final BluetoothManager.IBluetoothResult iBluetoothResult) {
-
-        Tr_bdwgh_goal_input inputData = new Tr_bdwgh_goal_input();
-        CommonData login = CommonData.getInstance(baseFragment.getContext());
-
-        Tr_bdwgh_goal_input.RequestData requestData = new Tr_bdwgh_goal_input.RequestData();
-        requestData.mber_sn = login.getMberSn();
-        requestData.mber_bdwgh_goal = Float.toString(weightModel.getBdwgh_goal());
-
-        baseFragment.getData(baseFragment.getContext(), inputData.getClass(), requestData, true, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_bdwgh_goal_input) {
-                    Tr_bdwgh_goal_input data = (Tr_bdwgh_goal_input) obj;
-                    if ("Y".equals(data.reg_yn)) {
-
-                        if (iBluetoothResult != null)
-                            iBluetoothResult.onResult(true);
-
-                    } else {
-                        CDialog.showDlg(baseFragment.getContext(), baseFragment.getContext().getString(R.string.text_regist_fail));
-                    }
-                }
-            }
-        }, new ApiData.IFailStep() {
-            @Override
-            public void fail() {
-
-                if (iBluetoothResult != null)
-                    iBluetoothResult.onResult(false);
-            }
-        });
     }
 
     /**
@@ -886,9 +837,9 @@ public class DeviceDataUtil {
     }
 
     private void registWeightDB(BaseFragment baseFragment, List<Tr_get_hedctdata.DataList> datas, boolean isServerRegist) {
-        DBHelper helper = new DBHelper(baseFragment.getContext());
-        DBHelperWeight db = helper.getWeightDb();
-        db.insert(datas, isServerRegist);
+//        DBHelper helper = new DBHelper(baseFragment.getContext());
+//        DBHelperWeight db = helper.getWeightDb();
+//        db.insert(datas, isServerRegist);
     }
 
     /**

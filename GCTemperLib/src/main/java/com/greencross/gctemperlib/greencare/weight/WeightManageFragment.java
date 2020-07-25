@@ -7,9 +7,11 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -49,8 +51,8 @@ import com.greencross.gctemperlib.greencare.chartview.weight.Mother40WeekCalc;
 import com.greencross.gctemperlib.greencare.chartview.weight.WeightChartView;
 import com.greencross.gctemperlib.greencare.component.CPDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
-import com.greencross.gctemperlib.greencare.database.DBHelper;
-import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
+//import com.greencross.gctemperlib.greencare.database.DBHelper;
+//import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.ChartTimeUtil;
@@ -119,7 +121,7 @@ public class WeightManageFragment extends BaseFragment {
     private ImageButton imgNext_btn;
 //    private ImageView Hcallbtn; //, Action_btn;
 
-    private DBHelperWeight.WeightStaticData mWeightStaticData;
+//    private DBHelperWeight.WeightStaticData mWeightStaticData;
     private AxisValueFormatter2 xFormatter;
     private AxisYValueFormatter yFormatter;
 
@@ -306,7 +308,7 @@ public class WeightManageFragment extends BaseFragment {
         mHCallBtn = layout_curr_weight.findViewById(R.id.Hcall_btn);
         Hcall_tv = layout_curr_weight.findViewById(R.id.Hcall_tv);
 
-        if(CommonData.getInstance(getContext()).getMberGrad().equals("10")) {
+        if (CommonData.getInstance(getContext()).getMberGrad().equals("10")) {
             Hcall_tv.setText("체중관리 상담 (무료)");
         } else {
             Hcall_tv.setText("체중관리 상담");
@@ -324,7 +326,6 @@ public class WeightManageFragment extends BaseFragment {
 //            doWeightTotalGrp();
 //            doWeightHopeGrp("50", "20");
 //        }
-
 
 
         //click 저장
@@ -404,14 +405,14 @@ public class WeightManageFragment extends BaseFragment {
                 mSwipeListView.getHistoryData();
             } else if (vId == R.id.weight_modal_btn) {
                 new showModifiDlg();
-            }else if(vId == R.id.landscape_btn){
+            } else if (vId == R.id.landscape_btn) {
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-            }else if(vId == R.id.chart_close_btn){
+            } else if (vId == R.id.chart_close_btn) {
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 //            }else if(vId == R.id.target_value_btn){
 //                ((MotherHealthMainActivity)getContext()).actionBtnClick();
-            }else if(vId == R.id.Hcall_btn){
-                if(CommonData.getInstance(getContext()).getMberGrad().equals("10")) {
+            } else if (vId == R.id.Hcall_btn) {
+                if (CommonData.getInstance(getContext()).getMberGrad().equals("10")) {
                     CustomAlertDialog mDialog = new CustomAlertDialog(getContext(), CustomAlertDialog.TYPE_B);
                     mDialog.setTitle(getContext().getString(R.string.popup_dialog_a_type_title));
                     mDialog.setContent(getContext().getString(R.string.do_call_center));
@@ -425,7 +426,7 @@ public class WeightManageFragment extends BaseFragment {
                     });
 
                     mDialog.show();
-                }else{
+                } else {
                     CustomAlertDialog mDialog = new CustomAlertDialog(getContext(), CustomAlertDialog.TYPE_B);
                     mDialog.setTitle(getString(R.string.popup_dialog_a_type_title));
                     mDialog.setContent(getString(R.string.call_center2));
@@ -440,8 +441,8 @@ public class WeightManageFragment extends BaseFragment {
                     });
                     mDialog.show();
                 }
-            } else if(vId == R.id.tip_lv){
-                Intent intent  = new Intent(getActivity(), TipWebViewActivity.class);
+            } else if (vId == R.id.tip_lv) {
+                Intent intent = new Intent(getActivity(), TipWebViewActivity.class);
                 intent.putExtra("Title", getString(R.string.psy_tip));
                 intent.putExtra(CommonData.EXTRA_URL_POSITION, 0);
                 startActivity(intent);
@@ -531,7 +532,7 @@ public class WeightManageFragment extends BaseFragment {
         } else if (mTimeClass.getPeriodType() == TypeDataSet.Period.PERIOD_YEAR) {
             mDateTv.setText(yearSdf.format(startTime));
         } else {
-            mDateTv.setText(startDate +" ~ "+endDate);
+            mDateTv.setText(startDate + " ~ " + endDate);
         }
 
         new QeuryVerifyDataTask().execute();
@@ -561,158 +562,77 @@ public class WeightManageFragment extends BaseFragment {
                 return;
             }
 
-            DBHelper helper = new DBHelper(getContext());
-            DBHelperWeight weightDb = helper.getWeightDb();
-
-            mWeightChart.setIsPragnant(false);  // 임신여부
-            weight_chart_date_layout.setVisibility(View.VISIBLE);
-            TypeDataSet.Period period = mTimeClass.getPeriodType();
-            if (period == TypeDataSet.Period.PERIOD_DAY) {
-                mXLabelTv.setText("(시)");
-                mGraphHint.setVisibility(View.INVISIBLE);
-                mWeightChart.setXvalMinMax(-1, 24, 24);
-                mFatChart.setXvalMinMax(-1, 24, 24);
-
-                String toDay = CDateUtil.getFormattedString_yyyy_MM_dd(mTimeClass.getStartTime());
-                List<BarEntry> weightYVals = weightDb.getResultDay(toDay, true);
-
-
-                setYMinMax(weightYVals, false);
-
-                mWeightChart.setData(weightYVals, mTimeClass);
-                List<BarEntry> fatYVals = weightDb.getResultDay(toDay, false);
-//                mFatChart.setData(fatYVals);
-
-//                if (isGraphActive) {
-//                    Toast.makeText(getContext(), "일간 : 시간별 최근 체중", Toast.LENGTH_SHORT).show();
-//                }
-//                chartRule.setText("일간 : 시간 별 최종 데이터");
-            } else if (period == TypeDataSet.Period.PERIOD_WEEK) {
-                mXLabelTv.setText("");
-                mGraphHint.setVisibility(View.INVISIBLE);
-                mWeightChart.setXvalMinMax(0, 8, 9);
-//                mFatChart.setXvalMinMax(0, 8, 9);
-
-                String startDay = CDateUtil.getFormattedString_yyyy_MM_dd(mTimeClass.getStartTime());
-                String endDay = CDateUtil.getFormattedString_yyyy_MM_dd(mTimeClass.getEndTime());
-                List<BarEntry> weightYVals = weightDb.getResultWeek(startDay, endDay, true);
-
-                setYMinMax(weightYVals, false);
-
-                mWeightChart.setData(weightYVals, mTimeClass);
-                List<BarEntry> fatYVals = weightDb.getResultWeek(startDay, endDay, false);
-//                mFatChart.setData(fatYVals);
-
-//                if (isGraphActive) {
-//                    Toast.makeText(getContext(), "주간 : 요일별 평균 체중", Toast.LENGTH_SHORT).show();
-//                }
-//                chartRule.setText("주간 : 요일 별 평균 데이터");
-            } else if (period == TypeDataSet.Period.PERIOD_MONTH) {
-                mXLabelTv.setText("(일)");
-                mGraphHint.setVisibility(View.INVISIBLE);
-                int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
-                xFormatter.setMonthMax(maxX);
-                mWeightChart.setXvalMinMax(0, maxX, maxX);
-//                mFatChart.setXvalMinMax(0, maxX, maxX);
-
-                String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
-                String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
-                List<BarEntry> weightYVals = weightDb.getResultMonth(startDay, endDay, true);
-
-                setYMinMax(weightYVals, false);
-
-                mWeightChart.setData(weightYVals, mTimeClass);
-                List<BarEntry> fatYVals = weightDb.getResultMonth(startDay, endDay, false);
-
-//                if (isGraphActive) {
-//                    Toast.makeText(getContext(), "월간 : 일별 평균 체중", Toast.LENGTH_SHORT).show();
-//                }
-//                mFatChart.setData(fatYVals);
-
-//                chartRule.setText("월간 : 일 별 평균 데이터");
-            } else if (period == TypeDataSet.Period.PERIOD_YEAR) {
-                // 임신기간 40주
-                if ("N".equals(commonData.getbirth_chl_yn())) {
-                    mXLabelTv.setText("(주)");
-//                    doWeightTotalGrp();
-                    // 임신40주 적정체중 그리기
-                    String 출산일 = CommonData.getInstance(getContext()).getMbeChlBirthDe();
-                    String 출산예정일 = CommonData.getInstance(getContext()).getMberBirthDueDe();
-
-                    String 차트기준일자 = TextUtils.isEmpty(출산일) ? 출산예정일 : 출산일;   // 출산일 우선순위, 출산예정일 2순위
-                    차트기준일자 = CDateUtil.getRegDateFormat_yyyyMMddHHss(차트기준일자, "-");
-
-                    Log.i(TAG, "출산일="+출산일+", 출산예정일="+출산예정일+", 차트기준일자="+차트기준일자);
+//            DBHelper helper = new DBHelper(getContext());
+//            DBHelperWeight weightDb = helper.getWeightDb();
 //
+//            mWeightChart.setIsPragnant(false);  // 임신여부
+//            weight_chart_date_layout.setVisibility(View.VISIBLE);
+//            TypeDataSet.Period period = mTimeClass.getPeriodType();
+//            if (period == TypeDataSet.Period.PERIOD_DAY) {
+//                mXLabelTv.setText("(시)");
+//                mGraphHint.setVisibility(View.INVISIBLE);
+//                mWeightChart.setXvalMinMax(-1, 24, 24);
+//                mFatChart.setXvalMinMax(-1, 24, 24);
 //
-                    weight_chart_date_layout.setVisibility(View.INVISIBLE);
-                    mGraphHint.setVisibility(View.VISIBLE);
-                    mWeightChart.setIsPragnant(true);
-                    mWeightChart.setXvalMinMax(0, 41, 20);   // 끝에 짤리는것 때문에 41주 로 함(원래 40주)
-//                    String 출산예정일 = CDateUtil.getRegDateFormat_yyyyMMddHHss(commonData.getMberBirthDueDe(), "-");
-                    List<BarEntry> weightYVals = weightDb.getResultPregnant(차트기준일자);
-                    setYMinMax(weightYVals, true);
-
-                    YAxis yAxis = mWeightChart.getYAxisLeft();
-
-                    // 40주간 데이터 구하기
-                    Mother40WeekCalc calc = new Mother40WeekCalc();
-                    float[] datas40 = calc.doBmiCalc(getContext());
-                    mWeightChart.set40PathValue(datas40);
-
-                    float data40Min = datas40[1];   // 40주간 계산 최소값
-                    float data40Max = datas40[9];   // 40주간 계산 최대값
-
-                    float yMin = yAxis.mAxisMinimum < data40Min-3 ? yAxis.mAxisMinimum : data40Min-3;
-                    float yMax = yAxis.mAxisMaximum > data40Max+3 ? yAxis.mAxisMaximum : data40Max+3;
-
-                    Log.i(TAG, "data40Min="+(data40Min-3)+", yAxis.mAxisMinimum="+yAxis.mAxisMinimum+", data40Max="+(data40Max+3)+", yAxis.mAxisMaximum="+yAxis.mAxisMaximum);
-
-                    // y라벨 표시 최대값 최소값 +- 3
-                    mWeightChart.setYvalMinMax(yMin, yMax, (int)(yMax-yMin));
-                    mWeightChart.setData(weightYVals, mTimeClass);
-
-//                    if (isGraphActive) {
-//                        Toast.makeText(getContext(), "40주간 : 주별 마지막 체중", Toast.LENGTH_SHORT).show();
-//                    }
-                } else {
-                    mXLabelTv.setText("(월)");
-                    // 년간 차트 그리기
-                    weight_chart_date_layout.setVisibility(View.VISIBLE);
-                    mGraphHint.setVisibility(View.INVISIBLE);
-                    String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
-                    List<BarEntry> weightYVals = weightDb.getResultYear(startDay, true);
-
-                    setYMinMax(weightYVals, false);
-
-                    mWeightChart.setXvalMinMax(0, 12+1, 15);    // 끝에 짤리는것 때문에 13개월로 함(원래 12개월)
-                    mWeightChart.setData(weightYVals, mTimeClass);
-
-//                    if (isGraphActive) {
-//                        Toast.makeText(getContext(), "년간 : 월별 평균 체중", Toast.LENGTH_SHORT).show();
-//                    }
-                }
-
-//                mFatChart.setXvalMinMax(0, 40, 40);
-
-
-
-//                mWeightChart.setIsPragnant(true);   // 년간 임신여부 적정 체중 표시 여부
-//                List<BarEntry> fatYVals = weightDb.getResultPregnant(startDay, false);
-//                mFatChart.setData(fatYVals);
-
-
-//                chartRule.setText("년간 : 월 별 평균 데이터");
-            }
-
-            mWeightChart.animateY();
-//            mFatChart.animateY();
-            setNextButtonVisible();
+//                String toDay = CDateUtil.getFormattedString_yyyy_MM_dd(mTimeClass.getStartTime());
+////                List<BarEntry> weightYVals = weightDb.getResultDay(toDay, true);
+////                setYMinMax(weightYVals, false);
+////                mWeightChart.setData(weightYVals, mTimeClass);
+////                List<BarEntry> fatYVals = weightDb.getResultDay(toDay, false);
+//            } else if (period == TypeDataSet.Period.PERIOD_WEEK) {
+//                mXLabelTv.setText("");
+//                mGraphHint.setVisibility(View.INVISIBLE);
+//                mWeightChart.setXvalMinMax(0, 8, 9);
+////                mFatChart.setXvalMinMax(0, 8, 9);
+//
+//                String startDay = CDateUtil.getFormattedString_yyyy_MM_dd(mTimeClass.getStartTime());
+//                String endDay = CDateUtil.getFormattedString_yyyy_MM_dd(mTimeClass.getEndTime());
+////                List<BarEntry> weightYVals = weightDb.getResultWeek(startDay, endDay, true);
+////
+////                setYMinMax(weightYVals, false);
+////
+////                mWeightChart.setData(weightYVals, mTimeClass);
+////                List<BarEntry> fatYVals = weightDb.getResultWeek(startDay, endDay, false);
+//            } else if (period == TypeDataSet.Period.PERIOD_MONTH) {
+//                mXLabelTv.setText("(일)");
+//                mGraphHint.setVisibility(View.INVISIBLE);
+//                int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
+//                xFormatter.setMonthMax(maxX);
+//                mWeightChart.setXvalMinMax(0, maxX, maxX);
+////                mFatChart.setXvalMinMax(0, maxX, maxX);
+//
+//                String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
+//                String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
+////                List<BarEntry> weightYVals = weightDb.getResultMonth(startDay, endDay, true);
+////
+////                setYMinMax(weightYVals, false);
+////
+////                mWeightChart.setData(weightYVals, mTimeClass);
+////                List<BarEntry> fatYVals = weightDb.getResultMonth(startDay, endDay, false);
+//            } else if (period == TypeDataSet.Period.PERIOD_YEAR) {
+//                mXLabelTv.setText("(월)");
+//                // 년간 차트 그리기
+//                weight_chart_date_layout.setVisibility(View.VISIBLE);
+//                mGraphHint.setVisibility(View.INVISIBLE);
+//                String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
+////                    List<BarEntry> weightYVals = weightDb.getResultYear(startDay, true);
+////
+////                    setYMinMax(weightYVals, false);
+////
+////                    mWeightChart.setXvalMinMax(0, 12+1, 15);    // 끝에 짤리는것 때문에 13개월로 함(원래 12개월)
+////                    mWeightChart.setData(weightYVals, mTimeClass);
+//
+//            }
+//
+//            mWeightChart.animateY();
+////            mFatChart.animateY();
+//            setNextButtonVisible();
         }
     }
 
     /**
      * y라벨 구하기
+     *
      * @param weightYVals
      */
     private void setYMinMax(List<BarEntry> weightYVals, boolean is40Data) {
@@ -732,15 +652,15 @@ public class WeightManageFragment extends BaseFragment {
 
         // y min값이 없는 경우
         if (yMin == Float.MAX_VALUE && is40Data == false) {
-            yMin = StringUtil.getFloat(commonData.getMotherWeight())-3;
+            yMin = StringUtil.getFloat(commonData.getMotherWeight()) - 3;
         }
         // y max값이 없는 경우
         if (yMax == Float.MIN_VALUE && is40Data == false) {
-            yMax = yMin+3;
+            yMax = yMin + 3;
         }
 
-        int yLabelCnt = (int)(yMax - yMin);
-        mWeightChart.setYvalMinMax(yMin-3, yMax+3, yLabelCnt+6); // 최소값 최대값이 없으면 임의로 넣어줌
+        int yLabelCnt = (int) (yMax - yMin);
+        mWeightChart.setYvalMinMax(yMin - 3, yMax + 3, yLabelCnt + 6); // 최소값 최대값이 없으면 임의로 넣어줌
 //        Log.i(TAG, "yMin="+yMin+", yMax="+yMax+", yLabelCnt="+yLabelCnt);
     }
 
@@ -749,55 +669,55 @@ public class WeightManageFragment extends BaseFragment {
      * 하단 데이터 세팅하기
      */
     private void getBottomDataLayout() {
-        try {
-            CommonData login = CommonData.getInstance(getContext());
-            mWeightTargetTv.setText(login.getMotherGoalWeight());
-
-            DBHelper helper = new DBHelper(getContext());
-            DBHelperWeight WeightDb = helper.getWeightDb();
-            DBHelperWeight.WeightStaticData bottomData = WeightDb.getResultStatic(helper);
-            mWeightStaticData = bottomData;
-
-            String dataWeight = "";
-            if (TextUtils.isEmpty(bottomData.getWeight())) {
-                dataWeight = "0";
-            } else {
-                dataWeight = bottomData.getWeight();
-            }
-
-//            mWeightTv.setText(StringUtil.getNoneZeroString(StringUtil.getFloatVal(dataWeight)));
-            mWeightTv.setText(commonData.getMotherWeight());
-            float temp = StringUtil.getFloat(dataWeight) - StringUtil.getFloat(login.getMotherGoalWeight());
-            if (bottomData.getWeight().isEmpty()) {
-                mWeightTargetWaitTv.setText("--");
-            } else if (temp > 0) {
-                mWeightTargetWaitTv.setText("+" + String.format("%.1f", temp));
-            } else {
-                mWeightTargetWaitTv.setText(String.format("%.1f", temp));
-            }
-
-            if (bottomData.getWeight().isEmpty()) {
-                mWeightDayTv.setText(getString(R.string.recent_measurements));
-            } else {
-                String time = CDateUtil.getForamtyyyyMMddHHmm(new Date(System.currentTimeMillis()));
-                String timeStr = bottomData.getRegdate().substring(0, 4) + bottomData.getRegdate().substring(5, 7) + bottomData.getRegdate().substring(8, 10) + bottomData.getRegdate().substring(11, 13) + bottomData.getRegdate().substring(14, 16);
-                int dayTime = Integer.parseInt(time.substring(0, 8));
-                int dayTimeStr = Integer.parseInt(timeStr.substring(0, 8));
-
-                if (dayTime == dayTimeStr) {
-                    mWeightDayTv.setText(getString(R.string.today_measurements));
-                } else {
-                    if (dayTime > dayTimeStr) {
-
-                        mWeightDayTv.setText("최근 측정(" + getDateDiff("" + dayTimeStr) + "일전)");
-                    } else {
-                        mWeightDayTv.setText("");
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            CommonData login = CommonData.getInstance(getContext());
+//            mWeightTargetTv.setText(login.getMotherGoalWeight());
+//
+//            DBHelper helper = new DBHelper(getContext());
+//            DBHelperWeight WeightDb = helper.getWeightDb();
+//            DBHelperWeight.WeightStaticData bottomData = WeightDb.getResultStatic(helper);
+//            mWeightStaticData = bottomData;
+//
+//            String dataWeight = "";
+//            if (TextUtils.isEmpty(bottomData.getWeight())) {
+//                dataWeight = "0";
+//            } else {
+//                dataWeight = bottomData.getWeight();
+//            }
+//
+////            mWeightTv.setText(StringUtil.getNoneZeroString(StringUtil.getFloatVal(dataWeight)));
+//            mWeightTv.setText(commonData.getMotherWeight());
+//            float temp = StringUtil.getFloat(dataWeight) - StringUtil.getFloat(login.getMotherGoalWeight());
+//            if (bottomData.getWeight().isEmpty()) {
+//                mWeightTargetWaitTv.setText("--");
+//            } else if (temp > 0) {
+//                mWeightTargetWaitTv.setText("+" + String.format("%.1f", temp));
+//            } else {
+//                mWeightTargetWaitTv.setText(String.format("%.1f", temp));
+//            }
+//
+//            if (bottomData.getWeight().isEmpty()) {
+//                mWeightDayTv.setText(getString(R.string.recent_measurements));
+//            } else {
+//                String time = CDateUtil.getForamtyyyyMMddHHmm(new Date(System.currentTimeMillis()));
+//                String timeStr = bottomData.getRegdate().substring(0, 4) + bottomData.getRegdate().substring(5, 7) + bottomData.getRegdate().substring(8, 10) + bottomData.getRegdate().substring(11, 13) + bottomData.getRegdate().substring(14, 16);
+//                int dayTime = Integer.parseInt(time.substring(0, 8));
+//                int dayTimeStr = Integer.parseInt(timeStr.substring(0, 8));
+//
+//                if (dayTime == dayTimeStr) {
+//                    mWeightDayTv.setText(getString(R.string.today_measurements));
+//                } else {
+//                    if (dayTime > dayTimeStr) {
+//
+//                        mWeightDayTv.setText("최근 측정(" + getDateDiff("" + dayTimeStr) + "일전)");
+//                    } else {
+//                        mWeightDayTv.setText("");
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     private long getDateDiff(String bDate) {
@@ -829,56 +749,56 @@ public class WeightManageFragment extends BaseFragment {
          * 상세정보 Dialog 띄우기
          **/
         private showModifiDlg() {
-            View modifyView = LayoutInflater.from(getContext()).inflate(R.layout.activity_weight_modal, null);
-
-            mBmrTv = (TextView) modifyView.findViewById(R.id.weight_bmr_textxview);
-            mBmiTv = (TextView) modifyView.findViewById(R.id.weight_bmi_textxview);
-            mObesityTv = (TextView) modifyView.findViewById(R.id.weight_obesity_textxview);
-            mFatTv = (TextView) modifyView.findViewById(R.id.weight_fat_textxview);
-            mBodyWaterTv = (TextView) modifyView.findViewById(R.id.weight_bodywater_textxview);
-            mMuscleTv = (TextView) modifyView.findViewById(R.id.weight_muscle_textxview);
-
-            if (mWeightStaticData.getWeight().isEmpty()) {
-                mBmrTv.setText("0" + " kcal");
-                mBmiTv.setText("0" + " kg/m2");
-                mObesityTv.setText("0" + " %");
-                mFatTv.setText("0" + " %");
-                mBodyWaterTv.setText("0" + " %");
-                mMuscleTv.setText("0" + " %");
-            } else {
-                CommonData login = CommonData.getInstance(getContext());
-                mWeightStaticData.setWeight(login.getMotherWeight());
-
-                float rHeight = StringUtil.getFloat(login.getBefCm());
-                float rWeight = StringUtil.getFloat(mWeightStaticData.getWeight());
-                int rSex = Integer.parseInt(login.getGender());
-                int rAge = Integer.parseInt(login.getBirthDay().substring(0, 4));
-                String nowYear = CDateUtil.getFormattedString_yyyy(System.currentTimeMillis());
-
-                float Float_result = 0.0f;
-                if (rSex == 1) {
-                    Float_result = (float) (66.47f + (13.75f * rWeight) + (5.0f * rHeight) - (6.76f * ((StringUtil.getFloat(nowYear) - rAge) + 1)));
-                } else {
-                    Float_result = (float) (655.1f + (9.56f * rWeight) + (1.85f * rHeight) - (4.68f * ((StringUtil.getFloat(nowYear) - rAge) + 1)));
-                }
-
-                mBmrTv.setText(Integer.toString((int) Float_result) + " kcal");
-                mBmiTv.setText(String.format("%.1f", StringUtil.getFloatVal(mWeightStaticData.getWeight()) / ((StringUtil.getFloat(login.getBefCm()) / 100) * (StringUtil.getFloat(login.getBefCm()) / 100))) + " kg/m2");
-                mFatTv.setText(mWeightStaticData.getObesity() + " %");
-                mObesityTv.setText(mWeightStaticData.getFat() + " %");
-                mBodyWaterTv.setText(mWeightStaticData.getBodyWater() + " %");
-                mMuscleTv.setText(mWeightStaticData.getMuscle() + " %");
-            }
-
-            final CPDialog dlg = CPDialog.showDlg(getContext(), modifyView);
-            dlg.setTitle(getString(R.string.text_more_info));
-            mConfirmBtn = (Button) dlg.findViewById(R.id.right_confirm_btn_close);
-            mConfirmBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dlg.dismiss();
-                }
-            });
+//            View modifyView = LayoutInflater.from(getContext()).inflate(R.layout.activity_weight_modal, null);
+//
+//            mBmrTv = (TextView) modifyView.findViewById(R.id.weight_bmr_textxview);
+//            mBmiTv = (TextView) modifyView.findViewById(R.id.weight_bmi_textxview);
+//            mObesityTv = (TextView) modifyView.findViewById(R.id.weight_obesity_textxview);
+//            mFatTv = (TextView) modifyView.findViewById(R.id.weight_fat_textxview);
+//            mBodyWaterTv = (TextView) modifyView.findViewById(R.id.weight_bodywater_textxview);
+//            mMuscleTv = (TextView) modifyView.findViewById(R.id.weight_muscle_textxview);
+//
+//            if (mWeightStaticData.getWeight().isEmpty()) {
+//                mBmrTv.setText("0" + " kcal");
+//                mBmiTv.setText("0" + " kg/m2");
+//                mObesityTv.setText("0" + " %");
+//                mFatTv.setText("0" + " %");
+//                mBodyWaterTv.setText("0" + " %");
+//                mMuscleTv.setText("0" + " %");
+//            } else {
+//                CommonData login = CommonData.getInstance(getContext());
+////                mWeightStaticData.setWeight(login.getMotherWeight());
+//
+//                float rHeight = StringUtil.getFloat(login.getBefCm());
+//                float rWeight = StringUtil.getFloat(mWeightStaticData.getWeight());
+//                int rSex = Integer.parseInt(login.getGender());
+//                int rAge = Integer.parseInt(login.getBirthDay().substring(0, 4));
+//                String nowYear = CDateUtil.getFormattedString_yyyy(System.currentTimeMillis());
+//
+//                float Float_result = 0.0f;
+//                if (rSex == 1) {
+//                    Float_result = (float) (66.47f + (13.75f * rWeight) + (5.0f * rHeight) - (6.76f * ((StringUtil.getFloat(nowYear) - rAge) + 1)));
+//                } else {
+//                    Float_result = (float) (655.1f + (9.56f * rWeight) + (1.85f * rHeight) - (4.68f * ((StringUtil.getFloat(nowYear) - rAge) + 1)));
+//                }
+//
+//                mBmrTv.setText(Integer.toString((int) Float_result) + " kcal");
+//                mBmiTv.setText(String.format("%.1f", StringUtil.getFloatVal(mWeightStaticData.getWeight()) / ((StringUtil.getFloat(login.getBefCm()) / 100) * (StringUtil.getFloat(login.getBefCm()) / 100))) + " kg/m2");
+//                mFatTv.setText(mWeightStaticData.getObesity() + " %");
+//                mObesityTv.setText(mWeightStaticData.getFat() + " %");
+//                mBodyWaterTv.setText(mWeightStaticData.getBodyWater() + " %");
+//                mMuscleTv.setText(mWeightStaticData.getMuscle() + " %");
+//            }
+//
+//            final CPDialog dlg = CPDialog.showDlg(getContext(), modifyView);
+//            dlg.setTitle(getString(R.string.text_more_info));
+//            mConfirmBtn = (Button) dlg.findViewById(R.id.right_confirm_btn_close);
+//            mConfirmBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dlg.dismiss();
+//                }
+//            });
         }
 
         TextWatcher watcher = new TextWatcher() {
@@ -930,7 +850,6 @@ public class WeightManageFragment extends BaseFragment {
     private LinearLayout tip_lv;
 
 
-
     public void initCurrWeightView(WeightCurrView view) {
         regDateTxt = (TextView) layout_curr_weight.findViewById(R.id.regDateTxt);
         curWeightTxt = (TextView) layout_curr_weight.findViewById(R.id.curWeightTxt);
@@ -948,8 +867,6 @@ public class WeightManageFragment extends BaseFragment {
         tip_lv.setOnClickListener(mClickListener);
 
 
-
-
     }
 
     public void requestWeightData() {
@@ -962,7 +879,7 @@ public class WeightManageFragment extends BaseFragment {
             public void next(Object obj) {
                 if (obj instanceof Tr_mber_mother_bdwgh_view) {
                     Tr_mber_mother_bdwgh_view data = (Tr_mber_mother_bdwgh_view) obj;
-                    if(data.data_yn.equals("Y")) {
+                    if (data.data_yn.equals("Y")) {
 
                         String yy = data.input_de.substring(0, 4);
                         String mm = data.input_de.substring(4, 6);
@@ -971,11 +888,10 @@ public class WeightManageFragment extends BaseFragment {
                         commentTxt02.setText(data.comment2);
                         commonData.setbirth_chl_yn(data.birth_chl_yn); //임신여부 : N : 임신 중 , Y : 출산후
 
-                        if(TextUtils.isEmpty(data.now_weight) == false && StringUtil.getIntVal(data.now_weight) > 0) {
-                            curWeightTxt.setText(String.format("%.2f",StringUtil.getFloatVal(data.now_weight))   + "kg");
+                        if (TextUtils.isEmpty(data.now_weight) == false && StringUtil.getIntVal(data.now_weight) > 0) {
+                            curWeightTxt.setText(String.format("%.2f", StringUtil.getFloatVal(data.now_weight)) + "kg");
                             commonData.setMotherWeight(data.now_weight);
-                        }
-                        else{
+                        } else {
                             curWeightTxt.setText("__kg");
                         }
 
@@ -985,10 +901,10 @@ public class WeightManageFragment extends BaseFragment {
                             if (TextUtils.isEmpty(data.kg_kind) == false) {
                                 commonData.setKg_Kind(data.kg_kind);
                             }
-                        }else {
+                        } else {
                             //출산후
                             if (TextUtils.isEmpty(data.bmi_kind) == false) {
-                                commonData.setKg_Kind(data.bmi_kind+"군");
+                                commonData.setKg_Kind(data.bmi_kind + "군");
                             }
                         }
 
@@ -1009,12 +925,12 @@ public class WeightManageFragment extends BaseFragment {
                         layout_curr_weight.findViewById(R.id.target_value_btn).setVisibility("N".equals(materPregency) ? View.GONE : View.VISIBLE);
                         weight_graph_history_layout.findViewById(R.id.target_value_btn).setVisibility("N".equals(materPregency) ? View.GONE : View.VISIBLE);
 
-                        if(commonData.getMberGrad().equals("10")) {
-                            if("N".equals(materPregency)){
+                        if (commonData.getMberGrad().equals("10")) {
+                            if ("N".equals(materPregency)) {
                                 layout_curr_weight.findViewById(R.id.req_diet_btn).setVisibility(View.GONE);
                             } else {
                                 // 출산일 후 1년 이내인지
-                                if(StringUtil.getAfterBirth1Year(commonData.getLastChlBirth())) {
+                                if (StringUtil.getAfterBirth1Year(commonData.getLastChlBirth())) {
                                     layout_curr_weight.findViewById(R.id.req_diet_btn).setVisibility(View.VISIBLE);
                                 } else {
                                     layout_curr_weight.findViewById(R.id.req_diet_btn).setVisibility(View.GONE);
@@ -1028,7 +944,7 @@ public class WeightManageFragment extends BaseFragment {
                         layout_curr_weight.findViewById(R.id.mom_weight_prediction_btn).setVisibility("N".equals(materPregency) ? View.VISIBLE : View.GONE);
 
 
-                        mMother_period.setText("임신 "+data.mother_period_week+"주 "+data.mother_period_day+"일째 : ");
+                        mMother_period.setText("임신 " + data.mother_period_week + "주 " + data.mother_period_day + "일째 : ");
                         mMother_week.setText(data.mother_week);
 
 
@@ -1040,8 +956,6 @@ public class WeightManageFragment extends BaseFragment {
                         bmi3 = data.mother_40_week;
                         bmi4 = data.mother_all_week;
                         bmi5 = data.bmi_kind;
-
-
 
 
                     } else {
@@ -1151,8 +1065,8 @@ public class WeightManageFragment extends BaseFragment {
 
         if (resultData.birth_chl_yn.compareTo("Y") == 0) {
 
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-            params.topMargin = (int)getResources().getDimension(R.dimen._14_dp);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            params.topMargin = (int) getResources().getDimension(R.dimen._14_dp);
             params.addRule(RelativeLayout.BELOW, R.id.seekbar_rl);
             mom_set_lv.setLayoutParams(params);
 
@@ -1181,29 +1095,29 @@ public class WeightManageFragment extends BaseFragment {
 
             if (resultData.mber_bdwgh_goal.compareTo("") == 0 ||
                     resultData.mber_bdwgh_goal.compareTo("0") == 0) {
-                setColorchange("["+resultData.bmi_kind+"군]");
+                setColorchange("[" + resultData.bmi_kind + "군]");
 //                commentTxt01.setText(resultData.comment1);
 
                 commentTxt01_1.setText("나의 목표체중 ");
                 commentTxt01_2.setVisibility(View.VISIBLE);
                 commentTxt01_3.setVisibility(View.VISIBLE);
                 commentTxt01_2.setText("(임신 전 체중)  ");
-                commentTxt01_3.setText(String.format("%.2f",StringUtil.getFloatVal(resultData.mber_term_kg)) + " kg");
-                commentTxt01_4.setText(setTargetText(StringUtil.getFloatVal(resultData.mber_term_kg),curWeight));
+                commentTxt01_3.setText(String.format("%.2f", StringUtil.getFloatVal(resultData.mber_term_kg)) + " kg");
+                commentTxt01_4.setText(setTargetText(StringUtil.getFloatVal(resultData.mber_term_kg), curWeight));
 
                 goalWeight = StringUtil.getFloatVal(resultData.mber_term_kg);
                 goalBmi = (goalWeight / (curHeight * curHeight)) - mValue;
 
             } else {
-                setColorchange("["+resultData.bmi_kind+"군]");
+                setColorchange("[" + resultData.bmi_kind + "군]");
 //                commentTxt01.setText(resultData.comment1);
 
 
                 commentTxt01_1.setText("나의 목표체중  ");
                 commentTxt01_2.setVisibility(View.GONE);
                 commentTxt01_3.setVisibility(View.VISIBLE);
-                commentTxt01_3.setText(String.format("%.2f",StringUtil.getFloatVal(resultData.mber_bdwgh_goal)) + " kg");
-                commentTxt01_4.setText(setTargetText(StringUtil.getFloatVal(resultData.mber_bdwgh_goal),curWeight));
+                commentTxt01_3.setText(String.format("%.2f", StringUtil.getFloatVal(resultData.mber_bdwgh_goal)) + " kg");
+                commentTxt01_4.setText(setTargetText(StringUtil.getFloatVal(resultData.mber_bdwgh_goal), curWeight));
 
                 goalWeight = StringUtil.getFloatVal(resultData.mber_bdwgh_goal);
                 goalBmi = (goalWeight / (curHeight * curHeight)) - mValue;
@@ -1255,8 +1169,8 @@ public class WeightManageFragment extends BaseFragment {
             layout_curr_weight.initData(progressItemList, curBmi, goalBmi);
 
         } else {
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-            params.topMargin = (int)getResources().getDimension(R.dimen.mom_set_lv);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            params.topMargin = (int) getResources().getDimension(R.dimen.mom_set_lv);
             params.addRule(RelativeLayout.BELOW, R.id.seekbar_rl);
             mom_set_lv.setLayoutParams(params);
             /*
@@ -1266,8 +1180,8 @@ public class WeightManageFragment extends BaseFragment {
                    BMI = 80/(1.75 * 1.75)
             *
             * */
-            commentTxt01.setText(resultData.kg_kind.equals("부족")?"적정체중 범위 "+resultData.comment1_kg+"kg 부족":
-                    resultData.kg_kind.equals("권장")?"권장체중 범위":"적정체중 범위 "+resultData.comment1_kg+"kg 초과");
+            commentTxt01.setText(resultData.kg_kind.equals("부족") ? "적정체중 범위 " + resultData.comment1_kg + "kg 부족" :
+                    resultData.kg_kind.equals("권장") ? "권장체중 범위" : "적정체중 범위 " + resultData.comment1_kg + "kg 초과");
             commentTxt01.setTextColor(getResources().getColor(R.color.color_FB8AD3));
 
             commentTxt01_1.setText("임신기간 체중 예측");
@@ -1331,11 +1245,12 @@ public class WeightManageFragment extends BaseFragment {
 
 
     protected boolean isLandScape = false;
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        GLog.i("onConfigurationChanged="+newConfig.orientation, "");
-        switch (newConfig.orientation){
+        GLog.i("onConfigurationChanged=" + newConfig.orientation, "");
+        switch (newConfig.orientation) {
             case Configuration.ORIENTATION_LANDSCAPE: //가로 모드
                 isLandScape = true;
                 break;
@@ -1351,12 +1266,12 @@ public class WeightManageFragment extends BaseFragment {
      * 출산 후 목표 체중 달성에 따른 문구
      */
 
-    private String setTargetText(float target, float weight){
-        if(weight > target){
+    private String setTargetText(float target, float weight) {
+        if (weight > target) {
             return String.format("현재 체중에서 %.2fkg 체중 감량이 필요합니다.", weight - target);
-        } else if(weight == target){
+        } else if (weight == target) {
             return "축하합니다! 목표 체중을 달성했습니다. 새로운 목표를 설정해 체중관리에 도전하세요.";
-        } else if(target > weight){
+        } else if (target > weight) {
             return String.format("현재 체중에서 %.2fkg 체중 증가가 필요합니다.", target - weight);
         }
         return "";
@@ -1376,7 +1291,7 @@ public class WeightManageFragment extends BaseFragment {
 
         DisplayMetrics dm = getActivity().getResources().getDisplayMetrics();
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mChartFrameLayout.getLayoutParams();
-        Log.i(TAG, "isLandScape="+isLandScape+", dm.widthPixels="+dm.widthPixels+", dm.heightPixels="+dm.heightPixels );
+        Log.i(TAG, "isLandScape=" + isLandScape + ", dm.widthPixels=" + dm.widthPixels + ", dm.heightPixels=" + dm.heightPixels);
 
 //        int height = (int) (dm.heightPixels - mDateLayout.getLayoutParams().height);//(dm.heightPixels *0.20)); // 15% 작게
         int landHeight = (int) (dm.heightPixels - dm.heightPixels * 0.30); // 가로모드 세로사이즈 30% 작게
@@ -1392,25 +1307,25 @@ public class WeightManageFragment extends BaseFragment {
             }
         });
         //가로모드 전환 시 스크롤 상단으로 위치
-        mContentScrollView.smoothScrollTo(0,0);
+        mContentScrollView.smoothScrollTo(0, 0);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.i(TAG, "onActivityResult.requestCode="+requestCode);
-//        if (resultCode == Activity.RESULT_OK && requestCode == WeightBigDataInputFragment.REQ_WEIGHT_PREDICT) {
-//            if (BuildConfig.DEBUG) {
-//                radioBtnYear.performClick();    // 차트 년간 버튼
-//                btn_weight_graph.performClick();
-//
-//                String weight = data.getStringExtra(WeightBigDataInputFragment.INTENT_KEY_WEIGHT);
-//                String week = data.getStringExtra(WeightBigDataInputFragment.INTENT_KEY_WEEK);
-//                doWeightTotalGrp();
-//                if (TextUtils.isEmpty(week) && TextUtils.isEmpty(week))
-//                    return;
-//                doWeightHopeGrp(weight, week);
-//            }
-//        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Log.i(TAG, "onActivityResult.requestCode=" + requestCode);
+////        if (resultCode == Activity.RESULT_OK && requestCode == WeightBigDataInputFragment.REQ_WEIGHT_PREDICT) {
+////            if (BuildConfig.DEBUG) {
+////                radioBtnYear.performClick();    // 차트 년간 버튼
+////                btn_weight_graph.performClick();
+////
+////                String weight = data.getStringExtra(WeightBigDataInputFragment.INTENT_KEY_WEIGHT);
+////                String week = data.getStringExtra(WeightBigDataInputFragment.INTENT_KEY_WEEK);
+////                doWeightTotalGrp();
+////                if (TextUtils.isEmpty(week) && TextUtils.isEmpty(week))
+////                    return;
+////                doWeightHopeGrp(weight, week);
+////            }
+////        }
+//    }
 }

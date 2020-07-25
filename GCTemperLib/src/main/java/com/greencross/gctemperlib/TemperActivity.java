@@ -29,17 +29,14 @@ import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.GpsInfo;
-import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.collection.EpidemicItem;
 import com.greencross.gctemperlib.collection.LocationItem;
-import com.greencross.gctemperlib.common.ApplinkDialog;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
 import com.greencross.gctemperlib.common.MakeProgress;
 import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
 import com.greencross.gctemperlib.network.RequestApi;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -118,7 +115,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
         init();
         setEvent();
-        initRank();
+//        initRank();
 
         GregorianCalendar mCalendar = new GregorianCalendar();
         mCalendar.setTime(new Date());
@@ -130,8 +127,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         if (mIntent != null) {
             mFragmentNum = mIntent.getIntExtra("tabNum", 0);
         }
-
-        setTab(mFragmentNum);
+        setTab(0);
+//        setTab(mFragmentNum);
 
         // 체온관리
         findViewById(R.id.fever_map_menu_1).setOnClickListener(new View.OnClickListener() {
@@ -331,18 +328,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     public static ArrayList<EpidemicItem> mEpidemicList = new ArrayList<EpidemicItem>();        // 유행질병 카운트
 
-    public void initRank() {
-        if (mEpidemicList.size() > 0) {
-            for (int i = 0; i < 10; i++) {
-                mTxtDiseNmList[i].setText(mEpidemicList.get(i).getDzName());
-                mTxtDiseCntList[i].setText("" + mEpidemicList.get(i).getRatio() + "%");
-            }
-        } else {
-            mEpidemicRankLay.setVisibility(View.GONE);
-            mTxtNullEpidemic.setVisibility(View.VISIBLE);
-        }
-    }
-
     public void setTab(int _tabNum) {
         if (_tabNum == 0) {         // 맵
             mLinearTabMap.setVisibility(View.VISIBLE);
@@ -367,11 +352,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         Intent intent = null;
 
         int id = v.getId();
-        if (id == R.id.map_btn) { // 그래프 보기
-            setTab(0);
-        } else if (id == R.id.epidemic_btn) {
-            setTab(1);
-        } else if (id == R.id.btn_alarm) {
+//        if (id == R.id.map_btn) { // 그래프 보기
+//            setTab(0);
+//        } else if (id == R.id.epidemic_btn) {
+//            setTab(1);
+//        } else
+            if (id == R.id.btn_alarm) {
 //            intent = new Intent(TemperActivity.this, SettingAddressActivity.class);
 //            startActivity(intent);
             DummyActivity.startActivityForResult(TemperActivity.this, REQUEST_SEARCH_ADDR, SearchAddressFragment.class, null);
@@ -383,8 +369,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 //                break;
 //
 //            //hsh end
-        } else if (id == R.id.share_btn) {
-            requestSharedisease();
+//        } else if (id == R.id.share_btn) {
+//            requestSharedisease();
         } else if (id == R.id.req_diease_btn) {
             intent = new Intent(TemperActivity.this, RequestDiseaseProgramActivity.class);
             startActivity(intent);
@@ -445,70 +431,74 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         try {
             JSONObject object = new JSONObject();
             object.put(CommonData.JSON_API_CODE_F, CommonData.JSON_APINM_HJ002);
-
             params.add(new BasicNameValuePair(CommonData.JSON_STRJSON, object.toString()));
-
-            RequestApi.requestApi(this, NetworkConst.NET_GET_MAP_DATA, NetworkConst.getInstance().getFeverDomain(), networkListener, params, new MakeProgress(this));
-        } catch (Exception e) {
-            GLog.i(e.toString(), "dd");
-        }
-    }
-
-    /**
-     * 유의질환 공유
-     */
-    public void requestSharedisease() {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-
-        try {
-            JSONArray array = new JSONArray();
-            JSONObject object = new JSONObject();
-
-            object.put(CommonData.JSON_API_CODE, "asstb_mber_cntr_diss");
-            object.put(CommonData.JSON_INSURES_CODE, CommonData.INSURE_CODE);          //  insures 코드
-            object.put(CommonData.JSON_CNTR_TYP, "15");
-            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(TemperActivity.this).getMberSn());             //  회원고유값
-            object.put("diss_view_de", CDateUtil.getToday_yyyy_MM_dd());
-
-
-            if (mEpidemicList.size() > 0 && mEpidemicList.size() > 9) {
-                object.put("data_length", "10");
-                for (int i = 0; i < 10; i++) {
-                    JSONObject epidObject = new JSONObject();
-                    epidObject.put("rank", String.valueOf(i + 1));
-                    epidObject.put("rank_nm", mEpidemicList.get(i).getDzName());
-                    epidObject.put("rank_per", "" + mEpidemicList.get(i).getRatio() + "%");
-
-                    array.put(epidObject);
+            RequestApi.requestApi(this, NetworkConst.NET_GET_MAP_DATA, NetworkConst.getInstance().getFeverDomain(), new CustomAsyncListener() {
+                @Override
+                public void onNetworkError(Context context, int type, int httpResultCode, CustomAlertDialog dialog) {
+                    hideProgress();
+                    dialog.show();
                 }
-            } else if (mEpidemicList.size() > 0 && mEpidemicList.size() < 10) {
-                object.put("data_length", mEpidemicList.size());
-                for (int i = 0; i < mEpidemicList.size(); i++) {
-                    JSONObject epidObject = new JSONObject();
-                    epidObject.put("rank", String.valueOf(i + 1));
-                    epidObject.put("rank_nm", mEpidemicList.get(i).getDzName());
-                    epidObject.put("rank_per", "" + mEpidemicList.get(i).getRatio() + "%");
 
-                    array.put(epidObject);
+                @Override
+                public void onDataError(Context context, int type, String resultData, CustomAlertDialog dialog) {
+                    hideProgress();
+                    dialog.show();
                 }
-            } else {
-                object.put("data_length", "10");
-                for (int i = 0; i < 10; i++) {
-                    JSONObject epidObject = new JSONObject();
-                    epidObject.put("rank", String.valueOf(i + 1));
-                    epidObject.put("rank_nm", "");
-                    epidObject.put("rank_per", "0.0%");
 
-                    array.put(epidObject);
+                @Override
+                public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
+                    switch (resultCode) {
+                        case CommonData.API_SUCCESS:
+                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
+                            try {
+                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
+
+                                if (data_yn.equals(CommonData.YES)) {
+                                    JSONArray mapArr = resultData.getJSONArray(CommonData.JSON_DATA_F);
+                                    // 데이터가 있을 시
+                                    if (mapArr.length() > 0) {
+                                        for (int i = 0; i < mapArr.length(); i++) {
+                                            try {
+                                                JSONObject object = mapArr.getJSONObject(i);
+
+                                                LocationItem item = new LocationItem();
+                                                item.setLoc_nm_1(object.getString(CommonData.JSON_LOC_NM_1));
+                                                item.setLoc_nm_2(object.getString(CommonData.JSON_LOC_NM_2));
+                                                item.setAvg_fever(object.getString(CommonData.JSON_AVG_FEVER));
+                                                item.setLoc_1(object.getString(CommonData.JSON_LOC_1));
+                                                item.setLoc_2(object.getString(CommonData.JSON_LOC_2));
+
+                                                if (Double.parseDouble(item.getAvg_fever()) > 0)
+                                                    addMarker(item);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                        //hsh start
+//                                        setTabShow();
+                                        //hsh end
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                                GLog.e(e.toString());
+                            }
+
+                            break;
+                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
+                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
+
+                            break;
+                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
+                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
+                            break;
+
+                        default:
+                            GLog.i("NET_GET_APP_INFO default", "dd");
+                            break;
+                    }
                 }
-            }
-
-
-            object.put("data", array);
-
-            params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
-
-            RequestApi.requestApi(this, NetworkConst.NET_ASSTB_MBER_CNTR_DISS, NetworkConst.getInstance().getDefDomain(), networkListener, params, new MakeProgress(this));
+            }, params, new MakeProgress(this));
         } catch (Exception e) {
             GLog.i(e.toString(), "dd");
         }
@@ -584,98 +574,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                     }
                     break;
 
-
-                case NetworkConst.NET_GET_MAP_DATA:
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
-                            try {
-                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
-
-                                if (data_yn.equals(CommonData.YES)) {
-                                    JSONArray mapArr = resultData.getJSONArray(CommonData.JSON_DATA_F);
-                                    // 데이터가 있을 시
-                                    if (mapArr.length() > 0) {
-                                        for (int i = 0; i < mapArr.length(); i++) {
-                                            try {
-                                                JSONObject object = mapArr.getJSONObject(i);
-
-                                                LocationItem item = new LocationItem();
-                                                item.setLoc_nm_1(object.getString(CommonData.JSON_LOC_NM_1));
-                                                item.setLoc_nm_2(object.getString(CommonData.JSON_LOC_NM_2));
-                                                item.setAvg_fever(object.getString(CommonData.JSON_AVG_FEVER));
-                                                item.setLoc_1(object.getString(CommonData.JSON_LOC_1));
-                                                item.setLoc_2(object.getString(CommonData.JSON_LOC_2));
-
-                                                if (Double.parseDouble(item.getAvg_fever()) > 0)
-                                                    addMarker(item);
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                        //hsh start
-                                        setTabShow();
-                                        //hsh end
-                                    }
-                                }
-
-                            } catch (Exception e) {
-                                GLog.e(e.toString());
-                            }
-
-                            break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
-
-                            break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
-                            break;
-
-                        default:
-                            GLog.i("NET_GET_APP_INFO default", "dd");
-                            break;
-                    }
-                    break;
-
-                case NetworkConst.NET_ASSTB_MBER_CNTR_DISS:
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
-                            try {
-                                String data_yn = resultData.getString(CommonData.JSON_REG_YN);
-                                if (data_yn.equals(CommonData.YES)) {
-                                    String imgUrl = "https://wkd.walkie.co.kr/HL_FV/info/image/01_15.png";
-                                    String cntr_url = resultData.getString("cntr_url");
-
-                                    if (cntr_url.contains("https://wkd.walkie.co.kr")) ;
-                                    String param = cntr_url.replace("https://wkd.walkie.co.kr", "");
-
-                                    View view = LayoutInflater.from(TemperActivity.this).inflate(R.layout.applink_dialog_layout, null);
-                                    ApplinkDialog dlg = ApplinkDialog.showDlg(TemperActivity.this, view);
-                                    dlg.setSharing(imgUrl, "img", "", "", "[현대해상 " + KakaoLinkUtil.getAppname(TemperActivity.this.getPackageName(), TemperActivity.this) + "]", "유의질환 발생 빈도", "자세히보기", "", false, "disease.png", param, cntr_url);
-
-                                } else {
-                                }
-
-                            } catch (Exception e) {
-                                GLog.e(e.toString());
-                            }
-
-                            break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
-
-                            break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
-                            break;
-
-                        default:
-                            GLog.i("NET_GET_APP_INFO default", "dd");
-                            break;
-                    }
-                    break;
                 case NetworkConst.NET_MBER_CHECK_AGREE_YN:
 
                     switch (resultCode) {
@@ -751,18 +649,18 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     }
 
     //hsh start
-    private void setTabShow() {
-        Intent i = getIntent();
-        int push_type = i.getIntExtra(CommonData.EXTRA_PUSH_TYPE, 0);
-        int type = i.getIntExtra(CommonData.EXTRA_MAIN_TYPE, 0);
-        if ((push_type != 0 && push_type == FirebaseMessagingService.DIESEASE) || type != 0) {
-            setTab(1);
-        } else {
-            setTab(0);
-        }
-        getIntent().removeExtra(CommonData.EXTRA_PUSH_TYPE);
-        getIntent().removeExtra(CommonData.EXTRA_INFO_SN);
-    }
+//    private void setTabShow() {
+//        Intent i = getIntent();
+//        int push_type = i.getIntExtra(CommonData.EXTRA_PUSH_TYPE, 0);
+//        int type = i.getIntExtra(CommonData.EXTRA_MAIN_TYPE, 0);
+////        if ((push_type != 0 && push_type == FirebaseMessagingService.DIESEASE) || type != 0) {
+////            setTab(1);
+////        } else {
+////            setTab(0);
+////        }
+//        getIntent().removeExtra(CommonData.EXTRA_PUSH_TYPE);
+//        getIntent().removeExtra(CommonData.EXTRA_INFO_SN);
+//    }
     //hsh end
 
     @SuppressLint("MissingPermission")
@@ -770,6 +668,10 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
+//        mMap.getUiSettings().setZoomControlsEnabled(true);
+//        mMap.getUiSettings().setCompassEnabled(true);
+//        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
+//        mMap.getUiSettings().setMapToolbarEnabled(true);
 
         GpsInfo gps = new GpsInfo(this);
         if (gps.isGetLocation()) {
@@ -894,5 +796,126 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     }
 
+
+//    public void initRank() {
+//        if (mEpidemicList.size() > 0) {
+//            for (int i = 0; i < 10; i++) {
+//                mTxtDiseNmList[i].setText(mEpidemicList.get(i).getDzName());
+//                mTxtDiseCntList[i].setText("" + mEpidemicList.get(i).getRatio() + "%");
+//            }
+//        } else {
+//            mEpidemicRankLay.setVisibility(View.GONE);
+//            mTxtNullEpidemic.setVisibility(View.VISIBLE);
+//        }
+//    }
+
+//    /**
+//     * 유의질환 공유
+//     */
+//    public void requestSharedisease() {
+//        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//
+//        try {
+//            JSONArray array = new JSONArray();
+//            JSONObject object = new JSONObject();
+//
+//            object.put(CommonData.JSON_API_CODE, "asstb_mber_cntr_diss");
+//            object.put(CommonData.JSON_INSURES_CODE, CommonData.INSURE_CODE);          //  insures 코드
+//            object.put(CommonData.JSON_CNTR_TYP, "15");
+//            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(TemperActivity.this).getMberSn());             //  회원고유값
+//            object.put("diss_view_de", CDateUtil.getToday_yyyy_MM_dd());
+//
+//
+//            if (mEpidemicList.size() > 0 && mEpidemicList.size() > 9) {
+//                object.put("data_length", "10");
+//                for (int i = 0; i < 10; i++) {
+//                    JSONObject epidObject = new JSONObject();
+//                    epidObject.put("rank", String.valueOf(i + 1));
+//                    epidObject.put("rank_nm", mEpidemicList.get(i).getDzName());
+//                    epidObject.put("rank_per", "" + mEpidemicList.get(i).getRatio() + "%");
+//
+//                    array.put(epidObject);
+//                }
+//            } else if (mEpidemicList.size() > 0 && mEpidemicList.size() < 10) {
+//                object.put("data_length", mEpidemicList.size());
+//                for (int i = 0; i < mEpidemicList.size(); i++) {
+//                    JSONObject epidObject = new JSONObject();
+//                    epidObject.put("rank", String.valueOf(i + 1));
+//                    epidObject.put("rank_nm", mEpidemicList.get(i).getDzName());
+//                    epidObject.put("rank_per", "" + mEpidemicList.get(i).getRatio() + "%");
+//
+//                    array.put(epidObject);
+//                }
+//            } else {
+//                object.put("data_length", "10");
+//                for (int i = 0; i < 10; i++) {
+//                    JSONObject epidObject = new JSONObject();
+//                    epidObject.put("rank", String.valueOf(i + 1));
+//                    epidObject.put("rank_nm", "");
+//                    epidObject.put("rank_per", "0.0%");
+//
+//                    array.put(epidObject);
+//                }
+//            }
+//
+//
+//            object.put("data", array);
+//
+//            params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
+//            RequestApi.requestApi(this, NetworkConst.NET_ASSTB_MBER_CNTR_DISS, NetworkConst.getInstance().getDefDomain(), new CustomAsyncListener() {
+//                @Override
+//                public void onNetworkError(Context context, int type, int httpResultCode, CustomAlertDialog dialog) {
+//                    hideProgress();
+//                    dialog.show();
+//                }
+//
+//                @Override
+//                public void onDataError(Context context, int type, String resultData, CustomAlertDialog dialog) {
+//                    hideProgress();
+//                    dialog.show();
+//                }
+//
+//                @Override
+//                public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
+//                    case CommonData.API_SUCCESS:
+//                    GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
+//                    try {
+//                        String data_yn = resultData.getString(CommonData.JSON_REG_YN);
+//                        if (data_yn.equals(CommonData.YES)) {
+//                            String imgUrl = "https://wkd.walkie.co.kr/HL_FV/info/image/01_15.png";
+//                            String cntr_url = resultData.getString("cntr_url");
+//
+//                            if (cntr_url.contains("https://wkd.walkie.co.kr")) ;
+//                            String param = cntr_url.replace("https://wkd.walkie.co.kr", "");
+//
+//                            View view = LayoutInflater.from(TemperActivity.this).inflate(R.layout.applink_dialog_layout, null);
+//                            ApplinkDialog dlg = ApplinkDialog.showDlg(TemperActivity.this, view);
+//                            dlg.setSharing(imgUrl, "img", "", "", "[현대해상 " + KakaoLinkUtil.getAppname(TemperActivity.this.getPackageName(), TemperActivity.this) + "]", "유의질환 발생 빈도", "자세히보기", "", false, "disease.png", param, cntr_url);
+//
+//                        } else {
+//                        }
+//
+//                    } catch (Exception e) {
+//                        GLog.e(e.toString());
+//                    }
+//
+//                    break;
+//                    case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
+//                    GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
+//
+//                    break;
+//                    case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
+//                    GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
+//                    break;
+//
+//                    default:
+//                    GLog.i("NET_GET_APP_INFO default", "dd");
+//                    break;
+//                }
+//            }, params, new MakeProgress(this));
+//        } catch (Exception e) {
+//            GLog.i(e.toString(), "dd");
+//        }
+//    }
 
 }

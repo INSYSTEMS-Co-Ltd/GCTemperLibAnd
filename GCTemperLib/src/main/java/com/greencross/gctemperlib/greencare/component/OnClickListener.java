@@ -6,8 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.greencross.gctemperlib.greencare.database.DBHelper;
-import com.greencross.gctemperlib.greencare.database.DBHelperLog;
+//import com.greencross.gctemperlib.greencare.database.DBHelperLog;
 
 import java.util.Timer;
 
@@ -48,29 +47,29 @@ public class OnClickListener implements View.OnTouchListener {
 //                ((PMainFragment) mFragment).setAutoSwiper();
 //            }
 
-            if (v.getContentDescription() != null && !v.getContentDescription().toString().equals("")) {
-                // _!: 카운트만 되는 버튼 끝에 붙임
-                if (v.getContentDescription().toString().contains("_!")) {
-                    String temp = v.getContentDescription().toString().replace("_!", "");
-                    String cod[] = temp.split("_");
-
-                    DBHelper helper = new DBHelper(mContext);
-                    DBHelperLog logdb = helper.getLogDb();
-
-                    if (cod.length == 1) {
-                        logdb.insert(cod[0], "", "", 0, 1);
-                        Log.i(TAG, "view.contentDescription : " + cod[0] + "count : 1");
-                    } else if (cod.length == 2) {
-                        logdb.insert(cod[0], cod[1], "", 0, 1);
-                        Log.i(TAG, "view.contentDescription : " + cod[0] + cod[1] + "count : 1");
-                    } else {
-                        logdb.insert(cod[0], cod[1], cod[2], 0, 1);
-                        Log.i(TAG, "view.contentDescription : " + cod[0] + cod[1] + cod[2] + "count : 1");
-                    }
-
-                }
-                Log.i(TAG,"ACTION_UP");
-            }
+//            if (v.getContentDescription() != null && !v.getContentDescription().toString().equals("")) {
+//                // _!: 카운트만 되는 버튼 끝에 붙임
+//                if (v.getContentDescription().toString().contains("_!")) {
+//                    String temp = v.getContentDescription().toString().replace("_!", "");
+//                    String cod[] = temp.split("_");
+//
+//                    DBHelper helper = new DBHelper(mContext);
+//                    DBHelperLog logdb = helper.getLogDb();
+//
+//                    if (cod.length == 1) {
+//                        logdb.insert(cod[0], "", "", 0, 1);
+//                        Log.i(TAG, "view.contentDescription : " + cod[0] + "count : 1");
+//                    } else if (cod.length == 2) {
+//                        logdb.insert(cod[0], cod[1], "", 0, 1);
+//                        Log.i(TAG, "view.contentDescription : " + cod[0] + cod[1] + "count : 1");
+//                    } else {
+//                        logdb.insert(cod[0], cod[1], cod[2], 0, 1);
+//                        Log.i(TAG, "view.contentDescription : " + cod[0] + cod[1] + cod[2] + "count : 1");
+//                    }
+//
+//                }
+//                Log.i(TAG,"ACTION_UP");
+//            }
         }
         return false;
     }

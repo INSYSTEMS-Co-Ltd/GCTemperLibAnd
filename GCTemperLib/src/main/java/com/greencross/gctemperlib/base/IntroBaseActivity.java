@@ -1,7 +1,6 @@
 package com.greencross.gctemperlib.base;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.res.AssetManager;
 import android.database.Cursor;
@@ -9,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -20,18 +18,12 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAlertDialogInterface;
 import com.greencross.gctemperlib.common.MakeProgress;
-import com.greencross.gctemperlib.greencare.database.DBHelper;
-import com.greencross.gctemperlib.greencare.database.DBHelperLog;
-import com.greencross.gctemperlib.greencare.database.util.DBBackupManager;
-import com.greencross.gctemperlib.greencare.network.tr.ApiData;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_menu_log_hist;
-import com.greencross.gctemperlib.greencare.util.CDateUtil;
+//import com.greencross.gctemperlib.greencare.database.DBHelperLog;
+//import com.greencross.gctemperlib.greencare.database.util.DBBackupManager;
 import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
 import com.greencross.gctemperlib.greencare.util.Logger;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
-import com.greencross.gctemperlib.main.MainActivity;
-import com.greencross.gctemperlib.push.FirebaseMessagingService;
+//import com.greencross.gctemperlib.main.MainActivity;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.Util;
 
@@ -115,7 +107,7 @@ public class IntroBaseActivity extends BaseActivity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         Logger.initLogger(this);
-        new DBBackupManager().importDBAssets(IntroBaseActivity.this);
+//        new DBBackupManager().importDBAssets(IntroBaseActivity.this);
 
 
     }
@@ -327,7 +319,7 @@ public class IntroBaseActivity extends BaseActivity {
 //                    }
                 }
 
-                sendLog(context,switchMember);
+//                sendLog(context,switchMember);
 
 
             }else{
@@ -644,58 +636,58 @@ public class IntroBaseActivity extends BaseActivity {
      * 로그인 후 앱 화면 이동처리
      */
     protected void moveActivity() {
-
-        Intent i = getIntent();
-
-
-        int chl_sn = i.getIntExtra("chl_sn", 0);
-
-        Intent intent = null;
-
-        if(commonData.getMberGrad().equals("10")){
-            if(commonData.getMberAgreementYn().equals("N")){
-//                intent = new Intent(IntroBaseActivity.this, AgreeConfirmActivity.class);
-            } else {
-                intent = new Intent(IntroBaseActivity.this, MainActivity.class);
-            }
-        } else {
-            intent = new Intent(IntroBaseActivity.this, MainActivity.class);
-        }
-
-
-
-        if(chl_sn != 0)
-            intent.putExtra("chl_sn", chl_sn);
-
-        int push_type = i.getIntExtra(CommonData.EXTRA_PUSH_TYPE, 0);
-        int kakao = StringUtil.getIntVal(CommonData.getInstance(this).getLink());
-        String kakao_link = CommonData.getInstance(this).getLink1();
-//        if(i.getData() != null) {
-//            kakao = StringUtil.getIntVal(i.getData().getQueryParameter("service"));
+//
+//        Intent i = getIntent();
+//
+//
+//        int chl_sn = i.getIntExtra("chl_sn", 0);
+//
+//        Intent intent = null;
+//
+//        if(commonData.getMberGrad().equals("10")){
+//            if(commonData.getMberAgreementYn().equals("N")){
+////                intent = new Intent(IntroBaseActivity.this, AgreeConfirmActivity.class);
+//            } else {
+//                intent = new Intent(IntroBaseActivity.this, MainActivity.class);
+//            }
+//        } else {
+//            intent = new Intent(IntroBaseActivity.this, MainActivity.class);
 //        }
-        Log.i(TAG, "Push Data Check - service : " + kakao);
-        if(push_type > 0)
-            intent.putExtra(CommonData.EXTRA_PUSH_TYPE, push_type);
-        else if(kakao > 0) {
-            intent.putExtra(CommonData.EXTRA_PUSH_TYPE, kakao);
-            intent.putExtra("EVENT_POP", kakao_link);
-        }
-
-        if(push_type == FirebaseMessagingService.NEWS
-                //hsh start
-                ||push_type == FirebaseMessagingService.FEVER_MOVIE
-            //hsh end
-        ){
-            String info_sn = i.getStringExtra(CommonData.EXTRA_INFO_SN);
-            intent.putExtra(CommonData.EXTRA_INFO_SN, info_sn);
-        }
-
-        getIntent().removeExtra(CommonData.EXTRA_PUSH_TYPE);
-        getIntent().removeExtra(CommonData.EXTRA_INFO_SN);
-
-        startActivity(intent);
-        activityClear();
-        finish();
+//
+//
+//
+//        if(chl_sn != 0)
+//            intent.putExtra("chl_sn", chl_sn);
+//
+//        int push_type = i.getIntExtra(CommonData.EXTRA_PUSH_TYPE, 0);
+//        int kakao = StringUtil.getIntVal(CommonData.getInstance(this).getLink());
+//        String kakao_link = CommonData.getInstance(this).getLink1();
+////        if(i.getData() != null) {
+////            kakao = StringUtil.getIntVal(i.getData().getQueryParameter("service"));
+////        }
+//        Log.i(TAG, "Push Data Check - service : " + kakao);
+//        if(push_type > 0)
+//            intent.putExtra(CommonData.EXTRA_PUSH_TYPE, push_type);
+//        else if(kakao > 0) {
+//            intent.putExtra(CommonData.EXTRA_PUSH_TYPE, kakao);
+//            intent.putExtra("EVENT_POP", kakao_link);
+//        }
+//
+//        if(push_type == FirebaseMessagingService.NEWS
+//                //hsh start
+//                ||push_type == FirebaseMessagingService.FEVER_MOVIE
+//            //hsh end
+//        ){
+//            String info_sn = i.getStringExtra(CommonData.EXTRA_INFO_SN);
+//            intent.putExtra(CommonData.EXTRA_INFO_SN, info_sn);
+//        }
+//
+//        getIntent().removeExtra(CommonData.EXTRA_PUSH_TYPE);
+//        getIntent().removeExtra(CommonData.EXTRA_INFO_SN);
+//
+//        startActivity(intent);
+//        activityClear();
+//        finish();
 
 
     /*
@@ -815,51 +807,50 @@ public class IntroBaseActivity extends BaseActivity {
     /**
      * 클릭로그
      */
-
-    private void sendLog(Context context, Boolean switchMember){
-        String sendFlag = SharedPref.getInstance(context).getPreferences(SharedPref.SEND_LOG_DATE);
-
-        if(sendFlag == null ||sendFlag.equals("")){
-            sendFlag = CDateUtil.getToday_yyyy_MM_dd();
-            SharedPref.getInstance(context).savePreferences(SharedPref.SEND_LOG_DATE,sendFlag);
-        }
-
-        if(StringUtil.getLong(sendFlag) < StringUtil.getLong(CDateUtil.getToday_yyyy_MM_dd())){
-            Tr_asstb_menu_log_hist.RequestData reqData = new Tr_asstb_menu_log_hist.RequestData();
-            reqData.DATA = Tr_asstb_menu_log_hist.getArray(context);
-            reqData.DATA_LENGTH = String.valueOf(reqData.DATA.length());
-            reqData.mber_sn = CommonData.getInstance(this).getMberSn();
-
-            if(reqData.DATA.length() > 0) {
-
-                new ApiData().getData(context, Tr_asstb_menu_log_hist.class, reqData, new ApiData.IStep() {
-                    @Override
-                    public void next(Object obj) {
-
-                        if (obj instanceof Tr_asstb_menu_log_hist) {
-                            Tr_asstb_menu_log_hist data = (Tr_asstb_menu_log_hist) obj;
-                            if (data.result_code.equals("0000")) {
-                                DBHelper helper = new DBHelper(context);
-                                DBHelperLog db = helper.getLogDb();
-                                db.delete_log();
-
-                                SharedPref.getInstance(IntroBaseActivity.this).savePreferences(SharedPref.SEND_LOG_DATE, CDateUtil.getToday_yyyy_MM_dd());
-
-                                FirstData(context, switchMember);
-
-                            } else {
-                                FirstData(context, switchMember);
-                            }
-                        }
-                    }
-                });
-            } else {
-                FirstData(context, switchMember);
-            }
-        }else {
-            FirstData(context,switchMember);
-        }
-    }
+//    private void sendLog(Context context, Boolean switchMember){
+//        String sendFlag = SharedPref.getInstance(context).getPreferences(SharedPref.SEND_LOG_DATE);
+//
+//        if(sendFlag == null ||sendFlag.equals("")){
+//            sendFlag = CDateUtil.getToday_yyyy_MM_dd();
+//            SharedPref.getInstance(context).savePreferences(SharedPref.SEND_LOG_DATE,sendFlag);
+//        }
+//
+//        if(StringUtil.getLong(sendFlag) < StringUtil.getLong(CDateUtil.getToday_yyyy_MM_dd())){
+//            Tr_asstb_menu_log_hist.RequestData reqData = new Tr_asstb_menu_log_hist.RequestData();
+//            reqData.DATA = Tr_asstb_menu_log_hist.getArray(context);
+//            reqData.DATA_LENGTH = String.valueOf(reqData.DATA.length());
+//            reqData.mber_sn = CommonData.getInstance(this).getMberSn();
+//
+//            if(reqData.DATA.length() > 0) {
+//
+//                new ApiData().getData(context, Tr_asstb_menu_log_hist.class, reqData, new ApiData.IStep() {
+//                    @Override
+//                    public void next(Object obj) {
+//
+//                        if (obj instanceof Tr_asstb_menu_log_hist) {
+//                            Tr_asstb_menu_log_hist data = (Tr_asstb_menu_log_hist) obj;
+//                            if (data.result_code.equals("0000")) {
+//                                DBHelper helper = new DBHelper(context);
+//                                DBHelperLog db = helper.getLogDb();
+//                                db.delete_log();
+//
+//                                SharedPref.getInstance(IntroBaseActivity.this).savePreferences(SharedPref.SEND_LOG_DATE, CDateUtil.getToday_yyyy_MM_dd());
+//
+//                                FirstData(context, switchMember);
+//
+//                            } else {
+//                                FirstData(context, switchMember);
+//                            }
+//                        }
+//                    }
+//                });
+//            } else {
+//                FirstData(context, switchMember);
+//            }
+//        }else {
+//            FirstData(context,switchMember);
+//        }
+//    }
 
     private void FirstData (Context context, Boolean switchMember){
         // 걸음수 등록하기 20190215

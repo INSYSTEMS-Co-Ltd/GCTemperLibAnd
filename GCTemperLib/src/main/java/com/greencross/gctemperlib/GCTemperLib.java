@@ -29,12 +29,6 @@ public class GCTemperLib {
 
     private Context mContext;
 
-    private final String PREF_APP_TOKEN = "pref_app_token";     // 라이브러리 인증키
-
-    private final String PREF_PUSH_TOKEN = "pref_push_token";   // 푸시키
-    private final String PREF_CUST_NO = "pref_cust_no";         // 사용자 번호
-    private final String PREF_GENDER = "pref_gender";     // 사용자 성별
-
 
     private final String APP_TOKEN = "APA91bGkmKwWBjCso94R3sM3CUEk79";  // 앱 토큰
 
@@ -50,7 +44,7 @@ public class GCTemperLib {
     public boolean registGCToken(@Nullable String gcToken) {
         // 최초 인증
         // 인증토큰, 푸시토큰, 고객번호, 성별을 저장
-        SharedPref.getInstance(mContext).savePreferences(PREF_APP_TOKEN, gcToken);
+        SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_APP_TOKEN, gcToken);
         return APP_TOKEN.equals(gcToken);
     }
 
@@ -59,7 +53,7 @@ public class GCTemperLib {
      */
     public boolean isAvailableGCToken() {
         // 최초 인증
-        String gcToken = SharedPref.getInstance(mContext).getPreferences(PREF_APP_TOKEN);
+        String gcToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_APP_TOKEN);
         return APP_TOKEN.equals(gcToken);
     }
 
@@ -91,7 +85,7 @@ public class GCTemperLib {
 
             return;
         } else {
-            SharedPref.getInstance(mContext).savePreferences(PREF_CUST_NO, customerNo);     // 사용자 번호
+            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -147,7 +141,7 @@ public class GCTemperLib {
 
             return;
         } else {
-            SharedPref.getInstance(mContext).savePreferences(PREF_PUSH_TOKEN, pushToken);   // 푸시키
+            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -251,9 +245,8 @@ public class GCTemperLib {
      * @param isEnable  알람 수신 여부
      */
     public void settingAlramService(GCAlramType alramType, boolean isEnable, IGCResult IGCResult) {
-        String pushToken = SharedPref.getInstance(mContext).getPreferences(PREF_PUSH_TOKEN);    // 푸시키
-        String custNo = SharedPref.getInstance(mContext).getPreferences(PREF_CUST_NO);          // 사용자 번호
-        String gender = SharedPref.getInstance(mContext).getPreferences(PREF_GENDER);           // 사용자 성별
+        String pushToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_PUSH_TOKEN);    // 푸시키
+        String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
 
         Log.i(TAG, "setAlram::" + alramType.name() + " " + isEnable);
         Log.i(TAG, "setAlram.pushToken=" + pushToken);
@@ -399,8 +392,8 @@ public class GCTemperLib {
      * @return
      */
     private boolean validCheck() {
-        String pushToken = SharedPref.getInstance(mContext).getPreferences(PREF_PUSH_TOKEN);    // 푸시키
-        String custNo = SharedPref.getInstance(mContext).getPreferences(PREF_CUST_NO);          // 사용자 번호
+        String pushToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_PUSH_TOKEN);    // 푸시키
+        String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
 //        String gender = SharedPref.getInstance(mContext).getPreferences(PREF_GENDER);           // 사용자 성별
 
         if (TextUtils.isEmpty(pushToken)) {

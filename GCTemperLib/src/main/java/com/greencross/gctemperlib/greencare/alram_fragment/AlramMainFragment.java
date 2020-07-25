@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_kbtg_alimi;
 import com.greencross.gctemperlib.Alram.AlramMainActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
@@ -32,7 +31,7 @@ import java.util.List;
 public class AlramMainFragment extends BaseFragment implements IBaseFragment {
     private final String TAG = AlramMainActivity.class.getSimpleName();
 
-    List<Tr_asstb_kbtg_alimi.chlmReadern> items;
+//    List<Tr_asstb_kbtg_alimi.chlmReadern> items;
 
     private RecyclerView recyclerView;
     private MyAdapter Adapter;
@@ -96,7 +95,7 @@ public class AlramMainFragment extends BaseFragment implements IBaseFragment {
         recyclerView = view.findViewById(R.id.noti_list);
         recyclerView.setHasFixedSize(true);
 
-        items = new ArrayList<>();
+//        items = new ArrayList<>();
         layoutManager = new LinearLayoutManager(getContext());
 
 
@@ -162,7 +161,7 @@ public class AlramMainFragment extends BaseFragment implements IBaseFragment {
 
     }
 
-    public  class MyAdapter extends RecyclerView.Adapter{
+    public  class MyAdapter extends RecyclerView.Adapter {
 
         public  class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView notiTitleImage;
@@ -179,11 +178,11 @@ public class AlramMainFragment extends BaseFragment implements IBaseFragment {
             }
         }
 
-        private List<Tr_asstb_kbtg_alimi.chlmReadern> itemslist = new ArrayList<>();
+//        private List<Tr_asstb_kbtg_alimi.chlmReadern> itemslist = new ArrayList<>();
         //        }
-        public void setData(List<Tr_asstb_kbtg_alimi.chlmReadern> dataList){
-            itemslist.addAll(dataList);
-        }
+//        public void setData(List<Tr_asstb_kbtg_alimi.chlmReadern> dataList){
+//            itemslist.addAll(dataList);
+//        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -194,42 +193,47 @@ public class AlramMainFragment extends BaseFragment implements IBaseFragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            final int Position = position;
-
-            MyViewHolder myViewHolder = (MyViewHolder) holder;
-
-            final String titleImgUrl = itemslist.get(position).ka_timg;
-            final String title = itemslist.get(position).kbt;
-            final String subtitle = itemslist.get(position).sub_tit;
-            final String date = CDateUtil.getFormatYYYYMMDD(itemslist.get(position).kbvd);
-
-            Logger.i(TAG,"titleImgUrl: "+ Uri.parse(titleImgUrl));
-
-            if(!titleImgUrl.isEmpty())
-//                Glide.with(getContext()).load(titleImgUrl)
-//                        .apply(new RequestOptions()
-//                                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                                .skipMemoryCache(true)).into(myViewHolder.notiTitleImage);
-
-            myViewHolder.notiTitle.setText(title);
-            myViewHolder.notiContent.setText(subtitle);
-            myViewHolder.notiDate.setText(date);
-
-            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("IDX",itemslist.get(Position).kbta_idx);
-                        activity.replaceFragment(new AlramContentFragment(),false, true, bundle);
-
-                }
-            });
+//            final int Position = position;
+//
+//            MyViewHolder myViewHolder = (MyViewHolder) holder;
+//
+////            final String titleImgUrl = itemslist.get(position).ka_timg;
+////            final String title = itemslist.get(position).kbt;
+////            final String subtitle = itemslist.get(position).sub_tit;
+////            final String date = CDateUtil.getFormatYYYYMMDD(itemslist.get(position).kbvd);
+//
+//            Logger.i(TAG,"titleImgUrl: "+ Uri.parse(titleImgUrl));
+//
+//            if(!titleImgUrl.isEmpty())
+////                Glide.with(getContext()).load(titleImgUrl)
+////                        .apply(new RequestOptions()
+////                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+////                                .skipMemoryCache(true)).into(myViewHolder.notiTitleImage);
+//
+//            myViewHolder.notiTitle.setText(title);
+//            myViewHolder.notiContent.setText(subtitle);
+//            myViewHolder.notiDate.setText(date);
+//
+//            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v){
+//
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("IDX",itemslist.get(Position).kbta_idx);
+//                        activity.replaceFragment(new AlramContentFragment(),false, true, bundle);
+//
+//                }
+//            });
+//        }
+//
+//        @Override
+//        public int getItemCount() {
+//            return itemslist.size();
         }
 
         @Override
         public int getItemCount() {
-            return itemslist.size();
+            return 0;
         }
     }
 
@@ -263,42 +267,42 @@ public class AlramMainFragment extends BaseFragment implements IBaseFragment {
 
     //알리미 리스트
     public void setNotifierData() {
-        Tr_asstb_kbtg_alimi.RequestData requestData = new Tr_asstb_kbtg_alimi.RequestData();
-        CommonData login = CommonData.getInstance(activity);
-        requestData.PLN = "10";
-
-        if(mPageNum == 0 || mMaxPage == StringUtil.getIntVal(requestData.PLN))
-            requestData.PAGE = "" + (++mPageNum);
-        else
-            return;
-
-
-        requestData.mber_sn = login.getMberSn();
-
-        getData(getContext(), Tr_asstb_kbtg_alimi.class, requestData, true, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_asstb_kbtg_alimi) {
-                    Tr_asstb_kbtg_alimi data = (Tr_asstb_kbtg_alimi) obj;
-                    if(data.data_yn.equals("Y")) {
-                        Logger.i(TAG, "MSG : " + data.DATA_LENGTH);
-
-                        if(!EVENT_POP.equals("")){
-                            Bundle bundle = new Bundle();
-                            bundle.putString("IDX",EVENT_POP);
-                            activity.replaceFragment(new AlramContentFragment(),true, true, bundle);
-                        } else {
-                            mMaxPage = data.dataList.size();
-                            Adapter.setData(data.dataList);
-                            Adapter.notifyDataSetChanged();
-                        }
-                    }else{
-                        Logger.i(TAG,"KA001 : 기타오류");
-                    }
-
-                }
-            }
-        }, null);
+//        Tr_asstb_kbtg_alimi.RequestData requestData = new Tr_asstb_kbtg_alimi.RequestData();
+//        CommonData login = CommonData.getInstance(activity);
+//        requestData.PLN = "10";
+//
+//        if(mPageNum == 0 || mMaxPage == StringUtil.getIntVal(requestData.PLN))
+//            requestData.PAGE = "" + (++mPageNum);
+//        else
+//            return;
+//
+//
+//        requestData.mber_sn = login.getMberSn();
+//
+//        getData(getContext(), Tr_asstb_kbtg_alimi.class, requestData, true, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_asstb_kbtg_alimi) {
+//                    Tr_asstb_kbtg_alimi data = (Tr_asstb_kbtg_alimi) obj;
+//                    if(data.data_yn.equals("Y")) {
+//                        Logger.i(TAG, "MSG : " + data.DATA_LENGTH);
+//
+//                        if(!EVENT_POP.equals("")){
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("IDX",EVENT_POP);
+//                            activity.replaceFragment(new AlramContentFragment(),true, true, bundle);
+//                        } else {
+//                            mMaxPage = data.dataList.size();
+//                            Adapter.setData(data.dataList);
+//                            Adapter.notifyDataSetChanged();
+//                        }
+//                    }else{
+//                        Logger.i(TAG,"KA001 : 기타오류");
+//                    }
+//
+//                }
+//            }
+//        }, null);
     }
 
 
@@ -312,9 +316,9 @@ public class AlramMainFragment extends BaseFragment implements IBaseFragment {
         return name;
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//    }
 
 }

@@ -22,12 +22,17 @@ public class BaseData implements Cloneable, IBaseData {
     public String APP_CODE = "android"+ Build.VERSION.RELEASE;
     public String DEVICE_TOKEN = FirebaseInstanceId.getInstance().getToken();
     public String INSURES_CODE = "108";
+    public String OS_GUBUN = "A";
+
+//    public BaseData(Context context) {
+//    	mContext = context;
+//	}
 
     protected String getApiCode(String tag) {
         return  tag.replace("Tr_", "");
     }
 
-	protected String conn_url = "";
+	protected String conn_url = BaseUrl.COMMON_URL;
 	public String json_obj_name = "json";
 
 

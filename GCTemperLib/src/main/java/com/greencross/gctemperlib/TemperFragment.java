@@ -50,7 +50,6 @@ import com.greencross.gctemperlib.network.RequestApi;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.GpsInfo;
-import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.util.Util;
 
 import org.json.JSONArray;
@@ -663,7 +662,7 @@ public class TemperFragment extends BaseFragment implements View.OnClickListener
 
                                     View view = LayoutInflater.from(getActivity()).inflate(R.layout.applink_dialog_layout, null);
                                     ApplinkDialog dlg = ApplinkDialog.showDlg(getActivity(), view);
-                                    dlg.setSharing(imgUrl, "img", "", "", "[현대해상 " + KakaoLinkUtil.getAppname(getActivity().getPackageName(), getActivity()) + "]", "유의질환 발생 빈도", "자세히보기", "", false, "disease.png", param, cntr_url);
+//                                    dlg.setSharing(imgUrl, "img", "", "", "[현대해상 " + KakaoLinkUtil.getAppname(getActivity().getPackageName(), getActivity()) + "]", "유의질환 발생 빈도", "자세히보기", "", false, "disease.png", param, cntr_url);
 
                                 } else {
                                 }

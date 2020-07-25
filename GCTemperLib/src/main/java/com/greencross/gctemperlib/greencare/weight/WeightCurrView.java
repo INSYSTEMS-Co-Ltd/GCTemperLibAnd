@@ -17,7 +17,7 @@ import com.greencross.gctemperlib.collection.ProgressItem;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.DummyActivity;
-import com.greencross.gctemperlib.util.CustomSeekBar;
+//import com.greencross.gctemperlib.util.CustomSeekBar;
 import com.greencross.gctemperlib.R;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class WeightCurrView extends LinearLayout {
 
     private Context context;
 
-    private CustomSeekBar seekbar;
+//    private CustomSeekBar seekbar;
     private float totalSpan = 100;
     private float span01 = 15;
     private float span02 = 30;
@@ -69,7 +69,7 @@ public class WeightCurrView extends LinearLayout {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.weight_curr_view, null);
         LayoutParams contentParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
-        seekbar = ((CustomSeekBar) view.findViewById(R.id.seekBar));
+//        seekbar = ((CustomSeekBar) view.findViewById(R.id.seekBar));
 
         addView(view, contentParams);
 
@@ -201,19 +201,19 @@ public class WeightCurrView extends LinearLayout {
         goalBmi = ((goalBmi / 18) * 100);
 
 
-        seekbar.setMax(100);
-
-        seekbar.initData(progressItemList, curBmi, goalBmi, after_birth_pop);
-        seekbar.setEnabled(false);
-
-        seekbar.invalidate();
+//        seekbar.setMax(100);
+//
+//        seekbar.initData(progressItemList, curBmi, goalBmi, after_birth_pop);
+//        seekbar.setEnabled(false);
+//
+//        seekbar.invalidate();
     }
 
     public void initData(ArrayList<ProgressItem> progressItemList, int curWtInt, int goalWtInt, boolean flag) {
 
-        seekbar.initData(progressItemList, curWtInt, goalWtInt, false, after_birth_pop);
-        seekbar.setEnabled(false);
-
-        seekbar.invalidate();
+//        seekbar.initData(progressItemList, curWtInt, goalWtInt, false, after_birth_pop);
+//        seekbar.setEnabled(false);
+//
+//        seekbar.invalidate();
     }
 }

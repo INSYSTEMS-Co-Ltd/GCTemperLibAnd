@@ -25,8 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_kbtg_alimi;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_kbtg_alimi_view;
 import com.greencross.gctemperlib.Alram.AlramMainActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.ApplinkDialog;
@@ -86,79 +84,79 @@ public class AlramContentFragment extends BaseFragment implements IBaseFragment,
 
     //알리미 상세페이지
     public void NotiDetail(String idx) {
-        Tr_asstb_kbtg_alimi_view.RequestData requestData = new Tr_asstb_kbtg_alimi_view.RequestData();
-        CommonData login = CommonData.getInstance(getContext());
-        requestData.KBTA_IDX = idx;
-        requestData.mber_sn = login.getMberSn();
-
-        getData(getContext(), Tr_asstb_kbtg_alimi_view.class, requestData, true, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_asstb_kbtg_alimi_view) {
-                    Tr_asstb_kbtg_alimi_view data = (Tr_asstb_kbtg_alimi_view) obj;
-                    List<Tr_asstb_kbtg_alimi.chlmReadern> chlmReadern = data.dataList;
-                    if(data.data_yn.equals("Y")){
-                        HTML_YN = chlmReadern.get(0).html_yn;
-                        mPdf_url = chlmReadern.get(0).kbt_pdf;
-                        noticonTitle.setText(chlmReadern.get(0).kbt);
-                        if(mPdf_url.equals("")){
-                            mRight_pdf_down.setVisibility(View.GONE);
-                        }else{
-                            mRight_pdf_down.setVisibility(View.VISIBLE);
-                        }
-
-                        if(HTML_YN.equals("N")) {
-                            mNotiWebview.setVisibility(View.GONE);
-                            mContent_scrollview.setVisibility(View.VISIBLE);
-                            noticonContent.setText(chlmReadern.get(0).kbc);
-                        }
-                        else {
-                            mNotiWebview.setVisibility(View.VISIBLE);
-                            mContent_scrollview.setVisibility(View.GONE);
-                            mNotiWebview.setWebViewClient(new WebViewClientClass());
-
-
-                            WebSettings settings = mNotiWebview.getSettings();
-                            // 자바스크립트 허용
-                            settings.setJavaScriptEnabled(true);
-                            settings.setLoadWithOverviewMode(true);
-                            settings.setUseWideViewPort(false);
-                            settings.setSupportZoom(true);
-                            settings.setBuiltInZoomControls(false);
-                            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-                            settings.setDomStorageEnabled(true);
-                            settings.setDefaultTextEncodingName("utf-8");
-                            settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-
-                            mNotiWebview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-                            mNotiWebview.setScrollbarFadingEnabled(true);
-
-                            // 스크롤바 없애기
-                            mNotiWebview.setHorizontalScrollBarEnabled(false);
-                            mNotiWebview.setVerticalScrollBarEnabled(false);
-                            mNotiWebview.setBackgroundColor(0);
-                            mNotiWebview.setPadding(0, 0, 0, 0);
-
-                            String source = chlmReadern.get(0).kbc;
-                            if (Build.VERSION.SDK_INT >= 24) {
-                                Spanned spannedFromHtml = Html.fromHtml(WebViewEscape(source),Html.FROM_HTML_MODE_LEGACY);
-                                Logger.i(TAG,WebViewEscape(source));
-                                mNotiWebview.loadDataWithBaseURL(null,spannedFromHtml.toString(), "text/html", "UTF-8",null);
-                            } else {
-                                Spanned spannedFromHtml =Html.fromHtml(WebViewEscape(source));
-                                mNotiWebview.loadDataWithBaseURL(null,spannedFromHtml.toString(), "text/html", "UTF-8",null);
-                            }
-
-                        }
-                    }else{
-                        Logger.i(TAG,"KA002 : 알리미 글 존재 안함.");
-                    }
-
-
-
-                }
-            }
-        }, null);
+//        Tr_asstb_kbtg_alimi_view.RequestData requestData = new Tr_asstb_kbtg_alimi_view.RequestData();
+//        CommonData login = CommonData.getInstance(getContext());
+//        requestData.KBTA_IDX = idx;
+//        requestData.mber_sn = login.getMberSn();
+//
+//        getData(getContext(), Tr_asstb_kbtg_alimi_view.class, requestData, true, new ApiData.IStep() {
+//            @Override
+//            public void next(Object obj) {
+//                if (obj instanceof Tr_asstb_kbtg_alimi_view) {
+//                    Tr_asstb_kbtg_alimi_view data = (Tr_asstb_kbtg_alimi_view) obj;
+//                    List<Tr_asstb_kbtg_alimi.chlmReadern> chlmReadern = data.dataList;
+//                    if(data.data_yn.equals("Y")){
+//                        HTML_YN = chlmReadern.get(0).html_yn;
+//                        mPdf_url = chlmReadern.get(0).kbt_pdf;
+//                        noticonTitle.setText(chlmReadern.get(0).kbt);
+//                        if(mPdf_url.equals("")){
+//                            mRight_pdf_down.setVisibility(View.GONE);
+//                        }else{
+//                            mRight_pdf_down.setVisibility(View.VISIBLE);
+//                        }
+//
+//                        if(HTML_YN.equals("N")) {
+//                            mNotiWebview.setVisibility(View.GONE);
+//                            mContent_scrollview.setVisibility(View.VISIBLE);
+//                            noticonContent.setText(chlmReadern.get(0).kbc);
+//                        }
+//                        else {
+//                            mNotiWebview.setVisibility(View.VISIBLE);
+//                            mContent_scrollview.setVisibility(View.GONE);
+//                            mNotiWebview.setWebViewClient(new WebViewClientClass());
+//
+//
+//                            WebSettings settings = mNotiWebview.getSettings();
+//                            // 자바스크립트 허용
+//                            settings.setJavaScriptEnabled(true);
+//                            settings.setLoadWithOverviewMode(true);
+//                            settings.setUseWideViewPort(false);
+//                            settings.setSupportZoom(true);
+//                            settings.setBuiltInZoomControls(false);
+//                            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//                            settings.setDomStorageEnabled(true);
+//                            settings.setDefaultTextEncodingName("utf-8");
+//                            settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+//
+//                            mNotiWebview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+//                            mNotiWebview.setScrollbarFadingEnabled(true);
+//
+//                            // 스크롤바 없애기
+//                            mNotiWebview.setHorizontalScrollBarEnabled(false);
+//                            mNotiWebview.setVerticalScrollBarEnabled(false);
+//                            mNotiWebview.setBackgroundColor(0);
+//                            mNotiWebview.setPadding(0, 0, 0, 0);
+//
+//                            String source = chlmReadern.get(0).kbc;
+//                            if (Build.VERSION.SDK_INT >= 24) {
+//                                Spanned spannedFromHtml = Html.fromHtml(WebViewEscape(source),Html.FROM_HTML_MODE_LEGACY);
+//                                Logger.i(TAG,WebViewEscape(source));
+//                                mNotiWebview.loadDataWithBaseURL(null,spannedFromHtml.toString(), "text/html", "UTF-8",null);
+//                            } else {
+//                                Spanned spannedFromHtml =Html.fromHtml(WebViewEscape(source));
+//                                mNotiWebview.loadDataWithBaseURL(null,spannedFromHtml.toString(), "text/html", "UTF-8",null);
+//                            }
+//
+//                        }
+//                    }else{
+//                        Logger.i(TAG,"KA002 : 알리미 글 존재 안함.");
+//                    }
+//
+//
+//
+//                }
+//            }
+//        }, null);
     }
 
     private String getAppname(String PK){

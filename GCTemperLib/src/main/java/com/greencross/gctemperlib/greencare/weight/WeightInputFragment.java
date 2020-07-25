@@ -27,8 +27,7 @@ import com.greencross.gctemperlib.greencare.bluetooth.manager.DeviceDataUtil;
 import com.greencross.gctemperlib.greencare.bluetooth.model.WeightModel;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.database.DBHelper;
-import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
+//import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
@@ -104,15 +103,15 @@ public class WeightInputFragment extends BaseFragment {
         mDateTvSet(cal_year, cal_month, cal_day);
         mTimeTvSet(cal_hour, cal_min);
 
-        DBHelper helper = new DBHelper(getContext());
-        DBHelperWeight WeightDb = helper.getWeightDb();
-        DBHelperWeight.WeightStaticData bottomData = WeightDb.getResultStatic(helper);
+//        DBHelper helper = new DBHelper(getContext());
+//        DBHelperWeight WeightDb = helper.getWeightDb();
+//        DBHelperWeight.WeightStaticData bottomData = WeightDb.getResultStatic(helper);
 
-        if(bottomData.getWeight().isEmpty()){
-            mWeightEt.setHint("0");
-        }else{
-            mWeightEt.setHint(bottomData.getWeight());
-        }
+//        if(bottomData.getWeight().isEmpty()){
+//            mWeightEt.setHint("0");
+//        }else{
+//            mWeightEt.setHint(bottomData.getWeight());
+//        }
 
         CommonData login = CommonData.getInstance(getContext());
         mWeightTargetEt.setEnabled(true);
@@ -358,118 +357,82 @@ public class WeightInputFragment extends BaseFragment {
 
     private void doInputWeight(String regDate, String timeStr, final String mWeight, final String mWeightTarget, final String mWeightBodyRate, String mWeightinner, String mWeightWater, String mWeightMuscle ) {
 
-        regDate += timeStr;
-
-        String weightTarget = mWeightTarget;
-        if(TextUtils.isEmpty(weightTarget)){
-            CommonData login = CommonData.getInstance(getContext());
-            weightTarget = login.getMotherGoalWeight();
-        }
-
-        SparseArray<WeightModel> array = new SparseArray<>();
-        WeightModel dataModel = new WeightModel();
-        dataModel.setIdx(CDateUtil.getForamtyyMMddHHmmssSS(new Date(System.currentTimeMillis())));
-        dataModel.setWeight(StringUtil.getFloatVal(mWeight));                 // 체중
-        dataModel.setFat(StringUtil.getFloatVal(mWeightBodyRate));      // 체지방률
-        dataModel.setObesity(StringUtil.getFloatVal(mWeightinner));     // 내장지방
-        dataModel.setBodyWater(StringUtil.getFloatVal(mWeightWater));   // 수분
-        dataModel.setMuscle(StringUtil.getFloatVal(mWeightMuscle));     // 근육
-        dataModel.setBdwgh_goal(StringUtil.getFloatVal(weightTarget));     // 근육
-        dataModel.setBmr(0);
-        dataModel.setBone(0);
-        dataModel.setHeartRate(0);
-        dataModel.setRegType("U");
-        dataModel.setRegDate(regDate);
-
-        array.append(0, dataModel);
-
-        if(StringUtil.getFloatVal(mWeight) > 0.f){
-            new DeviceDataUtil().uploadWeight(WeightInputFragment.this, dataModel, new BluetoothManager.IBluetoothResult() {
-                @Override
-                public void onResult(boolean isSuccess) {
-                    if (isSuccess) {
-                        CDialog.showDlg(getContext(), getString(R.string.regist_success), new CDialog.DismissListener() {
-                            @Override
-                            public void onDissmiss() {
-
-                                CommonData login = CommonData.getInstance(getContext());
-                                if(!mWeightTargetEt.getText().toString().isEmpty()){
-//                                    login.mber_bdwgh_goal = mWeightTargetEt.getText().toString();
-//                                    Define.getInstance().setLoginInfo(login);
-                                    login.setMotherGoalWeight(mWeightTargetEt.getText().toString());
-                                }
-
-                                DBHelper helper = new DBHelper(getContext());
-                                DBHelperWeight weightDb = helper.getWeightDb();
-                                DBHelperWeight.WeightStaticData bottomData = weightDb.getResultStatic(helper);
-                                if(!bottomData.getWeight().isEmpty()){
-                                    CommonData commonData = CommonData.getInstance(getContext());
-//                                    login.mber_bdwgh_app = bottomData.getWeight();
-                                    commonData.setMotherWeight(bottomData.getWeight());
-                                    int sex             = StringUtil.getIntVal(login.getGender());
-                                    float weight        =  StringUtil.getFloat(commonData.getMotherWeight());//StringUtil.getFloatVal(login.mber_bdwgh_app);
-                                    float height        = StringUtil.getFloat(login.getBefCm());
-//                                     TODO XXX  칼로리 정보 넣어야 함
-                                    int calory          = StringUtil.getIntVal(commonData.getMotherGoalCal());//StringUtil.getIntVal(login.goal_mvm_calory);
-                                    int step = StringUtil.getIntVal(getStepTargetCalulator(calory));
-                                    setStepTarget(0, step);
-                                }
-
-                                mDateTv.setText("");
-                                mDateTv.setTag("");
-                                mTimeTv.setText("");
-                                mTimeTv.setTag("");
-                                mWeightEt.setText("");
-                                mWeightTargetEt.setText("");
-                                mWeightBodyRateEt.setText("");
-                                mWeightinnerVolumeEt.setText("");
-                                mWeightWaterVolumeEt.setText("");
-                                mWeightMuscleVolumeEt.setText("");
-                                onBackPressed();
-                            }
-                        });
-                    } else {
-                        CDialog.showDlg(getContext(), getString(R.string.text_regist_fail));
-                    }
-                }
-            });
-        }else{
-            new DeviceDataUtil().uploadTargetWeight(WeightInputFragment.this, dataModel, new BluetoothManager.IBluetoothResult() {
-                @Override
-                public void onResult(boolean isSuccess) {
-                    if (isSuccess) {
-                        CDialog.showDlg(getContext(), getString(R.string.regist_success), new CDialog.DismissListener() {
-                            @Override
-                            public void onDissmiss() {
-
-                                CommonData login = CommonData.getInstance(getContext());
-
-                                if(!mWeightTargetEt.getText().toString().isEmpty()){
-//                                    login.mber_bdwgh_goal = mWeightTargetEt.getText().toString();
-//                                    Define.getInstance().setLoginInfo(login);
-                                    login.setMotherGoalWeight(mWeightTargetEt.getText().toString());
-                                }
-
-                                mDateTv.setText("");
-                                mDateTv.setTag("");
-                                mTimeTv.setText("");
-                                mTimeTv.setTag("");
-                                mWeightEt.setText("");
-                                mWeightTargetEt.setText("");
-                                mWeightBodyRateEt.setText("");
-                                mWeightinnerVolumeEt.setText("");
-                                mWeightWaterVolumeEt.setText("");
-                                mWeightMuscleVolumeEt.setText("");
-
-                                onBackPressed();
-                            }
-                        });
-                    } else {
-                        CDialog.showDlg(getContext(), getString(R.string.text_regist_fail));
-                    }
-                }
-            });
-        }
+//        regDate += timeStr;
+//
+//        String weightTarget = mWeightTarget;
+//        if(TextUtils.isEmpty(weightTarget)){
+//            CommonData login = CommonData.getInstance(getContext());
+//            weightTarget = login.getMotherGoalWeight();
+//        }
+//
+//        SparseArray<WeightModel> array = new SparseArray<>();
+//        WeightModel dataModel = new WeightModel();
+//        dataModel.setIdx(CDateUtil.getForamtyyMMddHHmmssSS(new Date(System.currentTimeMillis())));
+//        dataModel.setWeight(StringUtil.getFloatVal(mWeight));                 // 체중
+//        dataModel.setFat(StringUtil.getFloatVal(mWeightBodyRate));      // 체지방률
+//        dataModel.setObesity(StringUtil.getFloatVal(mWeightinner));     // 내장지방
+//        dataModel.setBodyWater(StringUtil.getFloatVal(mWeightWater));   // 수분
+//        dataModel.setMuscle(StringUtil.getFloatVal(mWeightMuscle));     // 근육
+//        dataModel.setBdwgh_goal(StringUtil.getFloatVal(weightTarget));     // 근육
+//        dataModel.setBmr(0);
+//        dataModel.setBone(0);
+//        dataModel.setHeartRate(0);
+//        dataModel.setRegType("U");
+//        dataModel.setRegDate(regDate);
+//
+//        array.append(0, dataModel);
+//
+//        if(StringUtil.getFloatVal(mWeight) > 0.f){
+//            new DeviceDataUtil().uploadWeight(WeightInputFragment.this, dataModel, new BluetoothManager.IBluetoothResult() {
+//                @Override
+//                public void onResult(boolean isSuccess) {
+//                    if (isSuccess) {
+//                        CDialog.showDlg(getContext(), getString(R.string.regist_success), new CDialog.DismissListener() {
+//                            @Override
+//                            public void onDissmiss() {
+//
+//                                CommonData login = CommonData.getInstance(getContext());
+//                                if(!mWeightTargetEt.getText().toString().isEmpty()){
+////                                    login.mber_bdwgh_goal = mWeightTargetEt.getText().toString();
+////                                    Define.getInstance().setLoginInfo(login);
+//                                    login.setMotherGoalWeight(mWeightTargetEt.getText().toString());
+//                                }
+//
+//                                DBHelper helper = new DBHelper(getContext());
+//                                DBHelperWeight weightDb = helper.getWeightDb();
+//                                DBHelperWeight.WeightStaticData bottomData = weightDb.getResultStatic(helper);
+//                                if(!bottomData.getWeight().isEmpty()){
+//                                    CommonData commonData = CommonData.getInstance(getContext());
+////                                    login.mber_bdwgh_app = bottomData.getWeight();
+//                                    commonData.setMotherWeight(bottomData.getWeight());
+//                                    int sex             = StringUtil.getIntVal(login.getGender());
+//                                    float weight        =  StringUtil.getFloat(commonData.getMotherWeight());//StringUtil.getFloatVal(login.mber_bdwgh_app);
+//                                    float height        = StringUtil.getFloat(login.getBefCm());
+////                                     TODO XXX  칼로리 정보 넣어야 함
+//                                    int calory          = StringUtil.getIntVal(commonData.getMotherGoalCal());//StringUtil.getIntVal(login.goal_mvm_calory);
+//                                    int step = StringUtil.getIntVal(getStepTargetCalulator(calory));
+//                                    setStepTarget(0, step);
+//                                }
+//
+//                                mDateTv.setText("");
+//                                mDateTv.setTag("");
+//                                mTimeTv.setText("");
+//                                mTimeTv.setTag("");
+//                                mWeightEt.setText("");
+//                                mWeightTargetEt.setText("");
+//                                mWeightBodyRateEt.setText("");
+//                                mWeightinnerVolumeEt.setText("");
+//                                mWeightWaterVolumeEt.setText("");
+//                                mWeightMuscleVolumeEt.setText("");
+//                                onBackPressed();
+//                            }
+//                        });
+//                    } else {
+//                        CDialog.showDlg(getContext(), getString(R.string.text_regist_fail));
+//                    }
+//                }
+//            });
+//        }
 
 
     }

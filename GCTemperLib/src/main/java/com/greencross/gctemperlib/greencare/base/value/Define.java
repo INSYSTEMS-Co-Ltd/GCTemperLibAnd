@@ -3,7 +3,6 @@ package com.greencross.gctemperlib.greencare.base.value;
 import android.os.Environment;
 import android.provider.MediaStore;
 
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_dust;
 import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_infomation;
 
 import java.io.File;
@@ -13,8 +12,6 @@ public class Define {
     private Tr_get_infomation information;
 //    private CommonData loginInfo;
     private String sugarType;
-
-    private Tr_get_dust dustData;
 
     private int weatherRequestedTime = -1;  // 메인 날씨 정보 조회 시간
 
@@ -87,14 +84,6 @@ public class Define {
         this.weatherRequestedTime = weatherRequestedTime;
     }
 
-    public Tr_get_dust getDustData() {
-        return dustData;
-    }
-
-    public void setDustData(Tr_get_dust dustData) {
-        this.dustData = dustData;
-    }
-
 
     /**
      * 액션바 설정 관련
@@ -105,31 +94,6 @@ public class Define {
         , RIGHT_MENU2
     }
 
-    /**
-     * 당뇨유형 가져오기
-     * @return
-     */
-    public String SugarTypeInfo(String sugar_type) {
-        switch (sugar_type){
-            case "0":
-                sugarType = "없음";
-                break;
-            case "1":
-                sugarType = "1형 당뇨";
-                break;
-            case "2":
-                sugarType = "2형 당뇨";
-                break;
-            case "3":
-                sugarType = "임신성 당뇨";
-                break;
-            case "4":
-                sugarType = "내당능 장애";
-                break;
-
-        }
-        return sugarType;
-    }
 
     public enum LOCATION_DATA {
         DATA1(new Location("서울시","1"))

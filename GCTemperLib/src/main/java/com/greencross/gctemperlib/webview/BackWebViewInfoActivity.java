@@ -28,7 +28,6 @@ import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAlertDialogInterface;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.util.GLog;
-import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.R;
 
 
@@ -158,7 +157,7 @@ public class BackWebViewInfoActivity extends BackBaseActivity implements View.On
 //                ApplinkDialog dlg = ApplinkDialog.showDlg(BackWebViewInfoActivity.this, view);
 //                dlg.setSharing(imgUrl, "img", "", "","[현대해상 "+ KakaoLinkUtil.getAppname(BackWebViewInfoActivity.this.getPackageName(),BackWebViewInfoActivity.this)+"]","주요 서비스 소개","자세히보기","",false,"info.png","/HL_FV/INFO/info_share.asp","https://wkd.walkie.co.kr/HL_FV/INFO/info_share.asp");
         } else if (id == R.id.btn_friend_add) {
-            KakaoLinkUtil.kakaoAddFriends(BackWebViewInfoActivity.this);
+//            KakaoLinkUtil.kakaoAddFriends(BackWebViewInfoActivity.this);
         }
 
     }

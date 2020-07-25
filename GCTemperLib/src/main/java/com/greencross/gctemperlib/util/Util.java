@@ -29,7 +29,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.main.MainActivity;
 import com.greencross.gctemperlib.push.ShowAlertMsgActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
@@ -1029,49 +1028,49 @@ public abstract class Util {
     }
 
     public static void setRemedyAlarms(Context m_context, Date mCurDate, int chl_sn){
-        AlarmManager m_Manager = (AlarmManager)m_context.getSystemService(Context.ALARM_SERVICE);
-        GregorianCalendar mCalendar = new GregorianCalendar();
-        mCalendar.setTime(mCurDate);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context, m_context.getResources().getString(R.string.alret_reducer_2h).replace("[name]", MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
-        else
-            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_reducer_2h).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
-
-        mCalendar.add(Calendar.MINUTE, 5);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn,  chl_sn+10000));
-        else
-            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+10000));
-
-        mCalendar.add(Calendar.MINUTE, 10);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+20000));
-        else
-            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+20000));
+//        AlarmManager m_Manager = (AlarmManager)m_context.getSystemService(Context.ALARM_SERVICE);
+//        GregorianCalendar mCalendar = new GregorianCalendar();
+//        mCalendar.setTime(mCurDate);
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context, m_context.getResources().getString(R.string.alret_reducer_2h).replace("[name]", MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
+//        else
+//            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_reducer_2h).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
+//
+//        mCalendar.add(Calendar.MINUTE, 5);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn,  chl_sn+10000));
+//        else
+//            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+10000));
+//
+//        mCalendar.add(Calendar.MINUTE, 10);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+20000));
+//        else
+//            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+20000));
     }
 
     public static void setFeverAlarms(Context m_context, Date mCurDate, int chl_sn){
-        AlarmManager m_Manager = (AlarmManager)m_context.getSystemService(Context.ALARM_SERVICE);
-        GregorianCalendar mCalendar = new GregorianCalendar();
-        mCalendar.setTime(mCurDate);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context, m_context.getResources().getString(R.string.alret_fever_2h).replace("[name]", MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
-        else
-            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_fever_2h).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
-
-        mCalendar.add(Calendar.MINUTE, 5);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+10000));
-        else
-            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+10000));
-
-        mCalendar.add(Calendar.MINUTE, 10);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn,  chl_sn+20000));
-        else
-            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+20000));
+//        AlarmManager m_Manager = (AlarmManager)m_context.getSystemService(Context.ALARM_SERVICE);
+//        GregorianCalendar mCalendar = new GregorianCalendar();
+//        mCalendar.setTime(mCurDate);
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context, m_context.getResources().getString(R.string.alret_fever_2h).replace("[name]", MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
+//        else
+//            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_fever_2h).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn));
+//
+//        mCalendar.add(Calendar.MINUTE, 5);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+10000));
+//        else
+//            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+10000));
+//
+//        mCalendar.add(Calendar.MINUTE, 10);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//            m_Manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn,  chl_sn+20000));
+//        else
+//            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+20000));
     }
 
     // 알람 세팅

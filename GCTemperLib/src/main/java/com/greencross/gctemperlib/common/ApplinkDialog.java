@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.R;
 
 
@@ -145,59 +144,59 @@ public class ApplinkDialog extends Dialog {
         return dlg;
     }
 
-    private View.OnClickListener mApplinkClicklistener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if(v.getId() == R.id.kakaolink_layout){
-                final KakaoLinkUtil kakao = new KakaoLinkUtil();
-
-                //업로드
-//                File imageFile = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera/NewFolder/photo_2018-10-10_18-10-41.jpg");
+//    private View.OnClickListener mApplinkClicklistener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            if(v.getId() == R.id.kakaolink_layout){
+////                final KakaoLinkUtil kakao = new KakaoLinkUtil();
 //
-//                KakaoLinkService.getInstance().uploadImage(getContext(), false, imageFile, new ResponseCallback<ImageUploadResponse>(){
-//                    @Override
-//                    public void onFailure(ErrorResult errorResult) {
-//                        Logger.e("KakaoLinkError", errorResult.toString());
-//                    }
+//                //업로드
+////                File imageFile = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera/NewFolder/photo_2018-10-10_18-10-41.jpg");
+////
+////                KakaoLinkService.getInstance().uploadImage(getContext(), false, imageFile, new ResponseCallback<ImageUploadResponse>(){
+////                    @Override
+////                    public void onFailure(ErrorResult errorResult) {
+////                        Logger.e("KakaoLinkError", errorResult.toString());
+////                    }
+////
+////                    @Override
+////                    public void onSuccess(ImageUploadResponse result) {
+////                        Logger.d("KakaoLinkSuccess", result.getOriginal().getUrl());
+////                        //Url = result.getOriginal().getUrl();
+////                        mLinkImgUrl = result.getOriginal().getUrl();
+////                        kakao.sendKakaoMessage(mContext, "타이틀", mLinkImgUrl, "내용");
+////                    }
+////                });
 //
-//                    @Override
-//                    public void onSuccess(ImageUploadResponse result) {
-//                        Logger.d("KakaoLinkSuccess", result.getOriginal().getUrl());
-//                        //Url = result.getOriginal().getUrl();
-//                        mLinkImgUrl = result.getOriginal().getUrl();
-//                        kakao.sendKakaoMessage(mContext, "타이틀", mLinkImgUrl, "내용");
-//                    }
-//                });
-
-                switch(mLinkService){
-                    case "img": // 웹링크 호출
-                        mWidth = "600";
-                        mHeight = "600";
-                        break;
-                    case "7": //알리미
-                        mAppLinkMode = true;
-                        mWidth = "600";
-                        mHeight = "600";
-                        break;
-                }
-
-                kakao.sendKakaoMessage(mContext, mLinkTitle, mLinkImgUrl, mWidth, mHeight, mLinkDiscription, mLinkService, mLinkParam1, mLinkParam2,mLinkBt1Title,mLinkBt2Title,mAppLinkMode,mLinkurl);
-
-                //kakao.sendKakaoMessage(mContext, "타이틀", "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png", "내용");
-                //kakao.sendKakaoMessage(mContext, "타이틀", "https://www.logaster.com/image/logo/1/netar-13816-240.png", "내용");
-                //kakao.sendKakaoMessage(mContext, "타이틀", "https://t1.daumcdn.net/cfile/tistory/2673A14753355A5F17.jpeg", "내용");
-                //kakao.sendKakaoMessage(mContext, "타이틀", "android.resource://" + getContext().getPackageName() + "/drawable/after_vi_001", "내용");
-                //kakao.sendKakaoMessage(mContext, "타이틀", Environment.getExternalStorageDirectory() + "/DCIM/Camera/NewFolder/nature-3583730_1280", "내용");
-                //kakao.sendKakaoMessage(mContext, "타이틀", "file:///android_asset/large_image.jpg", "내용");
-
-                ApplinkDialog.this.dismiss();
-            }
-            else if(v.getId() == R.id.message_layout){
-                KakaoLinkUtil.sendImgSMS(mContext, mLinkTitle, mLinkDiscription,mLinkSmsimg,mLinkSmsurl);
-                ApplinkDialog.this.dismiss();
-            }
-        }
-    };
+//                switch(mLinkService){
+//                    case "img": // 웹링크 호출
+//                        mWidth = "600";
+//                        mHeight = "600";
+//                        break;
+//                    case "7": //알리미
+//                        mAppLinkMode = true;
+//                        mWidth = "600";
+//                        mHeight = "600";
+//                        break;
+//                }
+//
+////                kakao.sendKakaoMessage(mContext, mLinkTitle, mLinkImgUrl, mWidth, mHeight, mLinkDiscription, mLinkService, mLinkParam1, mLinkParam2,mLinkBt1Title,mLinkBt2Title,mAppLinkMode,mLinkurl);
+//
+//                //kakao.sendKakaoMessage(mContext, "타이틀", "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png", "내용");
+//                //kakao.sendKakaoMessage(mContext, "타이틀", "https://www.logaster.com/image/logo/1/netar-13816-240.png", "내용");
+//                //kakao.sendKakaoMessage(mContext, "타이틀", "https://t1.daumcdn.net/cfile/tistory/2673A14753355A5F17.jpeg", "내용");
+//                //kakao.sendKakaoMessage(mContext, "타이틀", "android.resource://" + getContext().getPackageName() + "/drawable/after_vi_001", "내용");
+//                //kakao.sendKakaoMessage(mContext, "타이틀", Environment.getExternalStorageDirectory() + "/DCIM/Camera/NewFolder/nature-3583730_1280", "내용");
+//                //kakao.sendKakaoMessage(mContext, "타이틀", "file:///android_asset/large_image.jpg", "내용");
+//
+//                ApplinkDialog.this.dismiss();
+//            }
+//            else if(v.getId() == R.id.message_layout){
+//                KakaoLinkUtil.sendImgSMS(mContext, mLinkTitle, mLinkDiscription,mLinkSmsimg,mLinkSmsurl);
+//                ApplinkDialog.this.dismiss();
+//            }
+//        }
+//    };
 
     /**
      * 타이틀 세팅
@@ -238,8 +237,8 @@ public class ApplinkDialog extends Dialog {
         mAppLayout2.setVisibility(View.GONE);
         mView_middle.setVisibility(View.GONE);
 
-        mAppLayout1.setOnClickListener(mApplinkClicklistener);
-        mAppLayout2.setOnClickListener(mApplinkClicklistener);
+//        mAppLayout1.setOnClickListener(mApplinkClicklistener);
+//        mAppLayout2.setOnClickListener(mApplinkClicklistener);
 
         mAppLayout1.setVisibility(View.VISIBLE);
         mAppLayout2.setVisibility(View.VISIBLE);

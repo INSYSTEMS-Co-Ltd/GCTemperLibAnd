@@ -14,7 +14,6 @@ import com.greencross.gctemperlib.base.BaseFragment;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.main.MainActivity;
 import com.greencross.gctemperlib.util.GLog;
-import com.greencross.gctemperlib.util.KakaoLinkUtil;
 import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.collection.FeverItem;
@@ -458,7 +457,7 @@ public class FeverMainFragment extends BaseFragment implements View.OnClickListe
 
                                     View view = LayoutInflater.from(getContext()).inflate(R.layout.applink_dialog_layout, null);
                                     ApplinkDialog dlg = ApplinkDialog.showDlg(getContext(), view);
-                                    dlg.setSharing(imgUrl, "img", "", "","[현대해상 "+ KakaoLinkUtil.getAppname(getContext().getPackageName(),getContext())+"]","우리 아이 체온 현황","자세히보기","",false,"chl_fever.png",param,cntr_url);
+//                                    dlg.setSharing(imgUrl, "img", "", "","[현대해상 "+ KakaoLinkUtil.getAppname(getContext().getPackageName(),getContext())+"]","우리 아이 체온 현황","자세히보기","",false,"chl_fever.png",param,cntr_url);
 
                                 }else {
                                 }

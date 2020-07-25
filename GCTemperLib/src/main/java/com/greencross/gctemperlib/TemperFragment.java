@@ -242,50 +242,9 @@ public class TemperFragment extends BaseFragment implements View.OnClickListener
         mBtnShare = (ImageButton) view.findViewById(R.id.share_btn);
 
         mLinearTabMap = (LinearLayout) view.findViewById(R.id.linear_tab_map);
-        mLinearTabEpidemic = (LinearLayout) view.findViewById(R.id.linear_tab_epidemic);
 
         mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        mEpidemicRankLay = (LinearLayout) view.findViewById(R.id.epidemic_rank_lay);
-        mTxtNullEpidemic = (TextView) view.findViewById(R.id.txt_null_epidemic);
-        req_diease_btn = (ImageView) view.findViewById(R.id.req_diease_btn);
-
-        mEpRankList = new LinearLayout[10];
-        mEpRankList[0] = (LinearLayout) view.findViewById(R.id.ep_rank_1);
-        mEpRankList[1] = (LinearLayout) view.findViewById(R.id.ep_rank_2);
-        mEpRankList[2] = (LinearLayout) view.findViewById(R.id.ep_rank_3);
-        mEpRankList[3] = (LinearLayout) view.findViewById(R.id.ep_rank_4);
-        mEpRankList[4] = (LinearLayout) view.findViewById(R.id.ep_rank_5);
-        mEpRankList[5] = (LinearLayout) view.findViewById(R.id.ep_rank_6);
-        mEpRankList[6] = (LinearLayout) view.findViewById(R.id.ep_rank_7);
-        mEpRankList[7] = (LinearLayout) view.findViewById(R.id.ep_rank_8);
-        mEpRankList[8] = (LinearLayout) view.findViewById(R.id.ep_rank_9);
-        mEpRankList[9] = (LinearLayout) view.findViewById(R.id.ep_rank_10);
-
-        mTxtDiseNmList = new TextView[10];
-        mTxtDiseNmList[0] = (TextView) view.findViewById(R.id.txt_dise_nm_1);
-        mTxtDiseNmList[1] = (TextView) view.findViewById(R.id.txt_dise_nm_2);
-        mTxtDiseNmList[2] = (TextView) view.findViewById(R.id.txt_dise_nm_3);
-        mTxtDiseNmList[3] = (TextView) view.findViewById(R.id.txt_dise_nm_4);
-        mTxtDiseNmList[4] = (TextView) view.findViewById(R.id.txt_dise_nm_5);
-        mTxtDiseNmList[5] = (TextView) view.findViewById(R.id.txt_dise_nm_6);
-        mTxtDiseNmList[6] = (TextView) view.findViewById(R.id.txt_dise_nm_7);
-        mTxtDiseNmList[7] = (TextView) view.findViewById(R.id.txt_dise_nm_8);
-        mTxtDiseNmList[8] = (TextView) view.findViewById(R.id.txt_dise_nm_9);
-        mTxtDiseNmList[9] = (TextView) view.findViewById(R.id.txt_dise_nm_10);
-
-        mTxtDiseCntList = new TextView[10];
-        mTxtDiseCntList[0] = (TextView) view.findViewById(R.id.txt_dise_cnt_1);
-        mTxtDiseCntList[1] = (TextView) view.findViewById(R.id.txt_dise_cnt_2);
-        mTxtDiseCntList[2] = (TextView) view.findViewById(R.id.txt_dise_cnt_3);
-        mTxtDiseCntList[3] = (TextView) view.findViewById(R.id.txt_dise_cnt_4);
-        mTxtDiseCntList[4] = (TextView) view.findViewById(R.id.txt_dise_cnt_5);
-        mTxtDiseCntList[5] = (TextView) view.findViewById(R.id.txt_dise_cnt_6);
-        mTxtDiseCntList[6] = (TextView) view.findViewById(R.id.txt_dise_cnt_7);
-        mTxtDiseCntList[7] = (TextView) view.findViewById(R.id.txt_dise_cnt_8);
-        mTxtDiseCntList[8] = (TextView) view.findViewById(R.id.txt_dise_cnt_9);
-        mTxtDiseCntList[9] = (TextView) view.findViewById(R.id.txt_dise_cnt_10);
 
         view = view.findViewById(R.id.root_view);
         req_diease_btn.setVisibility(View.GONE);
@@ -392,9 +351,9 @@ public class TemperFragment extends BaseFragment implements View.OnClickListener
 //            //hsh end
         } else if (id == R.id.share_btn) {
             requestSharedisease();
-        } else if (id == R.id.req_diease_btn) {
-            intent = new Intent(getActivity(), RequestDiseaseProgramActivity.class);
-            startActivity(intent);
+//        } else if (id == R.id.req_diease_btn) {
+//            intent = new Intent(getActivity(), RequestDiseaseProgramActivity.class);
+//            startActivity(intent);
         }
     }
 
@@ -466,7 +425,7 @@ public class TemperFragment extends BaseFragment implements View.OnClickListener
      * 유의질환 공유
      */
     public void requestSharedisease() {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        ArrayList<NameValuePair> params = new ArrayList<>();
 
         try {
             JSONArray array = new JSONArray();

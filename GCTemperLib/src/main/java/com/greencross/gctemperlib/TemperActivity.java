@@ -68,14 +68,9 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     private Button mMapBtn, mEpidemicBtn;
 
-    private LinearLayout mLinearTabMap, mLinearTabEpidemic;
+    private LinearLayout mLinearTabMap;
 
-    private LinearLayout mEpidemicRankLay;
-    private TextView mTxtNullEpidemic;
-    private LinearLayout[] mEpRankList;
-    private TextView[] mTxtDiseNmList, mTxtDiseCntList;
-
-    private  ImageButton mBtnAlarm, mBtnShare;
+    private ImageButton mBtnAlarm;
 
     private SupportMapFragment mapFragment;
     private GoogleMap mMap;
@@ -86,8 +81,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     private int mFragmentNum = 0;
 
     private View view;
-
-    private ImageView req_diease_btn;
 
     private RelativeLayout slideTopLayout;
     private ViewGroup hiddenPanel;
@@ -100,12 +93,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         GCTemperLib gcHeatLib = new GCTemperLib(this);
         if (gcHeatLib.isAvailableGCToken() == false) {
             CDialog.showDlg(this, "인증 후 이용 가능합니다.")
-            .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    finish();
-                }
-            });
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            finish();
+                        }
+                    });
             return;
         }
 
@@ -174,7 +167,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
 
         slideTopLayout = findViewById(R.id.slide_top_layout);
-        hiddenPanel = (ViewGroup)findViewById(R.id.slide_menu_layout);
+        hiddenPanel = (ViewGroup) findViewById(R.id.slide_menu_layout);
         slideTopLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -219,7 +212,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 //    };
 
 
-
     /**
      * 초기화
      */
@@ -229,67 +221,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         mEpidemicBtn = (Button) findViewById(R.id.epidemic_btn);
 
         mBtnAlarm = (ImageButton) findViewById(R.id.btn_alarm);
-        mBtnShare = (ImageButton) findViewById(R.id.share_btn);
-
         mLinearTabMap = (LinearLayout) findViewById(R.id.linear_tab_map);
-        mLinearTabEpidemic = (LinearLayout) findViewById(R.id.linear_tab_epidemic);
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mEpidemicRankLay = (LinearLayout) findViewById(R.id.epidemic_rank_lay);
-        mTxtNullEpidemic = (TextView) findViewById(R.id.txt_null_epidemic);
-        req_diease_btn = (ImageView) findViewById(R.id.req_diease_btn);
-
-        mEpRankList = new LinearLayout[10];
-        mEpRankList[0] = (LinearLayout) findViewById(R.id.ep_rank_1);
-        mEpRankList[1] = (LinearLayout) findViewById(R.id.ep_rank_2);
-        mEpRankList[2] = (LinearLayout) findViewById(R.id.ep_rank_3);
-        mEpRankList[3] = (LinearLayout) findViewById(R.id.ep_rank_4);
-        mEpRankList[4] = (LinearLayout) findViewById(R.id.ep_rank_5);
-        mEpRankList[5] = (LinearLayout) findViewById(R.id.ep_rank_6);
-        mEpRankList[6] = (LinearLayout) findViewById(R.id.ep_rank_7);
-        mEpRankList[7] = (LinearLayout) findViewById(R.id.ep_rank_8);
-        mEpRankList[8] = (LinearLayout) findViewById(R.id.ep_rank_9);
-        mEpRankList[9] = (LinearLayout) findViewById(R.id.ep_rank_10);
-
-        mTxtDiseNmList = new TextView[10];
-        mTxtDiseNmList[0] = (TextView) findViewById(R.id.txt_dise_nm_1);
-        mTxtDiseNmList[1] = (TextView) findViewById(R.id.txt_dise_nm_2);
-        mTxtDiseNmList[2] = (TextView) findViewById(R.id.txt_dise_nm_3);
-        mTxtDiseNmList[3] = (TextView) findViewById(R.id.txt_dise_nm_4);
-        mTxtDiseNmList[4] = (TextView) findViewById(R.id.txt_dise_nm_5);
-        mTxtDiseNmList[5] = (TextView) findViewById(R.id.txt_dise_nm_6);
-        mTxtDiseNmList[6] = (TextView) findViewById(R.id.txt_dise_nm_7);
-        mTxtDiseNmList[7] = (TextView) findViewById(R.id.txt_dise_nm_8);
-        mTxtDiseNmList[8] = (TextView) findViewById(R.id.txt_dise_nm_9);
-        mTxtDiseNmList[9] = (TextView) findViewById(R.id.txt_dise_nm_10);
-
-        mTxtDiseCntList = new TextView[10];
-        mTxtDiseCntList[0] = (TextView) findViewById(R.id.txt_dise_cnt_1);
-        mTxtDiseCntList[1] = (TextView) findViewById(R.id.txt_dise_cnt_2);
-        mTxtDiseCntList[2] = (TextView) findViewById(R.id.txt_dise_cnt_3);
-        mTxtDiseCntList[3] = (TextView) findViewById(R.id.txt_dise_cnt_4);
-        mTxtDiseCntList[4] = (TextView) findViewById(R.id.txt_dise_cnt_5);
-        mTxtDiseCntList[5] = (TextView) findViewById(R.id.txt_dise_cnt_6);
-        mTxtDiseCntList[6] = (TextView) findViewById(R.id.txt_dise_cnt_7);
-        mTxtDiseCntList[7] = (TextView) findViewById(R.id.txt_dise_cnt_8);
-        mTxtDiseCntList[8] = (TextView) findViewById(R.id.txt_dise_cnt_9);
-        mTxtDiseCntList[9] = (TextView) findViewById(R.id.txt_dise_cnt_10);
-
         view = findViewById(R.id.root_view);
-
-        if (commonData.getMberGrad().equals("20"))
-            req_diease_btn.setVisibility(View.GONE);
-        else
-            req_diease_btn.setVisibility(View.VISIBLE);
-
-
-        //hsh start
-//        textView9 = (TextView)findViewById(R.id.textView9);
-        //hsh end
-
-
     }
 
     /**
@@ -299,8 +236,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         mMapBtn.setOnClickListener(this);
         mBtnAlarm.setOnClickListener(this);
         mEpidemicBtn.setOnClickListener(this);
-        mBtnShare.setOnClickListener(this);
-        req_diease_btn.setOnClickListener(this);
 
         //hsh start
 //        textView9.setOnClickListener(this);
@@ -314,66 +249,30 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         mMapBtn.setOnTouchListener(mClickListener);
         mEpidemicBtn.setOnTouchListener(mClickListener);
         mBtnAlarm.setOnTouchListener(mClickListener);
-        mBtnShare.setOnTouchListener(mClickListener);
-        req_diease_btn.setOnTouchListener(mClickListener);
 
         //코드 부여(열지도)
         mMapBtn.setContentDescription(getString(R.string.MapBtn));
         mEpidemicBtn.setContentDescription(getString(R.string.EpidemicBtn));
         mBtnAlarm.setContentDescription(getString(R.string.BtnAlarm));
-        mBtnShare.setContentDescription(getString(R.string.BtnShare));
-        req_diease_btn.setContentDescription(getString(R.string.req_diease_btn));
 
     }
 
     public static ArrayList<EpidemicItem> mEpidemicList = new ArrayList<EpidemicItem>();        // 유행질병 카운트
 
     public void setTab(int _tabNum) {
-        if (_tabNum == 0) {         // 맵
-            mLinearTabMap.setVisibility(View.VISIBLE);
-            mLinearTabEpidemic.setVisibility(View.GONE);
-            mMapBtn.setTextColor(getResources().getColor(R.color.h_orange));
-            mMapBtn.setBackgroundResource(R.drawable.underline_fever);
-            mEpidemicBtn.setTextColor(Color.WHITE);
-            mEpidemicBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
-        } else {
-            mLinearTabMap.setVisibility(View.GONE);
-            mLinearTabEpidemic.setVisibility(View.VISIBLE);
-            mEpidemicBtn.setTextColor(getResources().getColor(R.color.h_orange));
-            mEpidemicBtn.setBackgroundResource(R.drawable.underline_fever);
-            mMapBtn.setTextColor(Color.WHITE);
-            mMapBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
-        }
+        mMapBtn.setTextColor(getResources().getColor(R.color.h_orange));
+        mMapBtn.setBackgroundResource(R.drawable.underline_fever);
+        mEpidemicBtn.setTextColor(Color.WHITE);
+        mEpidemicBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
     }
 
     @Override
     public void onClick(View v) {
-
-        Intent intent = null;
-
         int id = v.getId();
-//        if (id == R.id.map_btn) { // 그래프 보기
-//            setTab(0);
-//        } else if (id == R.id.epidemic_btn) {
-//            setTab(1);
-//        } else
-            if (id == R.id.btn_alarm) {
+        if (id == R.id.btn_alarm) {
 //            intent = new Intent(TemperActivity.this, SettingAddressActivity.class);
 //            startActivity(intent);
             DummyActivity.startActivityForResult(TemperActivity.this, REQUEST_SEARCH_ADDR, SearchAddressFragment.class, null);
-//            //hsh start
-//            case R.id.textView9:
-//                GLog.i("click", "dd");
-//                intent = new Intent(FeverMapActivity.this, FeverInputActivity.class);
-//                startActivity(intent);
-//                break;
-//
-//            //hsh end
-//        } else if (id == R.id.share_btn) {
-//            requestSharedisease();
-        } else if (id == R.id.req_diease_btn) {
-            intent = new Intent(TemperActivity.this, RequestDiseaseProgramActivity.class);
-            startActivity(intent);
         }
     }
 

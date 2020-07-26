@@ -106,6 +106,7 @@ public class TemperControlFragment extends BaseFragment {
             public void onClick(View view) {
                 GpsInfo gps = new GpsInfo(getContext());
                 if (gps.isGetLocation()) {
+                    registTemper();
                 } else {
                     gps.showSettingsAlert();
                 }
@@ -129,6 +130,9 @@ public class TemperControlFragment extends BaseFragment {
                     SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
                     CDialog.showDlg(getActivity(), message);
                     getTemperMessage();
+
+                    // [등록완료]하단 메뉴 Slide up이 된 상태의 체온관리 Main으로 이동
+                    getActivity().finish();
                 } else {
                     CDialog.showDlg(getActivity(), message);
                 }

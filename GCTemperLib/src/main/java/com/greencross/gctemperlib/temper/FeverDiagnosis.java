@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.fever;
+package com.greencross.gctemperlib.temper;
 
 import com.greencross.gctemperlib.main.MainActivity;
 import com.greencross.gctemperlib.util.Util;

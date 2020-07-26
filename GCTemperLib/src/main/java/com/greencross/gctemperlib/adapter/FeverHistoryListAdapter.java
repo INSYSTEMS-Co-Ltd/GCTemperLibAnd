@@ -1,13 +1,11 @@
 package com.greencross.gctemperlib.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
+
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,14 +15,9 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
 import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.fever.FeverHxActivity;
-import com.greencross.gctemperlib.fever.FeverInputActivity;
-import com.greencross.gctemperlib.fever.FeverResultActivity;
-import com.greencross.gctemperlib.fever.MemoInputActivity;
-import com.greencross.gctemperlib.fever.RemedyInputActivity;
+import com.greencross.gctemperlib.temper.FeverHxActivity;
 import com.greencross.gctemperlib.main.MainActivity;
 import com.greencross.gctemperlib.util.GLog;
-import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.collection.AllDataItem;
 import com.greencross.gctemperlib.network.RequestApi;

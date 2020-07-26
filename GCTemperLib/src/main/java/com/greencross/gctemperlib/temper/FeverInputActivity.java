@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.fever;
+package com.greencross.gctemperlib.temper;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;

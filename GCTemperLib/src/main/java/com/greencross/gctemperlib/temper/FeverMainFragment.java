@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.fever;
+package com.greencross.gctemperlib.temper;
 
 import android.content.Context;
 import android.content.Intent;

@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.MakeProgress;
-import com.greencross.gctemperlib.fever.TemperMainActivity;
+import com.greencross.gctemperlib.temper.TemperMainActivity;
 
 //import com.appmd.hi.gngcare.diary.GrowthMainActivity;
 

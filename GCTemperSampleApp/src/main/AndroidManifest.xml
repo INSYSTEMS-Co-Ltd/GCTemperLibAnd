@@ -30,7 +30,7 @@
             android:launchMode="singleTask"/>
 
 
-        <activity android:name="com.greencross.gctemperlib.fever.TemperControlActivity"
+        <activity android:name="com.greencross.gctemperlib.temper.TemperControlActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/GCLibTheme"
             android:screenOrientation="portrait"/>

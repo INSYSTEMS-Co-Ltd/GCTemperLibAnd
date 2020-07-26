@@ -1,6 +1,5 @@
 package com.greencross.gctemperlib;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,7 +32,6 @@ import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
 import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_infomation;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
@@ -359,32 +357,6 @@ public class BaseFragment extends Fragment implements IBaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Logger.i(TAG, TAG + ".onActivityResult");
-    }
-
-    /**
-     * 로드벨런싱
-     *
-     * @param context
-     * @param cls
-     * @param obj
-     * @param step
-     */
-    private void getInformation(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiData.IStep step) {
-        Tr_get_infomation.RequestData reqData = new Tr_get_infomation.RequestData();
-        reqData.insures_code = "300";
-        getData(context, Tr_get_infomation.class, reqData, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_get_infomation) {
-                    Tr_get_infomation data = (Tr_get_infomation) obj;
-                    Define.getInstance().setInformation(data);
-
-                    getData(context, cls, obj, step);
-                } else {
-//                    CDialog.showDlg(context, "네트워크 연결 상태를 확인해주세요.");
-                }
-            }
-        });
     }
 
     public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiData.IStep step) {

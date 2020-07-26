@@ -1,27 +1,25 @@
 package com.greencross.gctemperlib;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.greencross.gctemperlib.fever.TemperControlActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.network.tr.ApiData;
+import com.greencross.gctemperlib.greencare.network.tr.HNApiData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
 import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
-import com.greencross.gctemperlib.greencare.util.Logger;
+import com.greencross.gctemperlib.greencare.network.tr.HNCConnAsyncTask;
+import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Setup;
+import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Temperature;
+import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_login;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
-
-import java.lang.reflect.Constructor;
 
 
 public class GCTemperLib {
@@ -82,50 +80,44 @@ public class GCTemperLib {
      */
     public void registCustomerNo(@Nullable String customerNo, IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
-
             return;
         } else {
-            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//
+//                    if (TextUtils.isEmpty(customerNo)) {
+//                        iGCResult.onResult(false, "고객 번호를 입력해주세요.", null);
+//                    } else {
+//                        iGCResult.onResult(true, "고객 번호 등록 완료", null);
+//                    }
+//                }
+//            }, 500);
 
-                    if (TextUtils.isEmpty(customerNo)) {
-                        iGCResult.onResult(false, "고객 번호를 입력해주세요.", null);
+            if (TextUtils.isEmpty(customerNo)) {
+                iGCResult.onResult(false, "고객 번호를 입력해주세요.", null);
+                return;
+            }
+
+            // 최초 인증, 고객번호 저장
+            Tr_login.RequestData requestData = new Tr_login.RequestData();
+            requestData.cust_id = customerNo;
+            getData(Tr_login.class, requestData, new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if (data instanceof Tr_login) {
+                        Tr_login recv = (Tr_login) data;
+                        if (recv.status.equals("Y")) {
+                            iGCResult.onResult(true, "고객 번호 등록 완료", null);
+                            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호
+                        } else {
+                            iGCResult.onResult(false, "고객 번호 등록 실패 하였습니다.", null);
+                        }
                     } else {
-                        iGCResult.onResult(true, "고객 번호 등록 완료", null);
+                        iGCResult.onResult(isSuccess, message, data);
                     }
                 }
-            }, 500);
-            // TODO 알람등록 전문 처리 해야 함
-
-
-            // 최초 인증
-            // 인증토큰, 푸시토큰, 고객번호, 성별을 저장
-//        getData(mContext, Tr_asstb_kbtg_alimi.class, requestData, true, new ApiData.IStep() {
-//            @Override
-//            public void next(Object obj) {
-//                if (obj instanceof Tr_asstb_kbtg_alimi) {
-//                    Tr_asstb_kbtg_alimi data = (Tr_asstb_kbtg_alimi) obj;
-//                    if(data.data_yn.equals("Y")) {
-//                        Logger.i(TAG, "MSG : " + data.DATA_LENGTH);
-//
-//                        if(!EVENT_POP.equals("")){
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("IDX",EVENT_POP);
-//                            activity.replaceFragment(new AlramContentFragment(),true, true, bundle);
-//                        } else {
-//                            mMaxPage = data.dataList.size();
-//                            Adapter.setData(data.dataList);
-//                            Adapter.notifyDataSetChanged();
-//                        }
-//                    }else{
-//                        Logger.i(TAG,"KA001 : 기타오류");
-//                    }
-//
-//                }
-//            }
-//        }, null);
+            });
         }
     }
 
@@ -138,102 +130,69 @@ public class GCTemperLib {
      */
     public void registPushToken(@Nullable String pushToken, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
-
             return;
         } else {
-            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
+            if (TextUtils.isEmpty(pushToken)) {
+                iGCResult.onResult(false, "푸시 토큰을 입력해주세요.", null);
+                return;
+            }
 
-            new Handler().postDelayed(new Runnable() {
+            Tr_login.RequestData requestData = new Tr_login.RequestData();
+            requestData.cust_id = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);
+            ;
+            requestData.devicetoken = pushToken;
+            getData(Tr_login.class, requestData, new IGCResult() {
                 @Override
-                public void run() {
-                    if (TextUtils.isEmpty(pushToken)) {
-                        iGCResult.onResult(false, "푸시 토큰을 입력해주세요.", null);
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if (data instanceof Tr_login) {
+                        Tr_login recv = (Tr_login) data;
+                        if (recv.status.equals("Y")) {
+                            iGCResult.onResult(true, "푸시 토큰 등록 완료", null);
+                            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
+                        } else {
+                            iGCResult.onResult(false, "푸시 토큰 등록 실패", null);
+                        }
                     } else {
-                        iGCResult.onResult(true, "푸시 토큰 등록 완료", null);
+                        iGCResult.onResult(isSuccess, message, data);
                     }
                 }
-            }, 500);
-            // TODO 알람등록 전문 처리 해야 함
+            });
 
-
-            // 최초 인증
-            // 인증토큰, 푸시토큰, 고객번호, 성별을 저장
-//        getData(mContext, Tr_asstb_kbtg_alimi.class, requestData, true, new ApiData.IStep() {
-//            @Override
-//            public void next(Object obj) {
-//                if (obj instanceof Tr_asstb_kbtg_alimi) {
-//                    Tr_asstb_kbtg_alimi data = (Tr_asstb_kbtg_alimi) obj;
-//                    if(data.data_yn.equals("Y")) {
-//                        Logger.i(TAG, "MSG : " + data.DATA_LENGTH);
-//
-//                        if(!EVENT_POP.equals("")){
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("IDX",EVENT_POP);
-//                            activity.replaceFragment(new AlramContentFragment(),true, true, bundle);
-//                        } else {
-//                            mMaxPage = data.dataList.size();
-//                            Adapter.setData(data.dataList);
-//                            Adapter.notifyDataSetChanged();
-//                        }
-//                    }else{
-//                        Logger.i(TAG,"KA001 : 기타오류");
-//                    }
-//
-//                }
-//            }
-//        }, null);
         }
     }
 
 
     /**
-     * 체온저
+     * 체온값 저장
      *
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
     public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
-
             return;
         } else {
-            new Handler().postDelayed(new Runnable() {
+            if (TextUtils.isEmpty(temper)) {
+                iGCResult.onResult(false, "체온을 입력해 주세요.", null);
+            }
+
+            Tr_Temperature.RequestData requestData = new Tr_Temperature.RequestData();
+            requestData.fever = temper;
+            getData(Tr_Temperature.class, requestData, new IGCResult() {
                 @Override
-                public void run() {
-                    if (TextUtils.isEmpty(temper)) {
-                        iGCResult.onResult(false, "체온을 입력해 주세요.", null);
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if (data instanceof Tr_Temperature) {
+                        Tr_Temperature recv = (Tr_Temperature) data;
+                        if (recv.status.equals("Y")) {
+                            iGCResult.onResult(true, "체온 등록 완료", null);
+                        } else {
+                            iGCResult.onResult(false, "체온 등록 실패", null);
+                        }
                     } else {
-                        iGCResult.onResult(true, "체온 등록 완료", null);
+                        iGCResult.onResult(false, "데이터 수신 실패", null);
                     }
                 }
-            }, 500);
-
-            // 최초 인증
-            // 인증토큰, 푸시토큰, 고객번호, 성별을 저장
-//        getData(mContext, Tr_asstb_kbtg_alimi.class, requestData, true, new ApiData.IStep() {
-//            @Override
-//            public void next(Object obj) {
-//                if (obj instanceof Tr_asstb_kbtg_alimi) {
-//                    Tr_asstb_kbtg_alimi data = (Tr_asstb_kbtg_alimi) obj;
-//                    if(data.data_yn.equals("Y")) {
-//                        Logger.i(TAG, "MSG : " + data.DATA_LENGTH);
-//
-//                        if(!EVENT_POP.equals("")){
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("IDX",EVENT_POP);
-//                            activity.replaceFragment(new AlramContentFragment(),true, true, bundle);
-//                        } else {
-//                            mMaxPage = data.dataList.size();
-//                            Adapter.setData(data.dataList);
-//                            Adapter.notifyDataSetChanged();
-//                        }
-//                    }else{
-//                        Logger.i(TAG,"KA001 : 기타오류");
-//                    }
-//
-//                }
-//            }
-//        }, null);
+            });
         }
     }
 
@@ -244,7 +203,7 @@ public class GCTemperLib {
      * @param alramType 알람 타입
      * @param isEnable  알람 수신 여부
      */
-    public void settingAlramService(GCAlramType alramType, boolean isEnable, IGCResult IGCResult) {
+    public void settingAlramService(GCAlramType alramType, boolean isEnable, IGCResult iGCResult) {
         String pushToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_PUSH_TOKEN);    // 푸시키
         String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
 
@@ -252,34 +211,40 @@ public class GCTemperLib {
         Log.i(TAG, "setAlram.pushToken=" + pushToken);
         Log.i(TAG, "setAlram.custNo=" + custNo);
 
-        if (checkGCToken(IGCResult) == false) {
+        if (checkGCToken(iGCResult) == false) {
             return;
         } else if (TextUtils.isEmpty(pushToken)) {
-            IGCResult.onResult(false, "PUSH 토큰 등록 후 이용 가능합니다.", null);
-//            if (IGCResult != null) {
-//                IGCResult.onResult(false, "PUSH 토큰 등록 후 이용 가능합니다.", null);
-//            } else {
-//                CDialog.showDlg(mContext, "PUSH 토큰 등록 후 이용 가능합니다.");
-//            }
+            iGCResult.onResult(false, "PUSH 토큰 등록 후 이용 가능합니다.", null);
             return;
         } else if (TextUtils.isEmpty(custNo)) {
-            IGCResult.onResult(false, "사용자 정보 등록 후 이용 가능합니다.", null);
-//            if (IGCResult != null) {
-//                IGCResult.onResult(false, "사용자 정보 등록 후 이용 가능합니다.", null);
-//            } else {
-//                CDialog.showDlg(mContext, "사용자 정보 등록 후 이용 가능합니다.");
-//            }
+            iGCResult.onResult(false, "사용자 정보 등록 후 이용 가능합니다.", null);
             return;
         } else {
-            SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
-            if (alramType == GCAlramType.GC_ALRAM_TYPE_독려) {
-                // TODO
-            } else if (alramType == GCAlramType.GC_ALRAM_TYPE_지역) {
 
+            Tr_Setup.RequestData requestData = new Tr_Setup.RequestData();
+            if (alramType == GCAlramType.GC_ALRAM_TYPE_독려) {
+                requestData.ncrgd_yn = isEnable ? "Y" : "N";
+            } else if (alramType == GCAlramType.GC_ALRAM_TYPE_지역) {
+                requestData.area_thmt_yn = isEnable ? "Y" : "N";
             }
 
-            // TODO 알람등록 전문 처리 해야 함
-            IGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), null);
+            getData(Tr_Setup.class, requestData, new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if (data instanceof Tr_Setup) {
+                        Tr_Setup recv = (Tr_Setup) data;
+                        if (recv.status.equals("Y")) {
+                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), null);
+                            SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
+                        } else {
+                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), null);
+                        }
+                    } else {
+                        iGCResult.onResult(isSuccess, message, data);
+                    }
+                }
+            });
+
         }
     }
 
@@ -320,70 +285,44 @@ public class GCTemperLib {
     }
 
 
-    private void getData(final Class<? extends BaseData> cls, final Object obj, boolean isShowProgress, final IGCResult IGCResult) {
-        BaseData tr = createTrClass(cls, mContext);
+    private void getData(Class<? extends BaseData> cls, final Object obj, final IGCResult iGCResult) {
         if (NetworkUtil.getConnectivityStatus(mContext) == false) {
-            CDialog.showDlg(mContext, "네트워크 연결 상태를 확인해주세요.");
+            CDialog.showDlg(this.mContext, "네트워크 연결 상태를 확인해주세요.");
             return;
         }
-        String REAL_SERVER = "https://wkd.walkie.co.kr";    // (182.162.143.4)" - 운영
-        String DEV_SERVER = "https://api.devgc.com";        //(222.121.76.58) - 개발 
 
-        String url = REAL_SERVER;
-        if (BuildConfig.DEBUG)
-            url = REAL_SERVER;
-
-        Logger.i(TAG, "LoadBalance.cls=" + cls + ", url=" + url);
-        CConnAsyncTask.CConnectorListener queryListener = new CConnAsyncTask.CConnectorListener() {
-
+        HNCConnAsyncTask.CConnectorListener queryListener = new HNCConnAsyncTask.CConnectorListener() {
             @Override
             public Object run() throws Exception {
-
-                ApiData data = new ApiData();
-                return data.getData(mContext, tr, obj);
+                HNApiData data = new HNApiData();
+                try {
+                    Object recv = data.getData(mContext, cls, obj);
+                    return recv;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                   return null;
+                }
             }
 
             @Override
-            public void view(CConnAsyncTask.CQueryResult result) {
-//                hideProgress();
-
+            public void view(HNCConnAsyncTask.CQueryResult result) {
+                Log.i(TAG, "result1="+result);
                 if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
-                    if (IGCResult != null) {
-                        IGCResult.onResult(true, "데이터 수신 성공", result.data);
+                    Log.e(TAG, "데이터 수신 성공::"+result);
+                    if (iGCResult != null) {
+                        iGCResult.onResult(true, "데이터 수신 성공", result.data);
                     }
-
                 } else {
-                    if (IGCResult != null) {
-                        IGCResult.onResult(false, "데이터 수신 실패", null);
-                    } else {
-
-                        CDialog.showDlg(mContext, "데이터 수신에 실패 하였습니다.");
-                        Log.e(TAG, "CConnAsyncTask error=" + result.errorStr);
-//                        hideProgress();
+                    Log.e(TAG, "데이터 수신 실패");
+                    if (iGCResult != null) {
+                        iGCResult.onResult(false, "데이터 수신 실패", null);
                     }
                 }
             }
         };
 
-        CConnAsyncTask asyncTask = new CConnAsyncTask();
+        HNCConnAsyncTask asyncTask = new HNCConnAsyncTask();
         asyncTask.execute(queryListener);
-    }
-
-    private static BaseData createTrClass(Class<? extends BaseData> cls, Context context) {
-        BaseData trClass = null;
-        try {
-            Constructor<? extends BaseData> co = cls.getConstructor();
-            trClass = co.newInstance();
-        } catch (Exception e) {
-            try {
-                Constructor<? extends BaseData> co = cls.getConstructor(Context.class);
-                trClass = co.newInstance(context);
-            } catch (Exception e2) {
-                Log.e("BaseFragment", "createTrClass", e2);
-            }
-        }
-
-        return trClass;
     }
 
     /**

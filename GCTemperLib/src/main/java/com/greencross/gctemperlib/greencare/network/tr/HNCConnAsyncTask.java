@@ -16,8 +16,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author shinys
  *
  */
-public class CConnAsyncTask extends AsyncTask<CConnAsyncTask.CConnectorListener, Integer, CConnAsyncTask.CQueryResult> {
-	protected static final String TAG	= CConnAsyncTask.class.getSimpleName();
+public class HNCConnAsyncTask extends AsyncTask<HNCConnAsyncTask.CConnectorListener, Integer, HNCConnAsyncTask.CQueryResult> {
+	protected static final String TAG	= HNCConnAsyncTask.class.getSimpleName();
 
 	public static abstract class CConnectorListener {
 		public Object tag;
@@ -71,22 +71,22 @@ public class CConnAsyncTask extends AsyncTask<CConnAsyncTask.CConnectorListener,
 		}
 	}
 
-	public static final ConcurrentHashMap<Integer, CConnAsyncTask> runningHashMap	= new ConcurrentHashMap<Integer, CConnAsyncTask>();
+	public static final ConcurrentHashMap<Integer, HNCConnAsyncTask> runningHashMap	= new ConcurrentHashMap<Integer, HNCConnAsyncTask>();
 	protected CConnectorListener						connectorListener;
 	protected Activity activity;
 	protected int													hashCode		= 0;
 	protected boolean												isCanceled		= false;
 
-	public CConnAsyncTask() {
+	public HNCConnAsyncTask() {
 		hashCode = this.hashCode();
 	}
 
-	public CConnAsyncTask(Context context) {
+	public HNCConnAsyncTask(Context context) {
 
 		hashCode = this.hashCode();
 	}
 
-	public CConnAsyncTask(Activity activity) {
+	public HNCConnAsyncTask(Activity activity) {
 		this.activity = activity;
 		hashCode = this.hashCode();
 	}
@@ -96,7 +96,7 @@ public class CConnAsyncTask extends AsyncTask<CConnAsyncTask.CConnectorListener,
 		super.onPreExecute();
 
 		if (activity != null) {
-			runningHashMap.put(hashCode, CConnAsyncTask.this);
+			runningHashMap.put(hashCode, HNCConnAsyncTask.this);
 		}
 
 			Log.d(TAG, "hashCode=" + hashCode + ", hashSize=" + runningHashMap.size());
@@ -111,11 +111,11 @@ public class CConnAsyncTask extends AsyncTask<CConnAsyncTask.CConnectorListener,
 			result.data = connectorListener.run();
 			result.result = CQueryResult.SUCCESS;
 		} catch (CConnectorCancelException e) {
-
+			e.printStackTrace();
 			result.result = CQueryResult.CANCEL;
 			result.errorStr = "데이터수신에 실패하였습니다.";//CMSG.ERR_RESET;
 		} catch (Exception e) {
-			Log.e(TAG, "doInBackground Exception", e);
+			e.printStackTrace();
 			result.result = CQueryResult.FAIL;
 			result.errorStr = e.getMessage();
 			if (result.errorStr == null || result.errorStr.trim().length() == 0) {

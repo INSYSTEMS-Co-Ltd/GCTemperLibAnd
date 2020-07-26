@@ -20,7 +20,7 @@ import com.greencross.gctemperlib.greencare.charting.highlight.ChartHighlighter;
 import com.greencross.gctemperlib.greencare.charting.highlight.Highlight;
 import com.greencross.gctemperlib.greencare.charting.listener.BarLineChartTouchListener;
 import com.greencross.gctemperlib.greencare.charting.listener.OnDrawListener;
-import com.greencross.gctemperlib.greencare.charting.listener.WeightChartTouchListener;
+import com.greencross.gctemperlib.greencare.charting.listener.TemperChartTouchListener;
 import com.greencross.gctemperlib.greencare.charting.renderer.XAxisRenderer;
 import com.greencross.gctemperlib.greencare.charting.renderer.YAxisRenderer;
 import com.greencross.gctemperlib.greencare.charting.data.BarLineScatterCandleBubbleData;
@@ -42,7 +42,7 @@ import com.greencross.gctemperlib.greencare.charting.utils.Utils;
  * @author Philipp Jahoda
  */
 @SuppressLint("RtlHardcoded")
-public abstract class WeightChartBase<T extends BarLineScatterCandleBubbleData<? extends
+public abstract class TemperChartBase<T extends BarLineScatterCandleBubbleData<? extends
         IBarLineScatterCandleBubbleDataSet<? extends CEntry>>>
         extends Chart<T> implements BarLineScatterCandleBubbleDataProvider {
 
@@ -134,15 +134,15 @@ public abstract class WeightChartBase<T extends BarLineScatterCandleBubbleData<?
 
     // /** the approximator object used for data filtering */
 
-    public WeightChartBase(Context context, AttributeSet attrs, int defStyle) {
+    public TemperChartBase(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
-    public WeightChartBase(Context context, AttributeSet attrs) {
+    public TemperChartBase(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public WeightChartBase(Context context) {
+    public TemperChartBase(Context context) {
         super(context);
     }
 
@@ -163,7 +163,7 @@ public abstract class WeightChartBase<T extends BarLineScatterCandleBubbleData<?
 
         setHighlighter(new ChartHighlighter(this));
 
-        mChartTouchListener = new WeightChartTouchListener(this, mViewPortHandler.getMatrixTouch(), 3f);
+        mChartTouchListener = new TemperChartTouchListener(this, mViewPortHandler.getMatrixTouch(), 3f);
 
         mGridBackgroundPaint = new Paint();
         mGridBackgroundPaint.setStyle(Style.FILL);

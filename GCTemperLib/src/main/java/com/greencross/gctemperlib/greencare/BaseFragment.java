@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import android.text.TextUtils;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.greencross.gctemperlib.greencare.base.value.Define;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
@@ -28,8 +27,6 @@ import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
 import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
 import com.greencross.gctemperlib.greencare.network.tr.NetworkUtil;
 import com.greencross.gctemperlib.main.MainActivity;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_infomation;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_hra_check_result_input;
 import com.greencross.gctemperlib.greencare.util.Logger;
 
 import java.io.BufferedInputStream;
@@ -184,32 +181,6 @@ public class BaseFragment extends Fragment implements IBaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    /**
-     * 로드벨런싱
-     *
-     * @param context
-     * @param cls
-     * @param obj
-     * @param step
-     */
-    private void getInformation(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiData.IStep step) {
-        Tr_get_infomation.RequestData reqData = new Tr_get_infomation.RequestData();
-        reqData.insures_code = "300";
-        getData(context, Tr_get_infomation.class, reqData, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_get_infomation) {
-                    Tr_get_infomation data = (Tr_get_infomation) obj;
-                    Define.getInstance().setInformation(data);
-
-                    getData(context, cls, obj, step);
-                } else {
-//                    CDialog.showDlg(context, "네트워크 연결 상태를 확인해주세요.");
-                }
-            }
-        });
-    }
-
     public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiData.IStep step) {
         getData(context, cls, obj, true, step, null);
     }
@@ -220,24 +191,13 @@ public class BaseFragment extends Fragment implements IBaseFragment {
             CDialog.showDlg(context, "네트워크 연결 상태를 확인해주세요.");
             return;
         }
-//        String url = "http://wkd.walkie.co.kr/SK/WebService/SK_Mobile_Call.asmx/SK_mobile_Call";
+
         String url = BaseUrl.COMMON_URL;
-
         Logger.i(TAG, "LoadBalance.cls=" + cls + ", url=" + url);
-        if (TextUtils.isEmpty(url) && (cls != Tr_get_infomation.class)) {
-            getInformation(context, cls, obj, step);
-            return;
-        }
-        if(!cls.getName().equals(Tr_hra_check_result_input.class.getName())) {
-            if (isShowProgress)
-                showProgress();
-        }
-
         CConnAsyncTask.CConnectorListener queryListener = new CConnAsyncTask.CConnectorListener() {
 
             @Override
             public Object run() throws Exception {
-
                 ApiData data = new ApiData();
                 return data.getData(context, tr, obj);
             }
@@ -285,6 +245,9 @@ public class BaseFragment extends Fragment implements IBaseFragment {
 
         return trClass;
     }
+
+
+
 
     /**
      * 이미지 url에서 이미지를 가져와 ImageView에 세팅한다.

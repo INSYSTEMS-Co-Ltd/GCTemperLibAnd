@@ -1,27 +1,14 @@
 package com.greencross.gctemperlib.fever;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.view.ViewCompat;
-
 import com.greencross.gctemperlib.base.BackBaseActivity;
-import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.common.CustomAlertDialogInterface;
 import com.greencross.gctemperlib.common.MakeProgress;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_disease_program_req_crt;
 
 /**
  * 다이어트프로그램 신청하기
@@ -74,16 +61,6 @@ public class RequestDiseaseProgramActivity extends BackBaseActivity {
 
 
 
-
-        // 신청
-        findViewById(R.id.confirm_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestDiseaeProgram();
-            }
-        });
-
-
 //        sms_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -94,101 +71,6 @@ public class RequestDiseaseProgramActivity extends BackBaseActivity {
 //            }
 //        });
 
-    }
-
-    /**
-     * 유행성 질환 정보 프로그램  신청하기
-     */
-    private void requestDiseaeProgram() {
-        Tr_disease_program_req_crt.RequestData requestData = new Tr_disease_program_req_crt.RequestData();
-
-        CommonData login = CommonData.getInstance(this);
-        requestData.mber_sn = login.getMberSn();
-        requestData.mber_hp = login.getPhoneNumber();
-
-
-        new ApiData().getData(RequestDiseaseProgramActivity.this, Tr_disease_program_req_crt.class, requestData, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_disease_program_req_crt) {
-                    Tr_disease_program_req_crt tr = (Tr_disease_program_req_crt)obj;
-                    if ("Y".equals(tr.data_yn)) {
-                        // 신청완료
-                        popupCompleteProgram();
-                    } else {
-                        // 이미신청중
-                        popupYetProgram();
-                    }
-                } else {
-                    CDialog.showDlg(RequestDiseaseProgramActivity.this, "데이터 수신에 실패 하였습니다.");
-                }
-            }
-        });
-    }
-
-
-    /**
-     * 유행성 질환 정보 프로그램 이미 신청중 팝업
-     */
-    private void popupYetProgram() {
-        mDialog = new CustomAlertDialog(RequestDiseaseProgramActivity.this, CustomAlertDialog.TYPE_A);
-        View view = LayoutInflater.from(this).inflate(R.layout.popup_request_diet_program_complete, null);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        params.gravity = Gravity.CENTER;
-        mDialog.setContentView(view,params);
-
-        TextView t1 =  view.findViewById(R.id.dialog_content);
-        TextView t2 = view.findViewById(R.id.dialog_content1);
-        Button b1 = view.findViewById(R.id.confirm_btn);
-
-        ViewCompat.setBackgroundTintList(
-                b1,
-                ColorStateList.valueOf(getResources().getColor(R.color.bg_yellow_light)));
-
-        t1.setText("이미 유행질병 정보 프로그램을 이용중입니다.");
-        t2.setText(getString(R.string.diet_diseae_no));
-
-        mDialog.setPositiveButton(RequestDiseaseProgramActivity.this.getString(R.string.popup_dialog_button_confirm), new CustomAlertDialogInterface.OnClickListener() {
-            @Override
-            public void onClick(CustomAlertDialog dialog, Button button) {
-                finish();
-                dialog.dismiss();
-            }
-        });
-        mDialog.show();
-    }
-
-
-    /**
-     * 유행성 질환 정보 프로그램 이미 신청중 팝업
-     */
-    private void popupCompleteProgram() {
-        mDialog = new CustomAlertDialog(RequestDiseaseProgramActivity.this, CustomAlertDialog.TYPE_A);
-        View view = LayoutInflater.from(this).inflate(R.layout.popup_request_diet_program_complete, null);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        params.gravity = Gravity.CENTER;
-        mDialog.setContentView(view,params);
-
-        TextView t1 =  view.findViewById(R.id.dialog_content);
-        TextView t2 = view.findViewById(R.id.dialog_content1);
-
-        Button b1 = view.findViewById(R.id.confirm_btn);
-
-        ViewCompat.setBackgroundTintList(
-                b1,
-                ColorStateList.valueOf(getResources().getColor(R.color.bg_yellow_light)));
-
-        t1.setText("유행질병 정보 프로그램이 신청되었습니다.\n차주 화요일부터 10주 동안 콘텐츠를 제공해 드립니다.");
-        t2.setText(getString(R.string.diet_diseae_no));
-
-        mDialog.setPositiveButton(RequestDiseaseProgramActivity.this.getString(R.string.popup_dialog_button_confirm), new CustomAlertDialogInterface.OnClickListener() {
-            @Override
-            public void onClick(CustomAlertDialog dialog, Button button) {
-                finish();
-                dialog.dismiss();
-            }
-        });
-        mDialog.show();
     }
 
     @Override

@@ -66,7 +66,7 @@ public class JsonLogPrint {
         String[] lines = message.split(LINE_SEPARATOR);
         for (String line : lines) {
             line = line.replaceAll(LINE_SEPARATOR, "");
-            Logger.i(TAG, line);
+            Log.i(TAG, line);
         }
     }
 
@@ -87,10 +87,10 @@ public class JsonLogPrint {
                 int substringIndex = s.lastIndexOf(",", LOGCAT_MAX_LENGTH);
                 if (substringIndex == -1)
                     substringIndex = LOGCAT_MAX_LENGTH;
-                Logger.d(TAG, (s.substring(0, substringIndex)));
+                Log.d(TAG, (s.substring(0, substringIndex)));
                 s = s.substring(substringIndex).trim();
             }
-            Logger.d(TAG,(s));
+            Log.d(TAG,(s));
         }
     }
 }

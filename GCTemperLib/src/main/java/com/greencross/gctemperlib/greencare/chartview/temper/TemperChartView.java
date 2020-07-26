@@ -1,9 +1,9 @@
 
-package com.greencross.gctemperlib.greencare.chartview.weight;
+package com.greencross.gctemperlib.greencare.chartview.temper;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.RectF;
+
 import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.SeekBar;
@@ -11,11 +11,10 @@ import android.widget.TextView;
 
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.BarDataFormatter;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.XYMarkerView;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_weight_hope_grp;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.base.value.TypeDataSet;
-import com.greencross.gctemperlib.greencare.charting.charts.WeightChart;
+import com.greencross.gctemperlib.greencare.charting.charts.TemperChart;
 import com.greencross.gctemperlib.greencare.charting.components.Legend;
 import com.greencross.gctemperlib.greencare.charting.components.XAxis;
 import com.greencross.gctemperlib.greencare.charting.components.YAxis;
@@ -33,9 +32,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WeightChartView {
+public class TemperChartView {
 
-    protected WeightChart mChart;
+    protected TemperChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
     private Context mContext;
@@ -44,7 +43,7 @@ public class WeightChartView {
 //    protected Typeface mTfLight;
 
 
-    public WeightChartView(Context context, View v) {
+    public TemperChartView(Context context, View v) {
         mContext = context;
 
 //        mTfRegular = ResourcesCompat.getFont(context, R.font.nanum_barun_gothic);
@@ -56,7 +55,7 @@ public class WeightChartView {
         mSeekBarX = (SeekBar) v.findViewById(R.id.seekBar1);
         mSeekBarY = (SeekBar) v.findViewById(R.id.seekBar2);
 
-        mChart = (WeightChart) v.findViewById(R.id.chart1);
+        mChart = (TemperChart) v.findViewById(R.id.chart1);
         mChart.setTouchEnabled(true);       // 클릭시 값 표시 해주려면 true
 
         mChart.setDrawBarShadow(false);
@@ -138,7 +137,7 @@ public class WeightChartView {
         YAxis.setValueFormatter(f);
     }
 
-    public WeightChart getBarChart() {
+    public TemperChart getBarChart() {
         return mChart;
     }
 
@@ -302,28 +301,4 @@ public class WeightChartView {
 //        }
 //    }
 
-    /**
-     * 빅데이터
-     * @param bigData
-     */
-    public void setBigData(Tr_asstb_weight_hope_grp bigData) {
-        mChart.setBigData(bigData);
-    }
-
-    /**
-     * 40주 데이터
-     */
-    public void set40PathValue(float[] datas) {
-            mChart.set40PathValue(datas);
-    }
-
-//    /**
-//     * 40주간 데이터
-//     * @param total40Data
-//     */
-//    public void setFortyTotalData(Tr_asstb_forty_total_grp total40Data) {
-//        mChart.setFortyTotalData(total40Data);
-//    }
-
-    protected RectF mOnValueSelectedRectF = new RectF();
 }

@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.greencare.weight;
+package com.greencross.gctemperlib.greencare.temper;
 
 import android.app.TimePickerDialog;
 import android.graphics.Color;
@@ -27,7 +27,6 @@ import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenuCre
 import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenuItem;
 import com.greencross.gctemperlib.greencare.component.swipeListview.SwipeMenuListView;
 //import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
-import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
@@ -45,13 +44,13 @@ import java.util.Locale;
  * Created by godaewon on 2017. 4. 18..
  */
 
-public class WeightSwipeListView {
-    private static final String TAG = WeightSwipeListView.class.getSimpleName();
+public class TemperSwipeListView {
+    private static final String TAG = TemperSwipeListView.class.getSimpleName();
     private AppAdapter mAdapter;
     private List<Tr_get_hedctdata.DataList> mSwipeMenuDatas = new ArrayList<>();
     private BaseFragment mBaseFragment;
 
-    public WeightSwipeListView(View view, BaseFragment baseFragment) {
+    public TemperSwipeListView(View view, BaseFragment baseFragment) {
         mBaseFragment = baseFragment;
         SwipeMenuListView listView = (SwipeMenuListView) view.findViewById(R.id.weight_history_listview);
 

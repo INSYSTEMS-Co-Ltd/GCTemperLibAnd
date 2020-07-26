@@ -109,10 +109,10 @@
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:fontFamily="@font/hi_maum_r"
                                 android:gravity="center_vertical"
-                                android:text="체중"
+                                android:text="체온 그래프"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="@dimen/_12_dp" />
 
@@ -140,7 +140,7 @@
                     </LinearLayout>
 
 
-                    <com.greencross.gctemperlib.greencare.charting.charts.WeightChart
+                    <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
                         android:id="@+id/chart1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -279,7 +279,7 @@
 
             </RelativeLayout>
 
-            <com.greencross.gctemperlib.greencare.charting.charts.WeightChart
+            <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
                 android:id="@+id/chart2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -312,53 +312,6 @@
             </LinearLayout>
         </LinearLayout>
 
-
-        <LinearLayout
-            android:id="@+id/graph_hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|top"
-            android:paddingLeft="@dimen/_15_dp"
-            android:paddingTop="@dimen/_20_dp"
-            android:paddingRight="@dimen/_15_dp"
-            android:paddingBottom="@dimen/_10_dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:drawableLeft="@drawable/mother_bigdata_color"
-                    android:drawablePadding="@dimen/_5_dp"
-                    android:fontFamily="@font/hi_gothic_l"
-                    android:text="예상 체중"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12_dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/mother_chart_color"
-                    android:drawablePadding="@dimen/_5_dp"
-                    android:fontFamily="@font/hi_gothic_l"
-                    android:text="임신기간 권장 체중 범위"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12_dp" />
-            </LinearLayout>
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/visible_layout_4"

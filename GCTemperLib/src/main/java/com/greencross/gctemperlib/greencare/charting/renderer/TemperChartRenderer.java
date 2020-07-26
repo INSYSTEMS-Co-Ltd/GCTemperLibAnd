@@ -15,9 +15,8 @@ import com.greencross.gctemperlib.greencare.charting.animation.ChartAnimator;
 import com.greencross.gctemperlib.greencare.charting.formatter.IValueFormatter;
 import com.greencross.gctemperlib.greencare.charting.highlight.Highlight;
 import com.greencross.gctemperlib.greencare.charting.highlight.Range;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_weight_hope_grp;
 import com.greencross.gctemperlib.greencare.charting.buffer.BarBuffer;
-import com.greencross.gctemperlib.greencare.charting.charts.WeightChart;
+import com.greencross.gctemperlib.greencare.charting.charts.TemperChart;
 import com.greencross.gctemperlib.greencare.charting.data.BarData;
 import com.greencross.gctemperlib.greencare.charting.data.BarEntry;
 import com.greencross.gctemperlib.greencare.charting.data.CEntry;
@@ -30,13 +29,12 @@ import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class WeightChartRenderer extends BarLineScatterCandleBubbleRenderer {
-    private String TAG = WeightChartRenderer.class.getSimpleName();
+public class TemperChartRenderer extends BarLineScatterCandleBubbleRenderer {
+    private String TAG = TemperChartRenderer.class.getSimpleName();
 
-    protected WeightChart mChart;
+    protected TemperChart mChart;
     /**
      * the rect object that is used for drawing the bars
      */
@@ -53,68 +51,6 @@ public class WeightChartRenderer extends BarLineScatterCandleBubbleRenderer {
      */
     float[] mBigDataBMIList;
     float[] mBigDataWeightList;
-    public void setBigData(Tr_asstb_weight_hope_grp bigData) {
-        int size = bigData.grp_list.size();
-        mBigDataBMIList = new float[size * 2];
-
-        float[] yMinMax = new float[2];
-
-        List<Float> list = new ArrayList<>();
-        List<Float> weightList = new ArrayList<>(); // 라인 그리기용 데이터
-        int i = 0;
-        for (Tr_asstb_weight_hope_grp.Grp_list data : bigData.grp_list) {
-            // 체중범위 상단 라인
-            list.add(StringUtil.getFloat(data.m_week));
-            list.add(StringUtil.getFloat(data.bmi_max));
-
-            // 몸무게 라인용 데이터
-            if (StringUtil.getFloatVal(data.weight) != 0) {
-                float weight = StringUtil.getFloat(data.weight);
-                weightList.add(StringUtil.getFloat(data.m_week));
-                weightList.add(weight);
-            }
-
-            i++;
-        }
-
-        List<Float> list2 = new ArrayList<>();
-        // 체중범위 하단 라인
-        for (Tr_asstb_weight_hope_grp.Grp_list data : bigData.grp_list) {
-            float bmiMin = StringUtil.getFloat(data.bmi_min);
-            list2.add(StringUtil.getFloat(data.bmi_min));
-            list2.add(StringUtil.getFloat(data.m_week));
-            i++;
-        }
-
-        Collections.reverse(list2);
-        list.addAll(list2);
-
-        mBigDataBMIList = toFloatArray(list); // 적정체중범위 그리기용
-
-        int j = 0;
-        for (float aa : mBigDataBMIList) {
-            Log.i(TAG, "hopeList["+(j++)+"]="+aa);
-        }
-
-        mBigDataWeightList = toFloatArray(weightList); // 몸무게 라인 그리기용 데이터
-    }
-
-    public float[] toFloatArray(List<Float> alData) {
-        if (alData == null)
-            return null;
-
-        if (alData.size() == 0)
-            return new float[0];
-
-        final int size = alData.size();
-        float[] arData = new float[size];
-        for (int i = 0; i < size; i++) {
-            arData[i] = alData.get(i).floatValue();
-        }
-
-        return arData;
-    }
-
 
     /**
      * 40주간 적정체중범위 데이터
@@ -125,12 +61,12 @@ public class WeightChartRenderer extends BarLineScatterCandleBubbleRenderer {
     }
 
 
-    public WeightChartRenderer(WeightChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
+    public TemperChartRenderer(TemperChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         initRender(chart, animator, viewPortHandler);
     }
 
-    public void initRender(WeightChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
+    public void initRender(TemperChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
         this.mChart = chart;
 
         mHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -171,53 +107,6 @@ public class WeightChartRenderer extends BarLineScatterCandleBubbleRenderer {
         }
 
     }
-
-    /**
-     * 임신 40주간 적정 체중 범위 표시
-     * @param c
-     * @param trans
-     *  차트 그리는 Path 순서
-     *                       3
-     *               2
-     *       1               4
-     * 0             5
-     * 7     6
-     */
-    private void draw40WeightLevel(Canvas c, Transformer trans) {
-        if (mChart.isPregnantTab() == false) {
-            return;
-        }
-
-        if (m40Datas == null)
-            return;
-
-        float[] datas = m40Datas.clone();
-        Paint paint = new Paint();
-        Path path = new Path();
-        paint.setColor(Color.parseColor("#ccffc0cb"));
-//        path.setFillType(Path.FillType.EVEN_ODD);
-        if (path.isEmpty() == false) {
-            path.reset();
-        }
-
-        trans.pointValuesToPixel(datas);
-
-        path.moveTo(datas[0], datas[1]);
-        path.lineTo(datas[2], datas[3]);
-        path.lineTo(datas[4], datas[5]);
-        path.lineTo(datas[6], datas[7]);
-
-        path.lineTo(datas[8], datas[9]);
-        path.lineTo(datas[10], datas[11]);
-        path.lineTo(datas[12], datas[13]);
-        path.lineTo(datas[14], datas[15]);
-
-        path.close();
-        c.drawPath(path, paint);
-
-        dotLinesVertical(c, trans);
-    }
-
 
     /**
      * 세로라인그리기
@@ -379,11 +268,6 @@ public class WeightChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
     protected void drawDataSet(Canvas c, IBarDataSet dataSet, int index) {
         Transformer trans = mChart.getTransformer(dataSet.getAxisDependency());
-
-        drawBigDataChart(c, trans);         // 빅데이터 적정 체중 범위
-        drawBigDataChartLine(c, trans);     // 빅데이터 그리기
-
-        draw40WeightLevel(c, trans);    // 임신적정체중 그리기 시작
 
         mBarBorderPaint.setColor(dataSet.getBarBorderColor());
         mBarBorderPaint.setStrokeWidth(Utils.convertDpToPixel(dataSet.getBarBorderWidth()));

@@ -177,19 +177,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.greencross.gctemperlib.util.CustomSeekBar
-                        android:id="@+id/seekBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_90_dp"
-                        android:foregroundGravity="center_vertical"
-                        android:layout_alignParentLeft="true"
-                        android:max="100"
-                        android:paddingLeft="@dimen/_12_dp"
-                        android:paddingRight="@dimen/_12_dp"
-                        android:progress="0"
-                        android:progressDrawable="@android:color/transparent"
-                        android:thumb="@drawable/seekbar_thumb_shape"
-                        android:thumbOffset="@dimen/_76_dp" />
+<!--                    <com.greencross.gctemperlib.util.CustomSeekBar-->
+<!--                        android:id="@+id/seekBar"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_90_dp"-->
+<!--                        android:foregroundGravity="center_vertical"-->
+<!--                        android:layout_alignParentLeft="true"-->
+<!--                        android:max="100"-->
+<!--                        android:paddingLeft="@dimen/_12_dp"-->
+<!--                        android:paddingRight="@dimen/_12_dp"-->
+<!--                        android:progress="0"-->
+<!--                        android:progressDrawable="@android:color/transparent"-->
+<!--                        android:thumb="@drawable/seekbar_thumb_shape"-->
+<!--                        android:thumbOffset="@dimen/_76_dp" />-->
 
                 </RelativeLayout>
 

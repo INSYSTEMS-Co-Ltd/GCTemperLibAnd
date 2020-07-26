@@ -52,10 +52,10 @@ public class Tr_login extends BaseData {
 
 
 	public static class RequestData {
-//		public String cust_id;	//":"1",
+		public String cust_id;	//":"1",
 //		public String phone_gubun;	//":"A",
 //		public String appver;	//":"1.0",
-//		public String devicetoken;	//":"1111",
+		public String devicetoken;	//":"1111",
 //		public String os_ver;	//":"1.1",
 //		public String p_model;	//":"testphone"
 	}
@@ -67,21 +67,21 @@ public class Tr_login extends BaseData {
 
 	@Override
 	public JSONObject makeJson(Object obj) throws JSONException {
-//		if (obj instanceof RequestData) {
+		if (obj instanceof RequestData) {
 			JSONObject body = new JSONObject();
-//			RequestData data = (RequestData) obj;
+			RequestData data = (RequestData) obj;
 //            String refreshedToken = FirebaseInstanceId.getInstance().getToken();    // 토큰값.
-            String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
+//            String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
             String pushToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_PUSH_TOKEN);    // 푸시키
-			body.put("cust_id", custNo);
+			body.put("cust_id", data.cust_id);
 			body.put("phone_gubun", OS_GUBUN);
 			body.put("appver", BuildConfig.VERSION_NAME);
 			body.put("devicetoken", pushToken);
 			body.put("os_ver", Build.VERSION.SDK_INT);
 			body.put("p_model", Build.DEVICE);
 			return body;
-//		}
-//		return super.makeJson(obj);
+		}
+		return super.makeJson(obj);
 	}
 
     /**************************************************************************************************/

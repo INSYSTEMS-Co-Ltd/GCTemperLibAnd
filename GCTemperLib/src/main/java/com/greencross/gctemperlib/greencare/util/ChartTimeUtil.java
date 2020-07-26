@@ -31,9 +31,9 @@ public class ChartTimeUtil implements Cloneable {
 
     private RadioButton mRadioButtonDay, mRadioButtonWeek, mRadioButtonMonth, mRadioButtonYear, mRadioButtonTypeAll, mRadioButtonTypeBefore, mRadioButtonTypeAfter;
 
-//    public ChartTimeUtil() {
-//        getTime();
-//    }
+    public ChartTimeUtil() {
+        getTime();
+    }
 
     public ChartTimeUtil(TypeDataSet.Period period) {
         mPeriod = period;

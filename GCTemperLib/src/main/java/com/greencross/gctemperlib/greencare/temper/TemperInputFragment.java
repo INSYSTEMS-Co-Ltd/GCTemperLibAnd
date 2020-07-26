@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.greencare.weight;
+package com.greencross.gctemperlib.greencare.temper;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,9 +21,6 @@ import android.widget.TimePicker;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
-import com.greencross.gctemperlib.greencare.bluetooth.manager.BluetoothManager;
-import com.greencross.gctemperlib.greencare.bluetooth.manager.DeviceDataUtil;
-import com.greencross.gctemperlib.greencare.bluetooth.model.WeightModel;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 //import com.greencross.gctemperlib.greencare.database.DBHelperWeight;
@@ -45,9 +41,9 @@ import java.util.Locale;
  * Created by insystemscompany on 2017. 2. 28..
  */
 
-public class WeightInputFragment extends BaseFragment {
+public class TemperInputFragment extends BaseFragment {
 
-    private static final String TAG = WeightInputFragment.class.getSimpleName();
+    private static final String TAG = TemperInputFragment.class.getSimpleName();
     private TextView mDateTv, mTimeTv;
 
     private Button mWeightInputSavebtn;
@@ -65,7 +61,7 @@ public class WeightInputFragment extends BaseFragment {
     private int cal_min;
 
     public static Fragment newInstance() {
-        WeightInputFragment fragment = new WeightInputFragment();
+        TemperInputFragment fragment = new TemperInputFragment();
         return fragment;
     }
 

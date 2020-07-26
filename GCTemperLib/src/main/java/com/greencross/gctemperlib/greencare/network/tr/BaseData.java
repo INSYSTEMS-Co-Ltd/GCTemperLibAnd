@@ -20,7 +20,6 @@ public class BaseData implements Cloneable, IBaseData {
 
 
     public String APP_CODE = "android"+ Build.VERSION.RELEASE;
-    public String DEVICE_TOKEN = FirebaseInstanceId.getInstance().getToken();
     public String INSURES_CODE = "108";
     public String OS_GUBUN = "A";
 

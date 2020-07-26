@@ -3,35 +3,15 @@ package com.greencross.gctemperlib.fever;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.DummyActivity;
-import com.greencross.gctemperlib.greencare.weight.WeightManageFragment;
+import com.greencross.gctemperlib.greencare.temper.TemperFragment;
 
 public class TemperControlActivity extends BackBaseActivity {
-    private Button mMapBtn, mEpidemicBtn;
-
-    private LinearLayout mLinearTabMap, mLinearTabEpidemic;
-
-    private LinearLayout mEpidemicRankLay;
-    private TextView mTxtNullEpidemic;
-    private LinearLayout[] mEpRankList;
-    private TextView[] mTxtDiseNmList, mTxtDiseCntList;
-
-    private  ImageButton mBtnAlarm, mBtnShare;
-
-
-    private View view;
-
-    private ImageView req_diease_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +36,7 @@ public class TemperControlActivity extends BackBaseActivity {
         findViewById(R.id.go_graph_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyActivity.startActivity(TemperControlActivity.this, WeightManageFragment.class, new Bundle());
+                DummyActivity.startActivity(TemperControlActivity.this, TemperFragment.class, new Bundle());
             }
         });
     }

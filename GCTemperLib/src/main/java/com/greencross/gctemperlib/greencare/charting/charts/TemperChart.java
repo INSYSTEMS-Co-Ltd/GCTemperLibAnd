@@ -8,8 +8,7 @@ import android.util.Log;
 import com.greencross.gctemperlib.greencare.charting.components.YAxis;
 import com.greencross.gctemperlib.greencare.charting.highlight.Highlight;
 import com.greencross.gctemperlib.greencare.charting.highlight.WeightBarHighlighter;
-import com.greencross.gctemperlib.greencare.charting.renderer.WeightChartRenderer;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_asstb_weight_hope_grp;
+import com.greencross.gctemperlib.greencare.charting.renderer.TemperChartRenderer;
 import com.greencross.gctemperlib.greencare.charting.data.BarData;
 import com.greencross.gctemperlib.greencare.charting.data.BarEntry;
 import com.greencross.gctemperlib.greencare.charting.interfaces.dataprovider.WeightBarDataProvider;
@@ -20,7 +19,7 @@ import com.greencross.gctemperlib.greencare.charting.interfaces.datasets.IBarDat
  *
  * @author Philipp Jahoda
  */
-public class WeightChart extends BarLineChartBase<BarData> implements WeightBarDataProvider {
+public class TemperChart extends BarLineChartBase<BarData> implements WeightBarDataProvider {
 
     /**
      * flag that indicates whether the highlight should be full-bar oriented, or single-value?
@@ -43,22 +42,22 @@ public class WeightChart extends BarLineChartBase<BarData> implements WeightBarD
 
     private Context mContext;
 
-    public WeightChart(Context context) {
+    public TemperChart(Context context) {
         super(context);
     }
 
-    public WeightChart(Context context, AttributeSet attrs) {
+    public TemperChart(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public WeightChart(Context context, AttributeSet attrs, int defStyle) {
+    public TemperChart(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
     @Override
     protected void init() {
         super.init();
-        mRenderer = new WeightChartRenderer(this, mAnimator, mViewPortHandler);
+        mRenderer = new TemperChartRenderer(this, mAnimator, mViewPortHandler);
 
         setHighlighter(new WeightBarHighlighter(this));
 
@@ -235,31 +234,6 @@ public class WeightChart extends BarLineChartBase<BarData> implements WeightBarD
         return mData;
     }
 
-    /**
-     * 빅데이터
-     * @param data
-     */
-    public void setBigData(Tr_asstb_weight_hope_grp data) {
-        if (mRenderer instanceof WeightChartRenderer)
-            ((WeightChartRenderer)mRenderer).setBigData(data);
-    }
-
-    /**
-     * 40주 데이터
-     */
-    public void set40PathValue(float[] datas) {
-        if (mRenderer instanceof WeightChartRenderer)
-            ((WeightChartRenderer)mRenderer).set40PathValue(datas);
-    }
-
-//    /**
-//     * 40주간 데이터
-//     * @param data
-//     */
-//    public void setFortyTotalData(Tr_asstb_forty_total_grp data) {
-//        if (mRenderer instanceof WeightChartRenderer)
-//            ((WeightChartRenderer)mRenderer).setFortyTotalData(data);
-//    }
 
     /**
      * Adds half of the bar width to each side of the x-axis range in order to allow the bars of the barchart to be

@@ -72,7 +72,6 @@ import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
-import com.greencross.gctemperlib.greencare.weight.WeightBigDataInputFragment;
 import com.greencross.gctemperlib.network.RequestApi;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.setting.SettingActivity;
@@ -1743,15 +1742,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mDialog.setContent(getString(R.string.i_am_child));
                     mDialog.setPositiveButton(getString(R.string.popup_dialog_button_confirm), null);
                     mDialog.show();
-
-                } else {
-                    if (CommonData.getInstance(MainActivity.this).getHpMjYn().compareTo("Y") == 0 && CommonData.getInstance(MainActivity.this).getHpMjYnJun()) {
-                        DummyActivity.startActivityForResult(((Activity) MainActivity.this), WeightBigDataInputFragment.REQ_WEIGHT_PREDICT, WeightBigDataInputFragment.class, new Bundle());
-//                    } else {
-//                        intent = new Intent(MainActivity.this, MotherHealthRegActivity.class);
-//                        startActivity(intent);
-                    }
-
                 }
             } else if (id == R.id.btn_side_08) {
                 hideProgress();

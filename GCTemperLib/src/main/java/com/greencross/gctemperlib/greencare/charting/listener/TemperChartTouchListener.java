@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 
 import com.greencross.gctemperlib.greencare.charting.highlight.Highlight;
-import com.greencross.gctemperlib.greencare.charting.charts.WeightChartBase;
+import com.greencross.gctemperlib.greencare.charting.charts.TemperChartBase;
 import com.greencross.gctemperlib.greencare.charting.data.BarLineScatterCandleBubbleData;
 import com.greencross.gctemperlib.greencare.charting.data.CEntry;
 import com.greencross.gctemperlib.greencare.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet;
@@ -24,7 +24,7 @@ import com.greencross.gctemperlib.greencare.charting.utils.ViewPortHandler;
  *
  * @author Philipp Jahoda
  */
-public class WeightChartTouchListener extends ChartTouchListener<WeightChartBase<? extends BarLineScatterCandleBubbleData<?
+public class TemperChartTouchListener extends ChartTouchListener<TemperChartBase<? extends BarLineScatterCandleBubbleData<?
         extends IBarLineScatterCandleBubbleDataSet<? extends CEntry>>>> {
 
     /**
@@ -80,7 +80,7 @@ public class WeightChartTouchListener extends ChartTouchListener<WeightChartBase
      * @param dragTriggerDistance the minimum movement distance that will be interpreted as a "drag" gesture in dp (3dp equals
      *                            to about 9 pixels on a 5.5" FHD screen)
      */
-    public WeightChartTouchListener(WeightChartBase<? extends BarLineScatterCandleBubbleData<? extends IBarLineScatterCandleBubbleDataSet<? extends CEntry>>> chart, Matrix touchMatrix, float dragTriggerDistance) {
+    public TemperChartTouchListener(TemperChartBase<? extends BarLineScatterCandleBubbleData<? extends IBarLineScatterCandleBubbleDataSet<? extends CEntry>>> chart, Matrix touchMatrix, float dragTriggerDistance) {
         super(chart);
         this.mMatrix = touchMatrix;
 

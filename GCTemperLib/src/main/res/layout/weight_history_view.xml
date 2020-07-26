@@ -23,64 +23,6 @@
             android:background="@color/colorWhite" />
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/period_radio_group"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_47_dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-
-        <RadioButton
-            android:id="@+id/period_radio_btn_day"
-            style="@style/pink_graph_radio_style_left"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:textColor="@color/mother_btn_tab2_color"
-            android:textStyle="bold"
-            android:textSize="@dimen/px_46"
-            android:checked="true"
-            android:fontFamily="@font/hi_maum_l"
-            android:text="일간" />
-
-        <RadioButton
-            android:id="@+id/period_radio_btn_week"
-            style="@style/pink_graph_radio_style_middle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:textColor="@color/mother_btn_tab2_color"
-            android:textSize="@dimen/px_46"
-            android:fontFamily="@font/hi_maum_l"
-            android:textStyle="bold"
-            android:text="주간" />
-
-        <RadioButton
-            android:id="@+id/period_radio_btn_month"
-            style="@style/pink_graph_radio_style_right"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:textColor="@color/mother_btn_tab2_color"
-            android:textSize="@dimen/px_46"
-            android:fontFamily="@font/hi_maum_l"
-            android:textStyle="bold"
-            android:text="월간" />
-
-        <RadioButton
-            android:id="@+id/period_radio_btn_year"
-            style="@style/pink_graph_radio_style_right"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:textColor="@color/mother_btn_tab2_color"
-            android:textSize="@dimen/px_46"
-            android:fontFamily="@font/hi_maum_l"
-            android:textStyle="bold"
-            android:text="@string/임신기간40주" />
-
-    </RadioGroup>
 
     <View
         android:layout_width="match_parent"
@@ -230,7 +172,7 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                        <com.greencross.gctemperlib.greencare.charting.charts.WeightChart
+                        <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
                             android:id="@+id/chart1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -383,32 +325,13 @@
 
                 </RelativeLayout>
 
-                <com.greencross.gctemperlib.greencare.charting.charts.WeightChart
+                <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
                     android:id="@+id/chart2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="-4dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/graph_hint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/_10_dp"
-                android:paddingBottom="@dimen/_10_dp"
-                android:gravity="center|top">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/mother_chart_color"
-                    android:drawablePadding="@dimen/_5_dp"
-                    android:text="임신기간 권장 체중 범위"
-                    android:textSize="@dimen/_15_dp"
-                    android:textColor="@color/colorBlack"
-                    android:fontFamily="@font/hi_gothic_l"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/visible_layout_4"

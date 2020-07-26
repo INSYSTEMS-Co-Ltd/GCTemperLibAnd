@@ -3,13 +3,10 @@ package com.greencross.gctemperlib.greencare.base.value;
 import android.os.Environment;
 import android.provider.MediaStore;
 
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_infomation;
-
 import java.io.File;
 
 public class Define {
     private static Define instance;
-    private Tr_get_infomation information;
 //    private CommonData loginInfo;
     private String sugarType;
 
@@ -33,21 +30,6 @@ public class Define {
             instance = new Define();
         }
         return instance;
-    }
-
-    public void setInformation(Tr_get_infomation information) {
-        this.information = information;
-    }
-
-    /**
-     * 접속시 아이피 정보 및 저장
-     * @return
-     */
-    public Tr_get_infomation getInformation() {
-        if (information == null) {
-            information = new Tr_get_infomation();
-        }
-        return information;
     }
 
 

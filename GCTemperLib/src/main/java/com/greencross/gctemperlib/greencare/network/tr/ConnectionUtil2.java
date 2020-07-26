@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.greencross.gctemperlib.greencare.base.value.Define;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_infomation;
 import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
 import com.greencross.gctemperlib.greencare.util.Logger;
 
@@ -43,23 +42,15 @@ public class ConnectionUtil2 {
 
 
     public String doConnection(JSONObject body, String name) {
-        URL mURL;
+        URL url;
         HttpURLConnection conn = null;
         int mIntResponse = 0;
         String result = "";
 
         int contentLength = -1;
         try {
-            Tr_get_infomation info = Define.getInstance().getInformation();
-
-            if (info != null && TextUtils.isEmpty(info.apiURL) == false) {
-                mURL = new URL(info.apiURL);
-            } else {
-                mURL = new URL(BaseUrl.COMMON_URL);
-            }
-            mURL = new URL(BaseUrl.COMMON_URL);
-
-            conn = (HttpURLConnection) mURL.openConnection();
+            url = new URL(BaseUrl.COMMON_URL);
+            conn = (HttpURLConnection) url.openConnection();
             // TimeOut 시간 (서버 접속시 연결 시간)
             conn.setConnectTimeout(10 * 1000);
             conn.setReadTimeout(10 * 1000);
@@ -73,7 +64,7 @@ public class ConnectionUtil2 {
             os.close();
 
             Log.i(TAG, "###############  ConnectionUtil."+name+"  ###############");
-            Log.i(TAG, "url=" + mURL);
+            Log.i(TAG, "url=" + url);
             JsonLogPrint.printJson(body.toString());
             Log.i(TAG, "###############  ConnectionUtil."+name+"  ###############");
 

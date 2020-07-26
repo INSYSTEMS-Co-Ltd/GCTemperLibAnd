@@ -553,8 +553,9 @@
 
 
     <!--열지도 / 미세먼지-->
-    <string name="fever_map">체 온 관 리</string>
+    <string name="temper_control">체 온 관 리</string>
     <string name="location_fever">지 역 체 온</string>
+    <string name="temper_graph">체온 그래프</string>
     <string name="epidemic">유 의 질 환</string>
     <string name="rank">순위</string>
     <string name="disease_name">질환명</string>
@@ -2362,6 +2363,23 @@
 
 
 
+
+
+    <!-- 하나1Q -->
+    <string name="text_regist_complete">등록완료</string>
+    <string name="temper_device_call">전용 체온계로\n측정하기</string>
+    <string name="temper_input_alert_title">체온 직접 입력</string>
+    <string name="temper_message1">체온을 측정해 주세요.</string>
+    <string name="temper_message2">35℃미만으로 체온이 낮습니다.\n1시간 뒤 다시 체온을 측정해주세요.</string>
+    <string name="temper_message3">정상 체온이 잘 유지되고 있습니다.\n정상 체온의 기준은 겨드랑이 체온 기준으로 37.2℃, 고막 체온 기준으로 37.4℃까지입니다.</string>
+    <string name="temper_message4">미열이 지속되고 있습니다.\n1시간 뒤 다시 체온을 측정해주세요.</string>
+    <string name="temper_message5">열이 지속되고 있습니다.\n1시간 뒤 다시 체온을 측정해주세요.</string>
+    <string name="temper_message6">고열이 지속되고 있습니다.\n감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문하는 것이 좋습니다.</string>
+    <string name="temper_message7">39.5℃이상 고열입니다.\n감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문하는 것이 좋습니다.</string>
+
+
+    <string name="title_health_care_service">헬스케어서비스란?</string>
+    <string name="title_health_reservation_fragment">건강검진 예약</string>
 
 
 

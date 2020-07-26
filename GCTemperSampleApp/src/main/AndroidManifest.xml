@@ -30,11 +30,6 @@
             android:launchMode="singleTask"/>
 
 
-        <activity android:name="com.greencross.gctemperlib.temper.TemperControlActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/GCLibTheme"
-            android:screenOrientation="portrait"/>
-
         <activity android:name="com.greencross.gctemperlib.DummyActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/GCLibTheme"

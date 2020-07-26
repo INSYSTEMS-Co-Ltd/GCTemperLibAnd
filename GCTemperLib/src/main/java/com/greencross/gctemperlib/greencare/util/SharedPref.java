@@ -17,6 +17,7 @@ public class SharedPref {
     public static final String PREF_CUST_NO = "pref_cust_no";         // 사용자 번호
     public static final String PREF_GENDER = "pref_gender";     // 사용자 성별
     public static final String MBER_SN = "mber_sn";         // 저장된 아이디
+    public static final String TEMPER = "temper";         // 최근 저장된 온도
 
 
     public static String HEALTH_MESSAGE_HEALTH = "health_message_health"; // 건강메시지

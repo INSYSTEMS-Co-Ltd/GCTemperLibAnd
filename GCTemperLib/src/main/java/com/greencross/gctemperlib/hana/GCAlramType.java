@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib;
+package com.greencross.gctemperlib.hana;
 
 public enum GCAlramType {
 

@@ -34,7 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:fontFamily="@font/hi_maum_r"
-            android:text="@string/fever_map"
+            android:text="@string/temper_control"
             android:textColor="@color/color_ffffff"
             android:textSize="@dimen/px_50" />
 

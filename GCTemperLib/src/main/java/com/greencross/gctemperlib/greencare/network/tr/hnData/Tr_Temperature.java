@@ -39,14 +39,14 @@ public class Tr_Temperature extends BaseData {
 	private final String TAG = getClass().getSimpleName();
 
 	public static class RequestData {
-        public String fever;
-        public String area;
-        public String est1;
-        public String est2;
-        public String la;
-        public String lo;
-        public String Input_de ;
-        public String is_wearable ;
+        public String fever;            // fever - 체온
+        public String area;             // area - 시/도
+        public String est1;             // est1 - 시/구
+        public String est2;             // est2 - 읍/면/동
+        public String la;               // la - 위도
+        public String lo;               // lo - 경도
+        public String Input_de ;        // Input_de - 입력일자
+        public String is_wearable ;     // is_wearable - 기기사용 여부("기본값 : 0, 0 : 직접 입력, 1: 파트론 웨어러블 기기 사용")
 	}
 
 	public Tr_Temperature(Context context) {

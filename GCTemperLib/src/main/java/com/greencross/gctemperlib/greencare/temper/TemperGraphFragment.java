@@ -1,5 +1,6 @@
 package com.greencross.gctemperlib.greencare.temper;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -19,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,10 +28,10 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
-import com.greencross.gctemperlib.common.MakeProgress;
 import com.greencross.gctemperlib.common.NetworkConst;
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.value.TypeDataSet;
@@ -37,6 +39,8 @@ import com.greencross.gctemperlib.greencare.charting.data.BarEntry;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.AxisValueFormatter2;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.AxisYValueFormatter;
 import com.greencross.gctemperlib.greencare.chartview.temper.TemperChartView;
+import com.greencross.gctemperlib.greencare.component.CDatePicker;
+import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_FeverList;
@@ -45,7 +49,6 @@ import com.greencross.gctemperlib.greencare.util.ChartTimeUtil;
 import com.greencross.gctemperlib.greencare.util.DisplayUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
-import com.greencross.gctemperlib.network.RequestApi;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.R;
 
@@ -54,18 +57,16 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
-
-import cz.msebera.android.httpclient.NameValuePair;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 
 /**
- * Created by insystemscompany on 2017. 2. 28..
+ * 체온 그래프
  */
 
-public class TemperFragment extends BaseFragment {
-    private final String TAG = TemperFragment.class.getSimpleName();
+public class TemperGraphFragment extends BaseFragment {
+    private final String TAG = TemperGraphFragment.class.getSimpleName();
 
     int mRequestCode = 1111;
     Boolean isGraphActive = false;
@@ -108,7 +109,7 @@ public class TemperFragment extends BaseFragment {
 
 
     public static Fragment newInstance() {
-        TemperFragment fragment = new TemperFragment();
+        TemperGraphFragment fragment = new TemperGraphFragment();
         return fragment;
     }
 
@@ -116,13 +117,17 @@ public class TemperFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.weight_history_view, container, false);
+        View view = inflater.inflate(R.layout.temper_graph_fragment, container, false);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (getActivity() instanceof DummyActivity) {
+            ((DummyActivity) getActivity()).setTitle(getString(R.string.temper_graph));
+        }
 
         mDateTv = (TextView) view.findViewById(R.id.period_date_textview);
         mTemperTargetTv = (TextView) view.findViewById(R.id.textView54);
@@ -141,6 +146,19 @@ public class TemperFragment extends BaseFragment {
         view.findViewById(R.id.pre_btn).setOnClickListener(mClickListener);
         view.findViewById(R.id.next_btn).setOnClickListener(mClickListener);
         view.findViewById(R.id.weight_modal_btn).setOnClickListener(mClickListener);
+        TextView preCalendarTv = view.findViewById(R.id.graph_pre_textview);
+        TextView nextCalendarTv = view.findViewById(R.id.graph_next_textview);
+        preCalendarTv.setOnClickListener(mClickListener);
+        nextCalendarTv.setOnClickListener(mClickListener);
+
+        GregorianCalendar calendar = new GregorianCalendar();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String today = CDateUtil.getToday_yyyy_MM_dd();
+        preCalendarTv.setText(today);
+        nextCalendarTv.setText(today);
 
         mTimeClass = new ChartTimeUtil();
         mTemperChart = new TemperChartView(getContext(), view);
@@ -154,7 +172,7 @@ public class TemperFragment extends BaseFragment {
         mTemperChart.setYValueFormat(yFormatter);
         mTemperChart.setXValueFormat(xFormatter);
 
-        mSwipeListView = new TemperSwipeListView(view, TemperFragment.this);
+        mSwipeListView = new TemperSwipeListView(view, TemperGraphFragment.this);
         chartRule.setText("일간 : 시간별 최종데이터");
 
         setNextButtonVisible();
@@ -190,6 +208,10 @@ public class TemperFragment extends BaseFragment {
 
                 mTimeClass.calTime(1);
                 getData();
+            } else if (vId == R.id.graph_pre_textview) {
+                showCalendar((TextView) v);
+            } else if (vId == R.id.graph_next_textview) {
+                showCalendar((TextView) v);
             } else if (vId == R.id.weight_modal_btn) {
                 new showModifiDlg();
             } else if (vId == R.id.landscape_btn) {
@@ -202,6 +224,100 @@ public class TemperFragment extends BaseFragment {
             setNextButtonVisible();
         }
     };
+
+    private void showCalendar(TextView tv) {
+        GregorianCalendar calendar = new GregorianCalendar();
+
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        new CDatePicker(getContext(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                if (DateTimeCheck("D", year, monthOfYear, dayOfMonth)) {
+                    cal_year = year;
+                    cal_month = monthOfYear;
+                    cal_day = dayOfMonth;
+                    mDateTvSet(tv, year, monthOfYear, dayOfMonth);
+                }
+            }
+        }, year, month, day, false).show();
+    }
+
+    private int cal_year;
+    private int cal_month;
+    private int cal_day;
+    private int cal_hour;
+    private int cal_min;
+//    DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+//        @Override
+//        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//            if (DateTimeCheck("D", year, monthOfYear, dayOfMonth)) {
+//                cal_year = year;
+//                cal_month = monthOfYear;
+//                cal_day = dayOfMonth;
+//                mDateTvSet(year, monthOfYear, dayOfMonth);
+//            }
+//        }
+//    };
+
+    private void mDateTvSet(TextView tv, int year, int monthOfYear, int dayOfMonth){
+        String msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth);
+        String tagMsg = String.format("%d%02d%02d", year, monthOfYear + 1, dayOfMonth);
+        Calendar cal = Calendar.getInstance();
+
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, monthOfYear + 1);
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        tv.setText(CDateUtil.getFormatYYYYMMDD(tagMsg));
+//        tv.setText(msg+" "+ CDateUtil.getDateToWeek(tagMsg)+"요일");
+        tv.setTag(tagMsg);
+    }
+
+    private boolean DateTimeCheck(String type, int pram1, int pram2, int pram3){
+        Calendar cal = Calendar.getInstance();
+
+        if(type.equals("D")){
+            cal.set(Calendar.YEAR, pram1);
+            cal.set(Calendar.MONTH, pram2);
+            cal.set(Calendar.DAY_OF_MONTH, pram3);
+            cal.set(Calendar.HOUR_OF_DAY, cal_hour);
+            cal.set(Calendar.MINUTE, cal_min);
+
+            if(cal.getTimeInMillis() > System.currentTimeMillis()){
+                CDialog.showDlg(getContext(), getString(R.string.message_nowtime_over), new CDialog.DismissListener() {
+                    @Override
+                    public void onDissmiss() {
+
+                    }
+                });
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            cal.set(Calendar.YEAR, cal_year);
+            cal.set(Calendar.MONTH, cal_month);
+            cal.set(Calendar.DAY_OF_MONTH, cal_day);
+            cal.set(Calendar.HOUR_OF_DAY, pram1);
+            cal.set(Calendar.MINUTE, pram2);
+
+            if(cal.getTimeInMillis() > System.currentTimeMillis()){
+                CDialog.showDlg(getContext(), getString(R.string.message_nowtime_over), new CDialog.DismissListener() {
+                    @Override
+                    public void onDissmiss() {
+
+                    }
+                });
+
+                return false;
+            }else{
+                return true;
+            }
+        }
+    }
 
     private void setNextButtonVisible() {
         // 초기값 일때 다음날 데이터는 없으므로 리턴
@@ -563,11 +679,11 @@ public class TemperFragment extends BaseFragment {
      * 가로, 세로모드일때 불필요한 화면 Visible 처리
      */
     protected void setVisibleOrientationLayout() {
-        mVisibleView1.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
-        mVisibleView3.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
-        mVisibleView4.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
-        mChartCloseBtn.setVisibility(isLandScape ? View.VISIBLE : View.GONE);
-        mChartZoomBtn.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
+//        mVisibleView1.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
+//        mVisibleView3.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
+//        mVisibleView4.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
+//        mChartCloseBtn.setVisibility(isLandScape ? View.VISIBLE : View.GONE);
+//        mChartZoomBtn.setVisibility(isLandScape ? View.GONE : View.VISIBLE);
 
         DisplayMetrics dm = getActivity().getResources().getDisplayMetrics();
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mChartFrameLayout.getLayoutParams();

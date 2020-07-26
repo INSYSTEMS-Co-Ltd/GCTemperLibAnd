@@ -48,11 +48,43 @@
             android:orientation="vertical">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/graph_pre_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="2020/01/01"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/cal_arrow_right"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10_dp"
+                    android:layout_marginRight="@dimen/_10_dp"
+                    android:text="~"/>
+
+                <TextView
+                    android:id="@+id/graph_next_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="2020/01/01"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/cal_arrow_right"/>
+            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:paddingTop="10dp"
-                android:background="@color/colorWhite">
+                android:background="@color/colorWhite"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:id="@+id/weight_chart_date_layout"

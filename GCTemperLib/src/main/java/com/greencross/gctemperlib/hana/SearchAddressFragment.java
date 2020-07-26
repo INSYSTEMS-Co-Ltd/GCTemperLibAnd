@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib;
+package com.greencross.gctemperlib.hana;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,10 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.greencross.gctemperlib.BaseFragment;
+import com.greencross.gctemperlib.BuildConfig;
+import com.greencross.gctemperlib.DummyActivity;
+import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.util.Util;
 

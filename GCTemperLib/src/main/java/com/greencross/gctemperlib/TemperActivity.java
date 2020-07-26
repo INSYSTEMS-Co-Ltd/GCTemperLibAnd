@@ -19,7 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.greencross.gctemperlib.base.BackBaseActivity;
-import com.greencross.gctemperlib.temper.TemperControlActivity;
+import com.greencross.gctemperlib.hana.HealthCareServiceFragment;
+import com.greencross.gctemperlib.hana.HealthRservationFragment;
+import com.greencross.gctemperlib.hana.SearchAddressFragment;
+import com.greencross.gctemperlib.hana.TemperControlFragment;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
@@ -97,7 +100,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
         setContentView(R.layout.fever_map_activity);
 
-        setTitle(getString(R.string.fever_map));
+        setTitle(getString(R.string.temper_control));
 
         init();
         setEvent();
@@ -118,14 +121,14 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         findViewById(R.id.fever_map_menu_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TemperActivity.this, TemperControlActivity.class));
+                DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
             }
         });
         // 건강강검진예약
         findViewById(R.id.fever_map_menu_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null);
             }
         });
 
@@ -152,7 +155,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         findViewById(R.id.fever_map_menu_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null);
             }
         });
 

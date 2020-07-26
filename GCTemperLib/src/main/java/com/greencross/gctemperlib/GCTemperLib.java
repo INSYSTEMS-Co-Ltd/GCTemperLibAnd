@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -20,6 +21,9 @@ import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Temperature;
 import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_login;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
+import com.greencross.gctemperlib.hana.GCAlramType;
+import com.greencross.gctemperlib.util.GpsInfo;
+import com.greencross.gctemperlib.util.Util;
 
 
 public class GCTemperLib {
@@ -172,30 +176,15 @@ public class GCTemperLib {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
-            if (TextUtils.isEmpty(temper)) {
-                iGCResult.onResult(false, "체온을 입력해 주세요.", null);
-            }
 
-            Tr_Temperature.RequestData requestData = new Tr_Temperature.RequestData();
-            requestData.fever = temper;
-            getData(Tr_Temperature.class, requestData, new IGCResult() {
-                @Override
-                public void onResult(boolean isSuccess, String message, Object data) {
-                    if (data instanceof Tr_Temperature) {
-                        Tr_Temperature recv = (Tr_Temperature) data;
-                        if (recv.status.equals("Y")) {
-                            iGCResult.onResult(true, "체온 등록 완료", null);
-                        } else {
-                            iGCResult.onResult(false, "체온 등록 실패", null);
-                        }
-                    } else {
-                        iGCResult.onResult(false, "데이터 수신 실패", null);
-                    }
-                }
-            });
+            GpsInfo gps = new GpsInfo(mContext);
+            if (gps.isGetLocation()) {
+                registerLocationUpdates(temper, iGCResult);
+            } else {
+                gps.showSettingsAlert();
+            }
         }
     }
-
 
     /**
      * 알림 수신여부
@@ -344,6 +333,69 @@ public class GCTemperLib {
         }
 
         return true;
+    }
+
+
+    /**
+     * 위치정보 찾기
+     */
+    private LocationManager mLM;
+    private void registerLocationUpdates(String temper, final IGCResult iGCResult) {
+//        showProgress();
+
+        GpsInfo gps = new GpsInfo(mContext);
+        if(gps.isGetLocation()){
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+
+            //GLog.d("위치", "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude);
+            if(latitude != 0.0d && longitude != 0.0d){
+                String address = Util.FindAddress(mContext, latitude, longitude);
+
+                if(TextUtils.isEmpty(address) == false){
+                    address = address.replace("대한민국 ", "");
+//                    address = address.replace("경기도 ", "");
+                    String[] addrArr = address.split(" ");
+                    String mAddressDo = addrArr[0];
+                    String mAddressGu = addrArr[1];
+                    android.util.Log.i(TAG, "Gps_info: " + mAddressDo + mAddressGu);
+
+                    if (TextUtils.isEmpty(temper)) {
+                        iGCResult.onResult(false, "체온을 입력해 주세요.", null);
+                    }
+
+                    Tr_Temperature.RequestData requestData = new Tr_Temperature.RequestData();
+                    requestData.fever = temper;
+                    requestData.area = mAddressDo;
+                    requestData.est1 = mAddressDo;
+                    requestData.est2 = mAddressGu;
+                    requestData.la = ""+gps.getLatitude();
+                    requestData.lo = ""+gps.getLongitude();
+//                    requestData.Input_de = ;
+//                    requestData.is_wearable = ;
+
+                    getData(Tr_Temperature.class, requestData, new IGCResult() {
+                        @Override
+                        public void onResult(boolean isSuccess, String message, Object data) {
+                            if (data instanceof Tr_Temperature) {
+                                Tr_Temperature recv = (Tr_Temperature) data;
+                                if (recv.status.equals("Y")) {
+                                    iGCResult.onResult(true, "체온 등록 완료", null);
+                                } else {
+                                    iGCResult.onResult(false, "체온 등록 실패", null);
+                                }
+                            } else {
+                                iGCResult.onResult(false, "데이터 수신 실패", null);
+                            }
+                        }
+                    });
+
+
+                }
+            }
+        }
+
+//        hideProgress();
     }
 
 

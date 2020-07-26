@@ -2,8 +2,8 @@ package com.greencross.gctemperlib.network;
 
 import android.os.AsyncTask;
 
-import com.greencross.gctemperlib.common.NetworkConst;
 import com.greencross.gctemperlib.collection.Database;
+import com.greencross.gctemperlib.common.NetworkConst;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

@@ -50,60 +50,73 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+
+                <LinearLayout
+                    android:id="@+id/dialog_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
-                    android:id="@+id/dialog_layout">
+                    android:orientation="vertical"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="2sp"
+                        android:textColor="#6972d1"
+                        android:textSize="20sp"
+                        tools:text="큰글씨" />
+
 
                     <TextView
                         android:id="@+id/dialog_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="@dimen/_30_dp"
-                        android:layout_marginRight="@dimen/_30_dp"
-                        android:layout_marginTop="@dimen/_30_dp"
-                        android:text="혈당을 등록 하시겠습니까?"
-                        android:textSize="@dimen/_16_dp"
-                        android:lineSpacingExtra="@dimen/_4_dp"
-                        android:textColor="@color/color_333333"
-                        android:fontFamily="@font/hi_gothic_m" />
-
-                </RelativeLayout>
+                        android:textSize="15sp"
+                        android:textColor="#888888"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="7sp"
+                        android:layout_marginTop="10dp"
+                        tools:text="앱을 설치하기 위해 앱스토어로 이동합니다."
+                        />
 
 
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/dialog_b_type_button_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_64_dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/dialog_content"
                     android:layout_marginTop="@dimen/_30_dp"
                     android:layout_centerInParent="true"
                     android:orientation="horizontal"
-                    android:visibility="visible">
+                    android:visibility="visible"
+                    android:paddingRight="36dp"
+                    android:paddingLeft="36dp"
+                    android:paddingBottom="30dp">
 
                     <Button
                         android:id="@+id/cancel_btn"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="52dp"
                         android:layout_weight="1"  android:text="@string/popup_dialog_button_cancel"
                         android:textSize="@dimen/_18_dp"
                         android:background="@drawable/btn_left_xml"
                         android:textColor="@color/color_333333_btn"
-                        android:fontFamily="@font/hi_gothic_b" />
+                        android:layout_marginRight="15dp"/>
 
-                    <Button android:id="@+id/confirm_btn"
+
+                    <Button
+                        android:id="@+id/confirm_btn"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="52dp"
                         android:layout_weight="1"
-                        android:text="@string/popup_dialog_button_confirm"
-                        android:textSize="@dimen/_18_dp"
                         android:background="@drawable/btn_right_xml"
+                        android:text="@string/popup_dialog_button_confirm"
                         android:textColor="@color/color_f8f5f0_btn"
-                        android:fontFamily="@font/hi_gothic_b" />
+                        android:textSize="@dimen/_18_dp" />
                 </LinearLayout>
             </LinearLayout>
 

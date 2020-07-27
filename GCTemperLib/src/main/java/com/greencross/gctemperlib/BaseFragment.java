@@ -1,6 +1,7 @@
 package com.greencross.gctemperlib;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -56,6 +57,7 @@ public class BaseFragment extends Fragment implements IBaseFragment {
 
     private IPermission mIpermission = null;
     private IBackPress mIBackPress;
+    public CommonData commonData;// = CommonData.getInstance();
 
 
 //    private static BaseActivity mBaseActivity;
@@ -66,6 +68,8 @@ public class BaseFragment extends Fragment implements IBaseFragment {
 //        mBaseActivity = activity;
         return fragment;
     }
+
+
 
     public void movePage(Fragment fragment) {
         movePage(fragment, null);
@@ -87,6 +91,7 @@ public class BaseFragment extends Fragment implements IBaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        commonData = CommonData.getInstance(getContext());
         View view = super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
@@ -135,6 +140,18 @@ public class BaseFragment extends Fragment implements IBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        GCTemperLib gcHeatLib = new GCTemperLib(getContext());
+        if (gcHeatLib.isAvailableGCToken() == false) {
+            CDialog.showDlg(getContext(), "인증 후 이용 가능합니다.")
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            getActivity().finish();
+                        }
+                    });
+//            return null;
+        }
+
 //        if (getActivity() instanceof BaseActivity)
 //            loadActionbar(((BaseActivity)getActivity()).getCommonActionBar((BaseActivity) getActivity()));
 

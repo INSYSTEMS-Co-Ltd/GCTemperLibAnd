@@ -3,7 +3,7 @@
     <color name="disabled_color">#44000000</color>
     <color name="error_color">#E7492E</color>
 
-    <color name="bg_blue_dark">#9dc3e6</color>
+    <color name="bg_white">@color/colorWhite</color>
     <color name="bg_blue_light">#aad2f5</color>
 
     <color name="bg_yellow_dark">#f99c1b</color>

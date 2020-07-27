@@ -38,17 +38,7 @@ public class TemperControlFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        GCTemperLib gcHeatLib = new GCTemperLib(getContext());
-        if (gcHeatLib.isAvailableGCToken() == false) {
-            CDialog.showDlg(getContext(), "인증 후 이용 가능합니다.")
-                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
-                            getActivity().finish();
-                        }
-                    });
-            return null;
-        }
+        super.onCreateView(inflater, container, savedInstanceState);
 
         View view = inflater.inflate(R.layout.fever_control_fragment, container, false);
         if (getActivity() instanceof DummyActivity) {

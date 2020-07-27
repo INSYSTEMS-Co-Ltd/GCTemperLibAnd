@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/color_main_btn_01_col">
+        android:layout_alignParentTop="true">
 
         <ImageButton
             android:id="@+id/common_left_btn"
@@ -22,17 +21,19 @@
             android:layout_centerVertical="true"
             android:adjustViewBounds="true"
             android:background="@null"
-            android:src="@drawable/btn_back_white" />
+            android:src="@drawable/icon_back" />
 
         <TextView
             android:id="@+id/common_title_tv"
+            style="@style/hn_toolbar_title_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_48_dp"
+            android:layout_toRightOf="@id/common_left_btn"
+            android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textColor="@color/color_ffffff"
-            android:fontFamily="@font/hi_maum_r"
-            android:textSize="@dimen/px_50" />
+            tools:text="타이틀" />
 
         <Button
             android:id="@+id/common_right_btn"

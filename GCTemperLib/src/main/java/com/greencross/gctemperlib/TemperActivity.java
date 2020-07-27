@@ -22,6 +22,7 @@ import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.hana.HealthCareServiceFragment;
 import com.greencross.gctemperlib.hana.HealthRservationFragment;
 import com.greencross.gctemperlib.hana.SearchAddressFragment;
+import com.greencross.gctemperlib.hana.SettingAddressFragment;
 import com.greencross.gctemperlib.hana.TemperControlFragment;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
@@ -224,7 +225,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         if (id == R.id.btn_alarm) {
 //            intent = new Intent(TemperActivity.this, SettingAddressActivity.class);
 //            startActivity(intent);
-            DummyActivity.startActivityForResult(TemperActivity.this, REQUEST_SEARCH_ADDR, SearchAddressFragment.class, null);
+            DummyActivity.startActivityForResult(TemperActivity.this, REQUEST_SEARCH_ADDR, SettingAddressFragment.class, null);
         }
     }
 

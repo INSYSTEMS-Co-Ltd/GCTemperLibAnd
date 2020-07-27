@@ -33,7 +33,7 @@ public class CDialog extends Dialog {
     private String mTitle;
     private String mMessage;
     //private LinearLayout mContentLayout;
-    private RelativeLayout mContentLayout;
+    private LinearLayout mContentLayout;
     private LinearLayout mBtnLayout;
 
     private View.OnClickListener mNoClickListener;
@@ -413,7 +413,7 @@ public class CDialog extends Dialog {
         mMessageView = (TextView) findViewById(R.id.dialog_content);
         mNoButton = (Button) findViewById(R.id.cancel_btn);
         mOkButton = (Button) findViewById(R.id.confirm_btn);
-        mContentLayout = (RelativeLayout) findViewById(R.id.dialog_layout);
+        mContentLayout = (LinearLayout) findViewById(R.id.dialog_layout);
         mBtnLayout = (LinearLayout) findViewById(R.id.dialog_b_type_button_layout);
 
         //mContentLayout = (LinearLayout) findViewById(R.id.dialog_content_layout);

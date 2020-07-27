@@ -50,24 +50,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
                 <LinearLayout
                     android:id="@+id/dialog_layout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:orientation="vertical"
-                    android:paddingTop="20dp">
+                    android:paddingRight="36dp"
+                    android:paddingLeft="36dp"
+                    android:paddingTop="30dp">
 
                     <TextView
+                        android:id="@+id/dialog_title_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="2sp"
                         android:textColor="#6972d1"
                         android:textSize="20sp"
                         tools:text="큰글씨" />
-
 
                     <TextView
                         android:id="@+id/dialog_content"
@@ -76,9 +77,8 @@
                         android:textSize="15sp"
                         android:textColor="#888888"
                         android:letterSpacing="-0.02"
-                        android:lineSpacingExtra="7sp"
-                        android:layout_marginTop="10dp"
-                        tools:text="앱을 설치하기 위해 앱스토어로 이동합니다."
+                        android:layout_marginTop="24dp"
+                        tools:text="메시지"
                         />
 
 

@@ -9,6 +9,12 @@
     android:orientation="vertical"
     tools:ignore="missingPrefix">
 
+    <!-- 안내페이지 -->
+    <include
+        android:visibility="gone"
+        android:id="@+id/temper_info_fragment"
+        layout="@layout/temper_info_fragment"/>
+
     <RelativeLayout
         android:id="@+id/common_bg_layout"
         android:layout_width="match_parent"

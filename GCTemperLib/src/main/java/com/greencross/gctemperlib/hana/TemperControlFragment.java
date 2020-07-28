@@ -38,7 +38,7 @@ public class TemperControlFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.fever_control_fragment, container, false);
+        View view = inflater.inflate(R.layout.temper_control_fragment, container, false);
         if (getActivity() instanceof DummyActivity) {
             getActivity().setTitle(getString(R.string.temper_control));
         }

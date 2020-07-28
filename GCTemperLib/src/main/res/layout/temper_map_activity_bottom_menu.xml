@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/slide_drag_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
-    android:orientation="vertical"
-    tools:background="@color/colorBlack">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/slide_top_full_down_layout"
@@ -15,8 +13,8 @@
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/draw_slide_menu_header"
         android:orientation="horizontal"
+        android:background="@drawable/draw_slide_menu_header"
         android:paddingLeft="@dimen/_10_dp"
         android:paddingTop="@dimen/_10_dp"
         android:paddingRight="@dimen/_10_dp">
@@ -101,8 +99,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:background="@drawable/draw_slide_menu_header"
-        android:orientation="vertical">
+        android:layout_marginTop="-2dp">
 
         <RelativeLayout
             android:id="@+id/slide_top_full_up_layout"
@@ -130,10 +129,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_2"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:background="@color/colorDarkGray"
                 android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:layout_alignParentBottom="true"/>
+                android:paddingRight="24dp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -143,7 +142,6 @@
             android:orientation="vertical"
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
-
 
 
             <LinearLayout

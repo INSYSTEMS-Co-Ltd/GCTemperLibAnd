@@ -19,7 +19,7 @@ public class ScrollableViewHelper {
      * view handle the scrolling
      *
      * @param scrollableView the scrollable view
-     * @param isSlidingUp whether or not the panel is sliding up or down
+     * @param isSlidingUp    whether or not the panel is sliding up or down
      * @return the scroll position
      */
     public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {

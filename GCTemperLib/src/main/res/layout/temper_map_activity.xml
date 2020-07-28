@@ -83,22 +83,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!-- 지도 레이아웃 -->
-        <include layout="@layout/temper_map_fragment" />
+
         <com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout
             android:id="@+id/sliding_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom"
             app:umanoDragView="@+id/slide_drag_view"
-            app:umanoOverlay="false"
+            app:umanoOverlay="true"
             app:umanoPanelHeight="58dp"
             app:umanoScrollableView="@+id/slide_contents_view"
-            app:umanoShadowHeight="4dp">
-            <!--    app:umanoParallaxOffset="100dp"-->
+            >
+            <!-- app:umanoShadowHeight="4dp"
+                app:umanoParallaxOffset="100dp"-->
             <!-- SlidingUpPanelLayout 사용하기 위한 dummy view -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+            <include layout="@layout/temper_map_fragment" />
             <!-- 슬라이드 메뉴 -->
             <include layout="@layout/temper_map_activity_bottom_menu" />
         </com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout>

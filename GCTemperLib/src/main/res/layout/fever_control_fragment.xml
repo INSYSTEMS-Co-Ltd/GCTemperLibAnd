@@ -18,36 +18,25 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <LinearLayout
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/go_graph_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="체온그래프" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_65_dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/edittext_box_square">
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/hn_temper_level" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_65_dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/graph_temp_map" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/go_graph_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/hn_temper_graph_btn" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,32 +54,51 @@
                 android:id="@+id/temper_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="0"
-                android:textSize="50dp"
-                tools:text="30.0" />
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.05"
+                android:lineSpacingExtra="-24sp"
+                android:textColor="#dc622c"
+                android:textSize="61sp"
+                android:drawablePadding="12dp"
+                android:drawableLeft="@drawable/hn_temper_icon"
+                tools:text="38.0" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="℃" />
-        </LinearLayout>
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="7sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="22dp"
+                android:textColor="#7f7f7f"
+                android:layout_gravity="top"
+                android:textSize="30sp"
+                tools:text="℃" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/temper_device_call" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/hn_temper_device_call_btn" />
+        </LinearLayout>
     </LinearLayout>
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:gravity="center">
-       <Button
-           android:id="@+id/temper_regist_done_btn"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/text_regist_complete"/>
-   </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/temper_regist_done_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
+        android:src="@drawable/button_secondary" />
 </LinearLayout>

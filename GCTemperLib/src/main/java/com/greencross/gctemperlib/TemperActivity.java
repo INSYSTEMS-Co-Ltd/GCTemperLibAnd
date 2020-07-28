@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.hana.HealthCareServiceFragment;
 import com.greencross.gctemperlib.hana.HealthRservationFragment;
-import com.greencross.gctemperlib.hana.SearchAddressFragment;
 import com.greencross.gctemperlib.hana.SettingAddressFragment;
 import com.greencross.gctemperlib.hana.TemperControlFragment;
 import com.greencross.gctemperlib.greencare.component.CDialog;
@@ -99,7 +98,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             return;
         }
 
-        setContentView(R.layout.fever_map_activity);
+        setContentView(R.layout.temper_map_activity);
 
         setTitle(getString(R.string.temper_control));
 
@@ -160,6 +159,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             }
         });
 
+        final View slideFullUpLayout = findViewById(R.id.slide_top_full_up_layout);
+        final View slideFullDownLayout = findViewById(R.id.slide_top_full_down_layout);
 
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
@@ -171,6 +172,19 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             @Override
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
                 Log.i(TAG, "onPanelStateChanged " + newState);
+                switch (newState) {
+                    case COLLAPSED: // 완전 내려간 경우
+                        slideFullUpLayout.setVisibility(View.GONE);
+                        slideFullDownLayout.setVisibility(View.VISIBLE);
+                        break;
+                    case EXPANDED:  // 완전 펼쳐진 경우
+                        slideFullUpLayout.setVisibility(View.VISIBLE);
+                        slideFullDownLayout.setVisibility(View.GONE);
+                        break;
+                    case DRAGGING:
+
+                        break;
+                }
             }
         });
 

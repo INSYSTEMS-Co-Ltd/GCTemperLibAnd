@@ -67,7 +67,7 @@ public class FeverFAQFragment extends BaseFragment implements  TemperMainActivit
      */
     public void init(View view){
 
-        mRefreshListView   =       (ListView) view.findViewById(R.id.list_view);
+        mRefreshListView   =       (ListView) view.findViewById(R.id.slide_contents_view);
 //        mListView = mRefreshListView.getRefreshableView();
         mItem   =   new ArrayList<FeverFaqItem>();
 

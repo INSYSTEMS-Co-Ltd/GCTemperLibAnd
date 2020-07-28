@@ -1,6 +1,5 @@
 package com.greencross.gctemperlib.hana;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,7 +18,6 @@ import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.temper.TemperGraphFragment;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.greencare.util.TextWatcherUtil;

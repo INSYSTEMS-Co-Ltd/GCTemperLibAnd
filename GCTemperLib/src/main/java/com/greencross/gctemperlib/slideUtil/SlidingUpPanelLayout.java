@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -274,6 +275,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     public SlidingUpPanelLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        setBackgroundColor(Color.TRANSPARENT);
 
         if (isInEditMode()) {
             mShadowDrawable = null;

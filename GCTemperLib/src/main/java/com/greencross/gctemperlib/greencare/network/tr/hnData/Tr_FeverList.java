@@ -53,7 +53,6 @@ public class Tr_FeverList extends BaseData {
 
             body.put("cust_id", custNo);
             body.put("startdate", data.startdate);
-            body.put("startdate", data.startdate);
             body.put("enddate", data.enddate);
 			return body;
 		}

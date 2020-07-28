@@ -79,24 +79,29 @@
              umanoParallaxOffset 에 값을 주면 해당 높이만큼 뒤에 화면을 올려준다.
              umanoShadowHeight 는 슬라이딩 패널 윗부분에 그림자 효과
              umanoOverlay 를 false로 해주면 슬라이딩 패널이 위로 보이고 뒷 부분은 반투명하게 보인다. -->
-    <com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout
-        android:id="@+id/sliding_layout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        app:umanoDragView="@+id/slide_drag_view"
-        app:umanoOverlay="false"
-        app:umanoPanelHeight="58dp"
-        app:umanoScrollableView="@+id/slide_contents_view"
-        app:umanoShadowHeight="4dp">
-<!--    app:umanoParallaxOffset="100dp"-->
-
+        android:layout_height="match_parent">
         <!-- 지도 레이아웃 -->
         <include layout="@layout/temper_map_fragment" />
-
-        <!-- 슬라이드 메뉴 -->
-        <!-- SLIDING LAYOUT -->
-        <include layout="@layout/temper_map_activity_bottom_menu" />
-    </com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout>
+        <com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout
+            android:id="@+id/sliding_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            app:umanoDragView="@+id/slide_drag_view"
+            app:umanoOverlay="false"
+            app:umanoPanelHeight="58dp"
+            app:umanoScrollableView="@+id/slide_contents_view"
+            app:umanoShadowHeight="4dp">
+            <!--    app:umanoParallaxOffset="100dp"-->
+            <!-- SlidingUpPanelLayout 사용하기 위한 dummy view -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <!-- 슬라이드 메뉴 -->
+            <include layout="@layout/temper_map_activity_bottom_menu" />
+        </com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout>
+    </FrameLayout>
 
 </LinearLayout>

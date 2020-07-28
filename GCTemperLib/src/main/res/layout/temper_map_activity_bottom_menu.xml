@@ -100,8 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/draw_slide_menu_header"
-        android:layout_marginTop="-2dp">
+        android:background="@drawable/draw_slide_menu_header">
 
         <RelativeLayout
             android:id="@+id/slide_top_full_up_layout"

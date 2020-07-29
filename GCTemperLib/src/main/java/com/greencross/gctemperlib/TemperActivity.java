@@ -73,8 +73,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     private LinearLayout mLinearTabMap;
 
-    private ImageButton mBtnAlarm;
-
     private SupportMapFragment mapFragment;
     private GoogleMap mMap;
 
@@ -219,7 +217,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 초기화
      */
     public void init() {
-        mBtnAlarm = (ImageButton) findViewById(R.id.btn_alarm);
         mLinearTabMap = (LinearLayout) findViewById(R.id.linear_tab_map);
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -232,21 +229,13 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 이벤트 연결
      */
     public void setEvent() {
-        mBtnAlarm.setOnClickListener(this);
 
         //hsh start
 //        textView9.setOnClickListener(this);
         //hsh end
 
-
         //click 저장
         OnClickListener mClickListener = new OnClickListener(this, view, TemperActivity.this);
-
-        //열지도
-        mBtnAlarm.setOnTouchListener(mClickListener);
-
-        mBtnAlarm.setContentDescription(getString(R.string.BtnAlarm));
-
     }
 
     public static ArrayList<EpidemicItem> mEpidemicList = new ArrayList<EpidemicItem>();        // 유행질병 카운트
@@ -254,11 +243,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btn_alarm) {
-//            intent = new Intent(TemperActivity.this, SettingAddressActivity.class);
-//            startActivity(intent);
-            DummyActivity.startActivityForResult(TemperActivity.this, REQUEST_SEARCH_ADDR, SettingAddressFragment.class, null);
-        }
     }
 
 
@@ -552,12 +536,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
-            @Override
-            public void onMyLocationClick(@NonNull Location location) {
-
-            }
-        });
+//        mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
+//            @Override
+//            public void onMyLocationClick(@NonNull Location location) {
+//
+//            }
+//        });
 //        mMap.getUiSettings().setZoomControlsEnabled(true);
 //        mMap.getUiSettings().setCompassEnabled(true);
 //        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);

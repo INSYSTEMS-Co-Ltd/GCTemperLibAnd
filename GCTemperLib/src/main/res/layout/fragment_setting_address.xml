@@ -118,19 +118,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout7"
         android:padding="@dimen/_20_dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="#ffffff"
-            android:lineSpacingExtra="0sp"
-            android:background="@drawable/draw_temper_confirm_btn"
-            android:text="저장"
-            />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="52dp"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:lineSpacingExtra="0sp"-->
+<!--            android:background="@drawable/draw_temper_confirm_btn"-->
+<!--            android:text="저장"-->
+<!--            />-->
 
+        <ImageView
+            android:id="@+id/temper_regist_done_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/button_secondary" />
     </LinearLayout>
 
 

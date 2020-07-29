@@ -9,34 +9,80 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="26dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="@dimen/_22_dp"
+        android:background="#f3f4ff">
 
-        <TextView
-            android:id="@+id/temper_notice_message"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/temper_notice_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#e23c22"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                tools:text="39.5℃이상 고열 입니다." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#888888"
+                android:letterSpacing="-0.02"
+                android:layout_marginTop="15dp"
+                tools:text="감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문 하는 것이 좋습니다."                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/hn_temper_smile_7"/>
     </LinearLayout>
 
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_65_dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/hn_temper_level" />
-
-    <ImageView
-        android:id="@+id/go_graph_activity"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/hn_temper_graph_btn" />
+        android:background="#f3f4ff">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_65_dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/hn_temper_level" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#f3f4ff"/>
+        <ImageView
+            android:id="@+id/go_graph_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/hn_temper_graph_btn" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,24 +100,24 @@
                 android:id="@+id/temper_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/hn_temper_icon"
+                android:drawablePadding="12dp"
                 android:gravity="center_horizontal"
                 android:letterSpacing="-0.05"
                 android:lineSpacingExtra="-24sp"
                 android:textColor="#dc622c"
                 android:textSize="61sp"
-                android:drawablePadding="12dp"
-                android:drawableLeft="@drawable/hn_temper_icon"
                 tools:text="38.0" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:letterSpacing="0.03"
-                android:lineSpacingExtra="7sp"
+                android:layout_gravity="top"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="22dp"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="7sp"
                 android:textColor="#7f7f7f"
-                android:layout_gravity="top"
                 android:textSize="30sp"
                 tools:text="℃" />
 

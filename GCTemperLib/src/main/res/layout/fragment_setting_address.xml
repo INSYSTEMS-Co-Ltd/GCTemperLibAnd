@@ -5,9 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/common_back_top"
-        layout="@layout/common_back_top" />
 
     <TextView
         android:id="@+id/textView15"
@@ -21,7 +18,7 @@
         android:padding="@dimen/_20_dp"
         android:textColor="#888888"
         android:textSize="15sp"
-        tools:text="@string/setting_address_msg" />
+        android:text="@string/setting_address_msg" />
 
 
     <Button
@@ -50,26 +47,37 @@
         android:paddingRight="@dimen/_40_dp">
 
 
-        <TextView
-            android:id="@+id/btn_search_address"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/_40_dp"
             android:layout_weight="1"
-            android:fontFamily="@font/hi_gothic_m"
-            android:gravity="center_vertical"
-            android:lineSpacingExtra="@dimen/_16_dp"
-            android:text="@string/search_address"
-            android:textColor="@color/txt_dark_lithg"
-            android:textColorHint="#dedede"
-            android:textSize="@dimen/_15_dp" />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/btn_search_address"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/hi_gothic_m"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="@dimen/_16_dp"
+                android:text="@string/search_address"
+                android:textColor="@color/txt_dark_lithg"
+                android:textColorHint="#dedede"
+                android:textSize="@dimen/_15_dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d9d9d9"/>
+        </LinearLayout>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/gps_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_marginLeft="@dimen/_20_dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/icon_gps" />
+            android:src="@drawable/hn_map_alram_location_btn"
+            android:background="@drawable/draw_circle_6972d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -120,7 +128,7 @@
             android:textColor="#ffffff"
             android:lineSpacingExtra="0sp"
             android:background="@drawable/draw_temper_confirm_btn"
-            tools:text="저장"
+            android:text="저장"
             />
 
     </LinearLayout>

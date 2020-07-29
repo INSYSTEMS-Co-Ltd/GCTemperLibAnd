@@ -1,7 +1,9 @@
 <resources>
 
+    <string name="fever_health_call_alert_title">헬스콜센터 운영시간은\n평일 09시 ~ 19시,\n토요일 09시 ~ 13시  이며\n일요일, 공휴일 휴무입니다.\n\n</string>
     <string name="fever_health_call_alert_message">헬스콜센터 운영시간은\n평일 09시 ~ 19시,\n토요일 09시 ~ 13시  이며\n일요일, 공휴일 휴무입니다.\n\n헬스콜센터로 연결하시겠습니까?</string>
-    <string name="fever_health_no_alert_message">불편을 드려 죄송합니다.\n\n고객님의 정보가 아직 업데이트 되지 않았습니다. 나중에 다시 시도해 주세요.</string>
+    <string name="fever_health_no_alert_title">불편을 드려 죄송합니다.</string>
+    <string name="fever_health_no_alert_message">고객님의 정보가 아직 업데이트 되지 않았습니다. 나중에 다시 시도해 주세요.</string>
     <string name="health_call_center">15885814</string>
 
 
@@ -385,7 +387,7 @@
 
     <!--열지도 알림 설정-->
     <string name="title_setting_address">열 지 도 알 림</string>
-    <string name="setting_address_msg">고객님이 계신 지역의 체온이 38℃ 이상일 경우 알람을 드립니다. (시/군/구 단위)</string>
+    <string name="setting_address_msg">고객님이 계신 지역의 체온이 38℃ 이상일 경우\n 알람을 드립니다. (시/군/구 단위)</string>
     <string name="register_address">등록된 지역 : </string>
     <string name="search_address">등록할 주소를 검색해 주세요.</string>
     <string name="none">없음</string>

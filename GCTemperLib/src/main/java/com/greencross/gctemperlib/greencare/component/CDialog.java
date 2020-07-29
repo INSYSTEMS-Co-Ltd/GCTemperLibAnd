@@ -24,7 +24,7 @@ public class CDialog extends Dialog {
     private static final String TAG = CDialog.class.getSimpleName();
     private boolean mIsAutoDismiss = true;
 
-    private LinearLayout mTitleLayout;
+//    private LinearLayout mTitleLayout;
     private TextView mTitleView;
     private TextView mMessageView;
     private Button mNoButton;
@@ -277,16 +277,18 @@ public class CDialog extends Dialog {
      * @param title
      */
     public void setTitle(String title) {
-        if (TextUtils.isEmpty(title)) {
-            //mTitleLayout.setVisibility(View.GONE);
-        } else {
-            //mTitleLayout.setVisibility(View.VISIBLE);
-            //mTitleView.setText(title);
-        }
+        mMessageView.setText(title);
     }
 
     public void setMessage(String message) {
-        mMessageView.setText(message);
+
+        if (TextUtils.isEmpty(message)) {
+            mTitleView.setVisibility(View.GONE);
+//            mTitleLayout.setVisibility(View.GONE);
+        } else {
+            mTitleView.setVisibility(View.VISIBLE);
+            mTitleView.setText(message);
+        }
     }
 
     public void setClickListener() {   //final View.OnClickListener noClickListener, final View.OnClickListener okClickListener) {
@@ -410,6 +412,7 @@ public class CDialog extends Dialog {
      * Layout
      */
     public void setLayout() {
+        mTitleView = (TextView) findViewById(R.id.dialog_title_textview);
         mMessageView = (TextView) findViewById(R.id.dialog_content);
         mNoButton = (Button) findViewById(R.id.cancel_btn);
         mOkButton = (Button) findViewById(R.id.confirm_btn);

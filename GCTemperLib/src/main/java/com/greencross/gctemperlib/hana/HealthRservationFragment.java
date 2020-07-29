@@ -15,6 +15,9 @@ import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 
+/**
+ * 건강검진 예약
+ */
 public class HealthRservationFragment extends BaseFragment {
 
     public static Fragment newInstance() {

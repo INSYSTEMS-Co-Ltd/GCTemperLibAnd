@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -17,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.hana.HealthCareServiceFragment;
@@ -117,47 +122,60 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             mFragmentNum = mIntent.getIntExtra("tabNum", 0);
         }
 
+        setSlideLayout();   // 하단 슬라이드 메뉴
+
+
+        // 헬스케어란
+        findViewById(R.id.map_mylocation_btn).setOnClickListener(view ->
+                moveMyLocation()
+        );
+
+        // 열지도 알림
+        findViewById(R.id.map_alram_btn).setOnClickListener(view ->
+                DummyActivity.startActivity(TemperActivity.this, SettingAddressFragment.class, null)
+        );
+    }
+
+    /**
+     * 하단 슬라이드 메뉴 세팅
+     */
+    private void setSlideLayout() {
         // 체온관리
-        findViewById(R.id.fever_map_menu_1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
-            }
-        });
+        findViewById(R.id.fever_map_menu_1).setOnClickListener(view ->
+                DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null)
+        );
         // 건강강검진예약
-        findViewById(R.id.fever_map_menu_2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null);
-            }
-        });
+        findViewById(R.id.fever_map_menu_2).setOnClickListener(view ->
+                DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null)
+        );
 
         // 건강상담
-        findViewById(R.id.fever_map_menu_3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CDialog dlg = CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_call_alert_message));
-                dlg.setOkButton(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String tel = "tel:" + getString(R.string.health_call_center);
-                        Intent intent = new Intent(Intent.ACTION_DIAL);
-                        intent.setData(Uri.parse(tel));
-                        startActivity(intent);
-                    }
-                });
-                dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
+        findViewById(R.id.fever_map_menu_3).setOnClickListener(view -> {
 
-            }
+            // TODO : DB 전송완료시 & DB전송이 완료되지 않은 경우 처리 해야 함
+
+            CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_no_alert_title)).setTitle(R.string.fever_health_no_alert_message);
+
+            CDialog dlg = CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_call_alert_message));
+            dlg.setOkButton(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String tel = "tel:" + getString(R.string.health_call_center);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse(tel));
+                    startActivity(intent);
+                }
+            });
+            dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
+
+
         });
 
         // 헬스케어란
-        findViewById(R.id.fever_map_menu_4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null);
-            }
-        });
+        findViewById(R.id.fever_map_menu_4).setOnClickListener(view ->
+                DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null)
+        );
+
 
         final View slideFullUpLayout = findViewById(R.id.slide_top_full_up_layout);
         final View slideFullDownLayout = findViewById(R.id.slide_top_full_down_layout);
@@ -534,17 +552,52 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
+        mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
+            @Override
+            public void onMyLocationClick(@NonNull Location location) {
+
+            }
+        });
 //        mMap.getUiSettings().setZoomControlsEnabled(true);
 //        mMap.getUiSettings().setCompassEnabled(true);
 //        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
 //        mMap.getUiSettings().setMapToolbarEnabled(true);
 
+        moveMyLocation();
+        setCustomMarkerView();
+    }
+
+    /**
+     * 내위치로 이동
+     */
+    private void moveMyLocation() {
         GpsInfo gps = new GpsInfo(this);
         if (gps.isGetLocation()) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gps.getLatitude(), gps.getLongitude()), 11));
-        }
+            LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
 
-        setCustomMarkerView();
+//            marker.setText(feverMapItem.getLoc_nm_2() + "\n" + "평균:" + feverMapItem.getAvg_fever());
+//            if (fever < 35.5d) {
+//                marker.setBackgroundResource(R.drawable.bg_marker_lv_1);
+//            } else if (fever < 37.5d) {
+//                marker.setBackgroundResource(R.drawable.bg_marker_lv_2);
+//            } else if (fever < 38d) {
+//                marker.setBackgroundResource(R.drawable.bg_marker_lv_3);
+//            } else if (fever < 39d) {
+//                marker.setBackgroundResource(R.drawable.bg_marker_lv_4);
+//            } else {
+//                marker.setBackgroundResource(R.drawable.bg_marker_lv_5);
+//            }
+
+//            MarkerOptions markerOptions = new MarkerOptions();
+////            markerOptions.title("" + fever);
+//            markerOptions.position(latLng);
+//            Drawable drawable = getResources().getDrawable(R.drawable.draw_circle_707070);
+//            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+//
+//            mMap.addMarker(markerOptions);
+        }
     }
 
     private void setCustomMarkerView() {

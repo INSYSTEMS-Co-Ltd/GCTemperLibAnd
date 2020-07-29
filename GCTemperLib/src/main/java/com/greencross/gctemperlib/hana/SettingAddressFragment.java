@@ -48,7 +48,7 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
     String mAddressDo = "";
     String mAddressGu = "";
 
-    private ImageButton common_left_btn;
+//    private ImageButton common_left_btn;
 
     public static Fragment newInstance() {
         SettingAddressFragment fragment = new SettingAddressFragment();
@@ -63,16 +63,6 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
         if (getActivity() instanceof DummyActivity) {
             getActivity().setTitle(getString(R.string.title_setting_address));
         }
-
-
-        mAddressDo = CommonData.getInstance(getContext()).getAddressDo();
-        mAddressGu = CommonData.getInstance(getContext()).getAddressGu();
-        if (mAddressDo.length() > 0 && mAddressGu.length() > 0) {
-            mTvAddressView.setText(mAddressDo + CommonData.STRING_SPACE + mAddressGu);
-        } else {
-            mTvAddressView.setText(getString(R.string.none));
-        }
-
         return view;
     }
 
@@ -82,12 +72,21 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
         mBtnSearchAddress = (TextView) view.findViewById(R.id.btn_search_address);
         mTvAddressView = (TextView) view.findViewById(R.id.tv_address_view);
         mBtnSaveAddress = (Button) view.findViewById(R.id.btn_save_address);
-        common_left_btn  = (ImageButton) view.findViewById(R.id.common_left_btn);
+//        common_left_btn  = (ImageButton) view.findViewById(R.id.common_left_btn);
+
+        mAddressDo = CommonData.getInstance(getContext()).getAddressDo();
+        mAddressGu = CommonData.getInstance(getContext()).getAddressGu();
+        if (mAddressDo.length() > 0 && mAddressGu.length() > 0) {
+            mTvAddressView.setText(mAddressDo + CommonData.STRING_SPACE + mAddressGu);
+        } else {
+            mTvAddressView.setText(getString(R.string.none));
+        }
 
         view.findViewById(R.id.gps_icon).setOnClickListener(this);
         mBtnSearchAddress.setOnClickListener(this);
         mBtnSaveAddress.setOnClickListener(this);
-        common_left_btn.setOnClickListener(this);
+//        common_left_btn.setOnClickListener(this);
+
     }
 
 
@@ -115,9 +114,9 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
             } else {
                 gps.showSettingsAlert();
             }
-        } else if (id == R.id.common_left_btn) {
-            getActivity().setResult(-2);
-            getActivity().finish();
+//        } else if (id == R.id.common_left_btn) {
+//            getActivity().setResult(-2);
+//            getActivity().finish();
         }
     }
 

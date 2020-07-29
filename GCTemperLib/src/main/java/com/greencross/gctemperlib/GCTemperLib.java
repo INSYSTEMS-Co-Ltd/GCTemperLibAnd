@@ -86,6 +86,8 @@ public class GCTemperLib {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
+            // TODO : 전문완료시 삭제 해야 함
+            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호
 //            new Handler().postDelayed(new Runnable() {
 //                @Override
 //                public void run() {
@@ -141,9 +143,12 @@ public class GCTemperLib {
                 return;
             }
 
+            // TODO : 전문완료시 삭제 해야 함
+            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
+
             Tr_login.RequestData requestData = new Tr_login.RequestData();
             requestData.cust_id = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);
-            ;
+
             requestData.devicetoken = pushToken;
             getData(Tr_login.class, requestData, new IGCResult() {
                 @Override

@@ -92,6 +92,7 @@
             app:umanoDragView="@+id/slide_drag_view"
             app:umanoOverlay="true"
             app:umanoPanelHeight="58dp"
+            app:umanoShadowHeight="0dp"
             app:umanoScrollableView="@+id/slide_contents_view"
             >
             <!-- app:umanoShadowHeight="4dp"

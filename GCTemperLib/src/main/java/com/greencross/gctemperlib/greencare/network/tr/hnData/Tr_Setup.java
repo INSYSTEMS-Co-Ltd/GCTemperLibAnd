@@ -70,6 +70,12 @@ public class Tr_Setup extends BaseData {
     /***********************************************RECEIVE********************************************/
     /**************************************************************************************************/
 
+    @SerializedName("resultcode")
+    public String resultcode;
+    @SerializedName("status")
+    public String status;
+    @SerializedName("message")
+    public String message;
     @SerializedName("ncrgd_yn_out")
     public String ncrgd_yn_out;
     @SerializedName("ncrgd_de_out")
@@ -78,8 +84,6 @@ public class Tr_Setup extends BaseData {
     public String area_thmt_yn_out;
     @SerializedName("area_thmt_de_out")
     public String area_thmt_de_out;
-    @SerializedName("status")
-    public String status;
     @SerializedName("docno")
     public String docno;
 }

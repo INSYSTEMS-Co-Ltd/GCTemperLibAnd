@@ -25,6 +25,10 @@ import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
 
 public class GCTemperLib {
     private final String TAG = getClass().getSimpleName();
@@ -142,8 +146,10 @@ public class GCTemperLib {
                     if (data instanceof Tr_Login) {
                         Tr_Login recv = (Tr_Login) data;
                         if (recv.status.equals("Y")) {
-                            iGCResult.onResult(true, "푸시 토큰 등록 완료", null);
-                            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
+                            boolean isSuccessed = recv.isSuccess(recv.resultcode);
+                            if (isSuccess)
+                                SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
+                            iGCResult.onResult(isSuccessed, recv.message, recv);
                         } else {
                             iGCResult.onResult(false, "푸시 토큰 등록 실패", null);
                         }
@@ -193,14 +199,13 @@ public class GCTemperLib {
 
         if (checkGCToken(iGCResult) == false) {
             return;
-        } else if (TextUtils.isEmpty(pushToken)) {
-            iGCResult.onResult(false, "PUSH 토큰 등록 후 이용 가능합니다.", null);
-            return;
         } else if (TextUtils.isEmpty(custNo)) {
             iGCResult.onResult(false, "사용자 정보 등록 후 이용 가능합니다.", null);
             return;
+        } else if (TextUtils.isEmpty(pushToken)) {
+            iGCResult.onResult(false, "PUSH 토큰 등록 후 이용 가능합니다.", null);
+            return;
         } else {
-
             Tr_Setup.RequestData requestData = new Tr_Setup.RequestData();
             if (alramType == GCAlramType.GC_ALRAM_TYPE_독려) {
                 requestData.ncrgd_yn = isEnable ? "Y" : "N";
@@ -213,12 +218,14 @@ public class GCTemperLib {
                 public void onResult(boolean isSuccess, String message, Object data) {
                     if (data instanceof Tr_Setup) {
                         Tr_Setup recv = (Tr_Setup) data;
-                        if (recv.status.equals("Y")) {
-                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
-                            SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
-                        } else {
-                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
-                        }
+                        boolean isSuccessed = recv.isSuccess(recv.resultcode);
+                        iGCResult.onResult(isSuccessed, recv.message, recv);
+//                        if (recv.status.equals("Y")) {
+//                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
+//                            SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
+//                        } else {
+//                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
+//                        }
                     } else {
                         iGCResult.onResult(isSuccess, message, data);
                     }
@@ -347,9 +354,7 @@ public class GCTemperLib {
                     address = address.replace("대한민국 ", "");
 //                    address = address.replace("경기도 ", "");
                     String[] addrArr = address.split(" ");
-                    String mAddressDo = addrArr[0];
-                    String mAddressGu = addrArr[1];
-                    android.util.Log.i(TAG, "Gps_info: " + mAddressDo + mAddressGu);
+                    android.util.Log.i(TAG, "Gps_info: " + Arrays.toString(addrArr));
 
                     if (TextUtils.isEmpty(temper)) {
                         iGCResult.onResult(false, "체온을 입력해 주세요.", null);
@@ -357,12 +362,14 @@ public class GCTemperLib {
 
                     Tr_Temperature.RequestData requestData = new Tr_Temperature.RequestData();
                     requestData.fever = temper;
-                    requestData.area = mAddressDo;
-                    requestData.est1 = mAddressDo;
-                    requestData.est2 = mAddressGu;
+                    for (int i = 0; i < addrArr.length; i++) {
+                        if (i == 0) requestData.area = addrArr[i];
+                        if (i == 1) requestData.est1 = addrArr[i];
+                        if (i == 2) { requestData.est2 = addrArr[i];  break; }
+                    }
                     requestData.la = ""+gps.getLatitude();
                     requestData.lo = ""+gps.getLongitude();
-//                    requestData.Input_de = ;
+                    requestData.Input_de = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 //                    requestData.is_wearable = ;
 
                     getData(Tr_Temperature.class, requestData, new IGCResult() {
@@ -370,22 +377,16 @@ public class GCTemperLib {
                         public void onResult(boolean isSuccess, String message, Object data) {
                             if (data instanceof Tr_Temperature) {
                                 Tr_Temperature recv = (Tr_Temperature) data;
-                                if (recv.status.equals("Y")) {
-                                    iGCResult.onResult(true, "체온 등록 완료", null);
-                                } else {
-                                    iGCResult.onResult(false, "체온 등록 실패", null);
-                                }
+                                iGCResult.onResult(recv.isSuccess(recv.resultcode), ((Tr_Temperature) data).message, null);
+
                             } else {
                                 iGCResult.onResult(false, "데이터 수신 실패", null);
                             }
                         }
                     });
-
-
                 }
             }
         }
-
 //        hideProgress();
     }
 

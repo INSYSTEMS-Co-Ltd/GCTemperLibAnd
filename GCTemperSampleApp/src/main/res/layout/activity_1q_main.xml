@@ -80,7 +80,7 @@
                     android:id="@+id/cust_no_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="고객번호"/>
+                    android:text="1"/>
             </LinearLayout>
 
             <Button
@@ -116,7 +116,7 @@
                     android:id="@+id/push_token_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="푸시 토큰"/>
+                    android:text="1111"/>
             </LinearLayout>
 
             <Button

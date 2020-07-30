@@ -18,7 +18,7 @@ import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
 import com.greencross.gctemperlib.greencare.network.tr.HNCConnAsyncTask;
 import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Setup;
 import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Temperature;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_login;
+import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Login;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.GCAlramType;
@@ -84,41 +84,25 @@ public class GCTemperLib {
      */
     public void registCustomerNo(@Nullable String customerNo, IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
+            Log.e(TAG, "IGCResult가 없습니다.");
             return;
         } else {
-            // TODO : 전문완료시 삭제 해야 함
-            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//
-//                    if (TextUtils.isEmpty(customerNo)) {
-//                        iGCResult.onResult(false, "고객 번호를 입력해주세요.", null);
-//                    } else {
-//                        iGCResult.onResult(true, "고객 번호 등록 완료", null);
-//                    }
-//                }
-//            }, 500);
-
             if (TextUtils.isEmpty(customerNo)) {
                 iGCResult.onResult(false, "고객 번호를 입력해주세요.", null);
                 return;
             }
 
             // 최초 인증, 고객번호 저장
-            Tr_login.RequestData requestData = new Tr_login.RequestData();
+            Tr_Login.RequestData requestData = new Tr_Login.RequestData();
             requestData.cust_id = customerNo;
-            getData(Tr_login.class, requestData, new IGCResult() {
+            getData(Tr_Login.class, requestData, new IGCResult() {
                 @Override
                 public void onResult(boolean isSuccess, String message, Object data) {
-                    if (data instanceof Tr_login) {
-                        Tr_login recv = (Tr_login) data;
-                        if (recv.status.equals("Y")) {
-                            iGCResult.onResult(true, "고객 번호 등록 완료", null);
-                            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호
-                        } else {
-                            iGCResult.onResult(false, "고객 번호 등록 실패 하였습니다.", null);
-                        }
+                    if (data instanceof Tr_Login) {
+                        Tr_Login recv = (Tr_Login) data;
+                        boolean isLogin = recv.isSuccess(recv.resultcode);
+                        SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, isLogin ? customerNo : null);     // 사용자 번호 저장
+                        iGCResult.onResult(isLogin, recv.message, recv);
                     } else {
                         iGCResult.onResult(isSuccess, message, data);
                     }
@@ -138,23 +122,25 @@ public class GCTemperLib {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
+            String custId = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);     // 사용자 번호 저장
+            if (TextUtils.isEmpty(custId)) {
+                iGCResult.onResult(false, "고객정보 등록후 이용 가능 합니다.", null);
+                return;
+            }
             if (TextUtils.isEmpty(pushToken)) {
                 iGCResult.onResult(false, "푸시 토큰을 입력해주세요.", null);
                 return;
             }
 
-            // TODO : 전문완료시 삭제 해야 함
-            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
-
-            Tr_login.RequestData requestData = new Tr_login.RequestData();
-            requestData.cust_id = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);
-
+            Tr_Login.RequestData requestData = new Tr_Login.RequestData();
+            requestData.cust_id = custId;
             requestData.devicetoken = pushToken;
-            getData(Tr_login.class, requestData, new IGCResult() {
+
+            getData(Tr_Login.class, requestData, new IGCResult() {
                 @Override
                 public void onResult(boolean isSuccess, String message, Object data) {
-                    if (data instanceof Tr_login) {
-                        Tr_login recv = (Tr_login) data;
+                    if (data instanceof Tr_Login) {
+                        Tr_Login recv = (Tr_Login) data;
                         if (recv.status.equals("Y")) {
                             iGCResult.onResult(true, "푸시 토큰 등록 완료", null);
                             SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
@@ -228,10 +214,10 @@ public class GCTemperLib {
                     if (data instanceof Tr_Setup) {
                         Tr_Setup recv = (Tr_Setup) data;
                         if (recv.status.equals("Y")) {
-                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), null);
+                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
                             SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
                         } else {
-                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), null);
+                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
                         }
                     } else {
                         iGCResult.onResult(isSuccess, message, data);
@@ -300,14 +286,14 @@ public class GCTemperLib {
 
             @Override
             public void view(HNCConnAsyncTask.CQueryResult result) {
-                Log.i(TAG, "result1="+result);
+//                Log.i(TAG, "result1="+result);
                 if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
-                    Log.e(TAG, "데이터 수신 성공::"+result);
+//                    Log.e(TAG, "데이터 수신 성공::"+result);
                     if (iGCResult != null) {
                         iGCResult.onResult(true, "데이터 수신 성공", result.data);
                     }
                 } else {
-                    Log.e(TAG, "데이터 수신 실패");
+//                    Log.e(TAG, "데이터 수신 실패");
                     if (iGCResult != null) {
                         iGCResult.onResult(false, "데이터 수신 실패", null);
                     }

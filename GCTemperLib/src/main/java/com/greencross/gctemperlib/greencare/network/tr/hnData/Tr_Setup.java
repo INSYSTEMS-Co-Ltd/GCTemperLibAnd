@@ -6,6 +6,7 @@ import android.os.Build;
 import com.google.gson.annotations.SerializedName;
 import com.greencross.gctemperlib.BuildConfig;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
+import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 
 import org.json.JSONException;
@@ -33,6 +34,11 @@ PUSH 알림 설정
 
 public class Tr_Setup extends BaseData {
 	private final String TAG = getClass().getSimpleName();
+    @Override
+    protected String getConnUrl() {
+        return BaseUrl.COMMON_URL + "/Member/v1/Setup";
+    }
+
 
 	public static class RequestData {
 		public String ncrgd_yn;

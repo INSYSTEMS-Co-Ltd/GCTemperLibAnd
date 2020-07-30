@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.annotations.SerializedName;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
+import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 
 import org.json.JSONException;
@@ -32,9 +33,12 @@ import java.util.List;
 public class Tr_MapList extends BaseData {
 	private final String TAG = getClass().getSimpleName();
 
-	public static class RequestData {
-		public String ncrgd_yn;
-		public String area_thmt_yn;
+    @Override
+    protected String getConnUrl() {
+        return BaseUrl.COMMON_URL + "/Fever/v1/MapList";
+    }
+
+    public static class RequestData {
 	}
 
 	public Tr_MapList(Context context) {
@@ -42,40 +46,44 @@ public class Tr_MapList extends BaseData {
 //		super.conn_url = BaseUrl.COMMON_URL;
 	}
 
-	@Override
-	public JSONObject makeJson(Object obj) throws JSONException {
-		if (obj instanceof RequestData) {
-			JSONObject body = new JSONObject();
-			RequestData data = (RequestData) obj;
-            String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
-            String pushToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_PUSH_TOKEN);    // 푸시키
-
-			body.put("cust_id", custNo);
-			body.put("ncrgd_yn", data.ncrgd_yn);
-			body.put("area_thmt_yn", data.area_thmt_yn);
-			return body;
-		}
-		return super.makeJson(obj);
-	}
+//	@Override
+//	public JSONObject makeJson(Object obj) throws JSONException {
+//		if (obj instanceof RequestData) {
+//			JSONObject body = new JSONObject();
+//			RequestData data = (RequestData) obj;
+//            String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
+//            String pushToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_PUSH_TOKEN);    // 푸시키
+//
+//			return body;
+//		}
+//		return super.makeJson(obj);
+//	}
 
     /**************************************************************************************************/
     /***********************************************RECEIVE********************************************/
     /**************************************************************************************************/
 
-    List<MapList> mapList = new ArrayList<>();
-    class MapList {
-        @SerializedName("ncrgd_yn_out")
-        public String ncrgd_yn_out;
-        @SerializedName("ncrgd_de_out")
-        public String ncrgd_de_out;
-        @SerializedName("area_thmt_yn_ou")
-        public String area_thmt_yn_out;
-        @SerializedName("area_thmt_de_ou")
-        public String area_thmt_de_out;
-        @SerializedName("status")
-        public String status;
-        @SerializedName("docno")
-        public String docno;
-    }
+    @SerializedName("status")
+    public String status;
+    @SerializedName("docno")
+    public String docno;
+    @SerializedName("resultcode")
+    public String resultcode;
+    @SerializedName("message")
+    public String message;
 
+    @SerializedName("data")
+    public List<MapList> mapList = new ArrayList<>();
+    public class MapList {
+        @SerializedName("loc_nm_1")
+        public String loc_nm_1;
+        @SerializedName("loc_nm_2")
+        public String loc_nm_2;
+        @SerializedName("avg_fever")
+        public String avg_fever;
+        @SerializedName("loc_1")
+        public String loc_1;
+        @SerializedName("loc_2")
+        public String loc_2;
+    }
 }

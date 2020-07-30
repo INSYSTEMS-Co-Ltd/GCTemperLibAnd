@@ -9,10 +9,10 @@ public class BaseUrl {
 
 	static {
 		if(RELEASE_MODE){
-            COMMON_URL = "https://api.devgc.com/hana/Member/v1/Login";
+            COMMON_URL = "https://api.devgc.com/hana";
 
 		} else {
-            COMMON_URL = "https://api.devgc.com/hana/Member/v1/Login";
+            COMMON_URL = "https://api.devgc.com/hana";
 		}
 //		FOOD_IMAGE_URL ="http://wkd.walkie.co.kr/HS_HL/UPLOAD/SK_FOOD/";
 		

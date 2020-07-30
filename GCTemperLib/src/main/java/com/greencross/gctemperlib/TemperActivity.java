@@ -24,6 +24,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.greencross.gctemperlib.base.BackBaseActivity;
+import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_MapList;
+import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_MapList;
+import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.HealthCareServiceFragment;
 import com.greencross.gctemperlib.hana.HealthRservationFragment;
 import com.greencross.gctemperlib.hana.SettingAddressFragment;
@@ -294,82 +297,33 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 열지도 데이터 가져오기
      */
     public void requestMapData(Date startDate, Date ednDate) {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        Tr_MapList.RequestData requestData = new Tr_MapList.RequestData();
+        getData(Tr_MapList.class, requestData, new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                if (data instanceof Tr_MapList) {
+                    Tr_MapList recv = (Tr_MapList) data;
 
-        try {
-            JSONObject object = new JSONObject();
-            object.put(CommonData.JSON_API_CODE_F, CommonData.JSON_APINM_HJ002);
-            params.add(new BasicNameValuePair(CommonData.JSON_STRJSON, object.toString()));
-            RequestApi.requestApi(this, NetworkConst.NET_GET_MAP_DATA, NetworkConst.getInstance().getFeverDomain(), new CustomAsyncListener() {
-                @Override
-                public void onNetworkError(Context context, int type, int httpResultCode, CustomAlertDialog dialog) {
-                    hideProgress();
-                    dialog.show();
-                }
+                    if (recv.isSuccess(recv.resultcode)) {
+                        for (Tr_MapList.MapList mapList : recv.mapList) {
+                            LocationItem item = new LocationItem();
+                            item.setLoc_nm_1(mapList.loc_nm_1);
+                            item.setLoc_nm_2(mapList.loc_nm_2);
+                            item.setAvg_fever(mapList.avg_fever);
+                            item.setLoc_1(mapList.loc_1);
+                            item.setLoc_2(mapList.loc_2);
 
-                @Override
-                public void onDataError(Context context, int type, String resultData, CustomAlertDialog dialog) {
-                    hideProgress();
-                    dialog.show();
-                }
-
-                @Override
-                public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
-                            try {
-                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
-
-                                if (data_yn.equals(CommonData.YES)) {
-                                    JSONArray mapArr = resultData.getJSONArray(CommonData.JSON_DATA_F);
-                                    // 데이터가 있을 시
-                                    if (mapArr.length() > 0) {
-                                        for (int i = 0; i < mapArr.length(); i++) {
-                                            try {
-                                                JSONObject object = mapArr.getJSONObject(i);
-
-                                                LocationItem item = new LocationItem();
-                                                item.setLoc_nm_1(object.getString(CommonData.JSON_LOC_NM_1));
-                                                item.setLoc_nm_2(object.getString(CommonData.JSON_LOC_NM_2));
-                                                item.setAvg_fever(object.getString(CommonData.JSON_AVG_FEVER));
-                                                item.setLoc_1(object.getString(CommonData.JSON_LOC_1));
-                                                item.setLoc_2(object.getString(CommonData.JSON_LOC_2));
-
-                                                if (Double.parseDouble(item.getAvg_fever()) > 0)
-                                                    addMarker(item);
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                        //hsh start
-//                                        setTabShow();
-                                        //hsh end
-                                    }
-                                }
-
-                            } catch (Exception e) {
-                                GLog.e(e.toString());
-                            }
-
-                            break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
-
-                            break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
-                            break;
-
-                        default:
-                            GLog.i("NET_GET_APP_INFO default", "dd");
-                            break;
+                            if (Double.parseDouble(item.getAvg_fever()) > 0)
+                                addMarker(item);
+                        }
+                    } else {
+                        CDialog.showDlg(TemperActivity.this, recv.message);
                     }
+                } else {
+                    CDialog.showDlg(TemperActivity.this, "데이터 수신에 실패 하였습니다.");
                 }
-            }, params, new MakeProgress(this));
-        } catch (Exception e) {
-            GLog.i(e.toString(), "dd");
-        }
+            }
+        });
     }
 
     private Intent inTentGo = null;

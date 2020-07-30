@@ -31,58 +31,61 @@ public class HNApiData {
 
     public Object getData(Context context, Class<? extends BaseData> cls, final Object obj) throws Exception {
         Object recv = null;
-            BaseData baseData = createTrClass(cls, context);
-            JSONObject body = baseData.makeJson(obj);
-
-            Log.d(TAG, "baseData.conn_url=" + baseData.conn_url);
-            Log.i(TAG, "ApiData.url=" + baseData.conn_url);
+        BaseData baseData = createTrClass(cls, context);
+        JSONObject body = baseData.makeJson(obj);
+        String connUrl = baseData.getConnUrl();
+        Log.i(TAG, "ApiData.url=" + connUrl);
 //        ConnectionUtil connectionUtil = new ConnectionUtil(baseData.conn_url);
 //            result = connectionUtil.doConnection(body, baseData.getClass().getSimpleName(), url, baseData);
-            String result = connection(body, baseData);
+        String result = connection(body, baseData, connUrl);
 
-            if (TextUtils.isEmpty(result)) {
-                Log.e(TAG, "getData.result=" + result);
-                return result;
-            } else {
-                Log.i(TAG, "####################### API RESULT." + baseData.getClass().getSimpleName() + " #####################");
-                JsonLogPrint.printJson(result);
-                Log.i(TAG, "####################### API RESULT." + baseData.getClass().getSimpleName() + " #####################");
-            }
+        if (TextUtils.isEmpty(result)) {
+            Log.e(TAG, "getData.result=" + result);
+            return result;
+        } else {
+            Log.i(TAG, "####################### API RESULT." + baseData.getClass().getSimpleName() + " #####################");
+            JsonLogPrint.printJson(result);
+            Log.i(TAG, "####################### API RESULT." + baseData.getClass().getSimpleName() + " #####################");
+        }
 
 
-            Gson gson = new Gson();
-            if (result.startsWith("[")) {
-                // json 배열 처리
-                recv = baseData.gsonFromArrays(gson, result);
-                return recv;
-            } else {
-                // json 단일 처리
-                recv = gson.fromJson(result, baseData.getClass());
-                return recv;
-            }
+        Gson gson = new Gson();
+        if (result.startsWith("[")) {
+            // json 배열 처리
+            recv = baseData.gsonFromArrays(gson, result);
+            return recv;
+        } else {
+            // json 단일 처리
+            recv = gson.fromJson(result, baseData.getClass());
+            return recv;
+        }
     }
 
-    private String connection(JSONObject body, BaseData tr) throws Exception {
+    private String connection(JSONObject body, BaseData tr, String connUrl) throws Exception {
         HttpURLConnection conn = null;
         OutputStream os = null;
         InputStream is = null;
         String result = null;
 //                String result = "";
-        URL url = new URL(tr.conn_url);
+        URL url = new URL(connUrl);
         conn = (HttpURLConnection) url.openConnection();
-        conn.setConnectTimeout(1 * 1000);
-        conn.setReadTimeout(2 * 1000);
+        conn.setConnectTimeout(3 * 1000);
+        conn.setReadTimeout(3 * 1000);
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
-//            conn.setRequestProperty("Accept-Charset", "euc-kr");
+        conn.setRequestProperty("Authorization", "Bearer "  +"APA91bGkmKwWBjCso94R3sM3CUEk79");
+        conn.setRequestProperty("Content-Type", "application/json;charset=utf-8");
 
-        Log.i(TAG, "###############  ApiData." + tr.getClass().getSimpleName() + "  ###############");
+        Log.i(TAG, "###############  "+TAG+"." + tr.getClass().getSimpleName() + "  ###############");
         Log.i(TAG, "url=" + url);
-        JsonLogPrint.printJson(body.toString());
-        Log.i(TAG, "###############  ApiData." + tr.getClass().getSimpleName() + "  ###############");
+        if (body != null)
+            JsonLogPrint.printJson(body.toString());
+        else
+            Log.i(TAG, "Send Body is Null");
+        Log.i(TAG, "###############  "+TAG+"." + tr.getClass().getSimpleName() + "  ###############");
 
         os = conn.getOutputStream();
-        os.write((tr.json_obj_name + "=").getBytes("UTF-8"));
+//        os.write((tr.json_obj_name + "=").getBytes("UTF-8"));
 //            os.write("json=".getBytes( "UTF-8"));           // json={key,value...} 형태로 파라메터 입력
 //            os.write("&member_id=0&device_type=A&session_code=&store_id=1&app_ver=2.2".getBytes("EUC-KR"));
         if (body != null)

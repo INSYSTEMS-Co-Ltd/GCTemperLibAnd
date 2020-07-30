@@ -8,7 +8,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
+import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.network.tr.BaseData;
+import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
+import com.greencross.gctemperlib.greencare.network.tr.HNApiData;
+import com.greencross.gctemperlib.greencare.network.tr.HNCConnAsyncTask;
+import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.util.Util;
 
 
@@ -143,6 +150,47 @@ public class BackBaseActivity extends BaseActivity {
 //        super.onDestroy();
 //    }
 
+
+
+    protected void getData(Class<? extends BaseData> cls, final Object obj, final IGCResult iGCResult) {
+        if (NetworkUtil.getConnectivityStatus(this) == false) {
+            CDialog.showDlg(this, "네트워크 연결 상태를 확인해주세요.");
+            return;
+        }
+
+        HNCConnAsyncTask.CConnectorListener queryListener = new HNCConnAsyncTask.CConnectorListener() {
+            @Override
+            public Object run() throws Exception {
+                HNApiData data = new HNApiData();
+                try {
+                    Object recv = data.getData(BackBaseActivity.this, cls, obj);
+                    return recv;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+
+            @Override
+            public void view(HNCConnAsyncTask.CQueryResult result) {
+//                Log.i(TAG, "result1="+result);
+                if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
+//                    Log.e(TAG, "데이터 수신 성공::"+result);
+                    if (iGCResult != null) {
+                        iGCResult.onResult(true, "데이터 수신 성공", result.data);
+                    }
+                } else {
+//                    Log.e(TAG, "데이터 수신 실패");
+                    if (iGCResult != null) {
+                        iGCResult.onResult(false, "데이터 수신 실패", null);
+                    }
+                }
+            }
+        };
+
+        HNCConnAsyncTask asyncTask = new HNCConnAsyncTask();
+        asyncTask.execute(queryListener);
+    }
 
     @Override
     public void finish() {

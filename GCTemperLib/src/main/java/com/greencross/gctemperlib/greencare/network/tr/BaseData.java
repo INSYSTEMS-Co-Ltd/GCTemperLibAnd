@@ -34,6 +34,9 @@ public class BaseData implements Cloneable, IBaseData {
 	protected String conn_url = BaseUrl.COMMON_URL;
 	public String json_obj_name = "json";
 
+	protected String getConnUrl() {
+		return conn_url;
+	}
 
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
@@ -58,6 +61,9 @@ public class BaseData implements Cloneable, IBaseData {
 		return body;
 	}
 
+	public boolean isSuccess(String resultCode) {
+		return "1000".equals(resultCode);
+	}
 
 	public String toString() {
 		StringBuilder sBuilder = new StringBuilder();

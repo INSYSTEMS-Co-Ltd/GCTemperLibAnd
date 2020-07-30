@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.annotations.SerializedName;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
+import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 
 import org.json.JSONException;
@@ -32,6 +33,11 @@ import org.json.JSONObject;
 
 public class Tr_FeverList extends BaseData {
 	private final String TAG = getClass().getSimpleName();
+
+    @Override
+    protected String getConnUrl() {
+        return BaseUrl.COMMON_URL + "/Fever/v1/FeverList";
+    }
 
 	public static class RequestData {
         public String startdate;

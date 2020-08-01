@@ -56,19 +56,19 @@ public class FeverDiagnosis {
         }
 
         // 신생아 응급
-        if(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).born_to_day < 100 && curFever >= 38d ){
-            code_1 = 4;
-        }
-
-        if(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).born_to_day > 120){
-            // 해열제 정보 표시 유무
-            if(curFever >= 38)
-                code_2 = 1;
-
-            // 해열제 교차복용 유무
-            if(LastRemedyCheck(curDate))
-                code_3 = 1;
-        }
+//        if(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).born_to_day < 100 && curFever >= 38d ){
+//            code_1 = 4;
+//        }
+//
+//        if(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).born_to_day > 120){
+//            // 해열제 정보 표시 유무
+//            if(curFever >= 38)
+//                code_2 = 1;
+//
+//            // 해열제 교차복용 유무
+//            if(LastRemedyCheck(curDate))
+//                code_3 = 1;
+//        }
 
         // 미온수 여부
         if(curFever >= 38.5d)

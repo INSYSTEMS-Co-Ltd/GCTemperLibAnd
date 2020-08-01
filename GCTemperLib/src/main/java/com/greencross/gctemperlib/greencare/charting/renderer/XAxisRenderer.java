@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.greencross.gctemperlib.greencare.charting.components.LimitLine;
 import com.greencross.gctemperlib.greencare.charting.components.XAxis;
@@ -201,8 +200,8 @@ public class XAxisRenderer extends AxisRenderer {
 
         for (int i = 0; i < positions.length; i += 2) {
 
-            float x = positions[i];
-            float x2 = positions[i];
+            float x = positions[i];     // 7월1일
+            float x2 = positions[i];    // 21시40분
 
             if (mViewPortHandler.isInBoundsX(x)) {
                 // 라벨 세팅 하기
@@ -213,7 +212,7 @@ public class XAxisRenderer extends AxisRenderer {
                     label = label.substring(0, label.indexOf("\n"));
                 }
 
-                Log.i(getClass().getSimpleName(), "label2="+label2);
+//                Log.i(getClass().getSimpleName(), "label2="+label2);
                 if (mXAxis.isAvoidFirstLastClippingEnabled()) {
                     // avoid clipping of the last
 //                    if (i == mXAxis.mEntryCount - 1 && mXAxis.mEntryCount > 1) {
@@ -229,8 +228,8 @@ public class XAxisRenderer extends AxisRenderer {
 //                        float width = Utils.calcTextWidth(mAxisLabelPaint, label);
 //                        x += width / 2;
 //                    }
-                    x = getX(i, label, x);
-                    x2 = getX(i, label2, x2);
+                    x = getStartXPosition(i, label, x);
+                    x2 = getStartXPosition(i, label2, x2);
 
                 }
                 float labelHeight = Utils.calcTextHeight(mAxisLabelPaint, label);
@@ -240,7 +239,14 @@ public class XAxisRenderer extends AxisRenderer {
         }
     }
 
-    private float getX(int i, String label, float x) {
+    /**
+     * 라벨 가로 사이즈 구하여 X축 시작 지점 구하기
+     * @param i
+     * @param label
+     * @param x
+     * @return
+     */
+    private float getStartXPosition(int i, String label, float x) {
         // avoid clipping of the last
         if (i == mXAxis.mEntryCount - 1 && mXAxis.mEntryCount > 1) {
             float width = Utils.calcTextWidth(mAxisLabelPaint, label);

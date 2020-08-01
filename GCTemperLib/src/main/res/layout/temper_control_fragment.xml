@@ -47,7 +47,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@drawable/hn_temper_smile_7"/>
+            android:src="@drawable/hn_temper_smile_7"/>
     </LinearLayout>
 
 

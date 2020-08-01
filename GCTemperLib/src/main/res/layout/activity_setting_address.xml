@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/common_back_top"
@@ -16,6 +17,7 @@
         android:layout_below="@+id/common_back_top"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20_dp"
+        android:fontFamily="@font/hanam"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="5sp"
         android:padding="@dimen/_20_dp"
@@ -23,19 +25,6 @@
         android:textSize="15sp"
         tools:text="@string/setting_address_msg" />
 
-
-    <Button
-        android:id="@+id/btn_save_address"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_46_dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/bg_white"
-        android:fontFamily="@font/hi_gothic_b"
-        android:text="@string/popup_dialog_button_save"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/_16_dp"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -50,27 +39,40 @@
         android:paddingRight="@dimen/_40_dp">
 
 
-        <TextView
-            android:id="@+id/btn_search_address"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/_40_dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/hi_gothic_m"
-            android:gravity="center_vertical"
-            android:lineSpacingExtra="@dimen/_16_dp"
-            android:text="@string/search_address"
-            android:textColor="@color/txt_dark_lithg"
-            android:textColorHint="#dedede"
-            android:textSize="@dimen/_15_dp" />
-
-        <ImageView
-            android:id="@+id/gps_icon"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20_dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/btn_search_address"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40_dp"
+                android:fontFamily="@font/hi_gothic_m"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="@dimen/_16_dp"
+                android:text="@string/search_address"
+                android:textColor="@color/txt_dark_lithg"
+                android:textColorHint="#dedede"
+                android:textSize="@dimen/_15_dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d9d9d9" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/gps_icon"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/icon_gps" />
+            android:background="@drawable/draw_circle_6972d1"
+            android:src="@drawable/hn_map_my_address_btn" />
+
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout7"
@@ -104,27 +106,37 @@
             android:textSize="@dimen/_16_dp" />
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/btn_save_address"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout7"
-        android:padding="@dimen/_20_dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="#ffffff"
-            android:lineSpacingExtra="0sp"
-            android:background="@drawable/draw_temper_confirm_btn"
-            tools:text="저장"
-            />
-
-    </LinearLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/hn_button_save" />
 
 
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@+id/linearLayout7"-->
+    <!--        android:padding="@dimen/_20_dp"-->
+    <!--        android:orientation="horizontal">-->
 
-</RelativeLayout>
+    <!--        <TextView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="52dp"-->
+    <!--            android:gravity="center"-->
+    <!--            android:textSize="16sp"-->
+    <!--            android:textColor="#ffffff"-->
+    <!--            android:lineSpacingExtra="0sp"-->
+    <!--            android:background="@drawable/draw_temper_confirm_btn"-->
+    <!--            tools:text="저장"-->
+    <!--            />-->
+
+    <!--    </LinearLayout>-->
+
+
+</LinearLayout>

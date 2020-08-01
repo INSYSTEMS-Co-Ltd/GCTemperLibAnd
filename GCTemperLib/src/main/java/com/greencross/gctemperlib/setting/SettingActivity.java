@@ -248,10 +248,10 @@ public class SettingActivity extends BackBaseActivity implements View.OnClickLis
 //            intent = new Intent(SettingActivity.this, AuthManageActivity.class);
 //            startActivity(intent);
 //            Util.BackAnimationStart(SettingActivity.this);
-        } else if (id == R.id.about_service_layout) { // 서비스 소개
-            intent = new Intent(SettingActivity.this, AboutServiceActivity.class);
-            startActivity(intent);
-            Util.PopupAnimationStart(SettingActivity.this);
+//        } else if (id == R.id.about_service_layout) { // 서비스 소개
+//            intent = new Intent(SettingActivity.this, AboutServiceActivity.class);
+//            startActivity(intent);
+//            Util.PopupAnimationStart(SettingActivity.this);
         } else if (id == R.id.personal_terms_1_layout) {  // 개인정보 제공 동의
 //                if(commonData.getMberGrad().equals("10")) {
 //                    intent = new Intent(SettingActivity.this, BackWebViewActivity.class);

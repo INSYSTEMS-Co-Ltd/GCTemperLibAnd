@@ -62,17 +62,17 @@ public class FeverHistoryListAdapter extends RecyclerView.Adapter<FeverHistoryLi
 //            holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         }
 
-        holder.buttonDelete.setOnClickListener(view -> {
-            mDialog = new CustomAlertDialog(mContext, CustomAlertDialog.TYPE_B);
-            mDialog.setTitle(mContext.getString(R.string.popup_dialog_a_type_title));
-            mDialog.setContent(mContext.getString(R.string.really_delete));
-            mDialog.setNegativeButton(mContext.getString(R.string.popup_dialog_button_cancel), null);
-            mDialog.setPositiveButton(mContext.getString(R.string.popup_dialog_button_confirm), (dialog, button) -> {
-                requestRecordDeleteApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), holder.filter, curItem.getmDataSn());
-                dialog.dismiss();
-            });
-            mDialog.show();
-        });
+//        holder.buttonDelete.setOnClickListener(view -> {
+//            mDialog = new CustomAlertDialog(mContext, CustomAlertDialog.TYPE_B);
+//            mDialog.setTitle(mContext.getString(R.string.popup_dialog_a_type_title));
+//            mDialog.setContent(mContext.getString(R.string.really_delete));
+//            mDialog.setNegativeButton(mContext.getString(R.string.popup_dialog_button_cancel), null);
+//            mDialog.setPositiveButton(mContext.getString(R.string.popup_dialog_button_confirm), (dialog, button) -> {
+//                requestRecordDeleteApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), holder.filter, curItem.getmDataSn());
+//                dialog.dismiss();
+//            });
+//            mDialog.show();
+//        });
 
 
         holder.date = curItem.getmInputDe();

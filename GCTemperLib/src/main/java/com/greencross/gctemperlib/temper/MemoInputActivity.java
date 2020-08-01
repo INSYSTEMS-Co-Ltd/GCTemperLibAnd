@@ -291,21 +291,21 @@ public class MemoInputActivity extends BackBaseActivity implements View.OnClickL
                     });
             ab.show();
         } else if (id == R.id.confirm_btn) {
-            if (isConfirm()) {
-                requestRemedyRecordInputApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-            } else {
-                switch (mTabNum) {
-                    case 0:
-                        Toast.makeText(MemoInputActivity.this, getString(R.string.empty_symptom), Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        Toast.makeText(MemoInputActivity.this, getString(R.string.empty_diagnosis), Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(MemoInputActivity.this, getString(R.string.empty_memo), Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
+//            if (isConfirm()) {
+//                requestRemedyRecordInputApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
+//            } else {
+//                switch (mTabNum) {
+//                    case 0:
+//                        Toast.makeText(MemoInputActivity.this, getString(R.string.empty_symptom), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case 1:
+//                        Toast.makeText(MemoInputActivity.this, getString(R.string.empty_diagnosis), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case 2:
+//                        Toast.makeText(MemoInputActivity.this, getString(R.string.empty_memo), Toast.LENGTH_SHORT).show();
+//                        break;
+//                }
+//            }
         }
     }
 
@@ -458,10 +458,10 @@ public class MemoInputActivity extends BackBaseActivity implements View.OnClickL
     };
 
     public void sendData(){
-        MemoItem memo = new MemoItem(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), 3, mInputNum, mMemoEdt.getText().toString(), mCheckDate);
-        ArrayList<MemoItem> arrMemo = new ArrayList<MemoItem>();
-        arrMemo.add(memo);
-        Database db = new Database(CommonData.getInstance(this).getMberSn(), null, arrMemo);
-        new DataUploadAsyncTask().execute(db, null, null);
+//        MemoItem memo = new MemoItem(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), 3, mInputNum, mMemoEdt.getText().toString(), mCheckDate);
+//        ArrayList<MemoItem> arrMemo = new ArrayList<MemoItem>();
+//        arrMemo.add(memo);
+//        Database db = new Database(CommonData.getInstance(this).getMberSn(), null, arrMemo);
+//        new DataUploadAsyncTask().execute(db, null, null);
     }
 }

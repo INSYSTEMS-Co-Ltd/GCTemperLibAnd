@@ -349,35 +349,35 @@ public class TemperMainActivity extends AppCompatActivity {
             return;
         }
 
-        switch(requestCode){
-            case CommonData.REQUEST_CHILD_MANAGE:   // 자녀관리
-                GLog.i("REQUEST_CHILD_MANAGE", "dd");
-                mFrameContainer.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // 자녀 데이터가 있는경우 UI 세팅
-                        if(!MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn().equals("")) {
-
-//                            if(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlExistYn().equals(CommonData.NO)) {
-//                                mRightImg.setImageResource(R.drawable.main_fetus06b);
-//                            } else {
-//                                CustomImageLoader.displayImage(FeverMainActivity.this, MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnOrgImage(), mRightImg);
-//                            }
-
-
-
-//                            mRightLayout.setVisibility(View.VISIBLE);
-                        }else{
-//                            mRightLayout.setVisibility(View.GONE);
-                        }
-                        setResult(RESULT_OK);
-                        switchContent(new FeverMainFragment());
-                        switchActionBarTheme(THEME_ORANGE);
-                    }
-                }, CommonData.ANI_DELAY_500);
-                break;
-
-        }
+//        switch(requestCode){
+//            case CommonData.REQUEST_CHILD_MANAGE:   // 자녀관리
+//                GLog.i("REQUEST_CHILD_MANAGE", "dd");
+//                mFrameContainer.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // 자녀 데이터가 있는경우 UI 세팅
+//                        if(!MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn().equals("")) {
+//
+////                            if(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlExistYn().equals(CommonData.NO)) {
+////                                mRightImg.setImageResource(R.drawable.main_fetus06b);
+////                            } else {
+////                                CustomImageLoader.displayImage(FeverMainActivity.this, MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnOrgImage(), mRightImg);
+////                            }
+//
+//
+//
+////                            mRightLayout.setVisibility(View.VISIBLE);
+//                        }else{
+////                            mRightLayout.setVisibility(View.GONE);
+//                        }
+//                        setResult(RESULT_OK);
+//                        switchContent(new FeverMainFragment());
+//                        switchActionBarTheme(THEME_ORANGE);
+//                    }
+//                }, CommonData.ANI_DELAY_500);
+//                break;
+//
+//        }
 
         if(mContentFragment != null) {
             GLog.i("mContentFragment != null", "dd");

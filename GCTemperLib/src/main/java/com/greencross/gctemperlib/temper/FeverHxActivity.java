@@ -212,29 +212,29 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
 
     public void setTab(int _tabNum){
         tabNum = _tabNum;
-        if(_tabNum == 0){         // 그래프 보기
-            mGraphDateLay.setVisibility(View.VISIBLE);
-            mTxtHistoryDate.setVisibility(View.INVISIBLE);
-            mFeverGraphBtn.setTextColor(getResources().getColor(R.color.h_orange));
-            mFeverTimelineBtn.setTextColor(Color.WHITE);
-            mFeverGraphBtn.setBackgroundResource(R.drawable.underline_fever);
-            mFeverTimelineBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
-            requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-        }else{
-            if(!CommonData.getInstance(this).getFeverTimeLineHelp()){
-                mHelpLay.setVisibility(View.VISIBLE);
-            }else{
-                mHelpLay.setVisibility(View.GONE);
-            }
-
-            mGraphDateLay.setVisibility(View.INVISIBLE);
-            mTxtHistoryDate.setVisibility(View.VISIBLE);
-            mFeverTimelineBtn.setTextColor(getResources().getColor(R.color.h_orange));
-            mFeverGraphBtn.setTextColor(Color.WHITE);
-            mFeverTimelineBtn.setBackgroundResource(R.drawable.underline_fever);
-            mFeverGraphBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
-            requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), true,true,true,true,true,false,true);
-        }
+//        if(_tabNum == 0){         // 그래프 보기
+//            mGraphDateLay.setVisibility(View.VISIBLE);
+//            mTxtHistoryDate.setVisibility(View.INVISIBLE);
+//            mFeverGraphBtn.setTextColor(getResources().getColor(R.color.h_orange));
+//            mFeverTimelineBtn.setTextColor(Color.WHITE);
+//            mFeverGraphBtn.setBackgroundResource(R.drawable.underline_fever);
+//            mFeverTimelineBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
+//            requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
+//        }else{
+//            if(!CommonData.getInstance(this).getFeverTimeLineHelp()){
+//                mHelpLay.setVisibility(View.VISIBLE);
+//            }else{
+//                mHelpLay.setVisibility(View.GONE);
+//            }
+//
+//            mGraphDateLay.setVisibility(View.INVISIBLE);
+//            mTxtHistoryDate.setVisibility(View.VISIBLE);
+//            mFeverTimelineBtn.setTextColor(getResources().getColor(R.color.h_orange));
+//            mFeverGraphBtn.setTextColor(Color.WHITE);
+//            mFeverTimelineBtn.setBackgroundResource(R.drawable.underline_fever);
+//            mFeverGraphBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
+//            requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), true,true,true,true,true,false,true);
+//        }
     }
 
     @Override
@@ -247,126 +247,126 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
             setTab(0);
         } else if (id == R.id.fever_timeline_btn) {
             setTab(1);
-        } else if (id == R.id.txt_history_date) {
-            bTumpSelFilter = new boolean[bSelFilter.length];
-            for (int i = 0; i < bSelFilter.length; i++) {
-                if (bSelFilter[i])
-                    bTumpSelFilter[i] = true;
-                else
-                    bTumpSelFilter[i] = false;
-            }
-
-            AlertDialog.Builder ab = new AlertDialog.Builder(FeverHxActivity.this);
-            ab.setMultiChoiceItems(arrFilter, bSelFilter, (dialog, which, isChecked) -> {
-
-            });
-
-            ab.setPositiveButton(R.string.popup_dialog_button_confirm, (dialog, which) -> {
-                String str = "";
-                int cnt = 0;
-                for (int i = 0; i < bSelFilter.length; i++) {
-                    if (bSelFilter[i]) {
-                        cnt++;
-                    }
-                }
-
-                // 전체 선택
-
-                if (cnt == 6) {
-                    mTxtHistoryDate.setText(R.string.filter_all);
-                    requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), true, true, true, true, true, false, true);
-                } else if (cnt == 0) {
-                    mDialog = new CustomAlertDialog(FeverHxActivity.this, CustomAlertDialog.TYPE_A);
-                    mDialog.setTitle(getString(R.string.popup_dialog_a_type_title));
-                    mDialog.setContent(getString(R.string.no_filter));
-                    mDialog.setPositiveButton(getString(R.string.popup_dialog_button_confirm), (dialog1, button) -> dialog1.dismiss());
-                    mDialog.show();
-                    bSelFilter = bTumpSelFilter;
-                    return;
-                } else {
-                    requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), bSelFilter[0], bSelFilter[1], bSelFilter[2], bSelFilter[3], bSelFilter[4], false, bSelFilter[5]);
-                    for (int i = 0; i < bSelFilter.length; i++) {
-                        if (bSelFilter[i])
-                            str += arrFilter[i] + ", ";
-                    }
-
-                    if (str.length() > 0) {
-                        str = str.substring(0, str.length() - 2);
-                        mTxtHistoryDate.setText(str);
-                    }
-                }
-            });
-
-            ab.setNegativeButton(R.string.popup_dialog_button_cancel, (dialog, which) -> dialog.dismiss());
-            ab.show();
+//        } else if (id == R.id.txt_history_date) {
+//            bTumpSelFilter = new boolean[bSelFilter.length];
+//            for (int i = 0; i < bSelFilter.length; i++) {
+//                if (bSelFilter[i])
+//                    bTumpSelFilter[i] = true;
+//                else
+//                    bTumpSelFilter[i] = false;
+//            }
+//
+//            AlertDialog.Builder ab = new AlertDialog.Builder(FeverHxActivity.this);
+//            ab.setMultiChoiceItems(arrFilter, bSelFilter, (dialog, which, isChecked) -> {
+//
+//            });
+//
+//            ab.setPositiveButton(R.string.popup_dialog_button_confirm, (dialog, which) -> {
+//                String str = "";
+//                int cnt = 0;
+//                for (int i = 0; i < bSelFilter.length; i++) {
+//                    if (bSelFilter[i]) {
+//                        cnt++;
+//                    }
+//                }
+//
+//                // 전체 선택
+//
+//                if (cnt == 6) {
+//                    mTxtHistoryDate.setText(R.string.filter_all);
+//                    requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), true, true, true, true, true, false, true);
+//                } else if (cnt == 0) {
+//                    mDialog = new CustomAlertDialog(FeverHxActivity.this, CustomAlertDialog.TYPE_A);
+//                    mDialog.setTitle(getString(R.string.popup_dialog_a_type_title));
+//                    mDialog.setContent(getString(R.string.no_filter));
+//                    mDialog.setPositiveButton(getString(R.string.popup_dialog_button_confirm), (dialog1, button) -> dialog1.dismiss());
+//                    mDialog.show();
+//                    bSelFilter = bTumpSelFilter;
+//                    return;
+//                } else {
+//                    requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), bSelFilter[0], bSelFilter[1], bSelFilter[2], bSelFilter[3], bSelFilter[4], false, bSelFilter[5]);
+//                    for (int i = 0; i < bSelFilter.length; i++) {
+//                        if (bSelFilter[i])
+//                            str += arrFilter[i] + ", ";
+//                    }
+//
+//                    if (str.length() > 0) {
+//                        str = str.substring(0, str.length() - 2);
+//                        mTxtHistoryDate.setText(str);
+//                    }
+//                }
+//            });
+//
+//            ab.setNegativeButton(R.string.popup_dialog_button_cancel, (dialog, which) -> dialog.dismiss());
+//            ab.show();
         } else if (id == R.id.txt_graph_start_date) {
-            try {
-                if (mStartDate == null) {
-                    mStartDate = new Date();
-                }
-                mCalendar.setTime(mStartDate);
-                int nNowYear = mCalendar.get(Calendar.YEAR);
-                int nNowMonth = mCalendar.get(Calendar.MONTH);
-                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog alert = new DatePickerDialog(FeverHxActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
-                    mCalendar.set(year, monthOfYear, dayOfMonth);
-
-                    if (mCalendar.getTime().compareTo(mEndDate) >= 0) {    // 오늘 지남
-                        Toast.makeText(FeverHxActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    mStartDate = mCalendar.getTime();
-                    SimpleDateFormat format1 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
-                    mStrStartDate = format1.format(mStartDate);
-                    mTxtGraphStartDate.setText(mStrStartDate);
-
-                    // 그래프 데이터 가져와서 뿌려야 함.
-                    requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-                }, nNowYear, nNowMonth, nNowDay);
-
-                alert.setCancelable(false);
-
-                alert.show();
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-            }
-        } else if (id == R.id.txt_graph_end_date) {
-            try {
-                if (mEndDate == null) {
-                    mEndDate = new Date();
-                }
-                mCalendar.setTime(mEndDate);
-                int nNowYear = mCalendar.get(Calendar.YEAR);
-                int nNowMonth = mCalendar.get(Calendar.MONTH);
-                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog alert = new DatePickerDialog(FeverHxActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
-                    mCalendar.set(year, monthOfYear, dayOfMonth);
-
-                    if (mStartDate.compareTo(mCalendar.getTime()) >= 0) {  // 오늘 지남
-                        Toast.makeText(FeverHxActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    mEndDate = mCalendar.getTime();
-                    SimpleDateFormat format12 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
-                    mStrStartDate = format12.format(mEndDate);
-                    mTxtGraphEndDate.setText(mStrEndDate);
-
-                    // 그래프 데이터 가져와서 뿌려야 함.
-                    requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-                }, nNowYear, nNowMonth, nNowDay);
-
-                alert.setCancelable(false);
-
-                alert.show();
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-            }
+//            try {
+//                if (mStartDate == null) {
+//                    mStartDate = new Date();
+//                }
+//                mCalendar.setTime(mStartDate);
+//                int nNowYear = mCalendar.get(Calendar.YEAR);
+//                int nNowMonth = mCalendar.get(Calendar.MONTH);
+//                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog alert = new DatePickerDialog(FeverHxActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+//                    mCalendar.set(year, monthOfYear, dayOfMonth);
+//
+//                    if (mCalendar.getTime().compareTo(mEndDate) >= 0) {    // 오늘 지남
+//                        Toast.makeText(FeverHxActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//
+//                    mStartDate = mCalendar.getTime();
+//                    SimpleDateFormat format1 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
+//                    mStrStartDate = format1.format(mStartDate);
+//                    mTxtGraphStartDate.setText(mStrStartDate);
+//
+//                    // 그래프 데이터 가져와서 뿌려야 함.
+//                    requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
+//                }, nNowYear, nNowMonth, nNowDay);
+//
+//                alert.setCancelable(false);
+//
+//                alert.show();
+//            } catch (Exception e) {
+//                // TODO: handle exception
+//                e.printStackTrace();
+//            }
+//        } else if (id == R.id.txt_graph_end_date) {
+//            try {
+//                if (mEndDate == null) {
+//                    mEndDate = new Date();
+//                }
+//                mCalendar.setTime(mEndDate);
+//                int nNowYear = mCalendar.get(Calendar.YEAR);
+//                int nNowMonth = mCalendar.get(Calendar.MONTH);
+//                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog alert = new DatePickerDialog(FeverHxActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+//                    mCalendar.set(year, monthOfYear, dayOfMonth);
+//
+//                    if (mStartDate.compareTo(mCalendar.getTime()) >= 0) {  // 오늘 지남
+//                        Toast.makeText(FeverHxActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//
+//                    mEndDate = mCalendar.getTime();
+//                    SimpleDateFormat format12 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
+//                    mStrStartDate = format12.format(mEndDate);
+//                    mTxtGraphEndDate.setText(mStrEndDate);
+//
+//                    // 그래프 데이터 가져와서 뿌려야 함.
+//                    requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
+//                }, nNowYear, nNowMonth, nNowDay);
+//
+//                alert.setCancelable(false);
+//
+//                alert.show();
+//            } catch (Exception e) {
+//                // TODO: handle exception
+//                e.printStackTrace();
+//            }
         } else if (id == R.id.btn_check_help) {//                if(mNoShowHelp){    // 참 -  즉 체크 돼있는 상태에서 누를 경우
 //                    mBtnCheckHelp.setImageResource(R.drawable.btn_close_yellow1);
 //                    mNoShowHelp = false;

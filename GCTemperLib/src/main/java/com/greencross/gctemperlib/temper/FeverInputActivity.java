@@ -233,21 +233,21 @@ public class FeverInputActivity extends BackBaseActivity implements View.OnClick
                 e.printStackTrace();
             }
         } else if (id == R.id.confirm_btn) {
-            try {
-                if (mCheckFeverEd.getText().length() > 0) {
-                    fever = Double.parseDouble(mCheckFeverEd.getText().toString());
-                    if (fever > 0) {
-                        requestFeverRecordInputApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-                    } else {
-                        Toast.makeText(FeverInputActivity.this, getString(R.string.empty_fever), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(FeverInputActivity.this, getString(R.string.empty_fever), Toast.LENGTH_SHORT).show();
-                }
-            } catch (Exception e) {
-                Toast.makeText(FeverInputActivity.this, getString(R.string.empty_fever), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
+//            try {
+//                if (mCheckFeverEd.getText().length() > 0) {
+//                    fever = Double.parseDouble(mCheckFeverEd.getText().toString());
+//                    if (fever > 0) {
+//                        requestFeverRecordInputApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
+//                    } else {
+//                        Toast.makeText(FeverInputActivity.this, getString(R.string.empty_fever), Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(FeverInputActivity.this, getString(R.string.empty_fever), Toast.LENGTH_SHORT).show();
+//                }
+//            } catch (Exception e) {
+//                Toast.makeText(FeverInputActivity.this, getString(R.string.empty_fever), Toast.LENGTH_SHORT).show();
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -347,108 +347,108 @@ public class FeverInputActivity extends BackBaseActivity implements View.OnClick
             switch ( type ) {
                 case NetworkConst.NET_FEVER_INPUT:
 
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
-                            try {
-                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
+//                    switch (resultCode) {
+//                        case CommonData.API_SUCCESS:
+//                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
+//                            try {
+//                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
+//
+//                                if (data_yn.equals(CommonData.YES)) {
+//
+//                                    GregorianCalendar mCalendar = new GregorianCalendar();
+//                                    mCalendar.setTime(mCurDate);
+//                                    mCalendar.add(Calendar.HOUR_OF_DAY, 1);
+//                                    Date checkTime = mCalendar.getTime();
+//
+//                                    if(checkTime.compareTo(new Date()) > 0){
+//                                        if(fever < 37.5d)
+//                                            Util.cancelAlarm(FeverInputActivity.this, Integer.parseInt(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn()));
+//                                        else
+//                                            Util.setFeverAlarms(FeverInputActivity.this, checkTime, Integer.parseInt(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn()));
+//                                    }
+//
+//                                    mCalendar.setTime(new Date());
+//                                    mCalendar.add(Calendar.HOUR_OF_DAY, -1);
+//                                    Date checkDate = mCalendar.getTime();
+//
+//                                    if(checkDate.compareTo(mCurDate) < 0){      // 1시간 이내에 체온입력임   레포트 생성 함.
+//                                        result_code = FeverDiagnosis.shared().getDiagnosis(fever, new Date());
+//                                        requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
+//                                    }else{
+//                                        Intent i = new Intent(FeverInputActivity.this, FeverHxActivity.class);
+//                                        i.putExtra(CommonData.EXTRA_IS_TIMELIEN, 1);
+//                                        startActivity(i);
+//                                        Util.BackAnimationStart(FeverInputActivity.this);
+//                                        Toast.makeText(FeverInputActivity.this, getString(R.string.empty_1_hour), Toast.LENGTH_LONG).show();
+//                                        FeverInputActivity.this.finish();
+//                                    }
+//
+//                                }
+//
+//                            } catch (Exception e) {
+//                                GLog.e(e.toString());
+//                            }
+//
+//                            break;
+//                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
+//                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
+//
+//                            break;
+//                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
+//                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
+//                            break;
+//
+//                        default:
+//                            GLog.i("NET_GET_APP_INFO default", "dd");
+//                            break;
+//                    }
+//                    break;
 
-                                if (data_yn.equals(CommonData.YES)) {
-
-                                    GregorianCalendar mCalendar = new GregorianCalendar();
-                                    mCalendar.setTime(mCurDate);
-                                    mCalendar.add(Calendar.HOUR_OF_DAY, 1);
-                                    Date checkTime = mCalendar.getTime();
-
-                                    if(checkTime.compareTo(new Date()) > 0){
-                                        if(fever < 37.5d)
-                                            Util.cancelAlarm(FeverInputActivity.this, Integer.parseInt(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn()));
-                                        else
-                                            Util.setFeverAlarms(FeverInputActivity.this, checkTime, Integer.parseInt(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn()));
-                                    }
-
-                                    mCalendar.setTime(new Date());
-                                    mCalendar.add(Calendar.HOUR_OF_DAY, -1);
-                                    Date checkDate = mCalendar.getTime();
-
-                                    if(checkDate.compareTo(mCurDate) < 0){      // 1시간 이내에 체온입력임   레포트 생성 함.
-                                        result_code = FeverDiagnosis.shared().getDiagnosis(fever, new Date());
-                                        requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-                                    }else{
-                                        Intent i = new Intent(FeverInputActivity.this, FeverHxActivity.class);
-                                        i.putExtra(CommonData.EXTRA_IS_TIMELIEN, 1);
-                                        startActivity(i);
-                                        Util.BackAnimationStart(FeverInputActivity.this);
-                                        Toast.makeText(FeverInputActivity.this, getString(R.string.empty_1_hour), Toast.LENGTH_LONG).show();
-                                        FeverInputActivity.this.finish();
-                                    }
-
-                                }
-
-                            } catch (Exception e) {
-                                GLog.e(e.toString());
-                            }
-
-                            break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
-
-                            break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
-                            break;
-
-                        default:
-                            GLog.i("NET_GET_APP_INFO default", "dd");
-                            break;
-                    }
-                    break;
-
-                case NetworkConst.NET_FEVER_LIST:
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
-                            try {
-                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
-
-                                if (data_yn.equals(CommonData.YES)) {
-                                    JSONArray feverArr = resultData.getJSONArray(CommonData.JSON_DATA_F);
-                                    TemperMainActivity.mFeverItems.clear();
-                                    // 데이터가 있을 시
-                                    if (feverArr.length() > 0) {
-                                        for(int i = 0; i < feverArr.length(); i++){
-                                            JSONObject object = feverArr.getJSONObject(i);
-
-                                            FeverItem item = new FeverItem();
-                                            item.setmFeverSn(object.getString(CommonData.JSON_FEVER_SN_F));
-                                            item.setmInputDe(object.getString(CommonData.JSON_INPUT_DE_F));
-                                            item.setmInputFever(object.getString(CommonData.JSON_INPUT_FEVER_F));
-
-                                            TemperMainActivity.mFeverItems.add(item);
-                                        }
-                                    }
-                                }
-
-                                requestFeverResultRecordInputApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), CommonData.JSON_INPUT_F);
-
-                            } catch (Exception e) {
-                                GLog.e(e.toString());
-                            }
-
-                            break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
-
-                            break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
-                            break;
-
-                        default:
-                            GLog.i("NET_GET_APP_INFO default", "dd");
-                            break;
-                    }
-                    break;
+//                case NetworkConst.NET_FEVER_LIST:
+//                    switch (resultCode) {
+//                        case CommonData.API_SUCCESS:
+//                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
+//                            try {
+//                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
+//
+//                                if (data_yn.equals(CommonData.YES)) {
+//                                    JSONArray feverArr = resultData.getJSONArray(CommonData.JSON_DATA_F);
+//                                    TemperMainActivity.mFeverItems.clear();
+//                                    // 데이터가 있을 시
+//                                    if (feverArr.length() > 0) {
+//                                        for(int i = 0; i < feverArr.length(); i++){
+//                                            JSONObject object = feverArr.getJSONObject(i);
+//
+//                                            FeverItem item = new FeverItem();
+//                                            item.setmFeverSn(object.getString(CommonData.JSON_FEVER_SN_F));
+//                                            item.setmInputDe(object.getString(CommonData.JSON_INPUT_DE_F));
+//                                            item.setmInputFever(object.getString(CommonData.JSON_INPUT_FEVER_F));
+//
+//                                            TemperMainActivity.mFeverItems.add(item);
+//                                        }
+//                                    }
+//                                }
+//
+//                                requestFeverResultRecordInputApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), CommonData.JSON_INPUT_F);
+//
+//                            } catch (Exception e) {
+//                                GLog.e(e.toString());
+//                            }
+//
+//                            break;
+//                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
+//                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
+//
+//                            break;
+//                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
+//                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
+//                            break;
+//
+//                        default:
+//                            GLog.i("NET_GET_APP_INFO default", "dd");
+//                            break;
+//                    }
+//                    break;
 
                 case NetworkConst.NET_FEVER_RESULT_INPUT:        // 체온 결과 입력수정삭제
 
@@ -540,10 +540,10 @@ public class FeverInputActivity extends BackBaseActivity implements View.OnClick
     }
 
     public void sendData(){
-        Fever fever = new Fever(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), ""+this.fever, mCheckDate,null);
-        ArrayList<Fever> arrFever = new ArrayList<Fever>();
-        arrFever.add(fever);
-        Database db = new Database(CommonData.getInstance(FeverInputActivity.this).getMberSn(), arrFever, null);
-        new DataUploadAsyncTask().execute(db, null, null);
+//        Fever fever = new Fever(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), ""+this.fever, mCheckDate,null);
+//        ArrayList<Fever> arrFever = new ArrayList<Fever>();
+//        arrFever.add(fever);
+//        Database db = new Database(CommonData.getInstance(FeverInputActivity.this).getMberSn(), arrFever, null);
+//        new DataUploadAsyncTask().execute(db, null, null);
     }
 }

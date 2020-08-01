@@ -49,7 +49,6 @@ import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_FeverList;
 import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Temperature;
-import com.greencross.gctemperlib.greencare.temper.TemperSwipeListView;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.ChartTimeUtil;
 import com.greencross.gctemperlib.greencare.util.DisplayUtil;
@@ -88,7 +87,7 @@ public class TemperGraphFragment extends BaseFragment {
     private TextView mTemperDayTv;
 
     protected TemperChartView mTemperChart;
-    private TemperSwipeListView mSwipeListView;
+//    private TemperSwipeListView mSwipeListView;
 
     protected LinearLayout layout_weight_graph;              // 그래프 레이아웃
 
@@ -172,7 +171,7 @@ public class TemperGraphFragment extends BaseFragment {
 //        mTemperChart.setXValueFormat(xFormatter);
         mTemperChart.getXAxis().setTextSize(DisplayUtil.getPxToDp(getContext(), 6));
 
-        mSwipeListView = new TemperSwipeListView(view, TemperGraphFragment.this);
+//        mSwipeListView = new TemperSwipeListView(view, TemperGraphFragment.this);
 
         setNextButtonVisible();
 
@@ -227,13 +226,13 @@ public class TemperGraphFragment extends BaseFragment {
     private int cal_day;
     private int cal_hour;
     private int cal_min;
-
     private void showCalendar(TextView tv) {
         GregorianCalendar calendar = new GregorianCalendar();
-
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        String date = tv.getText().toString();
+        date = StringUtil.getIntString(date);
+        int year = StringUtil.getIntger(date.substring(0,4));   //calendar.get(Calendar.YEAR);
+        int month = StringUtil.getIntger(date.substring(4,6)) -1;  // calendar.get(Calendar.MONTH)-1;
+        int day = StringUtil.getIntger(date.substring(6,8));   calendar.get(Calendar.DAY_OF_MONTH);
 
         new CDatePicker(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -540,7 +539,7 @@ public class TemperGraphFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         getData();  // 차트 데이터 Refresh
-        mSwipeListView.getHistoryData();    // 히스토리 Refresh
+//        mSwipeListView.getHistoryData();    // 히스토리 Refresh
 //        requestTemperData();
     }
 

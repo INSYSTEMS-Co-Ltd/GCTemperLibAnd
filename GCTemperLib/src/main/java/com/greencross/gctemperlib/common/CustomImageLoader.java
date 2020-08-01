@@ -31,14 +31,14 @@ public class CustomImageLoader {
      */
     public static void setOptionsProfile()
     {
-        options = new DisplayImageOptions.Builder()
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .cacheOnDisc(true)
-                .cacheInMemory(true)
-                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
-//                .showStubImage(R.drawable.img_profile)
-                .showImageOnLoading(R.drawable.main19)
-                .build();
+//        options = new DisplayImageOptions.Builder()
+//                .bitmapConfig(Bitmap.Config.RGB_565)
+//                .cacheOnDisc(true)
+//                .cacheInMemory(true)
+//                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+////                .showStubImage(R.drawable.img_profile)
+//                .showImageOnLoading(R.drawable.main19)
+//                .build();
     }
 
     /**
@@ -46,14 +46,14 @@ public class CustomImageLoader {
      */
     public static void setOptionsProfileMain()
     {
-        options = new DisplayImageOptions.Builder()
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .cacheOnDisc(true)
-                .cacheInMemory(true)
-                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
-//                .showStubImage(R.drawable.img_profile)
-                .showImageOnLoading(R.drawable.main19)
-                .build();
+//        options = new DisplayImageOptions.Builder()
+//                .bitmapConfig(Bitmap.Config.RGB_565)
+//                .cacheOnDisc(true)
+//                .cacheInMemory(true)
+//                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+////                .showStubImage(R.drawable.img_profile)
+//                .showImageOnLoading(R.drawable.main19)
+//                .build();
     }
 
 
@@ -62,15 +62,15 @@ public class CustomImageLoader {
      */
     public static void setOptionsProfileMain_new(int height)
     {
-        options_main_new = new DisplayImageOptions.Builder()
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .cacheOnDisc(true)
-                .cacheInMemory(true)
-                .displayer(new RoundedBitmapDisplayer(height/2))
-                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
-//                .showStubImage(R.drawable.img_profile)
-                .showImageOnLoading(R.drawable.main19)
-                .build();
+//        options_main_new = new DisplayImageOptions.Builder()
+//                .bitmapConfig(Bitmap.Config.RGB_565)
+//                .cacheOnDisc(true)
+//                .cacheInMemory(true)
+//                .displayer(new RoundedBitmapDisplayer(height/2))
+//                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+////                .showStubImage(R.drawable.img_profile)
+//                .showImageOnLoading(R.drawable.main19)
+//                .build();
     }
 
     /**

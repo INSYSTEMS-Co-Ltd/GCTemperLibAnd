@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,10 +17,10 @@
             android:id="@+id/weight_history_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorWhite"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingBottom="8dp"
-            android:background="@color/colorWhite" />
+            android:paddingBottom="8dp" />
     </LinearLayout>
 
 
@@ -30,59 +30,88 @@
         android:background="#D7D7D9" />
 
 
-
     <ScrollView
         android:id="@+id/view_scrollview"
-        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/layout_weight_graph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="250dp"
             android:background="@color/colorWhite"
+            android:minHeight="250dp"
             android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:padding="10dp">
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/draw_box_dddddd">
+
+                    <TextView
+                        android:id="@+id/graph_pre_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="18sp"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:textColor="#242424"
+                        android:textSize="18sp"
+                        tools:text="2020. 6. 23." />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/graph_pre_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="2020/01/01"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@drawable/cal_arrow_right"/>
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="20sp"
+                    android:text="-"
+                    android:textColor="#242424"
+                    android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10_dp"
-                    android:layout_marginRight="@dimen/_10_dp"
-                    android:text="~"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/draw_box_dddddd"
+                    android:minHeight="12.5dp">
 
-                <TextView
-                    android:id="@+id/graph_next_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="2020/01/01"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@drawable/cal_arrow_right"/>
+                    <TextView
+                        android:id="@+id/graph_next_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="18sp"
+
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:textColor="#242424"
+                        android:textSize="18sp"
+                        tools:text="15:29" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:paddingTop="10dp"
                 android:background="@color/colorWhite"
+                android:paddingTop="10dp"
                 android:visibility="gone"
                 tools:visibility="visible">
 
@@ -102,7 +131,7 @@
                         android:layout_marginRight="15dp"
                         android:background="@null"
                         android:padding="10dp"
-                        android:src="@drawable/cal_arrow_left"/>
+                        android:src="@drawable/cal_arrow_left" />
 
                     <TextView
                         android:id="@+id/period_date_textview"
@@ -111,10 +140,10 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/hi_maum_r"
-                        android:textSize="@dimen/_14_dp"
+                        android:fontFamily="@font/hanab"
                         android:text="2017.03.01"
-                        android:textColor="@color/colorBlack"/>
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/_14_dp" />
 
                     <ImageButton
                         android:id="@+id/next_btn"
@@ -124,7 +153,7 @@
                         android:layout_marginLeft="15dp"
                         android:background="@null"
                         android:padding="10dp"
-                        android:src="@drawable/cal_arrow_right"/>
+                        android:src="@drawable/cal_arrow_right" />
                 </LinearLayout>
 
                 <ImageView
@@ -133,482 +162,79 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/zoom_close"/>
+                    android:src="@drawable/zoom_close"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/landscape_btn"
                     android:layout_width="@dimen/_40_dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_15_dp"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_15_dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/zoom" />
+                    android:src="@drawable/zoom"
+                    android:visibility="gone"/>
             </RelativeLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/chart_frame_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_7_dp"
-                            android:orientation="horizontal">
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/_20_dp"
-                                android:gravity="left">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/hi_maum_r"
-                                    android:gravity="center_vertical"
-                                    android:text="체중"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="@dimen/_12_dp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="1dp"
-                                    android:fontFamily="@font/hi_maum_r"
-                                    android:text="(kg)"
-                                    android:textSize="@dimen/_8_dp" />
-
-                                <TextView
-                                    android:id="@+id/chart_rule"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginRight="10dp"
-                                    android:fontFamily="@font/hi_maum_r"
-                                    android:gravity="center_vertical"
-                                    android:text="주간 : 요일 별 평균 데이터"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="5dp"
-                                    android:visibility="gone" />
-
-                            </LinearLayout>
-                        </LinearLayout>
+                            android:textSize="10sp"
+                            android:textColor="#7f7f7f"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="27sp"
+                            android:fontFamily="@font/hanab"
+                            android:gravity="center_horizontal"
+                            tools:text="℃"/>
 
                         <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
                             android:id="@+id/chart1"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="10dp"/>
-
+                            android:layout_height="400dp"
+                            android:layout_marginRight="10dp" />
 
                         <TextView
-                            android:id="@+id/weight_chart_x_label_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:fontFamily="@font/hi_maum_r"
-                            tools:text="(일)"
                             android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="10dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/_10_dp" />
+                            android:layout_below="@id/chart1"
+                            android:textSize="10sp"
+                            android:textColor="#6972d1"
+                            android:letterSpacing="0.03"
+                            android:lineSpacingExtra="27sp"
+                            android:fontFamily="@font/hanab"
+                            android:gravity="center_horizontal"
+                            tools:text="시간"
+                            />
                     </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone">
-
-                        <SeekBar
-                            android:id="@+id/seekBar1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/seekBar2"
-                            android:layout_margin="8dp"
-                            android:layout_marginBottom="35dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_toLeftOf="@+id/tvXMax"
-                            android:layout_weight="1"
-                            android:max="500"
-                            android:paddingBottom="12dp" />
-
-                        <TextView
-                            android:id="@+id/tvXMax"
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/seekBar1"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginBottom="15dp"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/hi_maum_r"
-                            android:gravity="right"
-                            android:text="500"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-
-                        <SeekBar
-                            android:id="@+id/seekBar2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_margin="8dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_toLeftOf="@+id/tvYMax"
-                            android:layout_weight="1"
-                            android:max="200"
-                            android:paddingBottom="12dp" />
-
-                        <TextView
-                            android:id="@+id/tvYMax"
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/seekBar2"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginBottom="15dp"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/hi_maum_r"
-                            android:gravity="right"
-                            android:text="500"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout7"
+                android:id="@+id/temper_log_layout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="-7dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/hi_maum_r"
-                            android:gravity="center_vertical"
-                            android:text="@string/text_bodyfatrate"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="1dp"
-                            android:fontFamily="@font/hi_maum_r"
-                            android:text="(%)"
-                            android:textSize="@dimen/_8_dp" />
-                    </LinearLayout>
-
-
-                    <ImageButton
-                        android:id="@+id/weight_modal_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="6dp"
-                        android:background="@null"
-                        android:padding="5dp"
-                        android:src="@drawable/weight_icon" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_toLeftOf="@id/weight_modal_btn"
-                        android:fontFamily="@font/hi_maum_r"
-                        android:gravity="center_vertical"
-                        android:text="체성분 상세보기"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12dp" />
-
-
-                </RelativeLayout>
-
-                <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
-                    android:id="@+id/chart2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="-4dp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/visible_layout_4"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_80_dp"
-                android:layout_margin="@dimen/_10_dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorWhite">
-
-                    <View
-                        android:layout_width="@dimen/dp_2"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        android:background="@color/color_93286C"/>
-
-                    <View
-                        android:layout_width="@dimen/dp_2"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:background="@color/color_93286C"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_2"
-                        android:layout_alignParentTop="true"
-                        android:background="@color/color_93286C"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_2"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/color_93286C"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp_2"
-                                android:layout_alignParentBottom="true"
-                                android:background="@color/color_93286C"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/_15_dp"
-                                android:layout_marginRight="@dimen/_15_dp"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center_vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:gravity="right|center_vertical"
-                                            android:orientation="horizontal">
-
-                                            <TextView
-                                                android:id="@+id/textView19"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="match_parent"
-                                                android:fontFamily="@font/hi_maum_r"
-                                                android:gravity="center_vertical"
-                                                android:text="현재 체중"
-                                                android:textColor="@color/colorBlack"
-                                                android:textSize="@dimen/_14_dp" />
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="left"
-                                                android:layout_marginLeft="@dimen/_5_dp"
-                                                android:orientation="horizontal">
-
-                                                <TextView
-                                                    android:id="@+id/textView52"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginRight="0dp"
-                                                    android:fontFamily="@font/hi_maum_r"
-                                                    android:gravity="center_vertical"
-                                                    android:text="0"
-                                                    android:textColor="@color/color_E1147F"
-                                                    android:textSize="@dimen/_20_dp" />
-
-                                                <TextView
-                                                    android:id="@+id/textView20"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:fontFamily="@font/hi_maum_r"
-                                                    android:gravity="center_vertical"
-                                                    android:text="kg"
-                                                    android:textColor="@color/color_E1147F"
-                                                    android:textSize="@dimen/_20_dp" />
-                                            </LinearLayout>
-                                        </LinearLayout>
-
-
-                                        <TextView
-                                            android:id="@+id/textView18"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/hi_maum_l"
-                                            android:gravity="center_vertical"
-                                            android:text="최근 측정 (3일전)"
-                                            android:textColor="@color/colorBlack"
-                                            android:textSize="@dimen/_10_dp" />
-
-
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="@dimen/_10_dp"
-                                    android:layout_weight="1"
-                                    android:gravity="right|center_vertical">
-
-                                    <ImageView
-                                        android:id="@+id/target_value_btn"
-                                        android:layout_width="@dimen/_35_dp"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:src="@drawable/icon_targget"/>
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:visibility="gone">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/_15_dp"
-                                android:layout_marginRight="@dimen/_15_dp"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center_vertical">
-
-
-                                    <TextView
-                                        android:id="@+id/textView53"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/hi_maum_r"
-                                        android:text="목표 체중"
-                                        android:textColor="@color/colorBlack"
-                                        android:textSize="@dimen/_14_dp" />
-
-                                    <TextView
-                                        android:id="@+id/textView54"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/_8_dp"
-                                        android:fontFamily="@font/hi_maum_r"
-                                        android:text="70.40"
-                                        android:textColor="@color/color_E1147F"
-                                        android:textSize="@dimen/_14_dp" />
-
-                                    <TextView
-                                        android:id="@+id/textView55"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/hi_maum_r"
-                                        android:text="kg"
-                                        android:textColor="@color/color_E1147F"
-                                        android:textSize="@dimen/_14_dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center_vertical|right">
-
-
-                                    <TextView
-                                        android:id="@+id/textView58"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/hi_maum_r"
-                                        android:gravity="center_vertical"
-                                        android:text="목표 대비"
-                                        android:textColor="@color/colorBlack"
-                                        android:textSize="@dimen/_14_dp" />
-
-                                    <TextView
-                                        android:id="@+id/textView57"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/_8_dp"
-                                        android:fontFamily="@font/hi_maum_r"
-                                        android:gravity="center_vertical"
-                                        android:text="+0.30"
-                                        android:textColor="@color/color_E1147F"
-                                        android:textSize="@dimen/_14_dp" />
-
-                                    <TextView
-                                        android:id="@+id/textView56"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/hi_maum_r"
-                                        android:gravity="center_vertical"
-                                        android:text="kg"
-                                        android:textColor="@color/color_E1147F"
-                                        android:textSize="@dimen/_14_dp" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-                        </RelativeLayout>
-                    </LinearLayout>
-                </RelativeLayout>
-
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+                
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

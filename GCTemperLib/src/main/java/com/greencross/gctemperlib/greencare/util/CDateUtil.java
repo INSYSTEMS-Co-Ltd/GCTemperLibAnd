@@ -451,6 +451,15 @@ public class CDateUtil {
         return sdf.format(time);
     }
 
+    public static String getToday_temper_graph() {
+        Calendar cal            = Calendar.getInstance(Locale.KOREA);
+        Date now                = new Date();
+        cal.setTime(now);
+        long time               = cal.getTimeInMillis();
+        SimpleDateFormat sdf    = new SimpleDateFormat("yyyy. MM. dd.");
+        return sdf.format(time);
+    }
+
     public static String getTodayNowYear() {
 
         SimpleDateFormat sdfNow = new SimpleDateFormat("yyyyMMddHHmmss");

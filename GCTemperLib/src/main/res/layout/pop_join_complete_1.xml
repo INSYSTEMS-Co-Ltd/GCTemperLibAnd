@@ -63,7 +63,7 @@
 
 
             <TextView
-                android:id="@+id/dialog_content"
+                android:id="@+id/dialog_message_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dialog_content2"
@@ -82,7 +82,7 @@
                 android:id="@+id/dialog_a_type_button_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_64_dp"
-                android:layout_below="@+id/dialog_content"
+                android:layout_below="@+id/dialog_message_textview"
                 android:layout_marginTop="@dimen/_30_dp"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal">

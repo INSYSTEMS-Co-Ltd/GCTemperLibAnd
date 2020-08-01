@@ -35,25 +35,12 @@ import java.util.List;
 public class TemperChartView {
 
     protected TemperChart mChart;
-    private SeekBar mSeekBarX, mSeekBarY;
-    private TextView tvX, tvY;
     private Context mContext;
 
 //    protected Typeface mTfRegular;
 //    protected Typeface mTfLight;
-
-
     public TemperChartView(Context context, View v) {
         mContext = context;
-
-//        mTfRegular = ResourcesCompat.getFont(context, R.font.nanum_barun_gothic);
-//        mTfLight = ResourcesCompat.getFont(context, R.font.nanum_barun_gothic_light);
-
-        tvX = (TextView) v.findViewById(R.id.tvXMax);
-        tvY = (TextView) v.findViewById(R.id.tvYMax);
-
-        mSeekBarX = (SeekBar) v.findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) v.findViewById(R.id.seekBar2);
 
         mChart = (TemperChart) v.findViewById(R.id.chart1);
         mChart.setTouchEnabled(true);       // 클릭시 값 표시 해주려면 true
@@ -112,10 +99,6 @@ public class TemperChartView {
         mChart.setMarker(mv);
         mv.setEnabled(true);
 
-        // setting data
-        mSeekBarY.setProgress(50);
-        mSeekBarX.setProgress(12);
-
         mChart.setExtraTopOffset(30);   // 차트 상단 여백
 //        mChart.setDrawValueAboveBar(false); // 그래프 상단 값 표시
 
@@ -130,11 +113,13 @@ public class TemperChartView {
     public void setXValueFormat(IAxisValueFormatter f) {
         XAxis xAxis = mChart.getXAxis();
         xAxis.setValueFormatter(f);
+        xAxis.setTextColor(Color.parseColor("#6972d1"));
     }
 
     public void setYValueFormat(IAxisValueFormatter f) {
         YAxis YAxis = mChart.getAxis(AxisDependency.LEFT);
         YAxis.setValueFormatter(f);
+        YAxis.setTextColor(Color.parseColor("#dddddd"));
     }
 
     public TemperChart getBarChart() {
@@ -175,23 +160,19 @@ public class TemperChartView {
     public void animateXY() {
         mChart.animateXY(500, 500);
     }
-
     public void animateY() {
         mChart.animateY(500);
     }
 
-    public void setIsPragnant(boolean isPragnant) {
-        mChart.setIsPregnantTab(isPragnant);
-    }
 
     public void setData(List<BarEntry> yVals1, ChartTimeUtil timeClass) {
         mChart.setTimeClass(timeClass);
         BarDataSet set1;
-//        if (yVals1.size() == 0) {
-//            YAxis leftAxis = mChart.getAxisLeft();
-//            leftAxis.setAxisMinimum(40);
-//            leftAxis.setAxisMaximum(100);
-//        }
+        if (yVals1.size() == 0) {
+            YAxis leftAxis = mChart.getAxisLeft();
+            leftAxis.setAxisMinimum(32);
+            leftAxis.setAxisMaximum(42);
+        }
 
 
         if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {

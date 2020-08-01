@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -29,6 +31,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.greencross.gctemperlib.DummyActivity;
+import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
@@ -39,11 +42,13 @@ import com.greencross.gctemperlib.greencare.charting.data.BarEntry;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.AxisValueFormatter2;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.AxisYValueFormatter;
 import com.greencross.gctemperlib.greencare.chartview.temper.TemperChartView;
+import com.greencross.gctemperlib.greencare.chartview.valueFormat.TemperChartFormatter;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_FeverList;
+import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Temperature;
 import com.greencross.gctemperlib.greencare.temper.TemperSwipeListView;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.ChartTimeUtil;
@@ -57,7 +62,11 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -76,20 +85,12 @@ public class TemperGraphFragment extends BaseFragment {
 
     public ChartTimeUtil mTimeClass;
     private TextView mDateTv;
-    private TextView mTemperTargetTv;
-    private TextView mTemperTv;
-    private TextView mTemperTargetWaitTv;
     private TextView mTemperDayTv;
-    private TextView chartRule;
-
-    private TextView mMother_week;
 
     protected TemperChartView mTemperChart;
-
     private TemperSwipeListView mSwipeListView;
 
     protected LinearLayout layout_weight_graph;              // 그래프 레이아웃
-    protected LinearLayout weight_chart_date_layout;      // 차트 상단 날자 레이아웃
 
     protected TextView mXLabelTv;
 
@@ -98,16 +99,19 @@ public class TemperGraphFragment extends BaseFragment {
 //    private ImageView Hcallbtn; //, Action_btn;
 
     //    private DBHelperTemper.TemperStaticData mTemperStaticData;
-    private AxisValueFormatter2 xFormatter;
+//    private AxisValueFormatter2 xFormatter;
     private AxisYValueFormatter yFormatter;
 
     private View mVisibleView1;
     private View mVisibleView3;
-    private View mVisibleView4;
     private ScrollView mContentScrollView;
     private LinearLayout mChartFrameLayout;
     private ImageView mChartCloseBtn, mChartZoomBtn;
 
+    private TextView preCalendarTv;
+    private TextView nextCalendarTv;
+
+    private LinearLayout mLogLayout;
 
     public static Fragment newInstance() {
         TemperGraphFragment fragment = new TemperGraphFragment();
@@ -131,33 +135,30 @@ public class TemperGraphFragment extends BaseFragment {
         }
 
         mDateTv = (TextView) view.findViewById(R.id.period_date_textview);
-        mTemperTargetTv = (TextView) view.findViewById(R.id.textView54);
-        mTemperTv = (TextView) view.findViewById(R.id.textView52);
-        mTemperTargetWaitTv = (TextView) view.findViewById(R.id.textView57);
         mTemperDayTv = (TextView) view.findViewById(R.id.textView18);
-        chartRule = (TextView) view.findViewById(R.id.chart_rule);
         layout_weight_graph = (LinearLayout) view.findViewById(R.id.layout_weight_graph);
-        weight_chart_date_layout = view.findViewById(R.id.weight_chart_date_layout);
 
-        mXLabelTv = view.findViewById(R.id.weight_chart_x_label_tv);
+//        mXLabelTv = view.findViewById(R.id.weight_chart_x_label_tv);
 
         imgPre_btn = (ImageButton) view.findViewById(R.id.pre_btn);
         imgNext_btn = (ImageButton) view.findViewById(R.id.next_btn);
 
         view.findViewById(R.id.pre_btn).setOnClickListener(mClickListener);
         view.findViewById(R.id.next_btn).setOnClickListener(mClickListener);
-        view.findViewById(R.id.weight_modal_btn).setOnClickListener(mClickListener);
-        TextView preCalendarTv = view.findViewById(R.id.graph_pre_textview);
-        TextView nextCalendarTv = view.findViewById(R.id.graph_next_textview);
+
+        preCalendarTv = view.findViewById(R.id.graph_pre_textview);
+        nextCalendarTv = view.findViewById(R.id.graph_next_textview);
         preCalendarTv.setOnClickListener(mClickListener);
         nextCalendarTv.setOnClickListener(mClickListener);
+
+        mLogLayout = (LinearLayout) view.findViewById(R.id.temper_log_layout);
 
         GregorianCalendar calendar = new GregorianCalendar();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String today = CDateUtil.getToday_yyyy_MM_dd();
+        String today = CDateUtil.getToday_temper_graph();
         preCalendarTv.setText(today);
         nextCalendarTv.setText(today);
 
@@ -167,19 +168,17 @@ public class TemperGraphFragment extends BaseFragment {
         TypeDataSet.Period periodType = mTimeClass.getPeriodType();
         mTimeClass.clearTime();         // 날자 초기화
 
-        xFormatter = new AxisValueFormatter2(periodType);
+//        xFormatter = new AxisValueFormatter2(periodType);
         yFormatter = new AxisYValueFormatter(periodType);
 
         mTemperChart.setYValueFormat(yFormatter);
-        mTemperChart.setXValueFormat(xFormatter);
+//        mTemperChart.setXValueFormat(xFormatter);
 
         mSwipeListView = new TemperSwipeListView(view, TemperGraphFragment.this);
-        chartRule.setText("일간 : 시간별 최종데이터");
 
         setNextButtonVisible();
 
         // 차트 전체 화면 처리
-        mVisibleView4 = view.findViewById(R.id.visible_layout_4);
         mContentScrollView = view.findViewById(R.id.view_scrollview);
         mChartFrameLayout = view.findViewById(R.id.chart_frame_layout);
         mChartCloseBtn = view.findViewById(R.id.chart_close_btn);
@@ -213,18 +212,23 @@ public class TemperGraphFragment extends BaseFragment {
                 showCalendar((TextView) v);
             } else if (vId == R.id.graph_next_textview) {
                 showCalendar((TextView) v);
-            } else if (vId == R.id.weight_modal_btn) {
-                new showModifiDlg();
+//            } else if (vId == R.id.weight_modal_btn) {
+//                new showModifiDlg();
             } else if (vId == R.id.landscape_btn) {
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
             } else if (vId == R.id.chart_close_btn) {
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//            }else if(vId == R.id.target_value_btn){
-//                ((MotherHealthMainActivity)getContext()).actionBtnClick();
             }
             setNextButtonVisible();
         }
     };
+
+
+    private int cal_year;
+    private int cal_month;
+    private int cal_day;
+    private int cal_hour;
+    private int cal_min;
 
     private void showCalendar(TextView tv) {
         GregorianCalendar calendar = new GregorianCalendar();
@@ -241,16 +245,14 @@ public class TemperGraphFragment extends BaseFragment {
                     cal_month = monthOfYear;
                     cal_day = dayOfMonth;
                     mDateTvSet(tv, year, monthOfYear, dayOfMonth);
+
+                    getData();
                 }
             }
         }, year, month, day, false).show();
     }
 
-    private int cal_year;
-    private int cal_month;
-    private int cal_day;
-    private int cal_hour;
-    private int cal_min;
+
 //    DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
 //        @Override
 //        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -263,7 +265,7 @@ public class TemperGraphFragment extends BaseFragment {
 //        }
 //    };
 
-    private void mDateTvSet(TextView tv, int year, int monthOfYear, int dayOfMonth){
+    private void mDateTvSet(TextView tv, int year, int monthOfYear, int dayOfMonth) {
         String msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth);
         String tagMsg = String.format("%d%02d%02d", year, monthOfYear + 1, dayOfMonth);
         Calendar cal = Calendar.getInstance();
@@ -273,21 +275,20 @@ public class TemperGraphFragment extends BaseFragment {
         cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
         tv.setText(CDateUtil.getFormatYYYYMMDD(tagMsg));
-//        tv.setText(msg+" "+ CDateUtil.getDateToWeek(tagMsg)+"요일");
-        tv.setTag(tagMsg);
+        tv.setTag(cal.getTimeInMillis());
     }
 
-    private boolean DateTimeCheck(String type, int pram1, int pram2, int pram3){
+    private boolean DateTimeCheck(String type, int pram1, int pram2, int pram3) {
         Calendar cal = Calendar.getInstance();
 
-        if(type.equals("D")){
+        if (type.equals("D")) {
             cal.set(Calendar.YEAR, pram1);
             cal.set(Calendar.MONTH, pram2);
             cal.set(Calendar.DAY_OF_MONTH, pram3);
             cal.set(Calendar.HOUR_OF_DAY, cal_hour);
             cal.set(Calendar.MINUTE, cal_min);
 
-            if(cal.getTimeInMillis() > System.currentTimeMillis()){
+            if (cal.getTimeInMillis() > System.currentTimeMillis()) {
                 CDialog.showDlg(getContext(), getString(R.string.message_nowtime_over), new CDialog.DismissListener() {
                     @Override
                     public void onDissmiss() {
@@ -295,17 +296,17 @@ public class TemperGraphFragment extends BaseFragment {
                     }
                 });
                 return false;
-            }else{
+            } else {
                 return true;
             }
-        }else{
+        } else {
             cal.set(Calendar.YEAR, cal_year);
             cal.set(Calendar.MONTH, cal_month);
             cal.set(Calendar.DAY_OF_MONTH, cal_day);
             cal.set(Calendar.HOUR_OF_DAY, pram1);
             cal.set(Calendar.MINUTE, pram2);
 
-            if(cal.getTimeInMillis() > System.currentTimeMillis()){
+            if (cal.getTimeInMillis() > System.currentTimeMillis()) {
                 CDialog.showDlg(getContext(), getString(R.string.message_nowtime_over), new CDialog.DismissListener() {
                     @Override
                     public void onDissmiss() {
@@ -314,7 +315,7 @@ public class TemperGraphFragment extends BaseFragment {
                 });
 
                 return false;
-            }else{
+            } else {
                 return true;
             }
         }
@@ -334,97 +335,126 @@ public class TemperGraphFragment extends BaseFragment {
     }
 
     /**
-     * 일간,주간,월간,임신기간(40주)
-     */
-    public RadioGroup.OnCheckedChangeListener mCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            TypeDataSet.Period periodType = mTimeClass.getPeriodType();
-            mTimeClass.clearTime();         // 날자 초기화
-
-
-            if (periodType == TypeDataSet.Period.PERIOD_YEAR
-                    && ("N".equals(commonData.getbirth_chl_yn()))) {
-                // 년간 선택시 임신일 경우 X축 설정
-                xFormatter = new AxisValueFormatter2(TypeDataSet.Period.PERIOD_PRAGNANT);
-                yFormatter = new AxisYValueFormatter(TypeDataSet.Period.PERIOD_PRAGNANT);
-            } else {
-                xFormatter = new AxisValueFormatter2(periodType);
-                yFormatter = new AxisYValueFormatter(periodType);
-            }
-
-            mTemperChart.setYValueFormat(yFormatter);
-            mTemperChart.setXValueFormat(xFormatter);
-
-            getData();   // 날자 세팅 후 조회
-        }
-    };
-
-    /**
      * 날자 계산 후 조회
      */
     protected void getData() {
-        long startTime = mTimeClass.getStartTime();
-        long endTime = mTimeClass.getEndTime();
+//        long startTime = mTimeClass.getStartTime();
+//        long endTime = mTimeClass.getEndTime();
+        long startTime = getTimeInMillis(preCalendarTv.getText().toString());
+        long endTime = getTimeInMillis(nextCalendarTv.getText().toString());
 
         mTemperChart.getBarChart().setDrawMarkers(false); // 데이터 변경 될때 마커뷰 사라지게 하기
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat yearSdf = new SimpleDateFormat("yyyy");
 
         String startDate = sdf.format(startTime);
         String endDate = sdf.format(endTime);
 
-        if (mTimeClass.getPeriodType() == TypeDataSet.Period.PERIOD_DAY) {
-            mDateTv.setText(startDate);
-        } else if (mTimeClass.getPeriodType() == TypeDataSet.Period.PERIOD_YEAR) {
-            mDateTv.setText(yearSdf.format(startTime));
-        } else {
-            mDateTv.setText(startDate + " ~ " + endDate);
-        }
+//        if (mTimeClass.getPeriodType() == TypeDataSet.Period.PERIOD_DAY) {
+//            mDateTv.setText(startDate);
+//        } else if (mTimeClass.getPeriodType() == TypeDataSet.Period.PERIOD_YEAR) {
+//            mDateTv.setText(yearSdf.format(startTime));
+//        } else {
+//            mDateTv.setText(startDate + " ~ " + endDate);
+//        }
 
-        new QeuryVerifyDataTask().execute();
+        Tr_FeverList.RequestData requestData = new Tr_FeverList.RequestData();
+        requestData.startdate = startDate;
+        requestData.enddate = endDate;
+
+        getData(Tr_FeverList.class, requestData, (isSuccess, message, data) -> {
+            if (data instanceof Tr_FeverList) {
+                Tr_FeverList recv = (Tr_FeverList) data;
+                if (recv.isSuccess(recv.resultcode)) {
+                    Collections.sort(recv.datas, new TemperCompare());
+                    int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
+                    mTemperChart.setXvalMinMax(0, maxX, maxX);
+
+                    String startDay = CDateUtil.getFormattedString_yyyy(startTime);
+                    String endDay = CDateUtil.getFormattedString_MM(endTime);
+                    List<BarEntry> weightYVals = new ArrayList<>();
+                    for (Tr_FeverList.Data temperData : recv.datas) {
+                        float idx = StringUtil.getFloatVal(temperData.idx);
+                        float input_fever = StringUtil.getFloatVal(temperData.input_fever);
+                        weightYVals.add(new BarEntry(idx, input_fever));
+                    }
+
+                    makeLogItem(recv.datas);
+
+                    setYMinMax(weightYVals, false);
+                    TemperChartFormatter formatter = new TemperChartFormatter(recv.datas);
+                    mTemperChart.setXValueFormat(formatter);
+                    mTemperChart.setData(weightYVals, mTimeClass);
+                    mTemperChart.invalidate();
+//                    setNextButtonVisible();
+                } else {
+                    CDialog.showDlg(getContext(), "알림", "데이터 수신 실패");
+                }
+            } else {
+                CDialog.showDlg(getContext(), "알림", "데이터 수신 실패");
+            }
+        });
+//        new QeuryVerifyDataTask().execute();
     }
 
-    public class QeuryVerifyDataTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            showProgress();
-        }
-
-        protected Void doInBackground(Void... params) {
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            hideProgress();
-
-            Logger.i(TAG, "getContext is " + getContext());
-
-            if (getContext() == null) {
-                Logger.e(TAG, "getContext is Null");
+    /**
+     * 하단 로그 화면 만들기
+     * @param datas
+     */
+    private void makeLogItem(List<Tr_FeverList.Data> datas ) {
+        String beforeInputDe = "";
+        View beforeBottomLine = null;
+        for (Tr_FeverList.Data temperData : datas) {
+            if (TextUtils.isEmpty(temperData.input_de))
                 return;
+            String yyyMMdd = temperData.input_de.substring(0, 10);
+            boolean isAddDateLayout = yyyMMdd.equals(beforeInputDe) == false;
+            if (isAddDateLayout) {
+                beforeInputDe = yyyMMdd;
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_frame_layout, null);
+                ((TextView)view.findViewById(R.id.temper_item_date_textview)).setText(yyyMMdd);
+                if (beforeBottomLine != null)
+                    beforeBottomLine.setVisibility(View.GONE);
+                mLogLayout.addView(view);
             }
 
-            mXLabelTv.setText("(일)");
-            int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
-            xFormatter.setMonthMax(maxX);
-            mTemperChart.setXvalMinMax(0, maxX, maxX);
-
-            String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
-            String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
-            List<BarEntry> weightYVals = new ArrayList<>(); //weightDb.getResultMonth(startDay, endDay, true);
-            setYMinMax(weightYVals, false);
-            mTemperChart.setData(weightYVals, mTimeClass);
-            List<BarEntry> fatYVals = new ArrayList<>();//  weightDb.getResultMonth(startDay, endDay, false);
-            mTemperChart.animateY();
-            setNextButtonVisible();
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_item_layout, null);
+            ImageButton ib = view.findViewById(R.id.temper_item_iv);
+            boolean isWeareable = "1".equals(temperData.is_wearable);
+            TextView itemTextView1 = view.findViewById(R.id.temper_item_text1);
+            if (isWeareable) {
+                ib.setImageResource(R.drawable.hn_temper_log_icon2);
+                itemTextView1.setText("전용체온계");
+                itemTextView1.setTextColor(Color.parseColor("#6972d1"));
+            }
+            ((TextView)view.findViewById(R.id.temper_item_text2)).setText(temperData.input_de.substring(11, 16));
+            ((TextView)view.findViewById(R.id.temper_item_text3)).setText(temperData.input_fever+" ℃");
+            beforeBottomLine = view.findViewById(R.id.temper_item_bottom_line);
+            mLogLayout.addView(view);
         }
     }
+
+    class TemperCompare implements Comparator<Tr_FeverList.Data> {
+        @Override
+        public int compare(Tr_FeverList.Data data, Tr_FeverList.Data t1) {
+            return t1.input_de.compareTo(data.input_de);
+        }
+    }
+
+    private long getTimeInMillis(String text) {
+        text = StringUtil.getIntString(text);
+        int year = StringUtil.getIntger(text.substring(0, 4));
+        int month = StringUtil.getIntger(text.substring(4, 6));
+        int day = StringUtil.getIntger(text.substring(6, 8));
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, month - 1);
+        cal.set(Calendar.DAY_OF_MONTH, day);
+
+        return cal.getTimeInMillis();
+    }
+
 
     /**
      * y라벨 구하기
@@ -530,106 +560,6 @@ public class TemperGraphFragment extends BaseFragment {
     private LinearLayout mom_set_lv;
 
 
-    public void requestTemperData() {
-        Tr_FeverList.RequestData requestData = new Tr_FeverList.RequestData();
-        CommonData login = CommonData.getInstance(getContext());
-
-        getData(getContext(), Tr_FeverList.class, requestData, true, new ApiData.IStep() {
-            @Override
-            public void next(Object obj) {
-                if (obj instanceof Tr_FeverList) {
-                    Tr_FeverList data = (Tr_FeverList) obj;
-
-
-                }
-            }
-        }, null);
-    }
-
-//    /**
-//     * 목표체중등록
-//     *
-//     * @param wt
-//     */
-//    public void requestRevcGoalTemper(String wt) {
-//        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-//        try {
-//            JSONObject object = new JSONObject();
-//
-//            object.put("api_code", "mvm_goalqy");
-//            object.put("insures_code", "108");
-//            object.put("mber_sn", CommonData.getInstance(getContext()).getMberSn());
-//
-//            object.put("goal_mvm_calory", "");
-//            object.put("goal_mvm_stepcnt", "");
-//            object.put("goal_bdwgh", wt);
-//
-//            params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
-//            RequestApi.requestApi(getActivity(), NetworkConst.NET_MOTHER_REVC_GOAL, NetworkConst.getInstance().getDefDomain(), networkListener, params, new MakeProgress(getActivity()));
-//
-//            CommonData.getInstance(getContext()).setMotherGoalTemper(wt);
-//        } catch (Exception e) {
-//            Log.i(e.toString(), "dd");
-//            e.printStackTrace();
-//        }
-//    }
-
-    /**
-     * 네트워크 리스너
-     */
-    public CustomAsyncListener networkListener = new CustomAsyncListener() {
-        @Override
-        public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
-            hideProgress();
-            switch (type) {
-                case NetworkConst.NET_MOTHER_REVC_GOAL:
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            requestTemperData();
-                            break;
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public void onNetworkError(Context context, int type,
-                                   int httpResultCode, CustomAlertDialog dialog) {
-            dialog.show();
-        }
-
-        @Override
-        public void onDataError(Context context, int type, String resultData, CustomAlertDialog
-                dialog) {
-            // 데이터에 문제가 있는 경우 다이얼로그를 띄우고 인트로에서는 종료하도록 한다.
-
-            dialog.show();
-
-        }
-    };
-
-    public void setColorchange(String text) {
-        if (text.contains("저체중군")) {
-            commentTxt01.setText(text);
-            commentTxt01.setTextColor(ContextCompat.getColor(getContext(), R.color.color_f3ab49));
-        } else if (text.contains("정상체중군")) {
-            commentTxt01.setText(text);
-            commentTxt01.setTextColor(ContextCompat.getColor(getContext(), R.color.color_8dc349));
-
-        } else if (text.contains("과체중군")) {
-            commentTxt01.setText(text);
-            commentTxt01.setTextColor(ContextCompat.getColor(getContext(), R.color.color_e65739));
-
-        } else if (text.contains("비만군")) {
-            commentTxt01.setText(text);
-            commentTxt01.setTextColor(ContextCompat.getColor(getContext(), R.color.color_a49bc8));
-
-        } else if (text.contains("고도비만")) {
-            commentTxt01.setText(text);
-            commentTxt01.setTextColor(ContextCompat.getColor(getContext(), R.color.color_717173));
-        }
-    }
-
     // 최고 32에서 13 빼고 시작한다
     private float totalSpan = 18; //(32 - 14)
     private float span01 = 4.5f;
@@ -637,10 +567,6 @@ public class TemperGraphFragment extends BaseFragment {
     private float span03 = 2;
     private float span04 = 5;
     private float span05;
-
-    public void initWeighCurrData(Tr_FeverList resultData) {
-
-    }
 
 
     protected boolean isLandScape = false;
@@ -661,20 +587,6 @@ public class TemperGraphFragment extends BaseFragment {
         setVisibleOrientationLayout();
     }
 
-    /**
-     * 출산 후 목표 체중 달성에 따른 문구
-     */
-
-    private String setTargetText(float target, float weight) {
-        if (weight > target) {
-            return String.format("현재 체중에서 %.2fkg 체중 감량이 필요합니다.", weight - target);
-        } else if (weight == target) {
-            return "축하합니다! 목표 체중을 달성했습니다. 새로운 목표를 설정해 체중관리에 도전하세요.";
-        } else if (target > weight) {
-            return String.format("현재 체중에서 %.2fkg 체중 증가가 필요합니다.", target - weight);
-        }
-        return "";
-    }
 
     /**
      * 가로, 세로모드일때 불필요한 화면 Visible 처리
@@ -705,6 +617,46 @@ public class TemperGraphFragment extends BaseFragment {
         });
         //가로모드 전환 시 스크롤 상단으로 위치
         mContentScrollView.smoothScrollTo(0, 0);
+    }
+
+    @Deprecated
+    public class QeuryVerifyDataTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgress();
+        }
+
+        protected Void doInBackground(Void... params) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            hideProgress();
+
+            Logger.i(TAG, "getContext is " + getContext());
+
+            if (getContext() == null) {
+                Logger.e(TAG, "getContext is Null");
+                return;
+            }
+
+            mXLabelTv.setText("(일)");
+            int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
+            mTemperChart.setXvalMinMax(0, maxX, maxX);
+
+            String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
+            String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
+            List<BarEntry> weightYVals = new ArrayList<>(); //weightDb.getResultMonth(startDay, endDay, true);
+            setYMinMax(weightYVals, false);
+            mTemperChart.setData(weightYVals, mTimeClass);
+            List<BarEntry> fatYVals = new ArrayList<>();//  weightDb.getResultMonth(startDay, endDay, false);
+            mTemperChart.animateY();
+            setNextButtonVisible();
+        }
     }
 
 //    @Override

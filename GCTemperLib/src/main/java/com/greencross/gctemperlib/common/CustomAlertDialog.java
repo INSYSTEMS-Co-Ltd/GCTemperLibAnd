@@ -414,7 +414,7 @@ public class CustomAlertDialog extends Dialog {
 //
 //        }
 
-        mContentTv = (TextView) findViewById(R.id.dialog_content);
+        mContentTv = (TextView) findViewById(R.id.dialog_message_textview);
 
         if ( mContentTv != null ){
             mContentTv.setText(content);
@@ -446,7 +446,7 @@ public class CustomAlertDialog extends Dialog {
 //
 //        }
 
-        mContentTv = (TextView) findViewById(R.id.dialog_content);
+        mContentTv = (TextView) findViewById(R.id.dialog_message_textview);
 
         if ( mContentTv != null ){
             Spanned htmlText ;

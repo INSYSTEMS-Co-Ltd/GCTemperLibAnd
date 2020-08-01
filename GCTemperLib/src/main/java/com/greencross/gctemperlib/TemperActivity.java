@@ -135,6 +135,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         findViewById(R.id.map_alram_btn).setOnClickListener(view ->
                 DummyActivity.startActivity(TemperActivity.this, SettingAddressFragment.class, null)
         );
+
+        findViewById(R.id.slide_contents_view).setOnClickListener(null);
     }
 
     /**
@@ -142,39 +144,17 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      */
     private void setSlideLayout() {
         // 체온관리
-        findViewById(R.id.fever_map_menu_1).setOnClickListener(view ->
-                DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null)
-        );
+        findViewById(R.id.fever_map_menu_1).setOnClickListener(this);
+        findViewById(R.id.fever_map_menu_1_iv).setOnClickListener(this);
         // 건강강검진예약
-        findViewById(R.id.fever_map_menu_2).setOnClickListener(view ->
-                DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null)
-        );
-
+        findViewById(R.id.fever_map_menu_2).setOnClickListener(this);
+        findViewById(R.id.fever_map_menu_2_iv).setOnClickListener(this);
         // 건강상담
-        findViewById(R.id.fever_map_menu_3).setOnClickListener(view -> {
-
-            // TODO : DB 전송완료시 & DB전송이 완료되지 않은 경우 처리 해야 함
-            CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
-
-            CDialog dlg = CDialog.showDlg(TemperActivity.this, R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
-            dlg.setOkButton(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String tel = "tel:" + getString(R.string.health_call_center);
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse(tel));
-                    startActivity(intent);
-                }
-            });
-            dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
-
-
-        });
-
-        // 헬스케어란
-        findViewById(R.id.fever_map_menu_4).setOnClickListener(view ->
-                DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null)
-        );
+        findViewById(R.id.fever_map_menu_3).setOnClickListener(this);
+        findViewById(R.id.fever_map_menu_3_iv).setOnClickListener(this);
+        // 헬스케어 서비스란
+        findViewById(R.id.fever_map_menu_4).setOnClickListener(this);
+        findViewById(R.id.fever_map_menu_4_iv).setOnClickListener(this);
 
 
         final View slideFullUpLayout = findViewById(R.id.slide_top_full_up_layout);
@@ -238,11 +218,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 이벤트 연결
      */
     public void setEvent() {
-
-        //hsh start
-//        textView9.setOnClickListener(this);
-        //hsh end
-
         //click 저장
         OnClickListener mClickListener = new OnClickListener(this, view, TemperActivity.this);
     }
@@ -257,6 +232,27 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             SharedPref.getInstance(this).savePreferences(SharedPref.TEMPER_INTRO_VIEW_SHOW, false);
         } else if (id == R.id.temper_info_start_btn) {
             mInfoLayout.setVisibility(View.GONE);
+        } else if (id == R.id.fever_map_menu_1 || id == R.id.fever_map_menu_1_iv) { // 체온관리
+            DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
+        } else if (id == R.id.fever_map_menu_2 || id == R.id.fever_map_menu_2_iv) {   // 건강강검진예약
+            DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null);
+        } else if (id == R.id.fever_map_menu_3 || id == R.id.fever_map_menu_3_iv) { // 건강상담
+            // TODO : DB 전송완료시 & DB전송이 완료되지 않은 경우 처리 해야 함
+            CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
+
+            CDialog dlg = CDialog.showDlg(TemperActivity.this, R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
+            dlg.setOkButton(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String tel = "tel:" + getString(R.string.health_call_center);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse(tel));
+                    startActivity(intent);
+                }
+            });
+            dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
+        } else if (id == R.id.fever_map_menu_4 || id == R.id.fever_map_menu_4_iv) { // 헬스케어 서비스란
+            DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null);
         }
     }
 
@@ -616,129 +612,5 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         } catch (Exception e) {
 //            e.printStackTrace();
         }
-
     }
-
-
-//    public void initRank() {
-//        if (mEpidemicList.size() > 0) {
-//            for (int i = 0; i < 10; i++) {
-//                mTxtDiseNmList[i].setText(mEpidemicList.get(i).getDzName());
-//                mTxtDiseCntList[i].setText("" + mEpidemicList.get(i).getRatio() + "%");
-//            }
-//        } else {
-//            mEpidemicRankLay.setVisibility(View.GONE);
-//            mTxtNullEpidemic.setVisibility(View.VISIBLE);
-//        }
-//    }
-
-//    /**
-//     * 유의질환 공유
-//     */
-//    public void requestSharedisease() {
-//        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//        try {
-//            JSONArray array = new JSONArray();
-//            JSONObject object = new JSONObject();
-//
-//            object.put(CommonData.JSON_API_CODE, "asstb_mber_cntr_diss");
-//            object.put(CommonData.JSON_INSURES_CODE, CommonData.INSURE_CODE);          //  insures 코드
-//            object.put(CommonData.JSON_CNTR_TYP, "15");
-//            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(TemperActivity.this).getMberSn());             //  회원고유값
-//            object.put("diss_view_de", CDateUtil.getToday_yyyy_MM_dd());
-//
-//
-//            if (mEpidemicList.size() > 0 && mEpidemicList.size() > 9) {
-//                object.put("data_length", "10");
-//                for (int i = 0; i < 10; i++) {
-//                    JSONObject epidObject = new JSONObject();
-//                    epidObject.put("rank", String.valueOf(i + 1));
-//                    epidObject.put("rank_nm", mEpidemicList.get(i).getDzName());
-//                    epidObject.put("rank_per", "" + mEpidemicList.get(i).getRatio() + "%");
-//
-//                    array.put(epidObject);
-//                }
-//            } else if (mEpidemicList.size() > 0 && mEpidemicList.size() < 10) {
-//                object.put("data_length", mEpidemicList.size());
-//                for (int i = 0; i < mEpidemicList.size(); i++) {
-//                    JSONObject epidObject = new JSONObject();
-//                    epidObject.put("rank", String.valueOf(i + 1));
-//                    epidObject.put("rank_nm", mEpidemicList.get(i).getDzName());
-//                    epidObject.put("rank_per", "" + mEpidemicList.get(i).getRatio() + "%");
-//
-//                    array.put(epidObject);
-//                }
-//            } else {
-//                object.put("data_length", "10");
-//                for (int i = 0; i < 10; i++) {
-//                    JSONObject epidObject = new JSONObject();
-//                    epidObject.put("rank", String.valueOf(i + 1));
-//                    epidObject.put("rank_nm", "");
-//                    epidObject.put("rank_per", "0.0%");
-//
-//                    array.put(epidObject);
-//                }
-//            }
-//
-//
-//            object.put("data", array);
-//
-//            params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
-//            RequestApi.requestApi(this, NetworkConst.NET_ASSTB_MBER_CNTR_DISS, NetworkConst.getInstance().getDefDomain(), new CustomAsyncListener() {
-//                @Override
-//                public void onNetworkError(Context context, int type, int httpResultCode, CustomAlertDialog dialog) {
-//                    hideProgress();
-//                    dialog.show();
-//                }
-//
-//                @Override
-//                public void onDataError(Context context, int type, String resultData, CustomAlertDialog dialog) {
-//                    hideProgress();
-//                    dialog.show();
-//                }
-//
-//                @Override
-//                public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
-//                    case CommonData.API_SUCCESS:
-//                    GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
-//                    try {
-//                        String data_yn = resultData.getString(CommonData.JSON_REG_YN);
-//                        if (data_yn.equals(CommonData.YES)) {
-//                            String imgUrl = "https://wkd.walkie.co.kr/HL_FV/info/image/01_15.png";
-//                            String cntr_url = resultData.getString("cntr_url");
-//
-//                            if (cntr_url.contains("https://wkd.walkie.co.kr")) ;
-//                            String param = cntr_url.replace("https://wkd.walkie.co.kr", "");
-//
-//                            View view = LayoutInflater.from(TemperActivity.this).inflate(R.layout.applink_dialog_layout, null);
-//                            ApplinkDialog dlg = ApplinkDialog.showDlg(TemperActivity.this, view);
-//                            dlg.setSharing(imgUrl, "img", "", "", "[현대해상 " + KakaoLinkUtil.getAppname(TemperActivity.this.getPackageName(), TemperActivity.this) + "]", "유의질환 발생 빈도", "자세히보기", "", false, "disease.png", param, cntr_url);
-//
-//                        } else {
-//                        }
-//
-//                    } catch (Exception e) {
-//                        GLog.e(e.toString());
-//                    }
-//
-//                    break;
-//                    case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-//                    GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
-//
-//                    break;
-//                    case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-//                    GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
-//                    break;
-//
-//                    default:
-//                    GLog.i("NET_GET_APP_INFO default", "dd");
-//                    break;
-//                }
-//            }, params, new MakeProgress(this));
-//        } catch (Exception e) {
-//            GLog.i(e.toString(), "dd");
-//        }
-//    }
-
 }

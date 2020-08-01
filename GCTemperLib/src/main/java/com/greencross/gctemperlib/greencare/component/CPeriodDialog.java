@@ -398,7 +398,7 @@ public class CPeriodDialog extends Dialog {
         mMessageView = (TextView) findViewById(R.id.dialog_content_tv);
         mNoButton = (Button) findViewById(R.id.dialog_btn_no);
         mOkButton = (Button) findViewById(R.id.confirm_btn);
-        mContentLayout = (LinearLayout) findViewById(R.id.dialog_content);
+        mContentLayout = (LinearLayout) findViewById(R.id.dialog_message_textview);
         mBtnLayout = (LinearLayout) findViewById(R.id.dialog_a_type_button_layout);
     }
 }

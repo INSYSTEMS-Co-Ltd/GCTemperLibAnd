@@ -241,7 +241,7 @@ public class CustomEditConfirmDialog extends Dialog {
     public void setContent(CharSequence content) {
         // TODO Auto-generated method stub
         mContentTv = null;
-        mContentTv = (TextView) findViewById(R.id.dialog_content);
+        mContentTv = (TextView) findViewById(R.id.dialog_message_textview);
 
         if (mContentTv != null) {
             mContentTv.setText(content);

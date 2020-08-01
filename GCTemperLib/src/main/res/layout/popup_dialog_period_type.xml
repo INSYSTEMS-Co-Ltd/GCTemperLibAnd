@@ -34,7 +34,7 @@
             android:visibility="gone" />
         <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" >
             <LinearLayout
-                android:id="@+id/dialog_content"
+                android:id="@+id/dialog_message_textview"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_500_dp">
                 <TextView
@@ -54,7 +54,7 @@
             </LinearLayout>
 
 
-            <LinearLayout android:id="@+id/dialog_a_type_button_layout" android:layout_width="match_parent" android:layout_height="@dimen/_64_dp" android:layout_below="@+id/dialog_content"  android:orientation="horizontal">
+            <LinearLayout android:id="@+id/dialog_a_type_button_layout" android:layout_width="match_parent" android:layout_height="@dimen/_64_dp" android:layout_below="@+id/dialog_message_textview"  android:orientation="horizontal">
                 <Button
                     android:id="@+id/confirm_btn"
                     android:layout_width="match_parent"

@@ -2317,7 +2317,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.pop_join_complete_1, null);
                                     TextView dialog_content2 = view.findViewById(R.id.dialog_content2);
                                     TextView dialog_content1 = view.findViewById(R.id.dialog_content1);
-                                    TextView dialog_content = view.findViewById(R.id.dialog_content);
+                                    TextView dialog_content = view.findViewById(R.id.dialog_message_textview);
                                     TextView dialog_title = view.findViewById(R.id.dialog_title);
 
 

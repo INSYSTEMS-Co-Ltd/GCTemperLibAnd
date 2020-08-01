@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="GCLibTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name ="android:windowBackground">@color/color_100ffffff</item>
+        <item name="android:windowBackground">@color/color_100ffffff</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="fontFamily">@font/notosans_m</item>
@@ -112,7 +112,7 @@
         <item name="android:textSize">@dimen/_15_dp</item>
         <item name="android:textColorHint">@color/colorGray</item>
         <item name="android:layout_height">@dimen/_35_dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
+
         <item name="android:background">@drawable/edittext_box</item>
         <item name="android:layout_marginLeft">3dp</item>
         <item name="android:layout_marginRight">3dp</item>
@@ -127,7 +127,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColorHint">@color/colorGray</item>
         <item name="android:layout_height">55dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
+
         <item name="android:layout_marginLeft">3dp</item>
         <item name="android:layout_marginRight">3dp</item>
         <item name="android:layout_marginBottom">3dp</item>
@@ -138,7 +138,7 @@
 
     <!--항목타이틀 기본 -->
     <style name="common_textview_basic" parent="@android:style/Widget.TextView">
-        <item name="android:fontFamily">@font/hi_maum_r</item>
+        <item name="android:fontFamily">@font/notosans_m</item>
     </style>
 
 
@@ -153,7 +153,6 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">5dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
     <!--항목타이틀-->
     <style name="common_textview_fields" parent="common_textview_basic">
@@ -166,7 +165,6 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">3dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
 
     <!--항목타이틀(선택)-->
@@ -180,7 +178,6 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">3dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
 
     <!--항목 값-->
@@ -193,7 +190,6 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">3dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
 
     <!--validate 값 노출 -->
@@ -205,7 +201,6 @@
         <item name="android:layout_marginBottom">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">3dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
 
     </style>
 
@@ -219,7 +214,6 @@
         <item name="android:layout_marginTop">1dp</item>
         <item name="android:paddingRight">1dp</item>
         <item name="android:paddingLeft">1dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
 
     <style name="common_textview_dark_nobottom" parent="common_textview_basic">
@@ -232,8 +226,8 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">1dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
+
     <style name="common_textview_dark" parent="common_textview_basic">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">12sp</item>
@@ -244,14 +238,13 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">3dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
 
     <style name="common_textview_dark_nomargin" parent="common_textview_basic">
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/colorFields</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
+
     <style name="common_textview_ea" parent="common_textview_basic">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/_12_dp</item>
@@ -262,11 +255,9 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingLeft">3dp</item>
-        <item name="android:fontFamily">@font/hi_maum_r</item>
     </style>
 
-    <style name="common_actionbar_style" parent="Base.Widget.AppCompat.Light.ActionBar">
-    </style>
+    <style name="common_actionbar_style" parent="Base.Widget.AppCompat.Light.ActionBar"></style>
 
     <style name="common_button_modal_close" parent="Base.TextAppearance.AppCompat.Button">
         <!--<item name="android:textStyle">bold</item>-->
@@ -276,7 +267,6 @@
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:gravity">center</item>
-        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
     </style>
 
     <!-- input button style -->
@@ -290,7 +280,6 @@
         <item name="android:layout_marginLeft">45dp</item>
         <item name="android:layout_marginRight">45dp</item>
         <item name="android:gravity">center</item>
-        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
     </style>
 
     <!-- save button style -->
@@ -303,7 +292,6 @@
         <item name="android:paddingBottom">@dimen/_10_dp</item>
         <item name="android:paddingTop">@dimen/_10_dp</item>
         <item name="android:scaleType">fitCenter</item>
-        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
     </style>
 
     <!-- more button style -->
@@ -316,7 +304,6 @@
         <item name="android:background">@color/colorBackgound</item>
         <item name="android:gravity">center</item>
         <item name="android:text">15개 더보기</item>
-        <!--<item name="android:fontFamily">NotoSansKR-Bold</item>-->
     </style>
 
 

@@ -69,8 +69,8 @@ public class HNApiData {
 //                String result = "";
         URL url = new URL(connUrl);
         conn = (HttpURLConnection) url.openConnection();
-        conn.setConnectTimeout(3 * 1000);
-        conn.setReadTimeout(3 * 1000);
+        conn.setConnectTimeout(5 * 1000);
+        conn.setReadTimeout(5 * 1000);
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
         conn.setRequestProperty("Authorization", "Bearer "  +"APA91bGkmKwWBjCso94R3sM3CUEk79");

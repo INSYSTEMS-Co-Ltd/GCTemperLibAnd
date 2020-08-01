@@ -10,6 +10,9 @@ import com.greencross.gctemperlib.greencare.util.SharedPref;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  체온조회
@@ -68,14 +71,6 @@ public class Tr_FeverList extends BaseData {
     /**************************************************************************************************/
     /***********************************************RECEIVE********************************************/
     /**************************************************************************************************/
-    @SerializedName("Idx")
-    public String Idx;
-    @SerializedName("Input_de")
-    public String Input_de;
-    @SerializedName("Input_fever")
-    public String Input_fever;
-    @SerializedName("is_wearable")
-    public String is_wearable;
     @SerializedName("status")
     public String status;
     @SerializedName("docno")
@@ -84,5 +79,18 @@ public class Tr_FeverList extends BaseData {
     public String resultcode;
     @SerializedName("message")
     public String message;
+
+    @SerializedName("data")
+    public List<Data> datas = new ArrayList<>();
+    public class Data {
+        @SerializedName("idx")
+        public String idx;
+        @SerializedName("input_de")
+        public String input_de;
+        @SerializedName("input_fever")
+        public String input_fever;
+        @SerializedName("is_wearable")
+        public String is_wearable;
+    }
 
 }

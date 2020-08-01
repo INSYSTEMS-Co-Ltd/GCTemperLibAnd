@@ -104,6 +104,28 @@ public class CDialog extends Dialog {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
     }
 
+    public static CDialog showDlg(Context context, int title, int message) {
+        return showDlg(context, context.getString(title), context.getString(message));
+    }
+
+    public static CDialog showDlg(Context context, String title, String message) {
+        final CDialog dlg = getInstance(context);
+
+        dlg.mTitleView.setText(title);
+        dlg.mMessageView.setText(message);
+
+        dlg.mOkButton.setVisibility(View.VISIBLE);
+        dlg.mOkButton.setBackgroundResource(R.drawable.btn_confirm);
+        dlg.mOkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlg.dismiss();
+            }
+        });
+        return dlg;
+    }
+
+
     public static CDialog showDlg(Context context, String message,boolean canelable) {
         final CDialog dlg = getInstance(context);
         dlg.setTitle(message);
@@ -133,36 +155,10 @@ public class CDialog extends Dialog {
         return dlg;
     }
 
-    public static CDialog LoginshowDlg(Context context, String title, String message) {
-        CDialog dlg = getInstance(context);
-        //dlg.setTitle(title);
-        dlg.setTitle(message);
-
-        return dlg;
-    }
-
-    public static CDialog showDlg(Context context, int title, int message) {
-        return showDlg(context, context.getString(title), context.getString(message));
-    }
-    public static CDialog showDlg(Context context, String title, String message) {
-        final CDialog dlg = getInstance(context);
-        dlg.setTitle(message);
-        dlg.setMessage(message);
-        dlg.mOkButton.setVisibility(View.VISIBLE);
-        dlg.mOkButton.setBackgroundResource(R.drawable.btn_confirm);
-        dlg.mOkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dlg.dismiss();
-            }
-        });
-
-        return dlg;
-    }
 
     public static CDialog showDlg(Context context, String message, View.OnClickListener okListener) {
         CDialog dlg = getInstance(context);
-        dlg.setTitle(message);
+        dlg.setMessage(message);
         dlg.setOkButton(okListener);
 
         return dlg;
@@ -170,8 +166,8 @@ public class CDialog extends Dialog {
 
     public static CDialog showDlg(Context context, String title, String message, View.OnClickListener okListener) {
         CDialog dlg = getInstance(context);
-        //dlg.setTitle(title);
-        dlg.setTitle(message);
+        dlg.setTitle(title);
+        dlg.setMessage(message);
         dlg.setOkButton(okListener);
 
         return dlg;
@@ -281,26 +277,15 @@ public class CDialog extends Dialog {
         dlg.setNoButton(noListener);
     }
 
-    /**
-     * 타이틀 세팅
-     * 타이틀이 없으면 타이틀 영역을 Gone 처리
-     * @param message
-     */
+    public void setTitle(String title) {
+        mTitleView.setText(title);
+    }
+
     public void setMessage(String message) {
         mMessageView.setText(message);
     }
 
-    public void setTitle(String title) {
-        if (TextUtils.isEmpty(title)) {
-            mTitleView.setVisibility(View.GONE);
-//            mTitleLayout.setVisibility(View.GONE);
-        } else {
-            mTitleView.setVisibility(View.VISIBLE);
-            mTitleView.setText(title);
-        }
-    }
-
-    public void setClickListener() {   //final View.OnClickListener noClickListener, final View.OnClickListener okClickListener) {
+    public void setClickListener() {
         Logger.i("", "setClickListener=" + mNoButton);
 
         if (mNoClickListener == null) {
@@ -422,20 +407,12 @@ public class CDialog extends Dialog {
      */
     public void setLayout() {
         mTitleView = (TextView) findViewById(R.id.dialog_title_textview);
-        mMessageView = (TextView) findViewById(R.id.dialog_content);
+        mMessageView = (TextView) findViewById(R.id.dialog_message_textview);
+
         mNoButton = (Button) findViewById(R.id.cancel_btn);
         mOkButton = (Button) findViewById(R.id.confirm_btn);
         mContentLayout = (LinearLayout) findViewById(R.id.dialog_layout);
         mBtnLayout = (LinearLayout) findViewById(R.id.dialog_b_type_button_layout);
-
-        //mContentLayout = (LinearLayout) findViewById(R.id.dialog_content_layout);
-        //mTitleLayout = (LinearLayout)findViewById(R.id.dialog_title_layout);
-        //mMessageView = (TextView) findViewById(R.id.dialog_content_tv);
-        //mTitleView = (TextView) findViewById(R.id.dialog_title);
-        //mOkButton = (Button) findViewById(R.id.dialog_btn_ok);
-        //viewTerm = (View) findViewById(R.id.view_term);
-        //mNoButton = (Button) findViewById(R.id.dialog_btn_no);
-        //mBtnLayout = (LinearLayout) findViewById(R.id.dialog_btn_layout);
     }
 
     public void setBackgroundOkBtn(int background){

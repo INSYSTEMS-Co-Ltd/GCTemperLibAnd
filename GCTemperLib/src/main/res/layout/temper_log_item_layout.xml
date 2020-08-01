@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingTop="@dimen/_10_dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="@dimen/_10_dp"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:id="@+id/temper_item_iv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/draw_circle_f2f2f2"
+            android:duplicateParentState="true"
+            android:src="@drawable/hn_temper_log_icon1" />
+
+        <TextView
+            android:id="@+id/temper_item_text1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lineSpacingExtra="10sp"
+            android:textColor="#222222"
+            android:textSize="15sp"
+            android:fontFamily="@font/hanam"
+            android:layout_marginLeft="12dp"
+            android:text="직접입력" />
+
+        <TextView
+            android:id="@+id/temper_item_text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lineSpacingExtra="10sp"
+            android:textColor="#222222"
+            android:textSize="15sp"
+            android:fontFamily="@font/hanam"
+            android:gravity="center"
+            tools:text="16:14" />
+
+        <TextView
+            android:id="@+id/temper_item_text3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lineSpacingExtra="10sp"
+            android:gravity="right"
+            android:textColor="#222222"
+            android:textSize="15sp"
+            android:fontFamily="@font/hanam"
+            tools:text="38.0 ℃" />
+    </LinearLayout>
+    <View
+        android:id="@+id/temper_item_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5"/>
+</LinearLayout>

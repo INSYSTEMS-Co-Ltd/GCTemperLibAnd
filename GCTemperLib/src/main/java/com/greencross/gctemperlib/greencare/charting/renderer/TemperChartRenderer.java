@@ -46,13 +46,6 @@ public class TemperChartRenderer extends BarLineScatterCandleBubbleRenderer {
     protected Paint mBarBorderPaint;
 
     /**
-     * 빅데이터
-     * @param bigData
-     */
-    float[] mBigDataBMIList;
-    float[] mBigDataWeightList;
-
-    /**
      * 40주간 적정체중범위 데이터
      */
     float[] m40Datas;
@@ -105,7 +98,6 @@ public class TemperChartRenderer extends BarLineScatterCandleBubbleRenderer {
                 drawDataSet(c, set, i);
             }
         }
-
     }
 
     /**
@@ -126,144 +118,6 @@ public class TemperChartRenderer extends BarLineScatterCandleBubbleRenderer {
         float[] line27 = new float[]{27, 0, 27, c.getHeight()};
         trans.pointValuesToPixel(line27);
         c.drawLine(line27[0], line27[1], line27[2],line27[3] , paint);
-    }
-
-
-    /**
-     * 빅데이터 체중 라인 그리기
-     * @param c
-     * @param trans
-     */
-    private void drawBigDataChartLine(Canvas c, Transformer trans) {
-        if (mBigDataWeightList == null)
-            return;
-
-        Paint paint = new Paint();
-        Path path = new Path();
-//        path.setFillType(Path.FillType.EVEN_ODD);
-        if (path.isEmpty() == false) {
-            path.reset();
-        }
-
-
-        // 빅데이터 그리기
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(4f);
-        paint.setColor(Color.parseColor("#00aa00"));
-
-
-        float[] weightList = new float[mBigDataWeightList.length];
-        System.arraycopy(mBigDataWeightList, 0, weightList, 0, weightList.length);
-        trans.pointValuesToPixel(weightList);
-
-//        path.moveTo(total40weekList[0], mTotal40weightList[0]);
-//        Log.i(TAG, "draw40WeightLevel.moveto["+0+"]="+mTotal40weekList[0]+", mTotal40weightList["+0+"]="+mTotal40weightList[0]);
-        for (int i = 0; i < weightList.length; i+=2) {
-            float x = weightList[i];
-            float y = weightList[i+1];
-//            Log.i(TAG, "draw40WeightLevel["+i+"]="+total40weekList[i]+", mTotal40weightList["+i+"]="+total40weightList[i]);
-            if (i == 0)
-                path.moveTo(x, y);
-            else
-                path.lineTo(x, y);
-        }
-        paint.setAntiAlias(true);
-
-
-        //그려진 선으로 shape을 만든다
-        ShapeDrawable shape = new ShapeDrawable(new PathShape(path, 1, 1));
-        shape.setBounds(0, 0, 1, 1);
-
-        Paint spaint = shape.getPaint();
-        spaint.setStyle(Paint.Style.STROKE);
-        spaint.setColor(Color.parseColor("#00aa00"));
-        spaint.setStrokeWidth(6f);
-        spaint.setAntiAlias(true);
-        shape.draw(c);
-
-        drawBigDataCircleText(c, weightList);
-    }
-
-    /**
-     * 차트 점, 값 그리기
-     * @param c
-     * @param weightList
-     */
-    private void drawBigDataCircleText(Canvas c, float[] weightList) {
-        Paint textPaint = new Paint();
-        textPaint.setColor(Color.BLACK);
-        textPaint.setTextSize(mChart.getXAxis().getTextSize());
-
-        Paint circlePaint = new Paint();
-        circlePaint.setColor(Color.parseColor("#00aa00"));
-        circlePaint.setStyle(Paint.Style.FILL);
-        float circleRadius = 9f;
-        float fontSize = mChart.getXAxis().getTextSize();
-
-        // 첫번째 값
-        int yPos = 1;
-        int xPos = 0;
-        String text = StringUtil.getNoneZeroString2(mBigDataWeightList[yPos]);
-        float textXPos = weightList[xPos];
-        c.drawText(text, textXPos, (weightList[yPos] - fontSize), textPaint);
-        c.drawCircle(weightList[xPos]+8f, weightList[yPos], circleRadius, circlePaint);
-
-
-        // 중간 값
-        yPos = (mBigDataWeightList.length / 2) - ((int)mBigDataWeightList[xPos] % 2);   // 홀수, 짝수일 경우 보정값
-        xPos = yPos-1;
-        text = StringUtil.getNoneZeroString2(mBigDataWeightList[yPos]);
-        textXPos = weightList[xPos] - ((fontSize * text.length())/4);
-        Log.i(TAG, "middle.yPos"+yPos);
-        if (yPos > 1) {
-            c.drawText(text, textXPos, (weightList[yPos] - fontSize), textPaint);
-            c.drawCircle(weightList[xPos], weightList[yPos], circleRadius, circlePaint);
-        }
-
-        // 마지막 값
-        yPos = mBigDataWeightList.length-1;
-        xPos = yPos-1;
-        text = StringUtil.getNoneZeroString2(mBigDataWeightList[yPos]);
-        textXPos = weightList[xPos] - ((text.length()*fontSize)/2) - 5f;
-        c.drawText(text, textXPos, (weightList[yPos] - fontSize), textPaint);
-        c.drawCircle(weightList[xPos]-8f, weightList[yPos], circleRadius, circlePaint);
-    }
-
-    /**
-     * 빅데이터 적정 체중 범위 그리기
-     * @param c
-     * @param trans
-     */
-    private void drawBigDataChart(Canvas c, Transformer trans) {
-        if (mBigDataBMIList == null)
-            return;
-
-        Paint paint = new Paint();
-        Path path = new Path();
-
-        if (path.isEmpty() == false) {
-            path.reset();
-        }
-
-        float[] hopeList = new float[mBigDataBMIList.length];
-        System.arraycopy(mBigDataBMIList, 0, hopeList, 0, hopeList.length);
-
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.parseColor("#ccffc0cb"));
-        trans.pointValuesToPixel(hopeList);
-
-        for (int i = 0; i < hopeList.length; i+=2) {
-            float x = hopeList[i];
-            float y = hopeList[i+1];
-//            Log.i(TAG, "draw40WeightLevel["+i+"]="+total40weekList[i]+", mTotal40weightList["+i+"]="+total40weightList[i]);
-            if (i == 0)
-                path.moveTo(x, y);
-            else
-                path.lineTo(x, y);
-        }
-
-        path.close();
-        c.drawPath(path, paint);
     }
 
     protected void drawDataSet(Canvas c, IBarDataSet dataSet, int index) {
@@ -314,7 +168,7 @@ public class TemperChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
             float circleSize = 10f;
             Paint paint = new Paint();
-            paint.setColor(Color.rgb(225, 20, 127));
+            paint.setColor(Color.parseColor("#6972d1"));    // 차트 표시 색상
             float xVal=(buffer.buffer[j+2] + buffer.buffer[j])/2;
             float yVal = buffer.buffer[j+1];
 
@@ -333,14 +187,14 @@ public class TemperChartRenderer extends BarLineScatterCandleBubbleRenderer {
         }
 
         // 차트 연결 라인 그리기
-        Paint linePaint = new Paint();
-        linePaint.setColor(Color.rgb(225, 20, 127));
-        linePaint.setStrokeWidth(2f);
-        for (int i = 1; i <= xPos.size()-1 ; i++) {
-            float xVal = xPos.get(i);
-            float yVal = yPos.get(i);
-            c.drawLine(xVal, yVal, xPos.get(i-1), yPos.get(i-1), linePaint);
-        }
+//        Paint linePaint = new Paint();
+//        linePaint.setColor(Color.rgb(225, 20, 127));
+//        linePaint.setStrokeWidth(2f);
+//        for (int i = 1; i <= xPos.size()-1 ; i++) {
+//            float xVal = xPos.get(i);
+//            float yVal = yPos.get(i);
+//            c.drawLine(xVal, yVal, xPos.get(i-1), yPos.get(i-1), linePaint);
+//        }
     }
 
     protected void prepareBarHighlight(float x, float y1, float y2, float barWidthHalf, Transformer trans) {

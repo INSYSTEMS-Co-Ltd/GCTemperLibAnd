@@ -33,6 +33,8 @@ import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseData;
 import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
 import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
+import com.greencross.gctemperlib.greencare.network.tr.HNApiData;
+import com.greencross.gctemperlib.greencare.network.tr.HNCConnAsyncTask;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
@@ -331,120 +333,44 @@ public class BaseFragment extends Fragment implements IBaseFragment {
         Logger.i(TAG, TAG + ".onActivityResult");
     }
 
-    public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiData.IStep step) {
-        getData(context, cls, obj, true, step, null);
-    }
-
-    public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, boolean isShowProgress, final ApiData.IStep step, final ApiData.IFailStep failStep) {
-        BaseData tr = createTrClass(cls, context);
-        if (NetworkUtil.getConnectivityStatus(context) == false) {
-            CDialog.showDlg(context, "네트워크 연결 상태를 확인해주세요.");
+    protected void getData(Class<? extends BaseData> cls, final Object obj, final IGCResult iGCResult) {
+        if (NetworkUtil.getConnectivityStatus(getContext()) == false) {
+            CDialog.showDlg(getContext(), "네트워크 연결 상태를 확인해주세요.");
             return;
         }
-//        String url = "http://wkd.walkie.co.kr/SK/WebService/SK_Mobile_Call.asmx/SK_mobile_Call";
-        String url = BaseUrl.COMMON_URL;
-
-        Logger.i(TAG, "LoadBalance.cls=" + cls + ", url=" + url);
-//        if (TextUtils.isEmpty(url) && (cls != Tr_get_infomation.class)) {
-//            getInformation(context, cls, obj, step);
-//            return;
-//        }
-//        if(!cls.getName().equals(Tr_hra_check_result_input.class.getName())) {
-//            if (isShowProgress)
-//                showProgress();
-//        }
-
-        CConnAsyncTask.CConnectorListener queryListener = new CConnAsyncTask.CConnectorListener() {
-
+        showProgress();
+        HNCConnAsyncTask.CConnectorListener queryListener = new HNCConnAsyncTask.CConnectorListener() {
             @Override
             public Object run() throws Exception {
-
-                ApiData data = new ApiData();
-                return data.getData(context, tr, obj);
+                HNApiData data = new HNApiData();
+                try {
+                    Object recv = data.getData(getContext(), cls, obj);
+                    return recv;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
             }
 
             @Override
-            public void view(CConnAsyncTask.CQueryResult result) {
+            public void view(HNCConnAsyncTask.CQueryResult result) {
+//                Log.i(TAG, "result1="+result);
                 hideProgress();
-
                 if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
-                    if (step != null) {
-                        step.next(result.data);
+//                    Log.e(TAG, "데이터 수신 성공::"+result);
+                    if (iGCResult != null) {
+                        iGCResult.onResult(true, "데이터 수신 성공", result.data);
                     }
-
                 } else {
-                    //mBaseActivity.hideProgressForce();
-                    if (failStep != null) {
-                        failStep.fail();
-                    } else {
-
-                        CDialog.showDlg(context, "데이터 수신에 실패 하였습니다.");
-                        Log.e(TAG, "CConnAsyncTask error=" + result.errorStr);
-                        hideProgress();
+//                    Log.e(TAG, "데이터 수신 실패");
+                    if (iGCResult != null) {
+                        iGCResult.onResult(false, "데이터 수신 실패", null);
                     }
                 }
             }
         };
 
-        CConnAsyncTask asyncTask = new CConnAsyncTask();
-        asyncTask.execute(queryListener);
-    }
-
-    private static BaseData createTrClass(Class<? extends BaseData> cls, Context context) {
-        BaseData trClass = null;
-        try {
-            Constructor<? extends BaseData> co = cls.getConstructor();
-            trClass = co.newInstance();
-        } catch (Exception e) {
-            try {
-                Constructor<? extends BaseData> co = cls.getConstructor(Context.class);
-                trClass = co.newInstance(context);
-            } catch (Exception e2) {
-                Log.e("BaseFragment", "createTrClass", e2);
-            }
-        }
-
-        return trClass;
-    }
-
-    /**
-     * 이미지 url에서 이미지를 가져와 ImageView에 세팅한다.
-     *
-     * @param imgUrl
-     * @param iv
-     */
-    public void getImageData(final String imgUrl, final ImageView iv) {
-        if (imgUrl == null) {
-            Logger.d(TAG, "getIndexToImageData imgUrl is null");
-            return;
-        }
-
-        CConnAsyncTask.CConnectorListener queryListener = new CConnAsyncTask.CConnectorListener() {
-
-            @Override
-            public Object run() throws Exception {
-                URL url = new URL(imgUrl);
-                URLConnection conn = url.openConnection();
-                conn.connect();
-                BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-
-                Bitmap bm = BitmapFactory.decodeStream(bis);
-                bis.close();
-                return bm;
-            }
-
-            @Override
-            public void view(CConnAsyncTask.CQueryResult result) {
-                if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
-                    Bitmap bm = (Bitmap) result.data;
-                    iv.setImageBitmap(bm);
-                } else {
-                    Logger.e(TAG, "CConnAsyncTask error");
-                }
-            }
-        };
-
-        CConnAsyncTask asyncTask = new CConnAsyncTask();
+        HNCConnAsyncTask asyncTask = new HNCConnAsyncTask();
         asyncTask.execute(queryListener);
     }
 

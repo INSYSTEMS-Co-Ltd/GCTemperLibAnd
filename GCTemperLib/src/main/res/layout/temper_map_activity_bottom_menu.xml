@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
+    android:clickable="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -156,10 +157,12 @@
                 android:paddingBottom="10dp">
 
                 <ImageButton
+                    android:id="@+id/fever_map_menu_1_iv"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
                     android:background="@drawable/draw_circle_6972d1"
+                    android:duplicateParentState="true"
                     android:src="@drawable/hn_slide_icon_1" />
 
                 <TextView
@@ -190,10 +193,12 @@
                 android:paddingBottom="10dp">
 
                 <ImageButton
+                    android:id="@+id/fever_map_menu_2_iv"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
                     android:background="@drawable/draw_circle_6972d1"
+                    android:duplicateParentState="true"
                     android:src="@drawable/hn_slide_icon_2" />
 
 
@@ -229,6 +234,7 @@
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
                     android:background="@drawable/draw_circle_6972d1"
+                    android:duplicateParentState="true"
                     android:src="@drawable/hn_slide_icon_3" />
 
                 <RelativeLayout
@@ -237,6 +243,7 @@
                     android:layout_weight="1">
 
                     <TextView
+                        android:id="@+id/fever_map_menu_3_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableRight="@drawable/hn_icon_down_arrow"
@@ -279,10 +286,12 @@
                 android:paddingBottom="10dp">
 
                 <ImageButton
+                    android:id="@+id/fever_map_menu_4_iv"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
                     android:background="@drawable/draw_circle_6972d1"
+                    android:duplicateParentState="true"
                     android:src="@drawable/hn_slide_icon_4" />
 
                 <TextView

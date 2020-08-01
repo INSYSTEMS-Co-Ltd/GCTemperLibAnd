@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.greencross.gctemperlib.greencare.charting.components.LimitLine;
 import com.greencross.gctemperlib.greencare.charting.components.XAxis;
@@ -201,36 +202,66 @@ public class XAxisRenderer extends AxisRenderer {
         for (int i = 0; i < positions.length; i += 2) {
 
             float x = positions[i];
+            float x2 = positions[i];
 
             if (mViewPortHandler.isInBoundsX(x)) {
                 // 라벨 세팅 하기
                 String label = mXAxis.getValueFormatter().getFormattedValue(mXAxis.mEntries[i / 2], mXAxis);
-                if (mXAxis.isAvoidFirstLastClippingEnabled()) {
-
-                    // avoid clipping of the last
-                    if (i == mXAxis.mEntryCount - 1 && mXAxis.mEntryCount > 1) {
-                        float width = Utils.calcTextWidth(mAxisLabelPaint, label);
-
-                        if (width > mViewPortHandler.offsetRight() * 2
-                                && x + width > mViewPortHandler.getChartWidth())
-                            x -= width / 2;
-
-                        // avoid clipping of the first
-                    } else if (i == 0) {
-
-                        float width = Utils.calcTextWidth(mAxisLabelPaint, label);
-                        x += width / 2;
-                    }
+                String label2 = "";
+                if (label.indexOf("\n") > 0) {
+                    label2 = label.substring(label.indexOf("\n")+1);
+                    label = label.substring(0, label.indexOf("\n"));
                 }
 
-                drawLabel(c, label, x, pos, anchor, labelRotationAngleDegrees);
+                Log.i(getClass().getSimpleName(), "label2="+label2);
+                if (mXAxis.isAvoidFirstLastClippingEnabled()) {
+                    // avoid clipping of the last
+//                    if (i == mXAxis.mEntryCount - 1 && mXAxis.mEntryCount > 1) {
+//                        float width = Utils.calcTextWidth(mAxisLabelPaint, label);
+//
+//                        if (width > mViewPortHandler.offsetRight() * 2
+//                                && x + width > mViewPortHandler.getChartWidth())
+//                            x -= width / 2;
+//
+//                        // avoid clipping of the first
+//                    } else if (i == 0) {
+//
+//                        float width = Utils.calcTextWidth(mAxisLabelPaint, label);
+//                        x += width / 2;
+//                    }
+                    x = getX(i, label, x);
+                    x2 = getX(i, label2, x2);
+
+                }
+                float labelHeight = Utils.calcTextHeight(mAxisLabelPaint, label);
+                drawLabel(c, label, x, pos-2, anchor, labelRotationAngleDegrees);
+                drawLabel(c, label2, x2, pos+labelHeight, anchor, labelRotationAngleDegrees);
             }
         }
+    }
+
+    private float getX(int i, String label, float x) {
+        // avoid clipping of the last
+        if (i == mXAxis.mEntryCount - 1 && mXAxis.mEntryCount > 1) {
+            float width = Utils.calcTextWidth(mAxisLabelPaint, label);
+
+            if (width > mViewPortHandler.offsetRight() * 2
+                    && x + width > mViewPortHandler.getChartWidth())
+                x -= width / 2;
+
+            // avoid clipping of the first
+        } else if (i == 0) {
+
+            float width = Utils.calcTextWidth(mAxisLabelPaint, label);
+            x += width / 2;
+        }
+        return x;
     }
 
     protected void drawLabel(Canvas c, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) {
         Utils.drawXAxisValue(c, formattedLabel, x, y, mAxisLabelPaint, anchor, angleDegrees);
     }
+
     protected Path mRenderGridLinesPath = new Path();
     protected float[] mRenderGridLinesBuffer = new float[2];
     @Override
@@ -370,7 +401,6 @@ public class XAxisRenderer extends AxisRenderer {
             mLimitLinePaint.setColor(limitLine.getTextColor());
             mLimitLinePaint.setStrokeWidth(0.5f);
             mLimitLinePaint.setTextSize(limitLine.getTextSize());
-
 
             float xOffset = limitLine.getLineWidth() + limitLine.getXOffset();
 

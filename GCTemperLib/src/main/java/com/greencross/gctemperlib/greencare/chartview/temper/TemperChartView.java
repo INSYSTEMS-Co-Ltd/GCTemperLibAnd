@@ -63,7 +63,7 @@ public class TemperChartView {
         mChart.setDrawGridBackground(false);
 
         AxisValueFormatter xAxisFormatter = new AxisValueFormatter(TypeDataSet.Period.PERIOD_DAY);
-        xAxisFormatter.setUnitStr("Kg");
+        xAxisFormatter.setUnitStr("℃");
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -201,7 +201,6 @@ public class TemperChartView {
 //            Log.i(getClass().getSimpleName(), "set1.getYMin()="+set1.getYMin()+", set1.getYMax()="+set1.getYMax());
 
             mChart.getData().notifyDataChanged();
-
             mChart.notifyDataSetChanged();
         } else {
             set1 = new BarDataSet(yVals1, "bottom label");

@@ -91,6 +91,8 @@ public class Tr_FeverList extends BaseData {
         public String input_fever;
         @SerializedName("is_wearable")
         public String is_wearable;
+
+        public int chartXPositon;
     }
 
 }

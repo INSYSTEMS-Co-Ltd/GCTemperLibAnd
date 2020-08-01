@@ -78,8 +78,8 @@ import java.util.List;
 public class TemperGraphFragment extends BaseFragment {
     private final String TAG = TemperGraphFragment.class.getSimpleName();
 
-    int mRequestCode = 1111;
-    Boolean isGraphActive = false;
+    private int mRequestCode = 1111;
+    private Boolean isGraphActive = false;
 
     public CommonData commonData = CommonData.getInstance(getContext());
 
@@ -96,10 +96,7 @@ public class TemperGraphFragment extends BaseFragment {
 
     private ImageButton imgPre_btn;
     private ImageButton imgNext_btn;
-//    private ImageView Hcallbtn; //, Action_btn;
 
-    //    private DBHelperTemper.TemperStaticData mTemperStaticData;
-//    private AxisValueFormatter2 xFormatter;
     private AxisYValueFormatter yFormatter;
 
     private View mVisibleView1;
@@ -173,6 +170,7 @@ public class TemperGraphFragment extends BaseFragment {
 
         mTemperChart.setYValueFormat(yFormatter);
 //        mTemperChart.setXValueFormat(xFormatter);
+        mTemperChart.getXAxis().setTextSize(DisplayUtil.getPxToDp(getContext(), 6));
 
         mSwipeListView = new TemperSwipeListView(view, TemperGraphFragment.this);
 
@@ -367,27 +365,25 @@ public class TemperGraphFragment extends BaseFragment {
             if (data instanceof Tr_FeverList) {
                 Tr_FeverList recv = (Tr_FeverList) data;
                 if (recv.isSuccess(recv.resultcode)) {
-                    Collections.sort(recv.datas, new TemperCompare());
-                    int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
-                    mTemperChart.setXvalMinMax(0, maxX, maxX);
+                    Collections.sort(recv.datas, new TemperCompare());  // 날자역순으로 정렬(최종날자가
+                    makeLogItem(recv.datas);
 
-                    String startDay = CDateUtil.getFormattedString_yyyy(startTime);
-                    String endDay = CDateUtil.getFormattedString_MM(endTime);
+                    int maxX = makeLogItem(recv.datas);     //mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
+                    mTemperChart.setXvalMinMax(0, maxX, maxX);
                     List<BarEntry> weightYVals = new ArrayList<>();
                     for (Tr_FeverList.Data temperData : recv.datas) {
                         float idx = StringUtil.getFloatVal(temperData.idx);
                         float input_fever = StringUtil.getFloatVal(temperData.input_fever);
-                        weightYVals.add(new BarEntry(idx, input_fever));
+                        weightYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
                     }
 
-                    makeLogItem(recv.datas);
+                    weightYVals.add(new BarEntry(mXlabels.size()+3, null));
 
                     setYMinMax(weightYVals, false);
-                    TemperChartFormatter formatter = new TemperChartFormatter(recv.datas);
+                    TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
                     mTemperChart.setXValueFormat(formatter);
                     mTemperChart.setData(weightYVals, mTimeClass);
                     mTemperChart.invalidate();
-//                    setNextButtonVisible();
                 } else {
                     CDialog.showDlg(getContext(), "알림", "데이터 수신 실패");
                 }
@@ -402,37 +398,44 @@ public class TemperGraphFragment extends BaseFragment {
      * 하단 로그 화면 만들기
      * @param datas
      */
-    private void makeLogItem(List<Tr_FeverList.Data> datas ) {
+    private List<String> mXlabels = new ArrayList<>();
+    private int makeLogItem(List<Tr_FeverList.Data> datas ) {
+        mLogLayout.removeAllViews();
+        int xCount = 0;
         String beforeInputDe = "";
         View beforeBottomLine = null;
         for (Tr_FeverList.Data temperData : datas) {
-            if (TextUtils.isEmpty(temperData.input_de))
-                return;
-            String yyyMMdd = temperData.input_de.substring(0, 10);
-            boolean isAddDateLayout = yyyMMdd.equals(beforeInputDe) == false;
-            if (isAddDateLayout) {
-                beforeInputDe = yyyMMdd;
-                View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_frame_layout, null);
-                ((TextView)view.findViewById(R.id.temper_item_date_textview)).setText(yyyMMdd);
-                if (beforeBottomLine != null)
-                    beforeBottomLine.setVisibility(View.GONE);
+            if (TextUtils.isEmpty(temperData.input_de) == false) {
+                String yyyMMdd = temperData.input_de.substring(0, 10);
+                boolean isAddDateLayout = yyyMMdd.equals(beforeInputDe) == false;
+                if (isAddDateLayout) {
+                    xCount ++;
+                    beforeInputDe = yyyMMdd;
+                    View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_frame_layout, null);
+                    ((TextView)view.findViewById(R.id.temper_item_date_textview)).setText(yyyMMdd);
+                    if (beforeBottomLine != null)
+                        beforeBottomLine.setVisibility(View.GONE);
+                    mLogLayout.addView(view);
+                    mXlabels.add(temperData.input_de);
+                }
+                temperData.chartXPositon = xCount;
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_item_layout, null);
+                ImageButton ib = view.findViewById(R.id.temper_item_iv);
+                boolean isWeareable = "1".equals(temperData.is_wearable);
+                TextView itemTextView1 = view.findViewById(R.id.temper_item_text1);
+                if (isWeareable) {
+                    ib.setImageResource(R.drawable.hn_temper_log_icon2);
+                    itemTextView1.setText("전용체온계");
+                    itemTextView1.setTextColor(Color.parseColor("#6972d1"));
+                }
+                ((TextView)view.findViewById(R.id.temper_item_text2)).setText(temperData.input_de.substring(11, 16));
+                ((TextView)view.findViewById(R.id.temper_item_text3)).setText(temperData.input_fever+" ℃");
+                beforeBottomLine = view.findViewById(R.id.temper_item_bottom_line);
                 mLogLayout.addView(view);
             }
-
-            View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_item_layout, null);
-            ImageButton ib = view.findViewById(R.id.temper_item_iv);
-            boolean isWeareable = "1".equals(temperData.is_wearable);
-            TextView itemTextView1 = view.findViewById(R.id.temper_item_text1);
-            if (isWeareable) {
-                ib.setImageResource(R.drawable.hn_temper_log_icon2);
-                itemTextView1.setText("전용체온계");
-                itemTextView1.setTextColor(Color.parseColor("#6972d1"));
-            }
-            ((TextView)view.findViewById(R.id.temper_item_text2)).setText(temperData.input_de.substring(11, 16));
-            ((TextView)view.findViewById(R.id.temper_item_text3)).setText(temperData.input_fever+" ℃");
-            beforeBottomLine = view.findViewById(R.id.temper_item_bottom_line);
-            mLogLayout.addView(view);
         }
+
+        return xCount;
     }
 
     class TemperCompare implements Comparator<Tr_FeverList.Data> {

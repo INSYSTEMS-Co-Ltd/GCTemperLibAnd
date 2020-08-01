@@ -83,6 +83,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     private TextView marker;
     private Intent mIntent;
     private int mFragmentNum = 0;
+    private View mInfoLayout;
 
     private View view;
 
@@ -105,7 +106,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         }
 
         setContentView(R.layout.temper_map_activity);
-
         setTitle(getString(R.string.temper_control));
 
         init();
@@ -154,10 +154,9 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         findViewById(R.id.fever_map_menu_3).setOnClickListener(view -> {
 
             // TODO : DB 전송완료시 & DB전송이 완료되지 않은 경우 처리 해야 함
+            CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
 
-            CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_no_alert_title)).setTitle(R.string.fever_health_no_alert_message);
-
-            CDialog dlg = CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_call_alert_message));
+            CDialog dlg = CDialog.showDlg(TemperActivity.this, R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
             dlg.setOkButton(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -220,8 +219,15 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 초기화
      */
     public void init() {
-        mLinearTabMap = (LinearLayout) findViewById(R.id.linear_tab_map);
+        boolean isShowIntro = SharedPref.getInstance(this).getPreferences(SharedPref.TEMPER_INTRO_VIEW_SHOW, true);
+        if (isShowIntro) {
+            mInfoLayout = findViewById(R.id.temper_info_fragment);
+            mInfoLayout.findViewById(R.id.temper_info_gone_btn).setOnClickListener(this);
+            mInfoLayout.findViewById(R.id.temper_info_start_btn).setOnClickListener(this);
+            mInfoLayout.setVisibility(View.VISIBLE);
+        }
 
+        mLinearTabMap = (LinearLayout) findViewById(R.id.linear_tab_map);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -246,6 +252,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        if (id == R.id.temper_info_gone_btn) {
+            mInfoLayout.setVisibility(View.GONE);
+            SharedPref.getInstance(this).savePreferences(SharedPref.TEMPER_INTRO_VIEW_SHOW, false);
+        } else if (id == R.id.temper_info_start_btn) {
+            mInfoLayout.setVisibility(View.GONE);
+        }
     }
 
 
@@ -573,62 +585,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         super.onResume();
         if (mapFragment != null)
             mapFragment.onResume();
-
-        if (CommonData.getInstance(TemperActivity.this).getLocation_yn().equals("N") || CommonData.getInstance(TemperActivity.this).getLocation_yn().equals("")) {
-//            CustomAlertDialog mDialog2 = new CustomAlertDialog(FeverMapActivity.this, CustomAlertDialog.TYPE_F);
-//            View view = LayoutInflater.from(FeverMapActivity.this).inflate(R.layout.popup_dialog_certiview, null);
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-//            params.gravity = Gravity.CENTER;
-//
-//            TextView tv1 = view.findViewById(R.id.check_box1);
-//            tv1.setText("위치정보 수집 및 이용 동의 (필수)");
-//
-//            TextView tv2 = view.findViewById(R.id.dialog_title);
-//            TextView tv3 = view.findViewById(R.id.dialog_content);
-//
-//            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tv2.getLayoutParams();
-//            lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-//            tv2.setLayoutParams(lp);
-//
-//            RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) tv3.getLayoutParams();
-//            lp2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-//            tv3.setLayoutParams(lp2);
-//            tv3.setGravity(Gravity.LEFT);
-//
-//
-//            Button b1 = view.findViewById(R.id.confirm_btn);
-//            b1.setBackground(getResources().getDrawable(R.drawable.btn_5_6bb0d7_right_bottom_round));
-//
-//            mDialog2.setContentView(view, params);
-//            mDialog2.setTitle("위치정보 사용 동의");
-//            mDialog2.setContent("[열지도]에서 현재 위치 정보를\n사용하고자 합니다. 동의하시겠습니까?\n동의하지 않을 경우 서비스 이용이 제한될 수 있습니다.");
-//            mDialog2.setPositiveButton(getString(R.string.popup_dialog_button_confirm), (dialog, button) -> {
-//                requestAgreeAlarmSetting(dialog.isMotherChecked() ? CommonData.YES : CommonData.NO);
-//                dialog.dismiss();
-//            });
-//            mDialog2.setNegativeButton(getString(R.string.popup_dialog_button_cancel), (dialog, button) -> {
-//                finish();
-//                dialog.dismiss();
-//            });
-//
-//            mDialog2.setCheckboxButtonLv((dialog, button) -> {
-//                dialog.setChangeCheckboxImg_motherBig();
-//
-//                if (dialog.isMotherChecked()) {
-//                    b1.setEnabled(true);
-//                } else {
-//                    b1.setEnabled(false);
-//                }
-//            });
-//            if (mDialog2.isMotherChecked()) {
-//                b1.setEnabled(true);
-//            } else {
-//                b1.setEnabled(false);
-//            }
-//
-//            mDialog2.setCancelable(false);
-//            mDialog2.show();
-        }
     }
 
     @Override
@@ -658,7 +614,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             if (mapFragment != null)
                 mapFragment.onDestroyView();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
     }

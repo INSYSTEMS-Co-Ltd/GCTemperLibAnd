@@ -16,6 +16,7 @@
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="5sp"
         android:text="@string/title_resavation_text1"
+        android:fontFamily="@font/hanam"
         android:textColor="#222222"
         android:textSize="15sp" />
 
@@ -80,45 +81,52 @@
                         android:lineSpacingExtra="-10sp"
                         android:text="NO960HU8"
                         android:textColor="#131313"
+                        android:fontFamily="@font/hanam"
                         android:textSize="30sp" />
                 </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/hn_copy_reg_code"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="0.7"
-                    android:background="@drawable/draw_resavation_copy_back"
-                    android:gravity="center"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_weight="0.7"-->
+<!--                    android:background="@drawable/draw_resavation_copy_back"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingTop="10dp"-->
+<!--                    android:paddingBottom="10dp"-->
+<!--                    android:fontFamily="@font/hanam"-->
+<!--                    android:orientation="vertical">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:lineSpacingExtra="10sp"
-                        android:text="가입코드"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center_horizontal"-->
+<!--                        android:lineSpacingExtra="10sp"-->
+<!--                        android:text="가입코드"-->
+<!--                        android:textColor="#ffffff"-->
+<!--                        android:textSize="13sp" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:lineSpacingExtra="10sp"
-                        android:text="복사하기"
-                        android:textColor="#ffffff"
-                        android:textSize="25sp" />
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center_horizontal"-->
+<!--                        android:lineSpacingExtra="10sp"-->
+<!--                        android:text="복사하기"-->
+<!--                        android:textColor="#ffffff"-->
+<!--                        android:textSize="25sp" />-->
+<!--                </LinearLayout>-->
             </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/button_secondary" />
+                android:src="@drawable/hn_button_everhealth" />
         </LinearLayout>
 
         <TextView
@@ -132,6 +140,7 @@
             android:paddingRight="26dp"
             android:paddingBottom="10dp"
             android:text="에버헬스 가족검진 가입입력 시 아래 코드를 복사해\n입력란에 넣어주세요."
+            android:fontFamily="@font/hanam"
             android:textColor="#333333"
             android:textSize="12sp" />
 

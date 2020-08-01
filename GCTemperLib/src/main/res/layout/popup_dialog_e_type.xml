@@ -16,7 +16,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/background_5_ffffff" >
+        android:background="@drawable/hn_alert_background" >
 
         <TextView
             android:id="@+id/dialog_title"
@@ -68,6 +68,7 @@
                         android:lineSpacingExtra="2sp"
                         android:textColor="#6972d1"
                         android:textSize="20sp"
+                        android:fontFamily="@font/hanab"
                         tools:text="큰글씨" />
 
                     <TextView
@@ -106,6 +107,7 @@
                         android:textSize="@dimen/_18_dp"
                         android:background="@drawable/btn_left_xml"
                         android:textColor="@color/color_333333_btn"
+                        android:fontFamily="@font/hanam"
                         android:layout_marginRight="15dp"/>
 
 
@@ -117,6 +119,7 @@
                         android:background="@drawable/btn_right_xml"
                         android:text="@string/popup_dialog_button_confirm"
                         android:textColor="@color/color_f8f5f0_btn"
+                        android:fontFamily="@font/hanam"
                         android:textSize="@dimen/_18_dp" />
                 </LinearLayout>
             </LinearLayout>

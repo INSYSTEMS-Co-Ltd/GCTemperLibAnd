@@ -5,6 +5,7 @@
         <item name ="android:windowBackground">@color/color_100ffffff</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/notosans_m</item>
         <!-- Customize your theme here. -->
     </style>
 

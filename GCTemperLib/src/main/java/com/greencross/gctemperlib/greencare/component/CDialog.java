@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.greencross.gctemperlib.R;
@@ -107,7 +106,7 @@ public class CDialog extends Dialog {
 
     public static CDialog showDlg(Context context, String message,boolean canelable) {
         final CDialog dlg = getInstance(context);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.mOkButton.setVisibility(View.VISIBLE);
         dlg.mOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +120,7 @@ public class CDialog extends Dialog {
 
     public static CDialog showDlg(Context context, String message) {
         final CDialog dlg = getInstance(context);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.mOkButton.setVisibility(View.VISIBLE);
         dlg.mOkButton.setBackgroundResource(R.drawable.btn_confirm);
         dlg.mOkButton.setOnClickListener(new View.OnClickListener() {
@@ -137,22 +136,33 @@ public class CDialog extends Dialog {
     public static CDialog LoginshowDlg(Context context, String title, String message) {
         CDialog dlg = getInstance(context);
         //dlg.setTitle(title);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
 
         return dlg;
     }
 
+    public static CDialog showDlg(Context context, int title, int message) {
+        return showDlg(context, context.getString(title), context.getString(message));
+    }
     public static CDialog showDlg(Context context, String title, String message) {
-        CDialog dlg = getInstance(context);
-        //dlg.setTitle(title);
+        final CDialog dlg = getInstance(context);
+        dlg.setTitle(message);
         dlg.setMessage(message);
+        dlg.mOkButton.setVisibility(View.VISIBLE);
+        dlg.mOkButton.setBackgroundResource(R.drawable.btn_confirm);
+        dlg.mOkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlg.dismiss();
+            }
+        });
 
         return dlg;
     }
 
     public static CDialog showDlg(Context context, String message, View.OnClickListener okListener) {
         CDialog dlg = getInstance(context);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.setOkButton(okListener);
 
         return dlg;
@@ -161,7 +171,7 @@ public class CDialog extends Dialog {
     public static CDialog showDlg(Context context, String title, String message, View.OnClickListener okListener) {
         CDialog dlg = getInstance(context);
         //dlg.setTitle(title);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.setOkButton(okListener);
 
         return dlg;
@@ -170,7 +180,7 @@ public class CDialog extends Dialog {
     public static CDialog showDlg(Activity activity, String message, final CDialog.DismissListener dismissListener) {
         final CDialog dlg = getInstance(activity);
         mDismissListener = dismissListener;
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.mOkButton.setVisibility(View.VISIBLE);
         dlg.mOkButton.setBackgroundResource(R.drawable.btn_confirm);
         dlg.mOkButton.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +196,7 @@ public class CDialog extends Dialog {
     public static CDialog showDlg(Context context, String message, final CDialog.DismissListener dismissListener) {
         final CDialog dlg = getInstance(context);
         mDismissListener = dismissListener;
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.mOkButton.setVisibility(View.VISIBLE);
         dlg.mOkButton.setBackgroundResource(R.drawable.btn_confirm);
         dlg.mOkButton.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +211,7 @@ public class CDialog extends Dialog {
 
     public static CDialog showDlg(Context context, String message, View.OnClickListener okListener, View.OnClickListener noListener) {
         CDialog dlg = getInstance(context);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
 
         dlg.setOkButton(okListener);
         dlg.setNoButton(noListener);
@@ -211,7 +221,7 @@ public class CDialog extends Dialog {
 
     public static CDialog CallshowDlg(Context context, String message, View.OnClickListener okListener, View.OnClickListener noListener) {
         CDialog dlg = getInstance(context);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.mOkButton.setText("연결하기");
         dlg.setOkButton(okListener);
         dlg.setNoButton(noListener);
@@ -221,7 +231,7 @@ public class CDialog extends Dialog {
 
     public static CDialog UpdateshowDlg(Context context, String message, View.OnClickListener okListener, View.OnClickListener noListener) {
         CDialog dlg = getInstance(context);
-        dlg.setMessage(message);
+        dlg.setTitle(message);
         dlg.mOkButton.setText("확인");
         dlg.setOkButton(okListener);
         dlg.setNoButton(noListener);
@@ -265,8 +275,8 @@ public class CDialog extends Dialog {
     public static void showDlg(Context context, String title, String message, View.OnClickListener okListener, View.OnClickListener noListener) {
         CDialog dlg = getInstance(context);
 
-        dlg.setTitle(title);
-        dlg.setMessage(message);
+        dlg.setMessage(title);
+        dlg.setTitle(message);
         dlg.setOkButton(okListener);
         dlg.setNoButton(noListener);
     }
@@ -274,20 +284,19 @@ public class CDialog extends Dialog {
     /**
      * 타이틀 세팅
      * 타이틀이 없으면 타이틀 영역을 Gone 처리
-     * @param title
+     * @param message
      */
-    public void setTitle(String title) {
-        mMessageView.setText(title);
+    public void setMessage(String message) {
+        mMessageView.setText(message);
     }
 
-    public void setMessage(String message) {
-
-        if (TextUtils.isEmpty(message)) {
+    public void setTitle(String title) {
+        if (TextUtils.isEmpty(title)) {
             mTitleView.setVisibility(View.GONE);
 //            mTitleLayout.setVisibility(View.GONE);
         } else {
             mTitleView.setVisibility(View.VISIBLE);
-            mTitleView.setText(message);
+            mTitleView.setText(title);
         }
     }
 

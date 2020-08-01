@@ -13,8 +13,8 @@
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:orientation="horizontal"
         android:background="@drawable/draw_slide_menu_header"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/_10_dp"
         android:paddingTop="@dimen/_10_dp"
         android:paddingRight="@dimen/_10_dp">
@@ -61,10 +61,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableBottom="@drawable/hn_slide_orange_circle"
-                    android:drawablePadding="-10dp"
+                    android:drawablePadding="-8dp"
                     android:gravity="center"
                     android:lineSpacingExtra="12sp"
                     android:text="#체온관리"
+                    android:fontFamily="@font/hanam"
                     android:textColor="#222222"
                     android:textSize="12sp" />
 
@@ -73,10 +74,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableBottom="@drawable/hn_slide_orange_circle"
-                    android:drawablePadding="-10dp"
+                    android:drawablePadding="-8dp"
                     android:gravity="center"
                     android:lineSpacingExtra="12sp"
                     android:text="#검진예약"
+                    android:fontFamily="@font/hanam"
                     android:textColor="#222222"
                     android:textSize="12sp" />
 
@@ -85,10 +87,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableBottom="@drawable/hn_slide_orange_circle"
-                    android:drawablePadding="-10dp"
+                    android:drawablePadding="-8dp"
                     android:gravity="center"
                     android:lineSpacingExtra="12sp"
                     android:text="#건강상담"
+                    android:fontFamily="@font/hanam"
                     android:textColor="#222222"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -99,8 +102,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/draw_slide_menu_header">
+        android:background="@drawable/draw_slide_menu_header"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/slide_top_full_up_layout"
@@ -115,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:fontFamily="@font/hanam"
                 android:text="Slide를 내리면 열지도를 크게 볼 수 있어요." />
 
             <ImageView
@@ -165,6 +169,7 @@
                     android:drawableRight="@drawable/hn_icon_down_arrow"
                     android:lineSpacingExtra="0sp"
                     android:text="체온관리"
+                    android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15sp" />
 
@@ -199,6 +204,7 @@
                     android:drawableRight="@drawable/hn_icon_down_arrow"
                     android:lineSpacingExtra="0sp"
                     android:text="검강검진 예약"
+                    android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15sp" />
 
@@ -225,15 +231,36 @@
                     android:background="@drawable/draw_circle_6972d1"
                     android:src="@drawable/hn_slide_icon_3" />
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableRight="@drawable/hn_icon_down_arrow"
-                    android:lineSpacingExtra="0sp"
-                    android:text="건강상담"
-                    android:textColor="#333333"
-                    android:textSize="15sp" />
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/hn_icon_down_arrow"
+                        android:lineSpacingExtra="0sp"
+                        android:text="건강상담"
+                        android:fontFamily="@font/hanam"
+                        android:textColor="#333333"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="40dp"
+                        android:drawableBottom="@drawable/draw_under_circle_c4c9fd"
+                        android:drawablePadding="-7dp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="12sp"
+                        android:fontFamily="@font/hanal"
+                        android:text="남은이용일수 75일"
+                        android:textColor="#222222"
+                        android:textSize="12sp" />
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -265,6 +292,7 @@
                     android:drawableRight="@drawable/hn_icon_down_arrow"
                     android:lineSpacingExtra="0sp"
                     android:text="헬스케어서비스란"
+                    android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15sp" />
 

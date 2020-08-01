@@ -462,7 +462,7 @@ public class PictureBaseFragment extends BaseFragment {
         view.findViewById(R.id.select_camera_btn).setOnClickListener(dlgClickListener);
 
         mStepDlg = CDialog.showDlg(getContext(), view);
-        mStepDlg.setTitle("사진 선택");
+        mStepDlg.setMessage("사진 선택");
     }
 
 

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -16,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_MapList;
@@ -491,12 +495,19 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-//        mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
-//            @Override
-//            public void onMyLocationClick(@NonNull Location location) {
-//
-//            }
-//        });
+        googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                GpsInfo gps = new GpsInfo(TemperActivity.this);
+                if (gps.isGetLocation()) {
+//                    moveMyLocation();
+                } else {
+                    gps.showSettingsAlert();
+                }
+
+                return false;
+            }
+        });
 //        mMap.getUiSettings().setZoomControlsEnabled(true);
 //        mMap.getUiSettings().setCompassEnabled(true);
 //        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);

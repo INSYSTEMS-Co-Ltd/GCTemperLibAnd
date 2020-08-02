@@ -184,9 +184,10 @@ public class Main1QActivity extends Activity {
         final GCTemperLib gcLib = new GCTemperLib(this);
         TextView temperEditText = findViewById(R.id.temper_edittext);
         String temper = temperEditText.getText().toString();
+        boolean isWearable = false;     // true: 기기사용, false: 직접입력
 
         showProgress();
-        gcLib.registGCTemper(temper, new IGCResult() {
+        gcLib.registGCTemper(temper, false,new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();

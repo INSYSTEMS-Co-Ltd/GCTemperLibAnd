@@ -158,7 +158,6 @@ public class GCTemperLib {
                     }
                 }
             });
-
         }
     }
 
@@ -169,14 +168,13 @@ public class GCTemperLib {
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
-    public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
+    public void registGCTemper(@Nullable String temper, boolean isWearable, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
-
             GpsInfo gps = new GpsInfo(mContext);
             if (gps.isGetLocation()) {
-                registerLocationUpdates(temper, iGCResult);
+                registerLocationUpdates(temper, isWearable, iGCResult);
             } else {
                 gps.showSettingsAlert();
             }
@@ -338,7 +336,7 @@ public class GCTemperLib {
      * 위치정보 찾기
      */
     private LocationManager mLM;
-    private void registerLocationUpdates(String temper, final IGCResult iGCResult) {
+    private void registerLocationUpdates(String temper, boolean isWearable, final IGCResult iGCResult) {
 //        showProgress();
 
         GpsInfo gps = new GpsInfo(mContext);
@@ -357,7 +355,7 @@ public class GCTemperLib {
                     android.util.Log.i(TAG, "Gps_info: " + Arrays.toString(addrArr));
 
                     if (TextUtils.isEmpty(temper)) {
-                        iGCResult.onResult(false, "체온을 입력해 주세요.", null);
+                        iGCResult.onResult(false, mContext.getString(R.string.temper_input_request), null);
                     }
 
                     Tr_Temperature.RequestData requestData = new Tr_Temperature.RequestData();
@@ -370,7 +368,7 @@ public class GCTemperLib {
                     requestData.la = ""+gps.getLatitude();
                     requestData.lo = ""+gps.getLongitude();
                     requestData.Input_de = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-//                    requestData.is_wearable = ;
+                    requestData.is_wearable = isWearable ? "1" : "0";
 
                     getData(Tr_Temperature.class, requestData, new IGCResult() {
                         @Override

@@ -670,16 +670,16 @@ public abstract class Util {
 
     }
 
-    /**
-     * 특정 텍스트 Color Size 변경
-     * @param context 객체
-     * @param view	텍스트뷰
-     * @param fulltext 전체 문구
-     * @param subtext 변경할 문구
-     * @param color 변경할 색상
-     * @param size 폰트 사이즈
-     * @param styleType font style ( 0 - 기본, 1 - bold , 2 - italic )
-     */
+//    /**
+//     * 특정 텍스트 Color Size 변경
+//     * @param context 객체
+//     * @param view	텍스트뷰
+//     * @param fulltext 전체 문구
+//     * @param subtext 변경할 문구
+//     * @param color 변경할 색상
+//     * @param size 폰트 사이즈
+//     * @param styleType font style ( 0 - 기본, 1 - bold , 2 - italic )
+//     */
 //    public static void setTextViewCustom(Context context, TextView view, String fulltext, String subtext, int color, int size, int styleType, boolean isUnderLine) {
 //        view.setText(fulltext, TextView.BufferType.SPANNABLE);
 //        Spannable str = (Spannable) view.getText();
@@ -705,138 +705,138 @@ public abstract class Util {
 //
 //    }
 
-    /**
-     * 텍스트하나에 특정문자 Color 변경
-     * @param cuttext       자를 text
-     * @param puttext       setText 할 곳
-     * @param tagname       시작하는 곳
-     * @param splitname     마지막 자를 곳
-     * @param firstcolor    태그 글짜 색깔
-     * @param secondcolor   일반 글짜 색깔
-     */
-    public static void setParticularColor (String cuttext , TextView puttext  , String tagname , String splitname , String firstcolor , String secondcolor) {
-
-        String[] tag = cuttext.split(splitname);
-        ArrayList<String> tagList = new ArrayList<String>();
-        for (int i = 0; i < tag.length; i++) {
-            boolean tagSharp = tag[i].startsWith(tagname);
-            String first = "<font color=" + firstcolor +">" + tag[i] + "</font>";
-            String second = "<font color=" + secondcolor + ">" + tag[i] + "</font>";
-            if (tagSharp) {
-                tagList.add(first);
-            } else {
-                tagList.add(second);
-            }
-            puttext.setText(Html.fromHtml(tagList.toString().replace(",", "").replace("]", "").replace("[", "")));
-        }
-
-    }
-
-    public static String checkLastDot(String str , String checkStr){
-        if(str.lastIndexOf(checkStr) == str.length()-1)
-            str = str.substring(0, str.length()-1);
-
-        return str;
-    }
-
-    /**
-     * 생후 계산
-     * @param
-     * @return
-     */
-    public static String getAfterBirth_New(Context context, int nYear1, int nMonth1, int nDate1, int nYear2, int nMonth2, int nDate2){
-
-        int afterMonth = (int) (((nYear1 - nYear2) * 12)+(nMonth1 - nMonth2)+((nDate1 - nDate2) / 30.4 ));
-        //Logger.i(BleUtil.class.getSimpleName(), "getAfterBirth.day="+days+", day="+days+", afterMonth="+afterMonth);
-        // 생후 XX개월
-        String str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +afterMonth +context.getString(R.string.dogmonth);
-
-
-        return str;
-
-    }
-
-    /**
-     * 5년 미만 생후 계산
-     * @param days 일수
-     * @return
-     */
-    public static String getAfterBirth(Context context, int days){
-
-        String str = "";
-
-        int year = 0;
-        int day = 0;
-
-        if(days >= CommonData.YEAR){
-            year = days/CommonData.YEAR;
-        }
-
-        day = days%CommonData.YEAR;
-
-//        if(year > 0){
-//            str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +year +context.getString(R.string.year) +CommonData.STRING_SPACE +day +context.getString(R.string.day);
-//        }else{
-//            str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +day +context.getString(R.string.day);
+//    /**
+//     * 텍스트하나에 특정문자 Color 변경
+//     * @param cuttext       자를 text
+//     * @param puttext       setText 할 곳
+//     * @param tagname       시작하는 곳
+//     * @param splitname     마지막 자를 곳
+//     * @param firstcolor    태그 글짜 색깔
+//     * @param secondcolor   일반 글짜 색깔
+//     */
+//    public static void setParticularColor (String cuttext , TextView puttext  , String tagname , String splitname , String firstcolor , String secondcolor) {
+//
+//        String[] tag = cuttext.split(splitname);
+//        ArrayList<String> tagList = new ArrayList<String>();
+//        for (int i = 0; i < tag.length; i++) {
+//            boolean tagSharp = tag[i].startsWith(tagname);
+//            String first = "<font color=" + firstcolor +">" + tag[i] + "</font>";
+//            String second = "<font color=" + secondcolor + ">" + tag[i] + "</font>";
+//            if (tagSharp) {
+//                tagList.add(first);
+//            } else {
+//                tagList.add(second);
+//            }
+//            puttext.setText(Html.fromHtml(tagList.toString().replace(",", "").replace("]", "").replace("[", "")));
 //        }
+//
+//    }
 
-        int afterMonth = (int) ( days/ 30.4 );
-        Logger.i(Util.class.getSimpleName(), "getAfterBirth.day="+days+", day="+days+", afterMonth="+afterMonth);
-        // 생후 XX개월
-        str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +afterMonth +context.getString(R.string.dogmonth);
+//    public static String checkLastDot(String str , String checkStr){
+//        if(str.lastIndexOf(checkStr) == str.length()-1)
+//            str = str.substring(0, str.length()-1);
+//
+//        return str;
+//    }
 
+//    /**
+//     * 생후 계산
+//     * @param
+//     * @return
+//     */
+//    public static String getAfterBirth_New(Context context, int nYear1, int nMonth1, int nDate1, int nYear2, int nMonth2, int nDate2){
+//
+//        int afterMonth = (int) (((nYear1 - nYear2) * 12)+(nMonth1 - nMonth2)+((nDate1 - nDate2) / 30.4 ));
+//        //Logger.i(BleUtil.class.getSimpleName(), "getAfterBirth.day="+days+", day="+days+", afterMonth="+afterMonth);
+//        // 생후 XX개월
+//        String str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +afterMonth +context.getString(R.string.dogmonth);
+//
+//
+//        return str;
+//
+//    }
 
-        return str;
+//    /**
+//     * 5년 미만 생후 계산
+//     * @param days 일수
+//     * @return
+//     */
+//    public static String getAfterBirth(Context context, int days){
+//
+//        String str = "";
+//
+//        int year = 0;
+//        int day = 0;
+//
+//        if(days >= CommonData.YEAR){
+//            year = days/CommonData.YEAR;
+//        }
+//
+//        day = days%CommonData.YEAR;
+//
+////        if(year > 0){
+////            str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +year +context.getString(R.string.year) +CommonData.STRING_SPACE +day +context.getString(R.string.day);
+////        }else{
+////            str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +day +context.getString(R.string.day);
+////        }
+//
+//        int afterMonth = (int) ( days/ 30.4 );
+//        Logger.i(Util.class.getSimpleName(), "getAfterBirth.day="+days+", day="+days+", afterMonth="+afterMonth);
+//        // 생후 XX개월
+//        str = context.getString(R.string.after_birth) +CommonData.STRING_SPACE +afterMonth +context.getString(R.string.dogmonth);
+//
+//
+//        return str;
+//
+//    }
 
-    }
+//    /**
+//     * 5년 미만 생후 계산
+//     * @param days 일수
+//     * @return
+//     */
+//    public static String getFetusBirth(Context context, int days){
+//
+//        String str = "";
+//
+//        int month = 0;
+//        int day = 0;
+//
+//        if(days >= CommonData.MONTH){
+//            month = days/CommonData.MONTH;
+//        }
+//
+//        day = days%CommonData.MONTH;
+//
+//        // 0개월도 표시 해달라 요청 2018.04.29 소순상 (굿앤굿 3단계테스트 디펙트 238)
+//        str = CommonData.STRING_SPACE +month +context.getString(R.string.dogmonth) +CommonData.STRING_SPACE +day +context.getString(R.string.day);
+//
+//
+//        return str;
+//
+//    }
 
-    /**
-     * 5년 미만 생후 계산
-     * @param days 일수
-     * @return
-     */
-    public static String getFetusBirth(Context context, int days){
-
-        String str = "";
-
-        int month = 0;
-        int day = 0;
-
-        if(days >= CommonData.MONTH){
-            month = days/CommonData.MONTH;
-        }
-
-        day = days%CommonData.MONTH;
-
-        // 0개월도 표시 해달라 요청 2018.04.29 소순상 (굿앤굿 3단계테스트 디펙트 238)
-        str = CommonData.STRING_SPACE +month +context.getString(R.string.dogmonth) +CommonData.STRING_SPACE +day +context.getString(R.string.day);
-
-
-        return str;
-
-    }
-
-    //ssshin add
-    /**
-     * 남은 개월수 계산
-     * @param days 일수
-     * @return
-     */
-    public static String getFetusBirthNew(Context context, int days){
-
-        String str = "";
-
-        if(days == 280){ //280일은 예정일로 표시
-            str = context.getString(R.string.mother_health_reg_week_cnt2);
-        }else{
-            //개월 수 계산 : (임신 일 수 / 28) 나머지 버림처리 + 1
-            int tempCal = (int)Math.floor(days / 28.0) + 1;
-            str = tempCal + context.getString(R.string.dogmonth);
-        }
-
-        return CommonData.STRING_SPACE + str + CommonData.STRING_SPACE;
-
-    }
+//    //ssshin add
+//    /**
+//     * 남은 개월수 계산
+//     * @param days 일수
+//     * @return
+//     */
+//    public static String getFetusBirthNew(Context context, int days){
+//
+//        String str = "";
+//
+//        if(days == 280){ //280일은 예정일로 표시
+//            str = context.getString(R.string.mother_health_reg_week_cnt2);
+//        }else{
+//            //개월 수 계산 : (임신 일 수 / 28) 나머지 버림처리 + 1
+//            int tempCal = (int)Math.floor(days / 28.0) + 1;
+//            str = tempCal + context.getString(R.string.dogmonth);
+//        }
+//
+//        return CommonData.STRING_SPACE + str + CommonData.STRING_SPACE;
+//
+//    }
 
 
     /**

@@ -2270,13 +2270,23 @@
     <string name="text_regist_complete">등록완료</string>
     <string name="temper_device_call">전용 체온계로\n측정하기</string>
     <string name="temper_input_alert_title">체온 직접 입력</string>
-    <string name="temper_message1">체온을 측정해 주세요.</string>
-    <string name="temper_message2">35℃미만으로 체온이 낮습니다.\n1시간 뒤 다시 체온을 측정해주세요.</string>
-    <string name="temper_message3">정상 체온이 잘 유지되고 있습니다.\n정상 체온의 기준은 겨드랑이 체온 기준으로 37.2℃, 고막 체온 기준으로 37.4℃까지입니다.</string>
-    <string name="temper_message4">미열이 지속되고 있습니다.\n1시간 뒤 다시 체온을 측정해주세요.</string>
-    <string name="temper_message5">열이 지속되고 있습니다.\n1시간 뒤 다시 체온을 측정해주세요.</string>
-    <string name="temper_message6">고열이 지속되고 있습니다.\n감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문하는 것이 좋습니다.</string>
-    <string name="temper_message7">39.5℃이상 고열입니다.\n감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문하는 것이 좋습니다.</string>
+    <string name="temper_input_request">체온을 입력해 주세요.</string>
+
+    <string name="temper_title1">체온을 측정해 주세요.</string>
+    <string name="temper_title2">35℃미만으로 체온이 낮습니다.</string>
+    <string name="temper_title3">정상 체온이 잘 유지되고 있습니다.</string>
+    <string name="temper_title4">미열이 지속되고 있습니다.</string>
+    <string name="temper_title5">열이 지속되고 있습니다.</string>
+    <string name="temper_title6">고열이 지속되고 있습니다.</string>
+    <string name="temper_title7">40℃이상 고열입니다.</string>
+
+    <string name="temper_message1"></string>
+    <string name="temper_message2">1시간 뒤 다시 체온을 측정해주세요.</string>
+    <string name="temper_message3">정상 체온의 기준은 겨드랑이 체온 기준으로 37.2℃, 고막 체온 기준으로 37.4℃까지입니다.</string>
+    <string name="temper_message4">1시간 뒤 다시 체온을 측정해주세요.</string>
+    <string name="temper_message5">1시간 뒤 다시 체온을 측정해주세요.</string>
+    <string name="temper_message6">감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문하는 것이 좋습니다.</string>
+    <string name="temper_message7">감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문하는 것이 좋습니다.</string>
 
 
     <string name="title_올바른감염예방">올바른 감염 예방 <font color="#6972d1">1Q 오늘의 체온관리</font></string>
@@ -2284,6 +2294,7 @@
     <string name="title_health_reservation_fragment">건강검진 예약</string>
 
     <string name="title_resavation_text1">다운로드 한번으로\n <b><font color="#6972d1">빠른 예약 가격우대 검진 결과 조회</font></b>까지\n1Q에~!</string>
+    <string name="temper_control_desc">체온은 일반적인 체온 범위 내로 등록이 가능합니다. <font color="#888888">( 직접 입력도 가능합니다. )</font></string>
 
 
 

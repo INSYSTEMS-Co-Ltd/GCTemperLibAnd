@@ -104,8 +104,10 @@ public class CDialog extends Dialog {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
     }
 
-    public static CDialog showDlg(Context context, int title, int message) {
-        return showDlg(context, context.getString(title), context.getString(message));
+    public static CDialog showDlg(Context context, int titleId, int messageId) {
+        String title = titleId == 0 ? "" : context.getString(titleId);
+        String message = messageId == 0 ? "" : context.getString(messageId);
+        return showDlg(context, title, message);
     }
 
     public static CDialog showDlg(Context context, String title, String message) {

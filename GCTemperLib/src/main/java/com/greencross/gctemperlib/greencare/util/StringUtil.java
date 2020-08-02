@@ -1198,178 +1198,178 @@ public class StringUtil {
     }
 
 
-    public static String getNoneZeroString(float val) {
-        String result = getCalValue(val);
-        if (result.lastIndexOf(".0") != -1) {
-            result = result.substring(0, result.indexOf("."));
-        } else {
-            result = String.format("%.1f", val);
-        }
-        return result;
-    }
-
-    public static String getNoneZeroString2(float val) {
-        String result = getCalValue(val);
-        if (result.lastIndexOf(".0") != -1) {
-            result = result.substring(0, result.indexOf("."));
-        } else {
-            result = String.format("%.2f", val);
-        }
-        return result;
-    }
-
-    public static String getDateFormat(String date_s) {
-
-        if(date_s==null||date_s.equals(""))
-            return "";
-
-//        SimpleDateFormat new_format = new SimpleDateFormat("yy년MM월dd일 a hh시mm분");
-
-        SimpleDateFormat original_format = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss");
-        Date date = null;
-
-        try{
-            date = original_format.parse(date_s);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        long curTime = System.currentTimeMillis();
-        long regTime = date.getTime();
-        long diffTime = (curTime - regTime) / 1000;
-
-        String msg = null;
-
-        if(diffTime<0)
-            diffTime = 0;
-
-//        //해당시간으로부터 10일이상 지났으면
-//        if(diffTime/SEC/MIN/HOUR>9){
-//            msg = new_format.format(date);
-//
-//        }else{
-        if(diffTime < SEC) {
-            // sec
-//                msg = diffTime + "초전";
-            msg = "1분전";
-        } else if ((diffTime /= SEC) < MIN) {
-            // min
-            System.out.println(diffTime);
-            msg = diffTime + "분전";
-        } else if ((diffTime /= MIN) < HOUR) {
-            // hour
-            msg = (diffTime ) + "시간전";
-        } else{
-            msg = (diffTime/=HOUR) +"일전";
-        }
-//            else if ((diffTime /= HOUR) < DAY) {
-//                // day
-//                msg = (diffTime ) + "일전";
-//            }
-
-//            else if ((diffTime /= DAY) < MONTH) {
-//                // day
-//                msg = (diffTime ) + "달전";
-//            } else {
-//                msg = (diffTime/=MONTH) + "년전";
-//            }
-
-
+//    public static String getNoneZeroString(float val) {
+//        String result = getCalValue(val);
+//        if (result.lastIndexOf(".0") != -1) {
+//            result = result.substring(0, result.indexOf("."));
+//        } else {
+//            result = String.format("%.1f", val);
 //        }
+//        return result;
+//    }
+
+//    public static String getNoneZeroString2(float val) {
+//        String result = getCalValue(val);
+//        if (result.lastIndexOf(".0") != -1) {
+//            result = result.substring(0, result.indexOf("."));
+//        } else {
+//            result = String.format("%.2f", val);
+//        }
+//        return result;
+//    }
+
+//    public static String getDateFormat(String date_s) {
+//
+//        if(date_s==null||date_s.equals(""))
+//            return "";
+//
+////        SimpleDateFormat new_format = new SimpleDateFormat("yy년MM월dd일 a hh시mm분");
+//
+//        SimpleDateFormat original_format = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss");
+//        Date date = null;
+//
+//        try{
+//            date = original_format.parse(date_s);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        long curTime = System.currentTimeMillis();
+//        long regTime = date.getTime();
+//        long diffTime = (curTime - regTime) / 1000;
+//
+//        String msg = null;
+//
+//        if(diffTime<0)
+//            diffTime = 0;
+//
+////        //해당시간으로부터 10일이상 지났으면
+////        if(diffTime/SEC/MIN/HOUR>9){
+////            msg = new_format.format(date);
+////
+////        }else{
+//        if(diffTime < SEC) {
+//            // sec
+////                msg = diffTime + "초전";
+//            msg = "1분전";
+//        } else if ((diffTime /= SEC) < MIN) {
+//            // min
+//            System.out.println(diffTime);
+//            msg = diffTime + "분전";
+//        } else if ((diffTime /= MIN) < HOUR) {
+//            // hour
+//            msg = (diffTime ) + "시간전";
+//        } else{
+//            msg = (diffTime/=HOUR) +"일전";
+//        }
+////            else if ((diffTime /= HOUR) < DAY) {
+////                // day
+////                msg = (diffTime ) + "일전";
+////            }
+//
+////            else if ((diffTime /= DAY) < MONTH) {
+////                // day
+////                msg = (diffTime ) + "달전";
+////            } else {
+////                msg = (diffTime/=MONTH) + "년전";
+////            }
+//
+//
+////        }
+//
+//
+//        return msg;
+//    }
+
+//    public static String makeStringComma(int value) {
+//        DecimalFormat decimalFormat = new DecimalFormat("#,###,###,###");
+//        return decimalFormat.format(value);
+//    }
+
+//    /**
+//     * 앱가입경로
+//     */
+//    public static  String setJoinPath(Boolean[] path){
+//        String result = "";
+//
+//        for(int i = 0; i < path.length; i++){
+//            if(path[i])
+//                result = result+String.format("%d",i+1)+"|";
+//        }
+//
+//        return result;
+//    }
 
 
-        return msg;
-    }
-
-    public static String makeStringComma(int value) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###,###,###");
-        return decimalFormat.format(value);
-    }
-
-    /**
-     * 앱가입경로
-     */
-    public static  String setJoinPath(Boolean[] path){
-        String result = "";
-
-        for(int i = 0; i < path.length; i++){
-            if(path[i])
-                result = result+String.format("%d",i+1)+"|";
-        }
-
-        return result;
-    }
-
-
-    /**
-     *출산 후 1년 이내인지
-     * @return
-     */
-    public static boolean getAfterBirth1Year(String afterbirth) {
-        Calendar calbirth = Calendar.getInstance();
-        if (afterbirth != null && afterbirth.length() == 8) {
-            afterbirth = afterbirth.replace("-", "").replace(".", "").replace(" ", "");
-
-            String tempDate1 = afterbirth.substring(0, 4);
-            String tempDate2 = afterbirth.substring(4, 6);
-            String tempDate3 = afterbirth.substring(6, 8);
-
-            calbirth.set(getIntVal(tempDate1),getIntVal(tempDate2)-1,getIntVal(tempDate3),0,0,0);
-        } else {
-            return false;
-        }
-        calbirth.set(Calendar.MILLISECOND, 0);
-
-        Calendar nowday = Calendar.getInstance();
-        nowday.set(Calendar.MILLISECOND,0);
-        nowday.set(Calendar.HOUR_OF_DAY,0);
-        nowday.set(Calendar.MINUTE,0);
-        nowday.set(Calendar.SECOND,0);
-
-        long diff = nowday.getTimeInMillis() - calbirth.getTimeInMillis(); //result in millis
-        long days = diff / (24 * 60 * 60 * 1000);
-
-        if(days <= 365){
-            return true;
-        }
-
-        return false;
-    }
+//    /**
+//     *출산 후 1년 이내인지
+//     * @return
+//     */
+//    public static boolean getAfterBirth1Year(String afterbirth) {
+//        Calendar calbirth = Calendar.getInstance();
+//        if (afterbirth != null && afterbirth.length() == 8) {
+//            afterbirth = afterbirth.replace("-", "").replace(".", "").replace(" ", "");
+//
+//            String tempDate1 = afterbirth.substring(0, 4);
+//            String tempDate2 = afterbirth.substring(4, 6);
+//            String tempDate3 = afterbirth.substring(6, 8);
+//
+//            calbirth.set(getIntVal(tempDate1),getIntVal(tempDate2)-1,getIntVal(tempDate3),0,0,0);
+//        } else {
+//            return false;
+//        }
+//        calbirth.set(Calendar.MILLISECOND, 0);
+//
+//        Calendar nowday = Calendar.getInstance();
+//        nowday.set(Calendar.MILLISECOND,0);
+//        nowday.set(Calendar.HOUR_OF_DAY,0);
+//        nowday.set(Calendar.MINUTE,0);
+//        nowday.set(Calendar.SECOND,0);
+//
+//        long diff = nowday.getTimeInMillis() - calbirth.getTimeInMillis(); //result in millis
+//        long days = diff / (24 * 60 * 60 * 1000);
+//
+//        if(days <= 365){
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
 
-    /**
-     *출산 후 3년 경과인지
-     * @return
-     */
-    public static boolean getAfterBirth3Year(String afterbirth) {
-
-        Calendar calbirth = Calendar.getInstance();
-        if (afterbirth != null && afterbirth.length() == 8) {
-            afterbirth = afterbirth.replace("-", "").replace(".", "").replace(" ", "");
-
-            String tempDate1 = afterbirth.substring(0, 4);
-            String tempDate2 = afterbirth.substring(4, 6);
-            String tempDate3 = afterbirth.substring(6, 8);
-
-            calbirth.set(getIntVal(tempDate1),getIntVal(tempDate2)-1,getIntVal(tempDate3),0,0,0);
-        } else {
-            return false;
-        }
-        calbirth.set(Calendar.MILLISECOND, 0);
-
-        Calendar nowday = Calendar.getInstance();
-        nowday.set(Calendar.MILLISECOND,0);
-        nowday.set(Calendar.HOUR_OF_DAY,0);
-        nowday.set(Calendar.MINUTE,0);
-        nowday.set(Calendar.SECOND,0);
-
-        long diff = nowday.getTimeInMillis() - calbirth.getTimeInMillis(); //result in millis
-        long days = diff / (24 * 60 * 60 * 1000);
-
-        if(days > CommonData.AFTER_BIRTH_1095){
-            return true;
-        }
-
-        return false;
-    }
+//    /**
+//     *출산 후 3년 경과인지
+//     * @return
+//     */
+//    public static boolean getAfterBirth3Year(String afterbirth) {
+//
+//        Calendar calbirth = Calendar.getInstance();
+//        if (afterbirth != null && afterbirth.length() == 8) {
+//            afterbirth = afterbirth.replace("-", "").replace(".", "").replace(" ", "");
+//
+//            String tempDate1 = afterbirth.substring(0, 4);
+//            String tempDate2 = afterbirth.substring(4, 6);
+//            String tempDate3 = afterbirth.substring(6, 8);
+//
+//            calbirth.set(getIntVal(tempDate1),getIntVal(tempDate2)-1,getIntVal(tempDate3),0,0,0);
+//        } else {
+//            return false;
+//        }
+//        calbirth.set(Calendar.MILLISECOND, 0);
+//
+//        Calendar nowday = Calendar.getInstance();
+//        nowday.set(Calendar.MILLISECOND,0);
+//        nowday.set(Calendar.HOUR_OF_DAY,0);
+//        nowday.set(Calendar.MINUTE,0);
+//        nowday.set(Calendar.SECOND,0);
+//
+//        long diff = nowday.getTimeInMillis() - calbirth.getTimeInMillis(); //result in millis
+//        long days = diff / (24 * 60 * 60 * 1000);
+//
+//        if(days > CommonData.AFTER_BIRTH_1095){
+//            return true;
+//        }
+//
+//        return false;
+//    }
 }

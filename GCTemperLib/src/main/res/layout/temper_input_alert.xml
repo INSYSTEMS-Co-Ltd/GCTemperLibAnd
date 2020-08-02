@@ -1,23 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/color_100ffffff"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="vertical">
+
 
     <TextView
+        android:id="@+id/dialog_title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/temper_input_alert_title"/>
+        android:fontFamily="@font/hanab"
+        android:lineSpacingExtra="2sp"
+        android:textColor="#6972d1"
+        android:textSize="20sp"
+        android:text="@string/temper_input_alert_title" />
 
     <EditText
         android:id="@+id/temper_input_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="4"
-        android:inputType="number"/>
+        android:layout_marginTop="24dp"
+        android:background="@drawable/draw_box_dddddd"
+        android:hint="@string/temper_input_request"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="13dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="13dp"
+        />
+<!--    android:digits="0123456789"-->
+
 
 </LinearLayout>

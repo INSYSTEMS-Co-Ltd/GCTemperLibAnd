@@ -75,7 +75,7 @@ public class Tr_Temperature extends BaseData {
             body.put("la", data.la);
             body.put("lo", data.lo);
             body.put("Input_de ", data.Input_de);
-            body.put("is_wearable ", data.is_wearable);
+            body.put("is_wearable", data.is_wearable);
 			return body;
 		}
 		return super.makeJson(obj);

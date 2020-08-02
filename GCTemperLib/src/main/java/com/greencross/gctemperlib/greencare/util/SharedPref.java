@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 
+import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 import com.greencross.gctemperlib.util.SimpleCrypto;
 
@@ -173,6 +174,9 @@ public class SharedPref {
         savePreferences(LOGIN_DOCNO, login.docno);
         savePreferences(LOGIN_RESULTCODE, login.resultcode);
         savePreferences(LOGIN_MESSAGE, login.message);
+
+        SharedPref.getInstance(mContext).savePreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName(), "Y".equals(login.ncrgd_yn));
+        SharedPref.getInstance(mContext).savePreferences(GCAlramType.GC_ALRAM_TYPE_지역.getAlramName(), "Y".equals(login.area_thmt_yn));
         mLogin = null;
     }
 

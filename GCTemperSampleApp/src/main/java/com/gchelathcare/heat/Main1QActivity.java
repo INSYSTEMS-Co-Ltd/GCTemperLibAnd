@@ -90,6 +90,7 @@ public class Main1QActivity extends Activity {
 
         Switch switch1 = findViewById(R.id.alram_type_1);
         Switch switch2 = findViewById(R.id.alram_type_2);
+
         switch1.setChecked(gcLib.getSettingAlramService(GCAlramType.GC_ALRAM_TYPE_독려));
         switch2.setChecked(gcLib.getSettingAlramService(GCAlramType.GC_ALRAM_TYPE_지역));
         // 측정 독려 알림 수신 설정 변경

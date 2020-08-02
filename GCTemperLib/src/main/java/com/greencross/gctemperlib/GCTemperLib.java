@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.hana.AlramUtil;
+import com.greencross.gctemperlib.hana.GCAlarmReceiver;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
@@ -105,7 +107,10 @@ public class GCTemperLib {
                     if (data instanceof Tr_Login) {
                         Tr_Login recv = (Tr_Login) data;
                         boolean isLogin = recv.isSuccess(recv.resultcode);
-                        SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, isLogin ? customerNo : null);     // 사용자 번호 저장
+                        if (isLogin) {
+                            SharedPref.getInstance(mContext).saveLoginInfo(recv);
+                            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호 저장
+                        }
                         iGCResult.onResult(isLogin, recv.message, recv);
                     } else {
                         iGCResult.onResult(isSuccess, message, data);
@@ -145,8 +150,8 @@ public class GCTemperLib {
                 public void onResult(boolean isSuccess, String message, Object data) {
                     if (data instanceof Tr_Login) {
                         Tr_Login recv = (Tr_Login) data;
-                        if (recv.status.equals("Y")) {
-                            boolean isSuccessed = recv.isSuccess(recv.resultcode);
+                        boolean isSuccessed = recv.isSuccess(recv.resultcode);
+                        if (isSuccessed) {
                             if (isSuccess)
                                 SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
                             iGCResult.onResult(isSuccessed, recv.message, recv);
@@ -191,10 +196,9 @@ public class GCTemperLib {
         String pushToken = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_PUSH_TOKEN);    // 푸시키
         String custNo = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);          // 사용자 번호
 
-        Log.i(TAG, "setAlram::" + alramType.name() + " " + isEnable);
-        Log.i(TAG, "setAlram.pushToken=" + pushToken);
-        Log.i(TAG, "setAlram.custNo=" + custNo);
-
+//        Log.i(TAG, "setAlram::" + alramType.name() + " " + isEnable);
+//        Log.i(TAG, "setAlram.pushToken=" + pushToken);
+//        Log.i(TAG, "setAlram.custNo=" + custNo);
         if (checkGCToken(iGCResult) == false) {
             return;
         } else if (TextUtils.isEmpty(custNo)) {
@@ -217,13 +221,13 @@ public class GCTemperLib {
                     if (data instanceof Tr_Setup) {
                         Tr_Setup recv = (Tr_Setup) data;
                         boolean isSuccessed = recv.isSuccess(recv.resultcode);
+                        if (isSuccessed) {
+                            SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
+                            if (alramType == GCAlramType.GC_ALRAM_TYPE_독려 && isEnable == false) {
+                                AlramUtil.releaseAlarm(mContext, GCAlarmReceiver.ALRAM_REPEAT_1HOUR);
+                            }
+                        }
                         iGCResult.onResult(isSuccessed, recv.message, recv);
-//                        if (recv.status.equals("Y")) {
-//                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
-//                            SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
-//                        } else {
-//                            iGCResult.onResult(true, String.format(alramType.getDesc() + " 알람 %1$s 완료", isEnable ? "등록" : "해지"), recv);
-//                        }
                     } else {
                         iGCResult.onResult(isSuccess, message, data);
                     }

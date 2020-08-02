@@ -504,7 +504,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                 } else {
                     gps.showSettingsAlert();
                 }
-
                 return false;
             }
         });
@@ -513,8 +512,15 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 //        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
 //        mMap.getUiSettings().setMapToolbarEnabled(true);
 
-        moveMyLocation();
         setCustomMarkerView();
+
+        GpsInfo gps = new GpsInfo(TemperActivity.this);
+        if (gps.isGetLocation()) {
+            moveMyLocation();
+        } else {
+            LatLng latLng = new LatLng(37.575784, 126.976789);  // 위치 정보 안된 경우 광화문
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+        }
     }
 
     /**

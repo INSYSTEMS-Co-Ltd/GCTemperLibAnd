@@ -2,6 +2,7 @@ package com.greencross.gctemperlib.hana.network.tr.hnData;
 
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 import com.greencross.gctemperlib.BuildConfig;
@@ -75,7 +76,8 @@ public class Tr_Login extends BaseData {
 			body.put("cust_id", data.cust_id);
 			body.put("phone_gubun", OS_GUBUN);
 			body.put("appver", BuildConfig.VERSION_NAME);
-			body.put("devicetoken", data.devicetoken);
+			if (TextUtils.isEmpty(data.devicetoken) == false)
+			    body.put("devicetoken", data.devicetoken);
 			body.put("os_ver", ""+Build.VERSION.CODENAME);
 			body.put("p_model", Build.MODEL);
 			return body;

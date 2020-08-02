@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.util.SharedPref;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 
 /**
  * 건강검진 예약
@@ -43,6 +46,9 @@ public class HealthRservationFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+        TextView tv = view.findViewById(R.id.regist_code_tv);
+        Tr_Login login = SharedPref.getInstance(getContext()).getLoginInfo();
+        tv.setText(login.cmpny_ub_code);
     }
 
 

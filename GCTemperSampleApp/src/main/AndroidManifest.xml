@@ -35,6 +35,14 @@
             android:theme="@style/GCLibTheme"
             android:screenOrientation="portrait"/>
 
+        <receiver android:name="com.greencross.gctemperlib.hana.GCAlarmReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

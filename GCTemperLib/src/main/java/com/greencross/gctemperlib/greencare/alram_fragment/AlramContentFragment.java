@@ -46,8 +46,6 @@ public class AlramContentFragment extends BaseFragment implements IBaseFragment,
     private String mPdf_url;
     private AlramMainActivity activity;
 
-
-
     public static BaseFragment newInstance() {
         AlramContentFragment fragment = new AlramContentFragment();
         return fragment;

@@ -1,5 +1,7 @@
 package com.greencross.gctemperlib.util;
 
+import android.annotation.SuppressLint;
+
 import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
@@ -13,7 +15,6 @@ import javax.crypto.spec.SecretKeySpec;
  * @since 0, 1
  */
 public class SimpleCrypto {
-
     /**
      * 비밀번호 암호화
      * @param seed      단말기 고유값
@@ -43,9 +44,8 @@ public class SimpleCrypto {
 
     private static byte[] getRawKey(byte[] seed) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");
-//        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
 //        SecureRandom sr = SecureRandom.getInstance( "SHA1PRNG" , "Crypto" );
-        SecureRandom sr = SecureRandom.getInstance( "SHA1PRNG" , "CRYPTO" );
         sr.setSeed(seed);
         kgen.init(128, sr); // 192 and 256 bits may not be available
         SecretKey skey = kgen.generateKey();

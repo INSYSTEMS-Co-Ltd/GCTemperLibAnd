@@ -21,19 +21,6 @@
         android:text="@string/setting_address_msg" />
 
 
-    <Button
-        android:id="@+id/btn_save_address"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_46_dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/bg_white"
-        android:fontFamily="@font/hi_gothic_b"
-        android:text="@string/popup_dialog_button_save"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/_16_dp"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"

@@ -21,7 +21,9 @@ import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_AreaSetup;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
 
@@ -29,7 +31,6 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
     private final String TAG = SettingAddressFragment.class.getSimpleName();
 
     private TextView mAddressTv;
-    private Button mBtnSaveAddress ;
 
     private String mAddressDo = "";
     private String mAddressGu = "";
@@ -56,21 +57,19 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAddressTv = (TextView) view.findViewById(R.id.btn_search_address);
-        mBtnSaveAddress = (Button) view.findViewById(R.id.btn_save_address);
 //        common_left_btn  = (ImageButton) view.findViewById(R.id.common_left_btn);
-
-//        mAddressDo = CommonData.getInstance(getContext()).getAddressDo();
-//        mAddressGu = CommonData.getInstance(getContext()).getAddressGu();
-//        if (mAddressDo.length() > 0 && mAddressGu.length() > 0) {
-//            mBtnSearchAddress.setText(mAddressDo + CommonData.STRING_SPACE + mAddressGu);
-//        } else {
+        Tr_Login login = SharedPref.getInstance(getContext()).getLoginInfo();
+        mAddressDo = login.heat_do;
+        mAddressGu = login.heat_si;
+        if (mAddressDo.length() > 0 && mAddressGu.length() > 0) {
+            mAddressTv.setText(mAddressDo + " "  + mAddressGu);
+        }
+//        else {
 //            mBtnSearchAddress.setText(getString(R.string.none));
 //        }
 
         view.findViewById(R.id.gps_icon).setOnClickListener(this);
         mAddressTv.setOnClickListener(this);
-        mBtnSaveAddress.setOnClickListener(this);
-//        common_left_btn.setOnClickListener(this);
 
         view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,17 +88,17 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
 //            Intent intent = new Intent(SettingAddressActivity.this, SearchAddressActivity.class);
 //            startActivityForResult(intent, CommonData.REQUEST_ADDRESS_SEARCH);
             DummyActivity.startActivityForResult(getActivity(), CommonData.REQUEST_ADDRESS_SEARCH, SearchAddressFragment.class, new Bundle());
-        } else
-            if (id == R.id.btn_save_address) {
-            if (mAddressDo.length() > 0 && mAddressGu.length() > 0) {
-                registAddress();
-            } else {
-                CustomAlertDialog customAlertDialog = new CustomAlertDialog(getContext(), CustomAlertDialog.TYPE_A);
-                customAlertDialog.setTitle(getString(R.string.app_name_kr));
-                customAlertDialog.setContent(getString(R.string.non_address));
-                customAlertDialog.setPositiveButton(getString(R.string.popup_dialog_button_confirm), null);
-                customAlertDialog.show();
-            }
+//        } else
+//            if (id == R.id.btn_save_address) {
+//            if (mAddressDo.length() > 0 && mAddressGu.length() > 0) {
+//                registAddress();
+//            } else {
+//                CustomAlertDialog customAlertDialog = new CustomAlertDialog(getContext(), CustomAlertDialog.TYPE_A);
+//                customAlertDialog.setTitle(getString(R.string.app_name_kr));
+//                customAlertDialog.setContent(getString(R.string.non_address));
+//                customAlertDialog.setPositiveButton(getString(R.string.popup_dialog_button_confirm), null);
+//                customAlertDialog.show();
+//            }
         } else if (id == R.id.gps_icon) {
             GpsInfo gps = new GpsInfo(getContext());
             if (gps.isGetLocation()) {
@@ -119,10 +118,9 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
     public void registAddress() {
         String text = mAddressTv.getText().toString();
         if (TextUtils.isEmpty(text.trim()) || TextUtils.isEmpty(mAddressDo) || TextUtils.isEmpty(mAddressGu) ) {
-            CDialog.showDlg(getContext(), "알림", "위치를 검색해주세요.");
+            CDialog.showDlg(getContext(), "알림", getString(R.string.non_address));
             return;
         }
-
 
         Tr_AreaSetup.RequestData requestData = new Tr_AreaSetup.RequestData();
         requestData.heat_do = mAddressDo;
@@ -174,9 +172,6 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
         hideProgress();
     }
 
-
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -193,6 +188,12 @@ public class SettingAddressFragment extends BaseFragment implements View.OnClick
                 mAddressGu = addresss[1];
                 Log.i(TAG, "inputaddress: " + mAddressGu + mAddressDo);
                 mAddressTv.setText(mAddressDo + " " + mAddressGu);
+
+                // 지역 로그인 정보 갱신
+                Tr_Login login = SharedPref.getInstance(getContext()).getLoginInfo();
+                login.heat_do = mAddressDo;
+                login.heat_si = mAddressGu;
+                SharedPref.getInstance(getContext()).saveLoginInfo(login);
                 break;
         }
     }

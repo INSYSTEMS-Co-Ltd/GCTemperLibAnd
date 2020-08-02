@@ -75,11 +75,12 @@
                         android:textSize="25sp" />
 
                     <TextView
+                        android:id="@+id/regist_code_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="0.05"
                         android:lineSpacingExtra="-10sp"
-                        android:text="NO960HU8"
+                        tools:text="NO960HU8"
                         android:textColor="#131313"
                         android:fontFamily="@font/hanam"
                         android:textSize="30sp" />

@@ -175,8 +175,9 @@ public class SharedPref {
         savePreferences(LOGIN_RESULTCODE, login.resultcode);
         savePreferences(LOGIN_MESSAGE, login.message);
 
-        SharedPref.getInstance(mContext).savePreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName(), "Y".equals(login.ncrgd_yn));
-        SharedPref.getInstance(mContext).savePreferences(GCAlramType.GC_ALRAM_TYPE_지역.getAlramName(), "Y".equals(login.area_thmt_yn));
+        // 알람 설정 저장
+        savePreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName(), "Y".equals(login.ncrgd_yn));
+        savePreferences(GCAlramType.GC_ALRAM_TYPE_지역.getAlramName(), "Y".equals(login.area_thmt_yn));
         mLogin = null;
     }
 

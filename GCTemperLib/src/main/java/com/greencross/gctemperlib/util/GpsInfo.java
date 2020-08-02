@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.core.app.ActivityCompat;
@@ -19,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAlertDialogInterface;
+import com.greencross.gctemperlib.greencare.component.CDialog;
 
 /**
  * Created by MobileDoctor on 2016-07-06.
@@ -158,19 +160,20 @@ public class GpsInfo extends Service implements LocationListener {
      * 설정값으로 갈지 물어보는 alert 창
      * */
     public void showSettingsAlert(){
-        CustomAlertDialog customAlertDialog = new CustomAlertDialog(mContext, CustomAlertDialog.TYPE_B);
-        customAlertDialog.setTitle(mContext.getString(R.string.gps_check_title));
-        customAlertDialog.setContent(mContext.getString(R.string.gps_check));
-        customAlertDialog.setNegativeButton(mContext.getString(R.string.popup_dialog_button_cancel), null);
-        customAlertDialog.setPositiveButton(mContext.getString(R.string.popup_dialog_button_confirm), new CustomAlertDialogInterface.OnClickListener() {
-            @Override
-            public void onClick(CustomAlertDialog dialog, Button button) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                mContext.startActivity(intent);
-                dialog.dismiss();
-            }
-        });
-        customAlertDialog.show();
+        CDialog.showDlg(mContext, R.string.gps_check_title, R.string.gps_check)
+                .setOkButton(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        mContext.startActivity(intent);
+                    }
+                })
+                .setNoButton(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
     }
 
     @Override

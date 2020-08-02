@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.greencare.network.tr;
+package com.greencross.gctemperlib.hana.network.tr;
 
 import java.io.BufferedReader;
 import java.io.File;

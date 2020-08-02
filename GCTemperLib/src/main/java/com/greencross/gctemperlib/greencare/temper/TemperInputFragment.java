@@ -29,7 +29,7 @@ import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.greencare.util.ViewUtil;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.network.tr.data.Tr_get_hedctdata;
+import com.greencross.gctemperlib.hana.network.tr.data.Tr_get_hedctdata;
 
 import java.util.Calendar;
 import java.util.Date;

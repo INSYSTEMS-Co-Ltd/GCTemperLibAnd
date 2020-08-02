@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.greencare.network.util;
+package com.greencross.gctemperlib.hana.network.util;
 public class TrCreate {
 	
 	public static void main(String[] args) {

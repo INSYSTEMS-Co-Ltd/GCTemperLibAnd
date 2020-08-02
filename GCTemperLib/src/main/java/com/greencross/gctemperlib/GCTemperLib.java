@@ -12,13 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.network.tr.HNApiData;
-import com.greencross.gctemperlib.greencare.network.tr.BaseData;
-import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
-import com.greencross.gctemperlib.greencare.network.tr.HNCConnAsyncTask;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Setup;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Temperature;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Login;
+import com.greencross.gctemperlib.hana.network.tr.HNApiData;
+import com.greencross.gctemperlib.hana.network.tr.BaseData;
+import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
+import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Setup;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Temperature;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.GCAlramType;
@@ -168,13 +168,13 @@ public class GCTemperLib {
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
-    public void registGCTemper(@Nullable String temper, boolean isWearable, final IGCResult iGCResult) {
+    public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
             GpsInfo gps = new GpsInfo(mContext);
             if (gps.isGetLocation()) {
-                registerLocationUpdates(temper, isWearable, iGCResult);
+                registerLocationUpdates(temper, iGCResult);
             } else {
                 gps.showSettingsAlert();
             }
@@ -336,7 +336,7 @@ public class GCTemperLib {
      * 위치정보 찾기
      */
     private LocationManager mLM;
-    private void registerLocationUpdates(String temper, boolean isWearable, final IGCResult iGCResult) {
+    private void registerLocationUpdates(String temper, final IGCResult iGCResult) {
 //        showProgress();
 
         GpsInfo gps = new GpsInfo(mContext);
@@ -368,7 +368,7 @@ public class GCTemperLib {
                     requestData.la = ""+gps.getLatitude();
                     requestData.lo = ""+gps.getLongitude();
                     requestData.Input_de = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                    requestData.is_wearable = isWearable ? "1" : "0";
+                    requestData.is_wearable = "1";
 
                     getData(Tr_Temperature.class, requestData, new IGCResult() {
                         @Override

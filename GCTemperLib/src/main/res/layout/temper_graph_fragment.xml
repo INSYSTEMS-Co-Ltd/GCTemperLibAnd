@@ -20,7 +20,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/layout_weight_graph"
+            android:id="@+id/layout_temper_graph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
@@ -183,7 +183,7 @@
                             android:lineSpacingExtra="27sp"
                             android:fontFamily="@font/hanab"
                             android:gravity="center_horizontal"
-                            tools:text="℃"/>
+                            android:text="℃"/>
 
                         <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
                             android:id="@+id/chart1"
@@ -202,7 +202,7 @@
                             android:lineSpacingExtra="27sp"
                             android:fontFamily="@font/hanab"
                             android:gravity="center_horizontal"
-                            tools:text="시간"
+                            android:text="시간"
                             />
                     </RelativeLayout>
                 </LinearLayout>

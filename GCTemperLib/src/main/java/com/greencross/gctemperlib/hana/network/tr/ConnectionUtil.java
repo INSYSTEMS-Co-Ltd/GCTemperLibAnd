@@ -1,12 +1,9 @@
-package com.greencross.gctemperlib.greencare.network.tr;
+package com.greencross.gctemperlib.hana.network.tr;
 
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.TimeFormatException;
 
-import com.greencross.gctemperlib.greencare.base.value.Define;
 import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
-import com.greencross.gctemperlib.greencare.util.Logger;
 
 import org.json.JSONObject;
 
@@ -17,10 +14,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.concurrent.TimeoutException;
 
 public class ConnectionUtil {
     private final String TAG = ConnectionUtil.class.getSimpleName();

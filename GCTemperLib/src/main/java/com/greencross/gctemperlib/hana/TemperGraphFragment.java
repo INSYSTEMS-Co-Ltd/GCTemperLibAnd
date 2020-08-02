@@ -1,7 +1,6 @@
 package com.greencross.gctemperlib.hana;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 
 import android.text.Editable;
 import android.text.TextUtils;
@@ -26,29 +24,21 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.greencross.gctemperlib.DummyActivity;
-import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.common.CustomAsyncListener;
-import com.greencross.gctemperlib.common.NetworkConst;
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.value.TypeDataSet;
 import com.greencross.gctemperlib.greencare.charting.data.BarEntry;
-import com.greencross.gctemperlib.greencare.chartview.valueFormat.AxisValueFormatter2;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.AxisYValueFormatter;
 import com.greencross.gctemperlib.greencare.chartview.temper.TemperChartView;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.TemperChartFormatter;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
-import com.greencross.gctemperlib.greencare.network.tr.ApiData;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_FeverList;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_Temperature;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_FeverList;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.ChartTimeUtil;
 import com.greencross.gctemperlib.greencare.util.DisplayUtil;
@@ -57,15 +47,11 @@ import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.R;
 
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -89,7 +75,7 @@ public class TemperGraphFragment extends BaseFragment {
     protected TemperChartView mTemperChart;
 //    private TemperSwipeListView mSwipeListView;
 
-    protected LinearLayout layout_weight_graph;              // 그래프 레이아웃
+    protected LinearLayout layout_temper_graph;              // 그래프 레이아웃
 
     protected TextView mXLabelTv;
 
@@ -132,7 +118,7 @@ public class TemperGraphFragment extends BaseFragment {
 
         mDateTv = (TextView) view.findViewById(R.id.period_date_textview);
         mTemperDayTv = (TextView) view.findViewById(R.id.textView18);
-        layout_weight_graph = (LinearLayout) view.findViewById(R.id.layout_weight_graph);
+        layout_temper_graph = (LinearLayout) view.findViewById(R.id.layout_temper_graph);
 
 //        mXLabelTv = view.findViewById(R.id.weight_chart_x_label_tv);
 
@@ -170,11 +156,10 @@ public class TemperGraphFragment extends BaseFragment {
         mTemperChart.setYValueFormat(yFormatter);
 //        mTemperChart.setXValueFormat(xFormatter);
         mTemperChart.getXAxis().setTextSize(DisplayUtil.getPxToDp(getContext(), 6));
-
 //        mSwipeListView = new TemperSwipeListView(view, TemperGraphFragment.this);
 
-        setNextButtonVisible();
 
+        setNextButtonVisible();
         // 차트 전체 화면 처리
         mContentScrollView = view.findViewById(R.id.view_scrollview);
         mChartFrameLayout = view.findViewById(R.id.chart_frame_layout);
@@ -185,7 +170,6 @@ public class TemperGraphFragment extends BaseFragment {
         mChartZoomBtn.setOnClickListener(mClickListener);
 
         setVisibleOrientationLayout();
-
         //click 저장
         OnClickListener ClickListener = new OnClickListener(mClickListener, view, getContext());
     }
@@ -369,19 +353,19 @@ public class TemperGraphFragment extends BaseFragment {
 
                     int maxX = makeLogItem(recv.datas);     //mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
                     mTemperChart.setXvalMinMax(0, maxX, maxX);
-                    List<BarEntry> weightYVals = new ArrayList<>();
+                    List<BarEntry> temperYVals = new ArrayList<>();
                     for (Tr_FeverList.Data temperData : recv.datas) {
                         float idx = StringUtil.getFloatVal(temperData.idx);
                         float input_fever = StringUtil.getFloatVal(temperData.input_fever);
-                        weightYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
+                        temperYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
                     }
 
-                    weightYVals.add(new BarEntry(mXlabels.size()+3, null));
+                    temperYVals.add(new BarEntry(mXlabels.size()+3, null));
 
-                    setYMinMax(weightYVals, false);
+                    setYMinMax(temperYVals, false);
                     TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
                     mTemperChart.setXValueFormat(formatter);
-                    mTemperChart.setData(weightYVals, mTimeClass);
+                    mTemperChart.setData(temperYVals, mTimeClass);
                     mTemperChart.invalidate();
                 } else {
                     CDialog.showDlg(getContext(), "알림", "데이터 수신 실패");
@@ -461,13 +445,13 @@ public class TemperGraphFragment extends BaseFragment {
     /**
      * y라벨 구하기
      *
-     * @param weightYVals
+     * @param temperYVals
      */
-    private void setYMinMax(List<BarEntry> weightYVals, boolean is40Data) {
+    private void setYMinMax(List<BarEntry> temperYVals, boolean is40Data) {
         float yMin = Float.MAX_VALUE;
         float yMax = Float.MIN_VALUE;
         Log.i(TAG, "#######yLabelCnt##############");
-        for (BarEntry entry : weightYVals) {
+        for (BarEntry entry : temperYVals) {
             float y = entry.getY();
             if (y != 0 && y < yMin) {
                 yMin = y;
@@ -652,9 +636,9 @@ public class TemperGraphFragment extends BaseFragment {
 
             String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
             String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
-            List<BarEntry> weightYVals = new ArrayList<>(); //weightDb.getResultMonth(startDay, endDay, true);
-            setYMinMax(weightYVals, false);
-            mTemperChart.setData(weightYVals, mTimeClass);
+            List<BarEntry> temperYVals = new ArrayList<>(); //weightDb.getResultMonth(startDay, endDay, true);
+            setYMinMax(temperYVals, false);
+            mTemperChart.setData(temperYVals, mTimeClass);
             List<BarEntry> fatYVals = new ArrayList<>();//  weightDb.getResultMonth(startDay, endDay, false);
             mTemperChart.animateY();
             setNextButtonVisible();

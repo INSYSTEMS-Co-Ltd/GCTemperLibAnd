@@ -11,10 +11,10 @@ import android.widget.TextView;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.network.tr.BaseData;
-import com.greencross.gctemperlib.greencare.network.tr.CConnAsyncTask;
-import com.greencross.gctemperlib.greencare.network.tr.HNApiData;
-import com.greencross.gctemperlib.greencare.network.tr.HNCConnAsyncTask;
+import com.greencross.gctemperlib.hana.network.tr.BaseData;
+import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
+import com.greencross.gctemperlib.hana.network.tr.HNApiData;
+import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
 import com.greencross.gctemperlib.util.Util;
 

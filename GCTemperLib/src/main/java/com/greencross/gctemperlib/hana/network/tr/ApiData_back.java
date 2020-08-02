@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.greencare.network.tr;
+package com.greencross.gctemperlib.hana.network.tr;
 
 import android.content.Context;
 import android.os.AsyncTask;

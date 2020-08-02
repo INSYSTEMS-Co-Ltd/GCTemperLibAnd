@@ -1,7 +1,6 @@
 package com.greencross.gctemperlib.greencare.alram_fragment;
 
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,20 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.Alram.AlramMainActivity;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
 import com.greencross.gctemperlib.greencare.base.IBaseFragment;
-import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
-import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.util.Util;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AlramMainFragment extends BaseFragment implements IBaseFragment {
     private final String TAG = AlramMainActivity.class.getSimpleName();

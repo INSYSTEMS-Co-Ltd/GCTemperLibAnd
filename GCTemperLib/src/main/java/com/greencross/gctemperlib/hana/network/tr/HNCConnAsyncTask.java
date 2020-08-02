@@ -3,7 +3,7 @@
  * 2011. 9. 2. 오후 2:09:17
  * shinys
  */
-package com.greencross.gctemperlib.greencare.network.tr;
+package com.greencross.gctemperlib.hana.network.tr;
 
 import android.app.Activity;
 import android.content.Context;

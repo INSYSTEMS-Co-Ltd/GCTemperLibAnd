@@ -3,12 +3,10 @@ package com.greencross.gctemperlib.greencare.alram_fragment;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.Nullable;
-import android.text.Html;
-import android.text.Spanned;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
@@ -24,11 +21,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.greencross.gctemperlib.greencare.network.tr.ApiData;
 import com.greencross.gctemperlib.Alram.AlramMainActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.ApplinkDialog;
-import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
 import com.greencross.gctemperlib.greencare.base.IBaseFragment;
@@ -36,8 +31,6 @@ import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.DownloadUtil;
 import com.greencross.gctemperlib.greencare.util.IntentUtil;
 import com.greencross.gctemperlib.greencare.util.Logger;
-
-import java.util.List;
 
 public class AlramContentFragment extends BaseFragment implements IBaseFragment, View.OnClickListener {
     private final String TAG = AlramMainActivity.class.getSimpleName();

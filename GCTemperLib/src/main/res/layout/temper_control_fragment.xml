@@ -223,11 +223,12 @@
                         android:textSize="30sp" />
 
                     <ImageView
+                        android:id="@+id/temper_control_call_device_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="bottom"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/hn_temper_device_call_btn" />
+                        android:src="@drawable/hn_temper_device_btn" />
                 </LinearLayout>
             </LinearLayout>
 

@@ -2,7 +2,7 @@
  * 2011. 12. 21. 오후 12:46:10
  * shinys
  */
-package com.greencross.gctemperlib.greencare.network.tr;
+package com.greencross.gctemperlib.hana.network.tr;
 
 /**
  * @author shinys

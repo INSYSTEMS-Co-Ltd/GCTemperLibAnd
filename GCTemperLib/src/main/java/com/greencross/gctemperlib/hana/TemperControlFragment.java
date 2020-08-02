@@ -128,34 +128,36 @@ public class TemperControlFragment extends BaseFragment {
 
         dateTv.setOnClickListener(mClickListener);
         timeTv.setOnClickListener(mClickListener);
+        view.findViewById(R.id.temper_control_call_device_btn).setOnClickListener(mClickListener);
+
 
         getTemperMessage();
-        view.findViewById(R.id.temper_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final View temperInputAlertView = LayoutInflater.from(getContext()).inflate(R.layout.temper_input_alert, null, false);
-                final EditText temperEt = temperInputAlertView.findViewById(R.id.temper_input_edittext);
-                new TextWatcherUtil().setTextWatcher(temperEt, 50, 1);
-                CDialog.showDlg(getContext(), temperInputAlertView)
-                        .setOkButton(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                String temper = temperEt.getText().toString();
-                                if (TextUtils.isEmpty(temper))
-                                    return;
-                                mTemperTextview.setText(temper);
-                                mIsWearable = false;
-                                getTemperMessage();
-//                                SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
-                            }
-                        })
-                        .setNoButton(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                            }
-                        });
-            }
-        });
+//        view.findViewById(R.id.temper_layout).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final View temperInputAlertView = LayoutInflater.from(getContext()).inflate(R.layout.temper_input_alert, null, false);
+//                final EditText temperEt = temperInputAlertView.findViewById(R.id.temper_input_edittext);
+//                new TextWatcherUtil().setTextWatcher(temperEt, 50, 1);
+//                CDialog.showDlg(getContext(), temperInputAlertView)
+//                        .setOkButton(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                String temper = temperEt.getText().toString();
+//                                if (TextUtils.isEmpty(temper))
+//                                    return;
+//                                mTemperTextview.setText(temper);
+//                                mIsWearable = false;
+//                                getTemperMessage();
+////                                SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
+//                            }
+//                        })
+//                        .setNoButton(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                            }
+//                        });
+//            }
+//        });
 
         // 체온 등록하기
         view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {
@@ -215,15 +217,14 @@ public class TemperControlFragment extends BaseFragment {
 
         showProgress();
         final GCTemperLib gcLib = new GCTemperLib(getContext());
-        gcLib.registGCTemper(temper, isWearable,new IGCResult() {
+        gcLib.registGCTemper(temper, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();
                 if (isSuccess) {
 //                    SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
-                    CDialog.showDlg(getActivity(), message);
+//                    CDialog.showDlg(getActivity(), message);
                     getTemperMessage();
-
                     // 체온측정(체온 그래프)로 이동 :
                     DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
                 } else {
@@ -232,8 +233,6 @@ public class TemperControlFragment extends BaseFragment {
             }
         });
     }
-
-
 
     View.OnClickListener mClickListener = new View.OnClickListener() {
         @Override
@@ -244,6 +243,9 @@ public class TemperControlFragment extends BaseFragment {
                 showCalendar((TextView) v);
             } else if (vId == R.id.time_textview) {
                 showTimePicker((TextView) v);
+            } else if (vId == R.id.temper_control_call_device_btn) {
+                // XXX
+                Toast.makeText(getContext(), "체온계 기능 구현 필요", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -344,7 +346,7 @@ public class TemperControlFragment extends BaseFragment {
             mCalendar.setTime(mCurDate);
             int nHourOfDay = mCalendar.get(Calendar.HOUR_OF_DAY);
             int nMinute = mCalendar.get(Calendar.MINUTE);
-            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), R.style.datepicker, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);

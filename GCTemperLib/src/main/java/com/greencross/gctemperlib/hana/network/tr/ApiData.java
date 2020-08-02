@@ -1,128 +1,152 @@
-package com.greencross.gctemperlib.greencare.network.tr;
+package com.greencross.gctemperlib.hana.network.tr;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.NetworkConst;
+import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
+import com.greencross.gctemperlib.greencare.util.NetworkUtil;
+import com.google.gson.Gson;
 import com.greencross.gctemperlib.util.GLog;
 
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class HNApiData {
-    private static final String TAG = HNApiData.class.getSimpleName();
+public class ApiData {
+    private static final String TAG = ApiData.class.getSimpleName();
 
-    public Object getData(Context context, Class<? extends BaseData> cls, final Object obj) throws Exception {
-        Object recv = null;
-        BaseData baseData = createTrClass(cls, context);
+    /**
+     * 통신하여 json 데이터 Class<?> 세팅
+     *
+     * @param baseData
+     * @return
+     */
+    public Object getData(Context context, BaseData baseData, Object obj) throws Exception {
         JSONObject body = baseData.makeJson(obj);
-        String connUrl = baseData.getConnUrl();
-        Log.i(TAG, "ApiData.url=" + connUrl);
+
+        Log.d(TAG, "baseData.conn_url=" + baseData.conn_url);
+        Log.i(TAG, "ApiData.url=" + baseData.conn_url);
 //        ConnectionUtil connectionUtil = new ConnectionUtil(baseData.conn_url);
 //            result = connectionUtil.doConnection(body, baseData.getClass().getSimpleName(), url, baseData);
-        String result = connection(body, baseData, connUrl);
+        String result = connection(body, baseData);
 
         if (TextUtils.isEmpty(result)) {
             Log.e(TAG, "getData.result=" + result);
-            return result;
         } else {
             Log.i(TAG, "####################### API RESULT." + baseData.getClass().getSimpleName() + " #####################");
             JsonLogPrint.printJson(result);
             Log.i(TAG, "####################### API RESULT." + baseData.getClass().getSimpleName() + " #####################");
         }
 
-
         Gson gson = new Gson();
         if (result.startsWith("[")) {
             // json 배열 처리
-            recv = baseData.gsonFromArrays(gson, result);
-            return recv;
+            return baseData.gsonFromArrays(gson, result);
         } else {
             // json 단일 처리
-            recv = gson.fromJson(result, baseData.getClass());
-            return recv;
+            return gson.fromJson(result, baseData.getClass());
         }
     }
 
-    private String connection(JSONObject body, BaseData tr, String connUrl) throws Exception {
+
+    private String connection(JSONObject body, BaseData tr) throws Exception {
         HttpURLConnection conn = null;
         OutputStream os = null;
         InputStream is = null;
         String result = null;
+        try {
 //                String result = "";
-        URL url = new URL(connUrl);
-        conn = (HttpURLConnection) url.openConnection();
-        conn.setConnectTimeout(5 * 1000);
-        conn.setReadTimeout(5 * 1000);
-        conn.setRequestMethod("POST");
-        conn.setDoOutput(true);
-        conn.setRequestProperty("Authorization", "Bearer "  +"APA91bGkmKwWBjCso94R3sM3CUEk79");
-        conn.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+            URL url = new URL(tr.conn_url);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(1 * 1000);
+            conn.setReadTimeout(2 * 1000);
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+//            conn.setRequestProperty("Accept-Charset", "euc-kr");
 
-        Log.i(TAG, "###############  "+TAG+"." + tr.getClass().getSimpleName() + "  ###############");
-        Log.i(TAG, "url=" + url);
-        if (body != null)
+            Log.i(TAG, "###############  ApiData." + tr.getClass().getSimpleName() + "  ###############");
+            Log.i(TAG, "url=" + url);
             JsonLogPrint.printJson(body.toString());
-        else
-            Log.i(TAG, "Send Body is Null");
-        Log.i(TAG, "###############  "+TAG+"." + tr.getClass().getSimpleName() + "  ###############");
+            Log.i(TAG, "###############  ApiData." + tr.getClass().getSimpleName() + "  ###############");
 
-        os = conn.getOutputStream();
-//        os.write((tr.json_obj_name + "=").getBytes("UTF-8"));
+            os = conn.getOutputStream();
+            os.write((tr.json_obj_name + "=").getBytes("UTF-8"));
 //            os.write("json=".getBytes( "UTF-8"));           // json={key,value...} 형태로 파라메터 입력
 //            os.write("&member_id=0&device_type=A&session_code=&store_id=1&app_ver=2.2".getBytes("EUC-KR"));
-        if (body != null)
-            os.write(body.toString().getBytes("UTF-8"));
+            if (body != null)
+                os.write(body.toString().getBytes("UTF-8"));
 
-        os.flush();
-        os.close();
+            os.flush();
+            os.close();
 
-        Log.i(TAG, "conn.getResponseCode()=" + conn.getResponseCode());
-        if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            BufferedReader br;
-            is = new BufferedInputStream(conn.getInputStream());
+            Log.i(TAG, "conn.getResponseCode()="+conn.getResponseCode() );
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                BufferedReader br;
+                is = new BufferedInputStream(conn.getInputStream());
 //                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            br = new BufferedReader(new InputStreamReader(is));
-            String line;
-            StringBuffer sb = new StringBuffer();
-            while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-
-            br.close();
-
-            result = sb.toString();
-            // 불필요 부분 제거
-            if (TextUtils.isEmpty(result) == false) {
-                int startSub = result.indexOf("{");
-                if (startSub != -1) {
-                    result = result.substring(startSub).replace("</string>", "");
+                br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                StringBuffer sb = new StringBuffer();
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
                 }
-                Log.i(TAG, "doConnection.result=" + result);
-            }
 
-            return result;
-        } else {
-            Log.e(TAG, "데이터 통신 실패");
+                br.close();
+
+                result = sb.toString();
+                // 불필요 부분 제거
+                if (TextUtils.isEmpty(result) == false) {
+                    int startSub = result.indexOf("{");
+                    if (startSub != -1) {
+                        result = result.substring(startSub).replace("</string>", "");
+                    }
+                    Log.i(TAG, "doConnection.result=" + result);
+                }
+
+                return result;
+            } else {
+                Log.e(TAG, "데이터 통신 실패");
+                throw new Exception();
+            }
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            throw new SocketTimeoutException();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new IOException();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception();
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+            if (is != null) {
+                is.close();
+            }
+            if (os != null) {
+                os.flush();
+                os.close();
+            }
         }
-        return result;
     }
 
 
@@ -206,52 +230,52 @@ public class HNApiData {
     }
 
 
-//    public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiDataHN.IStep step) {
-//        getData(context, cls, obj, step, null);
-//    }
+    public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiData.IStep step) {
+        getData(context, cls, obj, step, null);
+    }
 
-//    public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiDataHN.IStep step, final ApiDataHN.IFailStep failStep) {
-//        BaseData tr = createTrClass(cls, context);
-//        if (NetworkUtil.getConnectivityStatus(context) == false) {
-//            CDialog.showDlg(context, "네트워크 연결 상태를 확인해주세요.");
-//            return;
-//        }
-//
-//        CConnAsyncTask.CConnectorListener queryListener = new CConnAsyncTask.CConnectorListener() {
-//
-//            @Override
-//            public void run() throws Exception {
-//
-//                ApiDataHN data = new ApiDataHN();
-//                return data.getData(context, tr, obj);
-//            }
-//
-//            @Override
-//            public void view(CConnAsyncTask.CQueryResult result) {
-////				hideProgress();
-//
-//                if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
-//                    if (step != null) {
-//                        step.next(result.data);
-//                    }
-//
-//                } else {
-//                    //mBaseActivity.hideProgressForce();
-//                    if (failStep != null) {
-//                        failStep.fail();
-//                    } else {
-//
-//                        CDialog.showDlg(context, "데이터 수신에 실패 하였습니다.");
-//                        Log.e(TAG, "CConnAsyncTask error=" + result.errorStr);
-////						hideProgress();
-//                    }
-//                }
-//            }
-//        };
-//
-//        CConnAsyncTask asyncTask = new CConnAsyncTask();
-//        asyncTask.execute(queryListener);
-//    }
+    public void getData(final Context context, final Class<? extends BaseData> cls, final Object obj, final ApiData.IStep step, final ApiData.IFailStep failStep) {
+        BaseData tr = createTrClass(cls, context);
+        if (NetworkUtil.getConnectivityStatus(context) == false) {
+            CDialog.showDlg(context, "네트워크 연결 상태를 확인해주세요.");
+            return;
+        }
+
+        CConnAsyncTask.CConnectorListener queryListener = new CConnAsyncTask.CConnectorListener() {
+
+            @Override
+            public Object run() throws Exception {
+
+                ApiData data = new ApiData();
+                return data.getData(context, tr, obj);
+            }
+
+            @Override
+            public void view(CConnAsyncTask.CQueryResult result) {
+//				hideProgress();
+
+                if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
+                    if (step != null) {
+                        step.next(result.data);
+                    }
+
+                } else {
+                    //mBaseActivity.hideProgressForce();
+                    if (failStep != null) {
+                        failStep.fail();
+                    } else {
+
+                        CDialog.showDlg(context, "데이터 수신에 실패 하였습니다.");
+                        Log.e(TAG, "CConnAsyncTask error=" + result.errorStr);
+//						hideProgress();
+                    }
+                }
+            }
+        };
+
+        CConnAsyncTask asyncTask = new CConnAsyncTask();
+        asyncTask.execute(queryListener);
+    }
 
 
     private static BaseData createTrClass(Class<? extends BaseData> cls, Context context) {

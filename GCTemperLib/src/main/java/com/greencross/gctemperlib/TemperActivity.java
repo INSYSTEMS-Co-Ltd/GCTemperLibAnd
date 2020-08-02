@@ -7,9 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -17,15 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.greencross.gctemperlib.base.BackBaseActivity;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_MapList;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_MapList;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_MapList;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.HealthCareServiceFragment;
 import com.greencross.gctemperlib.hana.HealthRservationFragment;

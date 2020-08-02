@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,8 @@ import com.greencross.gctemperlib.util.Util;
 
 public class SearchAddressFragment extends BaseFragment {
 
-    TextView mTitleTextView;
-    ImageView mBackImg;
+    private TextView mTitleTextView;
+    private ImageView mBackImg;
     private WebView mWebView;
     private Handler mHandler;
 
@@ -84,7 +85,7 @@ public class SearchAddressFragment extends BaseFragment {
                 //Toast.makeText(SearchAddressActivity.this, String.format("(%s) %s %s %s", arg1, arg2, arg3, arg4), Toast.LENGTH_LONG).show();
                 Intent intent = getActivity().getIntent();
 
-                intent.putExtra(CommonData.EXTRA_ADDRESS, arg1+CommonData.STRING_SPACE+arg2);
+                intent.putExtra(CommonData.EXTRA_ADDRESS, arg1 + CommonData.STRING_SPACE + arg2);
                 getActivity().setResult(Activity.RESULT_OK, intent);
 
                getActivity().finish();
@@ -111,4 +112,6 @@ public class SearchAddressFragment extends BaseFragment {
 //        // // super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
 //        super.attachBaseContext(newBase);
 //    }
+
+
 }

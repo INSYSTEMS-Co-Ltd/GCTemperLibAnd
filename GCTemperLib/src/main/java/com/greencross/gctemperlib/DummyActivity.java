@@ -130,7 +130,7 @@ public class DummyActivity extends BackBaseActivity {
 
     @Override
     public void onBackPressed() {
-        androidx.fragment.app.Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_layout);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_layout);
         if (fragment instanceof BaseFragment) {
             BaseFragment baseFragment = (BaseFragment) fragment;
             if (baseFragment.getBackPress() != null) {
@@ -227,7 +227,7 @@ public class DummyActivity extends BackBaseActivity {
         try {
             super.onDestroy();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         Log.i(TAG, TAG + ".onDestroy()");
     }
@@ -238,5 +238,14 @@ public class DummyActivity extends BackBaseActivity {
 //        super.finish();
 ////        overridePendingTransition(R.anim.fragment_pop_enter, R.anim.fragment_pop_exit);
 //    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_layout);
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
 }

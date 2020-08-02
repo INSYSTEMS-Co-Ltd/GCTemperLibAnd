@@ -27,6 +27,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">#6972d1</item>
+        <item name="colorPrimaryDark">#6972d1</item>
+        <item name="colorAccent">#6972d1</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Log" parent="GCLibTheme">

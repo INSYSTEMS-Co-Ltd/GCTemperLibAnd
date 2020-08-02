@@ -2,12 +2,9 @@ package com.greencross.gctemperlib.greencare.chartview.valueFormat;
 
 
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.greencross.gctemperlib.greencare.base.value.TypeDataSet;
 import com.greencross.gctemperlib.greencare.charting.components.AxisBase;
 import com.greencross.gctemperlib.greencare.charting.formatter.IAxisValueFormatter;
-import com.greencross.gctemperlib.greencare.network.tr.hnData.Tr_FeverList;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 
 import java.util.ArrayList;

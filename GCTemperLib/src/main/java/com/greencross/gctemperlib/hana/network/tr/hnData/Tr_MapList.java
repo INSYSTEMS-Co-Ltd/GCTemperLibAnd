@@ -1,14 +1,10 @@
-package com.greencross.gctemperlib.greencare.network.tr.hnData;
+package com.greencross.gctemperlib.hana.network.tr.hnData;
 
 import android.content.Context;
 
 import com.google.gson.annotations.SerializedName;
-import com.greencross.gctemperlib.greencare.network.tr.BaseData;
-import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.greencross.gctemperlib.hana.network.tr.BaseData;
+import com.greencross.gctemperlib.hana.network.tr.BaseUrl;
 
 import java.util.ArrayList;
 import java.util.List;

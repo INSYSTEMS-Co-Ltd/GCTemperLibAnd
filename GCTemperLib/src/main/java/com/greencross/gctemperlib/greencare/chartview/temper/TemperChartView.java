@@ -51,6 +51,8 @@ public class TemperChartView {
         mChart.getDescription().setEnabled(false);
         mChart.getDefaultValueFormatter();
 
+        mChart.setPadding(0,0,20,0);
+
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
         mChart.setMaxVisibleValueCount(60);

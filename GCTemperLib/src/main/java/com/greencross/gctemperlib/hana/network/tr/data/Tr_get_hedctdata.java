@@ -1,7 +1,7 @@
-package com.greencross.gctemperlib.greencare.network.tr.data;
+package com.greencross.gctemperlib.hana.network.tr.data;
 
-import com.greencross.gctemperlib.greencare.network.tr.BaseData;
-import com.greencross.gctemperlib.greencare.network.tr.BaseUrl;
+import com.greencross.gctemperlib.hana.network.tr.BaseData;
+import com.greencross.gctemperlib.hana.network.tr.BaseUrl;
 import com.greencross.gctemperlib.greencare.util.Logger;
 import com.google.gson.annotations.SerializedName;
 

@@ -187,7 +187,7 @@ public class Main1QActivity extends Activity {
         boolean isWearable = false;     // true: 기기사용, false: 직접입력
 
         showProgress();
-        gcLib.registGCTemper(temper, false,new IGCResult() {
+        gcLib.registGCTemper(temper, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();

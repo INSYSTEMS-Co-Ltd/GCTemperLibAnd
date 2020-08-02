@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="disabled_color">#44000000</color>
-    <color name="error_color">#E7492E</color>
+    <color name="colorPrimary">#6972d1</color>
+    <color name="colorPrimaryDark">#6972d1</color>
+    <color name="colorAccent">#6972d1</color>
+
 
     <color name="bg_white">@color/colorWhite</color>
     <color name="bg_blue_light">#aad2f5</color>
@@ -501,28 +503,7 @@
     <color name="color_50f9916e">#7ff9916e</color>
     <color name="color_5080655c">#7f80655c</color>
 
-    <color name="color_60ffffff">#99ffffff</color>
-    <color name="color_70ffffff">#b2ffffff</color>
     <color name="color_100ffffff">#ffffffff</color>
-    <color name="color_50ee5e5e">#7fee5e5e</color>
-    <color name="color_20ffffff">#33ffffff</color>
-    <color name="color_60d9cbb0">#99d9cbb0</color>
-    <color name="color_50e9962b">#7fe9962b</color>
-    <color name="color_70000000">#b2000000</color>
-    <color name="color_66674400">#a8674400</color>
-    <color name="color_90513500">#e5513500</color>
-    <color name="color_50f5f1e5">#7ff5f1e5</color>
-    <color name="color_e5513500">#e5513500</color>
-    <color name="color_10f0e9d7">#19f0e9d7</color>
-    <color name="color_7f543010">#7f543010</color>
-    <color name="color_7f674400">#7f674400</color>
-    <color name="color_50f0e9d7">#7ff0e9d7</color>
-    <color name="color_80f0e9d7">#ccf0e9d7</color>
-    <color name="color_805c4218">#cc5c4218</color>
-    <color name="color_EE000000">#EE000000</color>
-    <color name="color_33ffffff">#33ffffff</color>
-    <color name="color_33fffcf2">#33fffcf2</color>
-    <color name="color_ccf0e9d7">#ccf0e9d7</color>
     <color name="color_20000000">#33000000</color>
     <color name="color_709c8455">#b29c8455</color>
     <color name="color_30000000">#4c000000</color>
@@ -605,7 +586,6 @@
     <color name="color_50dadfe1">#7fdadfe1</color>
 
 
-
     <!-- GreenCare -->
     <color name="colorMain">#F55900</color>
     <color name="colorRed">#FF0000</color>
@@ -626,9 +606,7 @@
     <color name="colorLightBlack">#333333</color>
     <color name="colorFields">#666666</color>
     <color name="colorAntiFlashWhite">#F2F4F5</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
     <color name="colorInputbox">#EEEEEE</color>
     <color name="colorWildSand">#F4F4F4</color>
     <color name="ColorPaleTuquoise">#B0EBF7</color>

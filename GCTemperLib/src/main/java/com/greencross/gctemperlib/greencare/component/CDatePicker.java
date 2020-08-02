@@ -10,6 +10,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.StyleRes;
 import android.view.View;
 
+import com.greencross.gctemperlib.R;
+
 /**
  * Created by mrsohn on 2017. 3. 27..
  */
@@ -42,7 +44,7 @@ public class CDatePicker extends DatePickerDialog {
      * @param isYearStart       // 년도 부터 나올지 날자부터 나올지 결정
      */
     public CDatePicker(@NonNull Context context, @Nullable OnDateSetListener listener, int year, int month, int dayOfMonth, boolean isYearStart) {
-        super(context, listener, year, month, dayOfMonth);
+        super(context, R.style.datepicker, listener, year, month, dayOfMonth);
         if (isYearStart)
             initYearSelect();
     }

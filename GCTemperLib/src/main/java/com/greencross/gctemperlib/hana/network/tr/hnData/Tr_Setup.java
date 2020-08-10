@@ -84,4 +84,5 @@ public class Tr_Setup extends BaseData {
     public String area_thmt_de_out;
     @SerializedName("docno")
     public String docno;
+
 }

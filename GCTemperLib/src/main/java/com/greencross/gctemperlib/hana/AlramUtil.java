@@ -48,19 +48,19 @@ public class AlramUtil {
         releaseAlarm(context, GCTemperLib.ALRAM_REPEAT_1HOUR, receiver);
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-//        Intent alramIntent = new Intent(context, GCAlarmService.class);
         Intent alramIntent = new Intent(context, receiver);
-//        alramIntent.putExtra("idx",idx);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, GCTemperLib.ALRAM_REPEAT_1HOUR, alramIntent, 0);
 
-        long repeatTime = setTriggerTime();
-//        long repeatTime = cal.getTimeInMillis();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.HOUR_OF_DAY, 1); // 한시간뒤알람
+        long after1Hour =  cal.getTimeInMillis();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, repeatTime, pendingIntent);
+            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, after1Hour, pendingIntent);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            manager.setExact(AlarmManager.RTC_WAKEUP, repeatTime, pendingIntent);
+            manager.setExact(AlarmManager.RTC_WAKEUP, after1Hour, pendingIntent);
         } else {
-            manager.set(AlarmManager.RTC_WAKEUP, repeatTime, pendingIntent);
+            manager.set(AlarmManager.RTC_WAKEUP, after1Hour, pendingIntent);
         }
     }
 

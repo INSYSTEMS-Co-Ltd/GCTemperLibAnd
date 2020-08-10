@@ -1,6 +1,7 @@
 package com.greencross.gctemperlib;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -171,13 +172,13 @@ public class GCTemperLib {
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
-    public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
+    public void registGCTemper(@Nullable String temper, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
             GpsInfo gps = new GpsInfo(mContext);
             if (gps.isGetLocation()) {
-                registerLocationUpdates(temper, iGCResult);
+                registerLocationUpdates(temper, receiver, iGCResult);
             } else {
                 gps.showSettingsAlert();
             }
@@ -219,12 +220,7 @@ public class GCTemperLib {
                     if (data instanceof Tr_Setup) {
                         Tr_Setup recv = (Tr_Setup) data;
                         boolean isSuccessed = recv.isSuccess(recv.resultcode);
-                        if (isSuccessed) {
-                            SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
-                            if (alramType == GCAlramType.GC_ALRAM_TYPE_독려 && isEnable == false) {
-//                                AlramUtil.releaseAlarm(mContext, GCTemperLib.ALRAM_REPEAT_1HOUR);
-                            }
-                        }
+                        SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
                         iGCResult.onResult(isSuccessed, recv.message, recv);
                     } else {
                         iGCResult.onResult(isSuccess, message, data);
@@ -272,46 +268,6 @@ public class GCTemperLib {
     }
 
 
-    private void getData(Class<? extends BaseData> cls, final Object obj, final IGCResult iGCResult) {
-        if (NetworkUtil.getConnectivityStatus(mContext) == false) {
-            CDialog.showDlg(this.mContext, "네트워크 연결 상태를 확인해주세요.");
-            return;
-        }
-
-        HNCConnAsyncTask.CConnectorListener queryListener = new HNCConnAsyncTask.CConnectorListener() {
-            @Override
-            public Object run() throws Exception {
-                HNApiData data = new HNApiData();
-                try {
-                    Object recv = data.getData(mContext, cls, obj);
-                    return recv;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                   return null;
-                }
-            }
-
-            @Override
-            public void view(HNCConnAsyncTask.CQueryResult result) {
-//                Log.i(TAG, "result1="+result);
-                if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
-//                    Log.e(TAG, "데이터 수신 성공::"+result);
-                    if (iGCResult != null) {
-                        iGCResult.onResult(true, "데이터 수신 성공", result.data);
-                    }
-                } else {
-//                    Log.e(TAG, "데이터 수신 실패");
-                    if (iGCResult != null) {
-                        iGCResult.onResult(false, "데이터 수신 실패", null);
-                    }
-                }
-            }
-        };
-
-        HNCConnAsyncTask asyncTask = new HNCConnAsyncTask();
-        asyncTask.execute(queryListener);
-    }
-
     /**
      * 인증체크
      *
@@ -338,7 +294,7 @@ public class GCTemperLib {
      * 위치정보 찾기
      */
     private LocationManager mLM;
-    private void registerLocationUpdates(String temper, final IGCResult iGCResult) {
+    private void registerLocationUpdates(String temper, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
 //        showProgress();
 
         GpsInfo gps = new GpsInfo(mContext);
@@ -377,8 +333,16 @@ public class GCTemperLib {
                         public void onResult(boolean isSuccess, String message, Object data) {
                             if (data instanceof Tr_Temperature) {
                                 Tr_Temperature recv = (Tr_Temperature) data;
-                                iGCResult.onResult(recv.isSuccess(recv.resultcode), ((Tr_Temperature) data).message, null);
+                                boolean isSuccessed = recv.isSuccess(recv.resultcode);
 
+                                if (isSuccessed) {
+                                    // 한시간뒤 독려 알람
+                                    boolean isAfter1hour = SharedPref.getInstance(mContext).getPreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName() , false);
+                                    if (isAfter1hour) {
+                                        AlramUtil.setTemperAlramRepeat(mContext, receiver);
+                                    }
+                                }
+                                iGCResult.onResult(recv.isSuccess(recv.resultcode), ((Tr_Temperature) data).message, null);
                             } else {
                                 iGCResult.onResult(false, "데이터 수신 실패", null);
                             }
@@ -388,6 +352,47 @@ public class GCTemperLib {
             }
         }
 //        hideProgress();
+    }
+
+
+    private void getData(Class<? extends BaseData> cls, final Object obj, final IGCResult iGCResult) {
+        if (NetworkUtil.getConnectivityStatus(mContext) == false) {
+            CDialog.showDlg(this.mContext, "네트워크 연결 상태를 확인해주세요.");
+            return;
+        }
+
+        HNCConnAsyncTask.CConnectorListener queryListener = new HNCConnAsyncTask.CConnectorListener() {
+            @Override
+            public Object run() throws Exception {
+                HNApiData data = new HNApiData();
+                try {
+                    Object recv = data.getData(mContext, cls, obj);
+                    return recv;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+
+            @Override
+            public void view(HNCConnAsyncTask.CQueryResult result) {
+//                Log.i(TAG, "result1="+result);
+                if (result.result == CConnAsyncTask.CQueryResult.SUCCESS && result.data != null) {
+//                    Log.e(TAG, "데이터 수신 성공::"+result);
+                    if (iGCResult != null) {
+                        iGCResult.onResult(true, "데이터 수신 성공", result.data);
+                    }
+                } else {
+//                    Log.e(TAG, "데이터 수신 실패");
+                    if (iGCResult != null) {
+                        iGCResult.onResult(false, "데이터 수신 실패", null);
+                    }
+                }
+            }
+        };
+
+        HNCConnAsyncTask asyncTask = new HNCConnAsyncTask();
+        asyncTask.execute(queryListener);
     }
 
 

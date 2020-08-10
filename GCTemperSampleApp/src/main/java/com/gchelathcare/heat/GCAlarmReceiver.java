@@ -24,7 +24,15 @@ import com.greencross.gctemperlib.hana.TemperControlFragment;
 /**
  *
  *
- * {"data":{"msg":"message...","serviceCode":"GEMS","functionCode":"H002","title":"title..."},"to":"fBQoGNO-E9g:APA91bHzFgbWw5osPjee4hccqgOafQrqRbfC-HKd5UxDFIWcmF0j80AlRH10g_XEQL7aWM55nwtR3n12dwgLXMpv_9f8l5Md53rdEl7SUPfbmiGY05rL2HIEPRA4Qff3Q0Uu_p-LQeoe"}
+ * {
+ *   "data": {
+ *     "msg": "message...",
+ *     "serviceCode": "GEMS",
+ *     "functionCode": "H002",
+ *     "title": "title..."
+ *   },
+ *   "to": "fBQoGNO-E9g:APA91bHzFgbWw5osPjee4hccqgOafQrqRbfC-HKd5UxDFIWcmF0j80AlRH10g_XEQL7aWM55nwtR3n12dwgLXMpv_9f8l5Md53rdEl7SUPfbmiGY05rL2HIEPRA4Qff3Q0Uu_p-LQeoe"
+ * }
  */
 public class GCAlarmReceiver extends BroadcastReceiver {
     private final String TAG = getClass().getSimpleName();
@@ -32,15 +40,8 @@ public class GCAlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        boolean isAlramEanble = SharedPref.getInstance(context).getPreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName(), false);
-        if (isAlramEanble) {
-            AlramUtil.setTemperAlramRepeat(context, GCAlarmReceiver.class);
-        }
-
         Log.i(TAG, "intent.getAction()="+intent.getAction());
-        if (intent.getAction() != Intent.ACTION_BOOT_COMPLETED) {
-            showNotification(context, "체온 측정 알림");
-        }
+        showNotification(context, "체온 측정 알림");
     }
 
     /**

@@ -160,17 +160,17 @@ public class TemperControlFragment extends BaseFragment {
 //        });
 
         // 체온 등록하기
-        view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GpsInfo gps = new GpsInfo(getContext());
-                if (gps.isGetLocation()) {
-                    registTemper(mIsWearable);
-                } else {
-                    gps.showSettingsAlert();
-                }
-            }
-        });
+//        view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                GpsInfo gps = new GpsInfo(getContext());
+//                if (gps.isGetLocation()) {
+//                    registTemper(mIsWearable);
+//                } else {
+//                    gps.showSettingsAlert();
+//                }
+//            }
+//        });
     }
 
     /**
@@ -207,32 +207,32 @@ public class TemperControlFragment extends BaseFragment {
     /**
      * 체온직접입력 Dialog
      */
-    private void registTemper(boolean isWearable) {
-        String temper = mTemperTextview.getText().toString();
-        float temperVal = StringUtil.getFloat(mTemperTextview.getText().toString());
-        if (temperVal == 0.0) {
-            CDialog.showDlg(getContext(), R.string.temper_title1, 0);
-            return;
-        }
-
-        showProgress();
-        final GCTemperLib gcLib = new GCTemperLib(getContext());
-        gcLib.registGCTemper(temper, new IGCResult() {
-            @Override
-            public void onResult(boolean isSuccess, String message, Object data) {
-                hideProgress();
-                if (isSuccess) {
-//                    SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
+//    private void registTemper(boolean isWearable) {
+//        String temper = mTemperTextview.getText().toString();
+//        float temperVal = StringUtil.getFloat(mTemperTextview.getText().toString());
+//        if (temperVal == 0.0) {
+//            CDialog.showDlg(getContext(), R.string.temper_title1, 0);
+//            return;
+//        }
+//
+//        showProgress();
+//        final GCTemperLib gcLib = new GCTemperLib(getContext());
+//        gcLib.registGCTemper(temper, new IGCResult() {
+//            @Override
+//            public void onResult(boolean isSuccess, String message, Object data) {
+//                hideProgress();
+//                if (isSuccess) {
+////                    SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
+////                    CDialog.showDlg(getActivity(), message);
+//                    getTemperMessage();
+//                    // 체온측정(체온 그래프)로 이동 :
+//                    DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
+//                } else {
 //                    CDialog.showDlg(getActivity(), message);
-                    getTemperMessage();
-                    // 체온측정(체온 그래프)로 이동 :
-                    DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
-                } else {
-                    CDialog.showDlg(getActivity(), message);
-                }
-            }
-        });
-    }
+//                }
+//            }
+//        });
+//    }
 
     View.OnClickListener mClickListener = new View.OnClickListener() {
         @Override

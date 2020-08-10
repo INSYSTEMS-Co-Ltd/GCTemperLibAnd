@@ -9,30 +9,13 @@ import com.greencross.gctemperlib.greencare.charting.formatter.IAxisValueFormatt
  * Created by philipp on 02/06/16.
  */
 public class AxisYValueFormatter implements IAxisValueFormatter {
-    private int monthMax = 31;
-    private final String[] mWeeks = new String[] {
-            "", "일", "월", "화", "수", "목", "금", "토", ""
-    };
-
-    private TypeDataSet.Period mPeriod;
-
-    public AxisYValueFormatter(TypeDataSet.Period period) {
-        mPeriod = period;
-    }
-
-    public void setMonthMax(int monthMax) {
-        this.monthMax = monthMax;
-    }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         int idx = (int) value;
-        if (mPeriod == TypeDataSet.Period.PERIOD_PRAGNANT) {
-            String label = (""+ idx);
-            label = (idx % 2 == 0) ? "" : label;
-            return label;
-        } else {
+        if (idx > 31 && idx < 43)
             return ""+idx;
-        }
+        else
+            return "";
     }
 }

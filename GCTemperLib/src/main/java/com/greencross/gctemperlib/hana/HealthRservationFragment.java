@@ -1,11 +1,18 @@
 package com.greencross.gctemperlib.hana;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -49,8 +56,39 @@ public class HealthRservationFragment extends BaseFragment {
         TextView tv = view.findViewById(R.id.regist_code_tv);
         Tr_Login login = SharedPref.getInstance(getContext()).getLoginInfo();
         tv.setText(login.cmpny_ub_code);
+
+        // 가입코드 복사하기
+        view.findViewById(R.id.ever_health_code_copy_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("everhealthcode", login.cmpny_ub_code);
+                clipboardManager.setPrimaryClip(clipData);
+
+                Toast.makeText(getContext(), "복사 되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 에버헬스바로가기
+        view.findViewById(R.id.go_ever_health_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEverHeath();
+            }
+        });
     }
 
-
+    public void openEverHeath() {
+        String packageName = "com.ubicare.wellness";
+        try {
+            Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intent);
+        } catch (Exception e) {
+            String url = "market://details?id=" + packageName;
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            getContext().startActivity(i);
+        }
+    }
 
 }

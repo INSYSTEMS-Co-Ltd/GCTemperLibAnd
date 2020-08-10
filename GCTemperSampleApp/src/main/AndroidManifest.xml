@@ -35,7 +35,7 @@
             android:theme="@style/GCLibTheme"
             android:screenOrientation="portrait"/>
 
-        <receiver android:name="com.greencross.gctemperlib.hana.GCAlarmReceiver"
+        <receiver android:name=".GCAlarmReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

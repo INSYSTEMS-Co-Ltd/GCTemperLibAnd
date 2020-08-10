@@ -151,7 +151,7 @@ public class TemperGraphFragment extends BaseFragment {
         mTimeClass.clearTime();         // 날자 초기화
 
 //        xFormatter = new AxisValueFormatter2(periodType);
-        yFormatter = new AxisYValueFormatter(periodType);
+        yFormatter = new AxisYValueFormatter();
 
         mTemperChart.setYValueFormat(yFormatter);
 //        mTemperChart.setXValueFormat(xFormatter);
@@ -168,6 +168,10 @@ public class TemperGraphFragment extends BaseFragment {
 
         mChartCloseBtn.setOnClickListener(mClickListener);
         mChartZoomBtn.setOnClickListener(mClickListener);
+
+        // Y라벨 값 설정
+        int yLabelCnt = (int) (43 - 31);
+        mTemperChart.setYvalMinMax(31, 43, yLabelCnt); // 최소값 최대값이 없으면 임의로 넣어줌
 
         setVisibleOrientationLayout();
         //click 저장
@@ -360,12 +364,16 @@ public class TemperGraphFragment extends BaseFragment {
                         temperYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
                     }
 
-                    temperYVals.add(new BarEntry(mXlabels.size()+3, null));
+//                    temperYVals.add(new BarEntry(mXlabels.size()+3, null));
+//                    setYMinMax(temperYVals);
 
-                    setYMinMax(temperYVals, false);
+
                     TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
                     mTemperChart.setXValueFormat(formatter);
                     mTemperChart.setData(temperYVals, mTimeClass);
+
+
+
                     mTemperChart.invalidate();
                 } else {
                     CDialog.showDlg(getContext(), "알림", "데이터 수신 실패");
@@ -447,7 +455,7 @@ public class TemperGraphFragment extends BaseFragment {
      *
      * @param temperYVals
      */
-    private void setYMinMax(List<BarEntry> temperYVals, boolean is40Data) {
+    private void setYMinMax(List<BarEntry> temperYVals) {
         float yMin = Float.MAX_VALUE;
         float yMax = Float.MIN_VALUE;
         Log.i(TAG, "#######yLabelCnt##############");
@@ -461,15 +469,6 @@ public class TemperGraphFragment extends BaseFragment {
                 yMax = y;
             }
         }
-
-//        // y min값이 없는 경우
-//        if (yMin == Float.MAX_VALUE && is40Data == false) {
-//            yMin = StringUtil.getFloat(commonData.getMotherTemper()) - 3;
-//        }
-//        // y max값이 없는 경우
-//        if (yMax == Float.MIN_VALUE && is40Data == false) {
-//            yMax = yMin + 3;
-//        }
 
         int yLabelCnt = (int) (yMax - yMin);
         mTemperChart.setYvalMinMax(yMin - 3, yMax + 3, yLabelCnt + 6); // 최소값 최대값이 없으면 임의로 넣어줌
@@ -637,7 +636,7 @@ public class TemperGraphFragment extends BaseFragment {
             String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
             String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
             List<BarEntry> temperYVals = new ArrayList<>(); //weightDb.getResultMonth(startDay, endDay, true);
-            setYMinMax(temperYVals, false);
+            setYMinMax(temperYVals);
             mTemperChart.setData(temperYVals, mTimeClass);
             List<BarEntry> fatYVals = new ArrayList<>();//  weightDb.getResultMonth(startDay, endDay, false);
             mTemperChart.animateY();

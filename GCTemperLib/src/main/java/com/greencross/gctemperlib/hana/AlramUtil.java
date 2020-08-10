@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.greencross.gctemperlib.GCTemperLib;
+
 import java.util.Calendar;
 
 public class AlramUtil {
@@ -43,13 +45,13 @@ public class AlramUtil {
      * @param context
      */
     public static void setTemperAlramRepeat(Context context, Class<? extends BroadcastReceiver> receiver) {
-        releaseAlarm(context, GCAlarmReceiver.ALRAM_REPEAT_1HOUR);
+        releaseAlarm(context, GCTemperLib.ALRAM_REPEAT_1HOUR, receiver);
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
 //        Intent alramIntent = new Intent(context, GCAlarmService.class);
         Intent alramIntent = new Intent(context, receiver);
 //        alramIntent.putExtra("idx",idx);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, GCAlarmReceiver.ALRAM_REPEAT_1HOUR, alramIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, GCTemperLib.ALRAM_REPEAT_1HOUR, alramIntent, 0);
 
         long repeatTime = setTriggerTime();
 //        long repeatTime = cal.getTimeInMillis();
@@ -87,9 +89,10 @@ public class AlramUtil {
      * @param context
      * @param requestCode
      */
-    public static void releaseAlarm(Context context, int requestCode) {
+    public static void releaseAlarm(Context context, int requestCode, Class<? extends BroadcastReceiver> cls) {
         AlarmManager fiveToHourAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent fiveIntent = new Intent(context, GCAlarmReceiver.class);
+//        Intent fiveIntent = new Intent(context, GCAlarmReceiver.class);
+        Intent fiveIntent = new Intent(context, cls);
         PendingIntent fiveSender = PendingIntent.getBroadcast(context, requestCode, fiveIntent, 0);
 
         fiveToHourAlarmManager.cancel(fiveSender);

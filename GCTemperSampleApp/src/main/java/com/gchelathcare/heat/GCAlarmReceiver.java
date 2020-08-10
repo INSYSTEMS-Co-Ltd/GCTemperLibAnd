@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.hana;
+package com.gchelathcare.heat;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -17,11 +17,17 @@ import androidx.core.app.NotificationCompat;
 import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
+import com.greencross.gctemperlib.hana.AlramUtil;
+import com.greencross.gctemperlib.hana.GCAlramType;
+import com.greencross.gctemperlib.hana.TemperControlFragment;
 
-
+/**
+ *
+ *
+ * {"data":{"msg":"message...","serviceCode":"GEMS","functionCode":"H002","title":"title..."},"to":"fBQoGNO-E9g:APA91bHzFgbWw5osPjee4hccqgOafQrqRbfC-HKd5UxDFIWcmF0j80AlRH10g_XEQL7aWM55nwtR3n12dwgLXMpv_9f8l5Md53rdEl7SUPfbmiGY05rL2HIEPRA4Qff3Q0Uu_p-LQeoe"}
+ */
 public class GCAlarmReceiver extends BroadcastReceiver {
     private final String TAG = getClass().getSimpleName();
-    public static int ALRAM_REPEAT_1HOUR = 543;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -33,14 +39,14 @@ public class GCAlarmReceiver extends BroadcastReceiver {
 
         Log.i(TAG, "intent.getAction()="+intent.getAction());
         if (intent.getAction() != Intent.ACTION_BOOT_COMPLETED) {
-            showPushMessage(context, "체온 측정 알림");
+            showNotification(context, "체온 측정 알림");
         }
     }
 
     /**
      * 푸시 메시지를 전달 받으면 상태표시바에 표시함
      */
-    public static void showPushMessage(Context context, String content) {
+    public static void showNotification(Context context, String content) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

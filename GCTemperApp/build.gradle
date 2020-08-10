@@ -9,7 +9,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.greencross.hana1q"
+        applicationId "com.hanaskcard.paycla"
         minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
@@ -21,6 +21,15 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+        sign {
+            keyAlias 'hana1q'
+            keyPassword 'hana1q'
+            storeFile file('./Hana1Q.jks')
+            storePassword 'hana1q'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,6 +38,19 @@ android {
         }
         debug {
             multiDexEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.sign
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.sign
         }
     }
 }

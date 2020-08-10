@@ -180,6 +180,7 @@
                             android:textSize="10sp"
                             android:textColor="#7f7f7f"
                             android:letterSpacing="0.03"
+                            android:layout_marginLeft="10dp"
                             android:lineSpacingExtra="27sp"
                             android:fontFamily="@font/hanab"
                             android:gravity="center_horizontal"

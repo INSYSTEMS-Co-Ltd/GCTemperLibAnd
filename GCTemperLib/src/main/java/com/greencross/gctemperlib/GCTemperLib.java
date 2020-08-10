@@ -13,7 +13,6 @@ import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.hana.AlramUtil;
-import com.greencross.gctemperlib.hana.GCAlarmReceiver;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
@@ -36,9 +35,8 @@ public class GCTemperLib {
     private final String TAG = getClass().getSimpleName();
 
     private Context mContext;
-
-
     private final String APP_TOKEN = "APA91bGkmKwWBjCso94R3sM3CUEk79";  // 앱 토큰
+    public static int ALRAM_REPEAT_1HOUR = 202020;
 
     public GCTemperLib(Context context) {
         mContext = context;
@@ -224,7 +222,7 @@ public class GCTemperLib {
                         if (isSuccessed) {
                             SharedPref.getInstance(mContext).savePreferences(alramType.getAlramName(), isEnable);
                             if (alramType == GCAlramType.GC_ALRAM_TYPE_독려 && isEnable == false) {
-                                AlramUtil.releaseAlarm(mContext, GCAlarmReceiver.ALRAM_REPEAT_1HOUR);
+//                                AlramUtil.releaseAlarm(mContext, GCTemperLib.ALRAM_REPEAT_1HOUR);
                             }
                         }
                         iGCResult.onResult(isSuccessed, recv.message, recv);

@@ -2,6 +2,8 @@ package com.greencross.gctemperlib.hana;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -160,17 +162,17 @@ public class TemperControlFragment extends BaseFragment {
 //        });
 
         // 체온 등록하기
-//        view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                GpsInfo gps = new GpsInfo(getContext());
-//                if (gps.isGetLocation()) {
+        view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GpsInfo gps = new GpsInfo(getContext());
+                if (gps.isGetLocation()) {
 //                    registTemper(mIsWearable);
-//                } else {
-//                    gps.showSettingsAlert();
-//                }
-//            }
-//        });
+                } else {
+                    gps.showSettingsAlert();
+                }
+            }
+        });
     }
 
     /**
@@ -244,11 +246,23 @@ public class TemperControlFragment extends BaseFragment {
             } else if (vId == R.id.time_textview) {
                 showTimePicker((TextView) v);
             } else if (vId == R.id.temper_control_call_device_btn) {
-                // XXX
-                Toast.makeText(getContext(), "체온계 기능 구현 필요", Toast.LENGTH_SHORT).show();
+                openPatron();
             }
         }
     };
+
+    public void openPatron() {
+        String packageName = "com.partron.temperature310s";
+        try {
+            Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intent);
+        } catch (Exception e) {
+            String url = "market://details?id=" + packageName;
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            getContext().startActivity(i);
+        }
+    }
 
     private int cal_year;
     private int cal_month;

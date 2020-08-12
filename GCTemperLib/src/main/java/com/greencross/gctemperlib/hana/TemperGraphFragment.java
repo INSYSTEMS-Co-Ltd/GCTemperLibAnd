@@ -172,10 +172,25 @@ public class TemperGraphFragment extends BaseFragment {
         // Y라벨 값 설정
         int yLabelCnt = (int) (43 - 31);
         mTemperChart.setYvalMinMax(31, 43, yLabelCnt); // 최소값 최대값이 없으면 임의로 넣어줌
-
         setVisibleOrientationLayout();
         //click 저장
         OnClickListener ClickListener = new OnClickListener(mClickListener, view, getContext());
+
+        initChart();
+    }
+
+    /**
+     * 차트 초기 로딩 화면 없애기
+     */
+    private void initChart() {
+        mTemperChart.setXvalMinMax(0, 0, 10);
+        List<BarEntry> temperYVals = new ArrayList<>();
+        temperYVals.add(new BarEntry(0, 0));
+
+        TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
+        mTemperChart.setXValueFormat(formatter);
+        mTemperChart.setData(temperYVals, mTimeClass);
+        mTemperChart.invalidate();
     }
 
     View.OnClickListener mClickListener = new View.OnClickListener() {
@@ -356,7 +371,7 @@ public class TemperGraphFragment extends BaseFragment {
                     makeLogItem(recv.datas);
 
                     int maxX = makeLogItem(recv.datas);     //mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
-                    mTemperChart.setXvalMinMax(0, maxX, maxX);
+                    mTemperChart.setXvalMinMax(0, recv.datas.size()+1, recv.datas.size()+3);
                     List<BarEntry> temperYVals = new ArrayList<>();
                     for (Tr_FeverList.Data temperData : recv.datas) {
                         float idx = StringUtil.getFloatVal(temperData.idx);
@@ -364,14 +379,9 @@ public class TemperGraphFragment extends BaseFragment {
                         temperYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
                     }
 
-//                    temperYVals.add(new BarEntry(mXlabels.size()+3, null));
-//                    setYMinMax(temperYVals);
-
-
                     TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
                     mTemperChart.setXValueFormat(formatter);
                     mTemperChart.setData(temperYVals, mTimeClass);
-
 
 
                     mTemperChart.invalidate();
@@ -382,7 +392,6 @@ public class TemperGraphFragment extends BaseFragment {
                 CDialog.showDlg(getContext(), "알림", "데이터 수신 실패");
             }
         });
-//        new QeuryVerifyDataTask().execute();
     }
 
     /**

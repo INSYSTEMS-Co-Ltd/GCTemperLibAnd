@@ -70,6 +70,7 @@
             android:layout_alignParentRight="true"
             android:visibility="gone"/>
 
+        <!-- 20200812 열지도알림 버튼 1차개발 제외 -->
         <ImageButton
             android:id="@+id/map_alram_btn"
             android:layout_width="35dp"
@@ -78,6 +79,8 @@
             android:src="@drawable/hn_map_alram_btn"
             android:layout_marginTop="60dp"
             android:layout_marginRight="10dp"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>

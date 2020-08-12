@@ -58,7 +58,6 @@ public class TemperChart extends BarLineChartBase<BarData> implements WeightBarD
     protected void init() {
         super.init();
         mRenderer = new TemperChartRenderer(this, mAnimator, mViewPortHandler);
-
         setHighlighter(new WeightBarHighlighter(this));
 
         getXAxis().setSpaceMin(0.5f);

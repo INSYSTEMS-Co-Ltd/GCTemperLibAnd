@@ -70,9 +70,9 @@ public class TemperChartView {
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 //        xAxis.setTypeface(mTfLight);
-        xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1f); // only intervals of 1 day
-        xAxis.setLabelCount(15);
+        xAxis.setDrawGridLines(true);   // 세로라인
+//        xAxis.setGranularity(1f); // only intervals of 1 day
+//        xAxis.setLabelCount(15);
         xAxis.setValueFormatter(xAxisFormatter);
 
 //        IAxisValueFormatter custom = new MyAxisValueFormatter();

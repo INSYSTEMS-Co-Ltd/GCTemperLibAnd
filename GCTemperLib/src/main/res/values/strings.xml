@@ -2294,7 +2294,7 @@
     <string name="title_health_reservation_fragment">건강검진 예약</string>
 
     <string name="title_resavation_text1">다운로드 한번으로\n <b><font color="#6972d1">빠른 예약 가격우대 검진 결과 조회</font></b>까지\n1Q에~!</string>
-    <string name="temper_control_desc">체온은 일반적인 체온 범위 내로 등록이 가능합니다. <font color="#888888">( 직접 입력도 가능합니다. )</font></string>
+    <string name="temper_control_desc">체온은 일반적인 체온 범위 내로 등록이 가능합니다.</string>
 
 
 

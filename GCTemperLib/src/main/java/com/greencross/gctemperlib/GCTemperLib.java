@@ -246,16 +246,15 @@ public class GCTemperLib {
      * 위치권한 등록이 안된 경우 실행 불가.
      */
     public void startGCMainActivity() {
-        int permissionState = ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION);
-        if (permissionState == PackageManager.PERMISSION_GRANTED) {
-            if (validCheck()) {
-                mContext.startActivity(new Intent(mContext, TemperActivity.class));
-//                DummyActivity.startActivity(((Activity)mContext), TemperFragment.newInstance(mContext), null);
-//                DummyActivity.startActivity(((Activity)mContext), SearchAddressFragment.newInstance(mContext), null);
-            }
-        } else {
-            CDialog.showDlg(mContext, mContext.getString(R.string.toast_permission_location));
-        }
+        mContext.startActivity(new Intent(mContext, TemperActivity.class));
+//        int permissionState = ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION);
+//        if (permissionState == PackageManager.PERMISSION_GRANTED) {
+//            if (validCheck()) {
+//                mContext.startActivity(new Intent(mContext, TemperActivity.class));
+//            }
+//        } else {
+//            CDialog.showDlg(mContext, mContext.getString(R.string.toast_permission_location));
+//        }
     }
 
 

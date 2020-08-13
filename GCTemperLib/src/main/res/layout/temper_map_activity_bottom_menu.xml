@@ -254,6 +254,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/fever_map_remain_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -264,7 +265,7 @@
                         android:gravity="center"
                         android:lineSpacingExtra="12sp"
                         android:fontFamily="@font/hanal"
-                        android:text="남은이용일수 75일"
+                        tools:text="남은이용일수 75일"
                         android:textColor="#222222"
                         android:textSize="12sp" />
                 </RelativeLayout>
@@ -300,7 +301,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@drawable/hn_icon_down_arrow"
                     android:lineSpacingExtra="0sp"
-                    android:text="헬스케어서비스란"
+                    android:text="헬스케어서비스란?"
                     android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15sp" />

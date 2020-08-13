@@ -18,7 +18,7 @@ public class CDateUtil {
     private static final String FORMAT_YYYYMMDD         = "yyyy.MM.dd";
     public static final String FORMAT_YYYYMMDD_HHmm         = "yyyy.MM.dd HH:mm";
     public static final String FORMAT_yyMMddHHmmssSSS  = "yyMMddHHmmssSSS";
-    private static final String FORMAT_yyyy_MM_dd       = "yyyy-MM-dd";
+    public static final String FORMAT_yyyy_MM_dd       = "yyyy-MM-dd";
 
 //    yyyy-mm-dd hh:mi:ss.mmm
 //    yyyy-mm-dd hh:mi:ss

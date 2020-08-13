@@ -297,7 +297,6 @@ public class XAxisRenderer extends AxisRenderer {
         gridLinePath.reset();
 
         for (int i = 0; i < positions.length; i += 2) {
-
             drawGridLine(c, positions[i], positions[i + 1], gridLinePath);
         }
 

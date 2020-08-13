@@ -1,10 +1,12 @@
 package com.greencross.gctemperlib;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.location.Location;
@@ -15,13 +17,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.base.BackBaseActivity;
+import com.greencross.gctemperlib.greencare.util.CDateUtil;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_MapList;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.HealthCareServiceFragment;
@@ -63,6 +69,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.NameValuePair;
 import cz.msebera.android.httpclient.message.BasicNameValuePair;
@@ -79,12 +86,13 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     private View mMarkerRootView;
     private TextView marker;
     private Intent mIntent;
-    private int mFragmentNum = 0;
     private View mInfoLayout;
 
     private View view;
 
     private SlidingUpPanelLayout mLayout;
+
+    private ImageButton mMyLocationBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,17 +124,26 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
         mIntent = getIntent();
 
-        if (mIntent != null) {
-            mFragmentNum = mIntent.getIntExtra("tabNum", 0);
-        }
-
         setSlideLayout();   // 하단 슬라이드 메뉴
 
-
         // 헬스케어란
-        findViewById(R.id.map_mylocation_btn).setOnClickListener(view ->
-                moveMyLocation()
-        );
+
+        mMyLocationBtn = findViewById(R.id.map_mylocation_btn);
+        mMyLocationBtn.setOnClickListener((View.OnClickListener) view -> {
+            requestPermissionLocation(new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if (isSuccess) {
+                        GpsInfo gps = new GpsInfo(TemperActivity.this);
+                        if (gps.isGetLocation()) {
+                            moveMyLocation();
+                        } else {
+                            gps.showSettingsAlert();
+                        }
+                    }
+                }
+            });
+        });
 
         // 열지도 알림
         findViewById(R.id.map_alram_btn).setOnClickListener(view ->
@@ -175,6 +192,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                     case EXPANDED:  // 완전 펼쳐진 경우
                         slideFullUpLayout.setVisibility(View.VISIBLE);
                         slideFullDownLayout.setVisibility(View.GONE);
+                        getDDay();
                         break;
                     case DRAGGING:
 
@@ -228,7 +246,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             mInfoLayout.setVisibility(View.GONE);
             SharedPref.getInstance(this).savePreferences(SharedPref.TEMPER_INTRO_VIEW_SHOW, false);
         } else if (id == R.id.temper_info_start_btn) {
-            mInfoLayout.setVisibility(View.GONE);
+            requestPermissionLocation(new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    mInfoLayout.setVisibility(View.GONE);
+                }
+            });
         } else if (id == R.id.fever_map_menu_1 || id == R.id.fever_map_menu_1_iv) { // 체온관리
             DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
         } else if (id == R.id.fever_map_menu_2 || id == R.id.fever_map_menu_2_iv) {   // 건강강검진예약
@@ -494,13 +517,14 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(isLocationPermission());
+
         googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
                 GpsInfo gps = new GpsInfo(TemperActivity.this);
                 if (gps.isGetLocation()) {
-//                    moveMyLocation();
+                    moveMyLocation();
                 } else {
                     gps.showSettingsAlert();
                 }
@@ -516,7 +540,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
         GpsInfo gps = new GpsInfo(TemperActivity.this);
         if (gps.isGetLocation()) {
-            moveMyLocation();
+            if (isLocationPermission()) {
+                moveMyLocation();
+            } else {
+                LatLng latLng = new LatLng(37.575784, 126.976789);  // 위치 정보 안된 경우 광화문
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+            }
         } else {
             LatLng latLng = new LatLng(37.575784, 126.976789);  // 위치 정보 안된 경우 광화문
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
@@ -527,10 +556,25 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 내위치로 이동
      */
     private void moveMyLocation() {
-        GpsInfo gps = new GpsInfo(this);
-        if (gps.isGetLocation()) {
-            LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+        requestPermissionLocation(new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                if (isSuccess) {
+                    GpsInfo gps = new GpsInfo(TemperActivity.this);
+                    if (gps.isGetLocation()) {
+                        LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+                    } else {
+
+                    }
+                }
+            }
+        });
+
+//        GpsInfo gps = new GpsInfo(this);
+//        if (gps.isGetLocation()) {
+//            LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
 
 //            marker.setText(feverMapItem.getLoc_nm_2() + "\n" + "평균:" + feverMapItem.getAvg_fever());
 //            if (fever < 35.5d) {
@@ -553,7 +597,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 //            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
 //
 //            mMap.addMarker(markerOptions);
-        }
+//        }
     }
 
     private void setCustomMarkerView() {
@@ -586,11 +630,51 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         }
     }
 
+    /**
+     * 남은이용일수 구하기
+     * @param date
+     * @return
+     */
+    private void getDDay() {
+        // 남은 이용일수 구하기
+        Tr_Login login = SharedPref.getInstance(TemperActivity.this).getLoginInfo();
+        long time = CDateUtil.getTime(CDateUtil.FORMAT_yyyy_MM_dd, login.enddate);
+
+        Calendar c = Calendar.getInstance(); // 비교할 시간
+        c.setTime(new Date(time));
+        c.clear(Calendar.HOUR);
+        c.clear(Calendar.MINUTE);
+        c.clear(Calendar.SECOND);
+        c.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
+
+        Calendar c2 = Calendar.getInstance(); // 현재 시간
+//        c2.clear(Calendar.HOUR);
+//        c2.clear(Calendar.MINUTE);
+//        c2.clear(Calendar.SECOND);
+//        c2.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
+        long dDayDiff = c.getTimeInMillis() - c2.getTimeInMillis();
+        int day = (int)(Math.floor(TimeUnit.HOURS.convert(dDayDiff, TimeUnit.MILLISECONDS) / 24f)) +2;
+        day = day < 0 ? 0 : day;
+
+        ((TextView)findViewById(R.id.fever_map_remain_day)).setText("남은이용일수 "+day+"일");
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         if (mapFragment != null)
             mapFragment.onResume();
+
+//        GCTemperLib gcTemperLib = new GCTemperLib(this);
+//        String custNo = SharedPref.getInstance(this).getPreferences(SharedPref.PREF_CUST_NO);
+//        gcTemperLib.registCustomerNo(custNo, new IGCResult() {
+//            @Override
+//            public void onResult(boolean isSuccess, String message, Object data) {
+//                if (isSuccess) {
+//
+//                }
+//            }
+//        });
     }
 
     @Override

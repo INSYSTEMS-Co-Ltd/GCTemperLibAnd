@@ -75,14 +75,7 @@ public class Main1QActivity extends Activity {
         findViewById(R.id.gc_excute_gc_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 위치 권한 설정 후 이용해 주세요.
-                PermissionUtil.checkPermissions(Main1QActivity.this);
-                int permissionState = ActivityCompat.checkSelfPermission(Main1QActivity.this, Manifest.permission.ACCESS_FINE_LOCATION);
-                if (permissionState == PackageManager.PERMISSION_GRANTED) {
-                    gcLib.startGCMainActivity();
-                } else {
-                    ActivityCompat.requestPermissions(Main1QActivity.this, PermissionUtils.LOCATION_PERMS, CommonData.PERMISSION_REQUEST_GPS);
-                }
+                gcLib.startGCMainActivity();
             }
         });
 
@@ -224,27 +217,6 @@ public class Main1QActivity extends Activity {
         });
     }
 
-
-    /**
-     * 위치권한 설정 후
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CommonData.PERMISSION_REQUEST_GPS) {
-            if (RuntimeUtil.verifyPermissions(Main1QActivity.this, grantResults)) {
-                final GCTemperLib gcLib = new GCTemperLib(this);
-                if (gcLib.isAvailableGCToken()) {
-                    gcLib.startGCMainActivity();
-                } else {
-                    CDialog.showDlg(Main1QActivity.this, "인증 후 이용 가능합니다.");
-                }
-            }
-        }
-    }
 
 
     private void showProgress() {

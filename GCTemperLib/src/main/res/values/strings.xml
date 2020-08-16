@@ -2289,7 +2289,8 @@
     <string name="temper_message7">감기가 아닌 다른 감염증에 의한 고열인지 확인이 필요하오니, 병원 또는 응급실을 방문하는 것이 좋습니다.</string>
 
 
-    <string name="title_올바른감염예방">올바른 감염 예방 <font color="#6972d1">1Q 오늘의 체온관리</font></string>
+    <string name="title_올바른감염예방1">올바른 감염 예방</string>
+    <string name="title_올바른감염예방2">1Q 오늘의 체온관리</string>
     <string name="title_health_care_service">헬스케어서비스란?</string>
     <string name="title_health_reservation_fragment">건강검진 예약</string>
 

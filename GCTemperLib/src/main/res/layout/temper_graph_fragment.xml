@@ -176,11 +176,16 @@
 
 
 
-                        <com.greencross.gctemperlib.greencare.charting.charts.TemperChart
-                            android:id="@+id/chart1"
+<!--                        <com.greencross.gctemperlib.greencare.charting.charts.TemperChart-->
+<!--                            android:id="@+id/chart1"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="400dp"-->
+<!--                            tools:background="#ff0000"/>-->
+                        <com.github.mikephil.charting.charts.CombinedChart
+                            android:id="@+id/history_graph"
                             android:layout_width="match_parent"
-                            android:layout_height="400dp"
-                            tools:background="#ff0000"/>
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/_80_dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -199,8 +204,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@id/chart1"
-                            android:layout_alignRight="@id/chart1"
+                            android:layout_alignBottom="@id/history_graph"
+                            android:layout_alignRight="@id/history_graph"
                             android:textSize="10sp"
                             android:textColor="#6972d1"
                             android:letterSpacing="0.03"

@@ -12,15 +12,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="15sp"
-            android:text="@string/title_올바른감염예방"
+            android:text="@string/title_올바른감염예방1"
             android:fontFamily="@font/hanam"
+            android:gravity="center"
             android:textColor="#222222"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="15sp"
+            android:text="@string/title_올바른감염예방2"
+            android:fontFamily="@font/hanam"
+            android:gravity="center"
+            android:textColor="#6972d1"
             android:textSize="15sp" />
 
     </LinearLayout>

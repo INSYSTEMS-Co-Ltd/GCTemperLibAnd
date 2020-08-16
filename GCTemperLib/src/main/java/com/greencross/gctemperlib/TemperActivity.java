@@ -632,7 +632,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     /**
      * 남은이용일수 구하기
-     * @param date
      * @return
      */
     private void getDDay() {
@@ -656,7 +655,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         int day = (int)(Math.floor(TimeUnit.HOURS.convert(dDayDiff, TimeUnit.MILLISECONDS) / 24f)) +2;
         day = day < 0 ? 0 : day;
 
-        ((TextView)findViewById(R.id.fever_map_remain_day)).setText("남은이용일수 "+day+"일");
+        ((TextView)findViewById(R.id.fever_map_remain_day)).setText("남은 이용일 수 "+day+"일");
     }
 
     @Override
@@ -665,16 +664,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         if (mapFragment != null)
             mapFragment.onResume();
 
-//        GCTemperLib gcTemperLib = new GCTemperLib(this);
-//        String custNo = SharedPref.getInstance(this).getPreferences(SharedPref.PREF_CUST_NO);
-//        gcTemperLib.registCustomerNo(custNo, new IGCResult() {
-//            @Override
-//            public void onResult(boolean isSuccess, String message, Object data) {
-//                if (isSuccess) {
-//
-//                }
-//            }
-//        });
+        getDDay();
     }
 
     @Override

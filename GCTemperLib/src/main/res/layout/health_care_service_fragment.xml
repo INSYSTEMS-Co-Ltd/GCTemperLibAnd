@@ -14,7 +14,7 @@
         android:lineSpacingExtra="0sp"
         android:paddingTop="19dp"
         android:paddingBottom="19dp"
-        android:text="헬스케어서비스는 청춘의 기쁨 카드 신청자에 한하여 제공합니다."
+        android:text="헬스케어서비스는 모두의 건강 카드 신청자에 한하여 제공합니다."
         android:textColor="#ffffff"
         android:textSize="12sp" />
 

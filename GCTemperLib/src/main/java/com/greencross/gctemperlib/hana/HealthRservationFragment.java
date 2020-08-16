@@ -85,7 +85,7 @@ public class HealthRservationFragment extends BaseFragment {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         } catch (Exception e) {
-            CDialog.showDlg(getContext(), "사용하시는 스마트폰에 \n에버헬스 가족검진 앱이 설치되어있지 않습니다.\n" + "앱을 설치하기 위해 앱스토어로 이동합니다.")
+            CDialog.showDlg(getContext(), "사용하시는 스마트폰에 \n에버헬스 가족검진 앱이 설치되어있지 않습니다.", "앱을 설치하기 위해 앱스토어로 이동합니다.")
                     .setOkButton(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

@@ -216,6 +216,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/fever_map_menu_3_line"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_2"
                 android:layout_alignParentRight="true"

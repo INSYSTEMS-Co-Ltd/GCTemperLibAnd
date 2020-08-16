@@ -40,76 +40,76 @@ public class TemperChartView {
 //    protected Typeface mTfRegular;
 //    protected Typeface mTfLight;
     public TemperChartView(Context context, View v) {
-        mContext = context;
-
-        mChart = (TemperChart) v.findViewById(R.id.chart1);
-        mChart.setTouchEnabled(true);       // 클릭시 값 표시 해주려면 true
-
-        mChart.setDrawBarShadow(false);
-        mChart.setDrawValueAboveBar(true);
-
-        mChart.getDescription().setEnabled(false);
-        mChart.getDefaultValueFormatter();
-
-        mChart.setPadding(0,0,20,0);
-
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
-        mChart.setMaxVisibleValueCount(60);
-
-        // scaling can now only be done on x- and y-axis separately
-        mChart.setPinchZoom(false);
-        mChart.setDoubleTapToZoomEnabled(false);
-        mChart.setScaleEnabled(false);
-
-        mChart.setDrawGridBackground(false);
-
-        AxisValueFormatter xAxisFormatter = new AxisValueFormatter(TypeDataSet.Period.PERIOD_DAY);
-        xAxisFormatter.setUnitStr("℃");
-
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-//        xAxis.setTypeface(mTfLight);
-        xAxis.setDrawGridLines(true);   // 세로라인
-//        xAxis.setGranularity(1f); // only intervals of 1 day
-//        xAxis.setLabelCount(15);
-        xAxis.setValueFormatter(xAxisFormatter);
-
-//        IAxisValueFormatter custom = new MyAxisValueFormatter();
-
-        YAxis leftAxis = mChart.getAxisLeft();
-//        leftAxis.setTypeface(mTfLight);
-        leftAxis.setLabelCount(8, false);
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        leftAxis.setSpaceTop(15f);
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
-        // 그래프 왼쪽 수치 몸무게 값 범위 지정
-        leftAxis.setAxisMinimum(40);
-//        leftAxis.setAxisMaximum(65);
-
-        YAxis rightAxis = mChart.getAxisRight();
-        rightAxis.setEnabled(false);
-
-        // 하단 설명 문구 (bottom label)
-        Legend l = mChart.getLegend();
-        l.setEnabled(false);
-
-        // 차트 클릭시 나오는 마커
-        XYMarkerView mv = new XYMarkerView(mContext, xAxisFormatter);
-        mv.setChartView(mChart);
-        mChart.setMarker(mv);
-        mv.setEnabled(true);
-
-        mChart.setExtraTopOffset(30);   // 차트 상단 여백
-//        mChart.setDrawValueAboveBar(false); // 그래프 상단 값 표시
-
-        mChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mChart.setDrawMarkers(true);  // 마커 표시 활성화 시키기
-            }
-        });
+//        mContext = context;
+//
+//        mChart = (TemperChart) v.findViewById(R.id.chart1);
+//        mChart.setTouchEnabled(true);       // 클릭시 값 표시 해주려면 true
+//
+//        mChart.setDrawBarShadow(false);
+//        mChart.setDrawValueAboveBar(true);
+//
+//        mChart.getDescription().setEnabled(false);
+//        mChart.getDefaultValueFormatter();
+//
+//        mChart.setPadding(0,0,20,0);
+//
+//        // if more than 60 entries are displayed in the chart, no values will be
+//        // drawn
+//        mChart.setMaxVisibleValueCount(60);
+//
+//        // scaling can now only be done on x- and y-axis separately
+//        mChart.setPinchZoom(false);
+//        mChart.setDoubleTapToZoomEnabled(false);
+//        mChart.setScaleEnabled(false);
+//
+//        mChart.setDrawGridBackground(false);
+//
+//        AxisValueFormatter xAxisFormatter = new AxisValueFormatter(TypeDataSet.Period.PERIOD_DAY);
+//        xAxisFormatter.setUnitStr("℃");
+//
+//        XAxis xAxis = mChart.getXAxis();
+//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+////        xAxis.setTypeface(mTfLight);
+//        xAxis.setDrawGridLines(true);   // 세로라인
+////        xAxis.setGranularity(1f); // only intervals of 1 day
+////        xAxis.setLabelCount(15);
+//        xAxis.setValueFormatter(xAxisFormatter);
+//
+////        IAxisValueFormatter custom = new MyAxisValueFormatter();
+//
+//        YAxis leftAxis = mChart.getAxisLeft();
+////        leftAxis.setTypeface(mTfLight);
+//        leftAxis.setLabelCount(8, false);
+//        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+//        leftAxis.setSpaceTop(15f);
+//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+//
+//        // 그래프 왼쪽 수치 몸무게 값 범위 지정
+//        leftAxis.setAxisMinimum(40);
+////        leftAxis.setAxisMaximum(65);
+//
+//        YAxis rightAxis = mChart.getAxisRight();
+//        rightAxis.setEnabled(false);
+//
+//        // 하단 설명 문구 (bottom label)
+//        Legend l = mChart.getLegend();
+//        l.setEnabled(false);
+//
+//        // 차트 클릭시 나오는 마커
+//        XYMarkerView mv = new XYMarkerView(mContext, xAxisFormatter);
+//        mv.setChartView(mChart);
+//        mChart.setMarker(mv);
+//        mv.setEnabled(true);
+//
+//        mChart.setExtraTopOffset(30);   // 차트 상단 여백
+////        mChart.setDrawValueAboveBar(false); // 그래프 상단 값 표시
+//
+//        mChart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mChart.setDrawMarkers(true);  // 마커 표시 활성화 시키기
+//            }
+//        });
     }
 
     public void setXValueFormat(IAxisValueFormatter f) {

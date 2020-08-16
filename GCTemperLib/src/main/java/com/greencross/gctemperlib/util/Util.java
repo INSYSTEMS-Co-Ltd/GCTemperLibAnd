@@ -12,7 +12,9 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
+
 import androidx.core.content.ContextCompat;
+
 import android.text.Html;
 import android.text.Spannable;
 import android.text.style.AbsoluteSizeSpan;
@@ -59,6 +61,7 @@ import java.util.regex.Pattern;
 /**
  * Created by jihoon on 2016-03-21.
  * 유틸 모음 클래스
+ *
  * @since 0, 1
  */
 public abstract class Util {
@@ -71,59 +74,61 @@ public abstract class Util {
 
     /**
      * 이메일이 올바른지 확인
+     *
      * @param email
      * @return boolean
      */
-    public static boolean checkEmail(String email){
+    public static boolean checkEmail(String email) {
         String regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(email);
         boolean isNormal = m.matches();
         return isNormal;
     }
+
     /**
-     *  SharedPreference
+     * SharedPreference
+     *
      * @param context
      * @return boolean
      */
-    public static void setSharedPreference(Context context, String key, String value){
+    public static void setSharedPreference(Context context, String key, String value) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("hyundai", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.commit();
     }
 
-    public static String getSharedPreference(Context context, String key){
+    public static String getSharedPreference(Context context, String key) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("hyundai", Context.MODE_PRIVATE);
         return sharedPreferences.getString(key, "");
     }
 
 
-
-//    private static final String Password_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[!@#$%^*+=-]|.*[0-9]+).{6,12}$"; // 숫자, 영문
+    //    private static final String Password_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[!@#$%^*+=-]|.*[0-9]+).{6,12}$"; // 숫자, 영문
     private static final String Password_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[^a-zA-Z0-9]+)(?=.*[0-9]+).{8,15}$"; // 숫자, 영문, 특수문자
 
-//    private static final String Password_PATTERN = "^[a-zA-Z0-9!@.#$%^&*?_~]{8,16}$";
+    //    private static final String Password_PATTERN = "^[a-zA-Z0-9!@.#$%^&*?_~]{8,16}$";
 //    private static final String Password_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[!@#$%^*+=-]|.*[0-9]+).{7,16}$";
     private static final String NAME_PATTERN = "^[가-힣ㄱ-ㅎㅏ-ㅣ+]*$";
     public static final String PHONE_INVALID = "(01[016789])(\\d{3,4})(\\d{4})";
 
     /**
      * 최신 version 체크 ( 소수점 있는 버전명 전용 )
+     *
      * @param localVerName 설치된 버전
-     * @param lastVerName 서버 최종 버전
+     * @param lastVerName  서버 최종 버전
      * @return 현재 설치된 버전이 최종 버전인지 체크한다. ( true - 업데이트 필요, false - 최신 버전 )
      */
-    public static boolean isAppUpdate(String localVerName, String lastVerName)
-    {
+    public static boolean isAppUpdate(String localVerName, String lastVerName) {
         try {
-            int appVer = Integer.parseInt(localVerName.replace(".",""));
-            int severVer = Integer.parseInt(lastVerName.replace(".",""));
-            if(severVer > appVer)
+            int appVer = Integer.parseInt(localVerName.replace(".", ""));
+            int severVer = Integer.parseInt(lastVerName.replace(".", ""));
+            if (severVer > appVer)
                 return true;
             else
                 return false;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -132,6 +137,7 @@ public abstract class Util {
 
     /**
      * 패스워드가 올바른지 확인
+     *
      * @param passwd
      * @return boolean
      */
@@ -143,39 +149,44 @@ public abstract class Util {
 
     /**
      * 문자열 -> 원화 형식으로 변경
+     *
      * @param comma 문자열
      * @return
      */
-    public static String setComma(String comma){
+    public static String setComma(String comma) {
         int result = Integer.parseInt(comma);
         return new DecimalFormat("#,###").format(result);
     }
 
     /**
      * 숫자를 2자리 수로 표현
+     *
      * @param num 숫자
      * @return
      */
-    public static String getTwoDateFormat(int num){
+    public static String getTwoDateFormat(int num) {
         DecimalFormat decimalFormat = new DecimalFormat("00");
         return decimalFormat.format(num);
-    };
+    }
+
+    ;
 
 
     /**
      * 해당 날짜의 1주일 월요일 날짜 구하기
-     * @param year 년도
+     *
+     * @param year  년도
      * @param month 월
-     * @param day 일
-     * @param type flase = yyyy-MM-dd , ture = yyyyMMdd
+     * @param day   일
+     * @param type  flase = yyyy-MM-dd , ture = yyyyMMdd
      */
-    public static String getMonDayWeek(int year , int month , int day , boolean type) {
+    public static String getMonDayWeek(int year, int month, int day, boolean type) {
         SimpleDateFormat date;
         String result;
 
         if (type) {
-             date = new SimpleDateFormat("yyyyMMdd");
-        }else {
+            date = new SimpleDateFormat("yyyyMMdd");
+        } else {
             date = new SimpleDateFormat("yyyy-MM-dd");
         }
         Calendar calendar = Calendar.getInstance();
@@ -191,9 +202,10 @@ public abstract class Util {
 
     /**
      * 해당 날짜에 요일 구하기
+     *
      * @param context
-     * @param date  날짜
-     * @param date_format   데이트포멧타입
+     * @param date        날짜
+     * @param date_format 데이트포멧타입
      * @return 요일
      */
     public static String getSunDayWeek(Context context, String date, String date_format) {
@@ -202,7 +214,7 @@ public abstract class Util {
         Date weekkDate = getDateFormat(date, date_format);
 
         int year = weekkDate.getYear() + 1900;
-        int month = weekkDate.getMonth() ;
+        int month = weekkDate.getMonth();
         int day = weekkDate.getDate();
 
         GLog.i("!!!!!!  --> " + year + " !! " + month + " !! " + day, "dd");
@@ -241,18 +253,19 @@ public abstract class Util {
 
     /**
      * 해당 날짜의 1주일 일요일 날짜 구하기
-     * @param year 년도
+     *
+     * @param year  년도
      * @param month 월
-     * @param day 일
-     * @param type flase = yyyy-MM-dd , ture = yyyyMMdd
+     * @param day   일
+     * @param type  flase = yyyy-MM-dd , ture = yyyyMMdd
      */
-    public static String getDayOfTheWeek(int year , int month , int day , boolean type) {
+    public static String getDayOfTheWeek(int year, int month, int day, boolean type) {
         SimpleDateFormat date;
         String result;
 
         if (type) {
             date = new SimpleDateFormat("yyyyMMdd");
-        }else {
+        } else {
             date = new SimpleDateFormat("yyyy-MM-dd");
         }
         Calendar calendar = Calendar.getInstance();
@@ -269,16 +282,17 @@ public abstract class Util {
 
     /**
      * 해당 요일의 월~일 구하기
+     *
      * @param date 날짜 ex:20160422
      * @return 결과값 ex:20160417 ,20160418 , 20160419 , 20160420 , 20160421 , 20160422 , 20160423
      */
-    public static String[] getWeekMonSun(String date){
+    public static String[] getWeekMonSun(String date) {
 
         Calendar cal = Calendar.getInstance();
-        int yy =Integer.parseInt(date.substring(0, 4));
-        int mm =Integer.parseInt(date.substring(4, 6))-1;
-        int dd =Integer.parseInt(date.substring(6, 8));
-        cal.set(yy, mm,dd);
+        int yy = Integer.parseInt(date.substring(0, 4));
+        int mm = Integer.parseInt(date.substring(4, 6)) - 1;
+        int dd = Integer.parseInt(date.substring(6, 8));
+        cal.set(yy, mm, dd);
 //        }
         String[] arrYMD = new String[7];
 
@@ -286,21 +300,21 @@ public abstract class Util {
         int inMonth = cal.get(cal.MONTH);
         int inDay = cal.get(cal.DAY_OF_MONTH);
         int yoil = cal.get(cal.DAY_OF_WEEK); //요일나오게하기(숫자로)
-        if(yoil != 1){   //해당요일이 일요일이 아닌경우
-            yoil = yoil-2;
-        }else{           //해당요일이 일요일인경우
+        if (yoil != 1) {   //해당요일이 일요일이 아닌경우
+            yoil = yoil - 2;
+        } else {           //해당요일이 일요일인경우
             yoil = 7;
         }
-        inDay = inDay-yoil;
-        for(int i = 0; i < 7;i++){
-            cal.set(inYear, inMonth, inDay+i-1);  //
+        inDay = inDay - yoil;
+        for (int i = 0; i < 7; i++) {
+            cal.set(inYear, inMonth, inDay + i - 1);  //
             String y = Integer.toString(cal.get(cal.YEAR));
-            String m = Integer.toString(cal.get(cal.MONTH)+1);
+            String m = Integer.toString(cal.get(cal.MONTH) + 1);
             String d = Integer.toString(cal.get(cal.DAY_OF_MONTH));
-            if(m.length() == 1) m = "0" + m;
-            if(d.length() == 1) d = "0" + d;
+            if (m.length() == 1) m = "0" + m;
+            if (d.length() == 1) d = "0" + d;
 
-            arrYMD[i] = y+m +d;
+            arrYMD[i] = y + m + d;
             GLog.i("arrYMD[" + i + "] = " + arrYMD[i], "dd");
 
         }
@@ -311,11 +325,12 @@ public abstract class Util {
 
     /**
      * 두개의 날짜 비교
-     * @param yourdate 비교하고싶은 날짜
+     *
+     * @param yourdate   비교하고싶은 날짜
      * @param dateformat 데이터포멧형식 ex:yyyyMMdd
      * @return 비교하고싶은 날짜와 현재날짜의 비교한 결과값
      */
-    public static long getTwoDateCompare(String yourdate , String dateformat) {
+    public static long getTwoDateCompare(String yourdate, String dateformat) {
         long diffDays = 0;
         long diff = 0;
         try {
@@ -331,7 +346,7 @@ public abstract class Util {
             diff = endDate.getTime() - beginDate.getTime();
             diffDays = diff / (24 * 60 * 60 * 1000);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             GLog.e(e.toString());
         }
 
@@ -339,24 +354,24 @@ public abstract class Util {
     }
 
 
-
     /**
      * 해당 날짜의 특수문자 삽입
+     *
      * @param date 받을 년도 ex: 20160413
      * @param type 0 = 2016/04/13 , 1 = 2016.04.13 , 2 = 2016년04월13일 , 3 = 2016년 04월 13일 , 4 = 2016-04-13
      */
-    public static String getDateSpecialCharacter(Context context , String date , int type) {
+    public static String getDateSpecialCharacter(Context context, String date, int type) {
         String resultDate = "";
 
         if (type == 0) {
             resultDate = date.substring(0, 4) + CommonData.STRING_SLASH + date.substring(4, 6) + CommonData.STRING_SLASH + date.substring(6, 8);
-        } else if (type == 1){
+        } else if (type == 1) {
             resultDate = date.substring(0, 4) + CommonData.STRING_DOT + date.substring(4, 6) + CommonData.STRING_DOT + date.substring(6, 8);
-        }else if (type == 2){
+        } else if (type == 2) {
             resultDate = date.substring(0, 4) + context.getString(R.string.year) + date.substring(4, 6) + context.getString(R.string.month) + date.substring(6, 8) + context.getString(R.string.day);
-        }else if (type ==3){
+        } else if (type == 3) {
             resultDate = date.substring(0, 4) + context.getString(R.string.year) + CommonData.STRING_SPACE + date.substring(4, 6) + context.getString(R.string.month) + CommonData.STRING_SPACE + date.substring(6, 8) + context.getString(R.string.day);
-        }else {
+        } else {
             resultDate = date.substring(0, 4) + CommonData.STRING_HYPHEN + date.substring(4, 6) + CommonData.STRING_HYPHEN + date.substring(6, 8);
         }
         return resultDate;
@@ -402,10 +417,11 @@ public abstract class Util {
 
     /**
      * 키보드 내리기
+     *
      * @param context
      * @param et
      */
-    public static void hideKeyboard(final Context context, final EditText et){
+    public static void hideKeyboard(final Context context, final EditText et) {
         et.postDelayed(new Runnable() {                // 키보드 내리기
             public void run() {
                 InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -416,10 +432,11 @@ public abstract class Util {
 
     /**
      * 키보드 띄우기
+     *
      * @param context
      * @param et
      */
-    public static void showKeyboard(final Context context, final EditText et){
+    public static void showKeyboard(final Context context, final EditText et) {
         et.postDelayed(new Runnable() {
             public void run() {
                 InputMethodManager mgr = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -430,10 +447,11 @@ public abstract class Util {
 
     /**
      * 브로드캐스트 발송
+     *
      * @param context context
      * @return action 브로드캐스트 액션
      */
-    public static void sendBroadCast(Context context, String action){
+    public static void sendBroadCast(Context context, String action) {
         Intent intent = new Intent();
         intent.setAction(action);
         context.sendBroadcast(intent);
@@ -442,18 +460,19 @@ public abstract class Util {
 
     /**
      * 알파 애니메이션 적용 ( 점점 보이는 애니메이션 )
-     * @param view 적용될 뷰
-     * @param delay 애니메이션 적용 시간
-     * @param bool 뷰 사라지도록 설정 유무 ( true - 사라짐, false - 안사라짐 )
+     *
+     * @param view       적용될 뷰
+     * @param delay      애니메이션 적용 시간
+     * @param bool       뷰 사라지도록 설정 유무 ( true - 사라짐, false - 안사라짐 )
      * @param gone_delay 뷰 사라지는 시간
      */
-    public static void setAlphaAni(final View view, int delay, boolean bool, int gone_delay){
+    public static void setAlphaAni(final View view, int delay, boolean bool, int gone_delay) {
         view.setVisibility(View.VISIBLE);
         Animation animation = new AlphaAnimation(0, 1);
         animation.setDuration(delay);
         view.setAnimation(animation);
 
-        if(bool){	// 일정 시간이 지나면 사라지도록 설정했다면
+        if (bool) {    // 일정 시간이 지나면 사라지도록 설정했다면
             view.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -466,6 +485,7 @@ public abstract class Util {
 
     /**
      * 두 날짜의 차이
+     *
      * @param nYear1
      * @param nMonth1
      * @param nDate1
@@ -474,43 +494,43 @@ public abstract class Util {
      * @param nDate2
      * @return
      */
-    public static int GetDifferenceOfDate ( int nYear1, int nMonth1, int nDate1, int nYear2, int nMonth2, int nDate2 ){
-        Calendar cal = Calendar.getInstance ( );
+    public static int GetDifferenceOfDate(int nYear1, int nMonth1, int nDate1, int nYear2, int nMonth2, int nDate2) {
+        Calendar cal = Calendar.getInstance();
         int nTotalDate1 = 0, nTotalDate2 = 0, nDiffOfYear = 0, nDiffOfDay = 0;
 
-        if ( nYear1 > nYear2 ){
-            for ( int i = nYear2; i < nYear1; i++ ) {
-                cal.set ( i, 12, 0 );
-                nDiffOfYear += cal.get ( Calendar.DAY_OF_YEAR );
+        if (nYear1 > nYear2) {
+            for (int i = nYear2; i < nYear1; i++) {
+                cal.set(i, 12, 0);
+                nDiffOfYear += cal.get(Calendar.DAY_OF_YEAR);
             }
             nTotalDate1 += nDiffOfYear;
-        }
-        else if ( nYear1 < nYear2 ){
-            for ( int i = nYear1; i < nYear2; i++ ){
-                cal.set ( i, 12, 0 );
-                nDiffOfYear += cal.get ( Calendar.DAY_OF_YEAR );
+        } else if (nYear1 < nYear2) {
+            for (int i = nYear1; i < nYear2; i++) {
+                cal.set(i, 12, 0);
+                nDiffOfYear += cal.get(Calendar.DAY_OF_YEAR);
             }
             nTotalDate2 += nDiffOfYear;
         }
 
-        cal.set ( nYear1, nMonth1-1, nDate1 );
-        nDiffOfDay = cal.get ( Calendar.DAY_OF_YEAR );
+        cal.set(nYear1, nMonth1 - 1, nDate1);
+        nDiffOfDay = cal.get(Calendar.DAY_OF_YEAR);
         nTotalDate1 += nDiffOfDay;
 
-        cal.set ( nYear2, nMonth2-1, nDate2 );
-        nDiffOfDay = cal.get ( Calendar.DAY_OF_YEAR );
+        cal.set(nYear2, nMonth2 - 1, nDate2);
+        nDiffOfDay = cal.get(Calendar.DAY_OF_YEAR);
         nTotalDate2 += nDiffOfDay;
 
-        return nTotalDate1-nTotalDate2;
+        return nTotalDate1 - nTotalDate2;
     }
 
     /**
      * yyyy-MM-dd 형식의 문자열을 Date 형태로 변환
-     * @param date 날짜 문자열
+     *
+     * @param date        날짜 문자열
      * @param date_format 패턴
      * @return
      */
-    public static Date getDateFormat(String date, String date_format){
+    public static Date getDateFormat(String date, String date_format) {
         SimpleDateFormat mFormat = new SimpleDateFormat(date_format);
         Date mDate = null;
         try {
@@ -524,77 +544,88 @@ public abstract class Util {
 
     /**
      * 한국 현재시간 가져오기
+     *
      * @return 한국 현재시간을 문자열로 돌려준다.
      */
-    public static String getKorDateFormat(){
+    public static String getKorDateFormat() {
         TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
         Date date = new Date();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         df.setTimeZone(tz);
-        return df.format(date) ;
+        return df.format(date);
 
     }
 
-    /** hsh
+    /**
+     * hsh
+     *
      * @return 현재시간을 불러온다
      */
-    public static String getNowYYYYDateFormat(){
+    public static String getNowYYYYDateFormat() {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         DateFormat df = new SimpleDateFormat("yyyyMMdd");
-        return df.format(date) ;
+        return df.format(date);
     }
-    /** hsh
+
+    /**
+     * hsh
+     *
      * @return 현재시간을 불러온다
      */
-    public static String getNowDateFormat(){
+    public static String getNowDateFormat() {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        return df.format(date) ;
+        return df.format(date);
     }
 
     /**
      * 팝업 Activity 활성화시 애니메이션
+     *
      * @param activity activity
      */
-    public static void PopupAnimationStart(Activity activity){
+    public static void PopupAnimationStart(Activity activity) {
         activity.overridePendingTransition(R.anim.slide_in_up, R.anim.none);
     }
 
     /**
      * 팝업 Activity 종료시 애니메이션
+     *
      * @param activity activity
      */
-    public static void PopupAnimationEnd(Activity activity){
+    public static void PopupAnimationEnd(Activity activity) {
         activity.overridePendingTransition(0, R.anim.slide_in_down);
     }
 
     /**
      * 뒤로가기 Activity 활성화시 애니메이션
+     *
      * @param activity activity
      */
-    public static void BackAnimationStart(Activity activity){
+    public static void BackAnimationStart(Activity activity) {
         activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     /**
      * 뒤로가기 Activity 종료시 애니메이션
+     *
      * @param activity activity
      */
-    public static void BackAnimationEnd(Activity activity){
+    public static void BackAnimationEnd(Activity activity) {
         activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     /**
      * 이미지뷰 비트맵 자원해제
+     *
      * @param iv 이미지뷰
      */
     public static void recycleBitmap(ImageView iv) {
         Drawable d = iv.getDrawable();
         if (d instanceof BitmapDrawable) {
             GLog.i("d instanceof BitmapDrawable", "dd");
-            Bitmap b = ((BitmapDrawable)d).getBitmap();
+            Bitmap b = ((BitmapDrawable) d).getBitmap();
             b.recycle();
 
             d.setCallback(null);
@@ -604,15 +635,16 @@ public abstract class Util {
 
     /**
      * 메모리 해제
+     *
      * @param root 상위 view
      */
     public static void recursiveRecycle(View root) {
         if (root == null)
             return;
 
-         root.setBackgroundDrawable(null);		// Deprecated
+        root.setBackgroundDrawable(null);        // Deprecated
         if (root instanceof ViewGroup) {
-            ViewGroup group = (ViewGroup)root;
+            ViewGroup group = (ViewGroup) root;
             int count = group.getChildCount();
             for (int i = 0; i < count; i++) {
                 recursiveRecycle(group.getChildAt(i));
@@ -624,7 +656,7 @@ public abstract class Util {
         }
 
         if (root instanceof ImageView) {
-            ((ImageView)root).setImageDrawable(null);
+            ((ImageView) root).setImageDrawable(null);
         }
         root = null;
 
@@ -633,36 +665,37 @@ public abstract class Util {
 
     /**
      * 해시태그 문자열 추출
+     *
      * @param inputStr  전체 문자열
      * @param separator 구분자 ( 문자열을 구분할 수 있는 문자 )
      */
-    public static String getHashTag(String inputStr, String separator){
+    public static String getHashTag(String inputStr, String separator) {
 
         StringBuffer sb = new StringBuffer();
         StringTokenizer token = new StringTokenizer(inputStr, separator);
 
         int strIndex = 0;
         while (token.hasMoreElements()) {
-            String tokenStr =  (String) token.nextElement();
+            String tokenStr = (String) token.nextElement();
 
             int lastIndex = tokenStr.indexOf(" ");
-            if(lastIndex != -1){    // 해시태그 문자열에 공백이 있는경우 공백 앞자리까지 해시태그
+            if (lastIndex != -1) {    // 해시태그 문자열에 공백이 있는경우 공백 앞자리까지 해시태그
                 tokenStr = tokenStr.substring(0, lastIndex);
 
                 int blankIndex = tokenStr.indexOf(" ");
-                if(blankIndex != -1){
+                if (blankIndex != -1) {
                     sb.append(tokenStr.substring(0, blankIndex) + ",");
-                }else{
+                } else {
                     sb.append(tokenStr + ",");
                 }
-            }else{  // 공백이 없는경우 문자열 전체를 해시태그
-                sb.append(tokenStr +",");
+            } else {  // 공백이 없는경우 문자열 전체를 해시태그
+                sb.append(tokenStr + ",");
             }
 
             strIndex++;
         }
 
-        if(sb.length() > 0){
+        if (sb.length() > 0) {
             sb.deleteCharAt(sb.length() - 1);
         }
 
@@ -841,11 +874,12 @@ public abstract class Util {
 
     /**
      * xml 파싱
+     *
      * @param xml xml 정규식
-     * @return    문자열
+     * @return 문자열
      * @throws Exception
      */
-    public static String parseXml(String xml) throws Exception{
+    public static String parseXml(String xml) throws Exception {
 
         String jsonStr = "";
 
@@ -856,8 +890,8 @@ public abstract class Util {
         int eventType = parser.getEventType();
         String mTag = "";
 
-        while( eventType != XmlPullParser.END_DOCUMENT){		// 종료 도큐멘트가 아니라면
-            switch(eventType){
+        while (eventType != XmlPullParser.END_DOCUMENT) {        // 종료 도큐멘트가 아니라면
+            switch (eventType) {
                 case XmlPullParser.START_DOCUMENT:
                 case XmlPullParser.END_DOCUMENT:
                     break;
@@ -869,8 +903,8 @@ public abstract class Util {
                     break;
                 case XmlPullParser.TEXT:
 //                    GLog.i("XmlPullParser.START_TAG = "+parser.getText());
-                    GLog.i("mTag = " +mTag, "dd");
-                    if(mTag.equals("string")){  // string tag 값 리턴
+                    GLog.i("mTag = " + mTag, "dd");
+                    if (mTag.equals("string")) {  // string tag 값 리턴
                         jsonStr = parser.getText();
                         return jsonStr;
                     }
@@ -884,74 +918,74 @@ public abstract class Util {
 
 
     // 해열제 용량 단위 변환 Mg -> CC
-    public static double converterMGtoCC(double mg, boolean isIbuPowder){
+    public static double converterMGtoCC(double mg, boolean isIbuPowder) {
         try {
-            if(isIbuPowder)
-                return Double.parseDouble( String.format("%.1f", mg/12.8d));
+            if (isIbuPowder)
+                return Double.parseDouble(String.format("%.1f", mg / 12.8d));
             else
-                return Double.parseDouble( String.format("%.1f", mg/32d));
-        }catch (Exception e){
+                return Double.parseDouble(String.format("%.1f", mg / 32d));
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
     // 아세트아미노팬 최대 허용량 계산
-    public static float getMaxReducer_A(String babyWeight){
+    public static float getMaxReducer_A(String babyWeight) {
         try {
-            return getVolume(babyWeight,2f,1);
-        }catch (Exception e){
+            return getVolume(babyWeight, 2f, 1);
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
 
     }
+
     // 이부프로팬 최대 허용량 계산
-    public static float getMaxReducer_I(String babyWeight){
+    public static float getMaxReducer_I(String babyWeight) {
         try {
-            if(Float.parseFloat(babyWeight) <= 12.5)
-                return getVolume(babyWeight,2f,2);
-            else if(Float.parseFloat(babyWeight) <= 30)
+            if (Float.parseFloat(babyWeight) <= 12.5)
+                return getVolume(babyWeight, 2f, 2);
+            else if (Float.parseFloat(babyWeight) <= 30)
                 return 25f;
-            else if(Float.parseFloat(babyWeight) <= 40)
+            else if (Float.parseFloat(babyWeight) <= 40)
                 return 50f;
             else
                 return 50f;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
     // 0.5 단위 반올림 값
-    public static float getVolume(String baby_weight,float multiply, int kind)
-    {
+    public static float getVolume(String baby_weight, float multiply, int kind) {
         try {
             BigDecimal preNum = new BigDecimal(baby_weight);
             BigDecimal postNum = new BigDecimal(multiply);
 
-            Double a = Math.floor(preNum.multiply(postNum).doubleValue() *2 + 0.5d);
+            Double a = Math.floor(preNum.multiply(postNum).doubleValue() * 2 + 0.5d);
 
-            if(multiply < 1){	// 1보다 작으면 해열제 1회 용량
-                if(a/2d >= 16d){	// 18cc 보다 크면 18을 리턴함.
+            if (multiply < 1) {    // 1보다 작으면 해열제 1회 용량
+                if (a / 2d >= 16d) {    // 18cc 보다 크면 18을 리턴함.
                     return 16f;
-                }else{			// 18cc 보다 작으면 계산식 대로 리턴
-                    return (float) (a/2f);
+                } else {            // 18cc 보다 작으면 계산식 대로 리턴
+                    return (float) (a / 2f);
                 }
-            }else if(kind == 1){	// 아니면 이부프로펜 하루 허용치
-                if(a/2d >= 100d){
+            } else if (kind == 1) {    // 아니면 이부프로펜 하루 허용치
+                if (a / 2d >= 100d) {
                     return 100f;
-                }else{
-                    return (float) (a/2f);
+                } else {
+                    return (float) (a / 2f);
                 }
-            }else{
-                if(a/2d >= 75d){
+            } else {
+                if (a / 2d >= 75d) {
                     return 75f;
-                }else{
-                    return (float) (a/2f);
+                } else {
+                    return (float) (a / 2f);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
@@ -986,38 +1020,35 @@ public abstract class Util {
     }
 
     // 날짜 차 구하기
-    public static float subDate(Date prevDate, Date backDate)
-    {
+    public static float subDate(Date prevDate, Date backDate) {
         try {
             float subDate = 0f;
-            float f_a = prevDate.getHours()+((float)prevDate.getMinutes() / 60f);
-            float f_b = backDate.getHours()+((float)backDate.getMinutes() / 60f);
+            float f_a = prevDate.getHours() + ((float) prevDate.getMinutes() / 60f);
+            float f_b = backDate.getHours() + ((float) backDate.getMinutes() / 60f);
             subDate = f_a - f_b;
-            if( subDate < 0)
+            if (subDate < 0)
                 subDate = 24f + subDate;
 
             return subDate;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
     // 아기 태어난 일자 게산
-    public static int sumDayCount(Date startDate, Date endDate)
-    {
+    public static int sumDayCount(Date startDate, Date endDate) {
         try {
-            Calendar cal = Calendar.getInstance ( );
-            cal.setTime ( endDate );// 종료일로 설정.
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(endDate);// 종료일로 설정.
 
-            Calendar cal2 = Calendar.getInstance ( );
-            cal2.setTime ( startDate ); // 기준일로 설정.
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(startDate); // 기준일로 설정.
 
             int count = 0;
-            while ( !cal2.after ( cal ) )
-            {
+            while (!cal2.after(cal)) {
                 count++;
-                cal2.add ( Calendar.DATE, 1 ); // 다음날로 바뀜
+                cal2.add(Calendar.DATE, 1); // 다음날로 바뀜
             }
             return count;
         } catch (Exception e) {
@@ -1027,7 +1058,7 @@ public abstract class Util {
         }
     }
 
-    public static void setRemedyAlarms(Context m_context, Date mCurDate, int chl_sn){
+    public static void setRemedyAlarms(Context m_context, Date mCurDate, int chl_sn) {
 //        AlarmManager m_Manager = (AlarmManager)m_context.getSystemService(Context.ALARM_SERVICE);
 //        GregorianCalendar mCalendar = new GregorianCalendar();
 //        mCalendar.setTime(mCurDate);
@@ -1050,7 +1081,7 @@ public abstract class Util {
 //            m_Manager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), Util.setAlarm(m_context,m_context.getResources().getString(R.string.alret_over_m).replace("[name]",MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChldrnNm()), chl_sn, chl_sn+20000));
     }
 
-    public static void setFeverAlarms(Context m_context, Date mCurDate, int chl_sn){
+    public static void setFeverAlarms(Context m_context, Date mCurDate, int chl_sn) {
 //        AlarmManager m_Manager = (AlarmManager)m_context.getSystemService(Context.ALARM_SERVICE);
 //        GregorianCalendar mCalendar = new GregorianCalendar();
 //        mCalendar.setTime(mCurDate);
@@ -1084,19 +1115,19 @@ public abstract class Util {
     }
 
     // 알람 취소
-    public static void cancelAlarm(Context m_context, int chl_sn){
-        AlarmManager m_Manager = (AlarmManager)m_context.getSystemService(Context.ALARM_SERVICE);
+    public static void cancelAlarm(Context m_context, int chl_sn) {
+        AlarmManager m_Manager = (AlarmManager) m_context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(m_context.getApplicationContext(), ShowAlertMsgActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(m_context, chl_sn, i, 0);
         m_Manager.cancel(pIntent);
         pIntent.cancel();
-        pIntent = PendingIntent.getActivity(m_context, chl_sn+5000, i, 0);
+        pIntent = PendingIntent.getActivity(m_context, chl_sn + 5000, i, 0);
         m_Manager.cancel(pIntent);
         pIntent.cancel();
-        pIntent = PendingIntent.getActivity(m_context, chl_sn+10000, i, 0);
+        pIntent = PendingIntent.getActivity(m_context, chl_sn + 10000, i, 0);
         m_Manager.cancel(pIntent);
         pIntent.cancel();
-        pIntent = PendingIntent.getActivity(m_context, chl_sn+20000, i, 0);
+        pIntent = PendingIntent.getActivity(m_context, chl_sn + 20000, i, 0);
         m_Manager.cancel(pIntent);
         pIntent.cancel();
     }

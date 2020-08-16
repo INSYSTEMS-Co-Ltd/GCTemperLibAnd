@@ -5,34 +5,26 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.DummyActivity;
-import com.greencross.gctemperlib.GCTemperLib;
-import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
-import com.greencross.gctemperlib.greencare.util.TextWatcherUtil;
 import com.greencross.gctemperlib.util.GpsInfo;
 
 import java.text.SimpleDateFormat;
@@ -100,7 +92,9 @@ public class TemperControlFragment extends BaseFragment {
         view.findViewById(R.id.go_graph_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
+//                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
+                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment2.class, new Bundle());
+//                startActivity(new Intent(getActivity(), TemperGraphActivity.class));
             }
         });
 
@@ -252,13 +246,13 @@ public class TemperControlFragment extends BaseFragment {
     };
 
     public void openPatron() {
-        String packageName = "com.partron.temperature310s";
+        String packageName = "com.partron.temperature310";
         try {
             Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         } catch (Exception e) {
-            CDialog.showDlg(getContext(), "사용하시는 스마트폰에 \n 파트론 앱이 설치되어있지 않습니다.\n" + "앱을 설치하기 위해 앱스토어로 이동합니다.")
+            CDialog.showDlg(getContext(), "사용하시는 스마트폰에 \n 파트론 앱이 설치되어있지 않습니다.", "앱을 설치하기 위해 앱스토어로 이동합니다.")
                     .setOkButton(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -379,10 +373,10 @@ public class TemperControlFragment extends BaseFragment {
                     mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     mCalendar.set(Calendar.MINUTE, minute);
                     Date checkDate = new Date();
-                    if (mCalendar.getTime().compareTo(checkDate) >= 0) {    // 오늘 지남
-                        Toast.makeText(getContext(), getString(R.string.over_time), Toast.LENGTH_LONG).show();
-                        return;
-                    }
+//                    if (mCalendar.getTime().compareTo(checkDate) >= 0) {    // 오늘 지남
+//                        Toast.makeText(getContext(), getString(R.string.over_time), Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
                     mCurDate = mCalendar.getTime();
                     SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_TIME_2);
                     tv.setText(format.format(mCurDate));

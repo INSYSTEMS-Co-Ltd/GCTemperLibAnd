@@ -1,0 +1,145 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#D7D7D9" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_100ffffff"
+                android:paddingLeft="@dimen/_20_dp"
+                android:paddingTop="@dimen/_10_dp"
+                android:paddingRight="@dimen/_20_dp"
+                android:paddingBottom="@dimen/_10_dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/draw_box_dddddd">
+
+                        <TextView
+                            android:id="@+id/txt_graph_start_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="18sp"
+                            android:paddingLeft="14dp"
+                            android:paddingRight="14dp"
+                            android:textColor="#242424"
+                            android:textSize="18sp"
+                            tools:text="2020. 6. 23." />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="20sp"
+                        android:text="-"
+                        android:textColor="#242424"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/draw_box_dddddd"
+                        android:minHeight="12.5dp">
+
+                        <TextView
+                            android:id="@+id/txt_graph_end_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="18sp"
+
+                            android:paddingLeft="14dp"
+                            android:paddingRight="14dp"
+                            android:textColor="#242424"
+                            android:textSize="18sp"
+                            tools:text="15:29" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp">
+
+                <com.github.mikephil.charting.charts.CombinedChart
+                    android:id="@+id/history_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/hanab"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="27sp"
+                    android:text="℃"
+                    android:textColor="#7f7f7f"
+                    android:textSize="10sp"
+                    tools:background="#fff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@id/history_graph"
+                    android:layout_alignBottom="@id/history_graph"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/hanab"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.03"
+                    android:text="시간"
+                    android:textColor="#6972d1"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:background="#fff" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/temper_log_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
+

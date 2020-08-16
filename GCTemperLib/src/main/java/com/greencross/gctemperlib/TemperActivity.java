@@ -1,15 +1,13 @@
 package com.greencross.gctemperlib;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -17,13 +15,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
@@ -192,7 +188,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                     case EXPANDED:  // 완전 펼쳐진 경우
                         slideFullUpLayout.setVisibility(View.VISIBLE);
                         slideFullDownLayout.setVisibility(View.GONE);
-                        getDDay();
+                        getRemainUseDate();
                         break;
                     case DRAGGING:
 
@@ -257,20 +253,22 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         } else if (id == R.id.fever_map_menu_2 || id == R.id.fever_map_menu_2_iv) {   // 건강강검진예약
             DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null);
         } else if (id == R.id.fever_map_menu_3 || id == R.id.fever_map_menu_3_iv) { // 건강상담
-            // TODO : DB 전송완료시 & DB전송이 완료되지 않은 경우 처리 해야 함
-            CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
-
-            CDialog dlg = CDialog.showDlg(TemperActivity.this, R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
-            dlg.setOkButton(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String tel = "tel:" + getString(R.string.health_call_center);
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse(tel));
-                    startActivity(intent);
-                }
-            });
-            dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
+            Tr_Login login = SharedPref.getInstance(TemperActivity.this).getLoginInfo();
+            if ("1000".equals(login.resultcode)) {
+                CDialog dlg = CDialog.showDlg(TemperActivity.this, R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
+                dlg.setOkButton(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String tel = "tel:" + getString(R.string.health_call_center);
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse(tel));
+                        startActivity(intent);
+                    }
+                });
+                dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
+            } else {
+                CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
+            }
         } else if (id == R.id.fever_map_menu_4 || id == R.id.fever_map_menu_4_iv) { // 헬스케어 서비스란
             DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null);
         }
@@ -400,7 +398,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
                                     //Collections.sort(epidemicItems, comRatio);
                                     //Collections.reverse(epidemicItems);
-
                                     mEpidemicList = epidemicItems;
 
 
@@ -519,6 +516,22 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         mMap = googleMap;
         mMap.setMyLocationEnabled(isLocationPermission());
 
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.map);
+//        fragment.getView().
+
+//        RelativeLayout mapLayout = findViewById(R.id.map_layout);
+//        FrameLayout mapView = (FrameLayout) mapLayout.getChildAt(0);
+//        for (int i = 0; i < mapView.getChildCount(); i++) {
+//            Log.i(TAG, "mapLayout["+i+"]::"+view);
+//            if (view instanceof LinearLayout) {
+//                LinearLayout linearLayout = (LinearLayout) view;
+//                for (int j = 0; j < linearLayout.getChildCount(); j++) {
+//                    Log.i(TAG, "mapChildLayout["+j+"]::"+view);
+//                }
+//            }
+//        }
+
+
         googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
@@ -634,28 +647,41 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 남은이용일수 구하기
      * @return
      */
-    private void getDDay() {
+    private void getRemainUseDate() {
+        TextView remainTextview = findViewById(R.id.fever_map_remain_day);
         // 남은 이용일수 구하기
         Tr_Login login = SharedPref.getInstance(TemperActivity.this).getLoginInfo();
-        long time = CDateUtil.getTime(CDateUtil.FORMAT_yyyy_MM_dd, login.enddate);
+        if ("1000".equals(login.resultcode)) {
+            // DB전송이 완료 된 경우
+            long time = CDateUtil.getTime(CDateUtil.FORMAT_yyyy_MM_dd, login.enddate);
 
-        Calendar c = Calendar.getInstance(); // 비교할 시간
-        c.setTime(new Date(time));
-        c.clear(Calendar.HOUR);
-        c.clear(Calendar.MINUTE);
-        c.clear(Calendar.SECOND);
-        c.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
+            Calendar c = Calendar.getInstance(); // 비교할 시간
+            c.setTime(new Date(time));
+            c.clear(Calendar.HOUR);
+            c.clear(Calendar.MINUTE);
+            c.clear(Calendar.SECOND);
+            c.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
 
-        Calendar c2 = Calendar.getInstance(); // 현재 시간
-//        c2.clear(Calendar.HOUR);
-//        c2.clear(Calendar.MINUTE);
-//        c2.clear(Calendar.SECOND);
-//        c2.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
-        long dDayDiff = c.getTimeInMillis() - c2.getTimeInMillis();
-        int day = (int)(Math.floor(TimeUnit.HOURS.convert(dDayDiff, TimeUnit.MILLISECONDS) / 24f)) +2;
-        day = day < 0 ? 0 : day;
-
-        ((TextView)findViewById(R.id.fever_map_remain_day)).setText("남은 이용일 수 "+day+"일");
+            Calendar c2 = Calendar.getInstance(); // 현재 시간
+            c2.clear(Calendar.HOUR);
+            c2.clear(Calendar.MINUTE);
+            c2.clear(Calendar.SECOND);
+            c2.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
+            long dDayDiff = c.getTimeInMillis() - c2.getTimeInMillis();
+            int day = (int)(Math.floor(TimeUnit.HOURS.convert(dDayDiff, TimeUnit.MILLISECONDS) / 24f)) +2;
+            day = day < 0 ? 0 : day;
+            if (day <= 0) {
+                // 남은 이용일수가 0일인 경우 건강상담표시 하지 않음
+                findViewById(R.id.fever_map_menu_3_line).setVisibility(View.GONE);
+                findViewById(R.id.fever_map_menu_3).setVisibility(View.GONE);
+            } else {
+                // 남은이용일수rk 있는 경우 남은 일자 표시
+                remainTextview.setText("남은 이용일 수 "+day+"일");
+            }
+        } else {
+            // DB전송이 완료되지 않은 경우, 남은이용일수 표시 하지 않음
+            remainTextview.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -663,8 +689,16 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         super.onResume();
         if (mapFragment != null)
             mapFragment.onResume();
+    }
 
-        getDDay();
+    /**
+     * 재 로그인 완료
+     */
+    @Override
+    protected void reLoginComplete() {
+        super.reLoginComplete();
+
+        getRemainUseDate();
     }
 
     @Override

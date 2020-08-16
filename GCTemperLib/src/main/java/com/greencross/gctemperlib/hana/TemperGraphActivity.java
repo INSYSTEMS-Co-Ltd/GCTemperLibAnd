@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.temper;
+package com.greencross.gctemperlib.hana;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -6,9 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -17,29 +14,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.greencross.gctemperlib.base.BackBaseActivity;
-import com.greencross.gctemperlib.greencare.component.OnClickListener;
-import com.greencross.gctemperlib.main.MainActivity;
-import com.greencross.gctemperlib.util.GLog;
-import com.greencross.gctemperlib.util.Util;
+import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.charts.ScatterChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.ScatterData;
+import com.github.mikephil.charting.data.ScatterDataSet;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.adapter.FeverHistoryListAdapter;
+import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.collection.AllDataItem;
 import com.greencross.gctemperlib.collection.FeverItem;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
 import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.network.RequestApi;
-import com.github.mikephil.charting.charts.CombinedChart;
-import com.github.mikephil.charting.charts.ScatterChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.CombinedData;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.ScatterData;
-import com.github.mikephil.charting.data.ScatterDataSet;
+import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.util.StringUtil;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_FeverList;
+import com.greencross.gctemperlib.util.GLog;
+import com.greencross.gctemperlib.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,30 +45,27 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import cz.msebera.android.httpclient.NameValuePair;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
+public class TemperGraphActivity extends BackBaseActivity implements View.OnClickListener {
 
-public class FeverHxActivity extends BackBaseActivity implements View.OnClickListener {
+    private TextView mTxtHistoryDate, mTxtGraphStartDate, mTxtGraphEndDate;
+    private LinearLayout mLinearTabGraph, mGraphDateLay, mMainLay;
+    private FrameLayout mHelpLay;
+    private ImageButton mBtnHelpClose, mBtnCheckHelp;
 
-    TextView mTxtHistoryDate, mTxtGraphStartDate, mTxtGraphEndDate;
-    Button mFeverGraphBtn, mFeverTimelineBtn;
-    LinearLayout mLinearTabGraph, mLinearTabTimeline, mGraphDateLay, mMainLay;
-    RecyclerView mRecyTimeline;
-    FrameLayout mHelpLay;
-    ImageButton mBtnHelpClose, mBtnCheckHelp;
+    private CombinedChart mHistoryGraph;
+    private String[] arrXDate;
+    private String[] arrDateSet;
 
-    CombinedChart mHistoryGraph;
-    String[] arrXDate;
-    String[] arrDateSet;
-
-    FeverHistoryListAdapter mAdapter;
+//    FeverHistoryListAdapter mAdapter;
 
     private Date mCurDate;
-    GregorianCalendar mCalendar;
-    ArrayList<FeverItem> mArrFeverList;
+    private GregorianCalendar mCalendar;
+    private ArrayList<FeverItem> mArrFeverList;
 
     private String mStrStartDate;
     private String mStrEndDate;
@@ -79,35 +73,28 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
     private Date mEndDate;
     int cntDay = 0;
 
-    ArrayList<AllDataItem> mAllDataItems;
-    SimpleDateFormat format;
+    private ArrayList<AllDataItem> mAllDataItems;
+    private SimpleDateFormat mFormat;
 
-    int tabNum = 0;
-
-    boolean[] bSelFilter;
-    boolean[] bTumpSelFilter;
+    private boolean[] bSelFilter;
+    private boolean[] bTumpSelFilter;
 
     boolean mNoShowHelp = false;
 
-    String[] arrFilter;
+    private String[] arrFilter;
 
     private View view;
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        Intent intent = getIntent();
-        int tmpNum = intent.getIntExtra(CommonData.EXTRA_IS_TIMELIEN, 0);
-        if(tmpNum != 0)
-            tabNum = tmpNum;
-
-        setTab(tabNum);
+        setTab();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fever_hx_activity);
+        setContentView(R.layout.temper_graph_activity);
 
         setTitle(getString(R.string.fever_hx_title));
 
@@ -116,32 +103,30 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
         initView();
 
         initGraph();
-        initTimeLine();
+        setDate();
+//        initTimeLine();
+
+        getData();
     }
 
     /**
      * 초기화
      */
-    public void init(){
-        mMainLay = (LinearLayout)findViewById(R.id.main_lay);
-        mHelpLay = (FrameLayout)findViewById(R.id.help_lay);
+    public void init() {
+        mMainLay = (LinearLayout) findViewById(R.id.main_lay);
+        mHelpLay = (FrameLayout) findViewById(R.id.help_lay);
 
-        mGraphDateLay = (LinearLayout)findViewById(R.id.graph_date_lay);
-        mTxtGraphStartDate = (TextView)findViewById(R.id.txt_graph_start_date);
-        mTxtGraphEndDate = (TextView)findViewById(R.id.txt_graph_end_date);
+        mGraphDateLay = (LinearLayout) findViewById(R.id.graph_date_lay);
+        mTxtGraphStartDate = (TextView) findViewById(R.id.txt_graph_start_date);
+        mTxtGraphEndDate = (TextView) findViewById(R.id.txt_graph_end_date);
 
-        mTxtHistoryDate = (TextView)findViewById(R.id.txt_history_date);
-        mFeverGraphBtn = (Button)findViewById(R.id.fever_graph_btn);
-        mFeverTimelineBtn = (Button)findViewById(R.id.fever_timeline_btn);
+        mTxtHistoryDate = (TextView) findViewById(R.id.txt_history_date);
 
-        mLinearTabGraph = (LinearLayout)findViewById(R.id.linear_tab_graph);
-        mLinearTabTimeline = (LinearLayout)findViewById(R.id.linear_tab_timeline);
-        mRecyTimeline = (RecyclerView)findViewById(R.id.recy_timeline);
+        mLinearTabGraph = (LinearLayout) findViewById(R.id.linear_tab_graph);
+        mHistoryGraph = (CombinedChart) findViewById(R.id.history_graph);
 
-        mHistoryGraph = (CombinedChart)findViewById(R.id.history_graph);
-
-        mBtnHelpClose = (ImageButton)findViewById(R.id.btn_help_close);
-        mBtnCheckHelp = (ImageButton)findViewById(R.id.btn_check_help);
+        mBtnHelpClose = (ImageButton) findViewById(R.id.btn_help_close);
+        mBtnCheckHelp = (ImageButton) findViewById(R.id.btn_check_help);
 
         view = findViewById(R.id.root_view);
     }
@@ -149,36 +134,22 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
     /**
      * 이벤트 연결
      */
-    public void setEvent(){
+    public void setEvent() {
         mTxtHistoryDate.setOnClickListener(this);
-        mFeverGraphBtn.setOnClickListener(this);
-        mFeverTimelineBtn.setOnClickListener(this);
         mTxtGraphStartDate.setOnClickListener(this);
         mTxtGraphEndDate.setOnClickListener(this);
         mBtnHelpClose.setOnClickListener(this);
         mBtnCheckHelp.setOnClickListener(this);
-
-
-        //click 저장
-        OnClickListener mClickListener = new OnClickListener(this,view, FeverHxActivity.this);
-
-        //아이 체온
-        mFeverGraphBtn.setOnTouchListener(mClickListener);
-        mFeverTimelineBtn.setOnTouchListener(mClickListener);
-
-        //코드 부여(아이 체온)
-        mFeverGraphBtn.setContentDescription(getString(R.string.FeverGraphBtn));
-        mFeverTimelineBtn.setContentDescription(getString(R.string.FeverTimelineBtn));
     }
 
-    public void initView(){
+    public void initView() {
         arrFilter = getResources().getStringArray(R.array.filter_list);
         bSelFilter = new boolean[arrFilter.length];
 
-        format = new SimpleDateFormat(CommonData.PATTERN_DATETIME_S);
+        mFormat = new SimpleDateFormat(CommonData.PATTERN_DATETIME_S);
 
         // 나갔다 들어왔을때, 처음 들어왔을때 체크 박스 초기화
-        for (int i = 0; i < bSelFilter.length; i++){
+        for (int i = 0; i < bSelFilter.length; i++) {
             bSelFilter[i] = true;
         }
 
@@ -194,24 +165,18 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
         mTxtGraphStartDate.setText(mStrStartDate);
         mTxtGraphEndDate.setText(mStrEndDate);
         mTxtHistoryDate.setText(R.string.filter_all);
-        //setDate();
+
+//        setDate();
     }
 
-    public void initTimeLine(){
-        mAdapter = new FeverHistoryListAdapter(FeverHxActivity.this, mAllDataItems, R.layout.fever_hx_list_item);
+    public void setTab() {
+        mGraphDateLay.setVisibility(View.VISIBLE);
+        mTxtHistoryDate.setVisibility(View.INVISIBLE);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(FeverHxActivity.this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyTimeline.setLayoutManager(layoutManager);
-        mRecyTimeline.setItemAnimator(new DefaultItemAnimator());
-        mRecyTimeline.setHasFixedSize(true);
-//        ((FeverHistoryListAdapter) mAdapter).setMode(Attributes.Mode.Single);
-        mRecyTimeline.setAdapter(mAdapter);
-    }
 
-    public void setTab(int _tabNum){
-        tabNum = _tabNum;
-//        if(_tabNum == 0){         // 그래프 보기
+//        requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
+//        tabNum = _tabNum;
+//        if (_tabNum == 0) {         // 그래프 보기
 //            mGraphDateLay.setVisibility(View.VISIBLE);
 //            mTxtHistoryDate.setVisibility(View.INVISIBLE);
 //            mFeverGraphBtn.setTextColor(getResources().getColor(R.color.h_orange));
@@ -219,10 +184,10 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
 //            mFeverGraphBtn.setBackgroundResource(R.drawable.underline_fever);
 //            mFeverTimelineBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
 //            requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-//        }else{
-//            if(!CommonData.getInstance(this).getFeverTimeLineHelp()){
+//        } else {
+//            if (!CommonData.getInstance().getFeverTimeLineHelp()) {
 //                mHelpLay.setVisibility(View.VISIBLE);
-//            }else{
+//            } else {
 //                mHelpLay.setVisibility(View.GONE);
 //            }
 //
@@ -232,7 +197,7 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
 //            mFeverGraphBtn.setTextColor(Color.WHITE);
 //            mFeverTimelineBtn.setBackgroundResource(R.drawable.underline_fever);
 //            mFeverGraphBtn.setBackgroundColor(getResources().getColor(R.color.bg_yellow_light));
-//            requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), true,true,true,true,true,false,true);
+//            requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), true, true, true, true, true, false, true);
 //        }
     }
 
@@ -242,40 +207,41 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
         Intent intent = null;
 
         int id = v.getId();
-        if (id == R.id.fever_graph_btn) { // 그래프 보기
-            setTab(0);
-        } else if (id == R.id.fever_timeline_btn) {
-            setTab(1);
-//        } else if (id == R.id.txt_history_date) {
-//            bTumpSelFilter = new boolean[bSelFilter.length];
-//            for (int i = 0; i < bSelFilter.length; i++) {
-//                if (bSelFilter[i])
-//                    bTumpSelFilter[i] = true;
-//                else
-//                    bTumpSelFilter[i] = false;
-//            }
-//
-//            AlertDialog.Builder ab = new AlertDialog.Builder(FeverHxActivity.this);
-//            ab.setMultiChoiceItems(arrFilter, bSelFilter, (dialog, which, isChecked) -> {
-//
-//            });
-//
-//            ab.setPositiveButton(R.string.popup_dialog_button_confirm, (dialog, which) -> {
-//                String str = "";
-//                int cnt = 0;
-//                for (int i = 0; i < bSelFilter.length; i++) {
-//                    if (bSelFilter[i]) {
-//                        cnt++;
-//                    }
-//                }
-//
-//                // 전체 선택
-//
+//        if (id == R.id.fever_graph_btn) { // 그래프 보기
+//            setTab(0);
+//        } else if (id == R.id.fever_timeline_btn) {
+//            setTab(1);
+//        } else
+        if (id == R.id.txt_history_date) {
+            bTumpSelFilter = new boolean[bSelFilter.length];
+            for (int i = 0; i < bSelFilter.length; i++) {
+                if (bSelFilter[i])
+                    bTumpSelFilter[i] = true;
+                else
+                    bTumpSelFilter[i] = false;
+            }
+
+            AlertDialog.Builder ab = new AlertDialog.Builder(TemperGraphActivity.this);
+            ab.setMultiChoiceItems(arrFilter, bSelFilter, (dialog, which, isChecked) -> {
+
+            });
+
+            ab.setPositiveButton(R.string.popup_dialog_button_confirm, (dialog, which) -> {
+                String str = "";
+                int cnt = 0;
+                for (int i = 0; i < bSelFilter.length; i++) {
+                    if (bSelFilter[i]) {
+                        cnt++;
+                    }
+                }
+
+                // 전체 선택
+
 //                if (cnt == 6) {
 //                    mTxtHistoryDate.setText(R.string.filter_all);
 //                    requestAllListApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn(), true, true, true, true, true, false, true);
 //                } else if (cnt == 0) {
-//                    mDialog = new CustomAlertDialog(FeverHxActivity.this, CustomAlertDialog.TYPE_A);
+//                    mDialog = new CustomAlertDialog(TemperGraphActivity.this, CustomAlertDialog.TYPE_A);
 //                    mDialog.setTitle(getString(R.string.popup_dialog_a_type_title));
 //                    mDialog.setContent(getString(R.string.no_filter));
 //                    mDialog.setPositiveButton(getString(R.string.popup_dialog_button_confirm), (dialog1, button) -> dialog1.dismiss());
@@ -294,78 +260,80 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
 //                        mTxtHistoryDate.setText(str);
 //                    }
 //                }
-//            });
-//
-//            ab.setNegativeButton(R.string.popup_dialog_button_cancel, (dialog, which) -> dialog.dismiss());
-//            ab.show();
+            });
+
+            ab.setNegativeButton(R.string.popup_dialog_button_cancel, (dialog, which) -> dialog.dismiss());
+            ab.show();
         } else if (id == R.id.txt_graph_start_date) {
-//            try {
-//                if (mStartDate == null) {
-//                    mStartDate = new Date();
-//                }
-//                mCalendar.setTime(mStartDate);
-//                int nNowYear = mCalendar.get(Calendar.YEAR);
-//                int nNowMonth = mCalendar.get(Calendar.MONTH);
-//                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
-//
-//                DatePickerDialog alert = new DatePickerDialog(FeverHxActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
-//                    mCalendar.set(year, monthOfYear, dayOfMonth);
-//
-//                    if (mCalendar.getTime().compareTo(mEndDate) >= 0) {    // 오늘 지남
-//                        Toast.makeText(FeverHxActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//
-//                    mStartDate = mCalendar.getTime();
-//                    SimpleDateFormat format1 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
-//                    mStrStartDate = format1.format(mStartDate);
-//                    mTxtGraphStartDate.setText(mStrStartDate);
-//
-//                    // 그래프 데이터 가져와서 뿌려야 함.
+            try {
+                if (mStartDate == null) {
+                    mStartDate = new Date();
+                }
+                mCalendar.setTime(mStartDate);
+                int nNowYear = mCalendar.get(Calendar.YEAR);
+                int nNowMonth = mCalendar.get(Calendar.MONTH);
+                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog alert = new DatePickerDialog(TemperGraphActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+                    mCalendar.set(year, monthOfYear, dayOfMonth);
+
+                    if (mCalendar.getTime().compareTo(mEndDate) >= 0) {    // 오늘 지남
+                        Toast.makeText(TemperGraphActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    mStartDate = mCalendar.getTime();
+                    SimpleDateFormat format1 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
+                    mStrStartDate = format1.format(mStartDate);
+                    mTxtGraphStartDate.setText(mStrStartDate);
+
+                    // 그래프 데이터 가져와서 뿌려야 함.
 //                    requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-//                }, nNowYear, nNowMonth, nNowDay);
-//
-//                alert.setCancelable(false);
-//
-//                alert.show();
-//            } catch (Exception e) {
-//                // TODO: handle exception
-//                e.printStackTrace();
-//            }
-//        } else if (id == R.id.txt_graph_end_date) {
-//            try {
-//                if (mEndDate == null) {
-//                    mEndDate = new Date();
-//                }
-//                mCalendar.setTime(mEndDate);
-//                int nNowYear = mCalendar.get(Calendar.YEAR);
-//                int nNowMonth = mCalendar.get(Calendar.MONTH);
-//                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
-//
-//                DatePickerDialog alert = new DatePickerDialog(FeverHxActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
-//                    mCalendar.set(year, monthOfYear, dayOfMonth);
-//
-//                    if (mStartDate.compareTo(mCalendar.getTime()) >= 0) {  // 오늘 지남
-//                        Toast.makeText(FeverHxActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//
-//                    mEndDate = mCalendar.getTime();
-//                    SimpleDateFormat format12 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
-//                    mStrStartDate = format12.format(mEndDate);
-//                    mTxtGraphEndDate.setText(mStrEndDate);
-//
-//                    // 그래프 데이터 가져와서 뿌려야 함.
+                    getData();
+                }, nNowYear, nNowMonth, nNowDay);
+
+                alert.setCancelable(false);
+
+                alert.show();
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        } else if (id == R.id.txt_graph_end_date) {
+            try {
+                if (mEndDate == null) {
+                    mEndDate = new Date();
+                }
+                mCalendar.setTime(mEndDate);
+                int nNowYear = mCalendar.get(Calendar.YEAR);
+                int nNowMonth = mCalendar.get(Calendar.MONTH);
+                int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog alert = new DatePickerDialog(TemperGraphActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+                    mCalendar.set(year, monthOfYear, dayOfMonth);
+
+                    if (mStartDate.compareTo(mCalendar.getTime()) >= 0) {  // 오늘 지남
+                        Toast.makeText(TemperGraphActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    mEndDate = mCalendar.getTime();
+                    SimpleDateFormat format12 = new SimpleDateFormat(CommonData.PATTERN_DATE_KR);
+                    mStrStartDate = format12.format(mEndDate);
+                    mTxtGraphEndDate.setText(mStrEndDate);
+
+                    // 그래프 데이터 가져와서 뿌려야 함.
 //                    requestFeverRecordApi(MainActivity.mChildMenuItem.get(MainActivity.mChildChoiceIndex).getmChlSn());
-//                }, nNowYear, nNowMonth, nNowDay);
-//
-//                alert.setCancelable(false);
-//
-//                alert.show();
-//            } catch (Exception e) {
-//                // TODO: handle exception
-//                e.printStackTrace();
-//            }
+                    getData();
+                }, nNowYear, nNowMonth, nNowDay);
+
+                alert.setCancelable(false);
+
+                alert.show();
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
         } else if (id == R.id.btn_check_help) {//                if(mNoShowHelp){    // 참 -  즉 체크 돼있는 상태에서 누를 경우
 //                    mBtnCheckHelp.setImageResource(R.drawable.btn_close_yellow1);
 //                    mNoShowHelp = false;
@@ -373,47 +341,144 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
 //                    mBtnCheckHelp.setImageResource(R.drawable.btn_close_yellow2);
 //                    mNoShowHelp = true;
 //                }
-            CommonData.getInstance(this).setFeverTimeLineHelp(true);
+            CommonData.getInstance(TemperGraphActivity.this).setFeverTimeLineHelp(true);
             mHelpLay.setVisibility(View.GONE);
-        } else if (id == R.id.btn_help_close) {//                CommonData.getInstance(this).setFeverTimeLineHelp(mNoShowHelp);
+        } else if (id == R.id.btn_help_close) {//                CommonData.getInstance().setFeverTimeLineHelp(mNoShowHelp);
             mHelpLay.setVisibility(View.GONE);
         }
     }
 
 
-    public void setDate(){
+    /**
+     * 날자 계산 후 조회
+     */
+    protected void getData() {
+//        long startTime = mTimeClass.getStartTime();
+//        long endTime = mTimeClass.getEndTime();
+        long startTime = getTimeInMillis(mTxtGraphStartDate.getText().toString());
+        long endTime = getTimeInMillis(mTxtGraphEndDate.getText().toString());
+
+//        mTemperChart.getBarChart().setDrawMarkers(false); // 데이터 변경 될때 마커뷰 사라지게 하기
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat yearSdf = new SimpleDateFormat("yyyy");
+
+        String startDate = sdf.format(startTime);
+        String endDate = sdf.format(endTime);
+
+//        if (mTimeClass.getPeriodType() == TypeDataSet.Period.PERIOD_DAY) {
+//            mDateTv.setText(startDate);
+//        } else if (mTimeClass.getPeriodType() == TypeDataSet.Period.PERIOD_YEAR) {
+//            mDateTv.setText(yearSdf.format(startTime));
+//        } else {
+//            mDateTv.setText(startDate + " ~ " + endDate);
+//        }
+
+        Tr_FeverList.RequestData requestData = new Tr_FeverList.RequestData();
+        requestData.startdate = startDate;
+        requestData.enddate = endDate;
+
+        getData(Tr_FeverList.class, requestData, (isSuccess, message, data) -> {
+            mArrFeverList.clear();
+
+            if (data instanceof Tr_FeverList) {
+                Tr_FeverList recv = (Tr_FeverList) data;
+                if (recv.isSuccess(recv.resultcode)) {
+                    Collections.sort(recv.datas, new TemperCompare());  // 날자역순으로 정렬(최종날자가
+
+                    for (int i = 0; i < recv.datas.size(); i++) {
+                        Tr_FeverList.Data feverData = (Tr_FeverList.Data) recv.datas.get(i);
+                        FeverItem item = new FeverItem();
+//                        item.setmFeverSn(feverData.idx);
+                        item.setmInputDe(feverData.input_de);
+                        item.setmInputFever(feverData.input_fever);
+
+                        mArrFeverList.add(item);
+                    }
+
+                    updateGraph();
+
+//                    makeLogItem(recv.datas);
+
+
+//                    int maxX = makeLogItem(recv.datas);     //mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
+//                    mTemperChart.setXvalMinMax(0, recv.datas.size() + 1, recv.datas.size() + 3);
+//                    List<BarEntry> temperYVals = new ArrayList<>();
+//                    for (Tr_FeverList.Data temperData : recv.datas) {
+//                        float idx = StringUtil.getFloatVal(temperData.idx);
+//                        float input_fever = StringUtil.getFloatVal(temperData.input_fever);
+//                        temperYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
+//                    }
+//
+//                    TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
+//                    mTemperChart.setXValueFormat(formatter);
+//                    mTemperChart.setData(temperYVals, mTimeClass);
+//
+//
+//                    mTemperChart.invalidate();
+                } else {
+                    CDialog.showDlg(TemperGraphActivity.this, "알림", "데이터 수신 실패");
+                }
+            } else {
+                CDialog.showDlg(TemperGraphActivity.this, "알림", "데이터 수신 실패");
+            }
+        });
+    }
+
+    private long getTimeInMillis(String text) {
+        text = StringUtil.getIntString(text);
+        int year = StringUtil.getIntger(text.substring(0, 4));
+        int month = StringUtil.getIntger(text.substring(4, 6));
+        int day = StringUtil.getIntger(text.substring(6, 8));
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, month - 1);
+        cal.set(Calendar.DAY_OF_MONTH, day);
+
+        return cal.getTimeInMillis();
+    }
+
+
+    class TemperCompare implements Comparator<Tr_FeverList.Data> {
+        @Override
+        public int compare(Tr_FeverList.Data data, Tr_FeverList.Data t1) {
+            return t1.input_de.compareTo(data.input_de);
+        }
+    }
+
+
+    public void setDate() {
         cntDay = Util.sumDayCount(mStartDate, mEndDate);
 
-        if( mStrStartDate.equals(mStrEndDate) ){
+        if (mStrStartDate.equals(mStrEndDate)) {
             arrXDate = new String[1440];
-            for(int i = 0; i < arrXDate.length; i++){
+            for (int i = 0; i < arrXDate.length; i++) {
                 int h = i / 60;
                 int m = i % 60;
                 arrXDate[i] = String.format("%02d:%02d", h, m);
             }
-        }else{
-            arrXDate = new String[cntDay*24];
+        } else {
+            arrXDate = new String[cntDay * 24];
             arrDateSet = new String[cntDay];
 
             SimpleDateFormat dateFormat = new SimpleDateFormat(CommonData.PATTERN_DATE_2);
 
             mCalendar.setTime(mStartDate);
             arrDateSet[0] = dateFormat.format(mCalendar.getTime());
-            for(int i = 1; i < cntDay; i++){
+            for (int i = 1; i < cntDay; i++) {
                 mCalendar.add(Calendar.DATE, 1);
                 arrDateSet[i] = dateFormat.format(mCalendar.getTime());
             }
 
-            for(int i = 0; i < arrXDate.length; i++){
+            for (int i = 0; i < arrXDate.length; i++) {
                 int day = i / 24;
                 int hour = i % 24;
-                arrXDate[i] = arrDateSet[day]+"\n"+hour+getString(R.string.hour_2);
+                arrXDate[i] = arrDateSet[day] + "\n" + hour + getString(R.string.hour_2);
             }
         }
     }
 
-    public void initGraph(){
-//        Description desc = new Description();
+    public void initGraph() {
         mHistoryGraph.setDescription("");
         mHistoryGraph.setBackgroundColor(Color.TRANSPARENT);
         mHistoryGraph.setDrawGridBackground(false);
@@ -466,12 +531,11 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     }
 
-    public void updateGraph(){
+    public void updateGraph() {
 
         setDate();
-
-//        CombinedData data = new CombinedData(arrXDate);
-        CombinedData data = new CombinedData();
+        CombinedData data = new CombinedData(arrXDate);
+//        CombinedData data = new CombinedData();
         data.setData(ScatterData());
 
         mHistoryGraph.setData(data);
@@ -480,20 +544,23 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
 
     private ScatterData ScatterData() {
 
-        ScatterData d = new ScatterData();
-
+        ScatterData data = new ScatterData();
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(CommonData.PATTERN_DATE_2);
+//        int n = 0;
+//        for (String date : arrXDate) {
+//            entries.add(new Entry(n++, 0));
+//        }
 
-        for(int i = 0; i < mArrFeverList.size(); i++){
+        for (int i = 0; i < mArrFeverList.size(); i++) {
             try {
-                if( mStrStartDate.equals(mStrEndDate) ){
-                    entries.add(new Entry(Float.parseFloat(mArrFeverList.get(i).getmInputFever()), (format.parse(mArrFeverList.get(i).getmInputDe()).getHours() * 60) + format.parse(mArrFeverList.get(i).getmInputDe()).getMinutes()));
-                }else{
-                    for(int x = 0; x < arrDateSet.length; x++){
-                        if( arrDateSet[x].equals( dateFormat.format(format.parse(mArrFeverList.get(i).getmInputDe()))))
-                            entries.add(new Entry(Float.parseFloat(mArrFeverList.get(i).getmInputFever()), ((x*24) + format.parse(mArrFeverList.get(i).getmInputDe()).getHours() )));
+                if (mStrStartDate.equals(mStrEndDate)) {
+                    entries.add(new Entry(Float.parseFloat(mArrFeverList.get(i).getmInputFever()), (mFormat.parse(mArrFeverList.get(i).getmInputDe()).getHours() * 60) + mFormat.parse(mArrFeverList.get(i).getmInputDe()).getMinutes()));
+                } else {
+                    for (int x = 0; x < arrDateSet.length; x++) {
+                        if (arrDateSet[x].equals(dateFormat.format(mFormat.parse(mArrFeverList.get(i).getmInputDe()))))
+                            entries.add(new Entry(Float.parseFloat(mArrFeverList.get(i).getmInputFever()), ((x * 24) + mFormat.parse(mArrFeverList.get(i).getmInputDe()).getHours())));
                     }
                 }
 
@@ -502,7 +569,7 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
             }
         }
 
-        ScatterDataSet set = new ScatterDataSet(entries, getString(R.string.baby_temp));
+        ScatterDataSet set = new ScatterDataSet(entries, null);
 
         set.setColor(getResources().getColor(R.color.h_orange));
         set.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
@@ -511,59 +578,59 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
         set.setDrawValues(false);
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        d.addDataSet(set);
+        data.addDataSet(set);
 
-        return d;
+        return data;
     }
 
     /**
      * 전체 데이터 가져오기
      */
-    public void requestAllListApi(String chl_sn, boolean filter_1, boolean filter_2, boolean filter_3, boolean filter_4, boolean filter_5, boolean filter_6, boolean filter_7) {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        try {
-            JSONObject object = new JSONObject();
-            object.put(CommonData.JSON_API_CODE_F, CommonData.JSON_APINM_HA001);    //  api 코드명
-            object.put(CommonData.JSON_CHL_SN_F, chl_sn);               //  자녀키값
-            object.put(CommonData.JSON_FILTER_1_F, String.valueOf(filter_1 ? 0:1));           //  체온 여부
-            object.put(CommonData.JSON_FILTER_2_F, String.valueOf(filter_2 ? 0:1));           //  해열제 여부
-            object.put(CommonData.JSON_FILTER_3_F, String.valueOf(filter_3 ? 0:1));           //  결과 레포트 여부
-            object.put(CommonData.JSON_FILTER_4_F, String.valueOf(filter_4 ? 0:1));           //  증상 여부
-            object.put(CommonData.JSON_FILTER_5_F, String.valueOf(filter_5 ? 0:1));           //  진단 여부
-            object.put(CommonData.JSON_FILTER_6_F, String.valueOf(filter_6 ? 0:1));           //  예방접종 여부
-            object.put(CommonData.JSON_FILTER_7_F, String.valueOf(filter_7 ? 0:1));           //  메모 여부
-
-            params.add(new BasicNameValuePair(CommonData.JSON_STRJSON, object.toString()));
-
-            RequestApi.requestApi(FeverHxActivity.this, NetworkConst.NET_ALL_LIST, NetworkConst.getInstance().getFeverDomain(), networkListener, params, getProgressLayout());
-        } catch (Exception e) {
-            GLog.i(e.toString(), "dd");
-        }
-    }
+//    public void requestAllListApi(String chl_sn, boolean filter_1, boolean filter_2, boolean filter_3, boolean filter_4, boolean filter_5, boolean filter_6, boolean filter_7) {
+//        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//        try {
+//            JSONObject object = new JSONObject();
+//            object.put(CommonData.JSON_API_CODE_F, CommonData.JSON_APINM_HA001);    //  api 코드명
+//            object.put(CommonData.JSON_CHL_SN_F, chl_sn);               //  자녀키값
+//            object.put(CommonData.JSON_FILTER_1_F, String.valueOf(filter_1 ? 0 : 1));           //  체온 여부
+//            object.put(CommonData.JSON_FILTER_2_F, String.valueOf(filter_2 ? 0 : 1));           //  해열제 여부
+//            object.put(CommonData.JSON_FILTER_3_F, String.valueOf(filter_3 ? 0 : 1));           //  결과 레포트 여부
+//            object.put(CommonData.JSON_FILTER_4_F, String.valueOf(filter_4 ? 0 : 1));           //  증상 여부
+//            object.put(CommonData.JSON_FILTER_5_F, String.valueOf(filter_5 ? 0 : 1));           //  진단 여부
+//            object.put(CommonData.JSON_FILTER_6_F, String.valueOf(filter_6 ? 0 : 1));           //  예방접종 여부
+//            object.put(CommonData.JSON_FILTER_7_F, String.valueOf(filter_7 ? 0 : 1));           //  메모 여부
+//
+//            params.add(new BasicNameValuePair(CommonData.JSON_STRJSON, object.toString()));
+//
+//            RequestApi.requestApi(TemperGraphActivity.this, NetworkConst.NET_ALL_LIST, NetworkConst.getInstance().getFeverDomain(), networkListener, params, getProgressLayout());
+//        } catch (Exception e) {
+//            GLog.i(e.toString(), "dd");
+//        }
+//    }
 
     /**
      * 체온 리스트 가져오기
      */
-    public void requestFeverRecordApi(String chl_sn) {
-//        GLog.i("requestAppInfo");
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        // {   "api_code": "chldrn_growth_list",   "insures_code": "106", "mber_sn": "10035"  ,"chl_sn": "1000" ,"pageNumber": "1" , "growth_typ": "1"}
-        try {
-            SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE);
-
-            JSONObject object = new JSONObject();
-            object.put(CommonData.JSON_API_CODE_F, CommonData.JSON_APINM_HF003);    //  api 코드명
-            object.put(CommonData.JSON_CHL_SN_F, chl_sn);               //  자녀키값
-            object.put(CommonData.JSON_START_DE_F, format.format(mStartDate));
-            object.put(CommonData.JSON_END_DE_F, format.format(mEndDate));
-
-            params.add(new BasicNameValuePair(CommonData.JSON_STRJSON, object.toString()));
-
-            RequestApi.requestApi(this, NetworkConst.NET_FEVER_LIST, NetworkConst.getInstance().getFeverDomain(), networkListener, params, getProgressLayout());
-        } catch (Exception e) {
-            GLog.i(e.toString(), "dd");
-        }
-    }
+//    public void requestFeverRecordApi(String chl_sn) {
+////        GLog.i("requestAppInfo");
+//        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//        // {   "api_code": "chldrn_growth_list",   "insures_code": "106", "mber_sn": "10035"  ,"chl_sn": "1000" ,"pageNumber": "1" , "growth_typ": "1"}
+//        try {
+//            SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE);
+//
+//            JSONObject object = new JSONObject();
+//            object.put(CommonData.JSON_API_CODE_F, CommonData.JSON_APINM_HF003);    //  api 코드명
+//            object.put(CommonData.JSON_CHL_SN_F, chl_sn);               //  자녀키값
+//            object.put(CommonData.JSON_START_DE_F, format.format(mStartDate));
+//            object.put(CommonData.JSON_END_DE_F, format.format(mEndDate));
+//
+//            params.add(new BasicNameValuePair(CommonData.JSON_STRJSON, object.toString()));
+//
+//            RequestApi.requestApi(this, NetworkConst.NET_FEVER_LIST, NetworkConst.getInstance().getFeverDomain(), networkListener, params, getProgressLayout());
+//        } catch (Exception e) {
+//            GLog.i(e.toString(), "dd");
+//        }
+//    }
 
 
     /**
@@ -575,7 +642,7 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
         public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
             // TODO Auto-generated method stub
 
-            switch ( type ) {
+            switch (type) {
                 case NetworkConst.NET_ALL_LIST:        // 모든 정보 리스트 가져오기
 
                     switch (resultCode) {
@@ -596,9 +663,9 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
                                     firstDate.setmInputDe(tumpDate);
                                     mAllDataItems.add(firstDate);
 
-                                    for(int i = 0; i < allArr.length(); i++){
+                                    for (int i = 0; i < allArr.length(); i++) {
 
-                                        if(tumpDate.equals(allArr.getJSONObject(i).getString(CommonData.JSON_INPUT_DE_F).substring(0, 10))){
+                                        if (tumpDate.equals(allArr.getJSONObject(i).getString(CommonData.JSON_INPUT_DE_F).substring(0, 10))) {
                                             AllDataItem item = new AllDataItem();
                                             item.setmDataSn(allArr.getJSONObject(i).getString(CommonData.JSON_DATA_SN_F));
                                             item.setmFilter(allArr.getJSONObject(i).getString(CommonData.JSON_FILTER_F));
@@ -616,7 +683,7 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
                                             item.setmInputMemo(allArr.getJSONObject(i).getString(CommonData.JSON_INPUT_MEMO_F));
 
                                             mAllDataItems.add(item);
-                                        }else{
+                                        } else {
                                             AllDataItem dateLay = new AllDataItem();
                                             dateLay.setmIsDate(true);
                                             dateLay.setmInputDe(allArr.getJSONObject(i).getString(CommonData.JSON_INPUT_DE_F).substring(0, 10));
@@ -645,10 +712,8 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
                                     }
                                 }
 
-                                mAdapter.notifyDataSetChanged();
+//                                mAdapter.notifyDataSetChanged();
 
-                                mLinearTabGraph.setVisibility(View.GONE);
-                                mLinearTabTimeline.setVisibility(View.VISIBLE);
                             } catch (Exception e) {
                                 GLog.e(e.toString());
                             }
@@ -680,7 +745,7 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
                                     JSONArray feverArr = resultData.getJSONArray(CommonData.JSON_DATA_F);
                                     // 데이터가 있을 시
                                     if (feverArr.length() > 0) {
-                                        for(int i = 0; i < feverArr.length(); i++){
+                                        for (int i = 0; i < feverArr.length(); i++) {
                                             JSONObject object = feverArr.getJSONObject(i);
 
                                             FeverItem item = new FeverItem();
@@ -715,9 +780,6 @@ public class FeverHxActivity extends BackBaseActivity implements View.OnClickLis
                     }
 
                     updateGraph();
-
-                    mLinearTabGraph.setVisibility(View.VISIBLE);
-                    mLinearTabTimeline.setVisibility(View.GONE);
 
                     break;
             }

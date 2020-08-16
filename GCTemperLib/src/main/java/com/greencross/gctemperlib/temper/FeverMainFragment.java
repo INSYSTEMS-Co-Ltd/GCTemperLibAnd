@@ -58,14 +58,14 @@ public class FeverMainFragment extends BaseFragment implements View.OnClickListe
         setEvent();
 
 
-
-        Intent intent =  getActivity().getIntent();
-        int chl_sn = intent.getIntExtra("chl_sn", 0);
-        if(chl_sn != 0){
-            intent.putExtra("chl_sn", 0);
-            getActivity().startActivity(new Intent(getContext(), FeverInputActivity.class));
-            Util.BackAnimationStart(getActivity());
-        }
+//
+//        Intent intent =  getActivity().getIntent();
+//        int chl_sn = intent.getIntExtra("chl_sn", 0);
+//        if(chl_sn != 0){
+//            intent.putExtra("chl_sn", 0);
+//            getActivity().startActivity(new Intent(getContext(), FeverInputActivity.class));
+//            Util.BackAnimationStart(getActivity());
+//        }
 
         return view;
     }

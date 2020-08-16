@@ -20,12 +20,14 @@ import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.PermissionUtil;
+import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
 import com.greencross.gctemperlib.greencare.util.NetworkUtil;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 import com.greencross.gctemperlib.util.PermissionUtils;
 import com.greencross.gctemperlib.util.Util;
 
@@ -238,6 +240,36 @@ public class BackBaseActivity extends BaseActivity {
     }
 
     /**
+     * 재 로그인
+     */
+    protected void reLogin() {
+        // 최초 인증, 고객번호 저장
+        Tr_Login.RequestData requestData = new Tr_Login.RequestData();
+        requestData.cust_id = SharedPref.getInstance(BackBaseActivity.this).getPreferences(SharedPref.PREF_CUST_NO);
+        requestData.devicetoken = SharedPref.getInstance(BackBaseActivity.this).getPreferences(SharedPref.PREF_PUSH_TOKEN);
+        getData(Tr_Login.class, requestData, new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                if (data instanceof Tr_Login) {
+                    Tr_Login recv = (Tr_Login) data;
+                    boolean isLogin = recv.isSuccess(recv.resultcode);
+                    if (isLogin) {
+                        SharedPref.getInstance(BackBaseActivity.this).saveLoginInfo(recv);
+                        reLoginComplete();
+//                        SharedPref.getInstance(BackBaseActivity.this).saveLoginInfo(recv);
+//                        SharedPref.getInstance(BackBaseActivity.this).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호 저장
+                    }
+//                    iGCResult.onResult(isLogin, recv.message, recv);
+                } else {
+//                    iGCResult.onResult(isSuccess, message, data);
+                }
+            }
+        });
+    }
+
+    protected void reLoginComplete() {};
+
+    /**
      * 위치권한 설정 후
      *
      * @param requestCode
@@ -261,6 +293,13 @@ public class BackBaseActivity extends BaseActivity {
 //                }
 //            }
 //        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        reLogin();
     }
 
     @Override

@@ -200,7 +200,6 @@ public class TemperMainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(mOnKeyBackPressedListener != null){
             mOnKeyBackPressedListener.onBack();
-            switchActionBarTitle(getString(R.string.title_fever));
         }else{
             finish();
         }

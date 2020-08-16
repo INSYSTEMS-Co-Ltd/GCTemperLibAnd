@@ -1,6 +1,8 @@
 package com.greencross.gctemperlib.hana;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,10 @@ import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.R;
+import com.greencross.gctemperlib.TemperActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.util.SharedPref;
+import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 
 public class HealthCareServiceFragment extends BaseFragment {
 
@@ -41,17 +46,35 @@ public class HealthCareServiceFragment extends BaseFragment {
         view.findViewById(R.id.hearthcare_call_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "하나 고객전용 전화번호 요청 중", Toast.LENGTH_SHORT).show();
+                call();
             }
         });
         
         view.findViewById(R.id.hearthcare_call_btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "하나 고객전용 전화번호 요청 중", Toast.LENGTH_SHORT).show();
+                call();
             }
         });
-        
+    }
+
+    private void call() {
+        Tr_Login login = SharedPref.getInstance(getContext()).getLoginInfo();
+        if ("1000".equals(login.resultcode)) {
+            CDialog dlg = CDialog.showDlg(getContext(), R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
+            dlg.setOkButton(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String tel = "tel:" + getString(R.string.health_call_center);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse(tel));
+                    startActivity(intent);
+                }
+            });
+            dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
+        } else {
+            CDialog.showDlg(getContext(), R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
+        }
     }
 
 

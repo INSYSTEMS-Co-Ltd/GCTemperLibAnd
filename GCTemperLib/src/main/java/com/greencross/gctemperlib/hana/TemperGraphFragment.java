@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -27,31 +26,38 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.charts.ScatterChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.ScatterData;
+import com.github.mikephil.charting.data.ScatterDataSet;
 import com.greencross.gctemperlib.DummyActivity;
+import com.greencross.gctemperlib.collection.FeverItem;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.BaseFragment;
-import com.greencross.gctemperlib.greencare.base.value.TypeDataSet;
-import com.greencross.gctemperlib.greencare.charting.data.BarEntry;
 import com.greencross.gctemperlib.greencare.chartview.valueFormat.AxisYValueFormatter;
-import com.greencross.gctemperlib.greencare.chartview.temper.TemperChartView;
-import com.greencross.gctemperlib.greencare.chartview.valueFormat.TemperChartFormatter;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_FeverList;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
-import com.greencross.gctemperlib.greencare.util.ChartTimeUtil;
 import com.greencross.gctemperlib.greencare.util.DisplayUtil;
-import com.greencross.gctemperlib.greencare.util.Logger;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.R;
+import com.greencross.gctemperlib.util.Util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -68,11 +74,11 @@ public class TemperGraphFragment extends BaseFragment {
 
     public CommonData commonData = CommonData.getInstance(getContext());
 
-    public ChartTimeUtil mTimeClass;
+    //    public ChartTimeUtil mTimeClass;
     private TextView mDateTv;
     private TextView mTemperDayTv;
 
-    protected TemperChartView mTemperChart;
+//    protected TemperChartView mTemperChart;
 //    private TemperSwipeListView mSwipeListView;
 
     protected LinearLayout layout_temper_graph;              // 그래프 레이아웃
@@ -90,10 +96,12 @@ public class TemperGraphFragment extends BaseFragment {
     private LinearLayout mChartFrameLayout;
     private ImageView mChartCloseBtn, mChartZoomBtn;
 
-    private TextView preCalendarTv;
-    private TextView nextCalendarTv;
+    private TextView mTxtGraphStartDate;
+    private TextView mTxtGraphEndDate;
 
     private LinearLayout mLogLayout;
+    private CombinedChart mHistoryGraph;
+
 
     public static Fragment newInstance() {
         TemperGraphFragment fragment = new TemperGraphFragment();
@@ -105,6 +113,9 @@ public class TemperGraphFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.temper_graph_fragment, container, false);
+        if (getActivity() instanceof DummyActivity) {
+            ((DummyActivity) getActivity()).setTitle(getString(R.string.temper_graph));
+        }
         return view;
     }
 
@@ -112,9 +123,7 @@ public class TemperGraphFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (getActivity() instanceof DummyActivity) {
-            ((DummyActivity) getActivity()).setTitle(getString(R.string.temper_graph));
-        }
+        mHistoryGraph = (CombinedChart) view.findViewById(R.id.history_graph);
 
         mDateTv = (TextView) view.findViewById(R.id.period_date_textview);
         mTemperDayTv = (TextView) view.findViewById(R.id.textView18);
@@ -128,10 +137,10 @@ public class TemperGraphFragment extends BaseFragment {
         view.findViewById(R.id.pre_btn).setOnClickListener(mClickListener);
         view.findViewById(R.id.next_btn).setOnClickListener(mClickListener);
 
-        preCalendarTv = view.findViewById(R.id.graph_pre_textview);
-        nextCalendarTv = view.findViewById(R.id.graph_next_textview);
-        preCalendarTv.setOnClickListener(mClickListener);
-        nextCalendarTv.setOnClickListener(mClickListener);
+        mTxtGraphStartDate = view.findViewById(R.id.graph_pre_textview);
+        mTxtGraphEndDate = view.findViewById(R.id.graph_next_textview);
+        mTxtGraphStartDate.setOnClickListener(mClickListener);
+        mTxtGraphEndDate.setOnClickListener(mClickListener);
 
         mLogLayout = (LinearLayout) view.findViewById(R.id.temper_log_layout);
 
@@ -141,25 +150,25 @@ public class TemperGraphFragment extends BaseFragment {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         String today = CDateUtil.getToday_temper_graph();
-        preCalendarTv.setText(today);
-        nextCalendarTv.setText(today);
+        mTxtGraphStartDate.setText(today);
+        mTxtGraphEndDate.setText(today);
 
-        mTimeClass = new ChartTimeUtil();
-        mTemperChart = new TemperChartView(getContext(), view);
-
-        TypeDataSet.Period periodType = mTimeClass.getPeriodType();
-        mTimeClass.clearTime();         // 날자 초기화
+//        mTimeClass = new ChartTimeUtil();
+//        mTemperChart = new TemperChartView(getContext(), view);
+//
+//        TypeDataSet.Period periodType = mTimeClass.getPeriodType();
+//        mTimeClass.clearTime();         // 날자 초기화
 
 //        xFormatter = new AxisValueFormatter2(periodType);
         yFormatter = new AxisYValueFormatter();
 
-        mTemperChart.setYValueFormat(yFormatter);
-//        mTemperChart.setXValueFormat(xFormatter);
-        mTemperChart.getXAxis().setTextSize(DisplayUtil.getPxToDp(getContext(), 6));
+//        mTemperChart.setYValueFormat(yFormatter);
+////        mTemperChart.setXValueFormat(xFormatter);
+//        mTemperChart.getXAxis().setTextSize(DisplayUtil.getPxToDp(getContext(), 6));
 //        mSwipeListView = new TemperSwipeListView(view, TemperGraphFragment.this);
 
 
-        setNextButtonVisible();
+//        setNextButtonVisible();
         // 차트 전체 화면 처리
         mContentScrollView = view.findViewById(R.id.view_scrollview);
         mChartFrameLayout = view.findViewById(R.id.chart_frame_layout);
@@ -171,44 +180,55 @@ public class TemperGraphFragment extends BaseFragment {
 
         // Y라벨 값 설정
         int yLabelCnt = (int) (43 - 31);
-        mTemperChart.setYvalMinMax(31, 43, yLabelCnt); // 최소값 최대값이 없으면 임의로 넣어줌
+//        mTemperChart.setYvalMinMax(31, 43, yLabelCnt); // 최소값 최대값이 없으면 임의로 넣어줌
         setVisibleOrientationLayout();
         //click 저장
         OnClickListener ClickListener = new OnClickListener(mClickListener, view, getContext());
 
-        initChart();
+        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE_DOT);
+        mCalendar = new GregorianCalendar();
+        mStartDate = new Date();
+        mEndDate = new Date();
+        mStrStartDate = format.format(mStartDate);
+        mStrEndDate = format.format(mEndDate);
+        mTxtGraphStartDate.setText(mStrStartDate);
+        mTxtGraphEndDate.setText(mStrEndDate);
+//        initChart();
+        initGraph();
     }
 
-    /**
-     * 차트 초기 로딩 화면 없애기
-     */
-    private void initChart() {
-        mTemperChart.setXvalMinMax(0, 0, 10);
-        List<BarEntry> temperYVals = new ArrayList<>();
-        temperYVals.add(new BarEntry(0, 0));
-
-        TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
-        mTemperChart.setXValueFormat(formatter);
-        mTemperChart.setData(temperYVals, mTimeClass);
-        mTemperChart.invalidate();
-    }
+//    /**
+//     * 차트 초기 로딩 화면 없애기
+//     */
+//    private void initChart() {
+//        mTemperChart.setXvalMinMax(0, 0, 10);
+//        List<BarEntry> temperYVals = new ArrayList<>();
+//        temperYVals.add(new BarEntry(0, 0));
+//
+//        TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
+//        mTemperChart.setXValueFormat(formatter);
+//        mTemperChart.setData(temperYVals, mTimeClass);
+//        mTemperChart.invalidate();
+//    }
 
     View.OnClickListener mClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             int vId = v.getId();
 
-            if (vId == R.id.pre_btn) {
-                mTimeClass.calTime(-1);
-                getData();
-            } else if (vId == R.id.next_btn) {
-                // 초기값 일때 다음날 데이터는 없으므로 리턴
-                if (mTimeClass.getCalTime() == 0)
-                    return;
-
-                mTimeClass.calTime(1);
-                getData();
-            } else if (vId == R.id.graph_pre_textview) {
+//            if (vId == R.id.pre_btn) {
+////                mTimeClass.calTime(-1);
+//                getData();
+//            } else if (vId == R.id.next_btn) {
+//                // 초기값 일때 다음날 데이터는 없으므로 리턴
+////                if (mTimeClass.getCalTime() == 0)
+////                    return;
+////                mTimeClass.calTime(1);
+//                
+//                
+//                getData();
+//            } else 
+            if (vId == R.id.graph_pre_textview) {
                 showCalendar((TextView) v);
             } else if (vId == R.id.graph_next_textview) {
                 showCalendar((TextView) v);
@@ -219,7 +239,7 @@ public class TemperGraphFragment extends BaseFragment {
             } else if (vId == R.id.chart_close_btn) {
                 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
-            setNextButtonVisible();
+//            setNextButtonVisible();
         }
     };
 
@@ -229,13 +249,15 @@ public class TemperGraphFragment extends BaseFragment {
     private int cal_day;
     private int cal_hour;
     private int cal_min;
+
     private void showCalendar(TextView tv) {
         GregorianCalendar calendar = new GregorianCalendar();
         String date = tv.getText().toString();
         date = StringUtil.getIntString(date);
-        int year = StringUtil.getIntger(date.substring(0,4));   //calendar.get(Calendar.YEAR);
-        int month = StringUtil.getIntger(date.substring(4,6)) -1;  // calendar.get(Calendar.MONTH)-1;
-        int day = StringUtil.getIntger(date.substring(6,8));   calendar.get(Calendar.DAY_OF_MONTH);
+        int year = StringUtil.getIntger(date.substring(0, 4));   //calendar.get(Calendar.YEAR);
+        int month = StringUtil.getIntger(date.substring(4, 6)) - 1;  // calendar.get(Calendar.MONTH)-1;
+        int day = StringUtil.getIntger(date.substring(6, 8));
+        calendar.get(Calendar.DAY_OF_MONTH);
 
         new CDatePicker(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -250,6 +272,157 @@ public class TemperGraphFragment extends BaseFragment {
                 }
             }
         }, year, month, day, false).show();
+    }
+
+
+    public void initGraph() {
+//        mHistoryGraph.setDescription("");
+        mHistoryGraph.setDescription(null);
+        mHistoryGraph.setBackgroundColor(Color.TRANSPARENT);
+        mHistoryGraph.setDrawGridBackground(false);
+        mHistoryGraph.setDrawBarShadow(false);
+
+        /*// draw bars behind lines
+        mHistoryGraph.setDrawOrder(new CombinedChart.DrawOrder[] {
+                CombinedChart.DrawOrder.LINE, CombinedChart.DrawOrder.SCATTER
+        });*/
+
+        // enable touch gestures
+        mHistoryGraph.setTouchEnabled(true);
+        // enable scaling and dragging
+        mHistoryGraph.setScaleEnabled(true);
+        mHistoryGraph.setDragEnabled(true);
+        mHistoryGraph.setScaleYEnabled(false);
+
+        mHistoryGraph.setDragDecelerationFrictionCoef(0.2f);
+
+        // enable scaling and dragging
+        mHistoryGraph.setHighlightPerDragEnabled(false);
+
+        mHistoryGraph.setPinchZoom(false);
+
+        Legend l = mHistoryGraph.getLegend();
+        l.setTextColor(Color.GRAY);
+        l.setForm(Legend.LegendForm.CIRCLE);
+//        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);  // XXX
+
+        YAxis rightAxis = mHistoryGraph.getAxisRight();
+        rightAxis.setEnabled(false);
+
+        YAxis leftAxis = mHistoryGraph.getAxisLeft();
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setGridColor(Color.GRAY);
+        leftAxis.setAxisLineColor(Color.GRAY);
+        leftAxis.setTextColor(Color.GRAY);
+//        leftAxis.setAxisMaximum(42f);
+//        leftAxis.setAxisMinimum(34f); // this replaces setStartAtZero(true)
+        leftAxis.setAxisMaxValue(42);
+        leftAxis.setAxisMinValue(34);
+        leftAxis.setDrawZeroLine(false);
+
+        XAxis xAxis = mHistoryGraph.getXAxis();
+        xAxis.setAxisLineColor(Color.GRAY);
+        xAxis.setGridColor(Color.GRAY);
+        xAxis.setTextColor(Color.GRAY);
+        xAxis.setDrawGridLines(true);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+    }
+
+    private String[] arrXDate;
+    private int cntDay = 0;
+    private Date mStartDate;
+    private Date mEndDate;
+    private String mStrStartDate;
+    private String mStrEndDate;
+    private String[] arrDateSet;
+    private GregorianCalendar mCalendar;
+    private SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATETIME_S);
+    private List<FeverItem> mArrFeverList = new ArrayList<>();
+
+//    private List<AllDataItem> mAllDataItems = new ArrayList<>();
+
+    public void updateGraph() {
+        setDate();
+//        CombinedData data = new CombinedData(arrXDate);
+        CombinedData data = new CombinedData();
+        data.setData(setScatterData());
+
+        mHistoryGraph.setData(data);
+        mHistoryGraph.invalidate();
+    }
+
+    public void setDate() {
+        cntDay = Util.sumDayCount(mStartDate, mEndDate);
+
+        if (mStrStartDate.equals(mStrEndDate)) {
+            arrXDate = new String[1440];
+            for (int i = 0; i < arrXDate.length; i++) {
+                int h = i / 60;
+                int m = i % 60;
+                arrXDate[i] = String.format("%02d:%02d", h, m);
+            }
+        } else {
+            arrXDate = new String[cntDay * 24];
+            arrDateSet = new String[cntDay];
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat(CommonData.PATTERN_DATE_2);
+
+            mCalendar.setTime(mStartDate);
+            arrDateSet[0] = dateFormat.format(mCalendar.getTime());
+            for (int i = 1; i < cntDay; i++) {
+                mCalendar.add(Calendar.DATE, 1);
+                arrDateSet[i] = dateFormat.format(mCalendar.getTime());
+            }
+
+            for (int i = 0; i < arrXDate.length; i++) {
+                int day = i / 24;
+                int hour = i % 24;
+                arrXDate[i] = arrDateSet[day] + "\n" + hour + getString(R.string.hour_2);
+            }
+        }
+    }
+
+
+    private ScatterData setScatterData() {
+        ScatterData d = new ScatterData();
+
+        ArrayList<Entry> entries = new ArrayList<Entry>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(CommonData.PATTERN_DATE_2);
+
+        for (int i = 0; i < mArrFeverList.size(); i++) {
+            try {
+                Date inputDe = format.parse(mArrFeverList.get(i).getmInputDe());
+                int Y_Temper = Integer.parseInt(mArrFeverList.get(i).getmInputFever());
+                float X_Time = (format.parse(mArrFeverList.get(i).getmInputDe()).getHours() * 60) + inputDe.getMinutes();
+
+                Log.i(TAG, "ScatterData["+i+"]("+(mStrStartDate.equals(mStrEndDate))+")="+mStrStartDate+", "+mStrEndDate +", xTemper="+Y_Temper+", yTime="+X_Time);
+                if (mStrStartDate.equals(mStrEndDate)) {
+                    entries.add(new Entry(X_Time, Y_Temper));
+                } else {
+                    for (int x = 0; x < arrDateSet.length; x++) {
+                        if (arrDateSet[x].equals(dateFormat.format(inputDe)))
+                            entries.add(new Entry(((x * 24) + inputDe.getHours()), Y_Temper));
+                    }
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        ScatterDataSet set = new ScatterDataSet(entries, null);
+        set.setColor(getResources().getColor(R.color.h_orange));
+        set.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
+        set.setScatterShapeSize(20f);
+        set.setLabel(null);
+//        set.setValueTextSize(9f);
+        set.setDrawValues(false);
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+//
+        d.addDataSet(set);
+
+        return d;
     }
 
 
@@ -321,18 +494,18 @@ public class TemperGraphFragment extends BaseFragment {
         }
     }
 
-    private void setNextButtonVisible() {
-        // 초기값 일때 다음날 데이터는 없으므로 리턴
-        if (mTimeClass.getCalTime() == 0) {
-            imgNext_btn.setVisibility(View.INVISIBLE);
-        } else {
-            imgNext_btn.setVisibility(View.VISIBLE);
-        }
-
-        //임신여부
-        CommonData common = CommonData.getInstance(getContext());
-        String materPregency = common.getbirth_chl_yn(); //임신 중 N, 출산 후 Y
-    }
+//    private void setNextButtonVisible() {
+//        // 초기값 일때 다음날 데이터는 없으므로 리턴
+//        if (mTimeClass.getCalTime() == 0) {
+//            imgNext_btn.setVisibility(View.INVISIBLE);
+//        } else {
+//            imgNext_btn.setVisibility(View.VISIBLE);
+//        }
+//
+//        //임신여부
+//        CommonData common = CommonData.getInstance(getContext());
+//        String materPregency = common.getbirth_chl_yn(); //임신 중 N, 출산 후 Y
+//    }
 
     /**
      * 날자 계산 후 조회
@@ -340,10 +513,10 @@ public class TemperGraphFragment extends BaseFragment {
     protected void getData() {
 //        long startTime = mTimeClass.getStartTime();
 //        long endTime = mTimeClass.getEndTime();
-        long startTime = getTimeInMillis(preCalendarTv.getText().toString());
-        long endTime = getTimeInMillis(nextCalendarTv.getText().toString());
+        long startTime = getTimeInMillis(mTxtGraphStartDate.getText().toString());
+        long endTime = getTimeInMillis(mTxtGraphEndDate.getText().toString());
 
-        mTemperChart.getBarChart().setDrawMarkers(false); // 데이터 변경 될때 마커뷰 사라지게 하기
+//        mTemperChart.getBarChart().setDrawMarkers(false); // 데이터 변경 될때 마커뷰 사라지게 하기
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat yearSdf = new SimpleDateFormat("yyyy");
@@ -367,24 +540,37 @@ public class TemperGraphFragment extends BaseFragment {
             if (data instanceof Tr_FeverList) {
                 Tr_FeverList recv = (Tr_FeverList) data;
                 if (recv.isSuccess(recv.resultcode)) {
+                    mArrFeverList.clear();
+                    for (int i = 0; i < recv.datas.size(); i++) {
+                        Tr_FeverList.Data feverData = (Tr_FeverList.Data) recv.datas.get(i);
+                        FeverItem item = new FeverItem();
+                        item.setmFeverSn(feverData.idx);
+                        item.setmInputDe(feverData.input_de);
+                        item.setmInputFever(feverData.input_fever);
+
+                        mArrFeverList.add(item);
+                    }
+
+                    updateGraph();
                     Collections.sort(recv.datas, new TemperCompare());  // 날자역순으로 정렬(최종날자가
                     makeLogItem(recv.datas);
 
-                    int maxX = makeLogItem(recv.datas);     //mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
-                    mTemperChart.setXvalMinMax(0, recv.datas.size()+1, recv.datas.size()+3);
-                    List<BarEntry> temperYVals = new ArrayList<>();
-                    for (Tr_FeverList.Data temperData : recv.datas) {
-                        float idx = StringUtil.getFloatVal(temperData.idx);
-                        float input_fever = StringUtil.getFloatVal(temperData.input_fever);
-                        temperYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
-                    }
 
-                    TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
-                    mTemperChart.setXValueFormat(formatter);
-                    mTemperChart.setData(temperYVals, mTimeClass);
-
-
-                    mTemperChart.invalidate();
+//                    int maxX = makeLogItem(recv.datas);     //mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
+//                    mTemperChart.setXvalMinMax(0, recv.datas.size() + 1, recv.datas.size() + 3);
+//                    List<BarEntry> temperYVals = new ArrayList<>();
+//                    for (Tr_FeverList.Data temperData : recv.datas) {
+//                        float idx = StringUtil.getFloatVal(temperData.idx);
+//                        float input_fever = StringUtil.getFloatVal(temperData.input_fever);
+//                        temperYVals.add(new BarEntry(temperData.chartXPositon, input_fever));
+//                    }
+//
+//                    TemperChartFormatter formatter = new TemperChartFormatter(mXlabels);
+//                    mTemperChart.setXValueFormat(formatter);
+//                    mTemperChart.setData(temperYVals, mTimeClass);
+//
+//
+//                    mTemperChart.invalidate();
                 } else {
                     CDialog.showDlg(getContext(), "알림", "데이터 수신 실패");
                 }
@@ -396,10 +582,12 @@ public class TemperGraphFragment extends BaseFragment {
 
     /**
      * 하단 로그 화면 만들기
+     *
      * @param datas
      */
     private List<String> mXlabels = new ArrayList<>();
-    private int makeLogItem(List<Tr_FeverList.Data> datas ) {
+
+    private int makeLogItem(List<Tr_FeverList.Data> datas) {
         mLogLayout.removeAllViews();
         int xCount = 0;
         String beforeInputDe = "";
@@ -409,10 +597,10 @@ public class TemperGraphFragment extends BaseFragment {
                 String yyyMMdd = temperData.input_de.substring(0, 10);
                 boolean isAddDateLayout = yyyMMdd.equals(beforeInputDe) == false;
                 if (isAddDateLayout) {
-                    xCount ++;
+                    xCount++;
                     beforeInputDe = yyyMMdd;
                     View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_frame_layout, null);
-                    ((TextView)view.findViewById(R.id.temper_item_date_textview)).setText(yyyMMdd);
+                    ((TextView) view.findViewById(R.id.temper_item_date_textview)).setText(yyyMMdd);
                     if (beforeBottomLine != null)
                         beforeBottomLine.setVisibility(View.GONE);
                     mLogLayout.addView(view);
@@ -428,8 +616,8 @@ public class TemperGraphFragment extends BaseFragment {
                     itemTextView1.setText("전용체온계");
                     itemTextView1.setTextColor(Color.parseColor("#6972d1"));
                 }
-                ((TextView)view.findViewById(R.id.temper_item_text2)).setText(temperData.input_de.substring(11, 16));
-                ((TextView)view.findViewById(R.id.temper_item_text3)).setText(temperData.input_fever+" ℃");
+                ((TextView) view.findViewById(R.id.temper_item_text2)).setText(temperData.input_de.substring(11, 16));
+                ((TextView) view.findViewById(R.id.temper_item_text3)).setText(temperData.input_fever + " ℃");
                 beforeBottomLine = view.findViewById(R.id.temper_item_bottom_line);
                 mLogLayout.addView(view);
             }
@@ -459,30 +647,30 @@ public class TemperGraphFragment extends BaseFragment {
     }
 
 
-    /**
-     * y라벨 구하기
-     *
-     * @param temperYVals
-     */
-    private void setYMinMax(List<BarEntry> temperYVals) {
-        float yMin = Float.MAX_VALUE;
-        float yMax = Float.MIN_VALUE;
-        Log.i(TAG, "#######yLabelCnt##############");
-        for (BarEntry entry : temperYVals) {
-            float y = entry.getY();
-            if (y != 0 && y < yMin) {
-                yMin = y;
-            }
-
-            if (y != 0 && y > yMax) {
-                yMax = y;
-            }
-        }
-
-        int yLabelCnt = (int) (yMax - yMin);
-        mTemperChart.setYvalMinMax(yMin - 3, yMax + 3, yLabelCnt + 6); // 최소값 최대값이 없으면 임의로 넣어줌
-//        Log.i(TAG, "yMin="+yMin+", yMax="+yMax+", yLabelCnt="+yLabelCnt);
-    }
+//    /**
+//     * y라벨 구하기
+//     *
+//     * @param temperYVals
+//     */
+//    private void setYMinMax(List<BarEntry> temperYVals) {
+//        float yMin = Float.MAX_VALUE;
+//        float yMax = Float.MIN_VALUE;
+//        Log.i(TAG, "#######yLabelCnt##############");
+//        for (BarEntry entry : temperYVals) {
+//            float y = entry.getY();
+//            if (y != 0 && y < yMin) {
+//                yMin = y;
+//            }
+//
+//            if (y != 0 && y > yMax) {
+//                yMax = y;
+//            }
+//        }
+//
+//        int yLabelCnt = (int) (yMax - yMin);
+//        mTemperChart.setYvalMinMax(yMin - 3, yMax + 3, yLabelCnt + 6); // 최소값 최대값이 없으면 임의로 넣어줌
+////        Log.i(TAG, "yMin="+yMin+", yMax="+yMax+", yLabelCnt="+yLabelCnt);
+//    }
 
 
     private long getDateDiff(String bDate) {
@@ -613,45 +801,45 @@ public class TemperGraphFragment extends BaseFragment {
         mContentScrollView.smoothScrollTo(0, 0);
     }
 
-    @Deprecated
-    public class QeuryVerifyDataTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            showProgress();
-        }
-
-        protected Void doInBackground(Void... params) {
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            hideProgress();
-
-            Logger.i(TAG, "getContext is " + getContext());
-
-            if (getContext() == null) {
-                Logger.e(TAG, "getContext is Null");
-                return;
-            }
-
-            mXLabelTv.setText("(일)");
-            int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
-            mTemperChart.setXvalMinMax(0, maxX, maxX);
-
-            String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
-            String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
-            List<BarEntry> temperYVals = new ArrayList<>(); //weightDb.getResultMonth(startDay, endDay, true);
-            setYMinMax(temperYVals);
-            mTemperChart.setData(temperYVals, mTimeClass);
-            List<BarEntry> fatYVals = new ArrayList<>();//  weightDb.getResultMonth(startDay, endDay, false);
-            mTemperChart.animateY();
-            setNextButtonVisible();
-        }
-    }
+//    @Deprecated
+//    public class QeuryVerifyDataTask extends AsyncTask<Void, Void, Void> {
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            showProgress();
+//        }
+//
+//        protected Void doInBackground(Void... params) {
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            super.onPostExecute(aVoid);
+//            hideProgress();
+//
+//            Logger.i(TAG, "getContext is " + getContext());
+//
+//            if (getContext() == null) {
+//                Logger.e(TAG, "getContext is Null");
+//                return;
+//            }
+//
+//            mXLabelTv.setText("(일)");
+//            int maxX = mTimeClass.getStartTimeCal().getActualMaximum(Calendar.DAY_OF_MONTH) + 1;
+//            mTemperChart.setXvalMinMax(0, maxX, maxX);
+//
+//            String startDay = CDateUtil.getFormattedString_yyyy(mTimeClass.getStartTime());
+//            String endDay = CDateUtil.getFormattedString_MM(mTimeClass.getStartTime());
+//            List<BarEntry> temperYVals = new ArrayList<>(); //weightDb.getResultMonth(startDay, endDay, true);
+//            setYMinMax(temperYVals);
+//            mTemperChart.setData(temperYVals, mTimeClass);
+//            List<BarEntry> fatYVals = new ArrayList<>();//  weightDb.getResultMonth(startDay, endDay, false);
+//            mTemperChart.animateY();
+//            setNextButtonVisible();
+//        }
+//    }
 
 //    @Override
 //    public void onActivityResult(int requestCode, int resultCode, Intent data) {

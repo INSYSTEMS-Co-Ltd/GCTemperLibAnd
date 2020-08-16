@@ -109,8 +109,10 @@ public class GCTemperLib {
                         if (isLogin) {
                             SharedPref.getInstance(mContext).saveLoginInfo(recv);
                             SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호 저장
+                            iGCResult.onResult(isLogin, recv.message, recv);
+                        } else {
+                            iGCResult.onResult(false, recv.message, recv);
                         }
-                        iGCResult.onResult(isLogin, recv.message, recv);
                     } else {
                         iGCResult.onResult(isSuccess, message, data);
                     }
@@ -151,9 +153,13 @@ public class GCTemperLib {
                         Tr_Login recv = (Tr_Login) data;
                         boolean isSuccessed = recv.isSuccess(recv.resultcode);
                         if (isSuccessed) {
-                            if (isSuccess)
+                            if (isSuccess) {
+                                SharedPref.getInstance(mContext).saveLoginInfo(recv);
                                 SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
-                            iGCResult.onResult(isSuccessed, recv.message, recv);
+                                iGCResult.onResult(isSuccessed, recv.message, recv);
+                            } else {
+                                iGCResult.onResult(false, recv.message, recv);
+                            }
                         } else {
                             iGCResult.onResult(false, "푸시 토큰 등록 실패", null);
                         }

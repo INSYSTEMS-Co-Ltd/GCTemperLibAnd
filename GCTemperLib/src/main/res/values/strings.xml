@@ -1,12 +1,6 @@
 <resources>
 
 
-    <string name="fever_health_call_alert_title">헬스콜센터로\n연결하시겠습니까?</string>
-    <string name="fever_health_call_alert_message">헬스콜센터 운영시간은\n평일 09시 ~ 19시,\n토요일 09시 ~ 13시  이며\n일요일, 공휴일 휴무입니다.</string>
-
-    <string name="fever_health_no_alert_title">불편을 드려 죄송합니다.</string>
-    <string name="fever_health_no_alert_message">고객님의 정보가 아직 업데이트 되지 않았습니다. 나중에 다시 시도해 주세요.</string>
-    <string name="health_call_center">15885814</string>
 
 
     <string name="app_name_kr">굿앤굿 어린이케어</string>
@@ -834,8 +828,6 @@
     <string name="eat_remedy">해 열 제 먹 인 양</string>
     <string name="remedy_kind_a">타이레놀 계열</string>
     <string name="remedy_kind_i">부루펜 계열</string>
-    <string name="fever_hx">증 상 히 스 토 리</string>
-    <string name="title_fever">아 이 체 온</string>
     <string name="nowfever">현 재 체 온</string>
     <string name="fever_empty">체온을 입력해 주세요</string>
     <string name="measu_croise">전용 체온계로 측정</string>
@@ -1833,8 +1825,7 @@
 
 
     <string name="plus_friend_content1">플러스친구 페이지로\n이동됩니다.</string>
-    <string name="plus_friend_content2">친구추가 시 현대해상\n어린이메디케어서비스\n소식을 카카오톡으로 받아볼 수 있습니다.
-</string>
+    <string name="plus_friend_content2">친구추가 시 현대해상\n어린이메디케어서비스\n소식을 카카오톡으로 받아볼 수 있습니다.</string>
 
     <!-- bluetooth 체중계 -->
     <string name="device_search">Searching for nearby Bluetooth.</string>
@@ -2280,7 +2271,7 @@
     <string name="temper_title6">고열이 지속되고 있습니다.</string>
     <string name="temper_title7">40℃이상 고열입니다.</string>
 
-    <string name="temper_message1"></string>
+    <string name="temper_message1"> </string>
     <string name="temper_message2">1시간 뒤 다시 체온을 측정해주세요.</string>
     <string name="temper_message3">정상 체온의 기준은 겨드랑이 체온 기준으로 37.2℃, 고막 체온 기준으로 37.4℃까지입니다.</string>
     <string name="temper_message4">1시간 뒤 다시 체온을 측정해주세요.</string>
@@ -2294,13 +2285,17 @@
     <string name="title_health_care_service">헬스케어서비스란?</string>
     <string name="title_health_reservation_fragment">건강검진 예약</string>
 
-    <string name="title_resavation_text1">다운로드 한번으로\n <b><font color="#6972d1">빠른 예약 가격우대 검진 결과 조회</font></b>까지\n1Q에~!</string>
+    <string name="title_resavation_text1">다운로드 한번으로\n <b><font color="#6972d1">빠른 예약 · 가격우대 · 검진 결과 조회</font></b>까지\n1Q에~!</string>
     <string name="temper_control_desc">체온은 일반적인 체온 범위 내로 등록이 가능합니다.</string>
 
 
+    <string name="fever_health_call_alert_title">헬스콜센터로\n연결하시겠습니까?</string>
+    <string name="fever_health_call_alert_message">헬스콜센터 운영시간은\n<font color="#6972d1">평일 09시 ~ 19시, 토요일 09시 ~ 13시 이며</font>\n일요일, 공휴일 휴무입니다.</string>
 
 
-
+    <string name="fever_health_no_alert_title">불편을 드려 죄송합니다.</string>
+    <string name="fever_health_no_alert_message">고객님의 정보가 아직 업데이트 되지 않았습니다. 나중에 다시 시도해 주세요.</string>
+    <string name="health_call_center">15223516</string>
 
 
 

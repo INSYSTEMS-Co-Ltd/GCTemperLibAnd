@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -418,21 +419,23 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
 
     private ScatterData parseScatterData() {
         ScatterData data = new ScatterData();
-        ArrayList<Entry> entries = new ArrayList<Entry>();
+        List<Entry> entries = new ArrayList<Entry>();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(CommonData.PATTERN_DATE_3);
         for (int i = 0; i < mArrFeverList.size(); i++) {
             try {
-                float fever = Float.parseFloat(mArrFeverList.get(i).getmInputFever());
-                Date date = mFormat.parse(mArrFeverList.get(i).getmInputDe());
-                Calendar cal = GregorianCalendar.getInstance();
-                cal.setTime(date);
-                if (mStrStartDate.equals(mStrEndDate)) {
-                    entries.add(new Entry(fever, (cal.get(Calendar.HOUR_OF_DAY) * 60) + cal.get(Calendar.MINUTE)));
-                } else {
-                    for (int x = 0; x < mArrDateSet.length; x++) {
-                        if (mArrDateSet[x].equals(dateFormat.format(date))) {
-                            entries.add(new Entry(fever, ((x * 24) + cal.get(Calendar.HOUR_OF_DAY))));
+                if (TextUtils.isEmpty(mArrFeverList.get(i).getmInputFever()) == false) {
+                    float fever = Float.parseFloat(mArrFeverList.get(i).getmInputFever());
+                    Date date = mFormat.parse(mArrFeverList.get(i).getmInputDe());
+                    Calendar cal = GregorianCalendar.getInstance();
+                    cal.setTime(date);
+                    if (mStrStartDate.equals(mStrEndDate)) {
+                        entries.add(new Entry(fever, (cal.get(Calendar.HOUR_OF_DAY) * 60) + cal.get(Calendar.MINUTE)));
+                    } else {
+                        for (int x = 0; x < mArrDateSet.length; x++) {
+                            if (mArrDateSet[x].equals(dateFormat.format(date))) {
+                                entries.add(new Entry(fever, ((x * 24) + cal.get(Calendar.HOUR_OF_DAY))));
+                            }
                         }
                     }
                 }
@@ -440,7 +443,7 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
                 e.printStackTrace();
             }
         }
-
+        Log.i(TAG, "parseScatterData="+entries.size());
         ScatterDataSet set = new ScatterDataSet(entries, null);
 
         set.setColor(getResources().getColor(R.color.h_orange));

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -19,7 +18,6 @@ import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
@@ -50,7 +48,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class TemperGraphActivity extends BackBaseActivity implements View.OnClickListener {
+public class _TemperGraphActivity extends BackBaseActivity implements View.OnClickListener {
 
     private TextView mTxtHistoryDate, mTxtGraphStartDate, mTxtGraphEndDate;
     private LinearLayout mLinearTabGraph, mGraphDateLay, mMainLay;
@@ -221,7 +219,7 @@ public class TemperGraphActivity extends BackBaseActivity implements View.OnClic
                     bTumpSelFilter[i] = false;
             }
 
-            AlertDialog.Builder ab = new AlertDialog.Builder(TemperGraphActivity.this);
+            AlertDialog.Builder ab = new AlertDialog.Builder(_TemperGraphActivity.this);
             ab.setMultiChoiceItems(arrFilter, bSelFilter, (dialog, which, isChecked) -> {
 
             });
@@ -273,12 +271,16 @@ public class TemperGraphActivity extends BackBaseActivity implements View.OnClic
                 int nNowYear = mCalendar.get(Calendar.YEAR);
                 int nNowMonth = mCalendar.get(Calendar.MONTH);
                 int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+                mCalendar.set(Calendar.HOUR, 0);
+                mCalendar.set(Calendar.MINUTE, 0);
+                mCalendar.set(Calendar.SECOND, 0);
+                mCalendar.set(Calendar.MILLISECOND, 0);
 
-                DatePickerDialog alert = new DatePickerDialog(TemperGraphActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+                DatePickerDialog alert = new DatePickerDialog(_TemperGraphActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
                     mCalendar.set(year, monthOfYear, dayOfMonth);
 
                     if (mCalendar.getTime().compareTo(mEndDate) >= 0) {    // 오늘 지남
-                        Toast.makeText(TemperGraphActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
+                        Toast.makeText(_TemperGraphActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
                         return;
                     }
 
@@ -308,12 +310,16 @@ public class TemperGraphActivity extends BackBaseActivity implements View.OnClic
                 int nNowYear = mCalendar.get(Calendar.YEAR);
                 int nNowMonth = mCalendar.get(Calendar.MONTH);
                 int nNowDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+                mCalendar.set(Calendar.HOUR, 0);
+                mCalendar.set(Calendar.MINUTE, 0);
+                mCalendar.set(Calendar.SECOND, 0);
+                mCalendar.set(Calendar.MILLISECOND, 0);
 
-                DatePickerDialog alert = new DatePickerDialog(TemperGraphActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+                DatePickerDialog alert = new DatePickerDialog(_TemperGraphActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
                     mCalendar.set(year, monthOfYear, dayOfMonth);
 
                     if (mStartDate.compareTo(mCalendar.getTime()) >= 0) {  // 오늘 지남
-                        Toast.makeText(TemperGraphActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
+                        Toast.makeText(_TemperGraphActivity.this, getString(R.string.over_date), Toast.LENGTH_LONG).show();
                         return;
                     }
 
@@ -341,7 +347,7 @@ public class TemperGraphActivity extends BackBaseActivity implements View.OnClic
 //                    mBtnCheckHelp.setImageResource(R.drawable.btn_close_yellow2);
 //                    mNoShowHelp = true;
 //                }
-            CommonData.getInstance(TemperGraphActivity.this).setFeverTimeLineHelp(true);
+            CommonData.getInstance(_TemperGraphActivity.this).setFeverTimeLineHelp(true);
             mHelpLay.setVisibility(View.GONE);
         } else if (id == R.id.btn_help_close) {//                CommonData.getInstance().setFeverTimeLineHelp(mNoShowHelp);
             mHelpLay.setVisibility(View.GONE);
@@ -417,10 +423,10 @@ public class TemperGraphActivity extends BackBaseActivity implements View.OnClic
 //
 //                    mTemperChart.invalidate();
                 } else {
-                    CDialog.showDlg(TemperGraphActivity.this, "알림", "데이터 수신 실패");
+                    CDialog.showDlg(_TemperGraphActivity.this, "알림", "데이터 수신 실패");
                 }
             } else {
-                CDialog.showDlg(TemperGraphActivity.this, "알림", "데이터 수신 실패");
+                CDialog.showDlg(_TemperGraphActivity.this, "알림", "데이터 수신 실패");
             }
         });
     }

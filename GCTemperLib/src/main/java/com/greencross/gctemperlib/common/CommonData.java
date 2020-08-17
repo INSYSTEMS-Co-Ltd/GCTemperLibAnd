@@ -66,6 +66,7 @@ public class CommonData {
     public static final String PATTERN_YYYYMMDDHHMM = "yyyyMMddHHmm";
     public static final String PATTERN_DATE = "yyyy-MM-dd";
     public static final String PATTERN_DATE_2 = "MM-dd";
+    public static final String PATTERN_DATE_3 = "M/d";
     public static final String PATTERN_DATE_DOT = "yyyy.MM.dd";
     public static final String PATTERN_DATE_KR = "yyyy년 MM월 dd일";
     public static final String PATTERN_DATE_KR2 = "yyyy/MM/dd";

@@ -955,8 +955,6 @@
 
     <string name="filter_report">레포트</string>
 
-    <string name="over_date">열 그래프의 시작 시간이 종료 시간보다 높습니다. 다시 입력해주세요.</string>
-
 
     <!--메모 입력-->
     <string name="input_time">입 력 시 간</string>
@@ -2296,7 +2294,8 @@
     <string name="fever_health_no_alert_title">불편을 드려 죄송합니다.</string>
     <string name="fever_health_no_alert_message">고객님의 정보가 아직 업데이트 되지 않았습니다. 나중에 다시 시도해 주세요.</string>
     <string name="health_call_center">15223516</string>
-
+    <string name="over_date">열 그래프의 시작 시간이 종료 시간보다 높습니다. 다시 입력해주세요.</string>
+    <string name="over_date2">열 그래프의 종료 시간이 시작 시간보다 낮습니다. 다시 입력해주세요.</string>
 
 
 

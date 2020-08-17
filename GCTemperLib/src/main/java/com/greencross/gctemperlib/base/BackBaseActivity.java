@@ -242,7 +242,7 @@ public class BackBaseActivity extends BaseActivity {
     /**
      * 재 로그인
      */
-    protected void reLogin() {
+    public void reLogin() {
         // 최초 인증, 고객번호 저장
         Tr_Login.RequestData requestData = new Tr_Login.RequestData();
         requestData.cust_id = SharedPref.getInstance(BackBaseActivity.this).getPreferences(SharedPref.PREF_CUST_NO);
@@ -299,7 +299,7 @@ public class BackBaseActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        reLogin();
+//        reLogin();
     }
 
     @Override

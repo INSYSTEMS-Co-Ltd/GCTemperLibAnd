@@ -17,6 +17,7 @@ import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.TemperActivity;
+import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
@@ -77,6 +78,11 @@ public class HealthCareServiceFragment extends BaseFragment {
         }
     }
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof BackBaseActivity) {
+            ((BackBaseActivity)getActivity()).reLogin();
+        }
+    }
 }

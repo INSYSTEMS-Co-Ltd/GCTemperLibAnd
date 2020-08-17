@@ -1,8 +1,10 @@
 package com.greencross.gctemperlib.hana;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +15,11 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.greencross.gctemperlib.BaseFragment;
@@ -24,8 +29,12 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
+import com.greencross.gctemperlib.greencare.util.PermissionUtil;
+import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
+import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.util.GpsInfo;
+import com.greencross.gctemperlib.util.PermissionUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -92,9 +101,7 @@ public class TemperControlFragment extends BaseFragment {
         view.findViewById(R.id.go_graph_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
                 DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment2.class, new Bundle());
-//                startActivity(new Intent(getActivity(), TemperGraphActivity.class));
             }
         });
 
@@ -125,7 +132,6 @@ public class TemperControlFragment extends BaseFragment {
         dateTv.setOnClickListener(mClickListener);
         timeTv.setOnClickListener(mClickListener);
         view.findViewById(R.id.temper_control_call_device_btn).setOnClickListener(mClickListener);
-
 
         getTemperMessage();
 //        view.findViewById(R.id.temper_layout).setOnClickListener(new View.OnClickListener() {
@@ -395,5 +401,24 @@ public class TemperControlFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 위치 권한 설정 하기
+     * 최초 1회만 요청
+     */
+    private void permissionCheck() {
+        // 위치 권한 설정 후 이용해 주세요.
+        PermissionUtil.checkPermissions(getContext());
+        int permissionState = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionState == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getContext(), "권한설저 됨.", Toast.LENGTH_SHORT).show();
+        } else {
+            requestPermissions(PermissionUtils.LOCATION_PERMS, CommonData.PERMISSION_REQUEST_GPS);
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        boolean isGranted = RuntimeUtil.verifyPermissions(grantResults);
+    }
 }

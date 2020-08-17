@@ -249,7 +249,22 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                 }
             });
         } else if (id == R.id.fever_map_menu_1 || id == R.id.fever_map_menu_1_iv) { // 체온관리
-            DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
+            requestPermissionLocation(new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if (isSuccess) {
+                        DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
+//                        GpsInfo gps = new GpsInfo(TemperActivity.this);
+//                        if (gps.isGetLocation()) {
+//                            moveMyLocation();
+//                        } else {
+//                            gps.showSettingsAlert();
+//                        }
+                    } else {
+                        CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_no_alert_title), "권한 설정 후 이용 가능합니다.");
+                    }
+                }
+            });
         } else if (id == R.id.fever_map_menu_2 || id == R.id.fever_map_menu_2_iv) {   // 건강강검진예약
             DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null);
         } else if (id == R.id.fever_map_menu_3 || id == R.id.fever_map_menu_3_iv) { // 건강상담
@@ -687,6 +702,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
+        reLogin();
+
         if (mapFragment != null)
             mapFragment.onResume();
     }
@@ -698,7 +715,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     protected void reLoginComplete() {
         super.reLoginComplete();
 
-        getRemainUseDate();
+        getRemainUseDate(); // 남은이용일수 구하기
     }
 
     @Override

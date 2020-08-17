@@ -66,8 +66,8 @@ import java.util.List;
  * 체온 그래프
  */
 
-public class TemperGraphFragment extends BaseFragment {
-    private final String TAG = TemperGraphFragment.class.getSimpleName();
+public class _TemperGraphFragment extends BaseFragment {
+    private final String TAG = _TemperGraphFragment.class.getSimpleName();
 
     private int mRequestCode = 1111;
     private Boolean isGraphActive = false;
@@ -104,7 +104,7 @@ public class TemperGraphFragment extends BaseFragment {
 
 
     public static Fragment newInstance() {
-        TemperGraphFragment fragment = new TemperGraphFragment();
+        _TemperGraphFragment fragment = new _TemperGraphFragment();
         return fragment;
     }
 

@@ -35,12 +35,6 @@
             android:theme="@style/GCLibTheme"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.greencross.gctemperlib.hana.TemperGraphActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/GCLibTheme"
-            android:screenOrientation="portrait"/>
-
-
         <receiver android:name=".GCAlarmReceiver"
             android:enabled="true"
             android:exported="false">

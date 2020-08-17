@@ -420,7 +420,7 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
         ScatterData data = new ScatterData();
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat(CommonData.PATTERN_DATE_2);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(CommonData.PATTERN_DATE_3);
         for (int i = 0; i < mArrFeverList.size(); i++) {
             try {
                 float fever = Float.parseFloat(mArrFeverList.get(i).getmInputFever());

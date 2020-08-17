@@ -77,7 +77,7 @@
             android:layout_height="35dp"
             android:background="@drawable/draw_circle_white"
             android:src="@drawable/hn_map_my_location_btn"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:visibility="visible"/>
@@ -89,7 +89,7 @@
             android:layout_height="35dp"
             android:background="@drawable/draw_circle_white"
             android:src="@drawable/hn_map_alram_btn"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="70dp"
             android:layout_marginRight="10dp"
             android:visibility="gone"
             tools:visibility="visible"

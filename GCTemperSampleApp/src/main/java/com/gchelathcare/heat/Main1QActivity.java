@@ -20,9 +20,6 @@ import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.util.PermissionUtil;
-import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
-import com.greencross.gctemperlib.util.PermissionUtils;
 
 public class Main1QActivity extends Activity {
 

@@ -15,7 +15,7 @@
  */
 
 
-package com.greencross.gctemperlib.slideUtil;
+package com.greencross.gctemperlib.hana.slideUtil;
 
 import android.content.Context;
 import android.view.MotionEvent;

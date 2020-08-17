@@ -2,7 +2,6 @@ package com.greencross.gctemperlib;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,7 +33,7 @@ import com.greencross.gctemperlib.hana.TemperControlFragment;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
-import com.greencross.gctemperlib.slideUtil.SlidingUpPanelLayout;
+import com.greencross.gctemperlib.hana.slideUtil.SlidingUpPanelLayout;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
@@ -242,12 +242,17 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             mInfoLayout.setVisibility(View.GONE);
             SharedPref.getInstance(this).savePreferences(SharedPref.TEMPER_INTRO_VIEW_SHOW, false);
         } else if (id == R.id.temper_info_start_btn) {
-            requestPermissionLocation(new IGCResult() {
-                @Override
-                public void onResult(boolean isSuccess, String message, Object data) {
-                    mInfoLayout.setVisibility(View.GONE);
-                }
-            });
+            boolean isFirstShow = SharedPref.getInstance(this).getPreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, false);
+            if (isFirstShow == false) {
+                requestPermissionLocation(new IGCResult() {
+                    @Override
+                    public void onResult(boolean isSuccess, String message, Object data) {
+                        mInfoLayout.setVisibility(View.GONE);
+                    }
+                });
+            } else {
+                mInfoLayout.setVisibility(View.GONE);
+            }
         } else if (id == R.id.fever_map_menu_1 || id == R.id.fever_map_menu_1_iv) { // 체온관리
             requestPermissionLocation(new IGCResult() {
                 @Override
@@ -530,22 +535,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(isLocationPermission());
-
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.map);
-//        fragment.getView().
-
-//        RelativeLayout mapLayout = findViewById(R.id.map_layout);
-//        FrameLayout mapView = (FrameLayout) mapLayout.getChildAt(0);
-//        for (int i = 0; i < mapView.getChildCount(); i++) {
-//            Log.i(TAG, "mapLayout["+i+"]::"+view);
-//            if (view instanceof LinearLayout) {
-//                LinearLayout linearLayout = (LinearLayout) view;
-//                for (int j = 0; j < linearLayout.getChildCount(); j++) {
-//                    Log.i(TAG, "mapChildLayout["+j+"]::"+view);
-//                }
-//            }
-//        }
-
+        removeMyLocationButton();
 
         googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
@@ -581,6 +571,42 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     }
 
     /**
+     * 구글맵 내위치 버튼 없애기
+     * 하드코딩 처리
+     */
+    private void removeMyLocationButton() {
+        RelativeLayout mapLayout = findViewById(R.id.map_layout);
+        FrameLayout mapView = (FrameLayout) mapLayout.getChildAt(0);
+        for (int i = 0; i < mapView.getChildCount(); i++) {
+//            Log.i(TAG, "mapLayout1["+i+"]::"+mapView.getChildAt(i));
+            View childView = mapView.getChildAt(i);
+            if (childView instanceof FrameLayout) {
+                FrameLayout frameLayout = (FrameLayout) childView;
+//                Log.i(TAG, " mapLayout2["+i+"]::"+childView);
+//                FrameLayout linearLayout = (FrameLayout) childView;
+                for (int j = 0; j < frameLayout.getChildCount(); j++) {
+//                    Log.i(TAG, "  mapLayout3["+j+"]::"+frameLayout.getChildAt(j));
+                    if (frameLayout.getChildAt(j) instanceof RelativeLayout) {
+                        RelativeLayout child2Layout = (RelativeLayout) frameLayout.getChildAt(j);
+                        for (int k = 0; k < child2Layout.getChildCount(); k++) {
+//                            Log.i(TAG, "      mapLayout4["+k+"]::"+child2Layout.getChildAt(k));
+                            if (child2Layout.getChildAt(k) instanceof ImageView) {
+                                // 내위치 버튼 없애기
+                                ImageView iv = (ImageView) child2Layout.getChildAt(k);
+//                                iv.setImageResource(0);
+//                                Log.i(TAG, "      mapLayout.iv["+j+"]["+k+"]::"+iv.getX()+", "+iv.getY()+", iv="+iv);
+                                if (j == 2 && k == 0) {
+                                    iv.setImageResource(0); // 구글 맵 내 위치 버튼 없애기
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * 내위치로 이동
      */
     private void moveMyLocation() {
@@ -588,6 +614,10 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 if (isSuccess) {
+                    if (mMap != null) {
+                        mMap.setMyLocationEnabled(isLocationPermission());
+                        removeMyLocationButton();
+                    }
                     GpsInfo gps = new GpsInfo(TemperActivity.this);
                     if (gps.isGetLocation()) {
                         LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());

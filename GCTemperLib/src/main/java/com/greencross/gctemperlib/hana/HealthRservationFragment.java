@@ -79,7 +79,7 @@ public class HealthRservationFragment extends BaseFragment {
     }
 
     public void openEverHeath() {
-        String packageName = "com.ubicare.wellness";
+        String packageName = "com.ubcare.everhealth.familycheckup";
         try {
             Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

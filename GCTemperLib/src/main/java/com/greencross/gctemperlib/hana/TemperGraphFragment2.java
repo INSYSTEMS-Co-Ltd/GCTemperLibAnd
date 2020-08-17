@@ -417,6 +417,10 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
         mHistoryGraph.invalidate();
     }
 
+    /**
+     * 차트 데이터 배열 만들기
+     * @return
+     */
     private ScatterData parseScatterData() {
         ScatterData data = new ScatterData();
         List<Entry> entries = new ArrayList<Entry>();

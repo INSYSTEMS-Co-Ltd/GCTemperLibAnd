@@ -1,5 +1,5 @@
-//include ':GCTemperApp'
+include ':GCTemperApp'
 include ':GCTemperLib'
 //include ':app'
-//include ':GCTemperSampleApp'
+include ':GCTemperSampleApp'
 rootProject.name = "GCLibGitHub"

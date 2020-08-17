@@ -50,7 +50,6 @@ import java.util.List;
 public class TemperGraphFragment2 extends BaseFragment implements View.OnClickListener {
 
     private TextView mTxtGraphStartDate, mTxtGraphEndDate;
-    private LinearLayout mGraphDateLay;
 
     private CustomCombinedChart mHistoryGraph;
     private LinearLayout mLogLayout;
@@ -94,7 +93,6 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mGraphDateLay = (LinearLayout) view.findViewById(R.id.graph_date_lay);
         mTxtGraphStartDate = (TextView) view.findViewById(R.id.txt_graph_start_date);
         mTxtGraphEndDate = (TextView) view.findViewById(R.id.txt_graph_end_date);
         mLogLayout = (LinearLayout) view.findViewById(R.id.temper_log_layout);
@@ -390,9 +388,9 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
 
         YAxis leftAxis = mHistoryGraph.getAxisLeft();
         leftAxis.setDrawGridLines(true);
-        leftAxis.setGridColor(Color.GRAY);
-        leftAxis.setAxisLineColor(Color.GRAY);
-        leftAxis.setTextColor(Color.GRAY);
+        leftAxis.setGridColor(Color.parseColor("#adadad"));
+        leftAxis.setAxisLineColor(Color.parseColor("#808080"));
+        leftAxis.setTextColor(Color.parseColor("#dddddd"));
         leftAxis.setAxisMaxValue(42.5f);
         leftAxis.setAxisMinValue(31.5f); // this replaces setStartAtZero(true)
         leftAxis.setDrawZeroLine(false);
@@ -400,9 +398,9 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
         // limit lines are drawn behind data (and not on top)
         //leftAxis.setDrawLimitLinesBehindData(true);
         XAxis xAxis = mHistoryGraph.getXAxis();
-        xAxis.setAxisLineColor(Color.GRAY);
-        xAxis.setGridColor(Color.GRAY);
-        xAxis.setTextColor(Color.GRAY);
+        xAxis.setAxisLineColor(Color.parseColor("#808080"));
+        xAxis.setGridColor(Color.parseColor("#adadad"));
+        xAxis.setTextColor(Color.parseColor("#6972d1"));
         xAxis.setDrawGridLines(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     }
@@ -450,7 +448,7 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
         Log.i(TAG, "parseScatterData="+entries.size());
         ScatterDataSet set = new ScatterDataSet(entries, null);
 
-        set.setColor(getResources().getColor(R.color.h_orange));
+        set.setColor(Color.parseColor("#6972d1"));
         set.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
         set.setScatterShapeSize(7f);
         set.setValueTextSize(9f);

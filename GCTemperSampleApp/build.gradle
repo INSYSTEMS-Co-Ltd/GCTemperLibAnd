@@ -25,7 +25,7 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // 녹십자 인증 Token
-        buildConfigField("String", "GC_TOKEN", "\"APA91bGkmKwWBjCso94R3sM3CUEk79\"")
+        buildConfigField("String", "GC_TOKEN", "\"토큰값\"")
     }
 
     buildTypes {

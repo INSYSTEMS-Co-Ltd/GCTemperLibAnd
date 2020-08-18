@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField("String", "GC_TOKEN", "\"APA91bGkmKwWBjCso94R3sM3CUEk79\"")
+        buildConfigField("String", "GC_TOKEN", "\"토큰값\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true

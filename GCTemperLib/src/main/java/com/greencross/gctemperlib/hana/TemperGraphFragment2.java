@@ -32,6 +32,7 @@ import com.greencross.gctemperlib.collection.FeverItem;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.hana.chart.CustomCombinedChart;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_FeverList;
@@ -352,7 +353,11 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
             for (int i = 0; i < mArrXDate.length; i++) {
                 int day = i / 24;
                 int hour = i % 24;
-                mArrXDate[i] = mArrDateSet[day] + "\n" + hour + getString(R.string.hour_2);
+                String amPm = CDateUtil.getAmPmString(hour);
+                if (hour >= 13) {
+                    hour -= 12;
+                }
+                mArrXDate[i] = mArrDateSet[day] + "\n"+amPm +" " + hour + "시";
             }
 //        }
     }
@@ -431,15 +436,15 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
                     Date date = mFormat.parse(mArrFeverList.get(i).getmInputDe());
                     Calendar cal = GregorianCalendar.getInstance();
                     cal.setTime(date);
-                    if (mStrStartDate.equals(mStrEndDate)) {
-                        entries.add(new Entry(fever, (cal.get(Calendar.HOUR_OF_DAY) * 60) + cal.get(Calendar.MINUTE)));
-                    } else {
+//                    if (mStrStartDate.equals(mStrEndDate)) {
+//                        entries.add(new Entry(fever, (cal.get(Calendar.HOUR_OF_DAY) * 60) + cal.get(Calendar.MINUTE)));
+//                    } else {
                         for (int x = 0; x < mArrDateSet.length; x++) {
                             if (mArrDateSet[x].equals(dateFormat.format(date))) {
                                 entries.add(new Entry(fever, ((x * 24) + cal.get(Calendar.HOUR_OF_DAY))));
                             }
                         }
-                    }
+//                    }
                 }
             } catch (ParseException e) {
                 e.printStackTrace();

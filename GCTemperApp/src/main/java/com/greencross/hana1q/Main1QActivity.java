@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.greencross.gctemperlib.GCAlramType;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
@@ -23,6 +22,7 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.PermissionUtil;
 import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
+import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.util.PermissionUtils;
 
 public class Main1QActivity extends Activity {
@@ -178,6 +178,7 @@ public class Main1QActivity extends Activity {
         });
     }
 
+
     /**
      * 녹십자 라이브러리 Push 서비스 등록
      */
@@ -185,9 +186,10 @@ public class Main1QActivity extends Activity {
         final GCTemperLib gcLib = new GCTemperLib(this);
         TextView temperEditText = findViewById(R.id.temper_edittext);
         String temper = temperEditText.getText().toString();
+        boolean isWearable = false;     // true: 기기사용, false: 직접입력
 
         showProgress();
-        gcLib.registGCTemper(temper, new IGCResult() {
+        gcLib.registGCTemper(temper, com.gchelathcare.heat.GCAlarmReceiver.class, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();
@@ -199,7 +201,6 @@ public class Main1QActivity extends Activity {
             }
         });
     }
-
 
     /**
      * 녹십자 라이브러리 Push 알람설정

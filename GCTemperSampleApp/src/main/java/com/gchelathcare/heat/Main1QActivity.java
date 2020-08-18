@@ -21,6 +21,9 @@ import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Main1QActivity extends Activity {
 
     private LinearLayout mProgress;
@@ -177,8 +180,11 @@ public class Main1QActivity extends Activity {
         String temper = temperEditText.getText().toString();
         boolean isWearable = false;     // true: 기기사용, false: 직접입력
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String registTime = sdf.format(new Date());
+
         showProgress();
-        gcLib.registGCTemper(temper, GCAlarmReceiver.class, new IGCResult() {
+        gcLib.registGCTemper(temper, registTime, GCAlarmReceiver.class, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();

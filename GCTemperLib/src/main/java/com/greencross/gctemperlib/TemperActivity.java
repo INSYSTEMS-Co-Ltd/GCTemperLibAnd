@@ -240,19 +240,10 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         int id = v.getId();
         if (id == R.id.temper_info_gone_btn) {
             mInfoLayout.setVisibility(View.GONE);
-            SharedPref.getInstance(this).savePreferences(SharedPref.TEMPER_INTRO_VIEW_SHOW, false);
+            firstLocationPermission();
         } else if (id == R.id.temper_info_start_btn) {
-            boolean isFirstShow = SharedPref.getInstance(this).getPreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, false);
-            if (isFirstShow == false) {
-                requestPermissionLocation(new IGCResult() {
-                    @Override
-                    public void onResult(boolean isSuccess, String message, Object data) {
-                        mInfoLayout.setVisibility(View.GONE);
-                    }
-                });
-            } else {
-                mInfoLayout.setVisibility(View.GONE);
-            }
+            mInfoLayout.setVisibility(View.GONE);
+            firstLocationPermission();
         } else if (id == R.id.fever_map_menu_1 || id == R.id.fever_map_menu_1_iv) { // 체온관리
             requestPermissionLocation(new IGCResult() {
                 @Override
@@ -726,6 +717,20 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         } else {
             // DB전송이 완료되지 않은 경우, 남은이용일수 표시 하지 않음
             remainTextview.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void firstLocationPermission() {
+        // 최초1회 위치 권한 팝업 띄우기
+        boolean isFirstShow = SharedPref.getInstance(this).getPreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, false);
+        if (isFirstShow == false) {
+            requestPermissionLocation(new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+
+                }
+            });
+            SharedPref.getInstance(this).savePreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, true);
         }
     }
 

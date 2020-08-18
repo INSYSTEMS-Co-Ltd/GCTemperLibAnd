@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,10 +21,18 @@ import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.TemperActivity;
 import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class HealthCareServiceFragment extends BaseFragment {
+
+    private ImageView callBtn1;
+    private ImageView callBtn2;
 
     public static Fragment newInstance() {
         HealthCareServiceFragment fragment = new HealthCareServiceFragment();
@@ -43,20 +53,24 @@ public class HealthCareServiceFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        callBtn1 = view.findViewById(R.id.hearthcare_call_btn1);
+        callBtn2 = view.findViewById(R.id.hearthcare_call_btn2);
 
-        view.findViewById(R.id.hearthcare_call_btn1).setOnClickListener(new View.OnClickListener() {
+        callBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 call();
             }
         });
-        
-        view.findViewById(R.id.hearthcare_call_btn2).setOnClickListener(new View.OnClickListener() {
+
+        callBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 call();
             }
         });
+
+
     }
 
     private void call() {
@@ -78,6 +92,50 @@ public class HealthCareServiceFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 남은이용일수 구하기
+     * @return
+     */
+    private void getRemainUseDate() {
+        // 남은 이용일수 구하기
+        Tr_Login login = SharedPref.getInstance(getContext()).getLoginInfo();
+        if ("1000".equals(login.resultcode)) {
+            // DB전송이 완료 된 경우
+            long time = CDateUtil.getTime(CDateUtil.FORMAT_yyyy_MM_dd, login.enddate);
+
+            Calendar c = Calendar.getInstance(); // 비교할 시간
+            c.setTime(new Date(time));
+            c.clear(Calendar.HOUR);
+            c.clear(Calendar.MINUTE);
+            c.clear(Calendar.SECOND);
+            c.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
+
+            Calendar c2 = Calendar.getInstance(); // 현재 시간
+            c2.clear(Calendar.HOUR);
+            c2.clear(Calendar.MINUTE);
+            c2.clear(Calendar.SECOND);
+            c2.clear(Calendar.MILLISECOND); // 시간, 분, 초, 밀리초 초기화
+            long dDayDiff = c.getTimeInMillis() - c2.getTimeInMillis();
+            int day = (int)(Math.floor(TimeUnit.HOURS.convert(dDayDiff, TimeUnit.MILLISECONDS) / 24f)) +2;
+            day = day < 0 ? 0 : day;
+
+            if (callBtn1 != null && callBtn2 != null) {
+                callBtn1.setVisibility(day <= 0 ? View.GONE : View.VISIBLE);
+                callBtn2.setVisibility(day <= 0 ? View.GONE : View.VISIBLE);
+            }
+        } else {
+            if (callBtn1 != null && callBtn2 != null) {
+                callBtn1.setVisibility(View.VISIBLE);
+                callBtn2.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    protected void reLoginComplete() {
+        getRemainUseDate();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -85,4 +143,6 @@ public class HealthCareServiceFragment extends BaseFragment {
             ((BackBaseActivity)getActivity()).reLogin();
         }
     }
+
+
 }

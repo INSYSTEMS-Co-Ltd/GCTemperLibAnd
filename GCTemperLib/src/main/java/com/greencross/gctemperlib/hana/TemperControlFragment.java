@@ -24,13 +24,14 @@ import androidx.fragment.app.Fragment;
 
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.DummyActivity;
+import com.greencross.gctemperlib.GCTemperLib;
+import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.PermissionUtil;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
 import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.util.GpsInfo;
@@ -50,6 +51,9 @@ public class TemperControlFragment extends BaseFragment {
     private TextView mTemperTextview;
 
     private boolean mIsWearable = false;
+
+    private TextView mDateTv;
+    private TextView mTtimeTv;
 
     // 스마일 아이콘
     private int[] mTemperIcon = new int[]{
@@ -120,17 +124,17 @@ public class TemperControlFragment extends BaseFragment {
 //        temper = TextUtils.isEmpty(temper) ? "0.0" : temper;
 //        mTemperTextview.setText(temper);
 
-        TextView dateTv = view.findViewById(R.id.date_textview);
-        TextView timeTv = view.findViewById(R.id.time_textview);
+        mDateTv = view.findViewById(R.id.date_textview);
+        mTtimeTv = view.findViewById(R.id.time_textview);
 
         String today = CDateUtil.getToday_temper_graph();
-        dateTv.setText(today);
+        mDateTv.setText(today);
 //        dateTv.setTag(cal.getTimeInMillis());
         SimpleDateFormat timeFormat = new SimpleDateFormat(CommonData.PATTERN_TIME_2);
-        timeTv.setText(timeFormat.format(new Date()));
+        mTtimeTv.setText(timeFormat.format(new Date()));
 
-        dateTv.setOnClickListener(mClickListener);
-        timeTv.setOnClickListener(mClickListener);
+        mDateTv.setOnClickListener(mClickListener);
+        mTtimeTv.setOnClickListener(mClickListener);
         view.findViewById(R.id.temper_control_call_device_btn).setOnClickListener(mClickListener);
 
         getTemperMessage();
@@ -165,9 +169,33 @@ public class TemperControlFragment extends BaseFragment {
         view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String temper = mTemperTextview.getText().toString();
+                if (StringUtil.getFloat(temper) <= 0.0f) {
+//                    CDialog.showDlg(getContext(), getString(R.string.fever_health_no_alert_title), getString(R.string.temper_title1));
+                    Toast.makeText(getContext(), getString(R.string.temper_title1), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 GpsInfo gps = new GpsInfo(getContext());
                 if (gps.isGetLocation()) {
-//                    registTemper(mIsWearable);
+                    GCTemperLib gcTemperLib = new GCTemperLib(getContext());
+
+                    String date = mDateTv.getText().toString();
+                    String time = mTtimeTv.getText().toString();
+                    date = date.replaceAll(".", "-");
+
+                    String registTime = date + " " +time;
+
+                    gcTemperLib.registGCTemper(temper, registTime ,null, new IGCResult() {
+                        @Override
+                        public void onResult(boolean isSuccess, String message, Object data) {
+                            if (isSuccess) {
+                                CDialog.showDlg(getContext(), message);
+                            } else {
+                                CDialog.showDlg(getContext(), getString(R.string.fever_health_no_alert_title), message);
+                            }
+                        }
+                    });
                 } else {
                     gps.showSettingsAlert();
                 }

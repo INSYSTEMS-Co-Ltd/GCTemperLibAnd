@@ -467,6 +467,11 @@ public class BaseFragment extends Fragment implements IBaseFragment {
     }
 
     /**
+     * 재 로그인 완료
+     */
+    protected void reLoginComplete() {};
+
+    /**
      * 권한이 정상적으로 설정 되었는지 확인
      *
      * @param grantResults

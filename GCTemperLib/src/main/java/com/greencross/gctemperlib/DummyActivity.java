@@ -1,6 +1,7 @@
 package com.greencross.gctemperlib;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -220,8 +221,17 @@ public class DummyActivity extends BackBaseActivity {
 //        super.onStop();
 //        Log.i(TAG, TAG+".onStop()");
 //    }
-//
-//
+
+
+    @Override
+    protected void reLoginComplete() {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_layout);
+        if (fragment instanceof BaseFragment) {
+            BaseFragment baseFragment = (BaseFragment) fragment;
+            baseFragment.reLoginComplete();
+        }
+    }
+
     @Override
     protected void onDestroy() {
         try {

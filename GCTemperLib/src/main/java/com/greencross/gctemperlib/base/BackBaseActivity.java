@@ -267,6 +267,9 @@ public class BackBaseActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 재 로그인 완료
+     */
     protected void reLoginComplete() {};
 
     /**

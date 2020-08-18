@@ -178,13 +178,13 @@ public class GCTemperLib {
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
-    public void registGCTemper(@Nullable String temper, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
+    public void registGCTemper(@Nullable String temper, String registTime, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
             GpsInfo gps = new GpsInfo(mContext);
             if (gps.isGetLocation()) {
-                registerLocationUpdates(temper, receiver, iGCResult);
+                registerLocationUpdates(temper, registTime, receiver, iGCResult);
             } else {
                 gps.showSettingsAlert();
             }
@@ -299,7 +299,7 @@ public class GCTemperLib {
      * 위치정보 찾기
      */
     private LocationManager mLM;
-    private void registerLocationUpdates(String temper, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
+    private void registerLocationUpdates(String temper, String registTime, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
 //        showProgress();
 
         GpsInfo gps = new GpsInfo(mContext);
@@ -330,7 +330,7 @@ public class GCTemperLib {
                     }
                     requestData.la = ""+gps.getLatitude();
                     requestData.lo = ""+gps.getLongitude();
-                    requestData.Input_de = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                    requestData.Input_de = registTime;//    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                     requestData.is_wearable = "1";
 
                     getData(Tr_Temperature.class, requestData, new IGCResult() {

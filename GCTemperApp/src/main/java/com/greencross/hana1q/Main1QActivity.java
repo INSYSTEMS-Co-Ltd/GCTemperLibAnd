@@ -1,9 +1,7 @@
 package com.greencross.hana1q;
 
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -11,19 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.GCTemperLib;
-import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
-import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.util.PermissionUtil;
-import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.hana.GCAlramType;
-import com.greencross.gctemperlib.util.PermissionUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Main1QActivity extends Activity {
 
@@ -76,14 +70,7 @@ public class Main1QActivity extends Activity {
         findViewById(R.id.gc_excute_gc_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 위치 권한 설정 후 이용해 주세요.
-                PermissionUtil.checkPermissions(Main1QActivity.this);
-                int permissionState = ActivityCompat.checkSelfPermission(Main1QActivity.this, Manifest.permission.ACCESS_FINE_LOCATION);
-                if (permissionState == PackageManager.PERMISSION_GRANTED) {
-                    gcLib.startGCMainActivity();
-                } else {
-                    ActivityCompat.requestPermissions(Main1QActivity.this, PermissionUtils.LOCATION_PERMS, CommonData.PERMISSION_REQUEST_GPS);
-                }
+                gcLib.startGCMainActivity();
             }
         });
 
@@ -91,6 +78,7 @@ public class Main1QActivity extends Activity {
 
         Switch switch1 = findViewById(R.id.alram_type_1);
         Switch switch2 = findViewById(R.id.alram_type_2);
+
         switch1.setChecked(gcLib.getSettingAlramService(GCAlramType.GC_ALRAM_TYPE_독려));
         switch2.setChecked(gcLib.getSettingAlramService(GCAlramType.GC_ALRAM_TYPE_지역));
         // 측정 독려 알림 수신 설정 변경
@@ -178,7 +166,6 @@ public class Main1QActivity extends Activity {
         });
     }
 
-
     /**
      * 녹십자 라이브러리 Push 서비스 등록
      */
@@ -188,8 +175,11 @@ public class Main1QActivity extends Activity {
         String temper = temperEditText.getText().toString();
         boolean isWearable = false;     // true: 기기사용, false: 직접입력
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String registTime = sdf.format(new Date());
+
         showProgress();
-        gcLib.registGCTemper(temper, com.gchelathcare.heat.GCAlarmReceiver.class, new IGCResult() {
+        gcLib.registGCTemper(temper, registTime, GCAlarmReceiver.class, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();
@@ -201,6 +191,7 @@ public class Main1QActivity extends Activity {
             }
         });
     }
+
 
     /**
      * 녹십자 라이브러리 Push 알람설정
@@ -224,27 +215,6 @@ public class Main1QActivity extends Activity {
         });
     }
 
-
-    /**
-     * 위치권한 설정 후
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CommonData.PERMISSION_REQUEST_GPS) {
-            if (RuntimeUtil.verifyPermissions(Main1QActivity.this, grantResults)) {
-                final GCTemperLib gcLib = new GCTemperLib(this);
-                if (gcLib.isAvailableGCToken()) {
-                    gcLib.startGCMainActivity();
-                } else {
-                    CDialog.showDlg(Main1QActivity.this, "인증 후 이용 가능합니다.");
-                }
-            }
-        }
-    }
 
 
     private void showProgress() {

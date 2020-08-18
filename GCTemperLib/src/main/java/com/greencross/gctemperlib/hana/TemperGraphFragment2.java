@@ -35,6 +35,7 @@ import com.greencross.gctemperlib.greencare.component.CDatePicker;
 import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.util.CDateUtil;
 import com.greencross.gctemperlib.greencare.util.StringUtil;
+import com.greencross.gctemperlib.hana.chart.CustomCombinedChart;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_FeverList;
 import com.greencross.gctemperlib.util.Util;
 
@@ -52,7 +53,7 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
 
     private TextView mTxtGraphStartDate, mTxtGraphEndDate;
 
-    private CombinedChart mHistoryGraph;
+    private CustomCombinedChart mHistoryGraph;
     private LinearLayout mLogLayout;
     private String[] mArrXDate;
     private String[] mArrDateSet;
@@ -98,7 +99,7 @@ public class TemperGraphFragment2 extends BaseFragment implements View.OnClickLi
         mTxtGraphEndDate = (TextView) view.findViewById(R.id.txt_graph_end_date);
         mLogLayout = (LinearLayout) view.findViewById(R.id.temper_log_layout);
 
-        mHistoryGraph = (CombinedChart) view.findViewById(R.id.history_graph);
+        mHistoryGraph = (CustomCombinedChart) view.findViewById(R.id.history_graph);
         mHistoryGraph.getLegend().setEnabled(false);
 
         mTxtGraphStartDate.setOnClickListener(this);

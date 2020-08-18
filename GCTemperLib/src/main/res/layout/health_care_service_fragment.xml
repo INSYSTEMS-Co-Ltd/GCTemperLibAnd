@@ -73,7 +73,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/hanab"
+                            android:fontFamily="@font/hanam"
                             android:gravity="center_horizontal"
                             android:lineSpacingExtra="2sp"
                             android:text="헬스콜센터\n1차 건강상담"
@@ -231,7 +231,7 @@
                 android:fontFamily="@font/hanam"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="10sp"
-                android:text="주요 5대 대형병원 및 전국 30여개 종합병원 진료"
+                android:text="주요 5대 대형병원 및 전국 30여개 종합병원 진료 예약 대행"
                 android:textColor="#707070"
                 android:textSize="13sp" />
 

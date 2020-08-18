@@ -2261,13 +2261,13 @@
     <string name="temper_input_alert_title">체온 직접 입력</string>
     <string name="temper_input_request">체온을 입력해 주세요.</string>
 
-    <string name="temper_title1">체온을 측정해 주세요.</string>
-    <string name="temper_title2">35℃미만으로 체온이 낮습니다.</string>
-    <string name="temper_title3">정상 체온이 잘 유지되고 있습니다.</string>
-    <string name="temper_title4">미열이 지속되고 있습니다.</string>
-    <string name="temper_title5">열이 지속되고 있습니다.</string>
-    <string name="temper_title6">고열이 지속되고 있습니다.</string>
-    <string name="temper_title7">40℃이상 고열입니다.</string>
+    <string name="temper_title1"><font color="#6972d1">체온을 측정해 주세요.</font></string>
+    <string name="temper_title2"><font color="#71aeae">35℃미만으로 체온이 낮습니다.</font></string>
+    <string name="temper_title3"><font color="#89b92a">정상 체온이 잘 유지되고 있습니다.</font></string>
+    <string name="temper_title4"><font color="#f69927">미열이 지속되고 있습니다.</font></string>
+    <string name="temper_title5"><font color="#dc622c">열이 지속되고 있습니다.</font></string>
+    <string name="temper_title6"><font color="#dc622c">고열이 지속되고 있습니다.</font></string>
+    <string name="temper_title7"><font color="#e23c22">40℃이상 고열입니다.</font></string>
 
     <string name="temper_message1"> </string>
     <string name="temper_message2">1시간 뒤 다시 체온을 측정해주세요.</string>

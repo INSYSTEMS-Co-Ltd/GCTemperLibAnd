@@ -208,7 +208,7 @@
                     android:layout_weight="1"
                     android:drawableRight="@drawable/hn_icon_down_arrow"
                     android:lineSpacingExtra="0sp"
-                    android:text="검강검진 예약"
+                    android:text="건강검진 예약"
                     android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15sp" />
@@ -343,6 +343,7 @@
                     android:letterSpacing="-0.02"
                     android:lineSpacingExtra="4sp"
                     android:text="본 서비스는 GC녹십자헬스케어에서 제공합니다."
+                    android:fontFamily="@font/notosans_m"
                     android:textColor="#888888"
                     android:textSize="10sp" />
             </LinearLayout>

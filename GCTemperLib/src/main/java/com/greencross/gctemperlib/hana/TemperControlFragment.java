@@ -186,7 +186,7 @@ public class TemperControlFragment extends BaseFragment {
 
                     String registTime = date + " " +time;
 
-                    gcTemperLib.registGCTemper(temper, registTime ,null, new IGCResult() {
+                    gcTemperLib.registGCTemper(temper, registTime , new IGCResult() {
                         @Override
                         public void onResult(boolean isSuccess, String message, Object data) {
                             if (isSuccess) {

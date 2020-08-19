@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.greencross.gctemperlib.BuildConfig;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.greencare.component.CDialog;
@@ -179,7 +180,7 @@ public class Main1QActivity extends Activity {
         String registTime = sdf.format(new Date());
 
         showProgress();
-        gcLib.registGCTemper(temper, registTime, GCAlarmReceiver.class, new IGCResult() {
+        gcLib.registGCTemper(temper, registTime, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();

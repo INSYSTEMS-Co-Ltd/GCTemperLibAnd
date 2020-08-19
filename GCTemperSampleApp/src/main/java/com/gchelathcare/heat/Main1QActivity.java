@@ -184,7 +184,7 @@ public class Main1QActivity extends Activity {
         String registTime = sdf.format(new Date());
 
         showProgress();
-        gcLib.registGCTemper(temper, registTime, GCAlarmReceiver.class, new IGCResult() {
+        gcLib.registGCTemper(temper, registTime, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();

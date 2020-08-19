@@ -230,7 +230,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="bottom"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/hn_temper_device_btn" />
+                        android:src="@drawable/hn_temper_device_call_btn" />
                 </LinearLayout>
             </LinearLayout>
 

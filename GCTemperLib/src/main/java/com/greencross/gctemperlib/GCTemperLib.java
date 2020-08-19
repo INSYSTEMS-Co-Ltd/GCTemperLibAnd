@@ -178,13 +178,13 @@ public class GCTemperLib {
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
-    public void registGCTemper(@Nullable String temper, String registTime, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
+    public void registGCTemper(@Nullable String temper, String registTime, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
             GpsInfo gps = new GpsInfo(mContext);
             if (gps.isGetLocation()) {
-                registerLocationUpdates(temper, registTime, receiver, iGCResult);
+                registerLocationUpdates(temper, registTime, iGCResult);
             } else {
                 gps.showSettingsAlert();
             }
@@ -299,7 +299,7 @@ public class GCTemperLib {
      * 위치정보 찾기
      */
     private LocationManager mLM;
-    private void registerLocationUpdates(String temper, String registTime, Class<? extends BroadcastReceiver> receiver, final IGCResult iGCResult) {
+    private void registerLocationUpdates(String temper, String registTime, final IGCResult iGCResult) {
 //        showProgress();
 
         GpsInfo gps = new GpsInfo(mContext);
@@ -344,7 +344,7 @@ public class GCTemperLib {
                                     // 한시간뒤 독려 알람
                                     boolean isAfter1hour = SharedPref.getInstance(mContext).getPreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName() , false);
                                     if (isAfter1hour) {
-                                        AlramUtil.setTemperAlramRepeat(mContext, receiver);
+//                                        AlramUtil.setTemperAlramRepeat(mContext, receiver);
                                     }
                                 }
                                 iGCResult.onResult(recv.isSuccess(recv.resultcode), ((Tr_Temperature) data).message, null);

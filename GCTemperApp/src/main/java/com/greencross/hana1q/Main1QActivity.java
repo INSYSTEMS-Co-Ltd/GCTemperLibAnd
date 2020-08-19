@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.hana.GCAlramType;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Main1QActivity extends Activity {
 
@@ -167,26 +170,26 @@ public class Main1QActivity extends Activity {
      * 녹십자 라이브러리 Push 서비스 등록
      */
     public void regsitTemper() {
-//        final GCTemperLib gcLib = new GCTemperLib(this);
-//        TextView temperEditText = findViewById(R.id.temper_edittext);
-//        String temper = temperEditText.getText().toString();
-//        boolean isWearable = false;     // true: 기기사용, false: 직접입력
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-//        String registTime = sdf.format(new Date());
-//
-//        showProgress();
-//        gcLib.registGCTemper(temper, registTime, new IGCResult() {
-//            @Override
-//            public void onResult(boolean isSuccess, String message, Object data) {
-//                hideProgress();
-//                if (isSuccess) {
-//                    CDialog.showDlg(Main1QActivity.this, message);
-//                } else {
-//                    CDialog.showDlg(Main1QActivity.this, message);
-//                }
-//            }
-//        });
+        final GCTemperLib gcLib = new GCTemperLib(this);
+        TextView temperEditText = findViewById(R.id.temper_edittext);
+        String temper = temperEditText.getText().toString();
+        boolean isWearable = false;     // true: 기기사용, false: 직접입력
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String registTime = sdf.format(new Date());
+
+        showProgress();
+        gcLib.registGCTemper(temper, registTime, new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                hideProgress();
+                if (isSuccess) {
+                    CDialog.showDlg(Main1QActivity.this, message);
+                } else {
+                    CDialog.showDlg(Main1QActivity.this, message);
+                }
+            }
+        });
     }
 
 

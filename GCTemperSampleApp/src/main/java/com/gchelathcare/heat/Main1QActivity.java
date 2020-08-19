@@ -146,7 +146,7 @@ public class Main1QActivity extends Activity {
     }
 
     /**
-     * 녹십자 라이브러리 Push 서비스 등록
+     * 녹십자 라이브러리 Push 토큰 등록
      */
     public void regsitPushToken() {
         final GCTemperLib gcLib = new GCTemperLib(this);
@@ -167,7 +167,7 @@ public class Main1QActivity extends Activity {
     }
 
     /**
-     * 녹십자 라이브러리 Push 서비스 등록
+     * 녹십자 라이브러리 체온등록
      */
     public void regsitTemper() {
         final GCTemperLib gcLib = new GCTemperLib(this);

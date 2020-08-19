@@ -34,7 +34,6 @@ import com.greencross.gctemperlib.greencare.component.CDialog;
 import com.greencross.gctemperlib.greencare.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.hana.slideUtil.SlidingUpPanelLayout;
-import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.collection.EpidemicItem;
@@ -245,47 +244,76 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             mInfoLayout.setVisibility(View.GONE);
             firstLocationPermission();
         } else if (id == R.id.fever_map_menu_1 || id == R.id.fever_map_menu_1_iv) { // 체온관리
-            requestPermissionLocation(new IGCResult() {
-                @Override
-                public void onResult(boolean isSuccess, String message, Object data) {
-                    if (isSuccess) {
-                        DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
+            slideMenu1();
+        } else if (id == R.id.fever_map_menu_2 || id == R.id.fever_map_menu_2_iv) {   // 건강강검진예약
+            slideMenu2();
+        } else if (id == R.id.fever_map_menu_3 || id == R.id.fever_map_menu_3_iv) { // 건강상담
+            slideMenu3();
+        } else if (id == R.id.fever_map_menu_4 || id == R.id.fever_map_menu_4_iv) { // 헬스케어 서비스란
+            DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null);
+        }
+    }
+
+    /**
+     * 슬라이드메뉴 체온관리
+     */
+    private void slideMenu1() {
+        requestPermissionLocation(new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                if (isSuccess) {
+                    DummyActivity.startActivity(TemperActivity.this, TemperControlFragment.class, null);
 //                        GpsInfo gps = new GpsInfo(TemperActivity.this);
 //                        if (gps.isGetLocation()) {
 //                            moveMyLocation();
 //                        } else {
 //                            gps.showSettingsAlert();
 //                        }
-                    } else {
-                        CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_no_alert_title), "권한 설정 후 이용 가능합니다.");
-                    }
+                } else {
+                    CDialog.showDlg(TemperActivity.this, getString(R.string.fever_health_no_alert_title), "권한 설정 후 이용 가능합니다.");
                 }
-            });
-        } else if (id == R.id.fever_map_menu_2 || id == R.id.fever_map_menu_2_iv) {   // 건강강검진예약
-            DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null);
-        } else if (id == R.id.fever_map_menu_3 || id == R.id.fever_map_menu_3_iv) { // 건강상담
-            Tr_Login login = SharedPref.getInstance(TemperActivity.this).getLoginInfo();
-            if ("1000".equals(login.resultcode)) {
-                CDialog dlg = CDialog.showDlg(TemperActivity.this, R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
-                dlg.setOkButton(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String tel = "tel:" + getString(R.string.health_call_center);
-                        Intent intent = new Intent(Intent.ACTION_DIAL);
-                        intent.setData(Uri.parse(tel));
-                        startActivity(intent);
-                    }
-                });
-                dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
-            } else {
-                CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
             }
-        } else if (id == R.id.fever_map_menu_4 || id == R.id.fever_map_menu_4_iv) { // 헬스케어 서비스란
-            DummyActivity.startActivity(TemperActivity.this, HealthCareServiceFragment.class, null);
+        });
+    }
+
+    /**
+     * 슬라이드메뉴 검강검진 예약
+     */
+    private void slideMenu2() {
+        Tr_Login login = SharedPref.getInstance(TemperActivity.this).getLoginInfo();
+        if ("1000".equals(login.resultcode)) {
+            // DB 전송이 완료된 경우
+            DummyActivity.startActivity(TemperActivity.this, HealthRservationFragment.class, null);
+        } else {
+            CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
         }
     }
 
+    private void slideMenu3() {
+        Tr_Login login = SharedPref.getInstance(TemperActivity.this).getLoginInfo();
+        if ("1000".equals(login.resultcode)) {
+            // DB 전송이 완료된 경우
+            CDialog dlg = CDialog.showDlg(TemperActivity.this, R.string.fever_health_call_alert_title, R.string.fever_health_call_alert_message);
+            dlg.setOkButton(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String tel = "tel:" + getString(R.string.health_call_center);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse(tel));
+                    startActivity(intent);
+                }
+            });
+            dlg.setNoButton(getString(R.string.popup_dialog_button_cancel), null);
+        } else {
+            CDialog.showDlg(TemperActivity.this, R.string.fever_health_no_alert_title, R.string.fever_health_no_alert_message);
+        }
+    }
 
+    /**
+     * 열지도 마커 그리기
+     * @param feverMapItem
+     * @return
+     */
     private Marker addMarker(LocationItem feverMapItem) {
         double fever = Double.parseDouble(feverMapItem.getAvg_fever());
         LatLng position = new LatLng(Double.parseDouble(feverMapItem.getLoc_1()), Double.parseDouble(feverMapItem.getLoc_2()));
@@ -312,7 +340,12 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         return mMap.addMarker(markerOptions);
     }
 
-    // View를 Bitmap으로 변환
+    /**
+     * View를 Bitmap으로 변환
+     * @param context
+     * @param view
+     * @return
+     */
     private Bitmap createDrawableFromView(Context context, View view) {
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -364,7 +397,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     }
 
     private Intent inTentGo = null;
-    int typePush = FirebaseMessagingService.FEVER;
+    private int typePush = FirebaseMessagingService.FEVER;
     /**
      * 네트워크 리스너
      */
@@ -426,7 +459,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                                     //mTxtEpidemic.setText(getString(R.string.epidemic_main) + " " + getString(R.string.empty_epidemic_main));
                                 }
                             } catch (Exception e) {
-                                GLog.e(e.toString());
+                                Log.e(TAG, e.toString());
                                 //mTxtEpidemic.setText(getString(R.string.epidemic_main) + " " + getString(R.string.empty_epidemic_main));
                             }
                     }
@@ -436,7 +469,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
                     switch (resultCode) {
                         case CommonData.API_SUCCESS:
-                            GLog.i("NET_GET_APP_INFO API_SUCCESS", "dd");
+                            Log.i(TAG,"NET_GET_APP_INFO API_SUCCESS");
 
                             try {
                                 String data_yn = resultData.getString(CommonData.JSON_REG_YN);
@@ -455,15 +488,15 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
                             break;
                         case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR", "dd");
+                            Log.i(TAG,"NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR");
 
                             break;
                         case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-                            GLog.i("NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR", "dd");
+                            Log.i(TAG,"NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR");
                             break;
 
                         default:
-                            GLog.i("NET_GET_APP_INFO default", "dd");
+                            Log.i(TAG,"NET_GET_APP_INFO default");
                             break;
                     }
                     break;
@@ -552,11 +585,11 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             if (isLocationPermission()) {
                 moveMyLocation();
             } else {
-                LatLng latLng = new LatLng(37.575784, 126.976789);  // 위치 정보 안된 경우 광화문
+                LatLng latLng = new LatLng(37.575784, 126.976789);  // 위치가 안켜진 경우 광화문
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
             }
         } else {
-            LatLng latLng = new LatLng(37.575784, 126.976789);  // 위치 정보 안된 경우 광화문
+            LatLng latLng = new LatLng(37.575784, 126.976789);  // 위치가 안켜진 경우 광화문
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
         }
     }
@@ -588,6 +621,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 //                                Log.i(TAG, "      mapLayout.iv["+j+"]["+k+"]::"+iv.getX()+", "+iv.getY()+", iv="+iv);
                                 if (j == 2 && k == 0) {
                                     iv.setImageResource(0); // 구글 맵 내 위치 버튼 없애기
+                                    break;
                                 }
                             }
                         }
@@ -659,7 +693,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
      * 마케팅 정보 및 위치정보 동의
      */
     public void requestAgreeAlarmSetting(String YN) {
-        GLog.i("requestAgreeAlarmSetting", "dd");
+        Log.i(TAG, "requestAgreeAlarmSetting");
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 
         try {
@@ -675,7 +709,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
             RequestApi.requestApi(TemperActivity.this, NetworkConst.NET_MBER_CHECK_AGREE_YN, NetworkConst.getInstance().getDefDomain(), networkListener, params, new MakeProgress(this));
         } catch (Exception e) {
-            GLog.i(e.toString(), "dd");
+            e.printStackTrace();
         }
     }
 

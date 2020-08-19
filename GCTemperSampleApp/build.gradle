@@ -2,9 +2,23 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.gchealthcare.gctemperlib"
+        minSdkVersion 17
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField("String", "GC_TOKEN", "\"토큰값\"")
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -16,16 +30,15 @@ android {
         }
     }
 
-    defaultConfig {
-        applicationId "com.gchealthcare.gctemperlib"
-        minSdkVersion 17
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        // 녹십자 인증 Token
-        buildConfigField("String", "GC_TOKEN", "\"토큰값\"")
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+        }
+        debug {
+            multiDexEnabled true
+        }
     }
 
     buildTypes {
@@ -41,7 +54,6 @@ android {
         }
     }
 }
-
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'

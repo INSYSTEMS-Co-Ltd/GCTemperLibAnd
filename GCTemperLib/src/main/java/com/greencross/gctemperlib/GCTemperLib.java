@@ -178,6 +178,12 @@ public class GCTemperLib {
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
+    public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String registTime = sdf.format(new Date());
+        registGCTemper(temper, registTime, iGCResult);
+    }
+
     public void registGCTemper(@Nullable String temper, String registTime, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;

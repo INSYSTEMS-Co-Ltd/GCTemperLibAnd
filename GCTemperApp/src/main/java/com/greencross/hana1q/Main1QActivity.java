@@ -173,13 +173,9 @@ public class Main1QActivity extends Activity {
         final GCTemperLib gcLib = new GCTemperLib(this);
         TextView temperEditText = findViewById(R.id.temper_edittext);
         String temper = temperEditText.getText().toString();
-        boolean isWearable = false;     // true: 기기사용, false: 직접입력
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String registTime = sdf.format(new Date());
 
         showProgress();
-        gcLib.registGCTemper(temper, registTime, new IGCResult() {
+        gcLib.registGCTemper(temper, new IGCResult() {
             @Override
             public void onResult(boolean isSuccess, String message, Object data) {
                 hideProgress();

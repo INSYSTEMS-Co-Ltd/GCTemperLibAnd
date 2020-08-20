@@ -18,15 +18,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="15sp"
+            android:lineSpacingExtra="15dp"
             android:text="@string/title_올바른감염예방1"
             android:fontFamily="@font/hanam"
             android:gravity="center"
             android:textColor="#222222"
-            android:textSize="15sp" />
+            android:textSize="15dp" />
 
         <View
-            android:layout_width="5sp"
+            android:layout_width="5dp"
             android:layout_height="match_parent"/>
 
         <TextView
@@ -41,13 +41,12 @@
 
     </LinearLayout>
 
-    <ImageView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/draw_dot_line" />
-
+        android:background="#f1f1f1" />
 
     <LinearLayout
         android:layout_width="match_parent"

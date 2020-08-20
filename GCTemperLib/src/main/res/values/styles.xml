@@ -5,15 +5,16 @@
         <item name="android:windowBackground">@color/color_100ffffff</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@android:color/white</item>
         <item name="fontFamily">@font/notosans_m</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="hn_toolbar_title_textview" parent="Widget.AppCompat.TextView">
         <item name="android:singleLine">true</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">21dp</item>
         <item name="android:textColor">#222222</item>
-        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:lineSpacingExtra">10dp</item>
         <item name="android:maxLines">1</item>
         <item name="android:gravity">center</item>
     </style>

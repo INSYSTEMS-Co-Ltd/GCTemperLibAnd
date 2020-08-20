@@ -14,7 +14,7 @@
         android:fontFamily="@font/hanab"
         android:lineSpacingExtra="2sp"
         android:textColor="#6972d1"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:text="@string/temper_input_alert_title" />
 
     <EditText

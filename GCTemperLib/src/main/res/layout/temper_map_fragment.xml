@@ -37,7 +37,7 @@
             android:fontFamily="@font/hanam"
             android:gravity="center"
             android:textColor="#6972d1"
-            android:textSize="15sp" />
+            android:textSize="15dp" />
 
     </LinearLayout>
 

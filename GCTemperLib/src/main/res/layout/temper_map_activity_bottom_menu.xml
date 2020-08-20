@@ -68,7 +68,7 @@
                     android:text="#체온관리"
                     android:fontFamily="@font/hanam"
                     android:textColor="#222222"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -81,7 +81,7 @@
                     android:text="#검진예약"
                     android:fontFamily="@font/hanam"
                     android:textColor="#222222"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -94,7 +94,7 @@
                     android:text="#건강상담"
                     android:fontFamily="@font/hanam"
                     android:textColor="#222222"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

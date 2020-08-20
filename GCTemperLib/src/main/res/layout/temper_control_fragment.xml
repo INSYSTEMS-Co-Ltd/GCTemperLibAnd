@@ -43,7 +43,7 @@
                         android:letterSpacing="-0.02"
                         android:lineSpacingExtra="5sp"
                         android:fontFamily="@font/notosans_b"
-                        android:textSize="20sp"
+                        android:textSize="20dp"
                         tools:text="@string/temper_title1" />
 
                     <TextView
@@ -54,7 +54,7 @@
                         android:letterSpacing="-0.02"
                         android:fontFamily="@font/notosans_m"
                         android:textColor="#888888"
-                        android:textSize="13sp"
+                        android:textSize="13dp"
                         tools:text="@string/temper_message1" />
                 </LinearLayout>
 
@@ -125,7 +125,7 @@
                         android:paddingLeft="14dp"
                         android:paddingRight="14dp"
                         android:textColor="#242424"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:fontFamily="@font/hanam"
                         tools:text="2020. 6. 23." />
                 </LinearLayout>
@@ -138,7 +138,7 @@
                     android:lineSpacingExtra="20sp"
                     android:text="-"
                     android:textColor="#242424"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -157,7 +157,7 @@
                         android:paddingLeft="14dp"
                         android:paddingRight="14dp"
                         android:textColor="#242424"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         tools:text="15:29" />
                 </LinearLayout>
 
@@ -202,7 +202,7 @@
                             android:lineSpacingExtra="-24sp"
                             android:text="0.0"
                             android:textColor="#dc622c"
-                            android:textSize="61sp" />
+                            android:textSize="61dp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -222,7 +222,7 @@
                         android:text="℃"
                         android:fontFamily="@font/hanab"
                         android:textColor="#7f7f7f"
-                        android:textSize="30sp" />
+                        android:textSize="30dp" />
 
                     <ImageView
                         android:id="@+id/temper_control_call_device_btn"
@@ -245,7 +245,7 @@
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="5sp"
                 android:textColor="#222222"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:text="@string/temper_control_desc"
                 android:fontFamily="@font/notosans_m"/>
 

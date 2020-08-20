@@ -95,6 +95,7 @@
             app:umanoOverlay="true"
             app:umanoPanelHeight="58dp"
             app:umanoScrollableView="@+id/slide_contents_view"
+            app:umanoFadeColor="@android:color/transparent"
             app:umanoShadowHeight="0dp">
 
 

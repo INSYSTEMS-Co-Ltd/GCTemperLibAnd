@@ -7,7 +7,6 @@
         <item name="windowNoTitle">true</item>
         <item name="colorPrimaryDark">@android:color/white</item>
         <item name="fontFamily">@font/notosans_m</item>
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="hn_toolbar_title_textview" parent="Widget.AppCompat.TextView">

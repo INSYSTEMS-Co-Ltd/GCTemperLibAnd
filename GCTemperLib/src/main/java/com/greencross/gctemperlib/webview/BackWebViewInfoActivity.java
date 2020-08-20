@@ -26,7 +26,7 @@ import com.greencross.gctemperlib.base.BackBaseActivity;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAlertDialogInterface;
-import com.greencross.gctemperlib.greencare.component.OnClickListener;
+import com.greencross.gctemperlib.hana.component.OnClickListener;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.R;
 

@@ -1,19 +1,14 @@
 package com.greencross.gctemperlib;
 
-import android.Manifest;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 
-import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.hana.AlramUtil;
+import com.greencross.gctemperlib.hana.component.CDialog;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
@@ -21,8 +16,8 @@ import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Setup;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Temperature;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
-import com.greencross.gctemperlib.greencare.util.NetworkUtil;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
+import com.greencross.gctemperlib.hana.util.NetworkUtil;
+import com.greencross.gctemperlib.hana.util.SharedPref;
 import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;

@@ -2,8 +2,8 @@ package com.greencross.gctemperlib.hana.network.tr;
 
 import android.util.Log;
 
-import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
-import com.greencross.gctemperlib.greencare.util.Logger;
+import com.greencross.gctemperlib.hana.util.JsonLogPrint;
+import com.greencross.gctemperlib.hana.util.Logger;
 
 import org.json.JSONObject;
 

@@ -18,18 +18,15 @@ import com.greencross.gctemperlib.common.NetworkConst;
 import com.greencross.gctemperlib.util.GLog;
 import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
+import com.greencross.gctemperlib.hana.util.JsonLogPrint;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Iterator;
 
 import cz.msebera.android.httpclient.NameValuePair;
 import cz.msebera.android.httpclient.message.BasicNameValuePair;

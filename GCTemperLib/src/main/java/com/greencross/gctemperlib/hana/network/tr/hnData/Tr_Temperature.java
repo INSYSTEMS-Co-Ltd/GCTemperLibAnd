@@ -5,7 +5,7 @@ import android.content.Context;
 import com.google.gson.annotations.SerializedName;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.BaseUrl;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
+import com.greencross.gctemperlib.hana.util.SharedPref;
 
 import org.json.JSONException;
 import org.json.JSONObject;

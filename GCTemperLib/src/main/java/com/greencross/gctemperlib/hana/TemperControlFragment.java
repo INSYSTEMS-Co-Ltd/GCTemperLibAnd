@@ -28,14 +28,14 @@ import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.greencare.component.CDatePicker;
-import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.util.CDateUtil;
-import com.greencross.gctemperlib.greencare.util.PermissionUtil;
-import com.greencross.gctemperlib.greencare.util.StringUtil;
-import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
+import com.greencross.gctemperlib.hana.component.CDatePicker;
+import com.greencross.gctemperlib.hana.component.CDialog;
+import com.greencross.gctemperlib.hana.util.CDateUtil;
+import com.greencross.gctemperlib.hana.util.PermissionUtil;
+import com.greencross.gctemperlib.hana.util.StringUtil;
+import com.greencross.gctemperlib.hana.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.util.GpsInfo;
-import com.greencross.gctemperlib.util.PermissionUtils;
+import com.greencross.gctemperlib.hana.util.PermissionUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -105,7 +105,7 @@ public class TemperControlFragment extends BaseFragment {
         view.findViewById(R.id.go_graph_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment2.class, new Bundle());
+                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
             }
         });
 

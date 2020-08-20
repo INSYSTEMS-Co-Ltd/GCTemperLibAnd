@@ -21,12 +21,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.greencross.gctemperlib.BaseFragment;
-import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.util.cameraUtil.OnPermssionCallBackListener;
-import com.greencross.gctemperlib.greencare.util.cameraUtil.ProviderUtil;
-import com.greencross.gctemperlib.greencare.util.cameraUtil.RuntimeUtil;
+import com.greencross.gctemperlib.hana.component.CDialog;
+import com.greencross.gctemperlib.hana.util.cameraUtil.OnPermssionCallBackListener;
+import com.greencross.gctemperlib.hana.util.cameraUtil.ProviderUtil;
+import com.greencross.gctemperlib.hana.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.util.IntentUtil;
+import com.greencross.gctemperlib.hana.util.IntentUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

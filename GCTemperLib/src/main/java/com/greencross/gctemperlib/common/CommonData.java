@@ -3,12 +3,6 @@ package com.greencross.gctemperlib.common;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Network;
-import android.text.TextUtils;
-
-import com.greencross.gctemperlib.greencare.util.SharedPref;
-
-import java.util.ArrayList;
 
 
 /**

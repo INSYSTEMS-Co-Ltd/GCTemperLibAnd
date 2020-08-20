@@ -532,9 +532,8 @@
 
 
     <!--열지도 / 미세먼지-->
-    <string name="temper_control">체 온 관 리</string>
+
     <string name="location_fever">지 역 체 온</string>
-    <string name="temper_graph">체온 그래프</string>
     <string name="epidemic">유 의 질 환</string>
     <string name="rank">순위</string>
     <string name="disease_name">질환명</string>
@@ -2256,6 +2255,9 @@
 
 
     <!-- 하나1Q -->
+    <string name="temper_control">체 온 관 리</string>
+    <string name="temper_graph">체온 그래프</string>
+
     <string name="text_regist_complete">등록완료</string>
     <string name="temper_device_call">전용 체온계로\n측정하기</string>
     <string name="temper_input_alert_title">체온 직접 입력</string>

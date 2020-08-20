@@ -2,7 +2,7 @@ package com.greencross.gctemperlib.hana.network.tr.data;
 
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.BaseUrl;
-import com.greencross.gctemperlib.greencare.util.Logger;
+import com.greencross.gctemperlib.hana.util.Logger;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;

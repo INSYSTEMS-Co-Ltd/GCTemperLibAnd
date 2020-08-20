@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.greencross.gctemperlib.greencare.base.value.Define;
+import com.greencross.gctemperlib.hana.chart.value.Define;
 
 /**
  * Created by MrsWin on 2017-02-16.

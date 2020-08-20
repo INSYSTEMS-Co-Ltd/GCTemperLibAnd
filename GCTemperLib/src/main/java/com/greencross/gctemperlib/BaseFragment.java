@@ -24,14 +24,14 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.greencare.base.CommonActionBar;
 import com.greencross.gctemperlib.greencare.base.IBackPress;
 import com.greencross.gctemperlib.greencare.base.IBaseFragment;
-import com.greencross.gctemperlib.greencare.base.value.Define;
-import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.hana.chart.value.Define;
+import com.greencross.gctemperlib.hana.component.CDialog;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
-import com.greencross.gctemperlib.greencare.util.Logger;
-import com.greencross.gctemperlib.greencare.util.NetworkUtil;
+import com.greencross.gctemperlib.hana.util.Logger;
+import com.greencross.gctemperlib.hana.util.NetworkUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

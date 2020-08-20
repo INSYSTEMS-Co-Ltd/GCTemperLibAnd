@@ -10,8 +10,8 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
 import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
-import com.greencross.gctemperlib.greencare.util.Logger;
+import com.greencross.gctemperlib.hana.util.JsonLogPrint;
+import com.greencross.gctemperlib.hana.util.Logger;
 import com.greencross.gctemperlib.network.HttpUtil;
 import com.google.gson.Gson;
 

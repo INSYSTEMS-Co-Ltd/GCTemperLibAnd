@@ -473,7 +473,7 @@ public class CustomAlertDialog extends Dialog {
         View view = findViewById(R.id.dialog_layout);
 
         //click 저장
-        com.greencross.gctemperlib.greencare.component.OnClickListener mClickListener = new com.greencross.gctemperlib.greencare.component.OnClickListener(null,view, getContext());
+        com.greencross.gctemperlib.hana.component.OnClickListener mClickListener = new com.greencross.gctemperlib.hana.component.OnClickListener(null,view, getContext());
 
         //홈
         mCall1.setOnTouchListener(mClickListener);

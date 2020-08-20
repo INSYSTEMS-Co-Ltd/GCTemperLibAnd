@@ -1,6 +1,5 @@
 package com.greencross.gctemperlib.hana;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,21 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.DummyActivity;
-import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.TemperActivity;
 import com.greencross.gctemperlib.base.BackBaseActivity;
-import com.greencross.gctemperlib.greencare.component.CDialog;
-import com.greencross.gctemperlib.greencare.util.CDateUtil;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
+import com.greencross.gctemperlib.hana.component.CDialog;
+import com.greencross.gctemperlib.hana.util.CDateUtil;
+import com.greencross.gctemperlib.hana.util.SharedPref;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 
 import java.util.Calendar;

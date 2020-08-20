@@ -16,9 +16,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.greencare.util.SharedPref;
-import com.greencross.gctemperlib.hana.AlramUtil;
-import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.hana.TemperControlFragment;
 
 /**

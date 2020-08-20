@@ -3,7 +3,7 @@ package com.greencross.gctemperlib.hana.network.tr;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.greencross.gctemperlib.greencare.util.JsonLogPrint;
+import com.greencross.gctemperlib.hana.util.JsonLogPrint;
 
 import org.json.JSONObject;
 

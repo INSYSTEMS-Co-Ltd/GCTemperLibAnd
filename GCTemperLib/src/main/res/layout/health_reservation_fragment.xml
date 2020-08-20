@@ -86,6 +86,11 @@
                         android:textColor="#131313"
                         android:fontFamily="@font/hanam"
                         android:textSize="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#7f7f7f"/>
                 </LinearLayout>
                 <ImageView
                     android:id="@+id/ever_health_code_copy_btn"

@@ -14,10 +14,7 @@ import androidx.annotation.Nullable;
 import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
-import com.greencross.gctemperlib.greencare.component.CDialog;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.greencross.gctemperlib.hana.component.CDialog;
 
 public class Main1QActivity extends Activity {
 

@@ -1,11 +1,9 @@
 package com.greencross.gctemperlib.util;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -13,14 +11,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.view.View;
-import android.widget.Button;
-
-import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.common.CustomAlertDialogInterface;
-import com.greencross.gctemperlib.greencare.component.CDialog;
+import com.greencross.gctemperlib.hana.component.CDialog;
 
 /**
  * Created by MobileDoctor on 2016-07-06.

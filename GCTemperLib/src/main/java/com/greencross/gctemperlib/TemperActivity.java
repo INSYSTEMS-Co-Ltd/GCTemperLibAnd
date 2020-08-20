@@ -747,6 +747,9 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             } else {
                 // 남은이용일수rk 있는 경우 남은 일자 표시
                 remainTextview.setText("남은 이용일 수 "+day+"일");
+                // 남은 이용일수가 0일인 경우 건강상담표시 하지 않음
+                findViewById(R.id.fever_map_menu_3_line).setVisibility(View.VISIBLE);
+                findViewById(R.id.fever_map_menu_3).setVisibility(View.VISIBLE);
             }
         } else {
             // DB전송이 완료되지 않은 경우, 남은이용일수 표시 하지 않음

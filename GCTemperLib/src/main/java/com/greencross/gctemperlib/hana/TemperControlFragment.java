@@ -45,8 +45,9 @@ import java.util.GregorianCalendar;
 public class TemperControlFragment extends BaseFragment {
 
     private ImageView mTemperNoticeIcon;
-    private TextView mTemperNoticeTitle;
-    private TextView mTemperNoticeMessage;
+    private ImageView mTemperBubbleIv;
+//    private TextView mTemperNoticeTitle;
+//    private TextView mTemperNoticeMessage;
 
     private TextView mTemperTextview;
 
@@ -64,6 +65,16 @@ public class TemperControlFragment extends BaseFragment {
             , R.drawable.hn_temper_smile_5
             , R.drawable.hn_temper_smile_6
             , R.drawable.hn_temper_smile_7
+    };
+
+    private int[] mTemperBubbleImage = new int[]{
+            R.drawable.hn_temper_bubble_1
+            , R.drawable.hn_temper_bubble_2
+            , R.drawable.hn_temper_bubble_3
+            , R.drawable.hn_temper_bubble_4
+            , R.drawable.hn_temper_bubble_5
+            , R.drawable.hn_temper_bubble_6
+            , R.drawable.hn_temper_bubble_7
     };
 
     private int[] mTemperTitles = new int[]{
@@ -116,8 +127,9 @@ public class TemperControlFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mTemperNoticeIcon = view.findViewById(R.id.temper_notice_icon);
-        mTemperNoticeTitle = view.findViewById(R.id.temper_notice_title);
-        mTemperNoticeMessage = view.findViewById(R.id.temper_notice_message);
+        mTemperBubbleIv = view.findViewById(R.id.temper_bubble_iv);
+//        mTemperNoticeTitle = view.findViewById(R.id.temper_notice_title);
+//        mTemperNoticeMessage = view.findViewById(R.id.temper_notice_message);
 
         mTemperTextview = view.findViewById(R.id.temper_textview);
 //        String temper = SharedPref.getInstance(getContext()).getPreferences(SharedPref.TEMPER);
@@ -230,8 +242,9 @@ public class TemperControlFragment extends BaseFragment {
         Log.i(TAG, "getTemperMessage.temper=" + temper + ", " + (temper == 0.0));
 
         mTemperNoticeIcon.setImageResource(mTemperIcon[resultIdx]);
-        mTemperNoticeTitle.setText(mTemperTitles[resultIdx]);
-        mTemperNoticeMessage.setText(mTemperText[resultIdx]);
+        mTemperBubbleIv.setImageResource(mTemperBubbleImage[resultIdx]);
+//        mTemperNoticeTitle.setText(mTemperTitles[resultIdx]);
+//        mTemperNoticeMessage.setText(mTemperText[resultIdx]);
     }
 
     /**
@@ -286,7 +299,7 @@ public class TemperControlFragment extends BaseFragment {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         } catch (Exception e) {
-            CDialog.showDlg(getContext(), "사용하시는 스마트폰에 \n 파트론 앱이 설치되어있지 않습니다.", "앱을 설치하기 위해 앱스토어로 이동합니다.")
+            CDialog.showDlg(getContext(), "사용하시는 스마트폰에\n전용 체온계 앱이 설치되어있지 않습니다.", "전용 체온계 앱을 설치하기 위해\n앱스토어로 이동합니다.")
                     .setOkButton(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

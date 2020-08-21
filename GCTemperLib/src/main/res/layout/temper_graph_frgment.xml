@@ -110,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignRight="@id/history_graph"
                     android:layout_alignBottom="@id/history_graph"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/hanab"
                     android:gravity="center_horizontal"

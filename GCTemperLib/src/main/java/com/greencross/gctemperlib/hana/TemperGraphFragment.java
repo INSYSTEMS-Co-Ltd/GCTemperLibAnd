@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.Legend;
@@ -24,6 +25,7 @@ import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
+import com.github.mikephil.charting.utils.Utils;
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.R;
@@ -382,6 +384,7 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
         mHistoryGraph.setHighlightPerDragEnabled(false);
 
         mHistoryGraph.setPinchZoom(false);
+        mHistoryGraph.setExtraBottomOffset(10f);
 
         Legend l = mHistoryGraph.getLegend();
         l.setTextColor(Color.GRAY);
@@ -396,6 +399,7 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
         leftAxis.setGridColor(Color.parseColor("#adadad"));
         leftAxis.setAxisLineColor(Color.parseColor("#808080"));
         leftAxis.setTextColor(Color.parseColor("#dddddd"));
+        leftAxis.setTypeface(ResourcesCompat.getFont(getContext(), R.font.hanam));
         leftAxis.setAxisMaxValue(42.5f);
         leftAxis.setAxisMinValue(31.5f); // this replaces setStartAtZero(true)
         leftAxis.setDrawZeroLine(false);
@@ -406,6 +410,7 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
         xAxis.setAxisLineColor(Color.parseColor("#808080"));
         xAxis.setGridColor(Color.parseColor("#adadad"));
         xAxis.setTextColor(Color.parseColor("#6972d1"));
+        xAxis.setTypeface(ResourcesCompat.getFont(getContext(), R.font.hanal));
         xAxis.setDrawGridLines(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     }

@@ -19,44 +19,55 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:background="#f3f4ff"
                 android:paddingLeft="20dp"
                 android:paddingTop="26dp"
                 android:paddingRight="@dimen/_22_dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="28dp">
 
-                <LinearLayout
+
+
+                <ImageView
+                    android:id="@+id/temper_bubble_iv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/draw_box_dddddd"
-                    android:minHeight="200dp"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/hn_temper_bubble_1"/>
 
-                    <TextView
-                        android:id="@+id/temper_notice_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:letterSpacing="-0.02"
-                        android:lineSpacingExtra="5sp"
-                        android:fontFamily="@font/notosans_b"
-                        android:textSize="20dp"
-                        tools:text="@string/temper_title1" />
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/draw_box_dddddd"-->
+<!--                    android:minHeight="200dp"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="15dp">-->
 
-                    <TextView
-                        android:id="@+id/temper_notice_message"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:letterSpacing="-0.02"
-                        android:fontFamily="@font/notosans_m"
-                        android:textColor="#888888"
-                        android:textSize="13dp"
-                        tools:text="@string/temper_message1" />
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/temper_notice_title"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:letterSpacing="-0.02"-->
+<!--                        android:lineSpacingExtra="5sp"-->
+<!--                        android:fontFamily="@font/notosans_b"-->
+<!--                        android:textSize="20dp"-->
+<!--                        tools:text="@string/temper_title1" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/temper_notice_message"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:letterSpacing="-0.02"-->
+<!--                        android:fontFamily="@font/notosans_m"-->
+<!--                        android:textColor="#888888"-->
+<!--                        android:textSize="13dp"-->
+<!--                        tools:text="@string/temper_message1" />-->
+<!--                </LinearLayout>-->
 
                 <ImageView
                     android:id="@+id/temper_notice_icon"
@@ -107,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp">
 
@@ -166,7 +178,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="26dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp">
@@ -239,7 +251,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginRight="50dp"
                 android:gravity="center_horizontal"
                 android:letterSpacing="-0.02"

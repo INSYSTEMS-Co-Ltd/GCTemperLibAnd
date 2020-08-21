@@ -10,6 +10,7 @@
         android:id="@+id/common_bg_layout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_marginTop="13dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true">
 

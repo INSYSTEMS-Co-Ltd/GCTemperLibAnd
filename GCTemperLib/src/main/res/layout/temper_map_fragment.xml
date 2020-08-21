@@ -23,7 +23,8 @@
             android:fontFamily="@font/hanam"
             android:gravity="center"
             android:textColor="#222222"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            app:fontFamily="@font/hanam"/>
 
         <View
             android:layout_width="5dp"
@@ -37,7 +38,8 @@
             android:fontFamily="@font/hanam"
             android:gravity="center"
             android:textColor="#6972d1"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            app:fontFamily="@font/hanam"/>
 
     </LinearLayout>
 

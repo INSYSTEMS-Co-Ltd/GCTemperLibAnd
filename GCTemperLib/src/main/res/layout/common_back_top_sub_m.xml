@@ -35,7 +35,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:fontFamily="@font/hanam"
-            tools:text="타이틀" />
+            tools:text="타이틀"
+            app:fontFamily="@font/hanam"/>
 
         <Button
             android:id="@+id/common_right_btn"

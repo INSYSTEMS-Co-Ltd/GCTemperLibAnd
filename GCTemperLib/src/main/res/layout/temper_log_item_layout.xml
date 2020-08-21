@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
     android:paddingTop="@dimen/_10_dp"
     android:paddingLeft="20dp"
@@ -29,36 +30,36 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:lineSpacingExtra="10sp"
             android:textColor="#222222"
             android:textSize="15dp"
             android:fontFamily="@font/hanam"
             android:layout_marginLeft="12dp"
-            android:text="직접입력" />
+            android:text="직접입력"
+            app:fontFamily="@font/hanam"/>
 
         <TextView
             android:id="@+id/temper_item_text2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:lineSpacingExtra="10sp"
             android:textColor="#222222"
             android:textSize="15dp"
             android:fontFamily="@font/hanam"
             android:gravity="center"
-            tools:text="16:14" />
+            tools:text="16:14"
+            app:fontFamily="@font/hanam"/>
 
         <TextView
             android:id="@+id/temper_item_text3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:lineSpacingExtra="10sp"
             android:gravity="right"
             android:textColor="#222222"
             android:textSize="15dp"
             android:fontFamily="@font/hanam"
-            tools:text="38.0 ℃" />
+            tools:text="38.0 ℃"
+            app:fontFamily="@font/hanam"/>
     </LinearLayout>
     <View
         android:id="@+id/temper_item_bottom_line"

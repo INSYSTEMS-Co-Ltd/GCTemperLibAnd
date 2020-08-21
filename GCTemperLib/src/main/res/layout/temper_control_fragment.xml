@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ScrollView
@@ -132,14 +133,15 @@
                         android:id="@+id/date_textview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:drawableRight="@drawable/hn_date_icon"
                         android:gravity="center_vertical"
-                        android:lineSpacingExtra="18sp"
                         android:paddingLeft="14dp"
                         android:paddingRight="14dp"
                         android:textColor="#242424"
                         android:textSize="18dp"
                         android:fontFamily="@font/hanam"
-                        tools:text="2020. 6. 23." />
+                        tools:text="2020. 6. 23."
+                        app:fontFamily="@font/hanam"/>
                 </LinearLayout>
 
                 <TextView
@@ -163,14 +165,15 @@
                         android:id="@+id/time_textview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:drawableRight="@drawable/hn_time_icon"
                         android:gravity="center_vertical"
-                        android:lineSpacingExtra="18sp"
                         android:fontFamily="@font/hanam"
                         android:paddingLeft="14dp"
                         android:paddingRight="14dp"
                         android:textColor="#242424"
                         android:textSize="18dp"
-                        tools:text="15:29" />
+                        tools:text="15:29"
+                        app:fontFamily="@font/hanam"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -214,7 +217,8 @@
                             android:lineSpacingExtra="-24sp"
                             android:text="0.0"
                             android:textColor="#dc622c"
-                            android:textSize="61dp" />
+                            android:textSize="61dp"
+                            app:fontFamily="@font/hanab"/>
 
                         <View
                             android:layout_width="match_parent"
@@ -234,7 +238,8 @@
                         android:text="℃"
                         android:fontFamily="@font/hanab"
                         android:textColor="#7f7f7f"
-                        android:textSize="30dp" />
+                        android:textSize="30dp"
+                        app:fontFamily="@font/hanab"/>
 
                     <ImageView
                         android:id="@+id/temper_control_call_device_btn"

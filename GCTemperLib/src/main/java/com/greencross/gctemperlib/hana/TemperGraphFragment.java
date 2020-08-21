@@ -295,7 +295,7 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
                     xCount++;
                     beforeInputDe = yyyMMdd;
                     View view = LayoutInflater.from(getContext()).inflate(R.layout.temper_log_frame_layout, null);
-                    ((TextView) view.findViewById(R.id.temper_item_date_textview)).setText(yyyMMdd);
+                    ((TextView) view.findViewById(R.id.temper_item_date_textview)).setText(CDateUtil.getFormat_yyyy_MM_dd_comma(yyyMMdd,"."));
                     if (beforeBottomLine != null)
                         beforeBottomLine.setVisibility(View.GONE);
                     mLogLayout.addView(view);

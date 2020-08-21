@@ -19,10 +19,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:lineSpacingExtra="7sp"
         android:textColor="#222222"
         android:textSize="18dp"
-        tools:text="2020. 6. 23." />
+        tools:text="2020. 6. 23."
+        android:fontFamily="@font/hanam"
+        app:fontFamily="@font/hanam"/>
 
     <View
         android:layout_width="match_parent"

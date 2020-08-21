@@ -24,7 +24,8 @@
             android:text="@string/title_resavation_text1"
             android:fontFamily="@font/hanam"
             android:textColor="#222222"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            app:fontFamily="@font/hanam"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,7 +81,8 @@
                             android:text="가입코드"
                             android:fontFamily="@font/hanab"
                             android:textColor="#6972d1"
-                            android:textSize="25dp" />
+                            android:textSize="25dp"
+                            app:fontFamily="@font/hanab"/>
 
                         <TextView
                             android:id="@+id/regist_code_tv"
@@ -91,7 +93,8 @@
                             tools:text="NO960HU8"
                             android:textColor="#131313"
                             android:fontFamily="@font/hanam"
-                            android:textSize="30dp" />
+                            android:textSize="30dp"
+                            app:fontFamily="@font/hanam"/>
 
                         <View
                             android:layout_width="match_parent"
@@ -160,7 +163,8 @@
                 android:text="에버헬스 가족검진 가입입력 시 아래 코드를 복사해\n입력란에 넣어주세요."
                 android:fontFamily="@font/hanam"
                 android:textColor="#333333"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                app:fontFamily="@font/hanam"/>
 
         </RelativeLayout>
 

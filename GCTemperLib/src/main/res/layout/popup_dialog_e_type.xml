@@ -66,10 +66,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/hanab"
-                        android:lineSpacingExtra="2dp"
                         android:textColor="#6972d1"
                         android:textSize="20dp"
-                        tools:text="큰글씨" />
+                        tools:text="큰글씨"
+                        app:fontFamily="@font/hanab"/>
 
                     <TextView
                         android:id="@+id/dialog_message_textview"
@@ -108,7 +108,8 @@
                         android:fontFamily="@font/hanam"
                         android:text="@string/popup_dialog_button_cancel"
                         android:textColor="@color/color_333333_btn"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:fontFamily="@font/hanam"/>
 
 
                     <Button
@@ -120,7 +121,8 @@
                         android:fontFamily="@font/hanam"
                         android:text="@string/popup_dialog_button_confirm"
                         android:textColor="@color/color_f8f5f0_btn"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:fontFamily="@font/hanam"/>
                 </LinearLayout>
             </LinearLayout>
 

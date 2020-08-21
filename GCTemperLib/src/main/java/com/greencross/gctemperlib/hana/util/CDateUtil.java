@@ -595,6 +595,16 @@ public class CDateUtil {
         return age;
     }
 
+    public static String getFormat_yyyy_MM_dd_comma(String date, String gubun) {
+        date = StringUtil.getIntString(date);
+        if (date.length() >= 8) {
+            date = date.substring(0, 4) + gubun + StringUtil.getIntVal(date.substring(4, 6)) + gubun + date.substring(6, 8) + gubun;
+            return date;
+        } else {
+            return date;
+        }
+    }
+
 
     public static String getFormat_yyyy_MM_dd(String date) {
         date = StringUtil.getIntString(date);

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ScrollView
@@ -16,18 +17,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/color_100ffffff"
-                android:paddingLeft="@dimen/_20_dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:paddingTop="@dimen/_10_dp"
-                android:paddingRight="@dimen/_20_dp"
                 android:paddingBottom="@dimen/_10_dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp">
+                    android:gravity="center">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -39,13 +38,15 @@
                             android:id="@+id/txt_graph_start_date"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:drawableRight="@drawable/hn_date_icon"
                             android:gravity="center_vertical"
-                            android:lineSpacingExtra="18sp"
                             android:paddingLeft="14dp"
                             android:paddingRight="14dp"
                             android:textColor="#242424"
                             android:textSize="18dp"
-                            tools:text="2020. 6. 23." />
+                            tools:text="2020. 6. 23."
+                            android:fontFamily="@font/hanam"
+                            app:fontFamily="@font/hanam"/>
                     </LinearLayout>
 
                     <TextView
@@ -69,14 +70,15 @@
                             android:id="@+id/txt_graph_end_date"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:drawableRight="@drawable/hn_time_icon"
                             android:gravity="center_vertical"
-                            android:lineSpacingExtra="18sp"
-
                             android:paddingLeft="14dp"
                             android:paddingRight="14dp"
                             android:textColor="#242424"
                             android:textSize="18dp"
-                            tools:text="15:29" />
+                            tools:text="15:29"
+                            android:fontFamily="@font/hanam"
+                            app:fontFamily="@font/hanam"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -84,7 +86,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="400dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
 
                 <com.greencross.gctemperlib.hana.chart.CustomCombinedChart
                     android:id="@+id/history_graph"
@@ -99,11 +103,11 @@
                     android:fontFamily="@font/hanab"
                     android:gravity="center_horizontal"
                     android:letterSpacing="0.03"
-                    android:lineSpacingExtra="27sp"
                     android:text="℃"
                     android:textColor="#7f7f7f"
                     android:textSize="10dp"
-                    tools:background="#fff" />
+                    tools:background="#fff"
+                    app:fontFamily="@font/hanab"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -119,7 +123,8 @@
                     android:textColor="#6972d1"
                     android:textSize="10dp"
                     android:textStyle="bold"
-                    tools:background="#fff" />
+                    tools:background="#fff"
+                    app:fontFamily="@font/hanab"/>
 
             </RelativeLayout>
 

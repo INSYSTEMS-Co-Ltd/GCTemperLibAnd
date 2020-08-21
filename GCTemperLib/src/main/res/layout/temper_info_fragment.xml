@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ScrollView
@@ -26,7 +27,8 @@
                 android:text="올바른 감염 예방"
                 android:textColor="#222222"
                 android:fontFamily="@font/hanam"
-                android:textSize="21dp" />
+                android:textSize="21dp"
+                app:fontFamily="@font/hanam"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,7 +41,8 @@
                 android:text="@string/title_올바른감염예방2"
                 android:fontFamily="@font/hanam"
                 android:textColor="#6972d1"
-                android:textSize="21dp" />
+                android:textSize="21dp"
+                app:fontFamily="@font/hanam"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -65,7 +68,8 @@
                     android:text="01"
                     android:textColor="#6972d1"
                     android:fontFamily="@font/hanab"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    app:fontFamily="@font/hanab"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -96,7 +100,8 @@
                     android:text="02"
                     android:fontFamily="@font/hanab"
                     android:textColor="#6972d1"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    app:fontFamily="@font/hanab"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -128,7 +133,8 @@
                     android:text="03"
                     android:fontFamily="@font/hanab"
                     android:textColor="#6972d1"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    app:fontFamily="@font/hanab"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -172,7 +178,8 @@
             android:textColor="#ffffff"
             android:textSize="16dp"
             android:fontFamily="@font/hanam"
-            android:text="다시 보지 않기" />
+            android:text="다시 보지 않기"
+            app:fontFamily="@font/hanam"/>
 
         <TextView
             android:id="@+id/temper_info_start_btn"
@@ -188,7 +195,8 @@
             android:textColor="#ffffff"
             android:textSize="16dp"
             android:fontFamily="@font/hanam"
-            android:text="시작하기" />
+            android:text="시작하기"
+            app:fontFamily="@font/hanam"/>
     </LinearLayout>
 
 </LinearLayout>

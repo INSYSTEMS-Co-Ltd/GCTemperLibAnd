@@ -19,7 +19,7 @@
         android:layout_marginTop="@dimen/_20_dp"
         android:fontFamily="@font/hanam"
         android:gravity="center_horizontal"
-        android:lineSpacingExtra="5sp"
+        android:lineSpacingExtra="5dp"
         android:padding="@dimen/_20_dp"
         android:textColor="#888888"
         android:textSize="15dp"

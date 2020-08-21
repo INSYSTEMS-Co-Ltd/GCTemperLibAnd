@@ -349,7 +349,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center_horizontal"
                     android:letterSpacing="-0.02"
-                    android:lineSpacingExtra="4sp"
+                    android:lineSpacingExtra="4dp"
                     android:text="본 서비스는 GC녹십자헬스케어에서 제공합니다."
                     android:fontFamily="@font/notosans_m"
                     android:textColor="#888888"

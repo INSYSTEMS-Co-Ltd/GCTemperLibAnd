@@ -16,25 +16,12 @@ public class CommonData {
     private Context mContext;
     private static CommonData _instance;
 
-    public static final String TEMP_PATH = android.os.Environment.getExternalStorageDirectory()
-            + "/Android/data/com.appmd.hi.gngcare.common/tmp/";
-
-    public static final String BROADCAST_ACTIVITY_FINISH = "com.appmd.hi.gngcare.activity.finish";
-
-    public static final String LOCATION_TERMS_URL = "https://wkd.walkie.co.kr/FEVER/popup/pop_03.html";    // 위치정보 이용 동의
-
-    public static final String LOCATION_TERMS_JUN_URL = "https://wkd.walkie.co.kr/FEVER/popup/asso_pop_03.html";    // 준회원 위치정보 이용 동의
-
-    public static final String MOBILE_TERMS_URL = "https://wkd.walkie.co.kr/FEVER/popup/asso_pop_market.html";    //마케팅 이용 동의
-    public static final String PERSONAL_TERMS_URL = "https://wkd.walkie.co.kr/FEVER/popup/pop_05.html";    //개인정보 처리 방침
-
 
     // 일상기록 사진 업로드 hidden data
     public static final String CHLDRN_NOTE_UPLOAD_VIEWSTATE = "/wEPDwUKMTM2ODMxOTA2OGQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFDEltYWdlQnV0dG9uMRVUYSqY+BBh12ChzYvoEIiZXVDunViBtSenJmijObhP";
     public static final String CHLDRN_NOTE_UPLOAD_EVENTVALIDATION = "/wEWCgLkzImcBgKNu5z0AwLgwJWSCALPh9yCCwKiwdKQDgKewZLDCQKZwfaKBQK1wfbXCQKY6fHPCQLSwpnTCIsvRoi9NE4oNAtmtPHie3a/PWTtrXZFCRfZgQ513+3v";
 
     // 육아노트
-    public static final int ANI_DELAY_500 = 500;
     public static final int TIME_OUT_DELAY = 15000;
 
     public static final int PERMISSION_REQUEST_GPS = 4;// GPS 권한, 열지도
@@ -76,14 +63,9 @@ public class CommonData {
     public static final String STRING_SLASH = "/";    // 슬러쉬
 
 
-    // 앱코드
-    public static final String INSURE_CODE = "108";   // 현대해상 코드
-
-
     // intent putExtra 데이터
 
     public static final String EXTRA_URL = "EXTRA_URL";
-    public static final String EXTRA_URL_POSITION = "EXTRA_URL_POSITION";
     public static final String EXTRA_ACTIVITY_TITLE = "EXTRA_ACTIVITY_TITLE";
 
     public static final String EXTRA_ADDRESS = "EXTRA_ADDRESS";
@@ -92,44 +74,13 @@ public class CommonData {
     public static final String EXTRA_PUSH_TYPE = "EXTRA_PUSH_TYPE";
 
     // 체중정보
-    public static final int REQUEST_ADDRESS_SETTING = 114;    // 열지도 주소 설정
     public static final int REQUEST_ADDRESS_SEARCH = 115;    // 열지도 주소 설정
 
-    // METHOD
-    public static final String METHOD_CALL_REG_FX_ADD = "call_reg_fx_add_crt";
-    public static final String METHOD_MBER_CHECK_AGREE_YN = "mber_check_agree_yn";           // 마케팅,위치정보 동의 여부
-
-    public static final String METHOD_MBER_USER_HEAT_AREA_ADD = "mber_user_heat_area_add";  // 열지도 지역정보 넣기
-
-
-    public static final int REQUEST_CODE_CROISE = 700;        // 크로이스 체온계로 데이터 받아오기
-
     public static final String JSON_JSON = "json";
-    public static final String JSON_STRJSON = "strJson";
-    public static final String JSON_RESULT_CODE = "result_code";
-    public static final String JSON_DATA = "data";
     public static final String JSON_SESSION_CODE = "session_code";
     public static final String JSON_MEMBER_ID = "member_id";
-    public static final String JSON_PHOTO = "photo";
     public static final String JSON_HEIGHT = "height";
-    public static final String JSON_JOIN_TYPE = "join_type";
-    public static final String JSON_JOIN_STEP = "join_step";
-    public static final String JSON_TODAY_POPUP_EVENT = "today_popup_event";
-    public static final String JSON_IS_POPUP_EVENT_READ = "is_popup_event_read";
-    public static final String JSON_POPUP_EVENT_VIEW_ID = "pupop_event_view_id";
-    public static final String JSON_POPUP_EVENT_READ_TIME = "pupop_event_read_time";
-
-    // 현대해상
-    public static final String JSON_API_CODE = "api_code";
-    public static final String JSON_INSURES_CODE = "insures_code";
-    public static final String JSON_CMPNY_NM = "cmpny_nm";
-    public static final String JSON_CMPNY_ARS = "cmpny_ars";
-    public static final String JSON_LOGINURL = "loginurl";
-    public static final String JSON_APIURL = "apiurl";
     public static final String JSON_APPVERSION = "appVersion";
-    public static final String JSON_UPDATEURL = "updateurl";
-    public static final String JSON_CMPNY_FILE_COURS = "cmpny_file_cours";
-    public static final String JSON_SERVICE_START = "service_start";
     public static final String JSON_FX_YN = "fx_yn";
     public static final String JSON_FX_MTH = "fx_mth";
     public static final String JSON_MBER_SN = "mber_sn";
@@ -154,26 +105,16 @@ public class CommonData {
     public static final String JSON_AUTO_LOGIN = "auto_login";
     public static final String JSON_REMEMBER_ID = "remember_id";
     public static final String JSON_REG_YN = "reg_yn";
-    public static final String JSON_MBER_ID = "mber_id";
     public static final String JSON_MBER_PWD = "mber_pwd";
-    public static final String JSON_MBER_NO = "mber_no";
-    public static final String JSON_MEMBER_CERTIFI = "member_certifi";
-    public static final String JSON_CHL_SN = "chl_sn";
     public static final String JSON_CHLDRN = "chldrn";
-    public static final String JSON_MBER_KG = "mber_kg";
     public static final String JSON_CHLDRN_LIFYEA = "chldrn_lifyea";
     public static final String JSON_CHL_EXIST_YN = "chl_exist_yn";
-    public static final String JSON_SELECT = "select";
-    public static final String JSON_SELECT_CHILD_SN = "select_child_sn";
-    public static final String JSON_UPFILE = "upfile";
     public static final String JSON_DATA_YN = "data_yn";
     public static final String JSON_JUMINNUM = "juminnum";
     public static final String JSON_HIPLANNER_HP = "fc_hp";
     public static final String JSON_THERMOMETERCHK = "thermometerchk"; // 체온계 여부
     public static final String JSON_MOTHER_WEIGHT = "mother_weight";  // 엄마 체중
     public static final String JSON_KG_KIND = "kg_kind";  // 체중 상태
-    public static final String JSON_BMI = "bmi";  // BMI
-    public static final String JSON_BMI_KIND = "bmi_kind";  // BMI 상태(제체중군~~)
     public static final String JSON_MAIN_CATEGORY = "main_category"; // 즐겨찾기
     public static final String JSON_WEIGHTNGCHK = "weighingchk"; //체중계 여부
     public static final String JSON_I_AM_CHILD = "i_am_child"; // 어린이 여부  부모여부(로그인자)
@@ -205,57 +146,13 @@ public class CommonData {
 
     public static final String JSON_MBER_GRAD = "mber_grad";
 
-    public static final String JSON_MOTHER_PERIOD_WEEK = "mother_period_week";   //임신 주차
     public static final String JSON_DISEASE_ALERT_YN = "disease_alert_yn";
     public static final String JSON_EVENT_ALERT_YN = "event_alert_yn";
     public static final String JSON_REPLAY_ALERT_YN = "replay_alert_yn";
-    public static final String JSON_MAIN_INTRO_YN = "main_intro_yn";
-
-    //아이심리
-    public static final String JSON_CHL_SN_F = "CHL_SN";
 
     // 현대해상 열나요
-    public static final String JSON_API_CODE_F = "API_CODE";
     public static final String JSON_REG_YN_F = "REG_YN";
     public static final String JSON_DATA_F = "DATA";
-    public static final String JSON_FEVER_SN_F = "FEVER_SN";
-    public static final String JSON_INPUT_DE_F = "INPUT_DE";
-    public static final String JSON_IS_WEARABLE_F = "IS_WEARABLE";
-    public static final String JSON_INPUT_FEVER_F = "INPUT_FEVER";
-    public static final String JSON_START_DE_F = "START_DE";
-    public static final String JSON_END_DE_F = "END_DE";
-
-    public static final String JSON_FEVER_F = "FEVER";
-    public static final String JSON_TYPE_F = "TYPE";
-    public static final String JSON_INPUT_F = "INPUT";
-    public static final String JSON_UPDATE_F = "UPDATE";
-    public static final String JSON_DELETE_F = "DELETE";
-
-    public static final String JSON_REMEDY_SN_F = "REMEDY_SN";
-    public static final String JSON_INPUT_KIND_F = "INPUT_KIND";
-    public static final String JSON_INPUT_TYPE_F = "INPUT_TYPE";
-    public static final String JSON_INPUT_VOLUME_F = "INPUT_VOLUME";
-
-    public static final String JSON_FEVER_RE_SN_F = "FEVER_RE_SN";
-    public static final String JSON_INPUT_CODE_F = "INPUT_CODE";
-
-    public static final String JSON_SYM_SN_F = "SYM_SN";
-    public static final String JSON_DISE_SN_F = "DISE_SN";
-    public static final String JSON_VAC_SN_F = "VAC_SN";
-    public static final String JSON_MEMO_SN_F = "MEMO_SN";
-    public static final String JSON_INPUT_NUM_F = "INPUT_NUM";
-    public static final String JSON_INPUT_MEMO_F = "INPUT_MEMO";
-
-    public static final String JSON_FILTER_1_F = "FILTER_1";
-    public static final String JSON_FILTER_2_F = "FILTER_2";
-    public static final String JSON_FILTER_3_F = "FILTER_3";
-    public static final String JSON_FILTER_4_F = "FILTER_4";
-    public static final String JSON_FILTER_5_F = "FILTER_5";
-    public static final String JSON_FILTER_6_F = "FILTER_6";
-    public static final String JSON_FILTER_7_F = "FILTER_7";
-
-    public static final String JSON_DATA_SN_F = "DATA_SN";
-    public static final String JSON_FILTER_F = "FILTER";
 
     public static final String JSON_DZNUM = "DZNUM";
     public static final String JSON_DZNAME = "DZNAME";
@@ -263,56 +160,11 @@ public class CommonData {
     public static final String JSON_WEEKAGO_2 = "WEEKAGO_2";
 
 
-    public static final String JSON_APINM_HF003 = "HF003";
-    public static final String JSON_APINM_HF004 = "HF004";
-
-    public static final String JSON_APINM_HR004 = "HR004";
-
-    public static final String JSON_APINM_HS002 = "HS002";
-
-    public static final String JSON_APINM_HD002 = "HD002";
-
-    public static final String JSON_APINM_HV002 = "HV002";
-
-    public static final String JSON_APINM_HM002 = "HM002";
-
-    public static final String JSON_APINM_HA001 = "HA001";
-
-
-    /* 심리 메인 */
-    public static final String JSON_APINM_HP002 = "HP002";
-
-    public static final String JSON_INPUT_KIND_0 = "0";
-    public static final String JSON_INPUT_KIND_1 = "1";
-
     public static final String JSON_HELP_FEVER = "json_help_fever";
-    public static final String JSON_HELP_GROWTH = "json_help_growth";
 
     public static final String JSON_ADDRESS_DO = "address_do";
     public static final String JSON_ADDRESS_GU = "address_gu";
 
-    public static final String JSON_AFT_BABY_VIEW = "aft_baby_view";
-    public static final String JSON_MOTHER_BIG_VIEW = "mother_big_view";
-
-    public static final String EXTRA_RESULT_CODE = "result_code";
-    public static final String EXTRA_FEVER = "fever";
-    public static final String EXTRA_DATE = "date";
-    public static final String EXTRA_SN = "sn";
-    public static final String EXTRA_NUM = "num";
-    public static final String EXTRA_MEMO = "memo";
-    public static final String EXTRA_MEMO_TYPE = "memo_type";
-    public static final String EXTRA_IS_EDIT = "is_edit";
-    public static final String EXTRA_IS_TIMELIEN = "is_timelien";
-
-    public static final String PACKAGE_CROISE = "tomato.temperature";
-    public static final String PACKAGE_CROISE_MAIN = "tomato.temperature.MainActivity";
-    public static final String SEND = "send";
-    public static final String REPLY = "reply";
-    public static final String FEVER_CHECK = "fever_check";
-    public static final String MARKET_URL = "market://details?id=";
-
-    //hsh
-    public static final String JSON_MAIN_POP_DATE = "aft_main_pop_date";
 
     // API result Code
     public static final int API_SUCCESS = 0;        // 성공
@@ -387,17 +239,6 @@ public class CommonData {
         editor.commit();
     }
 
-    /**
-     * Long 타입의 preferencedata 를 저장한다.
-     *
-     * @param key   키값
-     * @param value 저장할 데이터
-     */
-    private void setSharedPreferenceData(String key, long value) {
-        SharedPreferences.Editor editor = getSharedPreference().edit();
-        editor.putLong(key, value);
-        editor.commit();
-    }
 
     /**
      * boolean 타입의 preferencedata 를 저장한다.
@@ -454,9 +295,6 @@ public class CommonData {
         setSharedPreferenceData(JSON_MBER_SN, sn);
     }
 
-    public String getMberSn() {
-        return getSharedPreference().getString(JSON_MBER_SN, "");
-    } // 로그인 인증 될때까지 홍태진 차장님 고유번호 기본값으로 설정
 
     // 내 이름
     public void setMberNm(String nick) {

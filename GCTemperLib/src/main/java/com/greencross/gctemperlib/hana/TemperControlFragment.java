@@ -34,7 +34,7 @@ import com.greencross.gctemperlib.hana.util.CDateUtil;
 import com.greencross.gctemperlib.hana.util.PermissionUtil;
 import com.greencross.gctemperlib.hana.util.StringUtil;
 import com.greencross.gctemperlib.hana.util.cameraUtil.RuntimeUtil;
-import com.greencross.gctemperlib.util.GpsInfo;
+import com.greencross.gctemperlib.hana.util.GpsInfo;
 import com.greencross.gctemperlib.hana.util.PermissionUtils;
 
 import java.text.SimpleDateFormat;

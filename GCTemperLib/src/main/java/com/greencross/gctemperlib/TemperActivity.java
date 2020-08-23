@@ -34,17 +34,15 @@ import com.greencross.gctemperlib.hana.component.CDialog;
 import com.greencross.gctemperlib.hana.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.hana.slideUtil.SlidingUpPanelLayout;
-import com.greencross.gctemperlib.util.GpsInfo;
+import com.greencross.gctemperlib.hana.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
 import com.greencross.gctemperlib.collection.EpidemicItem;
 import com.greencross.gctemperlib.collection.LocationItem;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.CustomAsyncListener;
-import com.greencross.gctemperlib.common.MakeProgress;
 import com.greencross.gctemperlib.common.NetworkConst;
 import com.greencross.gctemperlib.hana.util.JsonLogPrint;
-import com.greencross.gctemperlib.network.RequestApi;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -65,9 +63,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
-
-import cz.msebera.android.httpclient.NameValuePair;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 public class TemperActivity extends BackBaseActivity implements View.OnClickListener, OnMapReadyCallback {
 
@@ -688,30 +683,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         marker = (TextView) mMarkerRootView.findViewById(R.id.marker);
     }
 
-
-    /**
-     * 마케팅 정보 및 위치정보 동의
-     */
-    public void requestAgreeAlarmSetting(String YN) {
-        Log.i(TAG, "requestAgreeAlarmSetting");
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-
-        try {
-            JSONObject object = new JSONObject();
-            object.put(CommonData.JSON_API_CODE, CommonData.METHOD_MBER_CHECK_AGREE_YN);
-            object.put(CommonData.JSON_INSURES_CODE, CommonData.INSURE_CODE);
-            object.put(CommonData.JSON_MBER_SN, CommonData.getInstance(TemperActivity.this).getMberSn());
-
-            object.put(CommonData.JSON_MARKETING_YN, "");
-            object.put(CommonData.JSON_LOCATION_YN, YN);
-
-            params.add(new BasicNameValuePair(CommonData.JSON_JSON, object.toString()));
-
-            RequestApi.requestApi(TemperActivity.this, NetworkConst.NET_MBER_CHECK_AGREE_YN, NetworkConst.getInstance().getDefDomain(), networkListener, params, new MakeProgress(this));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * 남은이용일수 구하기

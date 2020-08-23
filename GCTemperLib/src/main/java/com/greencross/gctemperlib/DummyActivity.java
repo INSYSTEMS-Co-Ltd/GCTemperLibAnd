@@ -1,7 +1,6 @@
 package com.greencross.gctemperlib;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +15,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 
 import com.greencross.gctemperlib.base.BackBaseActivity;
-import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.webview.TipWebViewActivity;
 
 import java.lang.reflect.Constructor;
 import java.util.Set;

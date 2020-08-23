@@ -758,32 +758,6 @@ public class CustomAlertDialog extends Dialog {
     }
 
 
-    /**
-     * 체크 박스 설정 ( 버튼이 2개일 경우 오른쪽 )
-     * @param listener button click event
-     */
-    public void setCheckboxButtonLv(CustomAlertDialogInterface.OnImgClickListener listener) {
-
-        this.imgMotherCheckedChangeListner = listener;
-
-        mImgCheckBocLv = null;
-
-        mImgCheckBocLv = (LinearLayout) findViewById(R.id.mother_check_box);
-
-        if ( mImgCheckBocLv != null && imgMotherCheckedChangeListner != null) {
-
-            mImgCheckBocLv.setOnClickListener(v -> {
-                // TODO Auto-generated method stub
-                imgMotherCheckedChangeListner.onClick(CustomAlertDialog.this, v);
-            });
-        }
-        else {
-            mImgCheckBocLv.setOnClickListener(clickListener);
-        }
-
-
-    }
-
 
     public void setChangeCheckboxImg(){
         if(isChecked){
@@ -795,16 +769,6 @@ public class CustomAlertDialog extends Dialog {
         }
     }
 
-    public void setChangeCheckboxImg_motherBig(){
-        mCheck_Box_big_mother = findViewById(R.id.check_box1);
-        if(isMotherChecked){
-            isMotherChecked = false;
-            mCheck_Box_big_mother.setSelected(false);
-        }else {
-            isMotherChecked = true;
-            mCheck_Box_big_mother.setSelected(true);
-        }
-    }
 
     /**
      * 프로필 정보 수정 버튼 설정

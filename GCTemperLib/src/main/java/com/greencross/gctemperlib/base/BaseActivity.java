@@ -19,7 +19,6 @@ import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CommonView;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.network.RequestAsyncNetwork;
 import com.greencross.gctemperlib.util.GLog;
 
 
@@ -37,7 +36,6 @@ public class BaseActivity extends AppCompatActivity {
     // 테스트
     public static ArrayList<Activity> actList = new ArrayList<Activity>();    // 엑티비티 리스트 저장
 
-    public RequestAsyncNetwork mRequestAsyncNetwork = null; // 네트워크
 
     private boolean mButtonClickEnabled = true;  // 버튼 클릭 유무
     private Handler mButtonClickEnabledHandler = new Handler();

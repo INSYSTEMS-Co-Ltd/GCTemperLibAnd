@@ -41,7 +41,6 @@ public class BackBaseActivity extends BaseActivity {
 
     protected TextView titleTextView;
     protected ImageView backImg;
-    protected Button mCompleteBtn;
     protected RelativeLayout mBgLayout;
 
     Intent intent = null;
@@ -83,19 +82,6 @@ public class BackBaseActivity extends BaseActivity {
         titleTextView.setTextColor(color);
     }
 
-    /**
-     * 버튼 설정
-     *
-     * @param title 버튼 문구
-     */
-    public void setCompleteTitle(CharSequence title) {
-        if (mCompleteBtn != null)
-            mCompleteBtn.setText(title);
-    }
-
-    public void setCompleteTitleColor(int color) {
-        mCompleteBtn.setTextColor(color);
-    }
 
     /**
      * 네비바 색상 설정
@@ -124,23 +110,6 @@ public class BackBaseActivity extends BaseActivity {
         return backImg;
     }
 
-    /**
-     * 오른쪽 버튼
-     *
-     * @return button
-     */
-    public Button getCompleteBtn() {
-        return mCompleteBtn;
-    }
-
-    /**
-     * 백그라운드 레이아웃 반환
-     *
-     * @return mBgLayout
-     */
-    public RelativeLayout getmBgLayout() {
-        return mBgLayout;
-    }
 
     @Override
     public void setContentView(int layoutResID) {
@@ -148,7 +117,6 @@ public class BackBaseActivity extends BaseActivity {
         super.setContentView(layoutResID);
         titleTextView = (TextView) findViewById(R.id.common_title_tv);
         backImg = (ImageView) findViewById(R.id.common_left_btn);
-        mCompleteBtn = (Button) findViewById(R.id.common_right_btn);
         mBgLayout = (RelativeLayout) findViewById(R.id.common_bg_layout);
 
 

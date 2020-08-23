@@ -16,5 +16,5 @@
         android:paddingRight="@dimen/_5_dp"
         android:textColor="@color/color_100ffffff"
         android:textSize="@dimen/_12_dp"
-        android:fontFamily="@font/hi_gothic_m"/>
+        />
 </FrameLayout>

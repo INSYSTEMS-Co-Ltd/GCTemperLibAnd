@@ -38,33 +38,7 @@
             tools:text="타이틀"
             app:fontFamily="@font/hanam"/>
 
-        <Button
-            android:id="@+id/common_right_btn"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_15_dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:adjustViewBounds="true"
-            android:background="@drawable/action_bar_save_btn"
-            android:textColor="@color/color_ffffff_btn"
-            android:text="등 록"
-            android:textSize="@dimen/_16_dp"
-            android:textStyle="bold"
-            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/common_right_btn1"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:adjustViewBounds="true"
-            android:textColor="@color/color_93286C"
-            android:text="완료"
-            android:textSize="@dimen/_20_dp"
-            android:fontFamily="@font/hi_gothic_m"
-            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/actionbar_tip_btn"

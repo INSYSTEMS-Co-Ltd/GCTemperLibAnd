@@ -25,7 +25,7 @@
             android:layout_marginLeft="@dimen/_30_dp"
             android:layout_marginTop="@dimen/_30_dp"
             android:layout_marginRight="@dimen/_30_dp"
-            android:fontFamily="@font/hi_maum_r"
+
             android:text="title"
             android:textSize="@dimen/_18_dp"
             android:visibility="gone" />
@@ -37,7 +37,7 @@
             android:layout_marginLeft="@dimen/_30_dp"
             android:layout_marginTop="@dimen/_6_dp"
             android:layout_marginRight="@dimen/_30_dp"
-            android:fontFamily="@font/hi_gothic_b"
+            android:fontFamily="@font/hanab"
             android:textSize="@dimen/_13_dp"
             android:visibility="gone" />
 

@@ -29,7 +29,7 @@
             android:text="title"
             android:textSize="@dimen/_18_dp"
             android:visibility="gone"
-            android:fontFamily="@font/hi_maum_r" />
+             />
 
         <TextView
             android:id="@+id/dialog_sub_title"
@@ -40,7 +40,7 @@
             android:layout_marginTop="@dimen/_6_dp"
             android:textSize="@dimen/_13_dp"
             android:visibility="gone"
-            android:fontFamily="@font/hi_gothic_b" />
+            android:fontFamily="@font/hanab" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                     android:text="여러 개의 사용자 계정이\n검색되었습니다."
                     android:textColor="#0097C9"
                     android:textSize="@dimen/_20_dp"
-                    android:fontFamily="@font/hi_gothic_l" />
+                    android:fontFamily="@" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
                     android:text="선택한 계정으로 통합되어 이용 가능합니다."
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/_15_dp"
-                    android:fontFamily="@font/hi_gothic_l" />
+                    android:fontFamily="@" />
 
 
                 <LinearLayout
@@ -95,7 +95,7 @@
                         android:text="홈페이지\n계정"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/_15_dp"
-                        android:fontFamily="@font/hi_gothic_l" />
+                        android:fontFamily="@" />
 
                     <TextView
                         android:id="@+id/homepage_id"
@@ -109,7 +109,7 @@
                         android:text="Lem17@lem.com"
                         android:textColor="@color/switch_member_btn_color"
                         android:textSize="@dimen/_15_dp"
-                        android:fontFamily="@font/hi_gothic_l" />
+                        android:fontFamily="@" />
 
                 </LinearLayout>
 
@@ -129,7 +129,7 @@
                         android:text="APP 계정"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/_15_dp"
-                        android:fontFamily="@font/hi_gothic_l" />
+                        android:fontFamily="@" />
 
                     <TextView
                         android:id="@+id/app_id"
@@ -143,7 +143,7 @@
                         android:text="tkdtn2014@hanmail.net"
                         android:textColor="@color/switch_member_btn_color"
                         android:textSize="@dimen/_15_dp"
-                        android:fontFamily="@font/hi_gothic_l" />
+                        android:fontFamily="@" />
 
                 </LinearLayout>
 
@@ -167,7 +167,7 @@
                     android:text="@string/popup_dialog_button_cancel"
                     android:textColor="@color/color_f8f5f0_btn"
                     android:textSize="@dimen/_18_dp"
-                    android:fontFamily="@font/hi_gothic_b" />
+                    android:fontFamily="@font/hanab" />
 
                 <Button
                     android:id="@+id/confirm_btn"
@@ -178,7 +178,7 @@
                     android:text="@string/popup_dialog_button_confirm"
                     android:textColor="@color/color_f8f5f0_btn"
                     android:textSize="@dimen/_18_dp"
-                    android:fontFamily="@font/hi_gothic_b" />
+                    android:fontFamily="@font/hanab" />
             </LinearLayout>
 
         </RelativeLayout>

@@ -29,7 +29,6 @@ import com.github.mikephil.charting.utils.Utils;
 import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.collection.AllDataItem;
 import com.greencross.gctemperlib.collection.FeverItem;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.hana.component.CDatePicker;
@@ -68,7 +67,6 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
     private Date mEndDate;
     private int cntDay = 0;
 
-    private ArrayList<AllDataItem> mAllDataItems = new ArrayList<AllDataItem>();
     private SimpleDateFormat mFormat;
 
     private boolean[] bSelFilter;

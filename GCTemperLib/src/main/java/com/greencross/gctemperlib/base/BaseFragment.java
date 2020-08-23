@@ -12,8 +12,6 @@ import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.CustomAlertDialog;
 import com.greencross.gctemperlib.common.MakeProgress;
 
-//import com.appmd.hi.gngcare.diary.GrowthMainActivity;
-
 
 /**
  * Created by jihoon on 2016-03-21.

@@ -35,14 +35,7 @@ import com.greencross.gctemperlib.hana.component.OnClickListener;
 import com.greencross.gctemperlib.push.FirebaseMessagingService;
 import com.greencross.gctemperlib.hana.slideUtil.SlidingUpPanelLayout;
 import com.greencross.gctemperlib.hana.util.GpsInfo;
-import com.greencross.gctemperlib.util.Util;
-import com.greencross.gctemperlib.collection.EpidemicItem;
 import com.greencross.gctemperlib.collection.LocationItem;
-import com.greencross.gctemperlib.common.CommonData;
-import com.greencross.gctemperlib.common.CustomAlertDialog;
-import com.greencross.gctemperlib.common.CustomAsyncListener;
-import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.hana.util.JsonLogPrint;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,14 +45,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
@@ -227,8 +214,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         OnClickListener mClickListener = new OnClickListener(this, view, TemperActivity.this);
     }
 
-    public static ArrayList<EpidemicItem> mEpidemicList = new ArrayList<EpidemicItem>();        // 유행질병 카운트
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -393,128 +378,6 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     private Intent inTentGo = null;
     private int typePush = FirebaseMessagingService.FEVER;
-    /**
-     * 네트워크 리스너
-     */
-    public CustomAsyncListener networkListener = new CustomAsyncListener() {
-
-        @Override
-        public void onPost(Context context, int type, int resultCode, JSONObject resultData, CustomAlertDialog dialog) {
-            switch (type) {
-
-                case NetworkConst.NET_GET_EPIDEMIC:             // 유행 질병 데이터 가져오기
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            try {
-                                JsonLogPrint.printJson(resultData.toString());
-                                String data_yn = resultData.getString(CommonData.JSON_REG_YN_F);
-
-                                if (data_yn.equals(CommonData.YES)) {
-                                    JSONArray resultArr = resultData.getJSONArray(CommonData.JSON_DATA_F);
-                                    ArrayList<EpidemicItem> epidemicItems = new ArrayList<>();
-
-                                    for (int i = 0; i < resultArr.length(); i++) {
-                                        JSONObject resultObject = resultArr.getJSONObject(i);
-
-                                        EpidemicItem curItem = new EpidemicItem();
-                                        curItem.setDzNum(resultObject.getInt(CommonData.JSON_DZNUM));
-                                        curItem.setDzName(resultObject.getString(CommonData.JSON_DZNAME));
-                                        curItem.setWeekago_1(resultObject.getInt(CommonData.JSON_WEEKAGO_1));
-                                        curItem.setWeekago_2(resultObject.getInt(CommonData.JSON_WEEKAGO_2));
-                                        epidemicItems.add(curItem);
-                                    }
-
-                                    epidemicItems.remove(epidemicItems.get(epidemicItems.size() - 2));
-                                    epidemicItems.remove(epidemicItems.get(epidemicItems.size() - 2));
-
-                                    for (int i = 0; i < epidemicItems.size(); i++) {
-                                        epidemicItems.get(i).setRatio(getRatio(epidemicItems.get(i).getWeekago_1(), epidemicItems.get(epidemicItems.size() - 1).getWeekago_1(), 100));
-                                    }
-
-                                    epidemicItems.remove(epidemicItems.get(epidemicItems.size() - 1));
-
-                                    Collections.sort(epidemicItems, (a, b) -> a.getRatio() > b.getRatio() ? -1 : a.getRatio() < b.getRatio() ? 1 : 0);
-
-                                    //Collections.sort(epidemicItems, comRatio);
-                                    //Collections.reverse(epidemicItems);
-                                    mEpidemicList = epidemicItems;
-
-
-                                    //mTxtEpidemic.setText(getString(R.string.epidemic_main) + " " + mEpidemicList.get(0).getDzName());
-                                    //hsh start
-                                    if (inTentGo != null && (typePush == FirebaseMessagingService.FEVER
-                                            || typePush == FirebaseMessagingService.FEVER_MOVIE
-                                            || typePush == FirebaseMessagingService.DIESEASE)) {
-                                        startActivity(inTentGo);
-                                        Util.BackAnimationStart(TemperActivity.this);
-                                        inTentGo = null;
-                                    }
-                                    //hsh end
-                                } else {
-                                    //mTxtEpidemic.setText(getString(R.string.epidemic_main) + " " + getString(R.string.empty_epidemic_main));
-                                }
-                            } catch (Exception e) {
-                                Log.e(TAG, e.toString());
-                                //mTxtEpidemic.setText(getString(R.string.epidemic_main) + " " + getString(R.string.empty_epidemic_main));
-                            }
-                    }
-                    break;
-
-                case NetworkConst.NET_MBER_CHECK_AGREE_YN:
-
-                    switch (resultCode) {
-                        case CommonData.API_SUCCESS:
-                            Log.i(TAG,"NET_GET_APP_INFO API_SUCCESS");
-
-                            try {
-                                String data_yn = resultData.getString(CommonData.JSON_REG_YN);
-                                if (data_yn.equals(CommonData.YES)) {
-                                    CommonData.getInstance(TemperActivity.this).setMarketing_yn(resultData.getString(CommonData.JSON_MARKETING_YN));
-                                    CommonData.getInstance(TemperActivity.this).setLocation_yn(resultData.getString(CommonData.JSON_LOCATION_YN));
-                                    CommonData.getInstance(TemperActivity.this).setEvent_alert_yn(resultData.getString(CommonData.JSON_EVENT_ALERT_YN).equals(CommonData.YES) ? true : false);
-                                    CommonData.getInstance(TemperActivity.this).setMapPushAlarm(resultData.getString(CommonData.JSON_HEAT_YN).equals(CommonData.YES) ? true : false);
-                                    CommonData.getInstance(TemperActivity.this).setDietPushAlarm(resultData.getString(CommonData.JSON_DIET_YN).equals(CommonData.YES) ? true : false);
-                                    CommonData.getInstance(TemperActivity.this).setDisease_alert_yn(resultData.getString(CommonData.JSON_DISEASE_ALERT_YN).equals(CommonData.YES) ? true : false);
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                            break;
-                        case CommonData.API_ERROR_SYSTEM_ERROR:    // 시스템 오류
-                            Log.i(TAG,"NET_GET_APP_INFO API_ERROR_SYSTEM_ERROR");
-
-                            break;
-                        case CommonData.API_ERROR_INPUT_DATA_ERROR:    // 입력 데이터 오류
-                            Log.i(TAG,"NET_GET_APP_INFO API_ERROR_INPUT_DATA_ERROR");
-                            break;
-
-                        default:
-                            Log.i(TAG,"NET_GET_APP_INFO default");
-                            break;
-                    }
-                    break;
-            }
-            hideProgress();
-        }
-
-        @Override
-        public void onNetworkError(Context context, int type, int httpResultCode, CustomAlertDialog dialog) {
-            // TODO Auto-generated method stub
-            hideProgress();
-            dialog.show();
-        }
-
-        @Override
-        public void onDataError(Context context, int type, String resultData, CustomAlertDialog dialog) {
-            // TODO Auto-generated method stub
-            // 데이터에 문제가 있는 경우 다이얼로그를 띄우고 인트로에서는 종료하도록 한다.
-            hideProgress();
-            dialog.show();
-
-        }
-    };
 
     public double getRatio(int num_1, int num_2, int num_3) {
 

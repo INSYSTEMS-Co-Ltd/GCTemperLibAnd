@@ -288,18 +288,6 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <!-- save button style -->
-    <style name="common_save_button_input" parent="android:Widget.Button">
-        <item name="android:layout_width">@dimen/_322_dp</item>
-        <item name="android:layout_height">@dimen/_46_dp</item>
-        <item name="android:background">@color/color_100ffffff</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:src">@drawable/button_on_off</item>
-        <item name="android:paddingBottom">@dimen/_10_dp</item>
-        <item name="android:paddingTop">@dimen/_10_dp</item>
-        <item name="android:scaleType">fitCenter</item>
-    </style>
-
     <!-- more button style -->
     <style name="common_button_more" parent="android:Widget.Button">
         <!--<item name="android:textStyle">bold</item>-->

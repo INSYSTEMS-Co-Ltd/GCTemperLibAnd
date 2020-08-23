@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@drawable/background_5_sq_bottom_506bb0d7" android:state_pressed="true"/> <!-- pressed -->
-    <item android:drawable="@drawable/background_5_sq_bottom_506bb0d7" android:state_selected="true"/> <!-- selected -->
-    <item android:drawable="@drawable/background_5_sq_bottom_6bb0d7"/> <!-- default -->
-
-</selector>

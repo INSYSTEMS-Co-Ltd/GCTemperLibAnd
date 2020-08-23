@@ -39,17 +39,6 @@
             app:fontFamily="@font/hanam"/>
 
 
-
-        <ImageView
-            android:id="@+id/actionbar_tip_btn"
-            android:layout_width="@dimen/_80_dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/_10_dp"
-            android:layout_alignParentRight="true"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:src="@drawable/btn_tip"
-            android:visibility="gone"/>
     </RelativeLayout>
 
 </RelativeLayout>

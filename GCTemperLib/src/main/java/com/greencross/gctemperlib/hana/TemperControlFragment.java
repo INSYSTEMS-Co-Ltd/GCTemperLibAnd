@@ -212,7 +212,7 @@ public class TemperControlFragment extends BaseFragment {
                         @Override
                         public void onResult(boolean isSuccess, String message, Object data) {
                             if (isSuccess) {
-                                CDialog.showDlg(getContext(), message);
+                                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
                             } else {
                                 CDialog.showDlg(getContext(), getString(R.string.fever_health_no_alert_title), message);
                             }
@@ -392,20 +392,23 @@ public class TemperControlFragment extends BaseFragment {
                 return true;
             }
         } else {
-            cal.set(Calendar.YEAR, cal_year);
-            cal.set(Calendar.MONTH, cal_month);
-            cal.set(Calendar.DAY_OF_MONTH, cal_day);
-            cal.set(Calendar.HOUR_OF_DAY, pram1);
-            cal.set(Calendar.MINUTE, pram2);
+            long date = StringUtil.getLongVal(mDateTv.getTag().toString().replaceAll("-",""));
+            long today = StringUtil.getLongVal(CDateUtil.getToday_yyyy_MM_dd());
 
-            if (cal.getTimeInMillis() > System.currentTimeMillis()) {
-                CDialog.showDlg(getContext(), getString(R.string.message_nowtime_over), new CDialog.DismissListener() {
-                    @Override
-                    public void onDissmiss() {
+            long time = StringUtil.getLongVal(String.format("%02d%02d",pram1,pram2));
+            long today_time = StringUtil.getLongVal(CDateUtil.getToday_HH_mm());
+            if(date == today) {
+                if(time > today_time) {
+                    CDialog.showDlg(getContext(), getString(R.string.message_nowtime_over), new CDialog.DismissListener() {
+                        @Override
+                        public void onDissmiss() {
 
-                    }
-                });
-                return false;
+                        }
+                    });
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
                 return true;
             }
@@ -427,19 +430,17 @@ public class TemperControlFragment extends BaseFragment {
             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), R.style.datepicker, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    mCalendar.set(Calendar.MINUTE, minute);
-                    Date checkDate = new Date();
-//                    if (mCalendar.getTime().compareTo(checkDate) >= 0) {    // 오늘 지남
-//                        Toast.makeText(getContext(), getString(R.string.over_time), Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-                    mCurDate = mCalendar.getTime();
-                    SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_TIME_2);
-                    tv.setText(format.format(mCurDate));
 
-                    format = new SimpleDateFormat(CommonData.PATTERN_DATETIME);
-                    mCheckDate = format.format(mCurDate);
+                    if (DateTimeCheck("T", hourOfDay, minute, 0)) {
+                        mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        mCalendar.set(Calendar.MINUTE, minute);
+                        mCurDate = mCalendar.getTime();
+                        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_TIME_2);
+                        tv.setText(format.format(mCurDate));
+
+                        format = new SimpleDateFormat(CommonData.PATTERN_DATETIME);
+                        mCheckDate = format.format(mCurDate);
+                    }
                 }
             }, nHourOfDay, nMinute, false);
 

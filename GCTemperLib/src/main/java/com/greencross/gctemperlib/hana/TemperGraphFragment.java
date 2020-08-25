@@ -122,7 +122,7 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
             bSelFilter[i] = true;
         }
 
-        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE_DOT);
+        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE_DOT2);
         mCalendar = new GregorianCalendar();
         mStartDate = new Date();
         mEndDate = new Date();
@@ -154,7 +154,7 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
                         mCalendar.set(year, monthOfYear, dayOfMonth);
 
                         Date startDate = mCalendar.getTime();
-                        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE_DOT);
+                        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE_DOT2);
                         String startDateStr = format.format(startDate);
                         String endDateStr = format.format(mEndDate);
                         if (startDateStr.compareTo(endDateStr) > 0) {  // 오늘 지남
@@ -190,7 +190,7 @@ public class TemperGraphFragment extends BaseFragment implements View.OnClickLis
                         mCalendar.set(year, monthOfYear, dayOfMonth);
 
                         Date endDate = mCalendar.getTime();
-                        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE_DOT);
+                        SimpleDateFormat format = new SimpleDateFormat(CommonData.PATTERN_DATE_DOT2);
                         String startDateStr = format.format(mStartDate);
                         String endDateStr = format.format(endDate);
                         if (startDateStr.compareTo(endDateStr) > 0) {  // 오늘 지남

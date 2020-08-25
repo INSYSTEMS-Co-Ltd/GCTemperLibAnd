@@ -197,6 +197,11 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             mInfoLayout.findViewById(R.id.temper_info_gone_btn).setOnClickListener(this);
             mInfoLayout.findViewById(R.id.temper_info_start_btn).setOnClickListener(this);
             mInfoLayout.setVisibility(View.VISIBLE);
+        } else {
+            if(null != SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE) &&
+                    !"".equals(SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE))) {
+                slideMenu1();
+            }
         }
 
         mLinearTabMap = (LinearLayout) findViewById(R.id.linear_tab_map);
@@ -218,6 +223,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.temper_info_gone_btn) {
+            SharedPref.getInstance(this).savePreferences(SharedPref.TEMPER_INTRO_VIEW_SHOW, false);
             mInfoLayout.setVisibility(View.GONE);
             firstLocationPermission();
         } else if (id == R.id.temper_info_start_btn) {
@@ -598,10 +604,18 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
             requestPermissionLocation(new IGCResult() {
                 @Override
                 public void onResult(boolean isSuccess, String message, Object data) {
-
+                    if(null != SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE) &&
+                            !"".equals(SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE))) {
+                        slideMenu1();
+                    }
                 }
             });
             SharedPref.getInstance(this).savePreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, true);
+        } else {
+            if(null != SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE) &&
+                    !"".equals(SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE))) {
+                slideMenu1();
+            }
         }
     }
 

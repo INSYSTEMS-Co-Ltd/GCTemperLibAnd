@@ -19,6 +19,7 @@ public class SharedPref {
     public static final String PREF_PUSH_TOKEN = "pref_push_token";                     // 푸시키
     public static final String TEMPER_INTRO_VIEW_SHOW = "TEMPER_INTRO_VIEW_SHOW";       // 지도화면 안내화면 표시여부
     public static final String LOCATION_PERMISSION_FIRST_SHOW = "LOCATION_PERMISSION_FIRST_SHOW";       // 체온관리 권한 설정 표시 여부 (최초1회만)
+    public static final String PREF_TEMPERATE = "PREF_TEMPERATE";       // 체온 저장
 
 
     /* 로그인 정보 */

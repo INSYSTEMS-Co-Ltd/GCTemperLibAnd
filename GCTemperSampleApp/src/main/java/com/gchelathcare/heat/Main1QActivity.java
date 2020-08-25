@@ -2,7 +2,10 @@ package com.gchelathcare.heat;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -15,6 +18,7 @@ import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.hana.component.CDialog;
+import com.greencross.gctemperlib.hana.util.SharedPref;
 
 public class Main1QActivity extends Activity {
 
@@ -26,6 +30,14 @@ public class Main1QActivity extends Activity {
         setContentView(R.layout.activity_1q_main);
 
         final GCTemperLib gcLib = new GCTemperLib(this);
+
+        Uri linkValueUrl = getIntent().getData();
+
+        if (linkValueUrl != null) {   // Web으로 부터 실행
+            Log.i("Main1QActivity", "Check LinkData - bt : " + linkValueUrl.getQueryParameter("bt"));
+            gcLib.setTemperate(linkValueUrl.getQueryParameter("bt"));
+            gcLib.startGCMainActivity();
+        }
 
         mProgress = findViewById(R.id.progress_layout);
 
@@ -208,7 +220,20 @@ public class Main1QActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
 
+        Uri linkValueUrl = intent.getData();
+
+        if (linkValueUrl != null) {   // Web으로 부터 실행
+            Log.i("Main1QActivity", "Check LinkData - bt : " + linkValueUrl.getQueryParameter("bt"));
+            final GCTemperLib gcLib = new GCTemperLib(this);
+            gcLib.setTemperate(linkValueUrl.getQueryParameter("bt"));
+            gcLib.startGCMainActivity();
+
+        }
+    }
 
     private void showProgress() {
         mProgress.setVisibility(View.VISIBLE);

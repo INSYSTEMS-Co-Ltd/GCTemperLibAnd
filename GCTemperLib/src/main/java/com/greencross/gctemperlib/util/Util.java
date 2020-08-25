@@ -994,9 +994,7 @@ public abstract class Util {
                     android.util.Log.i("gps", "FindAddress: " + currentLocationAddress);
 
                     // 전송할 주소 데이터 (위도/경도 포함 편집)
-                    bf.append(currentLocationAddress).append("#");
-                    bf.append(lat).append("#");
-                    bf.append(lng);
+                    bf.append(currentLocationAddress);
                 }
             }
 

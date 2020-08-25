@@ -402,4 +402,8 @@ public class GCTemperLib {
     }
 
 
+    public void setTemperate(@Nullable String temperate) {
+        SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_TEMPERATE,temperate);    // 체온
+    }
+
 }

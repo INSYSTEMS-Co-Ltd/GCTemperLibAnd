@@ -70,7 +70,7 @@
                             android:id="@+id/txt_graph_end_date"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:drawableRight="@drawable/hn_time_icon"
+                            android:drawableRight="@drawable/hn_date_icon"
                             android:gravity="center_vertical"
                             android:paddingLeft="14dp"
                             android:paddingRight="14dp"

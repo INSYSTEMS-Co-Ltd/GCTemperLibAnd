@@ -132,6 +132,20 @@ public class CDateUtil {
     }
 
     /**
+     * 시간 포멧 문자열 변환
+     * 2000.01.01.
+     *
+     * @return
+     */
+    public static String getFormatYYYYMMDD(String timeStr, String format) {
+        timeStr     = StringUtil.getIntString(timeStr);
+        if (timeStr.length() >= 8) {
+            timeStr = timeStr.substring(0, 4) + format + timeStr.substring(4, 6) + format + timeStr.substring(6) + format;
+        }
+        return timeStr;
+    }
+
+    /**
      * yyyy-mm-dd hh:mi:ss
      * 2017-04-13-23:24:35
      *
@@ -456,7 +470,7 @@ public class CDateUtil {
         Date now                = new Date();
         cal.setTime(now);
         long time               = cal.getTimeInMillis();
-        SimpleDateFormat sdf    = new SimpleDateFormat("yyyy. MM. dd.");
+        SimpleDateFormat sdf    = new SimpleDateFormat("yyyy.MM.dd.");
         return sdf.format(time);
     }
 

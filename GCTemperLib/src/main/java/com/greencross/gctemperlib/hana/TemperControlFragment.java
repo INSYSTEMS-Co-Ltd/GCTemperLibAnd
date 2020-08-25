@@ -27,11 +27,13 @@ import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
+import com.greencross.gctemperlib.TemperActivity;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.hana.component.CDatePicker;
 import com.greencross.gctemperlib.hana.component.CDialog;
 import com.greencross.gctemperlib.hana.util.CDateUtil;
 import com.greencross.gctemperlib.hana.util.PermissionUtil;
+import com.greencross.gctemperlib.hana.util.SharedPref;
 import com.greencross.gctemperlib.hana.util.StringUtil;
 import com.greencross.gctemperlib.hana.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.hana.util.GpsInfo;
@@ -136,11 +138,19 @@ public class TemperControlFragment extends BaseFragment {
 //        temper = TextUtils.isEmpty(temper) ? "0.0" : temper;
 //        mTemperTextview.setText(temper);
 
+        if(null != SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE) &&
+                !"".equals(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE))) {
+            mTemperTextview.setText(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE));
+        }
+
+        SharedPref.getInstance(getContext()).savePreferences(SharedPref.PREF_TEMPERATE, "");
+
         mDateTv = view.findViewById(R.id.date_textview);
         mTtimeTv = view.findViewById(R.id.time_textview);
 
         String today = CDateUtil.getToday_temper_graph();
         mDateTv.setText(today);
+        mDateTv.setTag(CDateUtil.getToday_yyyyMMdd());
 //        dateTv.setTag(cal.getTimeInMillis());
         SimpleDateFormat timeFormat = new SimpleDateFormat(CommonData.PATTERN_TIME_2);
         mTtimeTv.setText(timeFormat.format(new Date()));
@@ -192,9 +202,9 @@ public class TemperControlFragment extends BaseFragment {
                 if (gps.isGetLocation()) {
                     GCTemperLib gcTemperLib = new GCTemperLib(getContext());
 
-                    String date = mDateTv.getText().toString();
+                    String date = mDateTv.getTag().toString();
                     String time = mTtimeTv.getText().toString();
-                    date = date.replaceAll(".", "-");
+//                    date = date.replaceAll("\\.", "-");
 
                     String registTime = date + " " +time;
 
@@ -348,7 +358,7 @@ public class TemperControlFragment extends BaseFragment {
     }
 
     private void mDateTvSet(TextView tv, int year, int monthOfYear, int dayOfMonth) {
-        String msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth);
+        String msg = String.format("%d-%02d-%02d", year, monthOfYear + 1, dayOfMonth);
         String tagMsg = String.format("%d%02d%02d", year, monthOfYear + 1, dayOfMonth);
         Calendar cal = Calendar.getInstance();
 
@@ -356,8 +366,8 @@ public class TemperControlFragment extends BaseFragment {
         cal.set(Calendar.MONTH, monthOfYear + 1);
         cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        tv.setText(CDateUtil.getFormatYYYYMMDD(tagMsg));
-        tv.setTag(cal.getTimeInMillis());
+        tv.setText(CDateUtil.getFormatYYYYMMDD(tagMsg, "."));
+        tv.setTag(msg);
     }
 
     private boolean DateTimeCheck(String type, int pram1, int pram2, int pram3) {
@@ -451,7 +461,7 @@ public class TemperControlFragment extends BaseFragment {
         PermissionUtil.checkPermissions(getContext());
         int permissionState = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionState == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getContext(), "권한설저 됨.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "권한설정 됨.", Toast.LENGTH_SHORT).show();
         } else {
             requestPermissions(PermissionUtils.LOCATION_PERMS, CommonData.PERMISSION_REQUEST_GPS);
         }

@@ -1,13 +1,17 @@
 package com.greencross.gctemperlib;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
+import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
+import com.greencross.gctemperlib.hana.TemperControlFragment;
 import com.greencross.gctemperlib.hana.component.CDialog;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
@@ -183,12 +187,24 @@ public class GCTemperLib {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
-            GpsInfo gps = new GpsInfo(mContext);
-            if (gps.isGetLocation()) {
-                registerLocationUpdates(temper, registTime, iGCResult);
-            } else {
-                gps.showSettingsAlert();
+            int permissionState = ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION);
+            if (permissionState == PackageManager.PERMISSION_GRANTED) {
+                GpsInfo gps = new GpsInfo(mContext);
+                if (gps.isGetLocation()) {
+                    // 위치권한과 GPS 설정이 된 경우 위치정보를 얻은 후, 전문 전송
+                    registerLocationUpdates(temper, registTime, iGCResult);
+                    return;
+                }
             }
+
+            // 위치 설정이 되지 않은경우 바로 등록
+            Tr_Temperature.RequestData requestData = new Tr_Temperature.RequestData();
+            requestData.fever = temper;
+            requestData.la = "";
+            requestData.lo = "";
+            requestData.Input_de = registTime;
+            requestData.is_wearable = "1";
+            registTemperAPI(requestData, iGCResult);
         }
     }
 
@@ -264,7 +280,6 @@ public class GCTemperLib {
 //        }
     }
 
-
     /**
      * 테스트용 기능
      * 인증토큰, Push토큰, 고객번호 데이터를 초기화 한다.
@@ -272,7 +287,6 @@ public class GCTemperLib {
     public void resetGCData() {
         SharedPref.getInstance(mContext).removeAllPreferences();
     }
-
 
     /**
      * 인증체크
@@ -291,7 +305,6 @@ public class GCTemperLib {
             CDialog.showDlg(mContext, "사용자 정보 등록 후 이용 가능합니다.");
             return false;
         }
-
         return true;
     }
 
@@ -299,10 +312,8 @@ public class GCTemperLib {
     /**
      * 위치정보 찾기
      */
-    private LocationManager mLM;
     private void registerLocationUpdates(String temper, String registTime, final IGCResult iGCResult) {
 //        showProgress();
-
         GpsInfo gps = new GpsInfo(mContext);
         if(gps.isGetLocation()){
             double latitude = gps.getLatitude();
@@ -334,33 +345,52 @@ public class GCTemperLib {
                     requestData.Input_de = registTime;//    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                     requestData.is_wearable = "1";
 
-                    getData(Tr_Temperature.class, requestData, new IGCResult() {
-                        @Override
-                        public void onResult(boolean isSuccess, String message, Object data) {
-                            if (data instanceof Tr_Temperature) {
-                                Tr_Temperature recv = (Tr_Temperature) data;
-                                boolean isSuccessed = recv.isSuccess(recv.resultcode);
-
-                                if (isSuccessed) {
-                                    // 한시간뒤 독려 알람
-                                    boolean isAfter1hour = SharedPref.getInstance(mContext).getPreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName() , false);
-                                    if (isAfter1hour) {
-//                                        AlramUtil.setTemperAlramRepeat(mContext, receiver);
-                                    }
-                                }
-                                iGCResult.onResult(recv.isSuccess(recv.resultcode), ((Tr_Temperature) data).message, null);
-                            } else {
-                                iGCResult.onResult(false, "데이터 수신 실패", null);
-                            }
-                        }
-                    });
+                    registTemperAPI(requestData, iGCResult);
                 }
             }
         }
 //        hideProgress();
     }
 
+    /**
+     * 체온등록 전문 요청
+     * @param requestData
+     * @param iGCResult
+     */
+    private void registTemperAPI(Tr_Temperature.RequestData requestData, final IGCResult iGCResult) {
+        getData(Tr_Temperature.class, requestData, new IGCResult() {
+            @Override
+            public void onResult(boolean isSuccess, String message, Object data) {
+                if (data instanceof Tr_Temperature) {
+                    Tr_Temperature recv = (Tr_Temperature) data;
+                    boolean isSuccessed = recv.isSuccess(recv.resultcode);
 
+                    if (isSuccessed) {
+                        // 한시간뒤 독려 알람
+                        boolean isAfter1hour = SharedPref.getInstance(mContext).getPreferences(GCAlramType.GC_ALRAM_TYPE_독려.getAlramName() , false);
+                        if (isAfter1hour) {
+                            // TODO 1시간뒤 독력 알람 처리. 하나측으로 부터 BroadCastReceiver class를 받아놔야 하는데 2차 개발로 미뤄짐
+
+                        }
+                    }
+                    iGCResult.onResult(recv.isSuccess(recv.resultcode), ((Tr_Temperature) data).message, null);
+
+                    startGCMainActivity();  // 메인화면(열지도)
+                    DummyActivity.startActivity(((Activity)mContext), TemperControlFragment.class, null);   // 체온관리
+                } else {
+                    iGCResult.onResult(false, "데이터 수신 실패", null);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * 전문요청 모듈
+     * @param cls
+     * @param obj
+     * @param iGCResult
+     */
     private void getData(Class<? extends BaseData> cls, final Object obj, final IGCResult iGCResult) {
         if (NetworkUtil.getConnectivityStatus(mContext) == false) {
             CDialog.showDlg(this.mContext, "네트워크 연결 상태를 확인해주세요.");

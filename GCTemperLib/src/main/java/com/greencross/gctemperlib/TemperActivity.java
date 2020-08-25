@@ -599,8 +599,8 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
     private void firstLocationPermission() {
         // 최초1회 위치 권한 팝업 띄우기
-        boolean isFirstShow = SharedPref.getInstance(this).getPreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, false);
-        if (isFirstShow == false) {
+        boolean isFirstShow = SharedPref.getInstance(this).getPreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, true);
+        if (isFirstShow == true) {
             requestPermissionLocation(new IGCResult() {
                 @Override
                 public void onResult(boolean isSuccess, String message, Object data) {
@@ -610,7 +610,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                     }
                 }
             });
-            SharedPref.getInstance(this).savePreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, true);
+            SharedPref.getInstance(this).savePreferences(SharedPref.LOCATION_PERMISSION_FIRST_SHOW, false);
         } else {
             if(null != SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE) &&
                     !"".equals(SharedPref.getInstance(TemperActivity.this).getPreferences(SharedPref.PREF_TEMPERATE))) {

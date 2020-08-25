@@ -208,6 +208,13 @@ public class TemperControlFragment extends BaseFragment {
 
                     String registTime = date + " " +time;
 
+                    String[] temp_time = time.split(":");
+                    if(temp_time.length >= 2) {
+                        if (!DateTimeCheck("T", StringUtil.getIntVal(temp_time[0]), StringUtil.getIntVal(temp_time[1]), 0)) {
+                            return;
+                        }
+                    }
+
                     gcTemperLib.registGCTemperServer(temper, registTime , new IGCResult() {
                         @Override
                         public void onResult(boolean isSuccess, String message, Object data) {

@@ -198,36 +198,62 @@ public class TemperControlFragment extends BaseFragment {
                     return;
                 }
 
-                GpsInfo gps = new GpsInfo(getContext());
-                if (gps.isGetLocation()) {
-                    GCTemperLib gcTemperLib = new GCTemperLib(getContext());
+                GCTemperLib gcTemperLib = new GCTemperLib(getContext());
 
-                    String date = mDateTv.getTag().toString();
-                    String time = mTtimeTv.getText().toString();
+                String date = mDateTv.getTag().toString();
+                String time = mTtimeTv.getText().toString();
 //                    date = date.replaceAll("\\.", "-");
 
-                    String registTime = date + " " +time;
+                String registTime = date + " " +time;
 
-                    String[] temp_time = time.split(":");
-                    if(temp_time.length >= 2) {
-                        if (!DateTimeCheck("T", StringUtil.getIntVal(temp_time[0]), StringUtil.getIntVal(temp_time[1]), 0)) {
-                            return;
+                String[] temp_time = time.split(":");
+                if(temp_time.length >= 2) {
+                    if (!DateTimeCheck("T", StringUtil.getIntVal(temp_time[0]), StringUtil.getIntVal(temp_time[1]), 0)) {
+                        return;
+                    }
+                }
+
+                gcTemperLib.registGCTemperServer(temper, registTime , new IGCResult() {
+                    @Override
+                    public void onResult(boolean isSuccess, String message, Object data) {
+                        if (isSuccess) {
+                            DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
+                        } else {
+                            CDialog.showDlg(getContext(), getString(R.string.fever_health_no_alert_title), message);
                         }
                     }
+                });
 
-                    gcTemperLib.registGCTemperServer(temper, registTime , new IGCResult() {
-                        @Override
-                        public void onResult(boolean isSuccess, String message, Object data) {
-                            if (isSuccess) {
-                                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
-                            } else {
-                                CDialog.showDlg(getContext(), getString(R.string.fever_health_no_alert_title), message);
-                            }
-                        }
-                    });
-                } else {
-                    gps.showSettingsAlert();
-                }
+//                GpsInfo gps = new GpsInfo(getContext());
+//                if (gps.isGetLocation()) {
+//                    GCTemperLib gcTemperLib = new GCTemperLib(getContext());
+//
+//                    String date = mDateTv.getTag().toString();
+//                    String time = mTtimeTv.getText().toString();
+////                    date = date.replaceAll("\\.", "-");
+//
+//                    String registTime = date + " " +time;
+//
+//                    String[] temp_time = time.split(":");
+//                    if(temp_time.length >= 2) {
+//                        if (!DateTimeCheck("T", StringUtil.getIntVal(temp_time[0]), StringUtil.getIntVal(temp_time[1]), 0)) {
+//                            return;
+//                        }
+//                    }
+//
+//                    gcTemperLib.registGCTemperServer(temper, registTime , new IGCResult() {
+//                        @Override
+//                        public void onResult(boolean isSuccess, String message, Object data) {
+//                            if (isSuccess) {
+//                                DummyActivity.startActivity(TemperControlFragment.this, TemperGraphFragment.class, new Bundle());
+//                            } else {
+//                                CDialog.showDlg(getContext(), getString(R.string.fever_health_no_alert_title), message);
+//                            }
+//                        }
+//                    });
+//                } else {
+//                    gps.showSettingsAlert();
+//                }
             }
         });
     }

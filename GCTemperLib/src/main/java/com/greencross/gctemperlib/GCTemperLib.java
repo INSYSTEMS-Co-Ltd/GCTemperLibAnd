@@ -11,7 +11,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.greencross.gctemperlib.hana.TemperControlFragment;
 import com.greencross.gctemperlib.hana.component.CDialog;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
@@ -374,9 +373,6 @@ public class GCTemperLib {
                         }
                     }
                     iGCResult.onResult(recv.isSuccess(recv.resultcode), ((Tr_Temperature) data).message, null);
-
-                    startGCMainActivity();  // 메인화면(열지도)
-                    DummyActivity.startActivity(((Activity)mContext), TemperControlFragment.class, null);   // 체온관리
                 } else {
                     iGCResult.onResult(false, "데이터 수신 실패", null);
                 }

@@ -168,18 +168,18 @@ public class GCTemperLib {
 
 
     /**
-     * 체온값 저장
+     * 체온값 서버 전송
      *
      * @param temper    체온
      * @param iGCResult 결과값 전달 Interface
      */
-    public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
+    public void registGCTemperServer(@Nullable String temper, final IGCResult iGCResult) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String registTime = sdf.format(new Date());
-        registGCTemper(temper, registTime, iGCResult);
+        registGCTemperServer(temper, registTime, iGCResult);
     }
 
-    public void registGCTemper(@Nullable String temper, String registTime, final IGCResult iGCResult) {
+    public void registGCTemperServer(@Nullable String temper, String registTime, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
@@ -402,10 +402,14 @@ public class GCTemperLib {
     }
 
     /**
-     * 체온 쉐어드 저장
+     * 체온값 저장
+     *
+     * @param temper    체온
+     * @param iGCResult 결과값 전달 Interface
      */
-    public void setTemperate(@Nullable String temperate) {
-        SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_TEMPERATE,temperate);    // 체온
+    public void registGCTemper(@Nullable String temper, final IGCResult iGCResult) {
+        SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_TEMPERATE,temper);    // 체온
+        iGCResult.onResult(true,"성공적으로 저장되었습니다.", null);
     }
 
 }

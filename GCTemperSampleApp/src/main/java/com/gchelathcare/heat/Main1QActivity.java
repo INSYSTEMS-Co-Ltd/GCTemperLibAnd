@@ -35,8 +35,14 @@ public class Main1QActivity extends Activity {
 
         if (linkValueUrl != null) {   // Web으로 부터 실행
             Log.i("Main1QActivity", "Check LinkData - bt : " + linkValueUrl.getQueryParameter("bt"));
-            gcLib.setTemperate(linkValueUrl.getQueryParameter("bt"));
-            gcLib.startGCMainActivity();
+            gcLib.registGCTemper(linkValueUrl.getQueryParameter("bt"), new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if(isSuccess) {
+                        gcLib.startGCMainActivity();
+                    }
+                }
+            });
         }
 
         mProgress = findViewById(R.id.progress_layout);
@@ -229,8 +235,14 @@ public class Main1QActivity extends Activity {
         if (linkValueUrl != null) {   // Web으로 부터 실행
             Log.i("Main1QActivity", "Check LinkData - bt : " + linkValueUrl.getQueryParameter("bt"));
             final GCTemperLib gcLib = new GCTemperLib(this);
-            gcLib.setTemperate(linkValueUrl.getQueryParameter("bt"));
-            gcLib.startGCMainActivity();
+            gcLib.registGCTemper(linkValueUrl.getQueryParameter("bt"), new IGCResult() {
+                @Override
+                public void onResult(boolean isSuccess, String message, Object data) {
+                    if(isSuccess) {
+                        gcLib.startGCMainActivity();
+                    }
+                }
+            });
 
         }
     }

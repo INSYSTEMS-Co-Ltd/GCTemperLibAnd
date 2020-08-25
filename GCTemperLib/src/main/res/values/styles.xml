@@ -310,11 +310,6 @@
     </style>
 
 
-    <declare-styleable name="MaxHeightScrollView">
-        <attr name="mhs_maxHeight" format="dimension" />
-    </declare-styleable>
-
-
     <style name="Theme.MyDialog" parent="android:Theme.NoTitleBar">
         <item name="android:windowAnimationStyle">@null</item>
     </style>

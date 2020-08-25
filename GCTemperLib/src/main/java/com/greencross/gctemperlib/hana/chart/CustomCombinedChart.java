@@ -3,7 +3,7 @@ package com.greencross.gctemperlib.hana.chart;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.github.mikephil.charting.charts.CombinedChart;
+import com.greencross.gctemperlib.charting.charts.CombinedChart;
 
 public class CustomCombinedChart extends CombinedChart {
     public CustomCombinedChart(Context context) {

@@ -3,12 +3,12 @@ package com.greencross.gctemperlib.hana.chart;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.renderer.XAxisRenderer;
-import com.github.mikephil.charting.utils.FSize;
-import com.github.mikephil.charting.utils.Transformer;
-import com.github.mikephil.charting.utils.Utils;
-import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.greencross.gctemperlib.charting.renderer.XAxisRenderer;
+import com.greencross.gctemperlib.charting.utils.FSize;
+import com.greencross.gctemperlib.charting.utils.Transformer;
+import com.greencross.gctemperlib.charting.utils.Utils;
+import com.greencross.gctemperlib.charting.utils.ViewPortHandler;
+import com.greencross.gctemperlib.charting.components.XAxis;
 
 import java.util.List;
 

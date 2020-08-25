@@ -4,6 +4,7 @@ package com.greencross.gctemperlib.charting.renderer;
 import android.graphics.Canvas;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
+import android.util.Log;
 
 import com.greencross.gctemperlib.charting.animation.ChartAnimator;
 import com.greencross.gctemperlib.charting.buffer.ScatterBuffer;
@@ -75,8 +76,7 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
 
         ScatterShape shape = dataSet.getScatterShape();
 
-        ScatterBuffer buffer = mScatterBuffers[mChart.getScatterData().getIndexOfDataSet(
-                dataSet)];
+        ScatterBuffer buffer = mScatterBuffers[mChart.getScatterData().getIndexOfDataSet(dataSet)];
         buffer.setPhases(phaseX, phaseY);
         buffer.feed(dataSet);
 
@@ -131,18 +131,21 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
                 break;
 
             case CIRCLE:
-
+//                Log.i(getClass().getSimpleName(), "buffer.size()="+buffer.size());
                 for (int i = 0; i < buffer.size(); i += 2) {
 
-                    if (!mViewPortHandler.isInBoundsRight(buffer.buffer[i]))
-                        break;
-
+//                    Log.i(getClass().getSimpleName(), "c.drawCircle1="+!mViewPortHandler.isInBoundsRight(buffer.buffer[i]));
+//                    if (!mViewPortHandler.isInBoundsRight(buffer.buffer[i]))  // 20200825 차트 줌 할때 안보이게 되어 주석 처리
+//                        break;
+//                    Log.i(getClass().getSimpleName(), "c.drawCircle2="+!mViewPortHandler.isInBoundsLeft(buffer.buffer[i]));
+//                    Log.i(getClass().getSimpleName(), "c.drawCircle3="+!mViewPortHandler.isInBoundsY(buffer.buffer[i + 1]));
                     if (!mViewPortHandler.isInBoundsLeft(buffer.buffer[i])
                             || !mViewPortHandler.isInBoundsY(buffer.buffer[i + 1]))
                         continue;
 
                     mRenderPaint.setColor(dataSet.getColor(i / 2));
 
+//                    Log.i(getClass().getSimpleName(), "c.drawCircle="+buffer.buffer[i] +","+ buffer.buffer[i + 1]);
                     if (shapeHoleSize > 0.0) {
                         mRenderPaint.setStyle(Style.STROKE);
                         mRenderPaint.setStrokeWidth(shapeStrokeSize);

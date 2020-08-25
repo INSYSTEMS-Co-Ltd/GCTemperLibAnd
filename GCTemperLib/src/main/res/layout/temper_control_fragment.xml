@@ -194,7 +194,7 @@
                     android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="30dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="12dp"
@@ -215,8 +215,7 @@
                             android:fontFamily="@font/hanab"
                             android:gravity="right"
                             android:letterSpacing="-0.05"
-                            android:lineSpacingExtra="-24dp"
-                            android:text="0.0"
+                            android:text="38.0"
                             android:textColor="#dc622c"
                             android:textSize="61dp"
                             app:fontFamily="@font/hanab"/>

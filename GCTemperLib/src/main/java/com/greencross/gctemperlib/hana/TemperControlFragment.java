@@ -140,7 +140,7 @@ public class TemperControlFragment extends BaseFragment {
 
         if(null != SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE) &&
                 !"".equals(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE))) {
-            mTemperTextview.setText(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE));
+            mTemperTextview.setText(String.format("%.1f", StringUtil.getFloatVal(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE))));
         }
 
         SharedPref.getInstance(getContext()).savePreferences(SharedPref.PREF_TEMPERATE, "");

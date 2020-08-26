@@ -199,6 +199,9 @@ public class GCTemperLib {
             // 위치 설정이 되지 않은경우 바로 등록
             Tr_Temperature.RequestData requestData = new Tr_Temperature.RequestData();
             requestData.fever = temper;
+            requestData.area = "";
+            requestData.est1 = "";
+            requestData.est2 = "";
             requestData.la = "";
             requestData.lo = "";
             requestData.Input_de = registTime;

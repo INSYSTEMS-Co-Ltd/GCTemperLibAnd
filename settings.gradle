@@ -1,4 +1,4 @@
-include ':GCTemperApp'
+//include ':GCTemperApp'
 include ':GCTemperLib'
 //include ':app'
 include ':GCTemperSampleApp'

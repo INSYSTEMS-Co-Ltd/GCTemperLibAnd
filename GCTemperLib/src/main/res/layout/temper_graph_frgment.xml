@@ -84,49 +84,62 @@
 
             </FrameLayout>
 
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp">
+                android:layout_height="match_parent">
 
-                <com.greencross.gctemperlib.hana.chart.CustomCombinedChart
-                    android:id="@+id/history_graph"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="400dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/hanab"
-                    android:gravity="center_horizontal"
-                    android:letterSpacing="0.03"
-                    android:text="℃"
-                    android:textColor="#7f7f7f"
-                    android:textSize="10dp"
-                    tools:background="#fff"
-                    app:fontFamily="@font/hanab"/>
+                    <com.greencross.gctemperlib.hana.chart.CustomCombinedChart
+                        android:id="@+id/history_graph"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignRight="@id/history_graph"
-                    android:layout_alignBottom="@id/history_graph"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/hanab"
-                    android:gravity="center_horizontal"
-                    android:letterSpacing="0.03"
-                    android:text="시간"
-                    android:textColor="#6972d1"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    tools:background="#fff"
-                    app:fontFamily="@font/hanab"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/hanab"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="0.03"
+                        android:text="℃"
+                        android:textColor="#7f7f7f"
+                        android:textSize="10dp"
+                        tools:background="#fff"
+                        app:fontFamily="@font/hanab"/>
 
-            </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/hanab"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="0.03"
+                        android:text="시간"
+                        android:textColor="#6972d1"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        tools:background="#fff"
+                        app:fontFamily="@font/hanab"/>
+                </RelativeLayout>
+
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/temper_log_layout"

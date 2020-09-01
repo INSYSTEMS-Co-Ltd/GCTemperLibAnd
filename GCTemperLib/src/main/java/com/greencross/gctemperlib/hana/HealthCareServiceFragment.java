@@ -65,7 +65,7 @@ public class HealthCareServiceFragment extends BaseFragment {
             }
         });
 
-
+        getRemainUseDate();
     }
 
     private void call() {
@@ -115,8 +115,8 @@ public class HealthCareServiceFragment extends BaseFragment {
             day = day < 0 ? 0 : day;
 
             if (callBtn1 != null && callBtn2 != null) {
-                callBtn1.setVisibility(day <= 0 ? View.GONE : View.VISIBLE);
-                callBtn2.setVisibility(day <= 0 ? View.GONE : View.VISIBLE);
+                callBtn1.setVisibility(day <= 0 ? View.INVISIBLE : View.VISIBLE);
+                callBtn2.setVisibility(day <= 0 ? View.INVISIBLE : View.VISIBLE);
             }
         } else {
             if (callBtn1 != null && callBtn2 != null) {

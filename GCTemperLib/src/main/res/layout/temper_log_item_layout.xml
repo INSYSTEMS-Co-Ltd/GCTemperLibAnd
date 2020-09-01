@@ -35,8 +35,7 @@
             android:fontFamily="@font/hanam"
             android:layout_marginLeft="12dp"
             android:text="직접입력"
-            app:fontFamily="@font/hanam"
-            android:visibility="invisible"/>
+            app:fontFamily="@font/hanam"/>
 
         <TextView
             android:id="@+id/temper_item_text2"

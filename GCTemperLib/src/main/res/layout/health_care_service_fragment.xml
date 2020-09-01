@@ -307,7 +307,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/hn_counselling_btn"
-                android:visibility="gone"
+                android:visibility="invisible"
                 tools:visibility="visible"/>
 
             <TextView
@@ -452,7 +452,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/hn_counselling_btn"
-                android:visibility="gone"
+                android:visibility="invisible"
                 tools:visibility="visible"/>
 
             <TextView

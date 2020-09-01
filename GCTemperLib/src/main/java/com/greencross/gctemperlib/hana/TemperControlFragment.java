@@ -36,6 +36,7 @@ import com.greencross.gctemperlib.util.CDateUtil;
 import com.greencross.gctemperlib.util.PermissionUtil;
 import com.greencross.gctemperlib.util.SharedPref;
 import com.greencross.gctemperlib.util.StringUtil;
+import com.greencross.gctemperlib.util.TextWatcherUtil;
 import com.greencross.gctemperlib.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.util.PermissionUtils;
 
@@ -53,7 +54,7 @@ public class TemperControlFragment extends BaseFragment {
 
     private TextView mTemperTextview;
 
-    private boolean mIsWearable = false;
+    private boolean mIsWearable = false;    // 기기,수기 등록 여부
 
     private TextView mDateTv;
     private TextView mTtimeTv;
@@ -213,7 +214,7 @@ public class TemperControlFragment extends BaseFragment {
                     }
                 }
 
-                gcTemperLib.registGCTemperServer(temper, registTime , new IGCResult() {
+                gcTemperLib.registGCTemperServer(temper, registTime, mIsWearable, new IGCResult() {
                     @Override
                     public void onResult(boolean isSuccess, String message, Object data) {
                         if (isSuccess) {

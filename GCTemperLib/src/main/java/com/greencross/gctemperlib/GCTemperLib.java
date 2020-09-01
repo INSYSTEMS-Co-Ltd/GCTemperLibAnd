@@ -178,10 +178,10 @@ public class GCTemperLib {
     public void registGCTemperServer(@Nullable String temper, final IGCResult iGCResult) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String registTime = sdf.format(new Date());
-        registGCTemperServer(temper, registTime, iGCResult);
+        registGCTemperServer(temper, registTime, true, iGCResult);
     }
 
-    public void registGCTemperServer(@Nullable String temper, String registTime, final IGCResult iGCResult) {
+    public void registGCTemperServer(@Nullable String temper, String registTime, boolean isWearable, final IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
@@ -190,7 +190,7 @@ public class GCTemperLib {
                 GpsInfo gps = new GpsInfo(mContext);
                 if (gps.isGetLocation()) {
                     // 위치권한과 GPS 설정이 된 경우 위치정보를 얻은 후, 전문 전송
-                    registerLocationUpdates(temper, registTime, iGCResult);
+                    registerLocationUpdates(temper, registTime, isWearable, iGCResult);
                     return;
                 }
             }
@@ -204,7 +204,7 @@ public class GCTemperLib {
             requestData.la = "";
             requestData.lo = "";
             requestData.Input_de = registTime;
-            requestData.is_wearable = "1";
+            requestData.is_wearable = isWearable ? "1" : "0";
             registTemperAPI(requestData, iGCResult);
         }
     }
@@ -313,7 +313,7 @@ public class GCTemperLib {
     /**
      * 위치정보 찾기
      */
-    private void registerLocationUpdates(String temper, String registTime, final IGCResult iGCResult) {
+    private void registerLocationUpdates(String temper, String registTime, boolean isWearable, final IGCResult iGCResult) {
 //        showProgress();
         GpsInfo gps = new GpsInfo(mContext);
         if(gps.isGetLocation()){
@@ -344,7 +344,7 @@ public class GCTemperLib {
                     requestData.la = ""+gps.getLatitude();
                     requestData.lo = ""+gps.getLongitude();
                     requestData.Input_de = registTime;//    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                    requestData.is_wearable = "1";
+                    requestData.is_wearable = isWearable ? "1" : "0";
 
                     registTemperAPI(requestData, iGCResult);
                 }

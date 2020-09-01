@@ -62,7 +62,7 @@ public class HealthRservationFragment extends BaseFragment {
                 ClipData clipData = ClipData.newPlainText("everhealthcode", login.cmpny_ub_code);
                 clipboardManager.setPrimaryClip(clipData);
 
-                Toast.makeText(getContext(), "복사 되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "복사 완료", Toast.LENGTH_SHORT).show();
             }
         });
 

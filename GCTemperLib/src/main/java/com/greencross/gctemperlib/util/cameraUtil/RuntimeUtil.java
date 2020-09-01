@@ -1,13 +1,6 @@
-package com.greencross.gctemperlib.hana.util.cameraUtil;
+package com.greencross.gctemperlib.util.cameraUtil;
 
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import androidx.core.app.ActivityCompat;
-import android.view.View;
-import android.widget.Toast;
 
 /**
  * Created by hyochan on 2016. 3. 7..

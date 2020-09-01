@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -27,17 +29,15 @@ import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.TemperActivity;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.hana.component.CDatePicker;
 import com.greencross.gctemperlib.hana.component.CDialog;
-import com.greencross.gctemperlib.hana.util.CDateUtil;
-import com.greencross.gctemperlib.hana.util.PermissionUtil;
-import com.greencross.gctemperlib.hana.util.SharedPref;
-import com.greencross.gctemperlib.hana.util.StringUtil;
-import com.greencross.gctemperlib.hana.util.cameraUtil.RuntimeUtil;
-import com.greencross.gctemperlib.hana.util.GpsInfo;
-import com.greencross.gctemperlib.hana.util.PermissionUtils;
+import com.greencross.gctemperlib.util.CDateUtil;
+import com.greencross.gctemperlib.util.PermissionUtil;
+import com.greencross.gctemperlib.util.SharedPref;
+import com.greencross.gctemperlib.util.StringUtil;
+import com.greencross.gctemperlib.util.cameraUtil.RuntimeUtil;
+import com.greencross.gctemperlib.util.PermissionUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -160,32 +160,32 @@ public class TemperControlFragment extends BaseFragment {
         view.findViewById(R.id.temper_control_call_device_btn).setOnClickListener(mClickListener);
 
         getTemperMessage();
-//        view.findViewById(R.id.temper_layout).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final View temperInputAlertView = LayoutInflater.from(getContext()).inflate(R.layout.temper_input_alert, null, false);
-//                final EditText temperEt = temperInputAlertView.findViewById(R.id.temper_input_edittext);
-//                new TextWatcherUtil().setTextWatcher(temperEt, 50, 1);
-//                CDialog.showDlg(getContext(), temperInputAlertView)
-//                        .setOkButton(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                String temper = temperEt.getText().toString();
-//                                if (TextUtils.isEmpty(temper))
-//                                    return;
-//                                mTemperTextview.setText(temper);
-//                                mIsWearable = false;
-//                                getTemperMessage();
-////                                SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
-//                            }
-//                        })
-//                        .setNoButton(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                            }
-//                        });
-//            }
-//        });
+        view.findViewById(R.id.temper_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final View temperInputAlertView = LayoutInflater.from(getContext()).inflate(R.layout.temper_input_alert, null, false);
+                final EditText temperEt = temperInputAlertView.findViewById(R.id.temper_input_edittext);
+                new TextWatcherUtil().setTextWatcher(temperEt, 50, 1);
+                CDialog.showDlg(getContext(), temperInputAlertView)
+                        .setOkButton(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String temper = temperEt.getText().toString();
+                                if (TextUtils.isEmpty(temper))
+                                    return;
+                                mTemperTextview.setText(temper);
+                                mIsWearable = false;
+                                getTemperMessage();
+//                                SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
+                            }
+                        })
+                        .setNoButton(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        });
+            }
+        });
 
         // 체온 등록하기
         view.findViewById(R.id.temper_regist_done_btn).setOnClickListener(new View.OnClickListener() {

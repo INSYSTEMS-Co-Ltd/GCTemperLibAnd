@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.hana.util;
+package com.greencross.gctemperlib.util;
 
 import android.annotation.SuppressLint;
 import android.app.Service;

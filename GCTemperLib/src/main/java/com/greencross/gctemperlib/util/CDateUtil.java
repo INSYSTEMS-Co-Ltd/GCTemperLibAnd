@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.hana.util;
+package com.greencross.gctemperlib.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

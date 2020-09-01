@@ -13,8 +13,6 @@
         android:id="@+id/slide_top_full_down_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="@drawable/draw_slide_menu_header"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/_10_dp"
@@ -113,9 +111,8 @@
         <RelativeLayout
             android:id="@+id/slide_top_full_up_layout"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:paddingRight="20dp"
             android:visibility="gone"
             tools:visibility="visible">
 
@@ -134,6 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
                 android:src="@drawable/hn_icon_down_arrow2" />
 
             <View
@@ -179,6 +177,7 @@
                     android:drawableRight="@drawable/hn_icon_down_arrow"
                     android:lineSpacingExtra="0dp"
                     android:text="체온관리"
+                    android:gravity="center_vertical"
                     android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15dp"
@@ -220,6 +219,7 @@
                     android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15dp"
+                    android:gravity="center_vertical"
                     app:fontFamily="@font/hanam"/>
 
             </LinearLayout>
@@ -259,6 +259,7 @@
                         android:drawableRight="@drawable/hn_icon_down_arrow"
                         android:lineSpacingExtra="0dp"
                         android:text="건강상담"
+                        android:gravity="center_vertical"
                         android:fontFamily="@font/hanam"
                         android:textColor="#333333"
                         android:textSize="15dp"
@@ -315,6 +316,7 @@
                     android:drawableRight="@drawable/hn_icon_down_arrow"
                     android:lineSpacingExtra="0dp"
                     android:text="헬스케어서비스란?"
+                    android:gravity="center_vertical"
                     android:fontFamily="@font/hanam"
                     android:textColor="#333333"
                     android:textSize="15dp"

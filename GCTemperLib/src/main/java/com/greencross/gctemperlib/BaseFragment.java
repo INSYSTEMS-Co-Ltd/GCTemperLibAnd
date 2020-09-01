@@ -30,8 +30,8 @@ import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
-import com.greencross.gctemperlib.hana.util.Logger;
-import com.greencross.gctemperlib.hana.util.NetworkUtil;
+import com.greencross.gctemperlib.util.Logger;
+import com.greencross.gctemperlib.util.NetworkUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

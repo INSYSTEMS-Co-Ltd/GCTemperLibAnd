@@ -19,10 +19,10 @@ import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.hana.component.CDialog;
-import com.greencross.gctemperlib.hana.util.SharedPref;
+import com.greencross.gctemperlib.util.SharedPref;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_AreaSetup;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
-import com.greencross.gctemperlib.hana.util.GpsInfo;
+import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
 
 public class SettingAddressFragment extends BaseFragment implements View.OnClickListener {

@@ -99,7 +99,7 @@
     <string name="health_call_center">15223516</string>
     <string name="over_date">열 그래프의 시작 시간이 종료 시간보다 높습니다. 다시 입력해주세요.</string>
     <string name="over_date2">열 그래프의 종료 시간이 시작 시간보다 낮습니다. 다시 입력해주세요.</string>
-
+    <string name="temper_input_alert_title">체온 직접 입력</string>
 
 
 </resources>

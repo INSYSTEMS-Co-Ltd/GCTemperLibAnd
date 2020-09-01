@@ -17,15 +17,15 @@ import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.hana.component.CDialog;
-import com.greencross.gctemperlib.hana.util.SharedPref;
-import com.greencross.gctemperlib.hana.util.cameraUtil.RuntimeUtil;
+import com.greencross.gctemperlib.util.SharedPref;
+import com.greencross.gctemperlib.util.cameraUtil.RuntimeUtil;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
-import com.greencross.gctemperlib.hana.util.NetworkUtil;
+import com.greencross.gctemperlib.util.NetworkUtil;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
-import com.greencross.gctemperlib.hana.util.PermissionUtils;
+import com.greencross.gctemperlib.util.PermissionUtils;
 import com.greencross.gctemperlib.util.Util;
 
 

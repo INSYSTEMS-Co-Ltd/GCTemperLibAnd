@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.hana.util.cameraUtil;
+package com.greencross.gctemperlib.util.cameraUtil;
 
 /**
  * Created by hyochan on 15. 11. 18..

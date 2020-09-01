@@ -8,7 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.greencross.gctemperlib.common.CommonData;
 import com.greencross.gctemperlib.common.NetworkConst;
-import com.greencross.gctemperlib.hana.util.JsonLogPrint;
+import com.greencross.gctemperlib.util.JsonLogPrint;
 import com.greencross.gctemperlib.util.GLog;
 
 import org.json.JSONObject;

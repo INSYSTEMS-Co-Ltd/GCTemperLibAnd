@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.greencross.gctemperlib.R;
-import com.greencross.gctemperlib.hana.util.Logger;
+import com.greencross.gctemperlib.util.Logger;
 
 
 /**

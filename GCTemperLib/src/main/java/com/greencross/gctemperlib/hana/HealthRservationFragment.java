@@ -19,7 +19,7 @@ import com.greencross.gctemperlib.BaseFragment;
 import com.greencross.gctemperlib.DummyActivity;
 import com.greencross.gctemperlib.R;
 import com.greencross.gctemperlib.hana.component.CDialog;
-import com.greencross.gctemperlib.hana.util.SharedPref;
+import com.greencross.gctemperlib.util.SharedPref;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 
 /**

@@ -1,7 +1,6 @@
 package com.greencross.gctemperlib;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,10 +18,10 @@ import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Setup;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Temperature;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
-import com.greencross.gctemperlib.hana.util.NetworkUtil;
-import com.greencross.gctemperlib.hana.util.SharedPref;
+import com.greencross.gctemperlib.util.NetworkUtil;
+import com.greencross.gctemperlib.util.SharedPref;
 import com.greencross.gctemperlib.hana.GCAlramType;
-import com.greencross.gctemperlib.hana.util.GpsInfo;
+import com.greencross.gctemperlib.util.GpsInfo;
 import com.greencross.gctemperlib.util.Util;
 
 import java.text.SimpleDateFormat;

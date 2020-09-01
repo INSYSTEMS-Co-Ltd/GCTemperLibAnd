@@ -1,4 +1,4 @@
-package com.greencross.gctemperlib.hana.util;
+package com.greencross.gctemperlib.util;
 
 /**
  * Created by mrsohn on 2017. 3. 29..

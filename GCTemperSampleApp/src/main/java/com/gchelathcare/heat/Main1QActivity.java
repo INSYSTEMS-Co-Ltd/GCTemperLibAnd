@@ -18,7 +18,6 @@ import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.GCTemperLib;
 import com.greencross.gctemperlib.IGCResult;
 import com.greencross.gctemperlib.hana.component.CDialog;
-import com.greencross.gctemperlib.hana.util.SharedPref;
 
 public class Main1QActivity extends Activity {
 

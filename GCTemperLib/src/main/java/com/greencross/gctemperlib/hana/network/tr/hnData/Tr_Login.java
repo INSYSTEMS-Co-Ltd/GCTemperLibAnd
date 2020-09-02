@@ -78,7 +78,7 @@ public class Tr_Login extends BaseData {
 			body.put("appver", BuildConfig.VERSION_NAME);
 			if (TextUtils.isEmpty(data.devicetoken) == false)
 			    body.put("devicetoken", data.devicetoken);
-			body.put("os_ver", ""+Build.VERSION.CODENAME);
+			body.put("os_ver", ""+Build.VERSION.RELEASE);
 			body.put("p_model", Build.MODEL);
 			return body;
 		}

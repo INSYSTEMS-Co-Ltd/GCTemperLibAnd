@@ -21,7 +21,6 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="12dp"
-            android:background="@drawable/draw_circle_f2f2f2"
             android:duplicateParentState="true"
             android:src="@drawable/hn_temper_log_icon1" />
 

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -470,6 +471,19 @@ public class BaseFragment extends Fragment implements IBaseFragment {
      * 재 로그인 완료
      */
     protected void reLoginComplete() {};
+
+
+    /**
+     * 외부 브라우저 호출
+     *
+     */
+
+    public void ExternalBrowser(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri uri = Uri.parse(url);
+        intent.setData(uri);
+        startActivity(intent);
+    }
 
     /**
      * 권한이 정상적으로 설정 되었는지 확인

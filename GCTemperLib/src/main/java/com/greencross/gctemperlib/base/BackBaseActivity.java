@@ -217,16 +217,8 @@ public class BackBaseActivity extends BaseActivity {
             public void onResult(boolean isSuccess, String message, Object data) {
                 if (data instanceof Tr_Login) {
                     Tr_Login recv = (Tr_Login) data;
-                    boolean isLogin = recv.isSuccess(recv.resultcode);
-                    if (isLogin) {
-                        SharedPref.getInstance(BackBaseActivity.this).saveLoginInfo(recv);
-                        reLoginComplete();
-//                        SharedPref.getInstance(BackBaseActivity.this).saveLoginInfo(recv);
-//                        SharedPref.getInstance(BackBaseActivity.this).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호 저장
-                    }
-//                    iGCResult.onResult(isLogin, recv.message, recv);
-                } else {
-//                    iGCResult.onResult(isSuccess, message, data);
+                    SharedPref.getInstance(BackBaseActivity.this).saveLoginInfo(recv);
+                    reLoginComplete();
                 }
             }
         });

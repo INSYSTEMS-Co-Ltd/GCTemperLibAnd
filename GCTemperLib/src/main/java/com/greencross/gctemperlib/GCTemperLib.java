@@ -86,7 +86,6 @@ public class GCTemperLib {
      */
     public void registCustomerNo(@Nullable String customerNo, IGCResult iGCResult) {
         if (checkGCToken(iGCResult) == false) {
-            Log.e(TAG, "IGCResult가 없습니다.");
             return;
         } else {
             if (TextUtils.isEmpty(customerNo)) {
@@ -94,27 +93,30 @@ public class GCTemperLib {
                 return;
             }
 
-            // 최초 인증, 고객번호 저장
-            Tr_Login.RequestData requestData = new Tr_Login.RequestData();
-            requestData.cust_id = customerNo;
-            getData(Tr_Login.class, requestData, new IGCResult() {
-                @Override
-                public void onResult(boolean isSuccess, String message, Object data) {
-                    if (data instanceof Tr_Login) {
-                        Tr_Login recv = (Tr_Login) data;
-                        boolean isLogin = recv.isSuccess(recv.resultcode);
-                        if (isLogin) {
-                            SharedPref.getInstance(mContext).saveLoginInfo(recv);
-                            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호 저장
-                            iGCResult.onResult(isLogin, recv.message, recv);
-                        } else {
-                            iGCResult.onResult(false, recv.message, recv);
-                        }
-                    } else {
-                        iGCResult.onResult(isSuccess, message, data);
-                    }
-                }
-            });
+            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호 저장
+            iGCResult.onResult(true, "고객 번호 등록 완료", null);
+
+//            // 최초 인증, 고객번호 저장
+//            Tr_Login.RequestData requestData = new Tr_Login.RequestData();
+//            requestData.cust_id = customerNo;
+//            getData(Tr_Login.class, requestData, new IGCResult() {
+//                @Override
+//                public void onResult(boolean isSuccess, String message, Object data) {
+//                    if (data instanceof Tr_Login) {
+//                        Tr_Login recv = (Tr_Login) data;
+//                        boolean isLogin = recv.isSuccess(recv.resultcode);
+//                        if (isLogin) {
+//                            SharedPref.getInstance(mContext).saveLoginInfo(recv);
+//                            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_NO, customerNo);     // 사용자 번호 저장
+//                            iGCResult.onResult(isLogin, recv.message, recv);
+//                        } else {
+//                            iGCResult.onResult(false, recv.message, recv);
+//                        }
+//                    } else {
+//                        iGCResult.onResult(isSuccess, message, data);
+//                    }
+//                }
+//            });
         }
     }
 
@@ -129,11 +131,6 @@ public class GCTemperLib {
         if (checkGCToken(iGCResult) == false) {
             return;
         } else {
-            String custId = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);     // 사용자 번호 저장
-            if (TextUtils.isEmpty(custId)) {
-                iGCResult.onResult(false, "고객정보 등록 후 이용 가능 합니다.", null);
-                return;
-            }
             if (TextUtils.isEmpty(pushToken)) {
                 iGCResult.onResult(false, "푸시 토큰을 입력해주세요.", null);
                 return;

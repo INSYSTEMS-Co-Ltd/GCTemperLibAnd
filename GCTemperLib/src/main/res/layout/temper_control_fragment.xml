@@ -277,7 +277,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
         android:adjustViewBounds="true"
         android:src="@drawable/hn_button_regist_complete" />
+
+    <ImageView
+        android:id="@+id/temper_health_store_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="22dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/hn_button_healthbox" />
 </LinearLayout>

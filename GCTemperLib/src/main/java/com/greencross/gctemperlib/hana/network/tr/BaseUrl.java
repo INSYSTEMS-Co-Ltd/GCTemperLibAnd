@@ -19,6 +19,8 @@ public class BaseUrl {
 //		FOOD_IMAGE_URL ="http://wkd.walkie.co.kr/HS_HL/UPLOAD/SK_FOOD/";
 		
 	}
+
+	public static String HEALTH_BOX_URL = "https://naver.com";
 	
 
 }

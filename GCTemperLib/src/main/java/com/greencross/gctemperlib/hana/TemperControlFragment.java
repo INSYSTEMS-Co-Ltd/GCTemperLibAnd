@@ -45,6 +45,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import static com.greencross.gctemperlib.hana.network.tr.BaseUrl.HEALTH_BOX_URL;
+
 public class TemperControlFragment extends BaseFragment {
 
     private ImageView mTemperNoticeIcon;
@@ -255,6 +257,15 @@ public class TemperControlFragment extends BaseFragment {
 //                } else {
 //                    gps.showSettingsAlert();
 //                }
+            }
+        });
+
+
+        // 건강박스 구매하기
+        view.findViewById(R.id.temper_health_store_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ExternalBrowser(HEALTH_BOX_URL);
             }
         });
     }

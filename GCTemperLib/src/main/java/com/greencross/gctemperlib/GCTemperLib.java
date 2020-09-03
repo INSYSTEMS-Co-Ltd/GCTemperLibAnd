@@ -131,7 +131,7 @@ public class GCTemperLib {
         } else {
             String custId = SharedPref.getInstance(mContext).getPreferences(SharedPref.PREF_CUST_NO);     // 사용자 번호 저장
             if (TextUtils.isEmpty(custId)) {
-                iGCResult.onResult(false, "고객정보 등록후 이용 가능 합니다.", null);
+                iGCResult.onResult(false, "고객정보 등록 후 이용 가능 합니다.", null);
                 return;
             }
             if (TextUtils.isEmpty(pushToken)) {
@@ -139,32 +139,34 @@ public class GCTemperLib {
                 return;
             }
 
-            Tr_Login.RequestData requestData = new Tr_Login.RequestData();
-            requestData.cust_id = custId;
-            requestData.devicetoken = pushToken;
+            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
+            iGCResult.onResult(true, "푸시토큰 등록 완료", null);
 
-            getData(Tr_Login.class, requestData, new IGCResult() {
-                @Override
-                public void onResult(boolean isSuccess, String message, Object data) {
-                    if (data instanceof Tr_Login) {
-                        Tr_Login recv = (Tr_Login) data;
-                        boolean isSuccessed = recv.isSuccess(recv.resultcode);
-                        if (isSuccessed) {
-                            if (isSuccess) {
-                                SharedPref.getInstance(mContext).saveLoginInfo(recv);
-                                SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
-                                iGCResult.onResult(isSuccessed, recv.message, recv);
-                            } else {
-                                iGCResult.onResult(false, recv.message, recv);
-                            }
-                        } else {
-                            iGCResult.onResult(false, "푸시 토큰 등록 실패", null);
-                        }
-                    } else {
-                        iGCResult.onResult(isSuccess, message, data);
-                    }
-                }
-            });
+//            Tr_Login.RequestData requestData = new Tr_Login.RequestData();
+//            requestData.cust_id = custId;
+//            requestData.devicetoken = pushToken;
+//            getData(Tr_Login.class, requestData, new IGCResult() {
+//                @Override
+//                public void onResult(boolean isSuccess, String message, Object data) {
+//                    if (data instanceof Tr_Login) {
+//                        Tr_Login recv = (Tr_Login) data;
+//                        boolean isSuccessed = recv.isSuccess(recv.resultcode);
+//                        if (isSuccessed) {
+//                            if (isSuccess) {
+//                                SharedPref.getInstance(mContext).saveLoginInfo(recv);
+//                                SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_PUSH_TOKEN, pushToken);   // 푸시키
+//                                iGCResult.onResult(isSuccessed, recv.message, recv);
+//                            } else {
+//                                iGCResult.onResult(false, recv.message, recv);
+//                            }
+//                        } else {
+//                            iGCResult.onResult(false, "푸시 토큰 등록 실패", null);
+//                        }
+//                    } else {
+//                        iGCResult.onResult(isSuccess, message, data);
+//                    }
+//                }
+//            });
         }
     }
 

@@ -37,7 +37,10 @@ public class GCTemperLib {
 
     public GCTemperLib(Context context) {
         mContext = context;
-        BaseUrl.DEBUG_MODE = SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
+        if (TextUtils.isEmpty(BaseUrl.COMMON_URL)) {
+            boolean isDebug = SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
+            BaseUrl.setCommonUrl(isDebug);
+        }
     }
 
     /**
@@ -46,12 +49,13 @@ public class GCTemperLib {
      * @return
      */
     public boolean getDebugMode() {
-        return SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
+        boolean isDebug = SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
+        return isDebug;
     }
 
     public void setDebugMode(boolean isDebug) {
         SharedPref.getInstance(mContext).savePreferences(SharedPref.IS_DBUG, isDebug);
-        BaseUrl.DEBUG_MODE = isDebug;
+        BaseUrl.setCommonUrl(isDebug);
     }
 
     /**

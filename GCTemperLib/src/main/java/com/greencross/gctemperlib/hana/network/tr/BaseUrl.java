@@ -20,7 +20,7 @@ public class BaseUrl {
 		
 	}
 
-	public static String HEALTH_BOX_URL = "https://naver.com";
+	public static String HEALTH_BOX_URL = "http://hanagchealthcare.eiparkclub.com";
 	
 
 }

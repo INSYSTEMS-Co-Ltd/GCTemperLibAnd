@@ -9,10 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.multidex.BuildConfig;
 
 import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.GCTemperLib;
@@ -88,8 +91,6 @@ public class Main1QActivity extends Activity {
             }
         });
 
-
-
         Switch switch1 = findViewById(R.id.alram_type_1);
         Switch switch2 = findViewById(R.id.alram_type_2);
 
@@ -123,6 +124,30 @@ public class Main1QActivity extends Activity {
                         })
                         .setNoButton(getResources().getString(R.string.comm_cancel), null);
 
+            }
+        });
+
+
+
+        /**
+         * 운영모드, 테스트 모드 설정
+         */
+        RadioButton debugRadioButton = findViewById(R.id.radio_test_mode);
+        RadioButton realRadioButton = findViewById(R.id.radio_real_mode);
+        if (gcLib.getDebugMode()) {
+            debugRadioButton.setChecked(true);
+        } else {
+            realRadioButton.setChecked(true);
+        }
+        ((RadioGroup)findViewById(R.id.rg_test_mode)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.radio_test_mode) {
+                    gcLib.setDebugMode(true);
+                } else {
+                    gcLib.setDebugMode(false);
+                }
             }
         });
     }

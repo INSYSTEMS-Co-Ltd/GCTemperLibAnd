@@ -5,19 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import com.greencross.gctemperlib.hana.component.CDialog;
+import com.greencross.gctemperlib.hana.network.tr.BaseUrl;
 import com.greencross.gctemperlib.hana.network.tr.HNApiData;
 import com.greencross.gctemperlib.hana.network.tr.BaseData;
 import com.greencross.gctemperlib.hana.network.tr.CConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.HNCConnAsyncTask;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Setup;
 import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Temperature;
-import com.greencross.gctemperlib.hana.network.tr.hnData.Tr_Login;
 import com.greencross.gctemperlib.util.NetworkUtil;
 import com.greencross.gctemperlib.util.SharedPref;
 import com.greencross.gctemperlib.hana.GCAlramType;
@@ -38,6 +37,16 @@ public class GCTemperLib {
 
     public GCTemperLib(Context context) {
         mContext = context;
+        BaseUrl.DEBUG_MODE = SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
+    }
+
+    public boolean getDebugMode() {
+        return SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
+    }
+
+    public void setDebugMode(boolean isDebug) {
+        SharedPref.getInstance(mContext).savePreferences(SharedPref.IS_DBUG, isDebug);
+        BaseUrl.DEBUG_MODE = isDebug;
     }
 
     /**

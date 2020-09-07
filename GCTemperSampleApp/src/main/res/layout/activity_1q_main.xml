@@ -13,6 +13,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="20dp">
+
+            <RadioGroup
+                android:id="@+id/rg_test_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_test_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="테스트"/>
+
+                <RadioButton
+                    android:id="@+id/radio_real_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="운영"/>
+            </RadioGroup>
             <Button
                 android:id="@+id/gc_lib_reset_button"
                 android:layout_width="wrap_content"

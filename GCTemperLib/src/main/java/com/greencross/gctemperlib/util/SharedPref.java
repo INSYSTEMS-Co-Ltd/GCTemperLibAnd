@@ -14,6 +14,8 @@ public class SharedPref {
 
     public static final String PREF_NAME = "greencross";
 
+    public static final String IS_DBUG = "IS_DBUG";
+
 
     public static final String PREF_APP_TOKEN = "pref_app_token";                       // 라이브러리 인증키
     public static final String PREF_PUSH_TOKEN = "pref_push_token";                     // 푸시키

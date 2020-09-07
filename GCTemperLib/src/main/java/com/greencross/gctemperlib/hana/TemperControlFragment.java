@@ -45,9 +45,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import static android.app.Activity.RESULT_OK;
 import static com.greencross.gctemperlib.hana.network.tr.BaseUrl.HEALTH_BOX_URL;
 
 public class TemperControlFragment extends BaseFragment {
+    final static int REQUEST_CODE_BODY_TEMPERATURE = 10101;
 
     private ImageView mTemperNoticeIcon;
     private ImageView mTemperBubbleIv;
@@ -349,10 +351,16 @@ public class TemperControlFragment extends BaseFragment {
 
     public void openPatron() {
         String packageName = "com.partron.temperature310";
+        String url = "intent://" +
+                "insystems?"
+                + "#Intent;" +
+                "scheme=partron;" +
+                "package=com.partron.temperature310;" +
+                "end";
         try {
-            Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            getContext().startActivity(intent);
+            Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            getActivity().startActivityForResult(intent, REQUEST_CODE_BODY_TEMPERATURE);
         } catch (Exception e) {
             CDialog.showDlg(getContext(), "사용하시는 스마트폰에\n전용 체온계 앱이 설치되어있지 않습니다.", "전용 체온계 앱을 설치하기 위해\n앱스토어로 이동합니다.")
                     .setOkButton(new View.OnClickListener() {
@@ -517,5 +525,20 @@ public class TemperControlFragment extends BaseFragment {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         boolean isGranted = RuntimeUtil.verifyPermissions(grantResults);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_BODY_TEMPERATURE) {
+            if(resultCode == RESULT_OK) {
+                if (data != null) {
+                    Log.d(TAG, "" + data.getStringExtra("bodyTemperature"));
+                    float temper = StringUtil.getFloatVal(data.getStringExtra("bodyTemperature"));
+                    mTemperTextview.setText(String.format("%.1f", temper));
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

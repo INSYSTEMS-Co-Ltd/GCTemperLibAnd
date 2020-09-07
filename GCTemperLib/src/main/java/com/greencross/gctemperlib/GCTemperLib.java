@@ -40,6 +40,11 @@ public class GCTemperLib {
         BaseUrl.DEBUG_MODE = SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
     }
 
+    /**
+     * 디버그모드여부 설정
+     * 요청 URL 처리를 다르게 한다.
+     * @return
+     */
     public boolean getDebugMode() {
         return SharedPref.getInstance(mContext).getPreferences(SharedPref.IS_DBUG, false);
     }

@@ -170,7 +170,7 @@ public class TemperControlFragment extends BaseFragment {
             public void onClick(View view) {
                 final View temperInputAlertView = LayoutInflater.from(getContext()).inflate(R.layout.temper_input_alert, null, false);
                 final EditText temperEt = temperInputAlertView.findViewById(R.id.temper_input_edittext);
-                new TextWatcherUtil().setTextWatcher(temperEt, 50, 1);
+                new TextWatcherUtil().setTextWatcher(temperEt, 42, 1);
                 CDialog.showDlg(getContext(), temperInputAlertView)
                         .setOkButton(new View.OnClickListener() {
                             @Override
@@ -178,6 +178,11 @@ public class TemperControlFragment extends BaseFragment {
                                 String temper = temperEt.getText().toString();
                                 if (TextUtils.isEmpty(temper))
                                     return;
+
+                                if (StringUtil.getIntVal(temper) < 30) {
+
+                                    return;
+                                }
                                 mTemperTextview.setText(temper);
                                 mIsWearable = false;
                                 getTemperMessage();

@@ -21,7 +21,7 @@
         android:layout_margin="10dp"
         android:textColor="#222222"
         android:textSize="18dp"
-        tools:text="2020. 6. 23."
+        tools:text="2020.06.23."
         android:fontFamily="@font/hanam"
         app:fontFamily="@font/hanam"/>
 

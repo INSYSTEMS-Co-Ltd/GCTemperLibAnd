@@ -15,7 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.multidex.BuildConfig;
+import com.gchelathcare.heat.BuildConfig;
 
 import com.greencross.gctemperlib.hana.GCAlramType;
 import com.greencross.gctemperlib.GCTemperLib;

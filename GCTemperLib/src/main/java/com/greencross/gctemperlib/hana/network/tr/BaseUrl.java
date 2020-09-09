@@ -13,7 +13,7 @@ public class BaseUrl {
 		}
 	}
 
-	public static String HEALTH_BOX_URL = "http://hanagchealthcare.eiparkclub.com";
+	public static String HEALTH_BOX_URL = "https://mhanagchealthcare.eiparkclub.com/ExternalLogin/HanaCard";
 	
 
 }

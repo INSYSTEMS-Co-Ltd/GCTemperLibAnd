@@ -60,7 +60,7 @@ public class TemperControlFragment extends BaseFragment {
     private TextView mTemperTextview;
     private ScrollView  mScrollView;
 
-    private boolean mIsWearable = false;    // 기기,수기 등록 여부
+    private boolean mIsWearable = true;    // 기기,수기 등록 여부
 
     private TextView mDateTv;
     private TextView mTtimeTv;
@@ -186,7 +186,7 @@ public class TemperControlFragment extends BaseFragment {
                                     CDialog.showDlg(getContext(), "체온은 30℃ ~ 42℃까지 입력 가능합니다.");
                                     return;
                                 }
-                                mTemperTextview.setText(temper);
+                                mTemperTextview.setText(String.format("%.1f", StringUtil.getFloatVal(temper)));
                                 mIsWearable = false;
                                 getTemperMessage();
 //                                SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
@@ -362,6 +362,7 @@ public class TemperControlFragment extends BaseFragment {
     };
 
     public void openPatron() {
+        mIsWearable = true;
         String packageName = "com.partron.temperature310";
         String url = "intent://" +
                 "insystems?"

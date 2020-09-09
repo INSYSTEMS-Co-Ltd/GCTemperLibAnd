@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -57,6 +58,7 @@ public class TemperControlFragment extends BaseFragment {
 //    private TextView mTemperNoticeMessage;
 
     private TextView mTemperTextview;
+    private ScrollView  mScrollView;
 
     private boolean mIsWearable = false;    // 기기,수기 등록 여부
 
@@ -133,6 +135,7 @@ public class TemperControlFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mScrollView = view.findViewById(R.id.temper_scrollview);
         mTemperNoticeIcon = view.findViewById(R.id.temper_notice_icon);
         mTemperBubbleIv = view.findViewById(R.id.temper_bubble_iv);
 //        mTemperNoticeTitle = view.findViewById(R.id.temper_notice_title);
@@ -180,7 +183,7 @@ public class TemperControlFragment extends BaseFragment {
                                     return;
 
                                 if (StringUtil.getIntVal(temper) < 30) {
-
+                                    CDialog.showDlg(getContext(), "체온은 30℃ ~ 42℃까지 입력 가능합니다.");
                                     return;
                                 }
                                 mTemperTextview.setText(temper);
@@ -305,6 +308,10 @@ public class TemperControlFragment extends BaseFragment {
 
         mTemperNoticeIcon.setImageResource(mTemperIcon[resultIdx]);
         mTemperBubbleIv.setImageResource(mTemperBubbleImage[resultIdx]);
+
+        mScrollView.fullScroll(ScrollView.FOCUS_UP);    // 스크롤뷰 맨 위로
+
+
 //        mTemperNoticeTitle.setText(mTemperTitles[resultIdx]);
 //        mTemperNoticeMessage.setText(mTemperText[resultIdx]);
     }

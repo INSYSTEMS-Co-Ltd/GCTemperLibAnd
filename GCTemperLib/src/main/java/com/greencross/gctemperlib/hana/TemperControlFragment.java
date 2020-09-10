@@ -60,7 +60,7 @@ public class TemperControlFragment extends BaseFragment {
     private TextView mTemperTextview;
     private ScrollView  mScrollView;
 
-    private boolean mIsWearable = true;    // 기기,수기 등록 여부
+    private boolean mIsWearable = false;    // 기기,수기 등록 여부
 
     private TextView mDateTv;
     private TextView mTtimeTv;
@@ -149,6 +149,7 @@ public class TemperControlFragment extends BaseFragment {
         if(null != SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE) &&
                 !"".equals(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE))) {
             mTemperTextview.setText(String.format("%.1f", StringUtil.getFloatVal(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE))));
+            getTemperMessage();
         }
 
         SharedPref.getInstance(getContext()).savePreferences(SharedPref.PREF_TEMPERATE, "");
@@ -171,6 +172,7 @@ public class TemperControlFragment extends BaseFragment {
         view.findViewById(R.id.temper_layout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mIsWearable = false;
                 final View temperInputAlertView = LayoutInflater.from(getContext()).inflate(R.layout.temper_input_alert, null, false);
                 final EditText temperEt = temperInputAlertView.findViewById(R.id.temper_input_edittext);
                 new TextWatcherUtil().setTextWatcher(temperEt, 42, 1);
@@ -182,12 +184,11 @@ public class TemperControlFragment extends BaseFragment {
                                 if (TextUtils.isEmpty(temper))
                                     return;
 
-                                if (StringUtil.getIntVal(temper) < 30) {
+                                if (StringUtil.getFloatVal(temper) < 30) {
                                     CDialog.showDlg(getContext(), "체온은 30℃ ~ 42℃까지 입력 가능합니다.");
                                     return;
                                 }
                                 mTemperTextview.setText(String.format("%.1f", StringUtil.getFloatVal(temper)));
-                                mIsWearable = false;
                                 getTemperMessage();
 //                                SharedPref.getInstance(getContext()).savePreferences(SharedPref.TEMPER, temper);
                             }
@@ -548,6 +549,7 @@ public class TemperControlFragment extends BaseFragment {
                     Log.d(TAG, "" + data.getStringExtra("bodyTemperature"));
                     float temper = StringUtil.getFloatVal(data.getStringExtra("bodyTemperature"));
                     mTemperTextview.setText(String.format("%.1f", temper));
+                    getTemperMessage();
                 }
             }
         } else {

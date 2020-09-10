@@ -149,13 +149,31 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
 
 
         final View slideFullUpLayout = findViewById(R.id.slide_top_full_up_layout);
-        final View slideFullDownLayout = findViewById(R.id.slide_top_full_down_layout);
 
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+
+
+        final LinearLayout alphaLayoutUp = findViewById(R.id.slide_up_alpha);
+        final LinearLayout alphaLayoutBottom = findViewById(R.id.slide_bottom_alpha);
+        final FrameLayout slideBottomHandle = findViewById(R.id.slide_bottom_handle);
+        alphaLayoutBottom.getBackground().setAlpha(0);
+
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
-                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+                int hex = (int) (slideOffset * 255);
+//                Log.i(TAG, "onPanelSlide2, offset " +  100+", hex="+hex);
+                int upAlpha = (255-hex);
+                int bottomAlpha = (hex);
+
+                alphaLayoutUp.getBackground().setAlpha(upAlpha);
+                alphaLayoutBottom.getBackground().setAlpha(bottomAlpha);
+
+                if (slideOffset > 0.5) {
+                    slideBottomHandle.setVisibility(View.INVISIBLE);
+                } else {
+                    slideBottomHandle.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -163,16 +181,15 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                 Log.i(TAG, "onPanelStateChanged " + newState);
                 switch (newState) {
                     case COLLAPSED: // 완전 내려간 경우
-                        slideFullUpLayout.setVisibility(View.GONE);
-                        slideFullDownLayout.setVisibility(View.VISIBLE);
+//                        slideFullUpLayout.setVisibility(View.GONE);
+//                        slideFullDownLayout.setVisibility(View.VISIBLE);
                         break;
                     case EXPANDED:  // 완전 펼쳐진 경우
-                        slideFullUpLayout.setVisibility(View.VISIBLE);
-                        slideFullDownLayout.setVisibility(View.GONE);
+//                        slideFullUpLayout.setVisibility(View.VISIBLE);
+//                        slideFullDownLayout.setVisibility(View.GONE);
                         getRemainUseDate();
                         break;
                     case DRAGGING:
-
                         break;
                 }
             }
@@ -184,6 +201,17 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
                 mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
             }
         });
+    }
+
+    private float getHex(int i) {
+//        i = (int) (Math.round(i * 100) / 100.0d);
+        int rounded = (int) Math.round(i * 255);
+        String hex = Integer.toHexString(rounded).toUpperCase();
+
+//        if (hex.length() == 1)
+//            hex = "0" + hex;
+//        int percent = (int) (i * 100);
+        return rounded;
     }
 
 

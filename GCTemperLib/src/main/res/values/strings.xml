@@ -85,12 +85,12 @@
     <string name="title_health_care_service">헬스케어서비스란?</string>
     <string name="title_health_reservation_fragment">건강검진 예약</string>
 
-    <string name="title_resavation_text1">다운로드 한번으로\n <b><font color="#6972d1">빠른 예약 · 가격우대 · 검진 결과 조회</font></b>까지\n1Q에~!</string>
+    <string name="title_resavation_text1">다운로드 한번으로\n <b><font color="#6972d1">빠른 예약 · 가격우대 · 결과 조회</font></b>까지\n1Q에~!</string>
     <string name="temper_control_desc">체온은 일반적인 체온 범위 내로 등록이 가능합니다.</string>
 
 
     <string name="fever_health_call_alert_title">헬스콜센터로\n연결하시겠습니까?</string>
-    <string name="fever_health_call_alert_message">헬스콜센터 운영시간은\n<font color="#6972d1">평일 09시 ~ 19시, 토요일 09시 ~ 13시 이며</font>\n일요일, 공휴일 휴무입니다.</string>
+    <string name="fever_health_call_alert_message">헬스콜센터 운영시간은\n<font color="#6972d1">평일 09시 ~ 19시, 토요일 09시 ~ 13시 이며</font> 일요일, 공휴일 휴무입니다.</string>
 
     <string name="comm_cancel">취소</string>
     <string name="comm_confirm">완료</string>

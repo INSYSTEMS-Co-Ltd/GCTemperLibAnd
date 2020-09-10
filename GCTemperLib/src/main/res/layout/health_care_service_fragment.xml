@@ -433,7 +433,6 @@
                         android:layout_marginLeft="10dp"
                         android:fontFamily="@font/hanam"
                         android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="10dp"
                         android:text="주요 5대 대형병원 및 전국 30여개 종합병원 진료 예약 대행"
                         android:textColor="#707070"
                         android:textSize="13dp"

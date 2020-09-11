@@ -26,6 +26,7 @@ public class SharedPref {
 
     /* 로그인 정보 */
     public static final String PREF_CUST_NO = "pref_cust_no";         // 사용자 번호
+    public static final String PREF_CUST_ENCRYPT_NO = "pref_cust_encrypt_no";  // 사용자 번호 암호화
     private final String LOGIN_JUMINNUM = "juminnum";
     private final String LOGIN_MEMNAME = "memname";
     private final String LOGIN_HPNUM = "hpnum";

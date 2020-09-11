@@ -20,6 +20,7 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
+            android:lineSpacingExtra="3dp"
             android:letterSpacing="-0.01"
             android:text="@string/title_resavation_text1"
             android:fontFamily="@font/hanam"

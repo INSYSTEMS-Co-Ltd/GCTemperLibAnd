@@ -276,7 +276,8 @@ public class TemperControlFragment extends BaseFragment {
         view.findViewById(R.id.temper_health_store_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExternalBrowser(HEALTH_BOX_URL);
+                String type = SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_CUST_ENCRYPT_NO);
+                ExternalBrowser(HEALTH_BOX_URL+type);
             }
         });
     }

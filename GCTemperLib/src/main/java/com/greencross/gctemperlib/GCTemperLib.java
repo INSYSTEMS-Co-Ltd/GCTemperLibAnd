@@ -140,6 +140,27 @@ public class GCTemperLib {
 
 
     /**
+     * 고객번호 저장
+     *
+     * @param customerNo 고객번호
+     * @param iGCResult  결과값 전달 Interface
+     */
+    public void registEncryptCustomerNo(@Nullable String customerNo, IGCResult iGCResult) {
+        if (checkGCToken(iGCResult) == false) {
+            return;
+        } else {
+            if (TextUtils.isEmpty(customerNo)) {
+                iGCResult.onResult(false, "고객 번호를 입력해주세요.", null);
+                return;
+            }
+
+            SharedPref.getInstance(mContext).savePreferences(SharedPref.PREF_CUST_ENCRYPT_NO, customerNo);     // 사용자 번호 저장
+            iGCResult.onResult(true, "고객 번호 등록 완료", null);
+        }
+    }
+
+
+    /**
      * Push 토큰을 저장
      *
      * @param pushToken 푸시 토큰

@@ -161,19 +161,16 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
-                int hex = (int) (slideOffset * 255);
-//                Log.i(TAG, "onPanelSlide2, offset " +  100+", hex="+hex);
-                int upAlpha = (255-hex);
-                int bottomAlpha = (hex);
+//                Log.i(TAG, "onPanelSlide2, offset " +  slideOffset);
+                float upAlpha = 1 - slideOffset;
+                float bottomAlpha = slideOffset;
 
-                alphaLayoutUp.getBackground().setAlpha(upAlpha);
-                alphaLayoutBottom.getBackground().setAlpha(bottomAlpha);
+                Log.i(TAG, "upAlpha="+upAlpha);
+                Log.i(TAG, "bottomAlpha="+bottomAlpha);
 
-                if (slideOffset > 0.5) {
-                    slideBottomHandle.setVisibility(View.INVISIBLE);
-                } else {
-                    slideBottomHandle.setVisibility(View.VISIBLE);
-                }
+                alphaLayoutUp.setAlpha(upAlpha);
+                alphaLayoutBottom.setAlpha(bottomAlpha);
+                slideBottomHandle.setAlpha(upAlpha);
             }
 
             @Override

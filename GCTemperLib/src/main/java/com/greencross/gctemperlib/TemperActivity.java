@@ -88,7 +88,7 @@ public class TemperActivity extends BackBaseActivity implements View.OnClickList
         }
 
         setContentView(R.layout.temper_map_activity);
-        setTitle(getString(R.string.temper_control));
+        setTitle(getString(R.string.temper_control1));
 
         init();
         setEvent();

@@ -44,7 +44,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/_48_dp"
             android:layout_toRightOf="@id/common_left_btn"
-            android:text="@string/temper_control"
+            android:text="@string/temper_control1"
             android:fontFamily="@font/hanam"
             app:fontFamily="@font/hanam"/>
 

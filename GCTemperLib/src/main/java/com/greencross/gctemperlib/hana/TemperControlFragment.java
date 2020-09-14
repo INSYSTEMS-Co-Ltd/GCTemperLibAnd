@@ -150,6 +150,7 @@ public class TemperControlFragment extends BaseFragment {
                 !"".equals(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE))) {
             mTemperTextview.setText(String.format("%.1f", StringUtil.getFloatVal(SharedPref.getInstance(getContext()).getPreferences(SharedPref.PREF_TEMPERATE))));
             getTemperMessage();
+            mIsWearable = true;
         }
 
         SharedPref.getInstance(getContext()).savePreferences(SharedPref.PREF_TEMPERATE, "");

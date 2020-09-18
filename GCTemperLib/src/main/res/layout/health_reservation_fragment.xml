@@ -147,8 +147,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
                     android:src="@drawable/hn_button_everhealth" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosans_m"
+                    android:textColor="#222222"
+                    android:textSize="13dp"
+                    android:text="2021년도 예약은 2020년 11월 이후부터 가능합니다."/>
             </LinearLayout>
 
             <TextView
